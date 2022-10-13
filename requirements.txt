@@ -10,3 +10,4 @@ napari-sphinx-theme
 matplotlib
 qtgallery
 lxml
+imageio-ffmpeg
