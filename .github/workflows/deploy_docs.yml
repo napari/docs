@@ -28,8 +28,8 @@ jobs:
         uses: actions/checkout@main
         with:
           path: napari
-          ref: two-repo
-          repository: melissawm/napari
+          ref: main
+          repository: napari/napari
 
       - uses: actions/setup-python@v2
         with:
@@ -60,9 +60,9 @@ jobs:
       - name: Deploy Docs
         uses: peaceiris/actions-gh-pages@v3
         with:
-          #deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          #external_repository: melissawm/napari.github.io
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: napari/napari.github.io
           publish_dir: docs/docs/_build
           publish_branch: gh-pages
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          #cname: napari.org
+          destination_dir: dev
+          cname: napari.org
