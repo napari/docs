@@ -31,6 +31,10 @@ jobs:
           ref: main
           repository: napari/napari
 
+      - name: Copy examples to docs folder
+        run: |
+          cp -R napari-repo/examples docs
+
       - uses: actions/setup-python@v2
         with:
           python-version: 3.9
