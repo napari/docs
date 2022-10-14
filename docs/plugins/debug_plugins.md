@@ -287,4 +287,24 @@ DEBUG: 20/09/2022 05:59:23 PM The input string was (logging): fast
 'You entered fast!'
 ```
 
+
 The full code changes and new files after applying the changes to the plugin in each step of the examples are [here](https://github.com/seankmartin/napari-plugin-debug/tree/full_code/napari-simple-reload).
+
+## Debugging segfaults/memory violation errors
+
+If you observe that when using plugin happens that napari crashes with a segfault or memory violation error,
+it may be connected with setting some viewer/layers properties outside main thread.
+Because of limitations of Qt library such interacting with napari may lead to crash. 
+
+To verify such hypothesis you can use `NAPARI_ENSURE_PLUGIN_MAIN_THREAD` environment variable to help debug the issue.
+
+Start napari with `NAPARI_ENSURE_PLUGIN_MAIN_THREAD=1` environment variable set, and then run your plugin.
+
+```bash
+NAPARI_ENSURE_PLUGIN_MAIN_THREAD=1 napari
+```
+
+Then start using your plugin and observe if 
+`RuntimeError("Setting attributes on a napari object is only allowed from the main Qt thread.")`
+occurred. If yes then you need to make sure that all your plugin code that interact with napari structures is executed 
+in the main thread. For more details you could read [multithreading](https://napari.org/stable/guides/threading.html) section in documentation.
