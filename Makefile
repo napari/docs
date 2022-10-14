@@ -4,8 +4,8 @@ clean:
 	echo clean
 	rm -rf docs/_build/
 	rm -rf docs/api/napari*.rst
-	rm -rf docs/gallery/*
 	rm -rf docs/_tags
+	rm -rf docs/gallery/
 
 docs-install:
 	python -m pip install -qr requirements.txt
