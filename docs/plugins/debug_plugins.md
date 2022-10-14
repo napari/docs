@@ -8,6 +8,7 @@ When developing plugins in napari, you may encounter mistakes or bugs in your co
 4. Reloading code during plugin development.
 5. Isolating issues from napari.
 6. Logging and debug messages.
+7. Debugging segfaults/memory violation errors 
 
 ## Debugging plugin start-up issues
 
