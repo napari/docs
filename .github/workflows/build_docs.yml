@@ -52,4 +52,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: docs
-          path: docs/docs/_build
+          path: docs/_build
