@@ -13,14 +13,16 @@ jobs:
     steps:
       - name: Clone docs repo
         uses: actions/checkout@v3
-        with:
-          path: docs
-
+        
       - name: Clone main repo
         uses: actions/checkout@v3
         with:
           path: napari
           repository: napari/napari
+      
+      - name: Copy examples to docs folder
+        run: |
+          cp -R napari/examples ..
 
       - uses: actions/setup-python@v2
         with:
