@@ -46,7 +46,7 @@ jobs:
           GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
           GOOGLE_CALENDAR_API_KEY: ${{ secrets.GOOGLE_CALENDAR_API_KEY }}
         with:
-          run: make -C docs
+          run: make docs
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
