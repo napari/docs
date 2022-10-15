@@ -293,13 +293,13 @@ The full code changes and new files after applying the changes to the plugin in 
 
 ## Debugging segfaults/memory violation errors
 
-If you observe that when using plugin happens that napari crashes with a segfault or memory violation error,
+If napari crashes with a segfault or memory violation error when using your plugin
 it may be connected with setting some viewer/layers properties outside main thread.
-Because of limitations of Qt library such interacting with napari may lead to crash. 
+Because of the limitations of the Qt library, such interactions with napari may lead to a crash. 
 
-To verify such hypothesis you can use `NAPARI_ENSURE_PLUGIN_MAIN_THREAD` environment variable to help debug the issue.
+To test if this is the case, you can use the `NAPARI_ENSURE_PLUGIN_MAIN_THREAD` environment variable to help debug the issue.
 
-Start napari with `NAPARI_ENSURE_PLUGIN_MAIN_THREAD=1` environment variable set, and then run your plugin.
+Set the environement variable: `NAPARI_ENSURE_PLUGIN_MAIN_THREAD=1`, then start napari and run your plugin.
 
 ```bash
 NAPARI_ENSURE_PLUGIN_MAIN_THREAD=1 napari
@@ -307,5 +307,5 @@ NAPARI_ENSURE_PLUGIN_MAIN_THREAD=1 napari
 
 Then start using your plugin and observe if 
 `RuntimeError("Setting attributes on a napari object is only allowed from the main Qt thread.")`
-occurred. If yes then you need to make sure that all your plugin code that interact with napari structures is executed 
-in the main thread. For more details you could read [multithreading](https://napari.org/stable/guides/threading.html) section in documentation.
+occurred. If so, then you need to make sure that all of your plugin code that interacts with napari structures is executed 
+in the main thread. For more details you could read the [multithreading](https://napari.org/stable/guides/threading.html) section of the documentation.
