@@ -31,7 +31,7 @@ on the screen and the data inside of it.
 
 ## Launching the viewer
 
-As discussed in the [getting started](./getting_started) tutorial the napari viewer
+As discussed in the [getting started](./getting_started) tutorial, the napari viewer
 can be launched from the command-line, a python script, an IPython console, or a
 Jupyter notebook. All four methods launch the same viewer, and anything related
 to the interacting with the viewer on the screen applies equally to all of them.
@@ -174,8 +174,8 @@ index into the `LayerList`.
 
 You can select layers, causing them to become outlined, by clicking on their
 layer widget. Multiple layers can be simultaneously selected using either
-`shift` to select either all the layers in between two clicked-on layers or
-`command` click to select all layers clicked-on.
+`shift` to select all the layers in between two clicked-on layers or
+`command` click to select individual clicked-on layers.
 
 You can rearrange the order of the layers by dragging them, including dragging
 multiple layers at the same time.
@@ -213,7 +213,7 @@ contains the layer controls. The controls that you have available to you depend
 on the layer type that you have selected.
 
 For example, if you add a `Points` layer after adding an `Image` layer, the
-new `Points` layer would be 'selected', and you will now see different controls
+new `Points` layer will be 'selected' and you will now see different controls
 present.
 
 ```{code-cell} python
@@ -355,12 +355,14 @@ scale and translate transformations).
 ### Viewer buttons
 
 Underneath the layers list there is a row of buttons. The first is the `Console`
-button that will show or hide our console, allowing you to interact with a
+button that will show or hide the console, allowing you to interact with a
 python kernel. Inside the console you can access the
-{class}`Viewer<napari.Viewer>` instance using the `viewer`.
+{class}`Viewer<napari.Viewer>` instance using `viewer`. This console is disabled
+however, when the napari viewer is opened from a Jupyter notebook or IPython in
+favor of the user continuing to use the already opened interactive console.
 
-When the console button is clicked, the console will appear at the bottom of the
-viewer as follows:
+The console (when the viewer is opened from the command-line or a python script)
+will appear at the bottom of the viewer as below:
 
 +++
 
@@ -519,6 +521,8 @@ def print_message(viewer):
 ```
 
 ```{code-cell} python
+:tags: [remove-cell]
+
 viewer.close()
 ```
 
