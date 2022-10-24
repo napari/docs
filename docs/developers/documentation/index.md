@@ -71,7 +71,8 @@ want to contribute. The paths are listed in parentheses below.
 - [**Getting started**](../../tutorials/start_index) (in [`napari/docs/tutorials/fundamentals`](https://github.com/napari/docs/tree/main/docs/tutorials/fundamentals):
   these documents are a mix of tutorials and how-tos covering the fundamentals of installing and working with napari for beginners
 
-The [**Examples gallery**](../../gallery) sources are in the [main `napari/napari` repository](https://github.com/napari/napari/tree/main/examples).
+The [**Examples gallery**](../../gallery) sources are in the [main `napari/napari` repository](https://github.com/napari/napari/tree/main/examples)
+and show code examples of how to use napari.
 
 ```{admonition} Got materials for a workshop?
 :class: tip
