@@ -29,8 +29,8 @@ def test_something_with_a_viewer(make_napari_viewer_proxy):
     ...  # carry on with your test
 ```
 
-If you embed the viewer in own application and need to access to private attributes
-you may use `make_napari_viewer` fixture.
+If you embed the viewer in your own application and need to access private attributes,
+you can use the `make_napari_viewer` fixture.
 
 ### Prefer smaller unit tests when possible
 

@@ -305,7 +305,7 @@ Set the environement variable: `NAPARI_ENSURE_PLUGIN_MAIN_THREAD=1`, then start 
 NAPARI_ENSURE_PLUGIN_MAIN_THREAD=1 napari
 ```
 
-Then start using your plugin and observe if 
+Next, start using your plugin and observe if 
 `RuntimeError("Setting attributes on a napari object is only allowed from the main Qt thread.")`
 occurred. If so, then you need to make sure that all of your plugin code that interacts with napari structures is executed 
 in the main thread. For more details you could read the [multithreading](https://napari.org/stable/guides/threading.html) section of the documentation.
