@@ -1,7 +1,7 @@
 This article will be more valuable if you are familiar with the Python programming language and Napari software. It is the fourth in a series of articles on testing taken from the [January 2022 testing workshop video](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view). The information in this article starts at minute 28:26. This article is a summary of the information in the video and should stand on its own. The other articles are:  
-Article 1: [Python’s assert keyword](\Pythons-assert-keyword)  
-Article 2: [Pytest testing framework](\Pytest-testing-frameworks)  
-Article 3: [Napari Plugins](\Napari-Plugins)  
+Article 1: [Python’s assert keyword](./Pythons-assert-keyword)  
+Article 2: [Pytest testing framework](./Pytest-testing-frameworks)  
+Article 3: [Readers and fixtures](./Readers-and-fixtures)  
 Article 4: This article  
 Article 5: Testing widgets  
 
@@ -92,7 +92,7 @@ If we re-run pytest-cov, the coverage report re-runs. Coverage should improve. A
 
 The coverage report goes to the same folder, `htmlcov`, so we should be able to refresh the page without dragging it back in. We've got 100% coverage of `_reader.py` now. See below.
 
-![second coverage report](../../images/second_coverage_report.png)    
+![second coverage report](../../images/Second_coverage_report.png)    
 
 There could be other, more complicated cases that we have not tested, but at the very least, we are executing all lines of code.
 

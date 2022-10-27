@@ -1,15 +1,20 @@
-This article will be more valuable if you are familiar with the Python programming language and Napari software. It is the first in a series of articles on testing taken from the [January 2022 testing workshop video](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view). The information in this article starts at minute 5:23. This article is a summary of the information in the video and should stand on its own. The other articles are:  
+# Python's assert keyword
+
+## Article information
+
+This article will be more valuable if you are familiar with the Python programming language and Napari software. It is the first in a series of articles on testing taken from the [January 2022 testing workshop video](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view). The information in this article starts at minute 5:23. This article is a summary of the information in the video and should stand on its own. The other articles are:
+
 Article 1: This article  
-Article 2: [Pytest testing framework](\Pytest-testing-frameworks)  
-Article 3: [Napari plugins](\Napari-Plugins)  
-Article 4: [Test coverage](\Test-Coverage)  
+Article 2: [Pytest testing framework](./Pytest-testing-frameworks)  
+Article 3: [Readers and fixtures](./Readers-and-fixtures)  
+Article 4: [Test coverage](./Test-Coverage)  
 Article 5: Testing widgets  
   
-This article covers:  
+### This article covers
 [Test for Pass](#test-for-pass)  
 [Test for Fail](#test-for-fail)  
 
-Resources
+### Resources
 The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).
   
 The key to testing in Python is the [assert](https://docs.google.com/presentation/d/1RFja0o6cZ8lAalAve8heuJ-Lrb4nOSUnfdpOSEhqqNo/edit#slide=id.g107356847e4_0_22) keyword. We *assert* a Boolean expression is true and create an error message that appears when that expression is false. 
@@ -20,7 +25,13 @@ If it is true, code execution continues as though the assert statement doesn’t
   
 Here is a simple function, `get_grade_from_mark`. It takes a mark (score) from zero to 100. If the mark (score) is more than 50, the grade is `Pass`; if it’s less than 50, the grade is `Fail`.  
 
-    def get_grade_from_mark(mark):  
+```python
+def get_grade_from_mark(mark):
+    if mark > 50: 
+        return "Pass"
+    else:   
+       return "Fail"
+```
          if mark > 50  
              return “Pass”  
          else:   
@@ -77,4 +88,4 @@ Note that when the assertion fails, traceback occurs.
 
 This example is a simple way to demonstrate the use of the assert keyword, but it’s not particularly useful for testing a larger codebase. This test function has to be called explicitly to test different marks. There’s not much detail when the code is running. We just get `“All passing.”` and there’s no information about other tests when one of the tests fails.  
   
-Making testing more convenient is where [Pytest testing frameworks](\Pytest-testing-frameworks) come in.  
+Making testing more convenient is where [Pytest testing frameworks](./Pytest-testing-frameworks) come in.  
