@@ -22,8 +22,8 @@ you will require:
 - A [GitHub](https://github.com) account.
 
 You should first [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
-and clone the `napari/docs` repo to your machine, and navigate to the resulting
-folder:
+and clone the [napari/docs](https://github.com/napari/docs) repo to your
+machine, and navigate to the resulting folder:
 
 ```bash
 git clone git@github.com:<your-username>/docs.git napari-docs
@@ -42,8 +42,8 @@ cd napari-docs/
   will need to contribute documents containing code or viewer interactions.
 
 - **If you wish to add/amend documentation that does contain code, you will also
-  require a clean conda environment with a development installation of
-  napari.**
+  require a clean conda environment with napari docs dependencies installed, but
+  with a development installation of napari.**
 
   See the [contributor guide](dev-installation) for details. You should have
   [Jupyter notebook](https://jupyter.org/) installed. Familiarity with Jupyter
@@ -208,7 +208,8 @@ locally, or downloading the GitHub Actions built documentation when you submit
 your pull request.
 
 To build the documentation locally, run `make docs` from the root of your local
-clone of the `napari/docs` repository (assuming you've installed the [docs prerequisites](#prerequisites)).
+clone of the `napari/docs` repository (assuming you've installed the
+[docs prerequisites](#prerequisites)).
 
 ```bash
 make docs
@@ -220,14 +221,15 @@ The `make docs` command above assumes your have a local clone of the
 the `napari/docs` clone.
 ```
 
-The rendered HTML will be placed in `docs/_build`. Find `index.html` in this folder and drag it
-into a browser to preview the website with your new document.
+The rendered HTML will be placed in `docs/_build`. Find `index.html` in this
+folder and drag it into a browser to preview the website with your new document.
 
-Alternatively, when you submit your pull request, napari continuous integration
-includes a GitHub action that builds the documentation and saves the artifact
-for you to download. This is another way to check that your built documentation
-looks as you expect. To download the built documentation, go to your PR, scroll
-down to the continuous integration tests, then:
+Alternatively, when you submit your pull request, the napari docs repository
+continuous integration includes a GitHub action that builds the documentation
+and saves the artifact for you to download. This is another way to check that
+your built documentation looks as you expect. To download the built
+documentation, go to your PR, scroll down to the continuous integration tests,
+then:
 
 1. Click on **Details** next to `Build PR Docs / Build & Upload Artifact (pull_request)`:
 
