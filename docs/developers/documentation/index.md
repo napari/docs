@@ -215,11 +215,37 @@ clone of the `napari/docs` repository (assuming you've installed the
 make docs
 ```
 
-```{note}
+````{note}
 The `make docs` command above assumes your have a local clone of the
 [`napari/napari`](https://github.com/napari/napari) repo at the same level as
-the `napari/docs` clone.
+the `napari/docs` clone. If that's not the case, you can specify the location of
+the examples gallery folder by executing
+
+```bash
+make docs GALLERY_PATH=<path-to-examples-folder>
 ```
+
+The `GALLERY_PATH` option must be given relative to the `docs` folder. If your
+folder structure is 
+
+```
+├── napari-docs
+│   └── docs
+├── napari
+│   ├── binder
+│   ├── examples
+│   ├── napari
+│   ├── napari_builtins
+│   ├── resources
+│   └── tools
+```
+
+Then the command would be
+```bash
+make docs GALLERY_PATH=../../napari/examples
+```
+
+````
 
 The rendered HTML will be placed in `docs/_build`. Find `index.html` in this
 folder and drag it into a browser to preview the website with your new document.
