@@ -1,7 +1,7 @@
 # Description
 <!-- What does this pull request (PR) do? Why is it necessary? -->
 <!-- Tell us about your new content, improvement, or fix! -->
-<!-- If your can, please add an image, or an animation "An image is worth a thousand words!" -->
+<!-- If you can, please add an image, or an animation "An image is worth a thousand words!" -->
 <!-- You can use https://www.cockos.com/licecap/ or similar to create animations -->
 
 ## Type of change
