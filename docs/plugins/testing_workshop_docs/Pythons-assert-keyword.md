@@ -25,7 +25,13 @@ If it is true, code execution continues as though the assert statement doesn’t
   
 Here is a simple function, `get_grade_from_mark`. It takes a mark (score) from zero to 100. If the mark (score) is more than 50, the grade is `Pass`; if it’s less than 50, the grade is `Fail`.  
 
-    def get_grade_from_mark(mark):  
+```python
+def get_grade_from_mark(mark):
+    if mark > 50: 
+        return "Pass"
+    else:   
+       return "Fail"
+```
          if mark > 50  
              return “Pass”  
          else:   
