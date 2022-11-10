@@ -92,7 +92,7 @@ If we re-run pytest-cov, the coverage report re-runs. Coverage should improve. A
 
 The coverage report goes to the same folder, `htmlcov`, so we should be able to refresh the page without dragging it back in. We've got 100% coverage of `_reader.py` now. See below.
 
-![second coverage report](../../images/second_coverage_report.png)    
+![second coverage report](../../images/Second_coverage_report.png)    
 
 There could be other, more complicated cases that we have not tested, but at the very least, we are executing all lines of code.
 
