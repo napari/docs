@@ -10,7 +10,7 @@ Article 3: [Readers and fixtures](./Readers-and-fixtures)
 Article 4: [Test coverage](./Test-Coverage)  
 Article 5: Testing widgets  
   
-This article covers:  
+### This article covers
 [Test for Pass](#test-for-pass)  
 [Test for Fail](#test-for-fail)  
 
