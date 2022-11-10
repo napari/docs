@@ -14,7 +14,7 @@ This article covers:
 [Test for Pass](#test-for-pass)  
 [Test for Fail](#test-for-fail)  
 
-Resources
+### Resources
 The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).
   
 The key to testing in Python is the [assert](https://docs.google.com/presentation/d/1RFja0o6cZ8lAalAve8heuJ-Lrb4nOSUnfdpOSEhqqNo/edit#slide=id.g107356847e4_0_22) keyword. We *assert* a Boolean expression is true and create an error message that appears when that expression is false. 
