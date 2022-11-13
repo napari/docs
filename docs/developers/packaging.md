@@ -32,6 +32,10 @@ Pay special attention to the runtime dependencies and version strings!
 Once the conda-forge CI is passing and the PR is approved and merged, the final packages will be built on the default branch and uploaded to the `conda-forge` channel. 
 Due to the staging steps and CDN synchronization delays, the conda packages can take up to 1h to be available after the merge.
 
+```{note}
+Check {doc}`release` for more details about the conda-forge release process and maintenance tasks
+```
+
 ### conda packages in the `napari` channel
 
 The `napari` project also has a `napari` channel in anaconda.org.
