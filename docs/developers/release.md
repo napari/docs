@@ -16,10 +16,11 @@ The release will be coordinated by a release manager whose responsibilities incl
 
 ## Two weeks before release (one week before release candidate)
 - Look through currently open PRs and get a sense of what would be good to merge before the first release candidate 
+- Ensure `conda-recipe/meta.yaml` in `napari/packaging` is up-to-date (e.g. `run` dependencies match `setup.cfg` requirements).
 - Create a zulip thread in the release channel letting people know the release candidate is coming and pointing out PRs that would be nice to merge before release
 
 At this stage, bug fixes and features that are close to landing should be prioritized. The release manager will follow up with PR authors, reviewing and merging as needed.
-  
+
 ## Nine days before release (two days before release candidate)
 - Generate release notes with the script in the release folder
 - Fill in the release highlights and make a PR with the release notes
@@ -166,3 +167,16 @@ For example:
 git tag vX.Y.Z main
 git push upstream --tags
 ```
+
+## conda-forge packages
+
+Once the PyPI release is available, the conda-forge bots will submit a PR to `conda-forge/napari-feedstock` within a few hours.
+Merging that PR will trigger the conda-forge release. 
+Pay very special attention to these aspects before merging:
+
+- Version string has been correctly updated. The build number should have been reset to `0` now.
+- The CI passes correctly. Do check the logs, with special attention to the test section (search for `TEST START`).
+- The `run` dependencies match the runtime requirements of the PyPI release (listed in `setup.cfg`).
+  Watch for modified version constraints, as well as added or removed packages.
+  Note that the conda-forge packages include some more dependencies for convenience,
+  so you might need to check the `extras` sections in `setup.cfg`.
