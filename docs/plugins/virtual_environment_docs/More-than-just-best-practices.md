@@ -12,9 +12,9 @@ These articles will be more valuable if you are familiar with the Python program
 Please also refer to: 
 https://napari.org/stable/plugins/best_practices.html   
 
-* Don’t include PySide2 or PyQt5 in your plugin’s dependencies. Use qtpy and let your users pick their backend.
-* Try not to depend on packages that require C compilation, but do not offer wheels. Check whether they offer wheels at [pypi.org](https://pypi.org/).
-* Don’t import heavy dependencies *greedily* at the top of your module. This is less relevant with npe2.
+* Don’t include `PySide2` or `PyQt5` in your plugin’s dependencies. Use `qtpy` and let your users pick their backend.
+* Try not to depend on packages that require C compilation but do not offer wheels. Check whether they offer wheels at [pypi.org](https://pypi.org/).
+* Don’t import heavy dependencies _greedily_ at the top of your module. This is less relevant with npe2.
 * Don’t leave resources (such as file handles) open:  
 
 ```  
