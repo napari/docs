@@ -41,6 +41,7 @@ temp_dir is another fixture. It provides a full working directory. .mkdir and ot
 
 Using `napari_get_reader` with this path, we assert that the reader is callable. A function should be returned. If it isn’t, we could put an error message here.  
 
+```python
     # tmp_path is a pytest fixture  
     def test_get_reader_returns_callable(tmp_path):  
         """Calling get_reader on numpy file returns callable"""  
@@ -52,7 +53,8 @@ Using `napari_get_reader` with this path, we assert that the reader is callable.
  
         # try to read it back in  
         reader = napari_get_reader(my_test_file)  
-        assert callable(reader)  
+        assert callable(reader)
+```
  
 Running the command  `pytest .` in the root directory of the plugin, we discover all the tests it recognizes as tests. It should recognize `test_reader.py` because it's a test file, prefixed with the word test. `test_reader.py` was found and passed the test. 
 
