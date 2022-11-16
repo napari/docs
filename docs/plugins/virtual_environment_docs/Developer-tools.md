@@ -40,14 +40,15 @@ These _auto-modify_ your code.
 
 ### Pre-commit tools
 * pre-commit (https://pre-commit.com/), runs all your checks each time you run git commit, preventing bad code from ever getting checked in.  
-`     $ pip install pre-commit`  
-     `# install the pre-commit "hook"`  
-     `$ pre-commit install`  
-     `# then configure in .pre-commit-config.yaml`  
-     `# (optionally) Run hooks on demand`  
-     `$ pre-commit run -$all-files`  
+```console     $ pip install pre-commit
+     # install the pre-commit "hook"  
+     $ pre-commit install  
+     # then configure in .pre-commit-config.yaml  
+     # (optionally) Run hooks on demand  
+     $ pre-commit run -$all-files  
+```  
 
-* pre-commit-ci (https://pre-commit.ci/).
+* pre-commit-ci (https://pre-commit.ci/)
     - Runs all your pre-commit hooks on CI (Continuous Integration).
     - Useful even if contributors don't install and run your pre-commit hooks locally before they open a PR.  
   
