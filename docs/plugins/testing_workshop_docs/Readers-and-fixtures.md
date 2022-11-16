@@ -15,7 +15,7 @@ This article covers:
 The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).  
   
 ## Introduction  
-In this article, we discuss a plugin called `plugin_tests`, generated using the cookiecutter, which has a reader and a widget. The reader is the cookiecutter numpy file reader, `napari_get_reader`. It checks whether a path ends in `.npy`. If it doesn't, it returns “`None`,” and if it does, it returns the `reader_function`, which loads the data. 
+In this article, we discuss a plugin called `plugin_tests`, generated using the cookiecutter, which has a reader and a widget. The reader is the cookiecutter numpy file reader, `napari_get_reader`. It checks whether a path ends in `.npy`. If it doesn't, it returns `None`, and if it does, it returns the `reader_function`, which loads the data. 
 
 ![napari_get_reader](../../images/Napari_Plugins_1st_napari_get_reader.PNG)
   
