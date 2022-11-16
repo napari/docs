@@ -29,7 +29,7 @@ You are *strongly* encouraged to ship both! If the wheel is not present, pip wil
 
 **Note:** This goes for dependencies too! Check all your dependencies for wheel availability.  
 
-Example: See if a given package ships a wheel. https://pypi.org/project/napari/#files
+**Example:** See if a given package ships a wheel. https://pypi.org/project/napari/#files
 
 ### PyPI
 **build** (package builder): https://pypa-build.readthedocs.io/en/latest/  
@@ -50,7 +50,7 @@ Example: See if a given package ships a wheel. https://pypi.org/project/napari/#
     $ twine upload dist/*  
 
 ```
-**Note:** <font color="red">python -m build</font> is the modern alternative to setuptools <font color="red">python setup.py sdist bdist_wheel.</font> (It calls setuptools behind the scenes.)
+**Note:** `python -m build` is the modern alternative to setuptools `python setup.py sdist bdist_wheel`. (It calls setuptools behind the scenes.)
 
 ## Plugins can be deployed several ways:
 
