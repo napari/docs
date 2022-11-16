@@ -21,7 +21,7 @@ This article covers the following topics:
 Try to deploy to both! But for now, try to at least use pip. Currently, the built-in napari plugin installer, and the napari-hub, will only look at PyPI. (This is subject to change in the future.) You can always provide your users with manual installation instructions (e.g. if you want to use conda).
 
 ### Package formats (PyPI)
-**sdist** means source distribution. All of the files that are required to *build* your package. An sdist may require specific additional software (e.g. compilers) to actually build.
+**sdist** means source distribution. An **sdist** includes ll of the files that are required to *build* your package. An **sdist** may require specific additional software (e.g. compilers) to actually build.
 
 **wheel** is a prebuilt package, ready to drop into site-packages. It includes compiled OS-specific extensions (if applicable).
 
