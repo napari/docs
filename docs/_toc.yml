@@ -91,6 +91,7 @@ subtrees:
           - file: plugins/testing_workshop_docs/Pytest-testing-frameworks
           - file: plugins/testing_workshop_docs/Readers-and-fixtures
           - file: plugins/testing_workshop_docs/Test-coverage
+          - file: plugins/testing_workshop_docs/Testing-resources
   - file: community/index
     subtrees:
     - titlesonly: True

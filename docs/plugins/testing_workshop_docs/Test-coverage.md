@@ -69,7 +69,7 @@ We technically have 100% coverage of `test_widget.py` (the fourth line up from T
 
 We are interested in `_reader.py`. The file containing the reader code has 86% coverage (see below). Clicking ok on the `2 missing` box below highlights the lines that were never run at all. They are highlighted in red (lines 22 and 26): 
 
-![Lines not run highlighted in red](../../images/Lines_not_run_highlighted_in_red.png)
+![Lines not run highlighted in red](../../images/Lines_not_run_highlighted_in_red_2.png)
 
 Because we never provided a list of paths and we never ran code that provided a list of paths, we don't know what will happen in that case. We also never ran code that doesn't return a reader. In other words, we never tested the failed cases. We add those tests. The first one is `test_get_reader_pass`. We'll call it with a file that doesn't end in `.npy` and assert that it returned `None`. Then we'll create a second test to call it with a list of paths.
 
