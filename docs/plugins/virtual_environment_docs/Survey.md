@@ -52,7 +52,7 @@ Answer:
 Question: How to create better signal/slot documentation/functionality as the user interacts with the core napari interface? For example, creating/editing/deleting a point or shape layer.
 
 Answer: 
-https://napari.org/guides/stable/events_reference.html
+[https://napari.org/guides/stable/events_reference.html](https://napari.org/stable/guides/events_reference.html)  
 Granted, this is a work in progress. 
 
 ## Creating or deleting a point or shape layer:  
