@@ -1,4 +1,4 @@
-# Survey 
+# Tools and tips when building napari plugins: Survey 
 These articles will be more valuable if you are familiar with the Python programming language and the Napari software. They are taken from the [January 2022 Testing workshop](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view) video starting at about 1:15:27. The articles should stand on their own and are summaries of the information in the video. 
   
 * Article 1: [Virtual environments](./Virtual-environments.md)   
