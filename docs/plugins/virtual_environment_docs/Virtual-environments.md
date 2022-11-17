@@ -3,10 +3,10 @@ These articles will be more valuable if you are familiar with the Python program
   
 * Article 1: This article  
 * Article 2: [Deploying your plugin](./Deploying-your-plugin.md)  
-* Article 3: [Version management](./Version-management)  
-* Article 4: [Developer tools](./Developer-tools)
-* Article 5: [More than just best practices](./More-than-just-best-practices)  
-* Article 6: [Survey](./Survey)  
+* Article 3: [Version management](./Version-management.md)  
+* Article 4: [Developer tools](./Developer-tools.md)
+* Article 5: [More than just best practices](./More-than-just-best-practices.md)  
+* Article 6: [Survey](./Survey.md)  
 
 This article covers: 
 * [Resources](#resources)  
@@ -62,4 +62,4 @@ If you are ever having weird problems, nuke your environment and start over usin
   
 Encourage your users to do the same. You can waste a lot of time trying to debug something that someone unknowingly did when installing a variety of things into their environment. If they can provide a repeatable example (starting from environment creation), then it's worth debugging.
 
-The next article in this series is [Deploying your plugin](./Deploying-your-plugin). 
+The next article in this series is [Deploying your plugin](./Deploying-your-plugin.md). 
