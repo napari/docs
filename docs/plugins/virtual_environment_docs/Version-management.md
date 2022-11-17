@@ -39,6 +39,6 @@ This is ***not*** recommended, you *will* eventually make mistakes and have mism
   
        
 Get comfortable with at least one workflow for versioning and deploying your package  
- . . . .. . . . . . . . . . . . *otherwise, you won't do it.*
+ . . . . . . . . . . . . . . . . *otherwise, you won't do it.*
 
 The next article in this series is [Developer tools](./Developer-tools.md).
