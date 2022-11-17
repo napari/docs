@@ -6,7 +6,7 @@ These articles will be more valuable if you are familiar with the Python program
 * Article 3: [Version management](./Version-management.md)  
 * Article 4: [Developer tools](./Developer-tools.md)
 * Article 5: [More than just best practices](./More-than-just-best-practices.md)  
-* Article 6: [Survey.md](./Survey)  
+* Article 6: [Survey](./Survey.md)  
 
 This article covers the following topics:   
 * [PyPI and Anaconda](#pypi-and-anaconda)
