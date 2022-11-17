@@ -12,7 +12,7 @@ This article covers the following topics:
 * [PyPI and Anaconda](#pypi-and-anaconda)
     - [Package formats (PyPI)](#package-formats-pypi)
     - [PyPI](#pypi)
-* [Plugins can be deployed several ways](#plugins-can-be-deployed-several-ways)
+* [Deploying plugins](#deploying-plugins)
     - [Automatically via GitHub actions](#automatically-via-github-actions)
     - [Anaconda cloud via conda-forge](#anaconda-cloud-via-conda-forge)
 
@@ -52,7 +52,7 @@ You are *strongly* encouraged to ship both! If the wheel is not present, pip wil
 ```
 **Note:** `python -m build` is the modern alternative to setuptools `python setup.py sdist bdist_wheel`. (It calls setuptools behind the scenes.)
 
-## Plugins can be deployed several ways:
+## Deploying plugins:
 
 ### Automatically via GitHub actions
 This requires either: 
