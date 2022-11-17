@@ -35,7 +35,7 @@ bump2version: [https://github.com/c4urself/bump2version](https://github.com/c4ur
 ### Manually
 This is ***not*** recommended, you *will* eventually make mistakes and have mismatched version/metadata somewhere.  
   
-  ## *The "best" versioning and deployment workflow is the one you will actually use!*  
+  ### *The "best" versioning and deployment workflow is the one you will actually use!*  
   
        
 Get comfortable with at least one workflow for versioning and deploying your package  
