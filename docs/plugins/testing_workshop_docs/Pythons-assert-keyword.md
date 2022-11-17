@@ -2,7 +2,7 @@
 
 ## Article information
 
-This article will be more valuable if you are familiar with the Python programming language and Napari software. It is the first in a series of articles on testing taken from the [January 2022 testing workshop video](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view). The information in this article starts at minute 5:23. This article is a summary of the information in the video and should stand on its own. The other articles are:
+This article will be more valuable if you are familiar with the Python programming language and napari software. It is the first in a series of articles on testing taken from the [January 2022 testing workshop video](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view). The information in this article starts at minute 5:23. This article is a summary of the information in the video and should stand on its own. The other articles are:
 
 Article 1: This article  
 Article 2: [Pytest testing framework](./Pytest-testing-frameworks)  
