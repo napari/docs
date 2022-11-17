@@ -1,12 +1,12 @@
 # Tools and tips when building napari plugins: More than just best practices
 These articles will be more valuable if you are familiar with the Python programming language and the Napari software. They are taken from the [January 2022 Testing workshop](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view) video starting at about 1:15:27. The articles should stand on their own and are summaries of the information in the video. 
   
-* Article 1: [Virtual environments](./Virtual-environments)   
-* Article 2: [Deploying your plugin](./Deploying-your-plugin)  
-* Article 3: [Version management](./Version-management)  
-* Article 4: [Developer tools](./Developer-tools)
+* Article 1: [Virtual environments](./Virtual-environments.md)   
+* Article 2: [Deploying your plugin](./Deploying-your-plugin.md)  
+* Article 3: [Version management](./Version-management.md)  
+* Article 4: [Developer tools](./Developer-tools.md)
 * Article 5: This article  
-* Article 6: [Survey](./Survey)  
+* Article 6: [Survey](./Survey.md)  
 
 
 Please also refer to: 
@@ -37,4 +37,4 @@ https://github.com/pytest-dev/pytest-cov
  $ open htmlcov/index.html
 ```
      
-The next article in this series is the [Survey](./Survey) article. 
+The next article in this series is the [Survey](./Survey.md) article. 
