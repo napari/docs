@@ -1,5 +1,5 @@
 This article will be more valuable if you are familiar with the Python programming language and the Napari software. It is the third in a series of articles on testing taken from the [January 2022 testing workshop video](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view). The information in this article starts at minute 15:42. This article should stand on its own and is a summary of the information in the video. The other articles are:  
-* Article 1: [Python’s assert keyword](./Pythons-assert-keyword)  
+* Article 1: [Python’s assert keyword](./Pythons-assert-keyword.md)  
 * Article 2: [Pytest testing framework](./Pytest-testing-frameworks)  
 * Article 3: This article  
 * Article 4: [Test coverage](./Test-coverage)   
