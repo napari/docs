@@ -304,18 +304,28 @@ change_style()
 
 ```
 
-## Do not package your tests as top-level package
+## Do not package your tests as a top-level package
 
-
-```{note}
 If you are using the [napari plugin cookiecutter template](https://github.com/napari/cookiecutter-napari-plugin),
-your tests will be included within your package. That repository structure is not affected by this issue
-and does not need any further treatment.
+your tests are already packaged in the correct way. No further action required!
+
+```bash
+# project structure suggested by the cookiecutter template
+src/
+  my_package/
+    _tests/
+      test_my_module.py
+    __init__.py
+    my_module.py
+pyproject.toml
+README.md
 ```
 
-Some repository structures place their testing logic next to the package, like:
+However, if your project structure is already following a different scheme, 
+the testing logic might live outside your package, as a top-level directory:
 
-```
+```bash
+# alternative structure, no src/ directory, testing logic outside the package
 my_package/
   __init__.py
   my_module.py
@@ -328,10 +338,13 @@ README.md
 
 Under these circumstances, your build backend (usually `setuptools`) might include `tests` as a
 separate package that will be installed next to `my_package`! 
-This is most of the time not wanted; e.g. do you want to do `import tests`? Probably not!
+Most of the time, this is not wanted; e.g. do you want to do `import tests`? Probably not!
 Additionally, this unwanted behavior might cause installation issues with other projects.
 
-To avoid this problem, make sure you _exclude_ your top-level `tests` from the package:
+Ideally, you could change your project structure to follow the recommended skeleton followed in
+the cookiecutter template. Howevever, if that's unfeasible, you can fix this in the project metadata files. 
+
+You need to explicitly _exclude_ the top-level `tests` directory from the packaged contents:
 
 ```toml
 # pyproject.toml
@@ -351,6 +364,8 @@ setup(
     ...
 )
 ```
+
+Note this also applies to other top-level directories, like `test`, `_tests`, `testing`, etc.
 
 You can find more information in the 
 [package discovery documentation for `setuptools`](https://setuptools.pypa.io/en/latest/userguide/package_discovery.html).
