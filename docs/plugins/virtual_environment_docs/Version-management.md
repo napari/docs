@@ -10,7 +10,7 @@ Article 6: [Survey](./Survey.md)
 
 This article covers the methods of updating your version string everywhere.
 * [Using git tags](#using-git-tags)
-* [Using a local script to edit files](#using-a-local-script-to-edit-files)
+* [Using a local script to edit files](#using-a-local-script-to-edit-files)  
 * [Manually](#manually)
 
 **Goal:** Make sure that you bump your version string everywhere it may appear, in unison, prior to publishing your package.  A package can be init.py, setup, cfg, etc.
@@ -27,10 +27,11 @@ setuptools_scm: [https://github.com/pypa/setuptools_scm](https://github.com/pypa
 
 ### Using a local script to edit files:  
 bump2version: [https://github.com/c4urself/bump2version](https://github.com/c4urself/bump2version)
-
-   `$ pip install bump2version`
-   `# then configure all the places you use your version`  
-   `$ bump2version -$current-version 0.5.1 minor`  
+```console
+   $ pip install bump2version  
+   # then configure all the places you use your version   
+   $ bump2version -$current-version 0.5.1 minor  
+```   
 
 ### Manually
 This is ***not*** recommended, you *will* eventually make mistakes and have mismatched version/metadata somewhere.  
