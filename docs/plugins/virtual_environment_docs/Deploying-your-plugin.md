@@ -8,7 +8,7 @@ These articles will be more valuable if you are familiar with the Python program
 * Article 5: [More than just best practices](./More-than-just-best-practices.md)  
 * Article 6: [Survey](./Survey.md)  
 
-This article covers the following topics:   
+### This article covers the following topics:   
 * [PyPI and Anaconda](#pypi-and-anaconda)
     - [Package formats (PyPI)](#package-formats-pypi)
     - [PyPI](#pypi)
