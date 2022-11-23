@@ -1,11 +1,11 @@
-This article will be more valuable if you are familiar with the Python programming language and the Napari software. It is the third in a series of articles on testing taken from the [January 2022 testing workshop video](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view). The information in this article starts at minute 15:42. This article should stand on its own and is a summary of the information in the video. The other articles are:  
-* Article 1: [Python’s assert keyword](./Pythons-assert-keyword)  
+This article will be more valuable if you are familiar with the Python programming language and the napari software. It is the third in a series of articles on testing taken from the [January 2022 testing workshop video](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view). The information in this article starts at minute 15:42. This article should stand on its own and is a summary of the information in the video. The other articles are:  
+* Article 1: [Python’s assert keyword](./Pythons-assert-keyword.md) 
 * Article 2: [Pytest testing framework](./Pytest-testing-frameworks)  
 * Article 3: This article  
-* Article 4: [Test coverage](./Test-coverage)   
-* Article 5: Testing widgets  
+* Article 4: [Test coverage](./Test-coverage)  
+* Resource links: [testing resources](./Testing-Resources.md)  
 
-This article covers:   
+### This article covers:   
 * [Readers](#reader)  
 * [Built-in fixtures](#built-in-fixtures)  
 * [Custom fixtures and round-trip tests](#custom-fixtures-and-round-trip-tests)  
@@ -37,7 +37,7 @@ We create a file to read. First, we’ll use a path or build a file path, then g
   
 There are no specific requirements for the contents of the array in this case. We just need some sort of file to save to this temporary directory. The test file will not appear anywhere unless there is a pause during test execution.   
   
-temp_dir is another fixture. It provides a full working directory. .mkdir and other commands can be used inside temp_dir.
+`temp_dir` is another fixture. It provides a full working directory. `.mkdir` and other commands can be used inside `temp_dir`.
 
 Using `napari_get_reader` with this path, we assert that the reader is callable. A function should be returned. If it isn’t, we could put an error message here.  
 
@@ -61,7 +61,7 @@ Running the command  `pytest .` in the root directory of the plugin, we discover
 ![pytest passed](../../images/Napari_Plugins_3rd_pytest_passed.PNG)
   
 If the file did not end in `.npy` the test would fail because what was returned wasn't callable. This code has been modified to produce an error:  
-    
+```python    
     # tmp_path is a pytest fixture  
     def test_get_reader_returns_callable(tmp_path):  
         """Calling get_reader on numpy file returns callable"""  
@@ -74,13 +74,13 @@ If the file did not end in `.npy` the test would fail because what was returned 
         # try to read it back in  
         reader = napari_get_reader(my_test_file)  
         assert callable(reader)  
-
-Once we run `pytest` we can see that it traced back that the callable of reader is false and it has filled in the fact that reader at the time of the assertion was `None`. This is useful in debugging. 
+```
+Once we run `pytest` we can see that it traced back that the callable of `reader` is `False` and it has filled in the fact that `reader` at the time of the assertion was `None`. This is useful in debugging. 
 
 ![test_get_reader_returns_callable Failed](../../images/Napari_Plugins_4th_test_get_reader_returns_callable-failed.PNG)
 
 ## Custom fixtures and round-trip tests
-Next, we test to see if this function reads the data. This is a round-trip test. We will create a fixture to write the data to make things easier for ourselves. This fixture will be called `test_reader_round_trip`. (Line 25)  
+Next, we test to see if this function reads the data. This is a round-trip test. We will create a fixture to write the data to make things easier for ourselves. This fixture will be called [test_reader_round_trip](https://github.com/DragaDoncila/plugin-tests/blob/effb32d6e3b191ad83e69813b26ae8695210f5ad/src/plugin_tests/_tests/test_reader.py#L39).   
   
 Whatever is returned out of a `@pytest.fixture` decorated function is passed as an argument with the name of the fixture, to the test. We are going to call this `pytest.fixture` decorated function `write_im_to_file`, as defined on line 6. We’re going to give this fixture the `tmp_path` fixture. Fixtures can use fixtures. 
 
@@ -90,8 +90,8 @@ We will have access to what `write_func` returns once it’s been called inside 
   
 The benefit of creating this fixture is that whenever we want to write our own test data we don't have to copy three lines of code, we can write just one long line of code. This is useful in testing data with different structures like integers or a specific layer type. Those arguments could be passed to further customize your fixture.  
   
-We still want to make sure we get a reader when we call `napari_get_reader` with the file. We call that reader function with the file we created to see if it returns what we expect. Remember the [reader spec](https://napari.org/stable/plugins/contributions.html#contributions-readers), it should actually return a layer data list. Here is the full test, with the fixture:  
-    
+We still want to make sure we get a reader when we call `napari_get_reader` with the file. We call that `reader` function with the file we created to see if it returns what we expect. Remember the [reader spec](https://napari.org/stable/plugins/contributions.html#contributions-readers), it should actually return a layer data list. Here is the full test, with the fixture:  
+```python   
     @pytest.fixture  
     def write_im_to_file(tmp_path):  
  
@@ -116,13 +116,13 @@ We still want to make sure we get a reader when we call `napari_get_reader` with
         layer_data_tuple = layer_data_list[0]  
         layer_data = layer_data_tuple[0]  
         np.testing.assert_allclose(layer_data, original_data)  
- 
+``` 
 We’re going to assert a list length greater than zero. There must be a layer in there; otherwise, we didn't read it correctly. We also assert that it is a list. Once we start testing, there are many things we could test. Try to focus on what's most useful.  
   
 We will test that inside that list is what we expected. Remember, it's a list of layer data tuples. The first item of a tuple of the layer data tuple is the actual data. We’re going to test that explicitly.  
   
-Then we assert, using `numpy`’s asserting mechanism, `np.testing.assert_allclose` that they are all close, even though they should be exactly the same. This is standard practice when working with floating point precision. Numpy also has [other assertion options](https://numpy.org/doc/stable/reference/routines.testing.html) you may find useful. The layer data we read back with the reader function should be the same as the original data. If that's true, then we made the entire round trip. We save the file; we use the reader to read the file.  
-
+Then we assert, using `numpy`’s asserting mechanism, `np.testing.assert_allclose` that they are all close, even though they should be exactly the same. This is standard practice when working with floating point precision. Numpy also has [other assertion options](https://numpy.org/doc/stable/reference/routines.testing.html) you may find useful. The layer data we read back with the reader function should be the same as the original data. If that's true, then we made the entire round trip. We saved the file and we used the reader to read the file.  
+```python
  def test_reader_round_trip(write_im_to_file):  
         my_test_file, original_data = write_im_to_file("myfile.npy")  
      
@@ -135,7 +135,7 @@ Then we assert, using `numpy`’s asserting mechanism, `np.testing.assert_allclo
         layer_data_tuple = layer_data_list[0]  
         layer_data = layer_data_tuple[0]  
         np.testing.assert_allclose(layer_data, original_data)  
-    
+```    
 We run our tests again, and now two are collected, both passing.  
 
 ![pytest - tests passed](../../images/Napari_Plugins_5th_Tests_Passed.PNG)
