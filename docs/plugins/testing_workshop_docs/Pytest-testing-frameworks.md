@@ -101,4 +101,4 @@ We run `pytest` which finds and runs `test_get_grade_pass(mark)`. `test_get_grad
     
 Another valuable feature of `pytest` is the `pytest-cov` option discussed in the [Test coverage](./Test-Coverage.md) article.  
 
-The next article in this series on testing is the [Readers and fixtures](./Readers-and-fixtures) article. 
+The next article in this series on testing is the [Readers and fixtures](./Readers-and-fixtures.md) article. 
