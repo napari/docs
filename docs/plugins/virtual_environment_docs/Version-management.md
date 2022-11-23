@@ -1,16 +1,16 @@
 # Tools and tips when building napari plugins: Version management
-These articles will be more useful if you are familiar with the Python programming language and the Napari software. They are taken from the [January 2022 Testing workshop](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view) video starting at about minute 49:08. The articles should stand on their own and are summaries of the information in the video. 
+These articles will be more useful if you are familiar with the Python programming language and the Napari software. They are taken from the [January 2022 Testing workshop](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view) video starting at about timestamp 1:01:00. The articles should stand on their own and are summaries of the information in the video. 
 
-Article 1: [Virtual environments](./Virtual-environments)  
-Article 2: [Deploying your plugin](./Deploying-your-plugin)  
+Article 1: [Virtual environments](./Virtual-environments.md)  
+Article 2: [Deploying your plugin](./Deploying-your-plugin.md)  
 Article 3: This article  
-Article 4: [Developer tools](./Developer-tools)  
+Article 4: [Developer tools](./Developer-tools.md)  
 Article 5: [More than just best practices](./More-than-just-best-practices.md)  
 Article 6: [Survey](./Survey.md)  
 
 This article covers the methods of updating your version string everywhere.
 * [Using git tags](#using-git-tags)
-* [Using a local script to edit files](#using-a-local-script-to-edit-files)
+* [Using a local script to edit files](#using-a-local-script-to-edit-files)  
 * [Manually](#manually)
 
 **Goal:** Make sure that you bump your version string everywhere it may appear, in unison, prior to publishing your package.  A package can be init.py, setup, cfg, etc.
@@ -27,17 +27,19 @@ setuptools_scm: [https://github.com/pypa/setuptools_scm](https://github.com/pypa
 
 ### Using a local script to edit files:  
 bump2version: [https://github.com/c4urself/bump2version](https://github.com/c4urself/bump2version)
-
-   `$ pip install bump2version`
-   `# then configure all the places you use your version`  
-   `$ bump2version -$current-version 0.5.1 minor`  
+```console
+   $ pip install bump2version  
+   # then configure all the places you use your version   
+   $ bump2version -$current-version 0.5.1 minor  
+```   
 
 ### Manually
 This is ***not*** recommended, you *will* eventually make mistakes and have mismatched version/metadata somewhere.  
   
-  ## *The "best" versioning and deployment workflow is the one you will actually use!*
+  ### *The "best" versioning and deployment workflow is the one you will actually use!*  
+  
        
 Get comfortable with at least one workflow for versioning and deploying your package  
- . . . .. . . . . . . . . . . . *otherwise, you won't do it.*
+ . . . . . . . . . . . . . . . . *otherwise, you won't do it.*
 
-The next article in this series is [Developer tools](./Developer-tools).
+The next article in this series is [Developer tools](./Developer-tools.md).

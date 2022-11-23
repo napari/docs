@@ -1,27 +1,27 @@
 # Tools and tips when building napari plugins: Deploying your plugin
-These articles will be more valuable if you are familiar with the Python programming language and the Napari software. They are taken from the [January 2022 Testing workshop](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view) video starting at about minute 49:08. The articles should stand on their own and are summaries of the information in the video. 
+These articles will be more valuable if you are familiar with the Python programming language and the Napari software. They are taken from the [January 2022 Testing workshop](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view) video starting at about minute 54:00. The articles should stand on their own and are summaries of the information in the video. 
   
-* Article 1: [Virtual environments](./Virtual-environments)   
+* Article 1: [Virtual environments](./Virtual-environments.md)   
 * Article 2: This article  
-* Article 3: [Version management](./Version-management)  
-* Article 4: [Developer tools](./Developer-tools)
-* Article 5: [More than just best practices](./More-than-just-best-practices)  
-* Article 6: [Survey](./Survey)  
+* Article 3: [Version management](./Version-management.md)  
+* Article 4: [Developer tools](./Developer-tools.md)
+* Article 5: [More than just best practices](./More-than-just-best-practices.md)  
+* Article 6: [Survey](./Survey.md)  
 
-This article covers the following topics:   
+### This article covers the following topics:   
 * [PyPI and Anaconda](#pypi-and-anaconda)
     - [Package formats (PyPI)](#package-formats-pypi)
     - [PyPI](#pypi)
-* [Plugins can be deployed several ways](#plugins-can-be-deployed-several-ways)
+* [Deploying plugins](#deploying-plugins)
     - [Automatically via GitHub actions](#automatically-via-github-actions)
     - [Anaconda cloud via conda-forge](#anaconda-cloud-via-conda-forge)
 
 
 ## PyPI and Anaconda
-Try to deploy to both! But for now, try to at least use pip. Currently, the built-in napari plugin installer, and the napari-hub, will only look at PyPI. (This is subject to change in the future.) You can always provide your users with manual installation instructions (e.g. if you want to use conda).
+Try to deploy to both! But for now, try to at least use pip. Currently, the built-in napari plugin installer and the napari-hub, will only look at PyPI. (This is subject to change in the future.) You can always provide your users with manual installation instructions (e.g. if you want to use conda).
 
 ### Package formats (PyPI)
-**sdist** means source distribution. All of the files that are required to *build* your package. An sdist may require specific additional software (e.g. compilers) to actually build.
+**sdist** means source distribution. An **sdist** includes all of the files that are required to *build* your package. An **sdist** may require specific additional software (e.g. compilers) to actually build.
 
 **wheel** is a prebuilt package, ready to drop into site-packages. It includes compiled OS-specific extensions (if applicable).
 
@@ -29,7 +29,7 @@ You are *strongly* encouraged to ship both! If the wheel is not present, pip wil
 
 **Note:** This goes for dependencies too! Check all your dependencies for wheel availability.  
 
-Example: See if a given package ships a wheel. https://pypi.org/project/napari/#files
+**Example:** See if a given package ships a wheel. https://pypi.org/project/napari/#files
 
 ### PyPI
 **build** (package builder): https://pypa-build.readthedocs.io/en/latest/  
@@ -50,9 +50,9 @@ Example: See if a given package ships a wheel. https://pypi.org/project/napari/#
     $ twine upload dist/*  
 
 ```
-**Note:** <font color="red">python -m build</font> is the modern alternative to setuptools <font color="red">python setup.py sdist bdist_wheel.</font> (It calls setuptools behind the scenes.)
+**Note:** `python -m build` is the modern alternative to setuptools `python setup.py sdist bdist_wheel`. (It calls setuptools behind the scenes.)
 
-## Plugins can be deployed several ways:
+## Deploying plugins:
 
 ### Automatically via GitHub actions
 This requires either: 
