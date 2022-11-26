@@ -120,12 +120,14 @@ conda install -c conda-forge "napari=*=*pyside2"
 ````
 
 ````{note}
-It can happen that `conda`'s built-in solver is not able to solve all denpendencies needed to install `napari`. This can happen even in a clean environment
-depending on your operating system. In this case use `pip` for the installation or if that is no option, install `mamba` and use 
-it in place of `conda` to install from `conda-forge`. For example, to install napari with the pyside2 Qt backend:
-```sh
-mamba install -c conda-forge "napari=*=*pyside2"
+In some cases, `conda`'s default solver can struggle to find out which packages need to be
+installed for napari. If it takes too long or you get the wrong version of napari 
+(see below), consider:
+Overriding your default channels to use only `conda-forge`, and specifying the napari and Python versions explicitly:
 ```
+conda create -n napari -c conda-forge --override-channels python=3.10 napari={{ napari_version }}
+```
+If that's not enough, you can try installing `mamba` in your base environment with `conda install -n base -c conda-forge mamba` and use its faster solver by replacing `conda` for `mamba` in the above instructions.
 ````
 
 
