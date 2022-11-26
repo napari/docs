@@ -122,7 +122,7 @@ conda install -c conda-forge "napari=*=*pyside2"
 ````{note}
 It can happen that `conda`'s built-in solver is not able to solve all denpendencies needed to install `napari`. This can happen even in a clean environment
 depending on your operating system. In this case use `pip` for the installation or if that is no option, install `mamba` and use 
-it in place of `conda` to install from `conda-forge`.
+it in place of `conda` to install from `conda-forge`. For example, to install napari with the pyside2 Qt backend:
 ```sh
 mamba install -c conda-forge "napari=*=*pyside2"
 ```
