@@ -158,6 +158,10 @@ myst_enable_extensions = [
 
 myst_heading_anchors = 3
 
+myst_substitutions = {
+   "napari_version": release,
+ }
+
 nb_output_stderr = 'show'
 
 panels_add_bootstrap_css = False
