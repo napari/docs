@@ -153,6 +153,12 @@ napari
 
 An empty napari viewer should appear as follows.
 
+````{note}
+You can check the napari version, to ensure it's the current release ({{ napari_version }}) using the following command:
+```sh
+napari --version
+```
+````
 ![image: An empty napari viewer](../assets/tutorials/launch_cli_empty.png)
 
 ## Choosing a different Qt backend
