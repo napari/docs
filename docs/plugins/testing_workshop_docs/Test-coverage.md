@@ -51,7 +51,7 @@ There is a large folder (`htmlcov`) in the directory where the tests were run (`
 `├── README.md`  
 `├── _pycache__`  
 `├── example_func.py`  
-`├── htmlcov		        # <<========================== directory created by pytest-cov`  
+`├── htmlcov		        # <<=============== directory created by pytest-cov`
 `├── requirements.txt`  
 `├── setup.cfg`  
 `├── setup.py`  
