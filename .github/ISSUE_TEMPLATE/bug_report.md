@@ -9,6 +9,8 @@ assignees: ''
 
 ## 🐛 Bug
 <!-- A clear and concise description of what the issue is. -->
+<!-- Please provide the URL(s) of the page(s) that are problematic. -->
+<!-- If you can, please add a screenshot or screen capture: "An image is worth a thousand words!" -->
 <!-- If you have a code sample, error messages, stack traces, please provide it here as well -->
 
 
