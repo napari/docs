@@ -99,6 +99,6 @@ We run `pytest` which finds and runs `test_get_grade_pass(mark)`. `test_get_grad
     ======================== short test summary info =========================  
     FAILED example_func_py::test_get_grade_pass[50] - AssertionError: Expected 50 to pass, but result was Fail   
     
-Another valuable feature of `pytest` is the `pytest-cov` option discussed in the [Test coverage](./Test-Coverage.md) article.  
+Another valuable feature of `pytest` is the `pytest-cov` option discussed in the [Test coverage](./Test-coverage.md) article.  
 
 The next article in this series on testing is the [Readers and fixtures](./Readers-and-fixtures.md) article. 
