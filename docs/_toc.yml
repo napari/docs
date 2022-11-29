@@ -33,7 +33,6 @@ subtrees:
             subtrees:
             - entries:
               - file: tutorials/tracking/cell_tracking
-      - file: further-resources/napari-workshops
       - file: howtos/index
         subtrees:
         - titlesonly: True
@@ -70,6 +69,7 @@ subtrees:
           - file: guides/app_model
           - file: guides/events_reference
       - file: further-resources/glossary
+      - file: further-resources/napari-workshops
       - file: gallery
   - file: plugins/index
     subtrees:
