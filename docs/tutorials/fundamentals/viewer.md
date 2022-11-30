@@ -355,14 +355,15 @@ scale and translate transformations).
 ### Viewer buttons
 
 Underneath the layers list there is a row of buttons. The first is the `Console`
-button that will show or hide the console, allowing you to interact with a
-python kernel. Inside the console you can access the
-{class}`Viewer<napari.Viewer>` instance using `viewer`. This console is disabled
-however, when the napari viewer is opened from a Jupyter notebook or IPython in
-favor of the user continuing to use the already opened interactive console.
+button that will show or hide the console, allowing you to interact with the
+python kernel. Inside the console, for example, you can access the
+{class}`Viewer<napari.Viewer>` instance using `viewer`. This button will be
+enabled if you launch napari from the command line, a script or use the napari
+bundled app. However, the console is disabled if the napari viewer is opened
+from a Jupyter notebook or launched from within IPython, in favor of the user
+continuing to use the existing interactive console.
 
-The console (when the viewer is opened from the command-line or a python script)
-will appear at the bottom of the viewer as below:
+The console (when available) will appear at the bottom of the viewer as below:
 
 +++
 
