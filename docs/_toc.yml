@@ -70,6 +70,7 @@ subtrees:
           - file: guides/events_reference
       - file: further-resources/glossary
       - file: further-resources/napari-workshops
+      - file: further-resources/sample_data
       - file: gallery
   - file: plugins/index
     subtrees:
