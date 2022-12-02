@@ -123,10 +123,7 @@ conda install -c conda-forge "napari=*=*pyside2"
 In some cases, `conda`'s default solver can struggle to find out which packages need to be
 installed for napari. If it takes too long or you get the wrong version of napari 
 (see below), consider:
-1. Overriding your default channels to use only `conda-forge`, and specifying the napari and Python versions explicitly, for example for python 3.9 and latest napari:
-```
-conda create -n napari -c conda-forge --override-channels python=3.9 napari={{ napari_version }}
-```
+1. Overriding your default channels to use only `conda-forge` by adding `--override-channels` and specifying the napari and Python versions explicitly using `python=3.9 napari={{ napari_version }}`.
 2. You can try installing [`mamba`](https://github.com/mamba-org/mamba) in your base environment with `conda install -n base -c conda-forge mamba` and use its faster solver by replacing `conda` for `mamba` in the above instructions.
 ````
 
@@ -154,7 +151,7 @@ napari
 An empty napari viewer should appear as follows.
 
 ````{note}
-You can check the napari version, to ensure it's the current release ({{ napari_version }}) using the following command:
+You can check the napari version, to ensure it's the current release ({{ napari_version }}) using command:
 ```sh
 napari --version
 ```
