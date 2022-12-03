@@ -163,6 +163,7 @@ version_string = '.'.join(str(x) for x in __version_tuple__[:3])
 
 myst_substitutions = {
    "napari_conda_version": f"`napari={version_string}`",
+   "napari_version": version_string,
  }
 
 nb_output_stderr = 'show'
