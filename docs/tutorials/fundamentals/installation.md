@@ -151,10 +151,8 @@ napari
 An empty napari viewer should appear as follows.
 
 ````{note}
-You can check the napari version, to ensure it's the current release ({{ napari_version }}) using command:
-```sh
-napari --version
-```
+You can check the napari version, to ensure it's what you expect, for example
+the current release {{ napari_version }}, using command: `napari --version` .
 ````
 ![image: An empty napari viewer](../assets/tutorials/launch_cli_empty.png)
 
