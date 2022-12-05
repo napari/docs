@@ -19,6 +19,8 @@ jobs:
         with:
           path: napari
           repository: napari/napari
+          # ensure version metadata is proper
+          fetch-depth: 0
       
       - name: Copy examples to docs folder
         run: |
