@@ -58,7 +58,7 @@ If the tests fail, `pytest` is very good at tracing back the reason they failed 
 ## Parametrization  
 Another very useful tool pytest provides is parametrization.  
     
-We've tested these functions with a single value. We need to be more thorough. Pytest allows us to parametrize tests. We decorate our function with `@pytest.mark.parametrize` and pass the decorator a parameter name, mark, as a string, and a list of values for which we’d like to run the test function. Note that we pass in 50 as an edge case; it's the lowest mark that will pass.  
+We've tested these functions with a single value. We need to be more thorough. Pytest allows us to parametrize tests. We decorate our function with `@pytest.mark.parametrize` and pass the decorator a parameter name, `mark`, as a string, and a list of values for which we’d like to run the test function. Note that we pass in 50 as an edge case; it's the lowest mark that will pass.  
     
     def get_grade_from_mark(mark):
         if mark > 50
