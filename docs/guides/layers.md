@@ -75,7 +75,7 @@ the default *Dark* theme, `minimum` blending for the bottom-most visible layer w
 result in all black ([0, 0, 0] of the canvas is the minimum). On the other hand, 
 if you are using the *Light* theme, `additive` blending for the bottom-most visible
 layer will  result in all white ([1, 1, 1] of the canvas is the maximum). For
-multichannelimages, it's recommended to set the bottom-most channel to `opaque` or
+multichannel images, it's recommended to set the bottom-most channel to `opaque` or
 one of the `translucent` blending modes to prevent this. For single channel images,
 you will need to toggle the theme; the default keybinding is `Control/Command-Shift-T`.
 ````
