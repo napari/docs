@@ -573,6 +573,7 @@ class MyWidget(QWidget):
 
     # the following two methods are essential for refreshing the widget
     def reset_choices(self, event=None):
+        # this call updates the possible layers that can be selected
         self.layer_select.reset_choices(event)
 
     def showEvent(self, event) -> None:
