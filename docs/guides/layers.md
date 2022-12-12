@@ -80,7 +80,7 @@ one of the `translucent` blending modes to prevent this. For single channel imag
 you will need to toggle the theme; the default keybinding is `Control/Command-Shift-T`.
 ````
 
-For example:
+For example, `additive` blending in *Dark* theme:
 
 ![napari viewer with an image of a cell. Layer controls are open in the left sidebar with the blending set to additive.](./images/blending.png)
 
