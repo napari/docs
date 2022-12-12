@@ -552,3 +552,30 @@ class MyGui(FunctionGui):
 def napari_experimental_provide_dock_widget():
     return MyGui
 ```
+
+### `magicgui.widgets.create_widget`
+
+If you want to create a layer selection as [shown above](magicgui-and-type-annotations) but you cannot use the {func}`@magicgui <magicgui.magicgui>` decorator, you can create the selection widget with the {func}`create_widget <magicgui.widgets.create_widget>` function. In the following example we subclass `QtWidgets.QWidget` and add a widget that is annotated as {attr}`napari.types.ImageData`
+```python
+from magicgui.widgets import create_widget
+from qtpy.QtWidgets import QWidget
+
+from napari.types import ImageData
+
+
+class MyWidget(QWidget):
+    def __init__(self, viewer):
+        super().__init__()
+        # create new widget
+        self.layer_select = create_widget(annotation=ImageData)
+        # add it to the layout
+        self.layout().addWidget(self.layer_select.native)
+
+    # the following two methods are essential for refreshing the widget
+    def reset_choices(self, event=None):
+        self.layer_select.reset_choices(event)
+
+    def showEvent(self, event) -> None:
+        self.reset_choices()
+        return super().showEvent(event)
+```
