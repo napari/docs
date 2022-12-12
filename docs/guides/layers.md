@@ -68,6 +68,18 @@ visualizing multiple layers at the same time, such as cell biology applications
 where you have multiple different components of a cell labeled in different
 colors.
 
+````{important}
+The bottom-most visible layer will blend with the canvas; however, the canvas
+color is currently determined by the UI theme. This means that if you are using
+the default *Dark* theme, `minimum` blending for the bottom-most visible layer will
+result in all black ([0, 0, 0] of the canvas is the minimum). On the other hand, 
+if you are using the *Light* theme, `additive` blending for the bottom-most visible
+layer will  result in all white ([1, 1, 1] of the canvas is the maximum). For
+multichannelimages, it's recommended to set the bottom-most channel to `opaque` or
+one of the `translucent` blending modes to prevent this. For single channel images,
+you will need to toggle the theme; the default keybinding is `Control/Command-Shift-T`.
+````
+
 For example:
 
 ![napari viewer with an image of a cell. Layer controls are open in the left sidebar with the blending set to additive.](./images/blending.png)
