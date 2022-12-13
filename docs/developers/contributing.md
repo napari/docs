@@ -41,8 +41,6 @@ Finally, if you already have a Qt backend installed or want to use an experiment
 pip install -e ".[dev]"  # (quotes only needed for zsh shell)
 ```
 
-
-
 We use [`pre-commit`](https://pre-commit.com) to sort imports with
 [`isort`](https://github.com/PyCQA/isort), format code with
 [`black`](https://github.com/psf/black), and lint with
@@ -223,17 +221,9 @@ git push -u origin your-branch-name
 You can then make a
 [pull-request](https://docs.github.com/en/get-started/quickstart/contributing-to-projects#making-a-pull-request) to `napari`'s `main` branch.
 
-## Building the docs
+## Contributing documentation
 
-From the project root:
-```sh
-make docs
-```
-
-The docs will be built at `docs/_build/html`.
-
-Most web browsers will allow you to preview HTML pages.
-Try entering `file:///absolute/path/to/napari/docs/_build/html/index.html` in your address bar.
+See the {ref}`docs_contributing_guide`.
 
 ## Code of Conduct
 
