@@ -1,23 +1,25 @@
-# Python's assert keyword
+# Article 1: Python's assert keyword
 
-## Article information
+This article defines the assert keyword in Python and shows how it can be used to write test cases for a simple function.  
 
-This article will be more valuable if you are familiar with the Python programming language and napari software. It is the first in a series of articles on testing taken from the [January 2022 testing workshop video](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view). The information in this article starts at minute 5:23. This article is a summary of the information in the video and should stand on its own. The articles are:
+## Article information  
 
-* Article 1: This article  
-* Article 2: [Pytest testing framework](./Pytest-testing-frameworks)  
-* Article 3: [Readers and fixtures](./Readers-and-fixtures)  
-* Article 4: [Test coverage](./Test-coverage)  
-* Resource links: [testing resources](./Testing-Resources.md)  
+* Article 1: This article (Python's assert keyword) 
+* Article 2: [Pytest testing framework](./Article-2-pytest-testing-frameworks)  
+* Article 3: [Readers and fixtures](./Article-3-readers-and-fixtures)  
+* Article 4: [Test coverage](./Article-4-test-coverage)  
+* Resource links: [Testing resources](./Testing-Resources.md)  
   
-### This article covers
+### This article covers:  
+[Assert keyword](#assert-keyword)  
 [Test for Pass](#test-for-pass)  
 [Test for Fail](#test-for-fail)  
 
 ### Resources
 The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).
-  
-The key to testing in Python is the [assert](https://docs.google.com/presentation/d/1RFja0o6cZ8lAalAve8heuJ-Lrb4nOSUnfdpOSEhqqNo/edit#slide=id.g107356847e4_0_22) keyword. We *assert* a Boolean expression is true and create an error message that appears when that expression is false. 
+
+## Assert keyword  
+The key to testing in Python is the [assert](https://realpython.com/python-assert-statement/) keyword. We *assert* a Boolean expression is true and create an error message that appears when that expression is false. 
     
     assert <Boolean expression>, <error message>    
     
@@ -87,4 +89,4 @@ Note that when the assertion fails, a traceback occurs.
 
 This example is a simple way to demonstrate the use of the assert keyword, but it’s not particularly useful for testing a larger codebase. This test function has to be called explicitly to test different marks. There’s not much detail when the code is running. We just get `“All passing.”` and there’s no information about other tests when one of the tests fails.  
   
-Making testing more convenient is where [Pytest testing frameworks](./Pytest-testing-frameworks) come in.  
+Making testing more convenient is where [testing frameworks](./Pytest-testing-frameworks), like `pytest` come in.  
