@@ -100,7 +100,7 @@ html_theme_options = {
         "json_url": "https://napari.org/version_switcher.json",
         "version_match": version_match,
     },
-    "announcement": "Take the 8 minute <a href='https://bit.ly/napari-survey-n'>annual napari survey</a>! Your feedback is vital to ensure napari serves community needs.",
+    "announcement": "Take the 8 minute <a href='https://bit.ly/napari-survey-n' target='_blank' rel='noopener'>annual napari survey</a>! Your feedback is vital to ensure napari serves community needs.",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
