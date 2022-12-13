@@ -87,11 +87,11 @@ subtrees:
       - file: plugins/testing_workshop_docs/index
         subtrees:
         - entries:
-          - file: plugins/testing_workshop_docs/Pythons-assert-keyword
-          - file: plugins/testing_workshop_docs/Pytest-testing-frameworks
-          - file: plugins/testing_workshop_docs/Readers-and-fixtures
-          - file: plugins/testing_workshop_docs/Test-coverage
-          - file: plugins/testing_workshop_docs/Testing-Resources
+          - file: plugins/testing_workshop_docs/Article-1-pythons-assert-keyword
+          - file: plugins/testing_workshop_docs/Article-2-pytest-testing-frameworks
+          - file: plugins/testing_workshop_docs/Article-3-readers-and-fixtures
+          - file: plugins/testing_workshop_docs/Article-4-test-coverage
+          - file: plugins/testing_workshop_docs/Testing-resources
   - file: community/index
     subtrees:
     - titlesonly: True
