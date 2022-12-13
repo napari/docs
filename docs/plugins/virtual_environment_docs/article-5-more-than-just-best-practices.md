@@ -5,7 +5,7 @@ These articles will be more valuable if you are familiar with the Python program
 * Article 2: [Deploying your plugin](./Deploying-your-plugin.md)  
 * Article 3: [Version management](./Version-management.md)  
 * Article 4: [Developer tools](./Developer-tools.md)
-* Article 5: This article  
+* Article 5: This article
 * Article 6: [Survey](./Survey.md)  
 
 
