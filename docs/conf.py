@@ -189,9 +189,9 @@ def reset_napari_theme(gallery_conf, fname):
     settings.appearance.theme = 'dark'
     qtgallery.reset_qapp(gallery_conf, fname)
 
-
 sphinx_gallery_conf = {
-    'examples_dirs': '../examples',  # path to your example scripts
+    #'examples_dirs': '../../napari/examples',  # path to your example scripts
+                                                # this value is set in the Makefile
     'gallery_dirs': 'gallery',  # path to where to save gallery generated output
     'filename_pattern': '/*.py',
     'ignore_pattern': 'README.rst|/*_.py',
