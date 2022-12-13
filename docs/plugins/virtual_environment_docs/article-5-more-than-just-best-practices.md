@@ -1,4 +1,4 @@
-# Tools and tips when building napari plugins: More than just best practices
+# Article 5: Tools and tips when building napari plugins: More than just best practices
 These articles will be more valuable if you are familiar with the Python programming language and the Napari software. They are taken from the [January 2022 Testing workshop](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view) video starting at about 1:12:00. The articles should stand on their own and are summaries of the information in the video. 
   
 * Article 1: [Virtual environments](./Virtual-environments.md)   
