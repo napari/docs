@@ -1,9 +1,12 @@
-This article will be more valuable if you are familiar with the Python programming language and napari software. It is the fourth in a series of articles on testing taken from the [January 2022 testing workshop video](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view). The information in this article starts at minute 28:26. This article is a summary of the information in the video and should stand on its own. The other articles are:  
-* Article 1: [Python’s assert keyword](./Pythons-assert-keyword.md) 
-* Article 2: [Pytest testing framework](./Pytest-testing-frameworks)  
-* Article 3: [Readers and fixtures](./Readers-and-fixtures)  
-* Article 4: This article    
-* Resource links: [testing resources](./Testing-Resources.md)   
+# Article 4: Test coverage
+
+## Article information  
+
+* Article 1: [Python’s assert keyword](./Article-1-pythons-assert-keyword.md) 
+* Article 2: [Pytest testing framework](./Article-2-pytest-testing-frameworks)  
+* Article 3: [Readers and fixtures](./Article-3-readers-and-fixtures)  
+* Article 4: This article (Test coverage)   
+* Resource links: [testing resources](./Testing-resources.md)   
 
 ### This article covers:   
 * [Coverage](#coverage)
@@ -51,7 +54,7 @@ There is a large folder (`htmlcov`) in the directory where the tests were run (`
 `├── README.md`  
 `├── _pycache__`  
 `├── example_func.py`  
-`├── htmlcov		        # <<========================== directory created by pytest-cov`  
+`├── htmlcov		        # <<=============== directory created by pytest-cov`
 `├── requirements.txt`  
 `├── setup.cfg`  
 `├── setup.py`  
@@ -69,7 +72,7 @@ We technically have 100% coverage of `test_widget.py` (the fourth line up from T
 
 We are interested in `_reader.py`. The file containing the reader code has 86% coverage (see below). Clicking ok on the `2 missing` box below highlights the lines that were never run at all. They are highlighted in red (lines 22 and 26): 
 
-![Lines not run highlighted in red](../../images/Lines_not_run_highlighted_in_red.PNG)
+![Lines not run highlighted in red](../../images/Lines_not_run_highlighted_in_red.png)
 
 Because we never provided a list of paths and we never ran code that provided a list of paths, we don't know what will happen in that case. We also never ran code that doesn't return a reader. In other words, we never tested the failed cases. We can and should add those tests. The first one is `test_get_reader_pass`. We'll call it with a file that doesn't end in `.npy` and assert that it returned `None`. Then we'll create a second test to call with a list of paths.
 

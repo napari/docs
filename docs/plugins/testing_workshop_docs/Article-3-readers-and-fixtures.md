@@ -1,9 +1,14 @@
-This article will be more valuable if you are familiar with the Python programming language and the napari software. It is the third in a series of articles on testing taken from the [January 2022 testing workshop video](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view). The information in this article starts at minute 15:42. This article should stand on its own and is a summary of the information in the video. The other articles are:  
-* Article 1: [Python’s assert keyword](./Pythons-assert-keyword.md) 
-* Article 2: [Pytest testing framework](./Pytest-testing-frameworks)  
-* Article 3: This article  
-* Article 4: [Test coverage](./Test-coverage)  
-* Resource links: [testing resources](./Testing-Resources.md)  
+# Article 3: Readers and fixtures  
+
+This article explains how to use and test the reader function, built-in fixtures, custom fixtures, and enclosed testing. 
+
+## Article information  
+  
+* Article 1: [Python’s assert keyword](./Article-1-pythons-assert-keyword.md) 
+* Article 2: [Pytest testing framework](./Article-2-pytest-testing-frameworks)  
+* Article 3: This article (Readers and fixtures)  
+* Article 4: [Test coverage](./Article-4-test-coverage)  
+* Resource links: [Testing resources](./Testing-Resources.md)  
 
 ### This article covers:   
 * [Readers](#reader)  
@@ -11,18 +16,18 @@ This article will be more valuable if you are familiar with the Python programmi
 * [Custom fixtures and round-trip tests](#custom-fixtures-and-round-trip-tests)  
 * [Enclosed testing](#enclosed-testing)  
   
-## Resources  
+### Resources  
 The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).  
   
 ## Introduction  
 In this article, we discuss a plugin called `plugin_tests`, generated using the cookiecutter, which has a reader and a widget. The reader is the cookiecutter numpy file reader, `napari_get_reader`. It checks whether a path ends in `.npy`. If it doesn't, it returns `None`, and if it does, it returns the `reader_function`, which loads the data. 
 
-![napari_get_reader](../../images/Napari_Plugins_1st_napari_get_reader.PNG)
+![napari_get_reader](../../images/napari_plugins_1st_napari_get_reader.png)
   
 ## Reader
 The `napari_get_reader` function is the first thing to test. In the top-level directory under `src`, we have the `plugin_tests` module. Inside `plugin_tests` is the `_tests` directory. This is a typical structure when writing tests. There is also a `test_reader.py` file, which is empty. We will populate it with tests.  
 
-![reader_function](../../images/Napari_Plugins_2nd_reader_function.PNG)
+![reader_function](../../images/napari_plugins_2nd_reader_function.png)
   
 Test as much as possible and focus on writing small tests that look at one indivisible unit. We are focused on testing the `napari_get_reader` function. Sometimes it returns `None`; sometimes it returns the `reader_function`. We want to ensure that if we pass in a path that ends with `.npy`, it gives us back a function we can call.  
   
@@ -56,9 +61,9 @@ Using `napari_get_reader` with this path, we assert that the reader is callable.
         assert callable(reader)
 ```
  
-Running the command  `pytest .` in the root directory of the plugin, we discover all the tests it recognizes as tests. It should recognize `test_reader.py` because it's a test file, prefixed with the word test. `test_reader.py` was found and passed the test. 
+Running the command `pytest .` in the root directory of the plugin, we discover all the tests it recognizes as tests. It should recognize `test_reader.py` because it's a test file, prefixed with the word test. `test_reader.py` was found and passed the test. 
 
-![pytest passed](../../images/Napari_Plugins_3rd_pytest_passed.PNG)
+![pytest passed](../../images/napari_plugins_3rd_pytest_passed.png)
   
 If the file did not end in `.npy` the test would fail because what was returned wasn't callable. This code has been modified to produce an error:  
 ```python    
@@ -77,7 +82,7 @@ If the file did not end in `.npy` the test would fail because what was returned 
 ```
 Once we run `pytest` we can see that it traced back that the callable of `reader` is `False` and it has filled in the fact that `reader` at the time of the assertion was `None`. This is useful in debugging. 
 
-![test_get_reader_returns_callable Failed](../../images/Napari_Plugins_4th_test_get_reader_returns_callable-failed.PNG)
+![test_get_reader_returns_callable Failed](../../images/napari_plugins_4th_test_get_reader_returns_callable-failed.png)
 
 ## Custom fixtures and round-trip tests
 Next, we test to see if this function reads the data. This is a round-trip test. We will create a fixture to write the data to make things easier for ourselves. This fixture will be called [test_reader_round_trip](https://github.com/DragaDoncila/plugin-tests/blob/effb32d6e3b191ad83e69813b26ae8695210f5ad/src/plugin_tests/_tests/test_reader.py#L39).   
@@ -138,10 +143,10 @@ Then we assert, using `numpy`’s asserting mechanism, `np.testing.assert_allclo
 ```    
 We run our tests again, and now two are collected, both passing.  
 
-![pytest - tests passed](../../images/Napari_Plugins_5th_Tests_Passed.PNG)
+![pytest - tests passed](../../images/napari_plugins_5th_tests_passed.png)
 
   
 ## Enclosed testing  
 We did not need a viewer or napari to test this. It's important that we didn't need those because napari and the napari viewer are out of our control. What we can control is the code the _we_ wrote. We wrote that data by simply mocking up some data and getting a temporary path to it. We could thoroughly test our functions in an enclosed way without relying on other people's code or mocking up many complicated objects.  
   
-The next article in this series on testing is [Test coverage](./Test-coverage).  
+The next article in this series on testing is [Test coverage](./Article-4-test-coverage).  
