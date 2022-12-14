@@ -4,11 +4,11 @@ This article explains how to use the pytest testing framework to make testing ea
 
 ## Article information  
 
-* Article 1: [Python’s assert keyword](./Article-1-Pythons-assert-keyword.md) 
+* Article 1: [Python’s assert keyword](./article-1-Pythons-assert-keyword.md) 
 * Article 2: This article (Pytest testing framework)  
-* Article 3: [Readers and fixtures](./Article-3-readers-and-fixtures)  
-* Article 4: [Test coverage](./Article-4-test-coverage)  
-* Resource links: [Testing resources](./Testing-Resources.md)  
+* Article 3: [Readers and fixtures](./article-3-readers-and-fixtures)  
+* Article 4: [Test coverage](./article-4-test-coverage)  
+* Resource links: [Testing resources](./testing-resources.md)  
   
 ### This article covers:  
 * [Testing framework features](#testing-framework-features)  

@@ -5,10 +5,10 @@ This article defines the assert keyword in Python and shows how it can be used t
 ## Article information  
 
 * Article 1: This article (Python's assert keyword) 
-* Article 2: [Pytest testing framework](./Article-2-pytest-testing-frameworks)  
-* Article 3: [Readers and fixtures](./Article-3-readers-and-fixtures)  
-* Article 4: [Test coverage](./Article-4-test-coverage)  
-* Resource links: [Testing resources](./Testing-Resources.md)  
+* Article 2: [Pytest testing framework](./article-2-pytest-testing-frameworks)  
+* Article 3: [Readers and fixtures](./article-3-readers-and-fixtures)  
+* Article 4: [Test coverage](./article-4-test-coverage)  
+* Resource links: [Testing resources](./testing-resources.md)  
   
 ### This article covers:  
 [Assert keyword](#assert-keyword)  
