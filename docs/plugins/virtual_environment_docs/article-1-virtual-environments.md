@@ -1,21 +1,25 @@
-# Article 1: Tools and tips when building napari plugins: Virtual environments
-These articles will be more valuable if you are familiar with the Python programming language and the Napari software. They are taken from the [January 2022 Testing workshop](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view) video starting at about minute 50:25. The articles should stand on their own and are summaries of the information in the video. 
-  
-* Article 1: This article  
-* Article 2: [Deploying your plugin](./Deploying-your-plugin.md)  
-* Article 3: [Version management](./Version-management.md)  
-* Article 4: [Developer tools](./Developer-tools.md)
-* Article 5: [More than just best practices](./More-than-just-best-practices.md)  
-* Article 6: [Survey](./Survey.md)  
+# Article 1: Virtual environments  
 
-This article covers: 
+This article explains the value of using virtual environments and how to create and remove them. 
+
+## Article Information  
+
+* Article 1: This article  
+* Article 2: [Deploying your plugin](./article-2-deploying-your-plugin.md)  
+* Article 3: [Version management](./article-3-version-management.md)     
+* Article 4: [Developer tools](./article-4-developer-tools.md)   
+* Article 5: [More than just best practices](./article-5-more-than-just-best-practices.md)  
+* Article 6: [Survey](./article-6-Survey.md)   
+
+### This article covers: 
 * [Resources](#resources)  
 * [Creating environments](#creating-environments)  
 * [Removing environments](#removing-environments)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+</br>
 Virtual environments  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... are super important!  
+</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. . . are super important!  
+</br>  
 
 ## Resources
 Some resources you might find helpful: 
@@ -46,7 +50,7 @@ To create an environment, use the following commands at the command prompt (term
 ```
 
 Virtual environments  
-. . . are made to be ephemeral.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  . . . are made to be ephemeral.  
 
 ## Removing environments
 Consider your environment as disposable.
@@ -62,4 +66,4 @@ If you are ever having weird problems, nuke your environment and start over usin
   
 Encourage your users to do the same. You can waste a lot of time trying to debug something that someone unknowingly did when installing a variety of things into their environment. If they can provide a repeatable example (starting from environment creation), then it's worth debugging.
 
-The next article in this series is [Deploying your plugin](./Deploying-your-plugin.md). 
+The next article in this series is [Deploying your plugin](./article-2-deploying-your-plugin.md). 

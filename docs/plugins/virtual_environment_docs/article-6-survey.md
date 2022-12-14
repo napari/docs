@@ -1,14 +1,17 @@
 # Tools and tips when building napari plugins: Survey 
-These articles will be more valuable if you are familiar with the Python programming language and the Napari software. They are taken from the [January 2022 Testing workshop](https://drive.google.com/file/d/1DaMrRz-rLRQ6-_y0J8O3GRpVPCn0rgYs/view) video starting at about 1:15:27. The articles should stand on their own and are summaries of the information in the video. 
-  
-* Article 1: [Virtual environments](./Virtual-environments.md)   
-* Article 2: [Deploying your plugin](./Deploying-your-plugin.md)  
-* Article 3: [Version management](./Version-management.md)  
-* Article 4: [Developer tools](./Developer-tools.md)
-* Article 5: [More than just best practices](./More-than-just-best-practices.md)  
+
+This articles contains questions that were submitted to our survey on testing.  
+
+## Article Information
+
+* Article 1: [Virtual environments](./article-1-virtual-environments.md)   
+* Article 2: [Deploying your plugin](./article-2-deploying-your-plugin.md)  
+* Article 3: [Version management](./article-3-version-management.md)  
+* Article 4: [Developer tools](./article-4-developer-tools.md)
+* Article 5: [More than just best practices](./article-5-more-than-just-best-practices.md)  
 * Article 6: This article  
 
-This article covers:   
+## This article covers:   
 * [Questions](#questions)  
     - [Testing plugins](#testing-plugins)  
     - [Testing widgets](#testing-widgets)  
@@ -21,9 +24,9 @@ This article covers:
     - [npe2](#npe2)  
     - [Widget development](#widget-development)
   
-# Questions
+## Questions
 
-## Testing plugins    
+### Testing plugins    
 Question: What are the best practices to test a plugin with multiple sequential steps?  
 e.g. Is it ok to rely on the "results" of a test to run the next test or should they all be fully independent?  
 
@@ -37,42 +40,42 @@ Answer:
 
 *This is definitely an art form. It takes time. Be patient.*
 
-## Testing widgets
+### Testing widgets
 Question: How do you test widgets, the napari viewer, and graphical user interfaces? How do you test Qt in general?
 
 Answer:
 * Try not to!
 * You should generally trust that a button click (for example) will call your callback and focus on testing that your callback does what it's supposed to do given that it gets called following some UI interaction.
 * However: If you have a scenario where you are actually creating a complicated widget directly in Qt, see `pytest-qt` for lots of tips, specifically `qtbot`.
-    - https://pytest-qt.readthedocs.io/en/latest/intro.html
-    - https://pytest-qt.readthedocs.io/en/latest/reference.html?highlight=qtbot#module-pytestqt.qtbot
-* Oftentimes, this just comes down to knowing/learning the Qt API really well.  
+    - pytest-qt - [https://pytest-qt.readthedocs.io/en/latest/intro.html](https://pytest-qt.readthedocs.io/en/latest/intro.html)
+    - qtbot - [https://pytest-qt.readthedocs.io/en/latest/reference.html?highlight=qtbot#module-pytestqt.qtbot](https://pytest-qt.readthedocs.io/en/latest/reference.html?highlight=qtbot#module-pytestqt.qtbot)
+* Oftentimes, this comes down to knowing and/or learning the Qt API really well.  
 
-## Better signal or slot documentation or functionality
-Question: How to create better signal/slot documentation/functionality as the user interacts with the core napari interface? For example, creating/editing/deleting a point or shape layer.
+### Better signal or slot documentation or functionality
+Question: How to create better signal/slot documentation/functionality as the user interacts with the core napari interface? For example, creating/editing/deleting a point or shape layer?
 
 Answer: 
 [https://napari.org/guides/stable/events_reference.html](https://napari.org/stable/guides/events_reference.html)  
 Granted, this is a work in progress. 
 
-## Creating or deleting a point or shape layer:  
+### Creating or deleting a point or shape layer:  
     Viewer.layers.events.inserted  
     Viewer.layers.events.removed  
     Viewer.layers.events.moved  
     Viewer.layers.events.changed  
     Viewer.layers.events.reordered  
 
-Editing a point or shape layer:  
-...complicated, because it may be a pure numpy object…  
+Editing a point or shape layer  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. . .complicated, because it may be a pure numpy object . . .  
 
-## Github tests failing  
+### Github tests failing  
 Question: How do you avoid github tests failing?  
   
 Answer:  
 * First make sure all your tests are passing locally.  
 * After that, it's complicated. More background or context is needed to answer this question.  
   
-## Cancelling a method  
+### Cancelling a method  
 Question: How do you make a process cancellable to interrupt a method that is running in a for loop, for example?  
 
 Answer:  
@@ -80,13 +83,13 @@ Answer:
 * In multithreaded python, there are many different patterns. Consider using a generator-based thread worker:  
   https://napari.org/stable/guides/threading.html#generators-for-the-win  
 
-## Testing environments  
+### Testing environments  
 Question: Are there testing environments in napari?  
 Answer: Napari does not create or otherwise manage environments.  
   
-# Topics  
+## Topics  
   
-## npe2  
+### npe2  
 Question: Introduction to npe2? Migrating to new plug-in architecture?   
   
 Answer:  
@@ -99,7 +102,7 @@ Answer:
 * Guides for each type of contribution: https://napari.org/stable/plugins/guides.html  
 * Migration guide: https://napari.org/stable/plugins/npe2_migration_guide.html  
   
-## Widget development  
+### Widget development  
 Question: What is the optimal setup to quickly iterate in widget development?    
   
 Answer:   
