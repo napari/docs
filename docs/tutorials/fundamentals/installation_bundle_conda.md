@@ -91,33 +91,33 @@ Next check out our [tutorial on the viewer](https://napari.org/tutorials/fundame
 
 ### How to Install the Windows bundle
 
-Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.4.15-Windows-x86_64.exe`. Double click this file to open the napari Setup Wizard. Click "Next" to continue.
+Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.4.15-Windows-x86_64.exe`. Double click this file to open the napari Setup.
 
-![image: napari Setup Wizard start page](../assets/tutorials/installation/bundle_17.png)
+![Montage of the napari EXE installer icon with an arrow pointing to the Welcome page of the napari EXE installer on Windows.](../assets/tutorials/installation/bundle_17.png)
 
-To continue, read and agree to the License Agreement by clicking 'I Agree'.
+Click Next to continue and go to the License page. Read the contents and, if you agree, continue by clicking 'I Agree'.
  
-![image: napari License Agreement](../assets/tutorials/installation/bundle_18.png)
+![Cropped screenshot of the License Agreement page of the napari EXE installer. A scrollable text area displays the legal text. Three buttons are available: Back, I Agree, and Cancel.](../assets/tutorials/installation/bundle_18.png)
 
-The recommended installation method is to install napari just for the current user. 
+The recommended installation method is to install napari just for the current user ("Just Me"): 
 
-![image: napari Setup Wizard user installation options](../assets/tutorials/installation/bundle_19.png)
+![Cropped screenshot of the Setup Instalation Type page of the napari EXE installer. Two options are available: Just Me (recommended), and All Users (requires admin privileges). At the bottom, three buttons Back, Next and Cancel are displayed.](../assets/tutorials/installation/bundle_19.png)
 
-Next you will be shown how much space will be used by the installation and the default destination folder, which can be updated using the 'Browse' button. Click 'Next' to continue.
+On the next page you will be shown how much space will be used by the installation and the default destination folder, which can be changed by using the 'Browse' button. Click 'Next' to continue.
 
-![image: napari Setup Wizard installation location](../assets/tutorials/installation/bundle_20.png)
+![Cropped screenshot of the Choose Install Location page of the napari EXE installer. A text field next to a Browse button shows the default installation path. Additional text below reports the required space for the installation (2.6 GB) and the total space available on disk (61.1 GB). The three buttons at the bottom read Back, Next and Cancel.](../assets/tutorials/installation/bundle_20.png)
 
-On the next page, click 'Install' to start the installation process. Installation progress can be monitored on the following page.
+On the next page, click 'Install' to start the installation process. Installation progress can be monitored on the following page. By clicking on 'Show details', you can obtain more information on the ongoing tasks. You can right-click on this new text area to copy the contents to the clipboard if needed.
 
-![image: napari Setup Wizard installation progress bar](../assets/tutorials/installation/bundle_22.png)
+![Cropped screenshot of the Installation process page of the napari EXE installer. A progress bar at around 95% reads "Setting up the package cache...". A button with the text "Show details" is available below. At the bottom of the dialog, three grayed out buttons read Back, Next, and Cancel.](../assets/tutorials/installation/bundle_22.png)
 
 Once installation is complete, you will see the page below. Click 'Finish' to close the installation wizard.
 
-![image: napari Setup Wizard installation completed](../assets/tutorials/installation/bundle_24.png)
+![Cropped screenshot of the final page of the napari EXE installer. It reports that the installation has finished successfully and that the dialog can be closed by clicking on the Finish button at the bottom.](../assets/tutorials/installation/bundle_24.png)
 
 You can now get started using napari! A shortcut to launch napari can be found in the Windows Start menu. 
 
-napari comes installed with sample images from scikit-image. Use the dropdown menu File>Open Sample>napari to open a sample image, or open one of your own images using File > Open or dragging and dropping your image onto the canvas. 
+napari comes installed with sample images from scikit-image. Use the dropdown menu File > Open Sample > napari to open a sample image, or open one of your own images using File > Open or dragging and dropping your image onto the canvas. 
 
 Next check out our [tutorial on the viewer](https://napari.org/tutorials/fundamentals/viewer.html) or explore any of the pages under the [Usage tab](https://napari.org/usage.html).
 
