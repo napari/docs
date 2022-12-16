@@ -123,33 +123,33 @@ Next check out our [tutorial on the viewer](https://napari.org/tutorials/fundame
 
 ### How to Install the Linux bundle
 
-Once you have downloaded the Linux SH file, you will have a file with a name like `napari-0.4.15-Linux-x86_64.sh`. Double click this file to open the command in terminal or open terminal and run the command 'bash [file name]'.
+Once you have downloaded the Linux SH file, you will have a file with a name like `napari-0.4.15-Linux-x86_64.sh`. You can double-click this file to open the installer in a terminal, or, alternatively, open a terminal yourself and run the command `bash napari-*-Linux-x86_64.sh`.
 
-![image: linux file command in terminal](../assets/tutorials/installation/bundle_28.png)
+![Montage of the SH installer icon on Ubuntu, with an arrow pointing to an open terminal instance with a pre-typed command that reads 'bash napari-0.4.14.dev73-Linux-x86_64.sh'.](../assets/tutorials/installation/bundle_28.png)
 
-Press Enter to open the License Agreement.
+Press <kbd>Enter</kbd> to display the License Agreement.
 
-![image: napari License Agreement](../assets/tutorials/installation/bundle_29.png)
+![Cropped screenshot of the default Ubuntu terminal displaying the welcome paragraphs of the text-based installer of napari for Linux systems.](../assets/tutorials/installation/bundle_29.png)
 
-Read through the agreement shown below. You must agree to the terms by entering 'yes' to continue.
+Read through the agreement shown below. You must agree to the terms by typing out `yes` and pressing <kbd>Enter</kbd> to continue.
 
-![image: napari License Agreement verbage](../assets/tutorials/installation/bundle_30.png)
+![Cropped screenshot of the default Ubuntu terminal displaying the first paragraphs of a BSD-3 Clause License text.](../assets/tutorials/installation/bundle_30.png)
 
-![image: napari License Agreement verbage continued](../assets/tutorials/installation/bundle_31.png)
+![Cropped screenshot of the default Ubuntu terminal displaying the last paragraphs of a BSD-3 Clause License text, plus a prompt asking 'Do you accept the license terms?', to which the user must respond 'yes' or 'no'.](../assets/tutorials/installation/bundle_31.png)
 
-Next you will be shown the default location for the installation. You may confirm this location by hitting ENTER or specify a different location by writing out the filetree, which will begin the installation process. 
+Next you will be shown the default location for the installation. You may confirm this location by pressing <kbd>Enter</kbd>. Alternatively, specify a different location by typing out its absolute path. If it does not exist, it will be created. The terminal will then begin the installation process. 
 
-![image: napari License Agreement agreement prompt](../assets/tutorials/installation/bundle_32.png)
+![Montage of two instances of the default Ubuntu terminal showing the default installation path, followed by the first extraction steps of the installation process.](../assets/tutorials/installation/bundle_32.png)
 
-If installation is successful, you will see 'installation finished.' in terminal.
+If the installation is successful, the terminal will display a message with the text 'Installation finished'.
 
-![image: napari installation success notification](../assets/tutorials/installation/bundle_33.png)
+![Cropped screenshot of the default Ubuntu terminal displaying the last steps of the installation process. The last line of text reads 'installation finished'.](../assets/tutorials/installation/bundle_33.png)
 
-You can now get started using napari! A shortcut to launch napari should appear on your desktop or you can search for napari with the desktop searchbar.
+You can now get started using napari! A shortcut to launch napari should appear on your desktop or application menu. Under some Linux desktop environments, you can also search for 'napari' using the desktop search bar.
 
-![image: napari icon on desktop](../assets/tutorials/installation/bundle_34.png)
+![Full screenshot of the application menu in the Ubuntu desktop environment. A 6x4 grid of application icons includes the napari icon on the third row, third column, highlighted with a red circle.](../assets/tutorials/installation/bundle_34.png)
 
-![image: napari shortcut in searchbar](../assets/tutorials/installation/bundle_35.png)
+![Full screenshot of the Ubuntu search menu, with the query 'napari', displaying some results which include the application icon for the installed napari.](../assets/tutorials/installation/bundle_35.png)
 
 napari comes installed with sample images from scikit-image. Use the dropdown menu File>Open Sample>napari to open a sample image, or open one of your own images using File > Open or dragging and dropping your image onto the canvas. 
 
