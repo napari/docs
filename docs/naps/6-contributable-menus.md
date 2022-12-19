@@ -46,7 +46,7 @@ This `Plugins` menu quickly becomes difficult to parse with increasing number of
 installed in an environment, and does not provide sufficient structure for a user to be
 able to quickly and coherently navigate through the extensions available to them. 
 
-![An napari viewer with many plugins installed quickly becomes unwieldy.](./_static/napari-many-plugins.png)
+![A napari viewer with many plugins installed quickly becomes unwieldy.](./_static/napari-many-plugins.png)
 
 The vast majority of plugins (217 out of 263) available today provide at least one `widget` contribution. 
 Of these, 140 provide just a single widget 19 provide more than five widgets and 9 provide more than 10. 
