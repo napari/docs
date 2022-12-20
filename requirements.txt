@@ -4,6 +4,7 @@ sphinx-tags
 sphinx-panels
 sphinx-external-toc
 sphinx-favicon
+sphinx-copybutton
 sphinx-gallery
 sphinx_autodoc_typehints==1.12.0
 myst-nb

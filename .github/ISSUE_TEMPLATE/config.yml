@@ -1,6 +1,14 @@
 # Ref: https://help.github.com/en/github/building-a-strong-community/configuring-issue-templates-for-your-repository#configuring-the-template-chooser
 blank_issues_enabled: true  # default
 contact_links:
+- name: 👩🏽‍💻 main napari repository
+  url: https://github.com/napari/napari
+  about: |
+    If your issue requires a docstring update, or changes to the examples gallery, please check the main napari repo.
+- name: ✨ napari-sphinx-theme
+  url: https://github.com/napari/napari-sphinx-theme
+  about: |
+    If your issue is about the napari.org website design or functionality, please check the napari-sphinx-theme repo.
 - name: 🤷💻 napari forum
   url: https://forum.image.sc/tag/napari
   about: |

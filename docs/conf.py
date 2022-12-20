@@ -63,6 +63,7 @@ extensions = [
     "sphinx_panels",
     "sphinx.ext.viewcode",
     "sphinx-favicon",
+    "sphinx_copybutton",
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
 ]
@@ -145,8 +146,8 @@ intersphinx_mapping = {
         'https://napari-plugin-engine.readthedocs.io/en/latest/objects.inv',
     ],
     'magicgui': [
-        'https://napari.org/magicgui/',
-        'https://napari.org/magicgui/objects.inv',
+        'https://pyapp-kit.github.io/magicgui/',
+        'https://pyapp-kit.github.io/magicgui/objects.inv',
     ],
 }
 
@@ -197,9 +198,9 @@ def reset_napari_theme(gallery_conf, fname):
     settings.appearance.theme = 'dark'
     qtgallery.reset_qapp(gallery_conf, fname)
 
-
 sphinx_gallery_conf = {
-    'examples_dirs': '../examples',  # path to your example scripts
+    #'examples_dirs': '../../napari/examples',  # path to your example scripts
+                                                # this value is set in the Makefile
     'gallery_dirs': 'gallery',  # path to where to save gallery generated output
     'filename_pattern': '/*.py',
     'ignore_pattern': 'README.rst|/*_.py',
