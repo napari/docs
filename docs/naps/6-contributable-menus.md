@@ -1,6 +1,4 @@
-:orphan:
-
-(nap-template)=
+(nap-6-contributable-menus)=
 
 # NAP-6 — Contributable Menus
 
