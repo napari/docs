@@ -124,7 +124,7 @@ In some cases, `conda`'s default solver can struggle to find out which packages 
 installed for napari. If it takes too long or you get the wrong version of napari 
 (see below), consider:
 1. Overriding your default channels to use only `conda-forge` by adding `--override-channels`
-and specifying the napari and Python versions explicitly using `python=3.9` to get 
+and specifying the napari and Python versions explicitly. For example, use `python=3.9` to get 
 Python 3.9 and {{ napari_conda_version }} to specify the napari version as 
 {{ napari_version }}, the current release.
 2. You can try installing [`mamba`](https://github.com/mamba-org/mamba) in your base
