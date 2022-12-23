@@ -347,7 +347,7 @@ The console (when available) appears at the bottom of the viewer as shown:
 ![image: console within napari](../assets/tutorials/console.png)
 
 
-The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings. Run the following code:
+The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data. Run the following code:
 
 
 ```{code-cell} python
