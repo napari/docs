@@ -409,6 +409,11 @@ backward compatibility. -->
 This work does not have any backward compatibility considerations for
 existing features.
 
+To make the transition manageable for plugin-developers who used the 
+napari-tools-menu to structure their menus, it would be good to enable hybrid
+npe1-npe2 plugins for an intermediate period. 
+[See also #4708](https://github.com/napari/napari/issues/4708)
+
 In future, backward compatibility concerns could arise when a menu name/ID is
 changed in `napari`, or when `napari` removes a menu that was previously 
 contributable.
