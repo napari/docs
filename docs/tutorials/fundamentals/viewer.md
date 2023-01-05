@@ -99,7 +99,7 @@ We'll go through each of these in the next sections.
 
 The main menu consists of the **File**, **View**, **Window**, **Plugins**, and **Help** options which are illustrated in this section.  
 
-* **File** contains the options shown in the graphic below: 
+* **File** contains the options shown in the graphic below:  
 ![image: File Menu](../assets/tutorials/main-menu-file.png)  
 
     All the options on the **File** menu are self-explanatory except **Preferences**. **Preferences** has the options shown below. To learn more about the **Preferences** menu, visit this [tutorial](https://napari.org/stable/guides/preferences.html).  
