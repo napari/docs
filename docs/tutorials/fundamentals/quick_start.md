@@ -62,13 +62,13 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 
     First, create a clean virtual environment:
 
-{{ conda_env_python_version }}
+    {{ conda_env_python_version }}
 
     Once in napari-env,
 
-```python
-pip install 'napari[all]'
-```
+    ```python
+    pip install 'napari[all]'
+    ```
 
 
 If you run into any issues, please visit the more detailed [installation guide](./installation), or [report an issue on GitHub](https://github.com/napari/napari/issues/new/choose)!
