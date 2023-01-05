@@ -1,7 +1,6 @@
 sphinx<5
-sphinx-tabs
 sphinx-tags
-sphinx-panels
+sphinx-design
 sphinx-external-toc
 sphinx-favicon
 sphinx-copybutton
