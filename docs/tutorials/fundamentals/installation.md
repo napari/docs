@@ -65,7 +65,8 @@ napari into a clean virtual environment using an environment manager like
 [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or
 [venv](https://docs.python.org/3/library/venv.html).
 
-This should be set up *before* you install napari. For example, with `conda`:
+This should be set up *before* you install napari. For example, setting with
+up a Python {{ python_version }} environment with `conda`:
 
 {{ conda_env_python_version }}
 ````

@@ -108,10 +108,10 @@ While not strictly required, it is *highly* recommended to install
 napari into a clean virtual environment using an environment manager like
 [conda](https://docs.conda.io/en/latest/miniconda.html) or
 [venv](https://docs.python.org/3/library/venv.html). 
-This should be set up before you install napari. For example, with conda:
+This should be set up before you install napari. For example, setting with
+up a Python {{ python_version }} environment with `conda`:
 
 {{ conda_env_python_version }}
-```
 ````
 
 ### From conda
