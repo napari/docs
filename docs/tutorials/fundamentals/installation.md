@@ -67,10 +67,7 @@ napari into a clean virtual environment using an environment manager like
 
 This should be set up *before* you install napari. For example, with `conda`:
 
-```sh
-conda create -y -n napari-env -c conda-forge python=3.9
-conda activate napari-env
-```
+{{ conda_env_python_version }}
 ````
 
 Choose one of the options below to install napari as a Python package.
@@ -79,7 +76,7 @@ Choose one of the options below to install napari as a Python package.
 :class: dropdown
 
 napari can be installed on most macOS, Linux, and Windows systems with Python
-3.7, 3.8, and 3.9 using pip:
+3.8, 3.9, and 3.10 using pip:
 
 ```sh
 python -m pip install "napari[all]"
@@ -124,9 +121,10 @@ In some cases, `conda`'s default solver can struggle to find out which packages 
 installed for napari. If it takes too long or you get the wrong version of napari 
 (see below), consider:
 1. Overriding your default channels to use only `conda-forge` by adding `--override-channels`
-and specifying the napari and Python versions explicitly. For example, use `python=3.9` to get 
-Python 3.9 and {{ napari_conda_version }} to specify the napari version as 
+and specifying the napari and Python versions explicitly. For example, use {{ python_version_code }}
+to get Python {{ python_version }} and {{ napari_conda_version }} to specify the napari version as 
 {{ napari_version }}, the current release.
+
 2. You can try installing [`mamba`](https://github.com/mamba-org/mamba) in your base
 environment with `conda install -n base -c conda-forge mamba` and use its faster solver
 by replacing `conda` for `mamba` in the above instructions.

@@ -109,10 +109,7 @@ napari into a clean virtual environment using an environment manager like
 [conda](https://docs.conda.io/en/latest/miniconda.html) or
 [venv](https://docs.python.org/3/library/venv.html).  For example, with `conda`:
 
-```sh
-conda create -y -n napari-env -c conda-forge python=3.9
-conda activate napari-env
-pip install "napari[all]"
+{{ conda_env_python_version }}
 ```
 ````
 

@@ -160,11 +160,15 @@ myst_enable_extensions = [
 myst_heading_anchors = 3
 
 version_string = '.'.join(str(x) for x in __version_tuple__[:3])
+python_version = '3.9'
 
 myst_substitutions = {
    "napari_conda_version": f"`napari={version_string}`",
    "napari_version": version_string,
- }
+   "python_version": python_version,
+   "python_version_code": f"`python={python_version}`",
+   "conda_env_python_version": f"```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```",
+}
 
 nb_output_stderr = 'show'
 
