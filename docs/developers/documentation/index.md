@@ -47,6 +47,11 @@ rename the repository when forking `napari/docs`.
   would appear on `napari.org`, and they will also install `jupytext`, which you
   will need to contribute documents containing code or viewer interactions.
 
+  Note that this will install the latest *released* version of `napari` and its
+  development dependencies. This may differ from the *development* version,
+  which is the version in the `main` branch of the napari repository. To install
+  the development version, follow the [contributor guide](dev-installation).
+
 - **If you wish to add/amend documentation that does contain code, you will also
   require a clean conda environment with napari docs dependencies installed, but
   with a development installation of napari.**
