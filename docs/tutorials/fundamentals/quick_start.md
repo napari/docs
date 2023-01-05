@@ -58,13 +58,12 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 
 - For those familiar with Python:
 
-    napari can be installed on most macOS, Linux, and Windows systems with Python 3.7, 3.8, and 3.9 using pip.
+    napari can be installed on most macOS, Linux, and Windows systems with Python {{ python_version_range }} using pip.
 
     First, create a clean virtual environment:
-```python
-conda create -y -n napari-env -c conda-forge python=3.9
-conda activate napari-env
-```
+
+{{ conda_env_python_version }}
+
     Once in napari-env,
 
 ```python
