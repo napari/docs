@@ -76,7 +76,7 @@ Choose one of the options below to install napari as a Python package.
 :class: dropdown
 
 napari can be installed on most macOS, Linux, and Windows systems with Python
-3.8, 3.9, and 3.10 using pip:
+{{ python_version_range }} using pip:
 
 ```sh
 python -m pip install "napari[all]"
