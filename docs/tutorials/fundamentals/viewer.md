@@ -23,10 +23,10 @@ This tutorial will teach you about the **napari** viewer, including how to use i
 
 ## Launching the viewer
 
-As discussed in the [getting started](./getting_started) tutorial, the napari viewer can be launched from the command-line, a python script, an IPython console, or a Jupyter notebook. All four methods launch the same viewer, and anything related to interacting with the viewer on the screen applies equally to all of them. We will use the syntax for running the code inside a jupyter notebook with each code block below pasted into its own cell, but if you'd like to use a python script instead, simply copy and paste the code blocks into scripts with [napari.run()](https://napari.org/stable/api/napari.html#napari.run) as the final line (this starts an event loop which will open an interactive viewer) and run them.  
+As discussed in the [getting started](./getting_started) tutorial, the napari viewer can be launched from the command-line, a python script, an IPython console, or a Jupyter notebook. All four methods launch the same viewer, and anything related to interacting with the viewer on the screen applies equally to all of them. We will use the syntax for running the code inside a jupyter notebook with each code block below pasted into its own cell, but if you'd like to use a python script instead, simply copy and paste the code blocks into scripts with [`napari.run()`](https://napari.org/stable/api/napari.html#napari.run) as the final line (this starts an event loop which will 
+open an interactive viewer) and run them.  
 
-**Note:** There is also an IPython console available in napari which you can open with the  
-        iPython console button (far left viewer button) or with the menu option **Window** > **console**. You can use this console to programmatically interact with an open viewer using the API methods illustrated in this tutorial.  
+**Note:** There is also an IPython console available in napari which you can open with the iPython console button (far left viewer button) or with the menu option **Window** > **console**. You can use this console to programmatically interact with an open viewer using the API methods illustrated in this tutorial.    
 
 Let's get started by launching a viewer with a simple 2D image.  
 
@@ -40,13 +40,11 @@ import napari
 viewer, image_layer = napari.imshow(data.astronaut(), rgb=True)
 ```  
 
-```{code-cell} python  
-:tags: [remove-cell]
-
+```{code-cell} python  :tags: [remove-cell]
 viewer.close()
 ```
 
-Calling {func}`imshow<napari.imshow>` will return a {class}`Viewer<napari.Viewer>` object that is the main object inside **napari** and a {class}`Image<napari.layers.Image>` layer object. All the data you add to **napari**   will be stored
+Calling {func}`imshow<napari.imshow>` will return a {class}`Viewer<napari.Viewer>` object that is the main object inside **napari** and a {class}`Image<napari.layers.Image>` layer object. All the data you add to **napari** will be stored
 inside the {class}`Viewer<napari.Viewer>` object and will be accessible from it. This command will also open the viewer to create a GUI that you can interact with. The {class}`Image<napari.layers.Image>` will contain information about the image and allow you to access image methods.
 
 You can also create an empty {class}`Viewer<napari.Viewer>` directly and then start adding images to it. For example:  
@@ -59,21 +57,17 @@ import napari
 viewer = napari.Viewer()
 new_layer = viewer.add_image(data.astronaut(), rgb=True)
 ```
-
-{meth}`add_image<napari.components.viewer_model.ViewerModel.add_image>` accepts the same arguments as {func}`imshow<napari.show>` but only returns an {class}`Image<napari.layers.Image>` layer instead of both the {class}`Viewer<napari.Viewer>` and {class}`Image<napari.layers.Image>` layer (as you must already have a viewer to use it).
+{meth}[`add_image<napari.components.viewer_model.ViewerModel.add_image>`](https://napari.org/stable/api/napari.components.ViewerModel.html?highlight=add_image#napari.components.ViewerModel.add_image) accepts the same arguments as {func}`imshow<napari.show>` but only returns an {class}`Image<napari.layers.Image>` layer instead of both the {class}`Viewer<napari.Viewer>` and {class}`Image<napari.layers.Image>` layer (as you must already have a viewer to use it).
 
 After running either of those two commands, you should be able to see the photograph of the astronaut in the **napari** viewer as shown below:
 
-```{code-cell} python
-:tags: [hide-input]
+```{code-cell} python  :tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="photograph of an astronaut in napari viewer")
 ```
 
-```{code-cell} python
-:tags: [remove-cell]
-
+```{code-cell} python  :tags: [remove-cell]
 viewer.close()
 ```
 
@@ -132,21 +126,20 @@ The main menu consists of the **File**, **View**, **Window**, **Plugins**, and *
 
 ### Canvas
 
-The **canvas** is in the center of the viewer and contains the visual display of the data passed to **napari**, including images, point, shapes, and other supported data types. Under the hood the canvas is a `vispy.scene.SceneCanvas` object which has built-in support for features such as zooming and panning. As `vispy` uses `OpenGL` and your graphics card, panning and zooming are highly performant. You can return to the original zoom level by clicking the `home` button in the viewer buttons panel.
+The **canvas** is in the center of the viewer and contains the visual display of the data passed to **napari**, including `images`, `point`, `shapes`, and other supported data types. Under the hood, the canvas is a `vispy.scene.SceneCanvas` object which has built-in support for features such as zooming and panning. As `vispy` uses `OpenGL` and your graphics card, panning and zooming are highly performant. You can return to the original zoom level by clicking the `home` button in the viewer buttons panel.
 
 ![image: pan and zoom with napari](../assets/tutorials/viewer_pan_zoom.webm) 
 
 (layer_list)=
 ### Layer list
 
-One of the basic napari objects is layers. There are different layer types for `Image`, `Points`, `Shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added they start to populate the layer list located on the bottom left side of the canvas.
+Layers are one of the basic napari objects. There are different layer types for `image`, `points`, `shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added, they  populate the layer list located on the bottom left side of the canvas.
 
 The layer list contains one widget for each of the layers that have been added to the viewer and includes a `thumbnail` that shows a miniaturized version of the currently viewed data, a `name` that is an editable text box, a `visibility` button that can be toggled on or off to show or hide the layer, and an `icon` for the layer type.  
 
 Adding the following three image layers using the code below adds three-layer widgets to the layer list as follows:  
 
-```{code-cell} python  
-:tags: [remove-output]  
+```{code-cell} python  :tags: [remove-output]  
 import napari
 
 from skimage import data
@@ -157,8 +150,7 @@ viewer.add_image(data.moon(), name='moon')
 viewer.add_image(data.camera(), name='camera')
 ```
 
-```{code-cell} python
-:tags: [hide-input]
+```{code-cell} python  :tags: [hide-input]
 nbscreenshot(viewer, alt_text="3 image layers shown in napari viewer with the canvas displaying a photograph of a man looking through a camcorder")
 ```
 
@@ -188,9 +180,7 @@ viewer.layers['astronaut']
 
 You can rearrange layers by clicking and dragging them.
 
-```{code-cell} python
-:tags: [remove-cell]
-
+```{code-cell} python  :tags: [remove-cell]
 viewer.close()
 ```
 
@@ -200,8 +190,7 @@ Above the **layer list** in the top left corner of the viewer there is a box tha
 
 For example, if you add a `Points` layer after adding an `Image` layer, the new `Points` layer will be 'selected' and you will now see different controls present.
 
-```{code-cell} python
-:tags: [remove-output]
+```{code-cell} python  :tags: [remove-output]
 import numpy as np
 from skimage import data
 
@@ -212,8 +201,7 @@ points = np.array([[100, 100], [200, 200], [300, 100]])
 viewer.add_points(points, size=30)  
 ```
 
-```{code-cell} python
-:tags: [hide-input]
+```{code-cell} python  :tags: [hide-input]
 nbscreenshot(viewer, alt_text="points layer showing 3 white points layered on top of astronaut image in napari viewer")
 ```
  
@@ -227,9 +215,7 @@ viewer.layers[0].name = 'astronaut'
 viewer.layers[0].opacity = 0.7
 ```
 
-```{code-cell} python
-:tags: [remove-cell]
-
+```{code-cell} python  :tags: [remove-cell]
 viewer.close()
 ```
 
@@ -273,8 +259,7 @@ same. Effectively, the two datasets are broadcast together using [NumPy broadcas
 
 For example, the following commands from the console will add both 2D and 3D datasets to the same viewer:
 
-```{code-cell} python
-:tags: [remove-output]
+```{code-cell} python  :tags: [remove-output]
 import numpy as np
 from skimage import data
 
@@ -294,8 +279,7 @@ blobs = np.stack(
 viewer.add_image(blobs, name='blobs', opacity=0.5, colormap='red')
 ```
 
-```{code-cell} python
-:tags: [hide-input]
+```{code-cell} python  :tags: [hide-input]
 nbscreenshot(viewer, alt_text="A 2d view of the moon on top of which is overlaid a 3d volume containing blobs through which you can navigate using the dimension slider.")
 ```
 
@@ -317,7 +301,8 @@ On the left and right ends of the dimension sliders are scroll buttons that take
 
 ### Frame Playback button   
 
-On the left end of the dimension slider is the **frame playback** button. Right clicking on this button brings up a control panel that allows you to enter the **number of frames per second**; the **play direction**, either forward or backward; and the **play mode**, once, loop, or back and forth. Left clicking this button will play the image back according to these parameters. 
+On the left end of the dimension slider is the **frame playback** button. Right clicking on this button brings up 
+a control panel that allows you to enter the **number of frames per second**; the **play direction**, either forward or backward; and the **play mode**, once, loop, or back and forth. Left clicking this button will play the image back according to these parameters. 
 
 
 ### Viewer buttons
@@ -344,11 +329,10 @@ The console (when available) appears at the bottom of the viewer as shown:
 ![image: console within napari](../assets/tutorials/console.png)
 
 
-The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings. Run the following code:
+The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data. Run the following code:
 
 
-```{code-cell} python
-:tags: [remove-output]
+```{code-cell} python  :tags: [remove-output]
 from skimage import data
 from scipy import ndimage as ndi
 
@@ -367,9 +351,7 @@ then, by clicking the 2D/3D button, you can rotate the image (the camera view of
 
 and rotating the camera view with the mouse gives something like the following view:
 
-```{code-cell} python
-:tags: [hide-input]
-
+```{code-cell} python  :tags: [hide-input]
 # programmatically adjust the camera angle
 viewer.dims.ndisplay = 3
 viewer.camera.zoom = 2
@@ -402,7 +384,7 @@ The right side of the status bar contains some helpful tips depending on which l
 * **Convert to Image** - converts a **Labels** layer into an **Image** layer. 
 * **Toggle visibility** - hides or shows the selected layer.
 * **Convert datatype** - converts an **Image** or **Labels** layer into int8, int16, int32, int64, uint8, uint16, uint32, or uint64 data types. The initial data type is the data type of the data itself.
-* **Make Projection** - can be used only on a stack.  It creates a new layer that is a projection of the layer stack with the characteristic the user selects.  More information about the types of projections is available [here](https://medium.com/@damiandn/an-intoduction-to-biological-image-processing-in-imagej-part-3-stacks-and-stack-projections-942aa789420f). The following projections are available:
+* **Make Projection** - can be used only on a layer with more than 2 dimensions, also known as a *stack*.  It creates a new layer that is a projection of the layer stack with the characteristic the user selects, reducing the number of dimensions by 1. More information about the types of projections is available [here](https://medium.com/@damiandn/an-intoduction-to-biological-image-processing-in-imagej-part-3-stacks-and-stack-projections-942aa789420f). The following projections are available:
     * **Max** - maximum intensity projection. At each pixel position, we go  through the stacks, find the pixel with the maximum intensity, and that becomes the intensity of that pixel value in the projected image.   
    * **Min** - minimum intensity projection. Similar to the maximum intensity projection, except that the minimum pixel value is used for the projected image instead of the maximum pixel value.  
    * **Std** - the standard deviation projection. At each pixel position, the standard deviation of the pixel intensities through the stack is the assigned value of that pixel position. Positions with large differences in the pixel intensities through the stack appear brighter in this projection.  
@@ -422,7 +404,7 @@ The right side of the status bar contains some helpful tips depending on which l
  
 ## Changing the viewer theme
 
-Currently, **napari** comes with `light`, `dark`, and `system` themes.  The default is `dark`. To change the theme, go to **File**>**Preferences**>**Appearance**. You can also update the `theme` property of the viewer by using the following code:
+Currently, **napari** comes with `light`, `dark` themes for the viewer;  the default is `dark`. Additionally, there is the `system` virtual theme that will attempt to match the viewer theme (`light` or `dark`) to your system theme on macOS, Windows, and some Linux. To change the theme, go to **File**>**Preferences**>**Appearance**. You can also update the `theme` property of the viewer by using the following code:
 
 ```{code-cell} python
 from skimage import data
@@ -432,17 +414,14 @@ import napari
 viewer, image_layer = napari.imshow(data.astronaut(), name='astronaut')
 
 # change the viewer theme
-viewer.theme = 'light'
+viewer.theme = 'light'  
 ```
 
-```{code-cell} python
-:tags: [hide-input]
+```{code-cell} python  :tags: [hide-input]
 nbscreenshot(viewer, alt_text="A napari viewer changed to light theme")
 ```
 
-```{code-cell} python
-:tags: [remove-cell]
-
+```{code-cell} python  :tags: [remove-cell]
 # change the viewer theme back to dark (for the rest of tutorial)
 viewer.theme = 'dark'
 ```
@@ -452,8 +431,8 @@ Adding your own custom theme isn't too hard but requires creating your own color
 
 ## Custom keybinding
 
-One of the promises of **napari** is to provide a beginner friendly environment for interactive analysis. For example, we want to enable workflows where people can interact with the GUI, say, click on the centers of some objects or paint over some regions and then perform custom analysis. As a first step towards enabling custom interactivity we've provided support to add your own custom keybindings to the `Viewer` or individual `Layer` objects such that when the corresponding key gets clicked, your custom function gets executed. Depending on which object you bind your key to, your function will either get access to the state of the entire `viewer` or `layer` object, such that when the
-corresponding key gets clicked your custom function gets executed. Depending on which object you bind your key to, your function will get access to either the state of the entire `viewer` or `layer` object.
+napari provides a number of built-in keyboard shortcuts, which you can access and change in **Preferences**>**Shortcuts**. However, one of the promises of **napari** is to provide a beginner friendly environment for interactive analysis. For example, we want to enable workflows where people can interact with the GUI, say, click on the centers of some objects or paint over some regions and then perform custom analysis. As a first step towards enabling custom interactivity we've provided support to add your own custom keybindings to the `Viewer` or individual `Layer` objects such that when the corresponding key gets clicked, your custom function gets executed. Depending on which object you bind your key to, your function will either get access to the state of the entire `viewer` or `layer` object, such that when the
+corresponding key gets clicked your custom function gets executed. 
 
 For example, to bind a function that loops through all layers in the viewer and prints their names to your console when you press the `p` key you can do the following:
 
@@ -469,9 +448,7 @@ def print_names(viewer):
     print([layer.name for layer in viewer.layers])
 ```
 
-```{code-cell} python
-:tags: [remove-cell]
-
+```{code-cell} python  :tags: [remove-cell]
 viewer.close()
 ```
 
@@ -487,9 +464,7 @@ def print_message(viewer):
     print('goodbye')
 ```
 
-```{code-cell} python
-:tags: [remove-cell]
-
+```{code-cell} python  :tags: [remove-cell]
 viewer.close()
 ```
 
