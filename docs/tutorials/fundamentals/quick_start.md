@@ -49,10 +49,10 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 ### Installation
 
 - Download the napari {{ napari_version }} bundled app for simple installation:
-
-    [Linux installation](https://github.com/napari/napari/releases/download/v{{ napari_version }}/napari-{{ napari_version }}-Linux-x86_64.zip)<br>
-    [macOS installation](https://github.com/napari/napari/releases/download/v{{ napari_version }}/napari-{{ napari_version }}-macOS-x86_64.zip)<br>
-    [Windows installation](https://github.com/napari/napari/releases/download/v{{ napari_version }}/napari-{{ napari_version }}-Windows-x86_64.zip)<br>
+    
+    {{ '[Linux installation](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.zip)'.replace('NAPARI_VER', napari_version) }}<br>
+    {{ '[macOS installation](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.zip)'.replace('NAPARI_VER', napari_version) }}<br>
+    {{ 'Windows installation](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.zip)'.replace('NAPARI_VER', napari_version) }}<br>
 
     *Note: for the latest release, please visit [here](https://github.com/napari/napari/releases) and look for Assets.*
 
