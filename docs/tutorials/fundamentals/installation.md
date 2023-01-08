@@ -201,8 +201,10 @@ extended with napari plugins installed directly via the app.
 
 To access the cross platform bundles you can visit our [release
 page](https://github.com/napari/napari/releases) and scroll to the release you
-are interested in and expand the `assets` tab to get a view that looks like
-this:
+are interested in. For example, the bundles for napari {{ napari_version }} can be
+accessed {{ '[here](https://github.com/napari/napari/releases/tag/vNAPARI_VER)'.replace('NAPARI_VER', napari_version) }}.
+To get to the download link, just scroll all the way to bottom of the page and 
+expand the `Assets` section to get a view that looks like this:
 
 ![Cropped screenshot from GitHub with the Assets section (or "tab") expanded, containing links to download the app in the form of zip files for Linux, macOS, Windows, in addition to other links.](../assets/tutorials/installation/bundle_assets.png)
 
