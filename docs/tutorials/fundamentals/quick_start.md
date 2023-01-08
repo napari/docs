@@ -52,7 +52,7 @@ You will also see some examples of plugins. The core napari viewer focuses on do
     
     {{ '[Linux installation](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.zip)'.replace('NAPARI_VER', napari_version) }}<br>
     {{ '[macOS installation](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.zip)'.replace('NAPARI_VER', napari_version) }}<br>
-    {{ 'Windows installation](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.zip)'.replace('NAPARI_VER', napari_version) }}<br>
+    {{ '[Windows installation](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.zip)'.replace('NAPARI_VER', napari_version) }}<br>
 
     *Note: for the latest release, please visit [here](https://github.com/napari/napari/releases) and look for Assets.*
 
