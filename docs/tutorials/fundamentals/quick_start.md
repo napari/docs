@@ -62,7 +62,7 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 
     First, create a clean virtual environment:
 
-    {{ conda_env_python_version }}
+    {{ conda_create_env }}
 
     Once in napari-env,
 

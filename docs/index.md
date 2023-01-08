@@ -111,7 +111,7 @@ napari into a clean virtual environment using an environment manager like
 This should be set up before you install napari. For example, setting with
 up a Python {{ python_version }} environment with `conda`:
 
-{{ conda_env_python_version }}
+{{ conda_create_env }}
 ````
 
 ### From conda
