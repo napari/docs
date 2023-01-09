@@ -57,7 +57,7 @@ import napari
 viewer = napari.Viewer()
 new_layer = viewer.add_image(data.astronaut(), rgb=True)
 ```
-{meth}[`add_image<napari.components.viewer_model.ViewerModel.add_image>`](https://napari.org/stable/api/napari.components.ViewerModel.html?highlight=add_image#napari.components.ViewerModel.add_image) accepts the same arguments as {func}`imshow<napari.show>` but only returns an {class}`Image<napari.layers.Image>` layer instead of both the {class}`Viewer<napari.Viewer>` and {class}`Image<napari.layers.Image>` layer (as you must already have a viewer to use it).
+{meth}`add_image<napari.components.ViewerModel.add_image>` accepts the same arguments as {func}`imshow<napari.imshow>` but only returns an {class}`Image<napari.layers.Image>` layer instead of both the {class}`Viewer<napari.Viewer>` and {class}`Image<napari.layers.Image>` layer (as you must already have a viewer to use it).
 
 After running either of those two commands, you should be able to see the photograph of the astronaut in the **napari** viewer as shown below:
 
