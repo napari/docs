@@ -119,7 +119,7 @@ The main menu consists of the **File**, **View**, **Window**, **Plugins**, and *
 
 * **Plugins** contains the options shown in the graphic below:   
 ![image: Plugins Menu](../assets/tutorials/main-menu-plugins.png)    
-
+S
 * **Help** contains the options shown in the graphic below:   
 ![image: Help Menu](../assets/tutorials/main-menu-help.png)    
 
@@ -127,7 +127,7 @@ The main menu consists of the **File**, **View**, **Window**, **Plugins**, and *
 
 ### Canvas
 
-The **canvas** is in the center of the viewer and contains the visual display of the data passed to **napari**, including `images`, `point`, `shapes`, and other supported data types. Under the hood, the canvas is a `vispy.scene.SceneCanvas` object which has built-in support for features such as zooming and panning. As `vispy` uses `OpenGL` and your graphics card, panning and zooming are highly performant. You can return to the original zoom level by clicking the `home` button in the viewer buttons panel.
+The **canvas** is in the center of the viewer and contains the visual display of the data passed to **napari**, including `Images`, `Points`, `Shapes`, and other supported data types. Under the hood, the canvas is a `vispy.scene.SceneCanvas` object which has built-in support for features such as zooming and panning. As `vispy` uses `OpenGL` and your graphics card, panning and zooming are highly performant. You can return to the original zoom level by clicking the `home` button in the viewer buttons panel.
 
 +++
 
