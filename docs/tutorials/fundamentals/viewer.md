@@ -391,7 +391,8 @@ The right side of the status bar contains some helpful tips depending on which l
    * **Sum** - the sum projection simply adds together all the pixel values in the stack for a given position. In this projection, the image is typically re-scaled to a 16-bit image, as the sum of all the pixel intensity values usually exceeds 255, which would result in a completely white 8-bit image.  
    * **Mean** - the mean projection is the average intensity projection.  It simply averages all the pixel values in the stacks to make the final projected image.  
    * **Median** - the median projection takes the median pixel intensity for the final projected image.   
-* **Split Stack** - if the stack is RGB, it splits the layer into 3 layers with red, green, and blue values in separate layers. Otherwise, it splits a single image layer of dimension 3 or more into a list of layers along the axis. This option takes a little time to execute. Properties will be changed as follows: 
+* **Split RGB** - if the image layer is an RGB image, it will be split into 3 new layers with red, green, and blue values in separate layers. 
+* **Split Stack** - if an image layer is a stack (has 3 or more dimensions), it is split into a list of layers along the axis. This option takes a little time to execute. Properties will be changed as follows: 
     * **Colormap:** (magenta, green) for a stack with 2 channels, (CYMRGB) for stacks with more than 2 channels  
     * **Blending:** additive  
     * **Contrast_limits:** min and max values of the layer
