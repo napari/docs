@@ -405,7 +405,7 @@ The right side of the status bar contains some helpful tips depending on which l
  
 ## Changing the viewer theme
 
-Currently, **napari** comes with `light`, `dark` themes for the viewer;  the default is `dark`. Additionally, there is the `system` virtual theme that will attempt to match the viewer theme (`light` or `dark`) to your system theme on macOS, Windows, and some Linux. To change the theme, go to **File**>**Preferences**>**Appearance**. You can also update the `theme` property of the viewer by using the following code:
+Currently, **napari** comes with `light`, `dark` themes for the viewer;  the default is `dark`. Additionally, there is the `system` virtual theme that will attempt to match the viewer theme (`light` or `dark`) to your system theme on macOS, Windows, and some Linux. To change the preferred theme used for all viewers you can use the **Preferences** menu item in the **File** or **napari** menu and then select the **Appearance** tab. You can also change the `theme` property of the *current* viewer by using the following code:
 
 ```{code-cell} python
 from skimage import data
