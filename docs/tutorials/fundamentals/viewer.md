@@ -35,7 +35,7 @@ The fastest way to open a viewer with an image on the canvas is using {func}`ims
 ```{code-cell} python
 from skimage import data
 
-import napari  
+import napari
 
 viewer, image_layer = napari.imshow(data.astronaut(), rgb=True)
 ```  
