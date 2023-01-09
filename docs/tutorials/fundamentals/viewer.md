@@ -12,14 +12,16 @@ kernelspec:
 ---
 
 # napari viewer tutorial
-</br>
+
++++
 
 Welcome to the tutorial on the **napari** viewer!
 
 This tutorial assumes you have already installed **napari** and know how to launch the viewer. For help with installation see our [installation](./installation) tutorial. For help launching the viewer see our [getting started](./getting_started) tutorial.
 
 This tutorial will teach you about the **napari** viewer, including how to use its graphical user interface (GUI) and how the data within it is organized. At the end of the tutorial, you should understand both the layout of the viewer on the screen and the data inside of it.  
-</br>
+
++++  
 
 ## Launching the viewer
 
@@ -73,7 +75,9 @@ viewer.close()
 
  {func}`imshow<napari.imshow>` and the {meth}`add_image<napari.components.ViewerModel.add_image>` methods accept any numpy-array like object as input, including n-dimensional arrays. For more information on adding images to the viewer see the [image layer guide](../../howtos/layers/image). 
 
-Now we will continue exploring the rest of the viewer.
+Now we will continue exploring the rest of the viewer.  
+
++++
 
 ## Layout of the viewer
 
@@ -104,34 +108,35 @@ The main menu consists of the **File**, **View**, **Window**, **Plugins**, and *
 
     All the options on the **File** menu are self-explanatory except **Preferences**. **Preferences** has the options shown below. To learn more about the **Preferences** menu, visit this [tutorial](https://napari.org/stable/guides/preferences.html).  
     ![image: Preferences sub-menu](../assets/tutorials/main-menu-file-sub-menu-preferences.png)  
-    </br>
-    
+       
 
 * **View** contains the options shown in the graphic below:  
 ![image: View Menu](../assets/tutorials/main-menu-view.png)    
-    </br>
   
 
 * **Window** contains the options shown in the graphic below:   
 ![image: Window Menu](../assets/tutorials/main-menu-window.png)    
-    </br>
 
 * **Plugins** contains the options shown in the graphic below:   
 ![image: Plugins Menu](../assets/tutorials/main-menu-plugins.png)    
-    </br>
 
 * **Help** contains the options shown in the graphic below:   
 ![image: Help Menu](../assets/tutorials/main-menu-help.png)    
-    </br>
+
++++  
 
 ### Canvas
 
 The **canvas** is in the center of the viewer and contains the visual display of the data passed to **napari**, including `images`, `point`, `shapes`, and other supported data types. Under the hood, the canvas is a `vispy.scene.SceneCanvas` object which has built-in support for features such as zooming and panning. As `vispy` uses `OpenGL` and your graphics card, panning and zooming are highly performant. You can return to the original zoom level by clicking the `home` button in the viewer buttons panel.
 
-![image: pan and zoom with napari](../assets/tutorials/viewer_pan_zoom.webm) 
++++
+
+![image: pan and zoom with napari](../assets/tutorials/viewer_pan_zoom.webm)  
+
++++
 
 (layer_list)=
-### Layer list
+### Layer list  
 
 Layers are one of the basic napari objects. There are different layer types for `image`, `points`, `shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added, they  populate the layer list located on the bottom left side of the canvas.
 
@@ -204,11 +209,14 @@ viewer.add_points(points, size=30)
 ```{code-cell} python  :tags: [hide-input]
 nbscreenshot(viewer, alt_text="points layer showing 3 white points layered on top of astronaut image in napari viewer")
 ```
- 
+   
++++  
+
 Adjusting these properties in the layers list will cause corresponding changes to properties on the selected individual layers. These properties can also be changed and accessed in the console through `viewer.layers`.  
 
 For example, the name and opacity of a layer can be changed within the console as follows:
 
++++
 
 ```python
 viewer.layers[0].name = 'astronaut'
@@ -221,7 +229,7 @@ viewer.close()
 
 and these changes will instantly propagate to the GUI. For more information about the different properties for different layer types please see our layer specific tutorials listed at the bottom of this tutorial. 
 
-
++++
 
 ### Create Layer buttons
 
@@ -246,7 +254,7 @@ In the console a layer at index `i` can be removed by:
 viewer.layers.pop(i)
 ```
 
-</br>
++++
 
 ## Dimension sliders
 
@@ -304,7 +312,6 @@ On the left and right ends of the dimension sliders are scroll buttons that take
 On the left end of the dimension slider is the **frame playback** button. Right clicking on this button brings up 
 a control panel that allows you to enter the **number of frames per second**; the **play direction**, either forward or backward; and the **play mode**, once, loop, or back and forth. Left clicking this button will play the image back according to these parameters. 
 
-
 ### Viewer buttons
 
 Below the **layer list** there is a row of buttons. 
@@ -324,10 +331,13 @@ The first button on the left end of the row is the `Console` button. It shows or
 This button is enabled if you launch napari from the command line, a script, or use the napari bundled app. The console is disabled if the napari viewer is opened from a Jupyter notebook or launched from within IPython, in favor of the user
 continuing to use the existing interactive console.
 
-The console (when available) appears at the bottom of the viewer as shown:   
+The console (when available) appears at the bottom of the viewer as shown below:   
+
++++
 
 ![image: console within napari](../assets/tutorials/console.png)
 
++++
 
 The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data. Run the following code:
 
@@ -368,6 +378,7 @@ Then there is a grid button that toggles grid mode. When clicked it displays eac
 
 Finally, there is the `home` button. It resets the camera to its initial values.
 
++++
 
 ### Status bar
 
@@ -402,7 +413,8 @@ The right side of the status bar contains some helpful tips depending on which l
 * **Unlink Layers** - appears when layers are linked. It unlinks the layers so that changes to one of the layer's properties no longer result in the same changes to the previously linked layers. 
 * **Select Linked Layers** - appears only when layers are linked. Selects all layers linked to a given layer.  
 
- 
++++
+
 ## Changing the viewer theme
 
 Currently, **napari** comes with `light`, `dark` themes for the viewer;  the default is `dark`. Additionally, there is the `system` virtual theme that will attempt to match the viewer theme (`light` or `dark`) to your system theme on macOS, Windows, and some Linux. To change the preferred theme used for all viewers you can use the **Preferences** menu item in the **File** or **napari** menu and then select the **Appearance** tab. You can also change the `theme` property of the *current* viewer by using the following code:
@@ -430,7 +442,8 @@ viewer.theme = 'dark'
 You can also change the theme using the "Toggle theme" keyboard shortcut, by default `Command/Control+Shift+T`. Note that changing the theme using this shortcut will only change the *current* viewer theme. If you wish to make the change permanent for all viewers, make sure to change also your settings in the **Appearance** tab of the **Preferences**. 
 
 Adding your own custom theme isn't too hard but requires creating your own color `palette` and rebuilding the icons. It's also possible for [plugins to contribute a theme](../../plugins/contributions.html#contributions-themes). If people want more themes, we're happy to add them or you can look at our [contributing guidelines](../../developers/contributing) for more information about building the icons and add one yourself!  
-</br>  
+
++++  
 
 ## Custom keybinding
 
@@ -477,6 +490,7 @@ Currently the keybindings only work when the canvas is in focus, we are working 
 
 The ability to add custom keybindings dramatically increases what is possible within **napari** and we hope you take full advantage of them.
 
++++
 
 ## Next steps
 
