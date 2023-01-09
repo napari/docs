@@ -28,7 +28,7 @@ We recommend starting with a fresh Python virtual environment, using an environm
 [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or [venv](https://docs.python.org/3/library/venv.html). Then, install the napari package
 in editable mode and all of the developer tools, along with a supported Qt backend. For example, for PyQt5, the default, you would use the following:
 ```sh
-pip install -e ".[pyqt, dev]"  # (quotes only needed for zsh shell)
+pip install -e ".[pyqt,dev]"  # (quotes only needed for zsh shell)
 ```
 
 If you want to use PySide2 instead, you would use:
