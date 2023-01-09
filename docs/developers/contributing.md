@@ -33,7 +33,7 @@ pip install -e ".[pyqt,dev]"  # (quotes only needed for zsh shell)
 
 If you want to use PySide2 instead, you would use:
 ```sh
-pip install -e ".[pyside, dev]"  # (quotes only needed for zsh shell)
+pip install -e ".[pyside,dev]"  # (quotes only needed for zsh shell)
 ```
 
 Finally, if you already have a Qt backend installed or want to use an experimental one like Qt6 use:
