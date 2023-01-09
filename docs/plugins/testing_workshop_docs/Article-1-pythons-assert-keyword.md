@@ -57,7 +57,7 @@ Test the same thing for `Fail` to test all options. Everything is almost the sam
 ```  
 We can now write code to run both of the functions with expected values. For example, we expect 65 to pass and 43 to fail. After running both functions, if no exception has been raised we print “All passing.”  
 ```python  
-    if name == “_main_”:    
+    if __name__ == “__main__”:    
           test_get_grade_pass(65)  
           test_get_grade_fail(43)  
           print(“All passing.”)  
@@ -69,9 +69,9 @@ We can place all this code in a Python file, e.g. [example_test.py](https://gith
 ```
 That all passes. 
 
-Updating the test to see a test failure:  
+We now update the test to see what a failure looks like:  
 ```python
-    if name == “_main_”:    
+    if __name__ == “__main__”:    
         test_get_grade_pass(65)  
         test_get_grade_fail(70)  # updated this to 70 to force failure  
         print(“All passing.”)  

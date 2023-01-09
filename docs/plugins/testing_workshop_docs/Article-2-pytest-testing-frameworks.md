@@ -18,14 +18,14 @@ This article explains how to use the pytest testing framework to make testing ea
 The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).
   
 ## Introduction  
-We are using pytest as a testing framework. It provides convenience tools to assist with testing. For example, it can discover tests for you if you point it to a directory or a file.  It can be installed using `pip install pytest`  
+We are using pytest as a testing framework. It provides convenience tools to assist with testing. For example, it can discover tests for you if you point it to a directory or a file.  It can be installed using `pip install pytest`.
 
 ## Testing framework features  
 Testing frameworks provide a whole host of useful features, including:  
 * Test discovery - directories can be crawled (searched) to find things that look like tests and run them
 * Housekeeping and ease of use - convenient methods for writing tests and cleaning up after running the tests  
   
-Pytest goes through the target destination, such as a file or directory, finding any method or function prefaced with the word `test`. It runs all the methods and functions prefaced with the word `test` but _not_ the code under the main block. When pytest runs against example_test.py (refer to the [Python's assert keyword](./Pythons-assert-keyword.md) article), it finds several tests that all pass.  
+Pytest goes through the target destination, such as a file or directory, finding any method or function prefaced with the word `test`. It runs all the methods and functions prefaced with the word `test` but _not_ the code under the main block. When `pytest` runs against `example_test.py` (refer to the [Python's assert keyword](./Pythons-assert-keyword.md) article), it finds several tests that all pass.  
 
 If the tests fail, `pytest` is very good at tracing back the reason they failed and showing their values throughout test execution. In more complicated examples, this traceback mechanism can be very helpful. In this example, the message is that we got a `Pass` but were expecting a `Fail`. See the lines below that show the `assert` keyword and the errors.  
 
