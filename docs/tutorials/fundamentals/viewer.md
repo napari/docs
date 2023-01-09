@@ -138,7 +138,7 @@ The **canvas** is in the center of the viewer and contains the visual display of
 (layer_list)=
 ### Layer list  
 
-Layers are one of the basic napari objects. There are different layer types for `image`, `points`, `shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added, they  populate the layer list located on the bottom left side of the canvas.
+Layers are one of the basic napari objects. There are different layer types for `Image`, `Points`, `Shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added, they  populate the layer list located on the bottom left side of the canvas.
 
 The layer list contains one widget for each of the layers that have been added to the viewer and includes a `thumbnail` that shows a miniaturized version of the currently viewed data, a `name` that is an editable text box, a `visibility` button that can be toggled on or off to show or hide the layer, and an `icon` for the layer type.  
 
