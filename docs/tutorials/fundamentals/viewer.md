@@ -32,7 +32,7 @@ Let's get started by launching a viewer with a simple 2D image.
 
 The fastest way to open a viewer with an image on the canvas is using {func}`imshow<napari.imshow>`:
 
-```{code-cell} python  
+```{code-cell} python
 from skimage import data
 
 import napari  
