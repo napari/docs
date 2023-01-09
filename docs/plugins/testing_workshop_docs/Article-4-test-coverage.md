@@ -101,4 +101,4 @@ There could be other, more complicated cases that we have not tested, but at the
 
 If you are not impressed with the html report, or it's cumbersome, print the coverage to the terminal with `--cov-report=term-missing`. This command is on the [slides](https://docs.google.com/presentation/d/1vD1_jhK6Xjqltmlp5Q2auXkgkvQTrr2d77_a9TqD6yk/edit#slide=id.g10c4a0816be_0_24). That will print the exact lines of code you haven’t tested.
 
-We've got 100% coverage in the reader, no lines missed. In the widget, we missed most (77 of 106) lines. Testing widgets is a topic for another article.
+We've got 100% coverage in the reader, no lines missed. Many `napari` plugins contain widgets though - testing widgets is a topic for another article.
