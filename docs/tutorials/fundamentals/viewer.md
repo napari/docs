@@ -42,12 +42,12 @@ import napari
 viewer, image_layer = napari.imshow(data.astronaut(), rgb=True)
 ```  
 
-```{code-cell} python  :tags: [remove-cell]
+```{code-cell} python
+:tags: [remove-cell]
 viewer.close()
 ```
 
-Calling {func}`imshow<napari.imshow>` will return a {class}`Viewer<napari.Viewer>` object that is the main object inside **napari** and a {class}`Image<napari.layers.Image>` layer object. All the data you add to **napari** will be stored
-inside the {class}`Viewer<napari.Viewer>` object and will be accessible from it. This command will also open the viewer to create a GUI that you can interact with. The {class}`Image<napari.layers.Image>` will contain information about the image and allow you to access image methods.
+Calling {func}`imshow<napari.imshow>` will return a {class}`Viewer<napari.Viewer>` object that is the main object inside **napari** and a {class}`Image<napari.layers.Image>` layer object. All the data you add to **napari** will be stored inside the {class}`Viewer<napari.Viewer>` object and will be accessible from it. This command will also open the viewer to create a GUI that you can interact with. The {class}`Image<napari.layers.Image>` will contain information about the image and allow you to access image methods.
 
 You can also create an empty {class}`Viewer<napari.Viewer>` directly and then start adding images to it. For example:  
 
@@ -63,13 +63,15 @@ new_layer = viewer.add_image(data.astronaut(), rgb=True)
 
 After running either of those two commands, you should be able to see the photograph of the astronaut in the **napari** viewer as shown below:
 
-```{code-cell} python  :tags: [hide-input]
+```{code-cell} python
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="photograph of an astronaut in napari viewer")
 ```
 
-```{code-cell} python  :tags: [remove-cell]
+```{code-cell} python
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -108,6 +110,7 @@ The main menu consists of the **File**, **View**, **Window**, **Plugins**, and *
 
     All the options on the **File** menu are self-explanatory except **Preferences**. **Preferences** has the options shown below. To learn more about the **Preferences** menu, there is a tutorial designed for developers [here](https://napari.org/stable/guides/preferences.html).  
     ![image: Preferences sub-menu](../assets/tutorials/main-menu-file-sub-menu-preferences.png)  
+    **Note:** In macOS, **Preferences** is under the napari menu.   
        
 
 * **View** contains the options shown in the graphic below:  
@@ -144,7 +147,8 @@ The layer list contains one widget for each of the layers that have been added t
 
 Adding the following three image layers using the code below adds three-layer widgets to the layer list as follows:  
 
-```{code-cell} python  :tags: [remove-output]  
+```{code-cell} python
+:tags: [remove-output]
 import napari
 
 from skimage import data
@@ -155,7 +159,8 @@ viewer.add_image(data.moon(), name='moon')
 viewer.add_image(data.camera(), name='camera')
 ```
 
-```{code-cell} python  :tags: [hide-input]
+```{code-cell} python
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="3 image layers shown in napari viewer with the canvas displaying a photograph of a man looking through a camcorder")
 ```
 
@@ -185,7 +190,8 @@ viewer.layers['astronaut']
 
 You can rearrange layers by clicking and dragging them.
 
-```{code-cell} python  :tags: [remove-cell]
+```{code-cell} python
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -193,20 +199,22 @@ viewer.close()
 
 Above the **layer list** in the top left corner of the viewer there is a box that contains the layer controls. The controls that are available depend on the layer type selected.
 
-For example, if you add a `Points` layer after adding an `Image` layer, the new `Points` layer will be 'selected' and you will now see different controls present.
+For example, if you add a `Points` layer after adding an `Image` layer, the new `Points` layer will be 'selected' and you will now see different controls.
 
-```{code-cell} python  :tags: [remove-output]
+```{code-cell} python
+:tags: [remove-output]
 import numpy as np
 from skimage import data
 
 import napari
 
-viewer, image_layer = napari.imshow(data.astronaut(), rgb=True)  
-points = np.array([[100, 100], [200, 200], [300, 100]])  
-viewer.add_points(points, size=30)  
+viewer, image_layer = napari.imshow(data.astronaut(), rgb=True)
+points = np.array([[100, 100], [200, 200], [300, 100]])
+viewer.add_points(points, size=30)
 ```
 
-```{code-cell} python  :tags: [hide-input]
+```{code-cell} python
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="points layer showing 3 white points layered on top of astronaut image in napari viewer")
 ```
    
@@ -223,7 +231,8 @@ viewer.layers[0].name = 'astronaut'
 viewer.layers[0].opacity = 0.7
 ```
 
-```{code-cell} python  :tags: [remove-cell]
+```{code-cell} python
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -263,11 +272,12 @@ One of the main strengths of **napari** is that it has been designed from the be
 Adding data with a dimensionality greater than 2D will cause dimension sliders to appear directly underneath the canvas and above the status bar. As many sliders as needed will appear to ensure the data can be fully browsed. For example, a 3D dataset needs one slider, a 4D dataset needs two sliders, and so on. The widths of the scroll bars of the dimension sliders are directly related to how many slices are in each dimension.
 
 It is also possible to mix data of different shapes and dimensionality in different layers. If a 2D and 4D dataset are both added to the viewer then the sliders will affect only the 4D dataset, the 2D dataset will remain the 
-same. Effectively, the two datasets are broadcast together using [NumPy broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html).
+same. Effectively, the two datasets are broadcast together using [NumPy broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html).  
 
 For example, the following commands from the console will add both 2D and 3D datasets to the same viewer:
 
-```{code-cell} python  :tags: [remove-output]
+```{code-cell} python
+:tags: [remove-output]
 import numpy as np
 from skimage import data
 
@@ -287,7 +297,8 @@ blobs = np.stack(
 viewer.add_image(blobs, name='blobs', opacity=0.5, colormap='red')
 ```
 
-```{code-cell} python  :tags: [hide-input]
+```{code-cell} python
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="A 2d view of the moon on top of which is overlaid a 3d volume containing blobs through which you can navigate using the dimension slider.")
 ```
 
@@ -295,9 +306,9 @@ In order to get or update the current position of the slider, use:
 
 ```python
 # to get the current position  
-viewer.dims.current_step  
+viewer.dims.current_step
 # to change the current position  
-viewer.dims.current_step = 3  
+viewer.dims.current_step = 3
 ```
 
 `viewer.dims.point` contains the position in world coordinates (i.e., including
@@ -309,8 +320,7 @@ On the left and right ends of the dimension sliders are scroll buttons that take
 
 ### Frame Playback button   
 
-On the left end of the dimension slider is the **frame playback** button. Right clicking on this button brings up 
-a control panel that allows you to enter the **number of frames per second**; the **play direction**, either forward or backward; and the **play mode**, once, loop, or back and forth. Left clicking this button will play the image back according to these parameters. 
+On the left end of the dimension slider is the **frame playback** button. Right clicking on this button brings up a control panel that allows you to enter the **number of frames per second**; the **play direction**, either forward or backward; and the **play mode**, once, loop, or back and forth. Left clicking this button will play the image back according to these parameters. 
 
 ### Viewer buttons
 
@@ -342,17 +352,18 @@ The console (when available) appears at the bottom of the viewer as shown below:
 The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data. Run the following code:
 
 
-```{code-cell} python  :tags: [remove-output]
+```{code-cell} python
+:tags: [remove-output]
 from skimage import data
 from scipy import ndimage as ndi
 
 import napari
 
 
-blobs = data.binary_blobs(length=128, volume_fraction=0.1, n_dim=3)  
+blobs = data.binary_blobs(length=128, volume_fraction=0.1, n_dim=3)
 viewer, image_layer = napari.imshow(blobs.astype(float), name='blobs')
-labeled = ndi.label(blobs)[0]  
-viewer.add_labels(labeled, name='blob ID')  
+labeled = ndi.label(blobs)[0]
+viewer.add_labels(labeled, name='blob ID')
 ```
 
 then, by clicking the 2D/3D button, you can rotate the image (the camera view of the image) with the mouse to see what it looks like from the side, back, or a different angle. To do this, click on the image and drag the cursor to a new position. This gives something like the following view: 
@@ -361,8 +372,9 @@ then, by clicking the 2D/3D button, you can rotate the image (the camera view of
 
 and rotating the camera view with the mouse gives something like the following view:
 
-```{code-cell} python  :tags: [hide-input]
-# programmatically adjust the camera angle
+```{code-cell} python
+:tags: [hide-input]
+# programmatically adjust the camera angle  
 viewer.dims.ndisplay = 3
 viewer.camera.zoom = 2
 viewer.camera.angles = (3, 38, 53)
@@ -384,7 +396,7 @@ Finally, there is the `home` button. It resets the camera to its initial values.
 
 At the very bottom of the GUI there is a status bar that contains useful updates and tips.
 
-On the left side of the status bar there is a message about the position of the mouse and the values of any images or the indices of any points that are currently hovered over, depending on which layer is selected. When there are buttons in the layer controls panel, the status bar displays information about the layer controls button you are clicking. The buttons are not available for every layer type.  
+On the left side of the status bar there is a message about the position of the mouse and the values of any images or the indices of any `Points` that are currently hovered over, depending on which layer is selected. When there are buttons in the layer controls panel, the status bar displays information about the layer controls button you are clicking. The buttons are not available for every layer type.  
 
 The right side of the status bar contains some helpful tips depending on which layer and tools are currently selected.
 
@@ -426,20 +438,22 @@ import napari
 
 viewer, image_layer = napari.imshow(data.astronaut(), name='astronaut')
 
-# change the viewer theme
-viewer.theme = 'light'  
+# change the viewer theme  
+viewer.theme = 'light'
 ```
 
-```{code-cell} python  :tags: [hide-input]
+```{code-cell} python
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="A napari viewer changed to light theme")
 ```
 
-```{code-cell} python  :tags: [remove-cell]
-# change the viewer theme back to dark (for the rest of tutorial)
+```{code-cell} python
+:tags: [remove-cell]
+# change the viewer theme back to dark (for the rest of tutorial)  
 viewer.theme = 'dark'
 ```
 
-You can also change the theme using the "Toggle theme" keyboard shortcut, by default `Command/Control+Shift+T`. Note that changing the theme using this shortcut will only change the *current* viewer theme. If you wish to make the change permanent for all viewers, make sure to change also your settings in the **Appearance** tab of the **Preferences**. 
+You can also change the theme using the "Toggle theme" keyboard shortcut, by default `Command/Control+Shift+T`. Note that changing the theme using this shortcut will only change the *current* viewer theme. If you wish to make the change permanent for all viewers, make sure to also change your settings in the **Appearance** tab of the **Preferences** menu. 
 
 Adding your own custom theme isn't too hard but requires creating your own color `palette` and rebuilding the icons. It's also possible for [plugins to contribute a theme](../../plugins/contributions.html#contributions-themes). If people want more themes, we're happy to add them or you can look at our [contributing guidelines](../../developers/contributing) for more information about building the icons and add one yourself!  
 
@@ -447,7 +461,7 @@ Adding your own custom theme isn't too hard but requires creating your own color
 
 ## Custom keybinding
 
-napari provides a number of built-in keyboard shortcuts, which you can access and change in **Preferences**>**Shortcuts**. However, one of the promises of **napari** is to provide a beginner friendly environment for interactive analysis. For example, we want to enable workflows where people can interact with the GUI, say, click on the centers of some objects or paint over some regions and then perform custom analysis. As a first step towards enabling custom interactivity we've provided support to add your own custom keybindings to the `Viewer` or individual `Layer` objects such that when the corresponding key gets clicked, your custom function gets executed. Depending on which object you bind your key to, your function will either get access to the state of the entire `viewer` or `layer` object, such that when the
+napari provides a number of built-in keyboard shortcuts, which you can access and change in **Preferences**>**Shortcuts**. However, one of the promises of **napari** is to provide a beginner friendly environment for interactive analysis. For example, we want to enable workflows where people can interact with the GUI, say, click on the centers of some objects or paint over some regions and then perform custom analysis. As a first step towards enabling custom interactivity we've provided support to add your own custom keybindings to the `Viewer` or individual `Layer` objects such that when the corresponding key gets clicked, your custom function gets executed. Depending on which object you bind your key to, your function will either get access to the state of the entire `Viewer` or `Layer` object, such that when the
 corresponding key gets clicked your custom function gets executed. 
 
 For example, to bind a function that loops through all layers in the viewer and prints their names to your console when you press the `p` key you can do the following:
@@ -464,7 +478,8 @@ def print_names(viewer):
     print([layer.name for layer in viewer.layers])
 ```
 
-```{code-cell} python  :tags: [remove-cell]
+```{code-cell} python
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -480,7 +495,8 @@ def print_message(viewer):
     print('goodbye')
 ```
 
-```{code-cell} python  :tags: [remove-cell]
+```{code-cell} python
+:tags: [remove-cell]
 viewer.close()
 ```
 
