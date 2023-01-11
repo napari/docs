@@ -47,18 +47,18 @@ There are no specific requirements for the contents of the array in this case. W
 Using `napari_get_reader` with this path, we assert that the reader is callable. A function should be returned. If it isn’t, we could put an error message here.  
 
 ```python
-    # tmp_path is a pytest fixture  
-    def test_get_reader_returns_callable(tmp_path):  
-        """Calling get_reader on numpy file returns callable"""  
-   
-        # write some fake data  
-        my_test_file = str(tmp_path / "myfile.npy")  
-        original_data = np.random.rand(20, 20)  
-        np.save(my_test_file, original_data)  
- 
-        # try to read it back in  
-        reader = napari_get_reader(my_test_file)  
-        assert callable(reader)
+# tmp_path is a pytest fixture  
+def test_get_reader_returns_callable(tmp_path):  
+    """Calling get_reader on numpy file returns callable"""  
+
+    # write some fake data  
+    my_test_file = str(tmp_path / "myfile.npy")  
+    original_data = np.random.rand(20, 20)  
+    np.save(my_test_file, original_data)  
+
+    # try to read it back in  
+    reader = napari_get_reader(my_test_file)  
+    assert callable(reader)
 ```
  
 Running the command `pytest .` in the root directory of the plugin, we discover all the functions recognized as tests. It should recognize `test_reader.py` because it's a test file, prefixed with the word test. `test_reader.py` was found and passed the test. 
@@ -67,18 +67,18 @@ Running the command `pytest .` in the root directory of the plugin, we discover 
   
 If the file did not end in `.npy` the test would fail because what was returned wasn't callable. This code has been modified to produce an error:  
 ```python    
-    # tmp_path is a pytest fixture  
-    def test_get_reader_returns_callable(tmp_path):  
-        """Calling get_reader on numpy file returns callable"""  
- 
-        # write some fake data
-        my_test_file = str(tmp_path / "myfile.np") # note ends in .np  
-        original_data = np.random.rand(20, 20)  
-        np.save(my_test_file, original_data)  
- 
-        # try to read it back in  
-        reader = napari_get_reader(my_test_file)  
-        assert callable(reader)  
+# tmp_path is a pytest fixture  
+def test_get_reader_returns_callable(tmp_path):  
+    """Calling get_reader on numpy file returns callable"""  
+
+    # write some fake data
+    my_test_file = str(tmp_path / "myfile.np") # note ends in .np  
+    original_data = np.random.rand(20, 20)  
+    np.save(my_test_file, original_data)  
+
+    # try to read it back in  
+    reader = napari_get_reader(my_test_file)  
+    assert callable(reader)  
 ```
 Once we run `pytest` we can see that it traced back that the callable of `reader` is `False` and it has filled in the fact that `reader` at the time of the assertion was `None`. This is useful in debugging. 
 
@@ -97,30 +97,30 @@ The benefit of creating this fixture is that whenever we want to write our own t
   
 We still want to make sure we get a reader when we call `napari_get_reader` with the file. We call that `reader` function with the file we created to see if it returns what we expect. Based on the [reader spec](https://napari.org/stable/plugins/contributions.html#contributions-readers), it should return a layer data list. Here is the full test, with the fixture:  
 ```python   
-    @pytest.fixture  
-    def write_im_to_file(tmp_path):  
- 
-        def write_func(filename):  
-            my_test_file = str(tmp_path / filename)  
-            original_data = np.random.rand(20, 20)  
-            np.save(my_test_file, original_data)  
-       
-            return my_test_file, original_data  
- 
-        return write_func  
-   
-    def test_reader_round_trip(write_im_to_file):  
-        my_test_file, original_data = write_im_to_file("myfile.npy")  
-     
-        reader = napari_get_reader(my_test_file)  
-        assert callable(reader)  
-     
-        layer_data_list = reader(my_test_file)  
-        assert isinstance(layer_data_list, List) and len(layer_data_list) > 0  
-     
-        layer_data_tuple = layer_data_list[0]  
-        layer_data = layer_data_tuple[0]  
-        np.testing.assert_allclose(layer_data, original_data)  
+@pytest.fixture  
+def write_im_to_file(tmp_path):  
+
+    def write_func(filename):  
+        my_test_file = str(tmp_path / filename)  
+        original_data = np.random.rand(20, 20)  
+        np.save(my_test_file, original_data)  
+    
+        return my_test_file, original_data  
+
+    return write_func  
+
+def test_reader_round_trip(write_im_to_file):  
+    my_test_file, original_data = write_im_to_file("myfile.npy")  
+    
+    reader = napari_get_reader(my_test_file)  
+    assert callable(reader)  
+    
+    layer_data_list = reader(my_test_file)  
+    assert isinstance(layer_data_list, List) and len(layer_data_list) > 0  
+    
+    layer_data_tuple = layer_data_list[0]  
+    layer_data = layer_data_tuple[0]  
+    np.testing.assert_allclose(layer_data, original_data)  
 ``` 
 We’re going to assert a list length greater than zero. There must be a layer in there; otherwise, we didn't read it correctly. We also assert that it is a list.
   
@@ -128,18 +128,18 @@ We will test that inside that list is what we expected - layer data tuples. The 
   
 Then we assert, using `numpy`’s asserting mechanism, `np.testing.assert_allclose` that they are all close, even though they should be exactly the same. This is standard practice when working with floating point precision. Numpy also has [other assertion options](https://numpy.org/doc/stable/reference/routines.testing.html) you may find useful. The layer data we read back with the reader function should be the same as the original data. If that's true, then we made the entire round trip. We saved the file and we used the reader to read the file.  
 ```python
- def test_reader_round_trip(write_im_to_file):  
-        my_test_file, original_data = write_im_to_file("myfile.npy")  
-     
-        reader = napari_get_reader(my_test_file)  
-        assert callable(reader)  
-     
-        layer_data_list = reader(my_test_file)  
-        assert isinstance(layer_data_list, List) and len(layer_data_list) > 0  
-     
-        layer_data_tuple = layer_data_list[0]  
-        layer_data = layer_data_tuple[0]  
-        np.testing.assert_allclose(layer_data, original_data)  
+def test_reader_round_trip(write_im_to_file):  
+    my_test_file, original_data = write_im_to_file("myfile.npy")  
+    
+    reader = napari_get_reader(my_test_file)  
+    assert callable(reader)  
+    
+    layer_data_list = reader(my_test_file)  
+    assert isinstance(layer_data_list, List) and len(layer_data_list) > 0  
+    
+    layer_data_tuple = layer_data_list[0]  
+    layer_data = layer_data_tuple[0]  
+    np.testing.assert_allclose(layer_data, original_data)  
 ```    
 We run our tests again, and now two are collected, both passing.  
 
