@@ -93,7 +93,7 @@ Using the `write_im_to_file` fixture again, we can write two files, call `napari
 ```
 If we re-run `pytest`, the coverage report is also updated and coverage should improve.
 
-The coverage report goes to the same folder, `htmlcov`, so we should be able to refresh the page without dragging it back in. We've got 100% coverage of `_reader.py` now. See below.
+The coverage report goes to the same folder, `htmlcov`, so we should be able to refresh the page without opening the file again. We've now got 100% coverage of `_reader.py` now. See below.
 
 ![second coverage report](../../images/Second_coverage_report.png)    
 
