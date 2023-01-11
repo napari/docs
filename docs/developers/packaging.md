@@ -30,7 +30,7 @@ Pay special attention to the runtime dependencies and version strings!
 > Check the file `conda-recipe/meta.yaml` and make sure its `outputs` are synced to the `napari-feedstock` copy.
 
 Once the conda-forge CI is passing and the PR is approved and merged, the final packages will be built on the default branch and uploaded to the `conda-forge` channel. 
-Due to the staging steps and CDN synchronization delays, the conda packages can take up to 1h to be available after the merge.
+Due to the staging steps and CDN synchronization delays, the conda packages can take up to 1 h to be available after the merge.
 
 ```{note}
 Check {doc}`release` for more details about the conda-forge release process and maintenance tasks
@@ -41,14 +41,14 @@ Check {doc}`release` for more details about the conda-forge release process and 
 The `napari` project also has a `napari` channel in anaconda.org.
 We mainly use it to provide:
 
-- Nightlies built off `main`, uploaded to the `napari/label/nightly` channel.
+- Nightlies built off of `main`, uploaded to the `napari/label/nightly` channel.
 - Release candidates, uploaded to `napari/label/rc`.
 
 ```{note}
 The `napari` channel also contains the final releases.
-However, these are not meant to be used by final users (they should use `conda-forge`).
+However, these are not meant to be used by end users, who should use `conda-forge`.
 The releases uploaded to our channel are used to build our `constructor` installers (see below).
-Otherwise, we would have to wait for the conda-forge, which is only triggered by the PyPI release.
+Otherwise, we would have to wait for the `conda-forge` PR, which is only triggered by the PyPI release.
 That means we would not be able to create the installers in the same tagging event.
 ```
 
@@ -92,9 +92,9 @@ This repository stores all the logic and files needed to create the nightly `con
 [`constructor`][6] allows you to build cross-platform installers out of `conda` packages. 
 It supports the following installer types:
 
-* On Linux, a shell-based installer is generated. Users can execute it with `bash installer.sh`.
+* On Linux, a shell-based installer is generated; users can execute it with `bash installer.sh`.
 * On macOS, you can generate both PKG and shell-based installers. 
-  PKG files are graphical installers native to macOS, and that's the method we use with napari.
+  PKG files are graphical installers native to macOS, so that's the method we use with napari.
 * On Windows, a graphical installer based on [NSIS][19] is generated.
 
 The configuration is done through a `construct.yaml` file, documented [here][7]. 
@@ -155,9 +155,9 @@ signing_certificate: certificate.pfx  # path to signing certificate
 The main OS-agnostic keys are:
 
 * `channels`: where the packages will be downloaded from. 
-  We mainly rely on conda-forge for this, where `napari` is published. 
+  We mainly rely on `conda-forge` for this, where `napari` is published. 
   However, we also have `napari/label/bundle_tools`, where we store our `constructor` stack forks (more on this later). 
-  In nightly installers, we locally build our own development packages for `conda` without resorting to `conda-forge`. 
+  In nightly installers, we locally build our own development packages for `conda`, without resorting to `conda-forge`. 
   To make use of those (which are eventually published to `napari/label/nightly`), 
   we unpack the GitHub Actions artifact in a specific location that `constructor` recognizes as a _local_ channel once indexed.
 * `extra_envs> napari-$VERSION`: the environment that will actually contain the napari installation.
@@ -239,7 +239,7 @@ moving pieces being juggled to make this work. Let's begin by enumerating the st
    on Windows, we needed to unlock the other platforms and rewrite the parts that assumed Windows
    only behavior. Surprise, this involved custom solver behavior too!
 
-Since `menuinst` is frozen together with `conda` for `conda-standalone`, every little change in any
+Because `menuinst` is frozen together with `conda` for `conda-standalone`, every little change in any
 of those requires a rebuild of `conda-standalone` so `constructor` can find the new version during
 the installer creation. As a result, we needed to fork _and repackage_ all four components!
 

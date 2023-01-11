@@ -170,15 +170,15 @@ git push upstream --tags
 
 ## conda-forge packages
 
-The packages on conda-forge are not controlled directly by our repositories.
+The packages on `conda-forge` are not controlled directly by our repositories.
 Instead, they are governed by the `conda-forge/napari-feedstock` repository.
 The essential actions are automated, but there are a few maintenance notes we need to have in mind.
 
 ### New releases
 
-Once the PyPI release is available, the conda-forge bots will submit a PR to `conda-forge/napari-feedstock` within a few hours.
-Merging that PR to `main` will trigger the conda-forge release.
-Accounting for the build times and the CDN sync, this means that the conda-forge packages will be available 30-60 mins after the PR is merged.
+Once the PyPI release is available, the `conda-forge` bots will submit a PR to `conda-forge/napari-feedstock` within a few hours.
+Merging that PR to `main` will trigger the `conda-forge` release.
+Accounting for the build times and the CDN sync, this means that the `conda-forge` packages will be available 30-60 mins after the PR is merged.
 
 Before merging, please pay special attention to these aspects:
 
@@ -186,7 +186,7 @@ Before merging, please pay special attention to these aspects:
 - The CI passes correctly. Do check the logs, especially the test section (search for `TEST START`).
 - The `run` dependencies match the runtime requirements of the PyPI release (listed in `setup.cfg`).
   Watch for modified version constraints, as well as added or removed packages.
-  Note that the conda-forge packages include some more dependencies for convenience,
+  Note that the `conda-forge` packages include some more dependencies for convenience,
   so you might need to check the `extras` sections in `setup.cfg`.
 
 ```{note}
@@ -197,7 +197,7 @@ See these PRs for examples on previous conda-forge releases:
 
 ### Patch dependencies of previous releases
 
-conda-forge offers a mechanism to patch the metadata of existing releases.
+`conda-forge` offers a mechanism to patch the metadata of existing releases.
 This is useful when a new dependency release breaks `napari` in some way or, in general,
 when the metadata of an existing package is proven wrong after it has been released.
 
