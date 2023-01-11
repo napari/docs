@@ -18,7 +18,7 @@ This article explains how to use the pytest testing framework to make testing ea
 The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).
   
 ## Introduction  
-We are using pytest as a testing framework. It provides convenience tools to assist with testing. For example, it can discover tests for you if you point it to a directory or a file.  It can be installed using `pip install pytest`  
+We are using pytest as a testing framework. It provides convenience tools to assist with testing. For example, it can discover tests for you if you point it to a directory or a file.  It can be installed using `pip install pytest`.
 
 ## Testing framework features  
 Testing frameworks provide a whole host of useful features, including:  
