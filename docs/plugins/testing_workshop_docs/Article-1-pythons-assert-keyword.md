@@ -71,7 +71,7 @@ That all passes.
 
 We now update the test to see what a failure looks like:  
 ```python
-    if name == “_main_”:    
+    if __name__ == “__main__”:    
         test_get_grade_pass(65)  
         test_get_grade_fail(70)  # updated this to 70 to force failure  
         print(“All passing.”)  
