@@ -1,6 +1,6 @@
 # Article 3: Readers and fixtures  
 
-This article explains how to use and test the reader function, built-in fixtures, custom fixtures, and enclosed testing. 
+This article explains how to use and test a plugin's reader function, built-in fixtures, custom fixtures, and enclosed testing. 
 
 ## Article information  
   
