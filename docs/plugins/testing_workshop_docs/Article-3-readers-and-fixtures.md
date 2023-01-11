@@ -61,7 +61,7 @@ Using `napari_get_reader` with this path, we assert that the reader is callable.
         assert callable(reader)
 ```
  
-Running the command `pytest .` in the root directory of the plugin, we discover all the tests it recognizes as tests. It should recognize `test_reader.py` because it's a test file, prefixed with the word test. `test_reader.py` was found and passed the test. 
+Running the command `pytest .` in the root directory of the plugin, we discover all the functions recognized as tests. It should recognize `test_reader.py` because it's a test file, prefixed with the word test. `test_reader.py` was found and passed the test. 
 
 ![pytest passed](../../images/napari_plugins_3rd_pytest_passed.png)
   
