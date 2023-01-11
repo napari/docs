@@ -62,7 +62,7 @@ There is a large folder (`htmlcov`) in the directory where the tests were run (`
 `└── tox.ini`  
 
 
-If we drag the `index.html` file from the list of files in the left panel (to the left of line 32) into a browser, it opens the coverage report. 
+If we open the `index.html` file from the list of files in the left panel (to the left of line 32) in a browser, we can see the coverage report. 
 
 ![htmlcov directory](../../images/Test_Coverage_htmlcov_directory.png)
 
@@ -74,7 +74,7 @@ We are interested in `_reader.py`. The file containing the reader code has 86% c
 
 ![Lines not run highlighted in red](../../images/Lines_not_run_highlighted_in_red.png)
 
-Because we never provided a list of paths and we never ran code that provided a list of paths, we don't know what will happen in that case. We also never ran code that doesn't return a reader. In other words, we never tested the failed cases. We can and should add those tests. The first one is `test_get_reader_pass`. We'll call it with a file that doesn't end in `.npy` and assert that it returned `None`. Then we'll create a second test to call with a list of paths.
+Because we never provided a list of paths, we don't know what will happen in that case. We also never ran code that tests not returning a reader. In other words, we never tested the failed cases. We can and should add those tests. The first one is `test_get_reader_pass`. We'll call it with a file that doesn't end in `.npy` and assert that it returned `None`. Then we'll create a second test to call with a list of paths.
 
 Using the `write_im_to_file` fixture again, we can write two files, call `napari_get_reader` with two paths and assert that it still returns a callable.
 ```python
@@ -91,14 +91,14 @@ Using the `write_im_to_file` fixture again, we can write two files, call `napari
     reader = napari_get_reader([pth1, pth2])  
     assert callable(reader)  
 ```
-If we re-run `pytest-cov`, the coverage report re-runs. Coverage should improve. All tests are passed. 
+If we re-run `pytest`, the coverage report is also updated and coverage should improve.
 
-The coverage report goes to the same folder, `htmlcov`, so we should be able to refresh the page without dragging it back in. We've got 100% coverage of `_reader.py` now. See below.
+The coverage report goes to the same folder, `htmlcov`, so we should be able to refresh the page without opening the file again. We've now got 100% coverage of `_reader.py` now. See below.
 
 ![second coverage report](../../images/Second_coverage_report.png)    
 
 There could be other, more complicated cases that we have not tested, but at the very least, we are executing all lines of code.
 
-If you are not impressed with the html report, or it's cumbersome, print the coverage to the terminal with `--cov-report=term-missing`. This command is on the [slides](https://docs.google.com/presentation/d/1vD1_jhK6Xjqltmlp5Q2auXkgkvQTrr2d77_a9TqD6yk/edit#slide=id.g10c4a0816be_0_24). That will print the exact lines of code you haven’t tested.
+If the html report seems cumbersome, we can print the coverage directly to the terminal with `--cov-report=term-missing`. This command is on the [slides](https://docs.google.com/presentation/d/1vD1_jhK6Xjqltmlp5Q2auXkgkvQTrr2d77_a9TqD6yk/edit#slide=id.g10c4a0816be_0_24). That will print the exact lines of code you haven’t tested.
 
-We've got 100% coverage in the reader, no lines missed. In the widget, we missed most (77 of 106) lines. Testing widgets is a topic for another article.
+We've got 100% coverage in the reader, no lines missed. Many `napari` plugins contain widgets though - testing widgets is a topic for another article.
