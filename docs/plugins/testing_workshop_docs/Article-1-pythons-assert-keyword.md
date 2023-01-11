@@ -69,7 +69,7 @@ We can place all this code in a Python file, e.g. [example_test.py](https://gith
 ```
 That all passes. 
 
-Updating the test to see a test failure:  
+We now update the test to see what a failure looks like:  
 ```python
     if name == “_main_”:    
         test_get_grade_pass(65)  
