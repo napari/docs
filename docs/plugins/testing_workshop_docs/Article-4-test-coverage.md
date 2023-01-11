@@ -62,7 +62,7 @@ There is a large folder (`htmlcov`) in the directory where the tests were run (`
 `└── tox.ini`  
 
 
-If we drag the `index.html` file from the list of files in the left panel (to the left of line 32) into a browser, it opens the coverage report. 
+If we open the `index.html` file from the list of files in the left panel (to the left of line 32) in a browser, we can see the coverage report. 
 
 ![htmlcov directory](../../images/Test_Coverage_htmlcov_directory.png)
 
@@ -74,7 +74,7 @@ We are interested in `_reader.py`. The file containing the reader code has 86% c
 
 ![Lines not run highlighted in red](../../images/Lines_not_run_highlighted_in_red.png)
 
-Because we never provided a list of paths and we never ran code that provided a list of paths, we don't know what will happen in that case. We also never ran code that doesn't return a reader. In other words, we never tested the failed cases. We can and should add those tests. The first one is `test_get_reader_pass`. We'll call it with a file that doesn't end in `.npy` and assert that it returned `None`. Then we'll create a second test to call with a list of paths.
+Because we never provided a list of paths, we don't know what will happen in that case. We also never ran code that tests not returning a reader. In other words, we never tested the failed cases. We can and should add those tests. The first one is `test_get_reader_pass`. We'll call it with a file that doesn't end in `.npy` and assert that it returned `None`. Then we'll create a second test to call with a list of paths.
 
 Using the `write_im_to_file` fixture again, we can write two files, call `napari_get_reader` with two paths and assert that it still returns a callable.
 ```python
