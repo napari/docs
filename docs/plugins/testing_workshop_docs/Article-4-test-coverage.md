@@ -91,7 +91,7 @@ Using the `write_im_to_file` fixture again, we can write two files, call `napari
     reader = napari_get_reader([pth1, pth2])  
     assert callable(reader)  
 ```
-If we re-run `pytest-cov`, the coverage report re-runs. Coverage should improve. All tests are passed. 
+If we re-run `pytest`, the coverage report is also updated and coverage should improve.
 
 The coverage report goes to the same folder, `htmlcov`, so we should be able to refresh the page without dragging it back in. We've got 100% coverage of `_reader.py` now. See below.
 
