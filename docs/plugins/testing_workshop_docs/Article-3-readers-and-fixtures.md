@@ -5,9 +5,9 @@ This article explains how to use and test a plugin's reader function, built-in f
 ## Article information  
   
 * Article 1: [Python’s assert keyword](./article-1-pythons-assert-keyword.md) 
-* Article 2: [Pytest testing framework](./article-2-pytest-testing-frameworks)  
+* Article 2: [Pytest testing framework](./article-2-pytest-testing-frameworks.md)  
 * Article 3: This article (Readers and fixtures)  
-* Article 4: [Test coverage](./article-4-test-coverage)  
+* Article 4: [Test coverage](./article-4-test-coverage.md)  
 * Resource links: [Testing resources](./testing-resources.md)  
 
 ### This article covers:   

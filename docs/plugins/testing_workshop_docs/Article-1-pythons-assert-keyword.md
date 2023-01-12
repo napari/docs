@@ -60,9 +60,9 @@ def test_get_grade_fail(mark):
 We can now write code to run both of the functions with expected values. For example, we expect 65 to pass and 43 to fail. After running both functions, if no exception has been raised we print “All passing.”  
 ```python  
 if __name__ == “__main__”:    
-        test_get_grade_pass(65)  
-        test_get_grade_fail(43)  
-        print(“All passing.”)  
+    test_get_grade_pass(65)  
+    test_get_grade_fail(43)  
+    print(“All passing.”)  
 ```
 We can place all this code in a Python file, e.g. [example_test.py](https://github.com/DragaDoncila/plugin-tests/blob/main/example_func.py), and run it from the command line. 
 ```console  

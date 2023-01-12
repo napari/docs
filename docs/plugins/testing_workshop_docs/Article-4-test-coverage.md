@@ -3,8 +3,8 @@
 ## Article information  
 
 * Article 1: [Python’s assert keyword](./Article-1-pythons-assert-keyword.md) 
-* Article 2: [Pytest testing framework](./Article-2-pytest-testing-frameworks)  
-* Article 3: [Readers and fixtures](./Article-3-readers-and-fixtures)  
+* Article 2: [Pytest testing framework](./Article-2-pytest-testing-frameworks.md)  
+* Article 3: [Readers and fixtures](./Article-3-readers-and-fixtures.md)  
 * Article 4: This article (Test coverage)   
 * Resource links: [testing resources](./Testing-resources.md)   
 

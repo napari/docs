@@ -1,6 +1,6 @@
 # Testing resources
 
-These resources may be helpful in developing tests.  
+These resources may be helpful in developing tests:  
 * [Today’s plugin](https://github.com/DragaDoncila/plugin-tests) - Plugin Tests
 
 * [pytest](https://docs.pytest.org/en/6.2.x/) - pytest is a mature full-featured Python testing tool that helps you write better programs.
