@@ -193,6 +193,7 @@ exclude_patterns = [
     '.jupyter_cache',
     'jupyter_execute',
     'plugins/_*.md',
+    'gallery/index.rst',
 ]
 
 napoleon_custom_sections = [('Events', 'params_style')]
@@ -204,6 +205,9 @@ def reset_napari_theme(gallery_conf, fname):
     settings = get_settings()
     settings.appearance.theme = 'dark'
     qtgallery.reset_qapp(gallery_conf, fname)
+
+
+from sphinx_gallery.sorting import ExampleTitleSortKey
 
 sphinx_gallery_conf = {
     #'examples_dirs': '../../napari/examples',  # path to your example scripts
@@ -221,6 +225,7 @@ sphinx_gallery_conf = {
     'image_scrapers': (qtgallery.qtscraper,),
     'reset_modules': (reset_napari_theme,),
     'reference_url': {'napari': None},
+    'within_subsection_order': ExampleTitleSortKey,
 }
 
 
