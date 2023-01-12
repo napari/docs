@@ -49,16 +49,20 @@ theme:
 from skimage.data import cells3d
 import napari
 
-viewer, layers = napari.imshow(
-    cells3d(), channel_axis=1, name=['membranes', 'nuclei'], ndisplay=3
-)
+viewer, layers = napari.imshow(cells3d(), channel_axis=1)
 ```
 
 ![napari viewer showing 3D cells image](images/multichannel_cells.png)
 
 ## A multi-dimensional image viewer for Python
 
-Napari is a fast multi-dimensional image viewer for Python. 
+Napari is a fast multi-dimensional image viewer for Python. It can help you
+**explore** any image-like data, whether it is 2D, 3D, or even higher-dimensional.
+It can also help you **overlay** downstream or **associated data**, such as point
+coordinates or segmentations.  If you want to look
+at NumPy arrays that have more than two axes, napari might be for you! If you
+want to look at *Dask* arrays that have more than two axes, napari can also
+handle that!
 It's designed for browsing, annotating, and analyzing large multi-dimensional
 images. It's built on top of `Qt` (for the GUI), `vispy` (for performant
 GPU-based rendering), and the scientific Python stack (`numpy`, `scipy`). It
