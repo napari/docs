@@ -122,7 +122,7 @@ The main menu consists of the **File**, **View**, **Window**, **Plugins**, and *
 
 * **Plugins** contains the options shown in the graphic below:   
 ![image: Plugins Menu](../assets/tutorials/main-menu-plugins.png)    
-S
+
 * **Help** contains the options shown in the graphic below:   
 ![image: Help Menu](../assets/tutorials/main-menu-help.png)    
 
@@ -169,8 +169,6 @@ Note that we've also named each of the layers using the `name` keyword argument 
 You can select layers, which highlights them, by clicking on their layer widget. Multiple layers can be simultaneously selected using either `shift` click to select all the layers in between two clicked-on layers or `Ctrl`+click (Windows) or `Command`+click to select just the clicked on layers respectively. 
 
 You can rearrange the order of the layers by dragging them, including dragging multiple layers at the same time.
-
-The `Viewer` object also contains the `LayerList` object that allows access to the data of all the layers by:
 
 The {class}`Viewer<napari.Viewer>` object also contains the {class}`LayerList` object that allows access to the data of all the layers with:
 
@@ -226,7 +224,7 @@ For example, the name and opacity of a layer can be changed within the console a
 
 +++
 
-```python
+```{code-cell} python
 viewer.layers[0].name = 'astronaut'
 viewer.layers[0].opacity = 0.7
 ```
@@ -244,7 +242,7 @@ and these changes will instantly propagate to the GUI. For more information abou
 
 New `Points`, `Shapes`, and `Labels` layers can be added to the viewer using the layer buttons between the layer controls and layer list. These correspond to the following calls:
 
-```python
+```{code-cell} python
 import napari
 
 viewer = napari.Viewer()
@@ -259,7 +257,7 @@ Layers can be deleted by selecting them and clicking on the trash icon, or by dr
 
 In the console a layer at index `i` can be removed by:
 
-```python
+```{code-cell} python
 viewer.layers.pop(i)
 ```
 
@@ -304,7 +302,7 @@ nbscreenshot(viewer, alt_text="A 2d view of the moon on top of which is overlaid
 
 In order to get or update the current position of the slider, use:
 
-```python
+```{code-cell} python
 # to get the current position  
 viewer.dims.current_step
 # to change the current position  
@@ -324,7 +322,7 @@ On the left end of the dimension slider is the **frame playback** button. Right 
 
 ### Viewer buttons
 
-Below the **layer list** there is a row of buttons. 
+Below the **layer list** is a row containing these buttons:   
 * Console
 * 2D/3D
 * Roll Dimensions
@@ -335,6 +333,8 @@ Below the **layer list** there is a row of buttons.
 ![image: Viewer buttons](../assets/tutorials/viewer-buttons.png)
 
 Each one is explained below.   
+
+#### Console button
 
 The first button on the left end of the row is the `Console` button. It shows or hides the console and allows you to interact with the python kernel. Inside the console, for example, you can access the {class}`Viewer<napari.Viewer>` instance using the `viewer` argument.  
 
@@ -348,6 +348,8 @@ The console (when available) appears at the bottom of the viewer as shown below:
 ![image: console within napari](../assets/tutorials/console.png)
 
 +++
+
+#### 2D/3D button  
 
 The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data. Run the following code:
 
@@ -380,13 +382,21 @@ viewer.camera.zoom = 2
 viewer.camera.angles = (3, 38, 53)
 nbscreenshot(viewer, alt_text="A rotated 3D view")
 ```
-![image: Rotated image](../assets/tutorials/rotated-image.png)  
+<!-- If this image is included, the pan and zoom image appears twice in the html view so I have commented it out.  ![image: Rotated image](../assets/tutorials/rotated-image.png)>   -->
+
+#### Roll dimensions  
 
 The third button rolls the dimensions that are currently displayed in the viewer. For example if you have a `ZYX` volume and are looking at the `YX` slice, this will then show you the `ZY` slice.
 
+#### Transpose dimensions  
+
 The fourth button transposes the displayed dimensions.
 
+#### Grid button  
+
 Then there is a grid button that toggles grid mode. When clicked it displays each layer of the image in its own tile. 
+
+#### Home button  
 
 Finally, there is the `home` button. It resets the camera to its initial values.
 
@@ -455,14 +465,17 @@ viewer.theme = 'dark'
 
 You can also change the theme using the "Toggle theme" keyboard shortcut, by default `Command/Control+Shift+T`. Note that changing the theme using this shortcut will only change the *current* viewer theme. If you wish to make the change permanent for all viewers, make sure to also change your settings in the **Appearance** tab of the **Preferences** menu. 
 
-Adding your own custom theme isn't too hard but requires creating your own color `palette` and rebuilding the icons. It's also possible for [plugins to contribute a theme](../../plugins/contributions.html#contributions-themes). If people want more themes, we're happy to add them or you can look at our [contributing guidelines](../../developers/contributing) for more information about building the icons and add one yourself!  
+Adding your own custom theme isn't too hard but it requires creating your own color `palette` and rebuilding the icons. It's also possible for [plugins to contribute a theme](../../plugins/contributions.html#contributions-themes). If people want more themes, we're happy to add them or you can look at our [contributing guidelines](../../developers/contributing) for more information about building the icons and add one yourself!  
 
 +++  
 
 ## Custom keybinding
 
-napari provides a number of built-in keyboard shortcuts, which you can access and change in **Preferences**>**Shortcuts**. However, one of the promises of **napari** is to provide a beginner friendly environment for interactive analysis. For example, we want to enable workflows where people can interact with the GUI, say, click on the centers of some objects or paint over some regions and then perform custom analysis. As a first step towards enabling custom interactivity we've provided support to add your own custom keybindings to the `Viewer` or individual `Layer` objects such that when the corresponding key gets clicked, your custom function gets executed. Depending on which object you bind your key to, your function will either get access to the state of the entire `Viewer` or `Layer` object, such that when the
-corresponding key gets clicked your custom function gets executed. 
+napari provides a number of built-in keyboard shortcuts, which you can access and change in **Preferences**>**Shortcuts**.  
+
+**Note:** **Preferences** is under the **File** menu on Windows and under **napari** on macOS.)  
+
+One of the promises of **napari** is to provide a beginner friendly environment for interactive analysis. For example, we want to enable workflows where people can interact with the GUI, say, click on the centers of some objects or paint over some regions and then perform custom analysis. As a first step towards enabling custom interactivity we've provided support to add your own custom keybindings to the `Viewer` or individual `Layer` objects such that when the corresponding key gets clicked, your custom function gets executed. Depending on which object you bind your key to, your function will either get access to the state of the entire `Viewer` or `Layer` object.  
 
 For example, to bind a function that loops through all layers in the viewer and prints their names to your console when you press the `p` key you can do the following:
 
