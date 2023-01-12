@@ -1,6 +1,6 @@
 ---
 theme:
-  metaDescription: napari is a fast, interactive, multi-dimensional image viewer for Python. It's designed for browsing, annotating, and analyzing large multi-dimensional images. It's built on top of Qt (for the GUI), vispy (for performant GPU-based rendering), and the scientific Python stack (numpy, scipy).
+  metaDescription: napari is a fast, interactive, multi-dimensional image viewer for Python. It's designed for browsing, annotating, and analyzing large multi-dimensional images. It's built on top of Qt (for the GUI), vispy (for performant GPU-based rendering), and the scientific Python stack (NumPy, SciPy, and more).
   quickLinks:
     - title: Community
       content: Meet the team, our mission, and our values
@@ -45,22 +45,20 @@ theme:
 
 # napari
 
-## Multi-dimensional image viewer for python
+```python
+from skimage.data import cells3d
+import napari
 
-[![image.sc forum](https://img.shields.io/badge/dynamic/json.svg?label=forum&url=https%3A%2F%2Fforum.image.sc%2Ftags%2Fnapari.json&query=%24.topic_list.tags.0.topic_count&colorB=brightgreen&suffix=%20topics&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABPklEQVR42m3SyyqFURTA8Y2BER0TDyExZ+aSPIKUlPIITFzKeQWXwhBlQrmFgUzMMFLKZeguBu5y+//17dP3nc5vuPdee6299gohUYYaDGOyyACq4JmQVoFujOMR77hNfOAGM+hBOQqB9TjHD36xhAa04RCuuXeKOvwHVWIKL9jCK2bRiV284QgL8MwEjAneeo9VNOEaBhzALGtoRy02cIcWhE34jj5YxgW+E5Z4iTPkMYpPLCNY3hdOYEfNbKYdmNngZ1jyEzw7h7AIb3fRTQ95OAZ6yQpGYHMMtOTgouktYwxuXsHgWLLl+4x++Kx1FJrjLTagA77bTPvYgw1rRqY56e+w7GNYsqX6JfPwi7aR+Y5SA+BXtKIRfkfJAYgj14tpOF6+I46c4/cAM3UhM3JxyKsxiOIhH0IO6SH/A1Kb1WBeUjbkAAAAAElFTkSuQmCC)](https://forum.image.sc/tag/napari)
-[![License](https://img.shields.io/pypi/l/napari.svg)](https://raw.githubusercontent.com/napari/napari/main/LICENSE)
-[![Build Status](https://api.cirrus-ci.com/github/Napari/napari.svg)](https://cirrus-ci.com/napari/napari)
-[![codecov](https://codecov.io/gh/napari/napari/branch/main/graph/badge.svg)](https://app.codecov.io/gh/napari/napari)
-[![Python Version](https://img.shields.io/pypi/pyversions/napari.svg)](https://python.org)
-[![PyPI](https://img.shields.io/pypi/v/napari.svg)](https://pypi.org/project/napari)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/napari.svg)](https://pypistats.org/packages/napari)
-[![Development Status](https://img.shields.io/pypi/status/napari.svg)](https://github.com/napari/napari)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![DOI](https://zenodo.org/badge/144513571.svg)](https://zenodo.org/badge/latestdoi/144513571)
+viewer, layers = napari.imshow(
+    cells3d(), channel_axis=1, name=['membranes', 'nuclei'], ndisplay=3
+)
+```
 
----
+![napari viewer showing 3D cells image](images/multichannel_cells.png)
 
-**napari** is a fast, interactive, multi-dimensional image viewer for Python.
+## A multi-dimensional image viewer for Python
+
+Napari is a fast multi-dimensional image viewer for Python. 
 It's designed for browsing, annotating, and analyzing large multi-dimensional
 images. It's built on top of `Qt` (for the GUI), `vispy` (for performant
 GPU-based rendering), and the scientific Python stack (`numpy`, `scipy`). It
