@@ -149,4 +149,4 @@ We run our tests again, and now two are collected, both passing.
 ## Enclosed testing  
 Note that although we're testing a `napari` plugin, we did not need a viewer or napari to test this. It's important that we didn't need those because napari and the napari viewer are out of our control. What we can control is the code _we_ wrote. We wrote that data by simply mocking up an array and getting a temporary path to it. We could thoroughly test our functions in an enclosed way without relying on other people's code or mocking up many complicated objects.  
   
-The next article in this series on testing is [Test coverage](./Article-4-test-coverage).  
+The next article in this series on testing is [Test coverage](./article-4-test-coverage).  
