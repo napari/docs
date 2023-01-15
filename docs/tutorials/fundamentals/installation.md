@@ -76,7 +76,7 @@ Choose one of the options below to install napari as a Python package.
 ````{admonition} **1. From pip**
 :class: dropdown
 
-napari can be installed on most macOS, Linux, and Windows systems with Python
+napari can be installed on most macOS (Intel x86), Linux, and Windows systems with Python
 {{ python_version_range }} using pip:
 
 ```sh
@@ -98,7 +98,8 @@ notation.)*
 :class: dropdown
 
 If you prefer to manage packages with conda, napari is available on the
-conda-forge channel. You can install it with:
+conda-forge channel. We also recommend this path for users of arm64 macOS machines
+(Apple Silicon). You can install it with:
 
 ```sh
 conda install -c conda-forge napari
@@ -183,6 +184,10 @@ pip install "napari[pyqt5]"    # for PyQt5
 # OR
 pip install "napari[pyside2]"  # for PySide2
 ```
+
+*(On arm64 macOS, it is the availability of wheels for these Qt5 backends via pip
+that is the problem. If you provide the backend, for example via conda from conda-forge,
+then you can `pip install napari`, but without the `[all]`.)*
 
 ```{note}
 If you switch backends, it's a good idea to `pip uninstall` the one
