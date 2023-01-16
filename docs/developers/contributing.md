@@ -28,6 +28,12 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
 
     ::::{tab-set}
 
+    :::{tab-item} Using `conda`
+    After [installing `conda`](https://www.anaconda.com/products/distribution), create an environment called `napari-env` with Python {{ python_version }} and activate it.
+
+    {{ conda_create_env }}
+    :::
+
     :::{tab-item} Using `venv`
     After installing Python on your machine, create a virtual environment on your terminal and activate it. On Linux and MacOS, you can run
     ```sh
@@ -35,12 +41,6 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
     source <path-to-env>/bin/activate
     ```
     See the [venv](https://docs.python.org/3/library/venv.html) documentation for instructions on Windows.
-    :::
-
-    :::{tab-item} Using `conda`
-    After [installing `conda`](https://www.anaconda.com/products/distribution), create an environment called `napari-env` with Python {{ python_version }} and activate it.
-
-    {{ conda_create_env }}
     :::
 
     ::::
@@ -75,6 +75,8 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
     pip install -e ".[dev]"  # (quotes only needed for zsh shell)
     ```
 
+    Note that in this last case you will need to install your Qt backend separately.
+
 5. We use [`pre-commit`](https://pre-commit.com) to sort imports with
    [`isort`](https://github.com/PyCQA/isort), format code with
    [`black`](https://github.com/psf/black), and lint with
@@ -106,6 +108,10 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
    please do not ignore errors lightly.
 
 Now you are all set to start developing with napari.
+
+## Contributing documentation
+
+If you wish to contribute documentation changes to napari, please read the [guide on contributing documentation](documentation/index.md). 
 
 ## Adding icons
 
@@ -256,10 +262,6 @@ git push -u origin your-branch-name
 
 You can then make a
 [pull-request](https://docs.github.com/en/get-started/quickstart/contributing-to-projects#making-a-pull-request) to `napari`'s `main` branch.
-
-## Contributing documentation
-
-If you wish to contribute documentation changes to napari, please read the [guide on contributing documentation](documentation/index.md). 
 
 ## Code of Conduct
 
