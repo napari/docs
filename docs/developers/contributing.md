@@ -56,7 +56,7 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
     If you only want to use napari, you can install it on most macOS, Linux and
     Windows systems with Python {{ python_version_range }}
     by following the directions on the
-    [instructions page](installation.md#install-as-python-package-recommended).
+    [instructions page](../tutorials/fundamentals/installation.md#install-as-python-package-recommended).
 
     napari supports different Qt backends, and you can choose which one to install and use.
 
