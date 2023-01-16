@@ -38,11 +38,9 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
     :::
 
     :::{tab-item} Using `conda`
-    After [installing `conda`](https://www.anaconda.com/products/distribution), create an environment called `napari-env` with Python 3.9 and activate it.
-    ```sh
-    conda create -y --name napari-env -c conda-forge python=3.9
-    conda activate napari-env
-    ```
+    After [installing `conda`](https://www.anaconda.com/products/distribution), create an environment called `napari-env` with Python {{ python_version }} and activate it.
+
+    {{ conda_create_env }}
     :::
 
     ::::
@@ -56,10 +54,9 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
 4. Install the package in editable mode, along with all of the developer tools.
 
     If you only want to use napari, you can install it on most macOS, Linux and
-    Windows systems with
-    ![Supported Python versions](https://img.shields.io/pypi/pyversions/napari.svg)
+    Windows systems with Python {{ python_version_range }}
     by following the directions on the
-    [instructions page](installation#install-as-python-package-recommended).
+    [instructions page](installation.md#install-as-python-package-recommended).
 
     napari supports different Qt backends, and you can choose which one to install and use.
 
