@@ -42,7 +42,6 @@ We create a file to read. First, we’ll build a file path, then generate a smal
   
 There are no specific requirements for the contents of the array in this case. We just need some sort of file to save to this temporary directory. The test file will not appear anywhere unless there is a pause during test execution.   
   
-`temp_dir` is another fixture. It provides a full working directory. `.mkdir` and other commands can be used inside `temp_dir`.
 
 Using `napari_get_reader` with this path, we assert that the reader is callable. A function should be returned. If it isn’t, we could put an error message here.  
 
