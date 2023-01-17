@@ -40,7 +40,7 @@ def get_grade_from_mark(mark):
 `get_grade_from_mark` can be tested by writing two test functions. The first one is for when the mark is > 50.   
   
   
-## Test for Pass
+### Test for the Pass case
 When the mark is > 50, call `get_grade_from_mark` and assert that the grade is what we expect (either `Pass` or `Fail`). When testing the passing case, test that the grade is `Pass`. If it's not `Pass`, the best practice is to write a helpful error message like, `“Expected {mark} to pass but result was {grade}.”   
 
 ```python
