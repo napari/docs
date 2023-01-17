@@ -36,7 +36,7 @@ Test as much as possible and focus on writing small tests that look at one indiv
 ```
   
 ## Built-in fixtures  
-We use `tmp_path` to manage the writing and reading of files during test execution. `tmp_path` is a `pytest` fixture; it is not imported, it comes with `pytest`. We pass `tmp_path` as a parameter to our test function, and `pytest` will inject it when the tests run. `tmp_path` provides a temporary path used to save and manipulate files. Temporary paths, files, and directories created in this way during the testing process are automatically removed by `pytest` when the tests are completed. 
+We use [tmp_path](https://docs.pytest.org/en/7.1.x/how-to/tmp_path.html#the-tmp-path-fixture) to manage the writing and reading of files during test execution. `tmp_path` is a `pytest` fixture; it is not imported, it comes with `pytest`. We pass `tmp_path` as a parameter to our test function, and `pytest` will inject it when the tests run. `tmp_path` provides a temporary path used to save and manipulate files. Temporary paths, files, and directories created in this way during the testing process are automatically removed by `pytest` when the tests are completed. 
   
 We create a file to read. First, we’ll build a file path, then generate a small amount of data. We’re just testing to see if the function returns a `callable` as expected, so we don't need a large array.
   
