@@ -20,7 +20,7 @@ This article explains how to use and test a plugin's reader function, built-in f
 The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).  
   
 ## Introduction  
-In this article, we discuss a plugin called `plugin_tests`, generated using the cookiecutter, which has a reader and a widget. The reader is the cookiecutter numpy file reader, `napari_get_reader`. It checks whether a path ends in `.npy`. If it doesn't, it returns `None`, and if it does, it returns the `reader_function`, which loads the data. 
+In this article, we discuss a plugin called [plugin_tests](https://github.com/DragaDoncila/plugin-tests/tree/main/src/plugin_tests), generated using the [cookiecutter](https://github.com/napari/cookiecutter-napari-plugin), which has a reader and a widget. The reader is the cookiecutter numpy file reader, `napari_get_reader`. It checks whether a path ends in `.npy`. If it doesn't, it returns `None`, and if it does, it returns the `reader_function`, which loads the data. 
 
 ![napari_get_reader](../../images/napari_plugins_1st_napari_get_reader.PNG)
   
@@ -29,20 +29,19 @@ The `napari_get_reader` function is the first thing to test. In the top-level di
 
 ![reader_function](../../images/napari_plugins_2nd_reader_function.png)
   
-Test as much as possible and focus on writing small tests that look at one indivisible unit. We are focused on testing the `napari_get_reader` function. Sometimes it returns `None`; sometimes it returns the `reader_function`. We want to ensure that if we pass in a path that ends with `.npy`, it gives us back a function we can call.  
-  
-We import `numpy` and `napari_get_reader`. `numpy` will be used later.  
-  
-Best practice: Give tests meaningful names that describe what they're doing.
+We are focused on testing the `napari_get_reader` function. Sometimes it returns `None`; sometimes it returns the `reader_function`. We want to ensure that if we pass in a path that ends with `.npy`, it gives us back a function we can call.  We import `numpy` and `napari_get_reader`. `numpy` will be used later.  
+
+```{tip}
+Test as much as possible and focus on writing small tests that look at one indivisible unit. Give tests meaningful names that describe what they're doing.
+```
   
 ## Built-in fixtures  
-We use `tmp_path` to manage the writing and reading of files during test execution. `tmp_path` is a `pytest` fixture; it is not imported, it comes with `pytest`. We pass `tmp_path` as a parameter to our test function, and `pytest` will inject it when the tests run. `tmp_path` provides a temporary path used to save and manipulate files. Temporary paths, files, and directories created in this way during the testing process are automatically removed by `pytest` when the tests are completed. 
+We use [tmp_path](https://docs.pytest.org/en/7.1.x/how-to/tmp_path.html#the-tmp-path-fixture) to manage the writing and reading of files during test execution. `tmp_path` is a `pytest` fixture; it is not imported, it comes with `pytest`. We pass `tmp_path` as a parameter to our test function, and `pytest` will inject it when the tests run. `tmp_path` provides a temporary path used to save and manipulate files. Temporary paths, files, and directories created in this way during the testing process are automatically removed by `pytest` when the tests are completed. 
   
 We create a file to read. First, we’ll build a file path, then generate a small amount of data. We’re just testing to see if the function returns a `callable` as expected, so we don't need a large array.
   
 There are no specific requirements for the contents of the array in this case. We just need some sort of file to save to this temporary directory. The test file will not appear anywhere unless there is a pause during test execution.   
   
-`temp_dir` is another fixture. It provides a full working directory. `.mkdir` and other commands can be used inside `temp_dir`.
 
 Using `napari_get_reader` with this path, we assert that the reader is callable. A function should be returned. If it isn’t, we could put an error message here.  
 
