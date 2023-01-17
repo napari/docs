@@ -29,11 +29,11 @@ The `napari_get_reader` function is the first thing to test. In the top-level di
 
 ![reader_function](../../images/napari_plugins_2nd_reader_function.png)
   
-Test as much as possible and focus on writing small tests that look at one indivisible unit. We are focused on testing the `napari_get_reader` function. Sometimes it returns `None`; sometimes it returns the `reader_function`. We want to ensure that if we pass in a path that ends with `.npy`, it gives us back a function we can call.  
-  
-We import `numpy` and `napari_get_reader`. `numpy` will be used later.  
-  
-Best practice: Give tests meaningful names that describe what they're doing.
+We are focused on testing the `napari_get_reader` function. Sometimes it returns `None`; sometimes it returns the `reader_function`. We want to ensure that if we pass in a path that ends with `.npy`, it gives us back a function we can call.  We import `numpy` and `napari_get_reader`. `numpy` will be used later.  
+
+```{tip}
+Test as much as possible and focus on writing small tests that look at one indivisible unit. Give tests meaningful names that describe what they're doing.
+```
   
 ## Built-in fixtures  
 We use `tmp_path` to manage the writing and reading of files during test execution. `tmp_path` is a `pytest` fixture; it is not imported, it comes with `pytest`. We pass `tmp_path` as a parameter to our test function, and `pytest` will inject it when the tests run. `tmp_path` provides a temporary path used to save and manipulate files. Temporary paths, files, and directories created in this way during the testing process are automatically removed by `pytest` when the tests are completed. 
