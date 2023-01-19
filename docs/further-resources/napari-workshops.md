@@ -7,18 +7,16 @@ This page contains a list, to make them easier to find online.
 You can find more videos of talks, tutorials and demos on the
 [napari youtube channel](https://www.youtube.com/channel/UCbTgw84ew4pxTJ9qu3W2hqg/playlists).
 
-### napari workshop template
-
+```{note}
 If you are looking to create your own workshop, you can use the
 [napari workshop template](https://github.com/napari/napari-workshop-template)
 as a starting point.
-
-### Add your own workshop to this list
 
 If you have organized a napari workshop and would like to see it featured here
 in this page, you can
 [send a Pull Request to the napari/docs repository](../developers/documentation/index.md)
 or contact the core developers on [zulip chat](https://napari.zulipchat.com/login/).
+```
 
 ## Workshops
 
