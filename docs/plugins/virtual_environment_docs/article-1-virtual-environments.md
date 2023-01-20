@@ -26,7 +26,7 @@ Some resources you might find helpful:
 * ~1.5-hour lecture on getting set up with python and virtual environments:
 https://nic.med.harvard.edu/python/
 
-* Use miniconda or mini forge. Install it in the home directory.
+* Use [miniconda](https://docs.conda.io/en/latest/miniconda.html) or [mini forge](https://github.com/conda-forge/miniforge) (comes pre-configured with conda-forge). Install it in the home directory.
 https://docs.conda.io/en/latest/miniconda.html  
 https://github.com/conda-forge/miniforge  (comes pre-configured with conda-forge) 
 
