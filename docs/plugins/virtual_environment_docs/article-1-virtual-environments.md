@@ -56,7 +56,7 @@ Virtual environments
 Consider your environment as disposable.
 If you are ever having weird problems, nuke your environment and start over using the following commands:  
 
-```python
+```console
     $ conda activate base  
     $ conda remove -n name-of-env --all -y
     $ conda create -n name-of-env python
