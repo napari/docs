@@ -20,7 +20,7 @@ This article explains some of the techniques you can use to deploy your plugin.
 
 
 ## PyPI and Anaconda
-Try to deploy to both! But for now, try to at least use pip. Currently, the built-in napari plugin installer and the napari-hub, will only look at PyPI. (This is subject to change in the future.) You can always provide your users with manual installation instructions (e.g. if you want to use conda).
+Try to deploy to both! But for now, try to at least use pip. You can always also provide your users with manual installation instructions (e.g. if you want to use conda or have specific dependencies).
 
 ### Package formats (PyPI)
 **sdist** means source distribution. An **sdist** includes all of the files that are required to *build* your package. An **sdist** may require specific additional software (e.g. compilers) to actually build.
