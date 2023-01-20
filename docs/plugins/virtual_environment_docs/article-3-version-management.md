@@ -26,7 +26,7 @@ setuptools_scm: [https://github.com/pypa/setuptools_scm](https://github.com/pypa
    `# configure in pyproject.toml, then…`  
    `$ git tag -a v0.1.0 -m v0.1.0`  
 
-  The next time you run <font color="red">python -m build</font>, either locally or in GitHub actions, your package version will be based on the latest git tag.
+  The next time you run <font color="red">`python -m build`</font>, either locally or in GitHub actions, your package version will be based on the latest git tag.
 
 ## Using a local script to edit files:  
 bump2version: [https://github.com/c4urself/bump2version](https://github.com/c4urself/bump2version)
