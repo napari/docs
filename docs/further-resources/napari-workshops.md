@@ -7,7 +7,7 @@ This page contains a list, to make them easier to find online.
 You can find more videos of talks, tutorials and demos on the
 [napari youtube channel](https://www.youtube.com/channel/UCbTgw84ew4pxTJ9qu3W2hqg/playlists).
 
-```{note}
+```{admonition} Got a workshop?
 If you are looking to create your own workshop, you can use the
 [napari workshop template](https://github.com/napari/napari-workshop-template)
 as a starting point.
