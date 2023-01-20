@@ -16,7 +16,7 @@ This article covers the methods of updating your version string everywhere.
 * [Using a local script to edit files](#using-a-local-script-to-edit-files)  
 * [Manually](#manually)
 
-**Goal:** Make sure that you bump your version string everywhere it may appear, in unison, prior to publishing your package.  A package can be init.py, setup, cfg, etc.
+**Goal:** Make sure that you bump your version string everywhere it may appear, in unison, prior to publishing your package.  A version number can be in `init.py`, `setup.cfg`, etc.
 
 In increasing order of work, but decreasing order of magic, the methods of bummping your version string are listed below. 
 
