@@ -43,7 +43,7 @@ Create environments liberally!
 
 To create an environment, use the following commands at the command prompt (terminal):
 
-```python
+```console
     $ conda create -n name-of-env python
     $ conda activate name-of-env
     $ pip/conda install <whatever> 
