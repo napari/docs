@@ -30,7 +30,7 @@ https://nic.med.harvard.edu/python/
 https://docs.conda.io/en/latest/miniconda.html  
 https://github.com/conda-forge/miniforge  (comes pre-configured with conda-forge) 
 
-* Make sure you have conda-forge in your config. The default anaconda channel has some very outdated packages, e.g. old version of Qt.   
+* Make sure you have conda-forge in your config. The default anaconda channel has some very outdated packages, e.g. [old version of Qt](https://forum.image.sc/t/napari-issues-on-bigsur/52630/10).   
 https://forum.image.sc/t/napari-issues-on-bigsur/52630/10  
 ```python
     $conda config --add channels conda-forge  
