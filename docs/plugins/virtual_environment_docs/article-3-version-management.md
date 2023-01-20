@@ -29,7 +29,7 @@ setuptools_scm: [https://github.com/pypa/setuptools_scm](https://github.com/pypa
   The next time you run <font color="red">`python -m build`</font>, either locally or in GitHub actions, your package version will be based on the latest git tag.
 
 ## Using a local script to edit files:  
-bump2version: [https://github.com/c4urself/bump2version](https://github.com/c4urself/bump2version)
+One tool for doing this is [bump2version](https://github.com/c4urself/bump2version). For example:
 ```console
    $ pip install bump2version  
    # then configure all the places you use your version   
