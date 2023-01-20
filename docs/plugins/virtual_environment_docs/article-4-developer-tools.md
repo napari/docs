@@ -23,7 +23,7 @@ Many are very helpful, but they do take a little time to learn. The more time yo
 
 ### Linting tools   
 These _check_ your code.  
-* flake8 (https://flake8.pycqa.org/) - checks various code style conventions, unused variables, line spacings, etc…  
+* [flake8](https://flake8.pycqa.org/) - checks various code style conventions, unused variables, line spacings, etc…  
 * mypy (https://github.com/python/mypy)  
     - Static type checker: enforces proper usage of types.  
     - Super useful once you get the hang of it, but definitely an intermediate-advanced tool.  
