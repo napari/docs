@@ -61,17 +61,17 @@ These _auto-modify_ your code.
     - This is a *pre-commit hook*. It is intended to be added to your 
     `.pre-commit-config.yaml` file
     - It *statically* (without importing) checks various best practices about your plugin:  
-`     repo: https://github.com/tlambert03/napari-plugin-action `      
-`     rev: v0.2.0  `     
-`     hooks: `     
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`id: napari-plugin-checks`     
+```yaml  
+    repo: https://github.com/tlambert03/napari-plugin-action  
+    rev: v0.2.0  
+    hooks: id: napari-plugin-checks  
+```     
 
 * https://github.com/tlambert03/napari-plugin-action  (work in progress)
     - This is a _github-action_. 
     - It is intended to be added to your GitHub workflow.
     - It (currently) checks that your plugin is installable, and performs a few sanity checks about Qt backends and dock widgets.  
-`     uses: tlambert03/napari-plugin-action@main  `  
-`     with:     `     
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`package_name:  <your-package-name>`     
+`     uses: tlambert03/napari-plugin-action@main`  
+`     with: package_name:  <your-package-name>`     
 
 The next article in this series is [More than just best practices](./article-5-more-than-just-best-practices.md).  
