@@ -42,7 +42,8 @@ These _auto-modify_ your code.
 
 ### Pre-commit tools
 * pre-commit (https://pre-commit.com/), runs all your checks each time you run git commit, preventing bad code from ever getting checked in.  
-```console     $ pip install pre-commit
+```console  
+     $ pip install pre-commit
      # install the pre-commit "hook"  
      $ pre-commit install  
      # then configure in .pre-commit-config.yaml  
