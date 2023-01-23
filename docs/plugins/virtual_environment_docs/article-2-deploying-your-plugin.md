@@ -7,8 +7,7 @@ This article explains some of the techniques you can use to deploy your plugin.
 * Article 2: This article  
 * Article 3: [Version management](./article-3-version-management.md)     
 * Article 4: [Developer tools](./article-4-developer-tools.md)   
-* Article 5: [More than just best practices](./article-5-more-than-just-best-practices.md)  
-* Article 6: [Survey](./article-6-Survey.md)   
+* Article 5: [Survey](./article-6-Survey.md)   
 
 ## This article covers:   
 * [PyPI and Anaconda](#pypi-and-anaconda)
