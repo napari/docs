@@ -7,8 +7,7 @@ This article explains the different types of tools that can help you develop and
 * Article 2: [Deploying your plugin](./article-2-deploying-your-plugin.md)    
 * Article 3: [Version management](./article-3-version-management.md)   
 * Article 4: This article.   
-* Article 5: [More than just best practices](./article-5-more-than-just-best-practices.md)   
-* Article 6: [Survey](./article-6-Survey.md) 
+* Article 5: [Survey](./article-6-Survey.md) 
 
 ## This article covers:   
 * [General tools](#general-tools)
@@ -74,4 +73,4 @@ These _auto-modify_ your code.
 `     uses: tlambert03/napari-plugin-action@main`  
 `     with: package_name:  <your-package-name>`     
 
-The next article in this series is [More than just best practices](./article-5-more-than-just-best-practices.md).  
+The next article in this series is 
