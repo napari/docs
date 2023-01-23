@@ -59,6 +59,8 @@ This requires either:
 or   
 * Using a pre-made GitHub action: https://github.com/pypa/gh-action-pypi-publish   
 
+Here is an example workflow that manually deploys using `twine` when tests pass and you push a tagged commit.
+
 ```yaml
 jobs:  
     deploy:  
