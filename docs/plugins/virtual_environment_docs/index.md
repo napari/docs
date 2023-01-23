@@ -6,6 +6,5 @@ These articles will be more valuable if you are familiar with the Python program
 * Article 2: [Deploying your plugin](./article-2-deploying-your-plugin.md) Starts at about minute 54:00.  
 * Article 3: [Version management](./article-3-version-management.md) Starts at about timestamp 1:01:00.   
 * Article 4: [Developer tools](./article-4-developer-tools.md) Starts at about timestamp 1:04:12.  
-* Article 5: [More than just best practices](./article-5-more-than-just-best-practices.md) Starts at about timestamp 1:12:00.  
-* Article 6: [Survey](./article-6-Survey.md) Starts at about timestamp 1:15:27.  
+* Article 5: [Survey](./article-6-Survey.md) Starts at about timestamp 1:15:27.  
   
