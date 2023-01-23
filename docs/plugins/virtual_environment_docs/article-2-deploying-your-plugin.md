@@ -27,11 +27,9 @@ Try to deploy to both! But for now, try to at least use pip. You can always also
 
 **wheel** is a prebuilt package, ready to drop into site-packages. It includes compiled OS-specific extensions (if applicable).
 
-You are *strongly* encouraged to ship both! If the wheel is not present, pip will try to build it from the sdist before installation, and that may fail depending on the package.  
+You are *strongly* encouraged to ship both! If the wheel is not present, pip will try to build it from the sdist before installation, and that may fail depending on the package. To see if a given package ships a wheel, check here: https://pypi.org/project/napari/#files
 
 **Note:** This goes for dependencies too! Check all your dependencies for wheel availability.  
-
-**Example:** See if a given package ships a wheel. https://pypi.org/project/napari/#files
 
 ### PyPI
 **build** (package builder): https://pypa-build.readthedocs.io/en/latest/  
