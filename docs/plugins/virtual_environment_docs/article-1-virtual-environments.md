@@ -8,8 +8,7 @@ This article explains the value of using virtual environments and how to create 
 * Article 2: [Deploying your plugin](./article-2-deploying-your-plugin.md)  
 * Article 3: [Version management](./article-3-version-management.md)     
 * Article 4: [Developer tools](./article-4-developer-tools.md)   
-* Article 5: [More than just best practices](./article-5-more-than-just-best-practices.md)  
-* Article 6: [Survey](./article-6-Survey.md)   
+* Article 5: [Survey](./article-6-Survey.md)   
 
 ### This article covers: 
 * [Resources](#resources)  
