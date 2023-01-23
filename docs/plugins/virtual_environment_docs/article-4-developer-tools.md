@@ -73,4 +73,4 @@ These _auto-modify_ your code.
 `     uses: tlambert03/napari-plugin-action@main`  
 `     with: package_name:  <your-package-name>`     
 
-The next article in this series is 
+The next article in this series is the [Survey](./article-6-survey.md) article. 
