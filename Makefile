@@ -25,6 +25,10 @@ docs-build:
 	python $(docs_dir)/_scripts/prep_docs.py
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH)
 
+docs-xvfb:
+	python $(docs_dir)/_scripts/prep_docs.py
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH)
+
 docs: clean docs-install docs-build
 
 html: clean docs-build
