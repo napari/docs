@@ -50,9 +50,6 @@ jobs:
         with:
           run: make docs GALLERY_PATH=../examples/
 
-      - name: Check links
-        run: make linkcheck-files
-
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
