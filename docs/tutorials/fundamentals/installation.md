@@ -174,8 +174,8 @@ running napari will result in an error message asking you to install one of
 them.
 
 Running `pip install "napari[all]"` will install the default Qt framework, which is currently 
-PyQt5--but this could change in the future. (If you have a Mac with arm64 architecture (Apple
-Silicon), this will not work--see {ref}`note-m1`.)
+PyQt5--but this could change in the future. However, if you have a Mac with the newer arm64
+architecture (Apple Silicon), this will not work--see {ref}`note-m1`.
 
 To install napari with a specific framework, you can use:
 
@@ -189,11 +189,12 @@ pip install "napari[pyside2]"  # for PySide2
 ```{note}
 :name: note-m1
 
-For arm64 macOS machines (Apple Silicon), pre-compiled PyQt5 or PySide2
-[wheels](https://realpython.com/python-wheels/) are not available on 
-[PyPI](https://pypi.org), so trying to `pip install napari[all]` or either of
-the variants above will fail. However, you can install one of those libraries separately,
-for example from `conda-forge`, and then use `pip install napari`.
+For arm64 macOS machines (Apple Silicon), pre-compiled PyQt5 or PySide2 packages
+([wheels](https://realpython.com/python-wheels/)) are not available on 
+[PyPI](https://pypi.org), the repository used by `pip`, so trying to 
+`pip install napari[all]` or either of the variants above will fail. However, 
+you can install one of those libraries separately, for example from `conda-forge`,
+and then use `pip install napari`.
 ```
 
 ```{note}
