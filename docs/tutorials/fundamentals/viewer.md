@@ -274,8 +274,7 @@ same. Effectively, the two datasets are broadcast together using [NumPy broadcas
 
 For example, the following commands from the console will add both 2D and 3D datasets to the same viewer:
 
-```{code-cell} python
-:tags: [remove-output]
+```{code-cell} python  
 import numpy as np
 from skimage import data
 
@@ -375,14 +374,15 @@ then, by clicking the 2D/3D button, you can rotate the image (the camera view of
 and rotating the camera view with the mouse gives something like the following view:
 
 ```{code-cell} python
-:tags: [hide-input]
+:tags: [hide-input]  
+
 # programmatically adjust the camera angle  
 viewer.dims.ndisplay = 3
 viewer.camera.zoom = 2
 viewer.camera.angles = (3, 38, 53)
 nbscreenshot(viewer, alt_text="A rotated 3D view")
 ```
-<!-- If this image is included, the pan and zoom image appears twice in the html view so I have commented it out.  ![image: Rotated image](../assets/tutorials/rotated-image.png)>   -->
+<!-- This is commented out. ![image: Rotated image](../assets/tutorials/rotated-image.png) -->  
 
 #### Roll dimensions  
 
@@ -441,7 +441,7 @@ The right side of the status bar contains some helpful tips depending on which l
 
 Currently, **napari** comes with `light`, `dark` themes for the viewer;  the default is `dark`. Additionally, there is the `system` virtual theme that will attempt to match the viewer theme (`light` or `dark`) to your system theme on macOS, Windows, and some Linux. To change the preferred theme used for all viewers you can use the **Preferences** menu item in the **File** or **napari** menu and then select the **Appearance** tab. You can also change the `theme` property of the *current* viewer by using the following code:
 
-```{code-cell} python
+```{code-cell} python  
 from skimage import data
 
 import napari
@@ -453,12 +453,14 @@ viewer.theme = 'light'
 ```
 
 ```{code-cell} python
-:tags: [hide-input]
+:tags: [hide-input]  
+
 nbscreenshot(viewer, alt_text="A napari viewer changed to light theme")
 ```
 
 ```{code-cell} python
-:tags: [remove-cell]
+:tags: [remove-cell]  
+
 # change the viewer theme back to dark (for the rest of tutorial)  
 viewer.theme = 'dark'
 ```
