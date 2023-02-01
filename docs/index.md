@@ -94,8 +94,8 @@ you can install via pip, conda-forge, or from source.
 
 ### From pip, with "batteries included"
 
-napari can be installed on most macOS, Linux, and Windows systems with Python
-{{ python_version_range }} using pip:
+napari can be installed on macOS (with older Intel x86 chips), Linux, and Windows systems
+with Python {{ python_version_range }} using pip:
 
 ```sh
 python -m pip install "napari[all]"
@@ -115,6 +115,9 @@ up a Python {{ python_version }} environment with `conda`:
 ````
 
 ### From conda
+
+Installation from conda-forge using conda or mamba is required for newer, arm64 macOS machines
+(Apple Silicon):
 
 ```sh
 conda install -c conda-forge napari
