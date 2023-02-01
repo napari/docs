@@ -411,7 +411,7 @@ On the left side of the status bar there is a message about the position of the 
 The right side of the status bar contains some helpful tips depending on which layer and tools are currently selected.
 
 ## Right-click menu
- A context-sensitive menu is available when you right-click on any of the layers. The type of layer determines which options are available. The options that are not available for that layer are greyed out. It contains the following options: 
+ A context-sensitive menu is available when you right-click on any of the layers. The type of layer determines which options are available. Note that if you have multiple layers selected, the menu actions will affect all of the selected layers. The options that are not available for a layer are greyed out. It contains the following options: 
 * **Duplicate Layer** - creates a second copy of the selected layer. Can be used on **Points**, **Shapes**, **Labels**, and **Image** layers. This is useful for testing your analysis on a copy instead of on the original image.
 * **Convert to Labels** - converts an **Image** layer to a **Labels** layer. This is useful for converting a binary image segmentation map to a labels layer with each segmented object denoted by its own integer. Can also be used on a **Shapes** layer.  
 * **Convert to Image** - converts a **Labels** layer into an **Image** layer. 
