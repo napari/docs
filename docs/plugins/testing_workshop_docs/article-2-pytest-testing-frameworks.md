@@ -4,7 +4,7 @@ This article explains how to use the pytest testing framework to make testing ea
 
 ## Article information  
 
-* Article 1: [Python’s assert keyword](./article-1-Pythons-assert-keyword.md) 
+* Article 1: [Python’s assert keyword](./article-1-pythons-assert-keyword.md) 
 * Article 2: This article (Pytest testing framework)  
 * Article 3: [Readers and fixtures](./article-3-readers-and-fixtures.md)  
 * Article 4: [Test coverage](./article-4-test-coverage.md)  
@@ -29,7 +29,7 @@ Pytest goes through the target destination, such as a file or directory, finding
 
 If the tests fail, `pytest` is very good at tracing back the reason they failed and showing their values throughout test execution. In more complicated examples, this traceback mechanism can be very helpful. In this example, the message is that we got a `Pass` but were expecting a `Fail`. See the lines below that show the `assert` keyword and the errors.  
 
-```bash
+```console
 (napari-env) user@directory % pytest   
 
 example_test.py  
@@ -65,32 +65,35 @@ Another very useful tool that pytest provides is parametrization.
     
 We've tested these functions with a single value. We need to be more thorough. Pytest allows us to parametrize tests. We decorate our function with `@pytest.mark.parametrize` and pass the decorator a parameter name, `mark`, as a string, and a list of values for which we’d like to run the test function. Note that we pass in 50 as an edge case; it's the lowest mark that will pass.  
 
- ```python   
+```python
+import pytest
+
 def get_grade_from_mark(mark):
     if mark > 50
-        return “Pass”
+        return "Pass"
     else: 
-        return “Fail”
+        return "Fail"
 
-@pytest.mark.parametrize(‘mark’, [65, 80,50])
+@pytest.mark.parametrize("mark", [65, 80, 50])
 def test_get_grade_pass(mark):
-    grade = get_grade_from_mark(mark):  
-    assert grade == “Pass”, f”Expected {mark} to pass, but result was{grade}”
+    grade = get_grade_from_mark(mark):
+    assert grade == "Pass", f"Expected {mark} to pass, but result was{grade}"
 
+@pytest.mark.parametrize("mark", [40, 25])
 def test_get_grade_fail(mark):
     grade = get_grade_from_mark(mark):
-    assert grade == “Fail”, f”Expected {mark} to fail, but result was{grade}”
+    assert grade == "Fail", f"Expected {mark} to fail, but result was{grade}"
 
-    if _name_ == “_main_”;
-        test_get_grade_pass()
-        test_get_grade_fail()
-        print(“All passing.”)
+if _name_ == "_main_";
+    test_get_grade_pass(65)
+    test_get_grade_fail(30)
+    print("All passing.")
 ```
 
 We run `pytest` which finds and runs `test_get_grade_pass(mark)`. `test_get_grade_pass(mark)` fails because the code says `mark > 50`, so a mark of 50 still fails. The code should say `>=50` for a mark to pass.  
    
-```bash
-example_func.py .FF  
+```console
+example_func.py ..F..
 ================================= FAILURES ===============================  
 —------------------------ test_get_grade_pass[50] ------------------------  
 mark = 50  

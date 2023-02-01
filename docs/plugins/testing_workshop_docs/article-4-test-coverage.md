@@ -25,7 +25,7 @@ This is where _coverage_ comes in. `pytest-cov` can find out what the coverage o
 
 To run tests with coverage, run `pytest` and add `--cov` pointing to the module you're covering. There is also an option to generate an html report, which we do in this case. [Note that the `.` (period character) is part of the command.]  
 
-```bash
+```console
 (napari-env) user@directory % pytest --cov=plugin_tests --cov-report=html .  
 
 =========================== test session starts ==========================  
@@ -46,8 +46,8 @@ This command runs the tests, gets the coverage, and then writes the Coverage HTM
 
 There is a large folder (`htmlcov`) in the directory where the tests were run (`plugin_tests`). 
 
-```bash
-(napari-env) plugin-tests $ tree -L 1`  
+```console
+(napari-env) plugin-tests % tree -L 1`  
 .  
 ├── LICENSE    
 ├── MANIFEST.in  

@@ -24,10 +24,24 @@ Set the `upstream` remote to the base `napari` repository:
 git remote add upstream https://github.com/napari/napari.git
 ```
 
-Install the package in editable mode, along with all of the developer tools
+We recommend starting with a fresh Python virtual environment, using an environment manager like
+[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or [venv](https://docs.python.org/3/library/venv.html). Then, install the napari package
+in editable mode and all of the developer tools, along with a supported Qt backend. For example, for PyQt5, the default, you would use the following:
+```sh
+pip install -e ".[pyqt,dev]"  # (quotes only needed for zsh shell)
+```
+
+If you want to use PySide2 instead, you would use:
+```sh
+pip install -e ".[pyside,dev]"  # (quotes only needed for zsh shell)
+```
+
+Finally, if you already have a Qt backend installed or want to use an experimental one like Qt6 use:
 ```sh
 pip install -e ".[dev]"  # (quotes only needed for zsh shell)
 ```
+
+
 
 We use [`pre-commit`](https://pre-commit.com) to sort imports with
 [`isort`](https://github.com/PyCQA/isort), format code with
@@ -76,11 +90,11 @@ export NAPARI_REBUILD_RESOURCES=1
 ```
 
 Icons are typically used inside of one of our `stylesheet.qss` files, with the
-`{{ folder }}` variable used to expand the current theme name.
+`{{ id }}` variable used to expand the current theme name.
 
 ```css
 QtDeleteButton {
-   image: url("theme_{{ name }}:/delete.svg");
+   image: url("theme_{{ id }}:/delete.svg");
 }
 ```
 
@@ -108,14 +122,14 @@ register_theme('blue', blue_theme)
 
 
 To test out the theme, use the
-`theme_sample.py` file from the command line as follows:
+`qt_theme_sample.py` file from the command line as follows:
 
 ```sh
-python -m napari._qt.theme_sample
+python -m napari._qt.widgets.qt_theme_sample
 ```
 *note*: you may specify a theme with one additional argument on the command line:
 ```sh
-python -m napari._qt.theme_sample dark
+python -m napari._qt.widgets.qt_theme_sample dark
 ```
 (providing no arguments will show all themes in `theme.py`)
 
