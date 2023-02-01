@@ -1,22 +1,22 @@
-# Article 1: Python's assert keyword
+# 1: Python's assert keyword
 
-This article defines the assert keyword in Python and shows how it can be used to write test cases for a simple function.  
+This tutorial defines the assert keyword in Python and shows how it can be used to write test cases for a simple function.  
 
-## Article information  
+## Other lessons in this tutorial:  
 
-* Article 1: This article (Python's assert keyword) 
-* Article 2: [Pytest testing framework](./article-2-pytest-testing-frameworks)  
-* Article 3: [Readers and fixtures](./article-3-readers-and-fixtures)  
-* Article 4: [Test coverage](./article-4-test-coverage)  
+* 1: This lesson (Python's assert keyword) 
+* 2: [Pytest testing framework](./2-pytest-testing-frameworks)  
+* 3: [Readers and fixtures](./3-readers-and-fixtures)  
+* 4: [Test coverage](./4-test-coverage)  
 * Resource links: [Testing resources](./testing-resources)  
   
-### This article covers:  
+### This lesson covers:  
 [Assert keyword](#assert-keyword)  
 [Test for Pass](#test-for-the-pass-case)  
 [Test for Fail](#test-for-the-fail-case)  
 
 ### Resources
-The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).
+The example plugin and all the tests discussed in this lesson are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).
 
 ## Assert keyword  
 The key to testing in Python is the [assert](https://realpython.com/python-assert-statement/) keyword. We *assert* a Boolean expression is true and create an error message that appears when that expression is false. 
@@ -40,7 +40,7 @@ def get_grade_from_mark(mark):
 `get_grade_from_mark` can be tested by writing two test functions. The first one is for when the mark is > 50.   
   
   
-### Test for the Pass case
+## Test for the Pass case
 When the mark is > 50, call `get_grade_from_mark` and assert that the grade is what we expect (either `Pass` or `Fail`). When testing the passing case, test that the grade is `Pass`. If it's not `Pass`, the best practice is to write a helpful error message like, `"Expected {mark} to pass but result was {grade}."`
 
 ```python
@@ -91,4 +91,4 @@ Note that when the assertion fails, a traceback occurs.
 
 This example is a simple way to demonstrate the use of the assert keyword, but it’s not particularly useful for testing a larger codebase. This test function has to be called explicitly to test different marks. There’s not much detail when the code is running. We just get `“All passing.”` and there’s no information about other tests when one of the tests fails.  
   
-Making testing more convenient is where [testing frameworks](./article-2-pytest-testing-frameworks), like [pytest](https://docs.pytest.org/) come in.  
+Making testing more convenient is where [testing frameworks](./rticle-2-pytest-testing-frameworks), like [pytest](https://docs.pytest.org/) come in.  

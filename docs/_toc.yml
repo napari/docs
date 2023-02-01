@@ -88,10 +88,10 @@ subtrees:
       - file: plugins/testing_workshop_docs/index
         subtrees:
         - entries:
-          - file: plugins/testing_workshop_docs/article-1-pythons-assert-keyword
-          - file: plugins/testing_workshop_docs/article-2-pytest-testing-frameworks
-          - file: plugins/testing_workshop_docs/article-3-readers-and-fixtures
-          - file: plugins/testing_workshop_docs/article-4-test-coverage
+          - file: plugins/testing_workshop_docs/1-pythons-assert-keyword
+          - file: plugins/testing_workshop_docs/2-pytest-testing-frameworks
+          - file: plugins/testing_workshop_docs/3-readers-and-fixtures
+          - file: plugins/testing_workshop_docs/4-test-coverage
           - file: plugins/testing_workshop_docs/testing-resources
   - file: community/index
     subtrees:

@@ -1,26 +1,26 @@
-# Article 3: Readers and fixtures  
+# 3: Readers and fixtures  
 
-This article explains how to use and test a plugin's reader function, built-in fixtures, custom fixtures, and enclosed testing. 
+This lesson explains how to use and test a plugin's reader function, built-in fixtures, custom fixtures, and enclosed testing. 
 
-## Article information  
+## Other lessons in this tutorial:  
   
-* Article 1: [Python’s assert keyword](./article-1-pythons-assert-keyword.md) 
-* Article 2: [Pytest testing framework](./article-2-pytest-testing-frameworks.md)  
-* Article 3: This article (Readers and fixtures)  
-* Article 4: [Test coverage](./article-4-test-coverage.md)  
+* Article 1: [Python’s assert keyword](./1-pythons-assert-keyword.md) 
+* Article 2: [Pytest testing framework](./2-pytest-testing-frameworks.md)  
+* Article 3: This lesson (Readers and fixtures)  
+* Article 4: [Test coverage](./4-test-coverage.md)  
 * Resource links: [Testing resources](./testing-resources.md)  
 
-### This article covers:   
+### This lesson covers:   
 * [Readers](#reader)  
 * [Built-in fixtures](#built-in-fixtures)  
 * [Custom fixtures and round-trip tests](#custom-fixtures-and-round-trip-tests)  
 * [Enclosed testing](#enclosed-testing)  
   
 ### Resources  
-The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).  
+The example plugin and all the tests discussed in this lesson are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).  
   
 ## Introduction  
-In this article, we discuss a plugin called [plugin_tests](https://github.com/DragaDoncila/plugin-tests/tree/main/src/plugin_tests), generated using the [cookiecutter](https://github.com/napari/cookiecutter-napari-plugin), which has a reader and a widget. The reader is the cookiecutter numpy file reader, `napari_get_reader`. It checks whether a path ends in `.npy`. If it doesn't, it returns `None`, and if it does, it returns the `reader_function`, which loads the data. 
+In this lesson, we discuss a plugin called [plugin_tests](https://github.com/DragaDoncila/plugin-tests/tree/main/src/plugin_tests), generated using the [cookiecutter](https://github.com/napari/cookiecutter-napari-plugin), which has a reader and a widget. The reader is the cookiecutter numpy file reader, `napari_get_reader`. It checks whether a path ends in `.npy`. If it doesn't, it returns `None`, and if it does, it returns the `reader_function`, which loads the data. 
 
 ![napari_get_reader](../../images/napari_plugins_1st_napari_get_reader.png)
   
@@ -148,4 +148,4 @@ We run our tests again, and now two are collected, both passing.
 ## Enclosed testing  
 Note that although we're testing a `napari` plugin, we did not need a viewer or napari to test this. It's important that we didn't need those because napari and the napari viewer are out of our control. What we can control is the code _we_ wrote. We wrote that data by simply mocking up an array and getting a temporary path to it. We could thoroughly test our functions in an enclosed way without relying on other people's code or mocking up many complicated objects.  
   
-The next article in this series on testing is [Test coverage](./article-4-test-coverage).  
+The next lesson in this series on testing is [Test coverage](./4-test-coverage).  

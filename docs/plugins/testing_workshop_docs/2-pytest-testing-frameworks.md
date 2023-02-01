@@ -1,21 +1,21 @@
-# Article 2: Pytest testing framework  
+# 2: Pytest testing framework  
 
-This article explains how to use the pytest testing framework to make testing easier.
+This lesson explains how to use the pytest testing framework to make testing easier.
 
-## Article information  
+## Other lessons in this tutorial:   
 
-* Article 1: [Python’s assert keyword](./article-1-pythons-assert-keyword.md) 
-* Article 2: This article (Pytest testing framework)  
-* Article 3: [Readers and fixtures](./article-3-readers-and-fixtures.md)  
-* Article 4: [Test coverage](./article-4-test-coverage.md)  
+* Article 1: [Python’s assert keyword](./1-pythons-assert-keyword.md) 
+* Article 2: This lesson (Pytest testing framework)  
+* Article 3: [Readers and fixtures](./3-readers-and-fixtures.md)  
+* Article 4: [Test coverage](./4-test-coverage.md)  
 * Resource links: [Testing resources](./testing-resources.md)  
   
-### This article covers:  
+### This lesson covers:  
 * [Testing framework features](#testing-framework-features)  
 * [Parametrization](#parametrization)  
 
 ### Resources  
-The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).
+The example plugin and all the tests discussed in this lesson are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).
   
 ## Introduction  
 We are using pytest as a testing framework. It provides convenience tools to assist with testing. For example, it can discover tests for you if you point it to a directory or a file.  It can be installed using `pip install pytest`.
@@ -25,7 +25,7 @@ Testing frameworks provide a whole host of useful features, including:
 * Test discovery - directories can be crawled (searched) to find things that look like tests and run them
 * Housekeeping and ease of use - convenient methods for writing tests and cleaning up after running the tests  
   
-Pytest goes through the target destination, such as a file or directory, finding any method or function prefaced with the word `test`. It runs all the methods and functions prefaced with the word `test` but _not_ the code under the main block. When `pytest` runs against `example_test.py` (refer to the [Python's assert keyword](./article-1-pythons-assert-keyword.md) article), it finds several tests that all pass.  
+Pytest goes through the target destination, such as a file or directory, finding any method or function prefaced with the word `test`. It runs all the methods and functions prefaced with the word `test` but _not_ the code under the main block. When `pytest` runs against `example_test.py` (refer to the [Python's assert keyword](./1-pythons-assert-keyword.md) lesson), it finds several tests that all pass.  
 
 If the tests fail, `pytest` is very good at tracing back the reason they failed and showing their values throughout test execution. In more complicated examples, this traceback mechanism can be very helpful. In this example, the message is that we got a `Pass` but were expecting a `Fail`. See the lines below that show the `assert` keyword and the errors.  
 
@@ -111,6 +111,6 @@ example_func_py:12: AssertionError
 FAILED example_func_py::test_get_grade_pass[50] - AssertionError: Expected 50 to pass, but result was Fail   
 ```
 
-Another valuable feature of `pytest` is the `pytest-cov` option discussed in the [Test coverage](./article-4-test-coverage.md) article.  
+Another valuable feature of `pytest` is the `pytest-cov` option discussed in the [Test coverage](./4-test-coverage.md) lesson  
 
-The next article in this series on testing is the [Readers and fixtures](./article-3-readers-and-fixtures.md) article. 
+The next lesson in this tutorial on testing is the [Readers and fixtures](./3-readers-and-fixtures.md) lesson. 

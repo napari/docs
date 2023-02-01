@@ -1,19 +1,19 @@
-# Article 4: Test coverage
+# 4: Test coverage
 
-## Article information  
+## Other lessons in this tutorial:   
 
-* Article 1: [Python’s assert keyword](./article-1-pythons-assert-keyword.md) 
-* Article 2: [Pytest testing framework](./article-2-pytest-testing-frameworks.md)  
-* Article 3: [Readers and fixtures](./article-3-readers-and-fixtures.md)  
-* Article 4: This article (Test coverage)   
+* 1: [Python’s assert keyword](./1-pythons-assert-keyword.md) 
+* 2: [Pytest testing framework](./2-pytest-testing-frameworks.md)  
+* 3: [Readers and fixtures](./3-readers-and-fixtures.md)  
+* 4: This lesson (Test coverage)   
 * Resource links: [testing resources](./testing-resources.md)   
 
-### This article covers:   
+### This lesson covers:   
 * [Coverage](#coverage)
 * [pytest --cov](#pytest---cov)    
  
 #### Resources  
-The example plugin and all the tests discussed in this article are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).    
+The example plugin and all the tests discussed in this lesson are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).    
 
 ## Coverage  
 How do we know when we have tested everything? 
@@ -100,4 +100,4 @@ There could be other, more complicated cases that we have not tested, but at the
 
 If the html report seems cumbersome, we can print the coverage directly to the terminal with `--cov-report=term-missing`. This command is on the [slides](https://docs.google.com/presentation/d/1vD1_jhK6Xjqltmlp5Q2auXkgkvQTrr2d77_a9TqD6yk/edit#slide=id.g10c4a0816be_0_24). That will print the exact lines of code you haven’t tested.
 
-We've got 100% coverage in the reader, no lines missed. Many `napari` plugins contain widgets though - testing widgets is a topic for another article.
+We've got 100% coverage in the reader, no lines missed. Many `napari` plugins contain widgets though - testing widgets is a topic for another time.
