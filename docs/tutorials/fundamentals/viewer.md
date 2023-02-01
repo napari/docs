@@ -386,7 +386,7 @@ nbscreenshot(viewer, alt_text="A rotated 3D view")
 
 #### Roll dimensions  
 
-The third button rolls the dimensions that are currently displayed in the viewer. For example if you have a `ZYX` volume and are looking at the `YX` slice, this will then show you the `ZY` slice.
+The third button rolls the dimensions that are currently displayed in the viewer. For example if you have a `ZYX` volume and are looking at the `YX` slice, this will then show you the `ZY` slice. You can also right-click this button to re-order the dimensions by drag-and-drop.
 
 #### Transpose dimensions  
 
