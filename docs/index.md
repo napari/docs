@@ -77,9 +77,6 @@ See some of the things napari can do.
 How to install napari.
 :::
 
-::::
-
-::::{grid}
 :::{grid-item-card} Getting started
 :link: getting_started
 :link-type: ref
@@ -87,11 +84,29 @@ How to install napari.
 Get started with napari.
 :::
 
+::::
+
+::::{grid}
+
 :::{grid-item-card} Community
 :link: community
 :link-type: ref
 
 Forums, web chat, video chat, and more! Join us!
+:::
+
+:::{grid-item-card} Governance
+:link: napari-governance
+:link-type: ref
+
+napari is developed by a global community. See how.
+:::
+
+:::{grid-item-card} Plugins
+:link: plugins-index
+:link-type: ref
+
+napari is extensible! Find plugins, or develop your own!
 :::
 
 ::::
