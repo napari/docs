@@ -77,10 +77,9 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
 
     Note that in this last case you will need to install your Qt backend separately.
 
-5. We use [`pre-commit`](https://pre-commit.com) to sort imports with
-   [`isort`](https://github.com/PyCQA/isort), format code with
-   [`black`](https://github.com/psf/black), and lint with
-   [`flake8`](https://github.com/PyCQA/flake8) automatically prior to each commit.
+5. We use [`pre-commit`](https://pre-commit.com) to format code with
+   [`black`](https://github.com/psf/black) and lint with
+   [`ruff`](https://github.com/charliermarsh/ruff) automatically prior to each commit.
    To minimize test errors when submitting pull requests, please install `pre-commit`
    in your environment as follows:
 
