@@ -1,17 +1,16 @@
 # Tools and tips when building napari plugins: Survey 
 
-This articles contains questions that were submitted to our survey on testing.  
+This guide contains questions that were submitted to our survey on testing.  
 
-## Article Information
+## Other topics in this series:
 
-* Article 1: [Virtual environments](./article-1-virtual-environments.md)   
-* Article 2: [Deploying your plugin](./article-2-deploying-your-plugin.md)  
-* Article 3: [Version management](./article-3-version-management.md)  
-* Article 4: [Developer tools](./article-4-developer-tools.md)
-* Article 5: [More than just best practices](./article-5-more-than-just-best-practices.md)  
-* Article 6: This article  
+* 1: [Virtual environments](./1-virtual-environments.md)   
+* 2: [Deploying your plugin](./2-deploying-your-plugin.md)  
+* 3: [Version management](./3-version-management.md)  
+* 4: [Developer tools](./4-developer-tools.md)
+* 5: This guide  
 
-## This article covers:   
+## This guide covers:   
 * [Questions](#questions)  
     - [Testing plugins](#testing-plugins)  
     - [Testing widgets](#testing-widgets)  
@@ -115,4 +114,4 @@ Answer:
   This will monitor a file/directory for changes, and re-run a command each time (which is why step #1 is also useful).  
 
 
-This is the last article in this series. 
+This is the last topic in this series. 

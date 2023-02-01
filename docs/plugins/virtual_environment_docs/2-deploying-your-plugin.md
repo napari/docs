@@ -1,15 +1,15 @@
-# Article 2: Tools and tips when building napari plugins: Deploying your plugin  
+# 2: Deploying your plugin  
 
-This article explains some of the techniques you can use to deploy your plugin. 
+This guide explains some of the techniques you can use to deploy your plugin. 
 
-## Article information  
-* Article 1: [Virtual environments](./article-1-virtual-environments.md)   
-* Article 2: This article  
-* Article 3: [Version management](./article-3-version-management.md)     
-* Article 4: [Developer tools](./article-4-developer-tools.md)   
-* Article 5: [Survey](./article-6-Survey.md)   
+## Other topics in this series:  
+* 1: [Virtual environments](./1-virtual-environments.md)   
+* 2: This guide  
+* 3: [Version management](./3-version-management.md)     
+* 4: [Developer tools](./4-developer-tools.md)   
+* 5: [Survey](./5-Survey.md)   
 
-## This article covers:   
+## This guide covers:   
 * [PyPI and Anaconda](#pypi-and-anaconda)
     - [Package formats (PyPI)](#package-formats-pypi)
     - [PyPI](#pypi)
@@ -104,4 +104,4 @@ Once your recipe is approved and merged, the rest happens *automagically*, and y
 
 This is **far** easier if you already have an sdist published to PyPI.
 
-The next article in this series is [Version management](./article-3-version-management.md).
+The next topic in this series is [Version management](./3-version-management.md).

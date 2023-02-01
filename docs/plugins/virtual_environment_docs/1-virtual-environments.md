@@ -1,16 +1,16 @@
-# Article 1: Virtual environments  
+# 1: Virtual environments  
 
-This article explains the value of using virtual environments and how to create and remove them. 
+This guide explains the value of using virtual environments and how to create and remove them. 
 
-## Article Information  
+## Other topics in this series:  
 
-* Article 1: This article  
-* Article 2: [Deploying your plugin](./article-2-deploying-your-plugin.md)  
-* Article 3: [Version management](./article-3-version-management.md)     
-* Article 4: [Developer tools](./article-4-developer-tools.md)   
-* Article 5: [Survey](./article-6-Survey.md)   
+* 1: This guide  
+* 2: [Deploying your plugin](./2-deploying-your-plugin.md)  
+* 3: [Version management](./3-version-management.md)     
+* 4: [Developer tools](./4-developer-tools.md)   
+* 5: [Survey](./5-Survey.md)   
 
-### This article covers: 
+### This guide covers: 
 * [Resources](#resources)  
 * [Creating environments](#creating-environments)  
 * [Removing environments](#removing-environments)
@@ -65,4 +65,4 @@ If you are ever having weird problems, nuke your environment and start over usin
   
 Encourage your users to do the same. You can waste a lot of time trying to debug something that someone unknowingly did when installing a variety of things into their environment. If they can provide a repeatable example (starting from environment creation), then it's worth debugging.
 
-The next article in this series is [Deploying your plugin](./article-2-deploying-your-plugin.md). 
+The next topic in this series is [Deploying your plugin](./2-deploying-your-plugin.md). 

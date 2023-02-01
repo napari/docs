@@ -1,15 +1,15 @@
-# Article 4: Developer tools
+# 4: Developer tools
 
-This article explains the different types of tools that can help you develop and test your code.  
+This guide explains the different types of tools that can help you develop and test your code.  
 
-## Article information  
-* Article 1: [Virtual environments](./article-1-virtual-environments)  
-* Article 2: [Deploying your plugin](./article-2-deploying-your-plugin.md)    
-* Article 3: [Version management](./article-3-version-management.md)   
-* Article 4: This article.   
-* Article 5: [Survey](./article-6-Survey.md) 
+## Other topics in this series:  
+* 1: [Virtual environments](./1-virtual-environments)  
+* 2: [Deploying your plugin](./2-deploying-your-plugin.md)    
+* 3: [Version management](./3-version-management.md)   
+* 4: This guide   
+* 5: [Survey](./5-Survey.md) 
 
-## This article covers:   
+## This guide covers:   
 * [General tools](#general-tools)
     - [Linting tools](#linting-tools)  
     - [Formatting tools](#formatting-tools)  
@@ -73,4 +73,4 @@ These _auto-modify_ your code.
 `     uses: tlambert03/napari-plugin-action@main`  
 `     with: package_name:  <your-package-name>`     
 
-The next article in this series is the [Survey](./article-6-survey.md) article. 
+The next topic in this series is the [Survey](./5-survey.md). 

@@ -1,16 +1,16 @@
-# Article 3: Version management  
+# 3: Version management  
 
-This article covers the methods of updating your version string everywhere.
+This guide covers the methods of updating your version string everywhere.
 
-## Article Information  
+## Other topics in this series:  
 
-* Article 1: [Virtual environments](./article-1-virtual-environments)  
-* Article 2: [Deploying your plugin](./article-2-deploying-your-plugin.md)    
-* Article 3: This article   
-* Article 4: [Developer tools](./article-4-developer-tools.md)   
-* Article 5: [Survey](./article-6-Survey.md) 
+* 1: [Virtual environments](./1-virtual-environments)  
+* 2: [Deploying your plugin](./2-deploying-your-plugin.md)    
+* 3: This guide   
+* 4: [Developer tools](./4-developer-tools.md)   
+* 5: [Survey](./5-Survey.md) 
 
-## This article covers:  
+## This guide covers:  
 * [Using git tags](#using-git-tags)
 * [Using a local script to edit files](#using-a-local-script-to-edit-files)  
 * [Manually](#manually)
@@ -44,4 +44,4 @@ This is ***not*** recommended, you *will* eventually make mistakes and have mism
 Get comfortable with at least one workflow for versioning and deploying your package  
  . . . . . . . . . . . . . . . . *otherwise, you won't do it.*
 
-The next article in this series is [Developer tools](./article-4-developer-tools.md).
+The next topic in this series is [Developer tools](./4-developer-tools.md).
