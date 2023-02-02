@@ -185,7 +185,7 @@ This means that if you install `napari=0.4.16` using the installer, the actual `
 can be found, by default, on the following locations:
 
 * Linux: `~/.local/napari-0.0.1/envs/napari-0.4.16/bin/napari`
-* macOS: `~/Library/napari-0.0.1/envs/napari-0.4.16/bin/napari`
+* macOS: `{{ '~/Library/napari-0.0.1/envs/napari-NAPARI_VER/bin/napari'.replace('NAPARI_VER', napari_version) }}`
 * Windows: `~/napari-0.0.1/envs/napari-0.4.16/Library/bin/napari`
 
 #### Branding
