@@ -118,10 +118,10 @@ specs: # specs for the 'base'  environment
   - mamba    # we add these to manage different napari versions
   - pip      # we add these to manage different napari versions
 extra_envs:
-  napari-0.4.16: # this is the environment that will actually contain the napari packages
+  {{ 'napari-NAPARI_VER'.replace('NAPARI_VER', napari_version) }}: # this is the environment that will actually contain the napari packages
     specs:
-      - napari=0.4.16=*pyside*
-      - napari-menu=0.4.16
+      - {{ 'napari=NAPARI_VER=*pyside*'.replace('NAPARI_VER', napari_version) }}
+      - {{ 'napari-menu=NAPARI_VER'.replace('NAPARI_VER', napari_version) }}
       - python   # pinned to a specific version, configured by CI
       - conda    # needed for the plugin manager
       - mamba    # needed for the plugin manager
@@ -160,7 +160,7 @@ The main OS-agnostic keys are:
   In nightly installers, we locally build our own development packages for `conda`, without resorting to `conda-forge`. 
   To make use of those (which are eventually published to `napari/label/nightly`), 
   we unpack the GitHub Actions artifact in a specific location that `constructor` recognizes as a _local_ channel once indexed.
-* `extra_envs> napari-$VERSION`: the environment that will actually contain the napari installation.
+* {{ '`extra_envs> napari-NAPARI_VER`'.replace('NAPARI_VER', napari_version) }} : the environment that will actually contain the napari installation.
   In this key, you will find `specs`, which lists the conda packages to be installed in that environment. 
   Constructor will perform a conda solve here to retrieve the needed dependencies.
 * `menu_packages`: restrict which packages can create shortcuts. 
@@ -181,12 +181,12 @@ need to take into account to make this happen:
 * On macOS, the PKG installer does not offer a lot of flexibility for this configuration. We will
   put it under `~/Library/napari-<INSTALLER-VERSION>`, by default.
 
-This means that if you install `napari=0.4.16` using the installer, the actual `napari` executable
+This means that if you install {{ napari_conda_version }} using the installer, the actual `napari` executable
 can be found, by default, on the following locations:
 
-* Linux: `~/.local/napari-0.0.1/envs/napari-0.4.16/bin/napari`
-* macOS: `{{ '~/Library/napari-0.0.1/envs/napari-NAPARI_VER/bin/napari'.replace('NAPARI_VER', napari_version) }}`
-* Windows: `~/napari-0.0.1/envs/napari-0.4.16/Library/bin/napari`
+* Linux: {{ '`~/.local/napari-0.0.1/envs/napari-NAPARI_VER/bin/napari`'.replace('NAPARI_VER', napari_version) }}
+* macOS: {{ '`~/Library/napari-0.0.1/envs/napari-NAPARI_VER/bin/napari`'.replace('NAPARI_VER', napari_version) }}`
+* Windows: {{ '`~/napari-0.0.1/envs/napari-NAPARI_VER/Library/bin/napari`'.replace('NAPARI_VER', napari_version) }}
 
 #### Branding
 
