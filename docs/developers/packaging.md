@@ -99,7 +99,7 @@ It supports the following installer types:
 
 The configuration is done through a `construct.yaml` file, documented [here][7]. 
 We generate one on the fly in the `build_installers.py` script found in `napari/packaging`.
-Roughly, we will build this configuration file:
+For napari 0.4.17 we would have built this configuration file:
 
 
 ```yaml
@@ -118,10 +118,10 @@ specs: # specs for the 'base'  environment
   - mamba    # we add these to manage different napari versions
   - pip      # we add these to manage different napari versions
 extra_envs:
-  {{ 'napari-NAPARI_VER'.replace('NAPARI_VER', napari_version) }}: # this is the environment that will actually contain the napari packages
+  napari-0.4.17: # this is the environment that will actually contain the napari packages
     specs:
-      - {{ 'napari=NAPARI_VER=*pyside*'.replace('NAPARI_VER', napari_version) }}
-      - {{ 'napari-menu=NAPARI_VER'.replace('NAPARI_VER', napari_version) }}
+      - napari=0.4.17=*pyside*
+      - napari-menu=0.4.17
       - python   # pinned to a specific version, configured by CI
       - conda    # needed for the plugin manager
       - mamba    # needed for the plugin manager
@@ -160,7 +160,7 @@ The main OS-agnostic keys are:
   In nightly installers, we locally build our own development packages for `conda`, without resorting to `conda-forge`. 
   To make use of those (which are eventually published to `napari/label/nightly`), 
   we unpack the GitHub Actions artifact in a specific location that `constructor` recognizes as a _local_ channel once indexed.
-* {{ '`extra_envs> napari-NAPARI_VER`'.replace('NAPARI_VER', napari_version) }} : the environment that will actually contain the napari installation.
+* {{ '`extra_envs> napari-NAPARI_VER`'.replace('NAPARI_VER', napari_version) }}: the environment that will actually contain the napari installation.
   In this key, you will find `specs`, which lists the conda packages to be installed in that environment. 
   Constructor will perform a conda solve here to retrieve the needed dependencies.
 * `menu_packages`: restrict which packages can create shortcuts. 
