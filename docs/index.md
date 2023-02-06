@@ -45,14 +45,13 @@ theme:
 
 # napari
 
-```python
-from skimage.data import cells3d
-import napari
+```{figure} images/multichannel_cells.png
+:name: multichannel-cells
+:alt: napari viewer showing 3D cells image
+:align: center
 
-viewer, layers = napari.imshow(cells3d(), channel_axis=1)
+napari.imshow(cells3d(), channel_axis=1)
 ```
-
-![napari viewer showing 3D cells image](images/multichannel_cells.png)
 
 ## A multi-dimensional image viewer for Python
 
