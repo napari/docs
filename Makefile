@@ -6,21 +6,29 @@ ifeq ($(GALLERY_PATH),)
 GALLERY_PATH := ../../napari/examples
 endif
 
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+current_dir := $(dir $(mkfile_path))
+docs_dir := $(current_dir)docs
+
 clean:
 	echo clean
-	rm -rf docs/_build/
-	rm -rf docs/api/napari*.rst
-	rm -rf docs/_tags
-	rm -rf docs/gallery/
+	echo $(current_dir)
+	rm -rf $(docs_dir)/_build/
+	rm -rf $(docs_dir)/api/napari*.rst
+	rm -rf $(docs_dir)/gallery/*
+	rm -rf $(docs_dir)/_tags
 
 docs-install:
-	python -m pip install -qr requirements.txt
+	python -m pip install -qr $(current_dir)requirements.txt
 
 prep-docs:
-	python docs/_scripts/prep_docs.py
+	python $(docs_dir)/_scripts/prep_docs.py
 
 docs-build: prep-docs
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs="$(GALLERY_PATH)"
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH)
+
+docs-xvfb: prep-docs
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH)
 
 docs: clean docs-install docs-build
 
@@ -41,7 +49,7 @@ html-live: prep-docs
 		--ignore "$(shell pwd)/docs/jupyter_execute/*"
 
 html-noplot: clean prep-docs
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -D plot_gallery=0 -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs="$(GALLERY_PATH)"
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -D plot_gallery=0 -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH)
 
 linkcheck-files:
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build -D sphinx_gallery_conf.examples_dirs="$(GALLERY_PATH)"
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH)

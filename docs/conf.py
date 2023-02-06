@@ -23,6 +23,7 @@ import qtgallery
 from jinja2.filters import FILTERS
 
 import napari
+from napari._version import __version_tuple__
 
 release = napari.__version__
 if "dev" in release:
@@ -56,12 +57,12 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "sphinx_external_toc",
-    "sphinx_tabs.tabs",
+    "sphinx_design",
     'myst_nb',
     #    "sphinx_comments",
-    "sphinx_panels",
     "sphinx.ext.viewcode",
     "sphinx-favicon",
+    "sphinx_copybutton",
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
 ]
@@ -158,6 +159,21 @@ myst_enable_extensions = [
 
 myst_heading_anchors = 3
 
+version_string = '.'.join(str(x) for x in __version_tuple__[:3])
+python_version = '3.9'
+python_version_range = '3.8–3.10'
+python_minimum_version = '3.8'
+
+myst_substitutions = {
+   "napari_conda_version": f"`napari={version_string}`",
+   "napari_version": version_string,
+   "python_version": python_version,
+   "python_version_range": python_version_range,
+   "python_minimum_version": python_minimum_version,
+   "python_version_code": f"`python={python_version}`",
+   "conda_create_env": f"```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```",
+}
+
 nb_output_stderr = 'show'
 
 panels_add_bootstrap_css = False
@@ -177,6 +193,7 @@ exclude_patterns = [
     '.jupyter_cache',
     'jupyter_execute',
     'plugins/_*.md',
+    'gallery/index.rst',
 ]
 
 napoleon_custom_sections = [('Events', 'params_style')]
@@ -188,6 +205,9 @@ def reset_napari_theme(gallery_conf, fname):
     settings = get_settings()
     settings.appearance.theme = 'dark'
     qtgallery.reset_qapp(gallery_conf, fname)
+
+
+from sphinx_gallery.sorting import ExampleTitleSortKey
 
 sphinx_gallery_conf = {
     #'examples_dirs': '../../napari/examples',  # path to your example scripts
@@ -205,6 +225,7 @@ sphinx_gallery_conf = {
     'image_scrapers': (qtgallery.qtscraper,),
     'reset_modules': (reset_napari_theme,),
     'reference_url': {'napari': None},
+    'within_subsection_order': ExampleTitleSortKey,
 }
 
 
@@ -241,7 +262,11 @@ autosummary_ignore_module_all = False
 
 linkcheck_anchors_ignore = [r'^!', r'L\d+-L\d+', r'r\d+', r'issuecomment-\d+']
 
-linkcheck_ignore = ['https://napari.zulipchat.com/']
+linkcheck_ignore = [
+    'https://napari.zulipchat.com/',
+    '../_tags',
+    'https://en.wikipedia.org/wiki/Napari#/media/File:Tabuaeran_Kiribati.jpg',
+    ]
 
 
 def rewrite_github_anchor(app, uri: str):
