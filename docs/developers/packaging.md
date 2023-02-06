@@ -130,11 +130,11 @@ menu_packages:
   - napari-menu  # don't create shortcuts for anything else in the environment
 
 # linux-specific config
-default_prefix: $HOME/napari-0.0.1  # default installation path
+default_prefix: $HOME/napari-0.4.17  # default installation path
 
 # macos-specific config
 default_location_pkg : Library # first component of the default path under ~/
-pkg_name: napari-0.0.1  # second component of the default path
+pkg_name: napari-0.4.17  # second component of the default path
 installer_type: pkg  # otherwise, defaults to sh (Linux-like)
 welcome_image: resources/napari_1227x600.png  # bg image with the napari logo on bottom-left corner
 welcome_file: resources/osx_pkg_welcome.rtf  # rendered text in the first screen
@@ -146,9 +146,9 @@ signing_identity_name: "Apple Developer ID: ..."  # Name of our installer signin
 welcome_image: resources/napari_164x314.png  # logo image for the first screen
 header_image:  resources/napari_150x57.png  # logo image (top left) for the rest of the installer
 icon_image: napari/resources/icon.ico  # favicon for the taskbar and title bar
-default_prefix: '%USERPROFILE%/napari-0.0.1'  # default location for user installs
-default_prefix_domain_user: '%LOCALAPPDATA%/napari-0.0.1'  # default location for network installs
-default_prefix_all_users: '%ALLUSERSPROFILE%/napari-0.0.1'  # default location for admin installs
+default_prefix: '%USERPROFILE%/napari-0.4.17'  # default location for user installs
+default_prefix_domain_user: '%LOCALAPPDATA%/napari-0.4.17'  # default location for network installs
+default_prefix_all_users: '%ALLUSERSPROFILE%/napari-0.4.17'  # default location for admin installs
 signing_certificate: certificate.pfx  # path to signing certificate
 ```
 
@@ -171,7 +171,7 @@ Then, depending on the operating systems and the installer format, we customize 
 #### Default installation path
 
 This depends on each OS. Our general strategy is to put the general installation under
-`~/<hidden>/napari-<INSTALLER-VERSION>`, which will eventually contain the napari installations under
+`~/<hidden>/napari-<VERSION>`, which will eventually contain the napari installations under
 `envs/`, with environments named as `napari-<VERSION>`. However, there are several constrains we
 need to take into account to make this happen:
 
@@ -179,14 +179,14 @@ need to take into account to make this happen:
   we understand by "user directory". This is further complicated by the existence of "domain users",
   which are not guaranteed to have a user directory per se.
 * On macOS, the PKG installer does not offer a lot of flexibility for this configuration. We will
-  put it under `~/Library/napari-<INSTALLER-VERSION>`, by default.
+  put it under `~/Library/napari-<VERSION>`, by default.
 
 This means that if you install {{ napari_conda_version }} using the installer, the actual `napari` executable
 can be found, by default, on the following locations:
 
-* Linux: {{ '`~/.local/napari-0.0.1/envs/napari-NAPARI_VER/bin/napari`'.replace('NAPARI_VER', napari_version) }}
-* macOS: {{ '`~/Library/napari-0.0.1/envs/napari-NAPARI_VER/bin/napari`'.replace('NAPARI_VER', napari_version) }}`
-* Windows: {{ '`~/napari-0.0.1/envs/napari-NAPARI_VER/Library/bin/napari`'.replace('NAPARI_VER', napari_version) }}
+* Linux: {{ '`~/.local/napari-NAPARI_VER/envs/napari-NAPARI_VER/bin/napari`'.replace('NAPARI_VER', napari_version) }}
+* macOS: {{ '`~/Library/napari-NAPARI_VER/envs/napari-NAPARI_VER/bin/napari`'.replace('NAPARI_VER', napari_version) }}`
+* Windows: {{ '`~/napari-NAPARI_VER/envs/napari-NAPARI_VER/Library/bin/napari`'.replace('NAPARI_VER', napari_version) }}
 
 #### Branding
 
