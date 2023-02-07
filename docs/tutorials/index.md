@@ -10,7 +10,7 @@ in contributing to napari then please check out [the Community page](../communit
 :link: annotation
 :link-type: ref
 
-How to annoate images and videos using the napari points, labels, or shapes layers
+How to annotate images and videos using the napari points, labels, or shapes layers
 :::
 
 :::{grid-item-card} Processing

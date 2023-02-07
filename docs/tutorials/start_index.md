@@ -42,6 +42,6 @@ and how the data within it is organized.
 :link: layers-glance
 :link-type: ref
 
-An overview of the napari *Layers*, the basic viewable objects that can be added to a viewer.
+An overview of the napari *Layers*, the basic viewable objects that can be displayed on the canvas.
 :::
 ::::
