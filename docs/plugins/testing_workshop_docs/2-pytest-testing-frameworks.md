@@ -4,10 +4,10 @@ This lesson explains how to use the pytest testing framework to make testing eas
 
 ## Other lessons in this tutorial:   
 
-* Article 1: [Python’s assert keyword](./1-pythons-assert-keyword.md) 
-* Article 2: This lesson (Pytest testing framework)  
-* Article 3: [Readers and fixtures](./3-readers-and-fixtures.md)  
-* Article 4: [Test coverage](./4-test-coverage.md)  
+* 1: [Python’s assert keyword](./1-pythons-assert-keyword.md) 
+* 2: This lesson (Pytest testing framework)  
+* 3: [Readers and fixtures](./3-readers-and-fixtures.md)  
+* 4: [Test coverage](./4-test-coverage.md)  
 * Resource links: [Testing resources](./testing-resources.md)  
   
 ### This lesson covers:  
