@@ -43,10 +43,10 @@ html-live: prep-docs
 		docs/_build \
 		-D plot_gallery=0 \
 		-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
-		--ignore "$(shell pwd)/docs/_tags/*" \
-		--ignore "$(shell pwd)/docs/api/napari*.rst" \
-		--ignore "$(shell pwd)/docs/gallery/*" \
-		--ignore "$(shell pwd)/docs/jupyter_execute/*"
+		--ignore $(docs_dir)"/_tags/*" \
+		--ignore $(docs_dir)"/api/napari*.rst" \
+		--ignore $(docs_dir)"/gallery/*" \
+		--ignore $(docs_dir)"/jupyter_execute/*"
 
 html-noplot: clean prep-docs
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -D plot_gallery=0 -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH)
