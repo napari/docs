@@ -1,4 +1,4 @@
-# Tools and tips when building napari plugins: Survey 
+# 5: Survey
 
 This guide contains questions that were submitted to our survey on testing.  
 

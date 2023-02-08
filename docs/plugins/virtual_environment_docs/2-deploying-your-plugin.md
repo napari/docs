@@ -19,7 +19,7 @@ This guide explains some of the techniques you can use to deploy your plugin.
 
 
 ## PyPI and Anaconda
-Try to deploy to both! But for now, try to at least use pip. You can always also provide your users with manual installation instructions (e.g. if you want to use conda or have specific dependencies).
+PyPI and Anaconda are two options for how you distribute your package and allow your users to more easily find and install it.  Try to deploy to both! But for now, try to at least use PyPI. You can always also provide your users with manual installation instructions (e.g. if you want them to use `conda` or have specific dependencies).
 
 ### Package formats (PyPI)
 **sdist** means source distribution. An **sdist** includes all of the files that are required to *build* your package. An **sdist** may require specific additional software (e.g. compilers) to actually build.
@@ -31,9 +31,9 @@ You are *strongly* encouraged to ship both! If the wheel is not present, pip wil
 **Note:** This goes for dependencies too! Check all your dependencies for wheel availability.  
 
 ### PyPI
-**build** (package builder): https://pypa-build.readthedocs.io/en/latest/  
-**twine** (PyPI Client): https://twine.readthedocs.io/en/latest/  
-```python
+**[build](https://pypa-build.readthedocs.io/en/latest/ )** : package builder that bundles your source code into `sdist` or `wheel` distributions
+**[twine](https://twine.readthedocs.io/en/latest/ )**: client you can use to upload your distribution to PyPI. Note that you will need to set up a PyPI account and authenticate yourself when uploading. See [this great guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for a detailed tutorial to building & sharing your first Python packages.
+```console
 
     # twine is a PyPI Client  
     # build is a PEP 517 package builder  
@@ -49,19 +49,20 @@ You are *strongly* encouraged to ship both! If the wheel is not present, pip wil
     $ twine upload dist/*  
 
 ```
-**Note:** `python -m build` is the modern alternative to setuptools `python setup.py sdist bdist_wheel`. (It calls setuptools behind the scenes.)
+**Note:** `python -m build` is the modern alternative to `setuptools`' `python setup.py sdist bdist_wheel`. It calls `setuptools` behind the scenes.
 
 ## Deploying plugins:
 
 ### Automatically via GitHub actions
 This requires either: 
-* Running twine manually (e.g: your-repo/.github/workflows/deploy.yaml)  
+* Running `twine` as above in a workflow after setting up Python and installing it
 or   
-* Using a pre-made GitHub action: https://github.com/pypa/gh-action-pypi-publish   
+* Using a pre-made [GitHub action](https://github.com/pypa/gh-action-pypi-publish)
 
 Here is an example workflow that manually deploys using `twine` when tests pass and you push a tagged commit.
 
 ```yaml
+#your-repo/.github/workflows/deploy.yaml
 jobs:  
     deploy:  
       name: Deploy
@@ -89,7 +90,7 @@ jobs:
 
 ```
 
-  **Note:** Gate this action on some criterion, like a git tag: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_Idif
+  **Note:** Gate this action on some criterion, like a [git tag](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_Idif).
 
 ### Anaconda cloud via conda-forge
 https://conda-forge.org/docs/maintainer/adding_pkgs.html

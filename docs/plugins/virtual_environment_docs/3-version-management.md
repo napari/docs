@@ -15,28 +15,28 @@ This guide covers the methods of updating your version string everywhere.
 * [Using a local script to edit files](#using-a-local-script-to-edit-files)  
 * [Manually](#manually)
 
-**Goal:** Make sure that you bump your version string everywhere it may appear, in unison, prior to publishing your package.  A version number can be in `init.py`, `setup.cfg`, etc.
+Your goal is to make sure that you bump your version string everywhere it may appear, in unison, prior to publishing your package.  A version number can be in `init.py`, `setup.cfg`, etc.
 
-In increasing order of work, but decreasing order of magic, the methods of bummping your version string are listed below. 
+In increasing order of work, but decreasing order of magic, the methods of bumping your version string are listed below. 
 
 ## Using git tags:  
-setuptools_scm: [https://github.com/pypa/setuptools_scm](https://github.com/pypa/setuptools_scm)
+You can use [setuptools_scm](https://github.com/pypa/setuptools_scm) to automatically generate version numbers for your package based on tagged commits.
 
    `# configure in pyproject.toml, then…`  
    `$ git tag -a v0.1.0 -m v0.1.0`  
 
-  The next time you run <font color="red">`python -m build`</font>, either locally or in GitHub actions, your package version will be based on the latest git tag.
+  The next time you run `python -m build`, either locally or in GitHub actions, your package version will be based on the latest git tag.
 
 ## Using a local script to edit files:  
 One tool for doing this is [bump2version](https://github.com/c4urself/bump2version). For example:
 ```console
    $ pip install bump2version  
    # then configure all the places you use your version   
-   $ bump2version -$current-version 0.5.1 minor  
+   $ bump2version --current-version 0.5.1 minor  
 ```   
 
 ## Manually
-This is ***not*** recommended, you *will* eventually make mistakes and have mismatched version/metadata somewhere.  
+Updating the version number manually involves going through everywhere your version is declared and changing the version number before building your distribution. This is ***not*** recommended, you *will* eventually make mistakes and have mismatched version/metadata somewhere. In some cases this will lead to your build process failing, but it can fail silently too.
   
   ### *The "best" versioning and deployment workflow is the one you will actually use!*  
   

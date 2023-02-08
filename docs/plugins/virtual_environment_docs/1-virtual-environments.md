@@ -26,11 +26,8 @@ Some resources you might find helpful:
 https://nic.med.harvard.edu/python/
 
 * Use [miniconda](https://docs.conda.io/en/latest/miniconda.html) or [mini forge](https://github.com/conda-forge/miniforge) (comes pre-configured with conda-forge). Install it in the home directory.
-https://docs.conda.io/en/latest/miniconda.html  
-https://github.com/conda-forge/miniforge  (comes pre-configured with conda-forge) 
 
 * Make sure you have conda-forge in your config. The default anaconda channel has some very outdated packages, e.g. [old version of Qt](https://forum.image.sc/t/napari-issues-on-bigsur/52630/10).   
-https://forum.image.sc/t/napari-issues-on-bigsur/52630/10  
 ```console
     $conda config --add channels conda-forge  
     $conda config --set channel_priority strict  
