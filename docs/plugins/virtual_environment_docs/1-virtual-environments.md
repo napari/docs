@@ -8,7 +8,7 @@ This guide explains the value of using virtual environments and how to create an
 * 2: [Deploying your plugin](./2-deploying-your-plugin.md)  
 * 3: [Version management](./3-version-management.md)     
 * 4: [Developer tools](./4-developer-tools.md)   
-* 5: [Survey](./5-Survey.md)   
+* 5: [Survey](./5-survey.md)   
 
 ### This guide covers: 
 * [Resources](#resources)  
