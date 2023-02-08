@@ -7,7 +7,7 @@ This guide explains the different types of tools that can help you develop and t
 * 2: [Deploying your plugin](./2-deploying-your-plugin.md)    
 * 3: [Version management](./3-version-management.md)   
 * 4: This guide   
-* 5: [Survey](./5-Survey.md) 
+* 5: [Survey](./5-survey.md) 
 
 ## This guide covers:   
 * [General tools](#general-tools)
