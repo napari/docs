@@ -246,7 +246,7 @@ make docs GALLERY_PATH=../../napari/examples
 The rendered HTML will be placed in `docs/_build`. Find `index.html` in this
 folder and drag it into a browser to preview the website with your new document.
 You can also run this Python one-liner to deploy a quick local server on
-http://localhost:8000:
+[http://localhost:8000](http://localhost:8000):
 
 ```shell
 $ python3 -m http.server --directory docs/_build
@@ -256,15 +256,19 @@ $ python3 -m http.server --directory docs/_build
 There's another `make` task you can use for live previews while editing docs:
 
 ```shell
-$ make live-html
+$ make html-live
+# or for faster reloads:
+# make html-live SPHINXOPTS="-j4"
 ```
 
 The first run will take a bit longer and a few napari instances will pop up
 here and there, but the successive ones (triggered automatically every time
 you save a file under `docs/`) will be faster!
-
-The browser preview will open up automatically (and reload!) at `http://127.0.0.1`,
-no need for further action!
+The browser preview will open up automatically at `http://127.0.0.1`,
+no need for further action! Edit the documents at will, and the browser will
+auto-reload.
+Once you are done with the live previews, you can exit via <kbd>Ctrl</kbd>+<kbd>C</kbd>
+on your terminal.
 ````
 
 ### 3.2. Use the CI artifacts
