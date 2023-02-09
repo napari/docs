@@ -1,6 +1,6 @@
 # 2: Pytest testing framework  
 
-This lesson explains how to use the pytest testing framework to make testing easier.
+This lesson explains how to use the [pytest testing framework](https://docs.pytest.org/en/7.2.x/) to make testing easier.
 
 ## Other lessons in this tutorial:   
 
