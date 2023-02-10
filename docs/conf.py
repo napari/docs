@@ -215,10 +215,8 @@ sphinx_gallery_conf = {
     'gallery_dirs': 'gallery',  # path to where to save gallery generated output
     'filename_pattern': '/*.py',
     'ignore_pattern': 'README.rst|/*_.py',
-    'default_thumb_file': Path(__file__).parent
-    /'images'
-    / 'logo.png',
-    'plot_gallery': True,
+    'default_thumb_file': Path(__file__).parent / 'images' / 'logo.png',
+    'plot_gallery': "'True'",  # https://github.com/sphinx-gallery/sphinx-gallery/pull/304/files
     'download_all_examples': False,
     'min_reported_time': 10,
     'only_warn_on_example_error': True,
