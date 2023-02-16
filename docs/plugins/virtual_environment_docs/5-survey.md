@@ -1,14 +1,6 @@
-# 5: Survey
+# 5: Survey/Q&A
 
 This guide contains questions that were submitted to our survey on testing.  
-
-## Other topics in this series:
-
-* 1: [Virtual environments](./1-virtual-environments.md)   
-* 2: [Deploying your plugin](./2-deploying-your-plugin.md)  
-* 3: [Version management](./3-version-management.md)  
-* 4: [Developer tools](./4-developer-tools.md)
-* 5: This guide  
 
 ## This guide covers:   
 * [Questions](#questions)  
@@ -64,8 +56,7 @@ Granted, this is a work in progress.
     Viewer.layers.events.changed  
     Viewer.layers.events.reordered  
 
-Editing a point or shape layer  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. . .complicated, because it may be a pure numpy object . . .  
+Editing a point or shape layer may be complicated, because it may be a pure NumPy object. 
 
 ### Github tests failing  
 Question: How do you avoid github tests failing?  
@@ -114,4 +105,12 @@ Answer:
   This will monitor a file/directory for changes, and re-run a command each time (which is why step #1 is also useful).  
 
 
-This is the last topic in this series. 
+## Other topics in this series:
+
+* 1: [Virtual environments](./1-virtual-environments.md)   
+* 2: [Deploying your plugin](./2-deploying-your-plugin.md)  
+* 3: [Version management](./3-version-management.md)  
+* 4: [Developer tools](./4-developer-tools.md)
+* 5: This guide  
+
+This is the last guide in this series. 

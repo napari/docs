@@ -2,13 +2,6 @@
 
 This guide explains some of the techniques you can use to deploy your plugin. 
 
-## Other topics in this series:  
-* 1: [Virtual environments](./1-virtual-environments.md)   
-* 2: This guide  
-* 3: [Version management](./3-version-management.md)     
-* 4: [Developer tools](./4-developer-tools.md)   
-* 5: [Survey](./5-Survey.md)   
-
 ## This guide covers:   
 * [PyPI and Anaconda](#pypi-and-anaconda)
     - [Package formats (PyPI)](#package-formats-pypi)
@@ -104,5 +97,12 @@ https://conda-forge.org/docs/maintainer/adding_pkgs.html
 Once your recipe is approved and merged, the rest happens *automagically*, and your package will appear on the anaconda cloud.
 
 This is **far** easier if you already have an sdist published to PyPI.
+
+## Other topics in this series:  
+* 1: [Virtual environments](./1-virtual-environments.md)   
+* 2: This guide  
+* 3: [Version management](./3-version-management.md)     
+* 4: [Developer tools](./4-developer-tools.md)   
+* 5: [Survey](./5-Survey.md)   
 
 The next topic in this series is [Version management](./3-version-management.md).

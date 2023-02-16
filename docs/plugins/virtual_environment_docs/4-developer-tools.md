@@ -2,13 +2,6 @@
 
 This guide explains the different types of tools that can help you develop and test your code.  
 
-## Other topics in this series:  
-* 1: [Virtual environments](./1-virtual-environments)  
-* 2: [Deploying your plugin](./2-deploying-your-plugin.md)    
-* 3: [Version management](./3-version-management.md)   
-* 4: This guide   
-* 5: [Survey](./5-survey.md) 
-
 ## This guide covers:   
 * [General tools](#general-tools)
     - [Linting tools](#linting-tools)  
@@ -66,10 +59,21 @@ These _auto-modify_ your code.
     hooks: id: napari-plugin-checks  
 ```     
 
-* [Plugin check GitHub action](https://github.com/tlambert03/napari-plugin-action)  (work in progress)
+* [Plugin check GitHub action](https://github.com/tlambert03/napari-plugin-action)  (work in progress)  
+    - This is a _GitHub action_.
     - It is intended to be added to your GitHub workflow.
     - It (currently) checks that your plugin is installable, and performs a few sanity checks about Qt backends and dock widgets.  
-`     uses: tlambert03/napari-plugin-action@main`  
-`     with: package_name:  <your-package-name>`     
+```yaml     
+     uses: tlambert03/napari-plugin-action@main  
+     with: package_name:  <your-package-name>  
+```
+          
 
-The next topic in this series is the [Survey](./5-survey.md). 
+The next topic in this series is the [Survey/Q&A](./5-survey.md). 
+
+## Other topics in this series:  
+* 1: [Virtual environments](./1-virtual-environments)  
+* 2: [Deploying your plugin](./2-deploying-your-plugin.md)    
+* 3: [Version management](./3-version-management.md)   
+* 4: This guide   
+* 5: [Survey/Q&A](./5-survey.md) 
