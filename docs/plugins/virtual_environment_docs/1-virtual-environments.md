@@ -40,11 +40,10 @@ To create an environment, use the following commands at the command prompt (term
     $ pip/conda install <whatever> 
 ```
 
-Virtual environments  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  . . . are made to be ephemeral.  
+Virtual environments are made to be ephemeral.  
 
 ## Removing environments
-Consider your environment as disposable.
+Consider your environment to be disposable.
 If you are ever having weird problems, nuke your environment and start over using the following commands:  
 
 ```console
