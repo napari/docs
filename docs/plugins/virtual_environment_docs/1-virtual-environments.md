@@ -13,13 +13,15 @@ A virtual environment is an isolated collection of packages, settings, and an as
 
 Virtual environments are super important! They allow you to isolate your project from other python projects. They allow you to experiment with various packages and versions without fear of breaking your entire system (and needing to reinstall everything). As you install packages over time, you will inevitably install something that doesn’t “play well” with something else that is already installed. In some cases this can be hard to recover from. With virtual environments, you can just create a fresh environment and start again – without needing to do major surgery on your system.
 
+There are several tools available for creating and managing virtual environments.  One of the most popular, comprehensive tools is Conda. Wikipedia explains that [Conda is an open-source, cross-platform, language-agnostic package manager and environment management system.](https://en.wikipedia.org/wiki/Conda_(package_manager)) It was originally developed to solve difficult package management challenges faced by Python data scientists. At first, it was part of Anaconda Python distribution developed by Anaconda Inc., it ended up being useful on its own and for things other than Python, so it was spun out as a separate package. The Conda package and environment manager is included in all versions of **Anaconda**, **Miniconda**, and **Anaconda Repository**. 
+
 For more information on the value of virtual environments, see [hackmd.io](https://hackmd.io/@talley/SJB_lObBi#What-is-a-virtual-environment). 
 
 ## Resources
 Some resources you might find helpful: 
 * [Python environments workshop](https://hackmd.io/@talley/SJB_lObBi#What-is-a-virtual-environment)   
 
-* Use [miniconda](https://docs.conda.io/en/latest/miniconda.html) or [mini forge](https://github.com/conda-forge/miniforge) (comes pre-configured with conda-forge). Install it in the home directory.
+* Use the [miniconda](https://docs.conda.io/en/latest/miniconda.html) or [mini forge](https://github.com/conda-forge/miniforge) (comes pre-configured with conda-forge) Conda products. Install it in the home directory.
 
 * Make sure you have conda-forge in your config. The default anaconda channel has some very outdated packages, e.g. [old version of Qt](https://forum.image.sc/t/napari-issues-on-bigsur/52630/10).   
 ```console
