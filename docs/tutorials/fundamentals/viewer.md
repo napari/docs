@@ -97,7 +97,7 @@ The viewer is organized into a few key areas which are explained in the next sec
 
 The image below has the areas of the viewer labeled: 
 
-  ![image: viewer layout](../assets/tutorials/Viewer-with-arrows.png)
+![image: viewer layout](../assets/tutorials/Viewer-with-arrows.png)
 
 We'll go through each of these in the next sections.
 
