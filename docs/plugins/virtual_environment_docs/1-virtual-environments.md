@@ -20,6 +20,8 @@ For more information on the value of virtual environments, see [hackmd.io](https
 
 Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) or [mini forge](https://github.com/conda-forge/miniforge) (comes pre-configured with conda-forge) in the home directory.
 
+Adding the conda-forge channel to the conda config makes packages in conda-forge visible to the conda installer. Setting channel_priority to strict ensures packages in high priority channels are always installed over packages of the same name in lower priority channels. See [this guide](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-channels.html) for more details. 
+
 Make sure conda-forge is in your config by using the following commands:
 ```console
     $conda config --add channels conda-forge  
