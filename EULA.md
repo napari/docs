@@ -7,7 +7,7 @@ https://napari.org.
 
 <!-- Links -->
 
-[napari_installers]: https://napari.org/#installation
+[napari_installers]: https://napari.org/stable/index.html#installation
 
 <!-- List of EULAs starts here -->
 <!--
