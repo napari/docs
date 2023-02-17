@@ -3,10 +3,11 @@
 This guide explains the value of using virtual environments and how to create and remove them. 
 
 ## This guide covers: 
-* [Resources](#resources)  
+* [The importance of virtual environments](#overview)
 * [Creating environments](#creating-environments)  
 * [Removing environments](#removing-environments)
 
+## Overview
 A virtual environment is an isolated collection of packages, settings, and an associated Python interpreter, that allows multiple different collections to exist on the same system. They are created on top of an existing Python installation, known as the virtual environment's “base” python, and may optionally be isolated from the packages in the base environment, so only those explicitly installed in the virtual environment are available.
 
  More information on why virtual environments are created and how they can help you can be found on the [python website](https://docs.python.org/3/library/venv.html#creating-virtual-environments) and at [hackmd.io](https://hackmd.io/@talley/SJB_lObBi#What-is-a-virtual-environment). 
@@ -17,17 +18,15 @@ There are several tools available for creating and managing virtual environments
 
 For more information on the value of virtual environments, see [hackmd.io](https://hackmd.io/@talley/SJB_lObBi#What-is-a-virtual-environment). 
 
-## Resources
-Some resources you might find helpful: 
-* [Python environments workshop](https://hackmd.io/@talley/SJB_lObBi#What-is-a-virtual-environment)   
+Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) or [mini forge](https://github.com/conda-forge/miniforge) (comes pre-configured with conda-forge) in the home directory.
 
-* Use the [miniconda](https://docs.conda.io/en/latest/miniconda.html) or [mini forge](https://github.com/conda-forge/miniforge) (comes pre-configured with conda-forge) Conda products. Install it in the home directory.
-
-* Make sure you have conda-forge in your config. The default anaconda channel has some very outdated packages, e.g. [old version of Qt](https://forum.image.sc/t/napari-issues-on-bigsur/52630/10).   
+Make sure conda-forge is in your config by using the following commands:
 ```console
     $conda config --add channels conda-forge  
     $conda config --set channel_priority strict  
 ```
+
+**Note:** The default anaconda channel has some very outdated packages, e.g. [old version of Qt](https://forum.image.sc/t/napari-issues-on-bigsur/52630/10).   
 
 ## Creating environments  
   
