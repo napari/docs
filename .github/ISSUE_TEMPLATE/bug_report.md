@@ -1,6 +1,6 @@
 ---
 name: "\U0001F41B Bug Report"
-about: Submit a bug report to help us improve napari
+about: Report typos, innacuracies or errors to help us improve the napari documentation
 title: ''
 labels: bug
 assignees: ''
@@ -8,22 +8,11 @@ assignees: ''
 ---
 
 ## 🐛 Bug
-
-<!-- A clear and concise description of what the bug is. -->
-
-## To Reproduce
-
-Steps to reproduce the behavior:
-
-1.
-2.
-3.
-
+<!-- A clear and concise description of what the issue is. -->
+<!-- Please provide the URL(s) of the page(s) that are problematic. -->
+<!-- If you can, please add a screenshot or screen capture: "An image is worth a thousand words!" -->
 <!-- If you have a code sample, error messages, stack traces, please provide it here as well -->
 
-## Expected behavior
-
-<!-- A clear and concise description of what you expected to happen. -->
 
 ## Environment
 

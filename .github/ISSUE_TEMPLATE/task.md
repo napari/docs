@@ -1,11 +1,10 @@
 ---
 name: "\U0001F9F0 Task"
-about: Submit a proposal/request for a new napari feature
+about: Submit a proposal/request for improvements to workflows, documentation build or deployment.
 title: ''
 labels: task
 assignees: ''
 
 ---
-
 ## 🧰 Task
 <!-- A clear and concise description of the task -->

@@ -7,16 +7,16 @@ import sys
 from pathlib import Path
 
 DOCS = Path(__file__).parent.parent.absolute()
-
+NPE = DOCS.parent.absolute() / 'npe2'
 
 def prep_npe2():
     #   some plugin docs live in npe2 for testing purposes
     from subprocess import check_call
 
-    check_call("rm -rf npe2".split())
-    check_call("git clone https://github.com/napari/npe2".split())
-    check_call([sys.executable, "npe2/_docs/render.py", DOCS / 'plugins'])
-    check_call("rm -rf npe2".split())
+    check_call(f"rm -rf {NPE}".split())
+    check_call(f"git clone https://github.com/napari/npe2 {NPE}".split())
+    check_call([sys.executable, f"{NPE}/_docs/render.py", DOCS / 'plugins'])
+    check_call(f"rm -rf {NPE}".split())
 
 
 def main():
