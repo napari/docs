@@ -1,4 +1,4 @@
-# 1: Virtual environments  
+# Virtual environments  
 
 This guide explains the value of using virtual environments and how to create and remove them. 
 
@@ -7,8 +7,7 @@ This guide explains the value of using virtual environments and how to create an
 * [Creating environments](#creating-environments)  
 * [Removing environments](#removing-environments)
 
-[Virtual environments]  
- A virtual environment is an isolated collection of packages, settings, and an associated Python interpreter, that allows multiple different collections to exist on the same system. They are created on top of an existing Python installation, known as the virtual environment's “base” python, and may optionally be isolated from the packages in the base environment, so only those explicitly installed in the virtual environment are available.
+A virtual environment is an isolated collection of packages, settings, and an associated Python interpreter, that allows multiple different collections to exist on the same system. They are created on top of an existing Python installation, known as the virtual environment's “base” python, and may optionally be isolated from the packages in the base environment, so only those explicitly installed in the virtual environment are available.
 
  More information on why virtual environments are created and how they can help you can be found on the [python website](https://docs.python.org/3/library/venv.html#creating-virtual-environments) and at [hackmd.io](https://hackmd.io/@talley/SJB_lObBi#What-is-a-virtual-environment). 
 
