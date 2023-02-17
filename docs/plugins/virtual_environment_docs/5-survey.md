@@ -1,4 +1,4 @@
-# 5: Survey/Q&A
+# Survey/Q&A
 
 This guide contains questions that were submitted to our survey on testing.  
 
@@ -107,10 +107,9 @@ Answer:
 
 ## Other topics in this series:
 
-* 1: [Virtual environments](./1-virtual-environments.md)   
-* 2: [Deploying your plugin](./2-deploying-your-plugin.md)  
-* 3: [Version management](./3-version-management.md)  
-* 4: [Developer tools](./4-developer-tools.md)
-* 5: This guide  
+* [Virtual environments](./1-virtual-environments.md)   
+* [Deploying your plugin](./2-deploying-your-plugin.md)  
+* [Version management](./3-version-management.md)  
+* [Developer tools](./4-developer-tools.md)
 
 This is the last guide in this series. 

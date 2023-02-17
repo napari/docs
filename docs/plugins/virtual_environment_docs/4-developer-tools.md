@@ -1,4 +1,4 @@
-# 4: Developer tools
+# Developer tools
 
 This guide explains the different types of tools that can help you develop and test your code.  
 
@@ -72,8 +72,7 @@ These _auto-modify_ your code.
 The next topic in this series is the [Survey/Q&A](./5-survey.md). 
 
 ## Other topics in this series:  
-* 1: [Virtual environments](./1-virtual-environments)  
-* 2: [Deploying your plugin](./2-deploying-your-plugin.md)    
-* 3: [Version management](./3-version-management.md)   
-* 4: This guide   
-* 5: [Survey/Q&A](./5-survey.md) 
+* [Virtual environments](./1-virtual-environments)  
+* [Deploying your plugin](./2-deploying-your-plugin.md)    
+* [Version management](./3-version-management.md)   
+* [Survey/Q&A](./5-survey.md) 

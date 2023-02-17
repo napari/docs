@@ -1,4 +1,4 @@
-# 3: Version management  
+# Version management  
 
 This guide covers the methods of updating your version string everywhere.
 
@@ -40,8 +40,7 @@ The next topic in this series is [Developer tools](./4-developer-tools.md).
 
 ## Other topics in this series:  
 
-* 1: [Virtual environments](./1-virtual-environments)  
-* 2: [Deploying your plugin](./2-deploying-your-plugin.md)    
-* 3: This guide   
-* 4: [Developer tools](./4-developer-tools.md)   
-* 5: [Survey](./5-Survey.md) 
+* [Virtual environments](./1-virtual-environments)  
+* [Deploying your plugin](./2-deploying-your-plugin.md)    
+* [Developer tools](./4-developer-tools.md)   
+* [Survey](./5-Survey.md) 

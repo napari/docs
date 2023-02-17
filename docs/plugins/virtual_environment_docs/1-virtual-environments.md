@@ -58,9 +58,9 @@ Encourage your users to do the same. You can waste a lot of time trying to debug
 
 ## Other topics in this series:  
 
-* 2: [Deploying your plugin](./2-deploying-your-plugin.md)  
-* 3: [Version management](./3-version-management.md)     
-* 4: [Developer tools](./4-developer-tools.md)   
-* 5: [Survey](./5-survey.md)   
+* [Deploying your plugin](./2-deploying-your-plugin.md)  
+* [Version management](./3-version-management.md)     
+* [Developer tools](./4-developer-tools.md)   
+* [Survey/Q&A](./5-survey.md)   
 
 The next topic in this series is [Deploying your plugin](./2-deploying-your-plugin.md). 
