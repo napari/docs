@@ -28,7 +28,7 @@ You are *strongly* encouraged to ship both! If the wheel is not present, pip wil
 
 ## Deploying plugins:
 
-### Manually using **twine**.  
+### Manually via **twine**.  
 [twine](https://twine.readthedocs.io/en/latest/ )**: client you can use to upload your distribution to PyPI. Note that you will need to set up a PyPI account and authenticate yourself when uploading. See [this great guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for a detailed tutorial to building and sharing your first Python packages.  
 
 ```console
