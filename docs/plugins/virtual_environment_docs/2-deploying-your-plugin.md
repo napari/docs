@@ -25,7 +25,12 @@ You are *strongly* encouraged to ship both! If the wheel is not present, pip wil
 
 ### PyPI
 **[build](https://pypa-build.readthedocs.io/en/latest/ )** : package builder that bundles your source code into `sdist` or `wheel` distributions
-**[twine](https://twine.readthedocs.io/en/latest/ )**: client you can use to upload your distribution to PyPI. Note that you will need to set up a PyPI account and authenticate yourself when uploading. See [this great guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for a detailed tutorial to building & sharing your first Python packages.
+
+## Deploying plugins:
+
+### Manually using **twine**.  
+[twine](https://twine.readthedocs.io/en/latest/ )**: client you can use to upload your distribution to PyPI. Note that you will need to set up a PyPI account and authenticate yourself when uploading. See [this great guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for a detailed tutorial to building and sharing your first Python packages.  
+
 ```console
 
     # twine is a PyPI Client  
@@ -43,9 +48,6 @@ You are *strongly* encouraged to ship both! If the wheel is not present, pip wil
 
 ```
 **Note:** `python -m build` is the modern alternative to `setuptools`' `python setup.py sdist bdist_wheel`. It calls `setuptools` behind the scenes.
-
-## Deploying plugins:
-
 ### Automatically via GitHub actions
 This requires either: 
 * Running `twine` as above in a workflow after setting up Python and installing it
