@@ -51,7 +51,7 @@ These _auto-modify_ your code.
 
 * [Static plugin checks](https://github.com/tlambert03/napari-plugin-checks)
     - This is a *pre-commit hook*. It is intended to be added to your 
-    `.pre-commit-config.yaml` file
+    `.pre-commit-config.yaml` file.
     - It *statically* (without importing) checks various best practices about your plugin:  
 ```yaml  
     repo: https://github.com/tlambert03/napari-plugin-action  
@@ -60,14 +60,12 @@ These _auto-modify_ your code.
 ```     
 
 * [Plugin check GitHub action](https://github.com/tlambert03/napari-plugin-action)  (work in progress)  
-    - This is a _GitHub action_.
     - It is intended to be added to your GitHub workflow.
     - It (currently) checks that your plugin is installable, and performs a few sanity checks about Qt backends and dock widgets.  
 ```yaml     
      uses: tlambert03/napari-plugin-action@main  
      with: package_name:  <your-package-name>  
 ```
-          
 
 The next topic in this series is the [Survey/Q&A](./5-survey.md). 
 
