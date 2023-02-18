@@ -129,18 +129,20 @@ For example, use {{ python_version_code }} to get Python {{ python_version }} an
 the current release.
 
 2. Switching to the new, faster [`libmamba` solver](https://conda.github.io/conda-libmamba-solver/libmamba-vs-classic/), 
-by updating your `conda` (>22.11) and installing the solver, as follows:
+by updating your `conda` (>22.11), if needed, and then installing and activating 
+the solver, as follows:
 ```
 conda update -n base conda
 conda install -n base conda-libmamba-solver
 conda config --set solver libmamba
 ```
-3. Installing [`mamba`](https://github.com/mamba-org/mamba) in your base
-environment with `conda install -n base -c conda-forge mamba`. Then you can use `mamba`
-by replacing `conda` with `mamba` in the installation instructions, for example:
+3. Alternately, consider installing [`mamba`](https://github.com/mamba-org/mamba)
+in your base environment with `conda install -n base -c conda-forge mamba`. 
+Then you can use `mamba` by replacing `conda` with `mamba` in the installation instructions, for example:
 ```
 mamba install napari
 ```
+
 ````
 
 
