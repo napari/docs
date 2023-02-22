@@ -356,9 +356,8 @@ available
   or more anaconda.org channels. By default we query the `conda-forge` channel located at [anaconda.org](https://anaconda.org/conda-forge/)
 * `update`: update a current application to a new version of it. This process will create a new
   conda environment following the convention `<package-name>-<new-version>`, create new menu
-  shortcuts (using the menuinst branch https://github.com/conda/menuinst/tree/cep-devel/menuinst),
-  create a new restore point (using conda-lock), remove the old environment and the corresponding
-  shortcuts for the old versions of the managed application.
+  shortcuts [20], create a new restore point (using conda-lock), remove the old environment and
+  the corresponding shortcuts for the old versions of the managed application.
 * `revert`: this will revert the current application to the previously installed version on the
   computer if a restore point is found. This will follow a similar process of creating a new
   conda environment with the convention `<package-name>-<old-version>`.
@@ -392,9 +391,8 @@ from constructor_manager_client import api
   or more anaconda.org channels. By default we query the `conda-forge` channel located at [anaconda.org](https://anaconda.org/conda-forge/).
 * `update`: update a current application to a new version of it. This process will create a new
   conda environment following the convention `<package-name>-<new-version>`, create new menu
-  shortcuts (using the menuinst branch https://github.com/conda/menuinst/tree/cep-devel/menuinst),
-  create a new restore point (using conda-lock), remove the old environment and the corresponding
-  shortcuts for the old versions of the managed application.
+  shortcuts [20], create a new restore point (using conda-lock), remove the old environment and
+  the corresponding shortcuts for the old versions of the managed application.
 * `revert`: this will revert the current application to the previously installed version on the
   computer if a restore point is found. This will follow a similar process of creating a new conda
   environment with the convention `<package-name>-<old-version>`.
@@ -451,4 +449,5 @@ arguments will be passed with configuration files handled by `constructor-manage
 [17]: https://anaconda.org/napari
 [18]: https://github.com/napari/packaging/issues/15
 [19]: https://github.com/napari/packaging
+[20]: https://github.com/conda/menuinst/tree/cep-devel/menuinst
 [nap-2]: https://napari.org/dev/naps/2-conda-based-packaging.html
