@@ -11,6 +11,7 @@ project and the onboarding of new contributors.
 - [Testing](./testing)
 - [Profiling](./profiling)
 - [Benchmarks](./benchmarks)
+- [UI sections](./ui_sections/index)
 
 ## For core developers
 

@@ -8,9 +8,12 @@ sphinx-favicon
 sphinx-copybutton
 sphinx-gallery
 sphinx_autodoc_typehints==1.12.0
+sphinxcontrib-mermaid
 myst-nb
 napari-sphinx-theme
 matplotlib
 qtgallery
 lxml
 imageio-ffmpeg
+pydeps
+seedir

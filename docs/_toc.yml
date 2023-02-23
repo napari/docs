@@ -123,6 +123,16 @@ subtrees:
             subtrees:
             - entries:
               - file: developers/documentation/docs_template
+          - file: developers/ui_sections/index
+            subtrees:
+            - entries:
+              - file: developers/ui_sections/application_menus_ui
+              - file: developers/ui_sections/application_status_bar_ui
+              - file: developers/ui_sections/layers_controls_ui
+              - file: developers/ui_sections/layers_list_ui
+              - file: developers/ui_sections/viewer_ui
+              - file: developers/ui_sections/console_ui
+              - file: developers/ui_sections/dialogs_ui
           - file: developers/translations
           - file: developers/core_dev_guide
           - file: developers/release
