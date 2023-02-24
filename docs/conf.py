@@ -77,6 +77,7 @@ tags_overview_title = "Tags"
 tags_extension = ["md", "rst"]
 
 mermaid_version = "9.4.0"
+mermaid_init_js = "mermaid.initialize({startOnLoad:true, securityLevel:'loose'});"
 
 # -- Options for HTML output -------------------------------------------------
 
