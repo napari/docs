@@ -524,18 +524,22 @@ def main():
         )
     )
 
-    for (
-        section_name,
-        output_page,
-        pydeps_args,
-        mermaid_graph_direction,
-    ) in ui_sections:
-        generate_docs_ui_section(
+    try:
+        for (
             section_name,
             output_page,
             pydeps_args,
             mermaid_graph_direction,
-        )
+        ) in ui_sections:
+            generate_docs_ui_section(
+                section_name,
+                output_page,
+                pydeps_args,
+                mermaid_graph_direction,
+            )
+    except OSError:
+        # dot executable unavailable.
+        pass
 
 
 if __name__ == "__main__":
