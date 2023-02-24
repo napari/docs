@@ -19,12 +19,11 @@ import seedir as sd
 
 # ---- General constants
 # Docs paths
-DOCS_ROOT_PATH = Path(__file__).parent.parent
-UI_SECTIONS_DOCS_ROOT_PATH = DOCS_ROOT_PATH / "developers" / "ui_sections"
+DOCS = Path(__file__).parent.parent
+UI_SECTIONS_DOCS_ROOT_PATH = DOCS / "developers" / "ui_sections"
 
 # Napari and Napari UI sections modules paths
 NAPARI_ROOT_DIRECTORY_PATH = Path(qt_layer_list.__file__).parent.parent.parent
-NAPARI_REPO_ROOT_DIRECTORY_PATH = NAPARI_ROOT_DIRECTORY_PATH.parent
 LAYER_LIST_MODULE_PATH = Path(qt_layer_list.__file__)
 LAYER_CONTROLS_MODULE_PATH = Path(qt_layer_controls_container.__file__)
 APPLICATION_STATUS_BAR_MODULE_PATH = Path(qt_viewer_status_bar.__file__)
@@ -248,6 +247,7 @@ def main():
         "--max-bacon",
         "4",
         "--show-deps",
+        "--nodot",
     ]
     ui_sections.append(
         (
@@ -304,6 +304,7 @@ def main():
         "--max-bacon",
         "4",
         "--show-deps",
+        "--nodot",
     ]
     ui_sections.append(
         (
@@ -347,6 +348,7 @@ def main():
         "--max-bacon",
         "3",
         "--show-deps",
+        "--nodot",
     ]
     ui_sections.append(
         (
@@ -388,6 +390,7 @@ def main():
         "--max-bacon",
         "3",
         "--show-deps",
+        "--nodot",
     ]
     ui_sections.append(
         (
@@ -429,6 +432,7 @@ def main():
         "--max-bacon",
         "3",
         "--show-deps",
+        "--nodot",
     ]
     ui_sections.append(
         (
@@ -476,6 +480,7 @@ def main():
         "--max-bacon",
         "5",
         "--show-deps",
+        "--nodot",
     ]
     ui_sections.append(
         (
@@ -489,6 +494,7 @@ def main():
     # ---- Napari-console section parameters
     console_section_name = "Console (napari-console)"
     console_output_page = UI_SECTIONS_DOCS_ROOT_PATH / "console_ui.md"
+    image_path = UI_SECTIONS_DOCS_ROOT_PATH / "console_ui.png"
     console_pydeps_args = [
         f"{CONSOLE_MODULE_PATH}",
         "--rankdir",
@@ -510,10 +516,12 @@ def main():
         "--only",
         "napari",
         "napari_console",
+        "napari_plugin_engine",
         "--reverse",
         "--max-bacon",
         "3",
         "--show-deps",
+        "--nodot",
     ]
     ui_sections.append(
         (
