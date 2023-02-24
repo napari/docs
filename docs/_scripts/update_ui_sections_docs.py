@@ -40,11 +40,13 @@ def generate_dependencies_graph(options):
     with target.chdir_work():
         dep_graph = py2depgraph.py2dep(target, **options)
     dot_src = depgraph_to_dotsrc(target, dep_graph, **options)
-    graph_content = dot.call_graphviz_dot(dot_src, options["format"])
-    if options["output"]:
-        output_file = Path(options["output"])
-        output_file.parent.mkdir(exist_ok=True, parents=True)
-        output_file.write_bytes(graph_content)
+    graph_content = None
+    if not options["no_output"]:
+        graph_content = dot.call_graphviz_dot(dot_src, options["format"])
+        if options["output"]:
+            output_file = Path(options["output"])
+            output_file.parent.mkdir(exist_ok=True, parents=True)
+            output_file.write_bytes(graph_content)
     return dep_graph, dot_src, graph_content
 
 
