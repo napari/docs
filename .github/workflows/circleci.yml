@@ -17,7 +17,7 @@ jobs:
       - name: GitHub Action step
         uses: larsoner/circleci-artifacts-redirector-action@master
         with:
-          repo-token: ${{ secrets.CIRCLECI_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           artifact-path: 0/docs/_build/index.html
           circleci-jobs: build-docs
           job-title: Check the rendered docs here!
