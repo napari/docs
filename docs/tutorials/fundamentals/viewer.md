@@ -104,28 +104,22 @@ We'll go through each of these in the next sections.
 
 ### Main menu or top bar menu
 
-The main menu consists of the **File**, **View**, **Window**, **Plugins**, and **Help** options which are illustrated in this section.  
+The main menu consists of the **File**, **View**, **Window**, **Plugins**, and **Help** options.  
 
-* **File** contains the options shown in the graphic below:  
-![image: File Menu](../assets/tutorials/main-menu-file.png)  
+* **File** has the options to open files, folders, and samples, save layers and screenshots,copy screenshots to clipboard and, in the Windows version, preferences. 
 
-    All the options on the **File** menu are self-explanatory except **Preferences**. **Preferences** has the options shown below. To learn more about the **Preferences** menu, there is a tutorial designed for developers [here](https://napari.org/stable/guides/preferences.html).  
-    ![image: Preferences sub-menu](../assets/tutorials/main-menu-file-sub-menu-preferences.png)  
+    All the options on the **File** menu are relatively self-explanatory except **Preferences** on the Windows version of napari. **Preferences** allows you to personalize napari to some degree. To learn more about the **Preferences** menu, there is a tutorial designed for developers [here](https://napari.org/stable/guides/preferences.html).  
+ 
     **Note:** In macOS, **Preferences** is under the napari menu.   
        
 
-* **View** contains the options shown in the graphic below:  
-![image: View Menu](../assets/tutorials/main-menu-view.png)    
-  
+* **View** allows you to toggle full screen, the menu bar, play, display axes, the scale bar, tooltips, and the activity dock. 
 
-* **Window** contains the options shown in the graphic below:   
-![image: Window Menu](../assets/tutorials/main-menu-window.png)    
+* **Window** allows you to open the integrated console, display the layer controls and layer list.  
 
-* **Plugins** contains the options shown in the graphic below:   
-![image: Plugins Menu](../assets/tutorials/main-menu-plugins.png)    
+* **Plugins** allows you to manage plugins and displays a list of plugins that are currently installed.  
 
-* **Help** contains the options shown in the graphic below:   
-![image: Help Menu](../assets/tutorials/main-menu-help.png)    
+* **Help** contains the citation and about information.  
 
 +++  
 
@@ -139,10 +133,11 @@ The **canvas** is in the center of the viewer and contains the visual display of
 
 +++
 
-(layer_list)=
+<!-- I don't know why "(layer_list)=" is here. -->
+(layer_list)=  
 ### Layer list  
 
-Layers are one of the basic napari objects. There are different layer types for `Image`, `Points`, `Shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added, they  populate the layer list located on the bottom left side of the canvas.
+Layers are one of the basic napari objects. There are different layer types for `Image`, `Points`, `Shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added, they populate the layer list located on the bottom left side of the canvas.
 
 The layer list contains one widget for each of the layers that have been added to the viewer and includes a `thumbnail` that shows a miniaturized version of the currently viewed data, a `name` that is an editable text box, a `visibility` button that can be toggled on or off to show or hide the layer, and an `icon` for the layer type.  
 
@@ -412,7 +407,7 @@ On the left side of the status bar there is a message about the position of the 
 The right side of the status bar contains some helpful tips depending on which layer and tools are currently selected.
 
 ## Right-click menu
- A context-sensitive menu is available when you right-click on any of the layers. The type of layer determines which options are available. Note that if you have multiple layers selected, the menu actions will affect all of the selected layers. The options that are not available for a layer are greyed out. It contains the following options: 
+ A context-sensitive menu is available when you right-click on any of the layers. The type of layer determines which options are available. Note that if you have multiple layers selected, the menu actions will affect all of the selected layers. The options that are not available for a layer are greyed out. The following options are available depending on which layer type you have selected:   
 * **Duplicate Layer** - creates a second copy of the selected layer. Can be used on **Points**, **Shapes**, **Labels**, and **Image** layers. This is useful for testing your analysis on a copy instead of on the original image.
 * **Convert to Labels** - converts an **Image** layer to a **Labels** layer. This is useful for converting a binary image segmentation map to a labels layer with each segmented object denoted by its own integer. Can also be used on a **Shapes** layer.  
 * **Convert to Image** - converts a **Labels** layer into an **Image** layer. 
