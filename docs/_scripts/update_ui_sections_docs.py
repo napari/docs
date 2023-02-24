@@ -247,7 +247,7 @@ def main():
         "--max-bacon",
         "4",
         "--show-deps",
-        "--nodot",
+        "--no-output",
     ]
     ui_sections.append(
         (
@@ -304,7 +304,7 @@ def main():
         "--max-bacon",
         "4",
         "--show-deps",
-        "--nodot",
+        "--no-output",
     ]
     ui_sections.append(
         (
@@ -348,7 +348,7 @@ def main():
         "--max-bacon",
         "3",
         "--show-deps",
-        "--nodot",
+        "--no-output",
     ]
     ui_sections.append(
         (
@@ -390,7 +390,7 @@ def main():
         "--max-bacon",
         "3",
         "--show-deps",
-        "--nodot",
+        "--no-output",
     ]
     ui_sections.append(
         (
@@ -432,7 +432,7 @@ def main():
         "--max-bacon",
         "3",
         "--show-deps",
-        "--nodot",
+        "--no-output",
     ]
     ui_sections.append(
         (
@@ -480,7 +480,7 @@ def main():
         "--max-bacon",
         "5",
         "--show-deps",
-        "--nodot",
+        "--no-output",
     ]
     ui_sections.append(
         (
@@ -494,7 +494,6 @@ def main():
     # ---- Napari-console section parameters
     console_section_name = "Console (napari-console)"
     console_output_page = UI_SECTIONS_DOCS_ROOT_PATH / "console_ui.md"
-    image_path = UI_SECTIONS_DOCS_ROOT_PATH / "console_ui.png"
     console_pydeps_args = [
         f"{CONSOLE_MODULE_PATH}",
         "--rankdir",
@@ -521,7 +520,7 @@ def main():
         "--max-bacon",
         "3",
         "--show-deps",
-        "--nodot",
+        "--no-output",
     ]
     ui_sections.append(
         (
