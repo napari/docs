@@ -43,7 +43,7 @@ theme:
       url: https://www.napari-hub.org
 ---
 
-# napari
+# napari: a fast, interactive viewer for multi-dimensional images in Python
 
 ```{figure} images/tribolium.webm
 :name: multichannel-cells
@@ -53,13 +53,15 @@ theme:
 napari.imshow(image4d)
 ```
 
-## A multi-dimensional image viewer for Python
-
-Napari is a fast multi-dimensional image viewer for Python. It can help you
-**explore** any image-like data, be it 2D, 3D, or even higher-dimensional. It
-can also help you **overlay** downstream or **associated data**, such as point
-coordinates or segmentations, which you can use to **annotate** and
-**proofread** your image data.
+Napari is a Python library for n-dimensional image visualisation, annotation,
+and analysis. With napari you can:
+- **view and explore** 2D, 3D, and higher-dimensional arrays on a canvas;
+- **overlay** derived data such as *points*, *polygons*, *segmentations*, and
+  more;
+- **annotate** and **edit** derived datasets, using standard data structures
+  such as NumPy or Zarr arrays, allowing you to
+- **seamlessly weave** exploration, computation, and annotation together in
+  imaging data analysis.
 
 ::::{grid}
 :::{grid-item-card} Examples gallery
