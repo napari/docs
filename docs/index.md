@@ -48,6 +48,7 @@ theme:
 ```{figure} images/tribolium.webm
 :name: multichannel-cells
 :alt: napari viewer showing a 4D image of a developing Tribolium embryo.  Dataset Fluo-N3DL-TRIF from the [cell tracking challenge](http://celltrackingchallenge.net/3d-datasets/) by Dr. A. Jain, MPI-CBG, Dresden, Germany.
+:width: 100%
 :align: center
 
 napari.imshow(image4d)
