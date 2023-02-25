@@ -64,9 +64,11 @@ and analysis. With napari you can:
   imaging data analysis.
 
 ::::{grid}
+
 :::{grid-item-card} Examples gallery
 :link: gallery
 :link-type: ref
+=======
 
 See some of the things napari can do.
 :::
@@ -111,4 +113,3 @@ napari is extensible! Find plugins, or develop your own!
 :::
 
 ::::
-

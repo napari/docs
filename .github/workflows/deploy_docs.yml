@@ -30,6 +30,8 @@ jobs:
           path: napari-repo
           ref: main
           repository: napari/napari
+          # ensure version metadata is proper
+          fetch-depth: 0
 
       - name: Copy examples to docs folder
         run: |
