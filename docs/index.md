@@ -49,9 +49,9 @@ theme:
 <figure>
 
   <video width="90%" controls autoplay loop muted playsinline>
-    <source src="_images/tribolium.webm" type="video/webm" />
-    <source src="_images/tribolium.mp4" type="video/mp4" />
-    <img src="_images/tribolium.jpg"
+    <source src="_static/images/tribolium.webm" type="video/webm" />
+    <source src="_static/images/tribolium.mp4" type="video/mp4" />
+    <img src="_static/images/tribolium.jpg"
       title="your browser does not support the video tag"
       alt="napari viewer showing a 4D image of a developing Tribolium embryo.  Dataset Fluo-N3DL-TRIF from the [cell tracking challenge](http://celltrackingchallenge.net/3d-datasets/) by Dr. A. Jain, MPI-CBG, Dresden, Germany."
     >
