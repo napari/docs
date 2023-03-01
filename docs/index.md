@@ -87,10 +87,6 @@ How to install napari.
 Get started with napari.
 :::
 
-::::
-
-::::{grid}
-
 :::{grid-item-card} Community
 :link: community
 :link-type: ref
