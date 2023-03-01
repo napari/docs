@@ -57,7 +57,7 @@ theme:
     >
   </video>
 
-  <figcaption>napari.imshow(image4d)</figcaption>
+  <figcaption><pre>napari.imshow(image4d)</pre></figcaption>
 
 </figure>
 ```
