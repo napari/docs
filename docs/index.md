@@ -45,13 +45,21 @@ theme:
 
 # napari: a fast, interactive viewer for multi-dimensional images in Python
 
-```{figure} images/tribolium.webm
-:name: multichannel-cells
-:alt: napari.imshow(image4d)
-:width: 100%
-:align: center
+```{raw} html
+<figure>
 
-napari viewer showing a 4D image of a developing Tribolium embryo.  Dataset Fluo-N3DL-TRIF from the [cell tracking challenge](http://celltrackingchallenge.net/3d-datasets/) by Dr. A. Jain, MPI-CBG, Dresden, Germany.
+  <video width="90%" controls autoplay loop muted playsinline>
+    <source src="_images/tribolium.webm" type="video/webm" />
+    <source src="_images/tribolium.mp4" type="video/mp4" />
+    <img src="_images/tribolium.jpg"
+      title="your browser does not support the video tag"
+      alt="napari viewer showing a 4D image of a developing Tribolium embryo.  Dataset Fluo-N3DL-TRIF from the [cell tracking challenge](http://celltrackingchallenge.net/3d-datasets/) by Dr. A. Jain, MPI-CBG, Dresden, Germany."
+    >
+  </video>
+
+  <figcaption>napari.imshow(image4d)</figcaption>
+
+</figure>
 ```
 
 Napari is a Python library for n-dimensional image visualisation, annotation,
