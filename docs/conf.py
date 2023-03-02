@@ -61,7 +61,7 @@ extensions = [
     'myst_nb',
     #    "sphinx_comments",
     "sphinx.ext.viewcode",
-    "sphinx-favicon",
+    "sphinx_favicon",
     "sphinx_copybutton",
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
