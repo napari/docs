@@ -56,9 +56,10 @@ def generate_directory_layout(
     output_file=None,
 ):
     dependencies_dict = json.loads(str(dependencies_graph))
-    files_to_include = [
-        Path(dependency["path"]) for dependency in dependencies_dict.values()
-    ]
+    files_to_include = []
+    for dependency in dependencies_dict.values():
+        if dependency["path"]:
+            files_to_include.append(Path(dependency["path"]))
 
     def directory_layout_mask(item):
         item_path = Path(item)
@@ -100,10 +101,10 @@ def generate_mermaid_diagram(
     graph_urls_prefix=None,
 ):
     dependencies_dict = json.loads(str(dependencies_graph))
-
     mermaid_diagram_content = "```{mermaid}\n"
     mermaid_diagram_content += f"graph {graph_orientation or 'LR'}\n"
     external_nodes = []
+    subgraphs = {}
     for dependency in dependencies_dict.values():
         dep_name = dependency["name"]
         mermaid_diagram_content += f"\t{dep_name}({dep_name})\n"
@@ -117,7 +118,7 @@ def generate_mermaid_diagram(
                     mermaid_diagram_content += (
                         f"\t{dep_name} --> {dep_import_name}\n"
                     )
-        if graph_urls_prefix:
+        if graph_urls_prefix and dependency["path"]:
             module_path = Path(dependency["path"])
             # Check if module is outside napari, like
             # a plugin such as `napari_console`
@@ -129,8 +130,27 @@ def generate_mermaid_diagram(
                 mermaid_diagram_content += (
                     f'\tclick {dep_name} "{module_url}" _blank\n'
                 )
+                dep_name_parent = ".".join(dep_name.split(".")[:-1])
+                if dep_name_parent not in subgraphs:
+                    subgraphs[dep_name_parent] = [dep_name]
+                else:
+                    subgraphs[dep_name_parent].append(dep_name)
             else:
                 external_nodes.append(dep_name)
+
+    for subgraph_key, subgraph_value in subgraphs.items():
+        mermaid_diagram_content += (
+            f"\tsubgraph module.{subgraph_key}[{subgraph_key}]\n"
+        )
+        for dep_subgraph_name in subgraph_value:
+            mermaid_diagram_content += f"\t\t {dep_subgraph_name}\n"
+        mermaid_diagram_content += "\tend\n"
+        mermaid_diagram_content += f"\tclass module.{subgraph_key} subgraphs\n"
+
+    if subgraphs:
+        mermaid_diagram_content += (
+            "\tclassDef subgraphs fill:white,strock:black,color:black;"
+        )
     if graph_node_default_style:
         mermaid_diagram_content += (
             f"\tclassDef default {graph_node_default_style}\n"
@@ -501,6 +521,7 @@ def main():
         "--rankdir",
         "RL",
         "--exclude",
+        "pygments*",
         "*experimental*",
         "*perf*",
         "napari.utils*",
@@ -533,22 +554,18 @@ def main():
         )
     )
 
-    try:
-        for (
+    for (
+        section_name,
+        output_page,
+        pydeps_args,
+        mermaid_graph_direction,
+    ) in ui_sections:
+        generate_docs_ui_section(
             section_name,
             output_page,
             pydeps_args,
             mermaid_graph_direction,
-        ) in ui_sections:
-            generate_docs_ui_section(
-                section_name,
-                output_page,
-                pydeps_args,
-                mermaid_graph_direction,
-            )
-    except OSError:
-        # dot executable unavailable.
-        pass
+        )
 
 
 if __name__ == "__main__":
