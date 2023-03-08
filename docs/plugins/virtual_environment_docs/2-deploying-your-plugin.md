@@ -7,6 +7,7 @@ This guide explains some of the techniques you can use to deploy your plugin.
     - [Package formats (PyPI)](#package-formats-pypi)
     - [PyPI](#pypi)
 * [Deploying plugins](#deploying-plugins)
+    - [Manually via twine](#manually-via-twine)
     - [Automatically via GitHub actions](#automatically-via-github-actions)
     - [Anaconda cloud via conda-forge](#anaconda-cloud-via-conda-forge)
 
@@ -24,12 +25,12 @@ You are *strongly* encouraged to ship both! If the wheel is not present, pip wil
 **Note:** This goes for dependencies too! Check all your dependencies for wheel availability.  
 
 ### PyPI
-**[build](https://pypa-build.readthedocs.io/en/latest/ )** : package builder that bundles your source code into `sdist` or `wheel` distributions
+**[build](https://pypa-build.readthedocs.io/en/latest/ )** is the recommended package builder that bundles your source code into `sdist` or `wheel` distributions. Install `build` into your local environment, and then run it at the root of your package to build your package:
 
 ## Deploying plugins:
 
 ### Manually via **twine**.  
-[twine](https://twine.readthedocs.io/en/latest/ )**: client you can use to upload your distribution to PyPI. Note that you will need to set up a PyPI account and authenticate yourself when uploading. See [this great guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for a detailed tutorial to building and sharing your first Python packages.  
+[twine](https://twine.readthedocs.io/en/latest/ ) is a command line client you can use to upload your distribution to PyPI. Note that you will need to set up a PyPI account and authenticate yourself when uploading. See [this great guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for a detailed tutorial to building and sharing your first Python packages.  
 
 ```console
 
@@ -85,10 +86,10 @@ jobs:
 
 ```
 
-  **Note:** Gate this action on some criterion, like a [git tag](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_Idif).
+  **Note:** Gate this action on some criterion, e.g. a git tag as above, or [some other criterion](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows).
 
 ### Anaconda cloud via conda-forge
-https://conda-forge.org/docs/maintainer/adding_pkgs.html
+This is only a brief guide to deploying to `conda-forge`. More information can be found in the [conda-forge docs](https://conda-forge.org/docs/maintainer/adding_pkgs.html).
 
 1. Fork https://github.com/conda-forge/staged-recipes
 2. Create a new branch
@@ -98,12 +99,12 @@ https://conda-forge.org/docs/maintainer/adding_pkgs.html
 
 Once your recipe is approved and merged, the rest happens *automagically*, and your package will appear on the anaconda cloud.
 
-This is **far** easier if you already have an sdist published to PyPI.
+This is **far** easier if you already have an `sdist` published to PyPI.
 
 ## Other topics in this series:  
 * [Virtual environments](./1-virtual-environments.md)   
 * [Version management](./3-version-management.md)     
 * [Developer tools](./4-developer-tools.md)   
-* [Survey/Q&A](./5-Survey.md)   
+* [Survey/Q&A](./5-survey.md)   
 
 The next topic in this series is [Version management](./3-version-management.md).

@@ -23,7 +23,7 @@ You can use [setuptools_scm](https://github.com/pypa/setuptools_scm) to automati
 One tool for doing this is [bump2version](https://github.com/c4urself/bump2version). For example:
 ```console
    $ pip install bump2version  
-   # then configure all the places you use your version   
+   # configure all the places you use your version, then, to update:
    $ bump2version --current-version 0.5.1 minor  
 ```   
 
@@ -41,4 +41,4 @@ The next topic in this series is [Developer tools](./4-developer-tools.md).
 * [Virtual environments](./1-virtual-environments)  
 * [Deploying your plugin](./2-deploying-your-plugin.md)    
 * [Developer tools](./4-developer-tools.md)   
-* [Survey](./5-Survey.md) 
+* [Survey](./5-survey.md) 

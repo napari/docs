@@ -10,19 +10,18 @@ This guide explains the value of using virtual environments and how to create an
 ## Overview
 A virtual environment is an isolated collection of packages, settings, and an associated Python interpreter, that allows multiple different collections to exist on the same system. They are created on top of an existing Python installation, known as the virtual environment's “base” python, and may optionally be isolated from the packages in the base environment, so only those explicitly installed in the virtual environment are available.
 
- More information on why virtual environments are created and how they can help you can be found on the [python website](https://docs.python.org/3/library/venv.html#creating-virtual-environments) and at [hackmd.io](https://hackmd.io/@talley/SJB_lObBi#What-is-a-virtual-environment). 
+ More information on why virtual environments are created and how they can help you can be found on the [python website](https://docs.python.org/3/library/venv.html#creating-virtual-environments) and in [this introductory workshop](https://hackmd.io/@talley/SJB_lObBi#What-is-a-virtual-environment). 
 
-Virtual environments are super important! They allow you to isolate your project from other python projects. They allow you to experiment with various packages and versions without fear of breaking your entire system (and needing to reinstall everything). As you install packages over time, you will inevitably install something that doesn’t “play well” with something else that is already installed. In some cases this can be hard to recover from. With virtual environments, you can just create a fresh environment and start again – without needing to do major surgery on your system.
+Virtual environments are super important! They allow you to isolate your project from other Python projects. They allow you to experiment with various packages and versions without fear of breaking your entire system (and needing to reinstall everything). As you install packages over time, you will inevitably install something that doesn’t “play well” with something else that is already installed. In some cases this can be hard to recover from. With virtual environments, you can just create a fresh environment and start again – without needing to do major surgery on your system.
 
-There are several tools available for creating and managing virtual environments.  One of the most popular, comprehensive tools is Conda. Wikipedia explains that [Conda is an open-source, cross-platform, language-agnostic package manager and environment management system.](https://en.wikipedia.org/wiki/Conda_(package_manager)) It was originally developed to solve difficult package management challenges faced by Python data scientists. At first, it was part of Anaconda Python distribution developed by Anaconda Inc., it ended up being useful on its own and for things other than Python, so it was spun out as a separate package. The Conda package and environment manager is included in all versions of **Anaconda**, **Miniconda**, and **Anaconda Repository**. 
+There are several tools available for creating and managing virtual environments.  One of the most popular, comprehensive tools is Conda. Wikipedia explains that [Conda is an open-source, cross-platform, language-agnostic package manager and environment management system.](https://en.wikipedia.org/wiki/Conda_(package_manager)) It was originally developed to solve difficult package management challenges faced by Python data scientists. The Conda package and environment manager is included in all versions of **Anaconda**, **Miniconda**, and **Anaconda Repository**. 
 
-For more information on the value of virtual environments, see [hackmd.io](https://hackmd.io/@talley/SJB_lObBi#What-is-a-virtual-environment). 
+## Install and Config
+Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) or [mini forge](https://github.com/conda-forge/miniforge) (comes pre-configured with `conda-forge`) in the home directory.
 
-Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) or [mini forge](https://github.com/conda-forge/miniforge) (comes pre-configured with conda-forge) in the home directory.
+Adding the `conda-forge` channel to the conda config makes packages in `conda-forge` visible to the conda installer. Setting `channel_priority` to strict ensures packages in high priority channels are always installed over packages of the same name in lower priority channels. See [this guide](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-channels.html) for more details. 
 
-Adding the conda-forge channel to the conda config makes packages in conda-forge visible to the conda installer. Setting channel_priority to strict ensures packages in high priority channels are always installed over packages of the same name in lower priority channels. See [this guide](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-channels.html) for more details. 
-
-Make sure conda-forge is in your config by using the following commands:
+Make sure the `conda-forge` channel is in your config by using the following commands:
 ```console
     $conda config --add channels conda-forge  
     $conda config --set channel_priority strict  
