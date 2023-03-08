@@ -3,19 +3,18 @@
 This guide explains some of the techniques you can use to deploy your plugin. 
 
 ## This guide covers:   
-* [PyPI and Anaconda](#pypi-and-anaconda)
-    - [Package formats (PyPI)](#package-formats-pypi)
-    - [PyPI](#pypi)
-* [Deploying plugins](#deploying-plugins)
+* [Overview of PyPI and Anaconda](#overview-of-pypi-and-anaconda)
+* [Building your package](#building-your-package)
+* [Deploying plugins to PyPI](#deploying-plugins-to-pypi)
     - [Manually via twine](#manually-via-twine)
     - [Automatically via GitHub actions](#automatically-via-github-actions)
-    - [Anaconda cloud via conda-forge](#anaconda-cloud-via-conda-forge)
+* [Deploying plugins to Anaconda](#deploying-to-anaconda)
 
 
-## PyPI and Anaconda
+## Overview of PyPI and Anaconda
 PyPI and Anaconda are two options for how you distribute your package and allow your users to more easily find and install it.  Try to deploy to both! But for now, try to at least use PyPI. You can always also provide your users with manual installation instructions (e.g. if you want them to use `conda` or have specific dependencies).
 
-### Package formats (PyPI)
+### Building your package 
 **sdist** means source distribution. An **sdist** includes all of the files that are required to *build* your package. An **sdist** may require specific additional software (e.g. compilers) to actually build.
 
 **wheel** is a prebuilt package, ready to drop into site-packages. It includes compiled OS-specific extensions (if applicable).
@@ -24,10 +23,9 @@ You are *strongly* encouraged to ship both! If the wheel is not present, pip wil
 
 **Note:** This goes for dependencies too! Check all your dependencies for wheel availability.  
 
-### PyPI
-**[build](https://pypa-build.readthedocs.io/en/latest/ )** is the recommended package builder that bundles your source code into `sdist` or `wheel` distributions. Install `build` into your local environment, and then run it at the root of your package to build your package:
+**[build](https://pypa-build.readthedocs.io/en/latest/ )** is the recommended package builder that bundles your source code into `sdist` or `wheel` distributions. Install `build` into your local environment and then run it at the root of your package to build your package.
 
-## Deploying plugins:
+## Deploying plugins to PyPI
 
 ### Manually via **twine**.  
 [twine](https://twine.readthedocs.io/en/latest/ ) is a command line client you can use to upload your distribution to PyPI. Note that you will need to set up a PyPI account and authenticate yourself when uploading. See [this great guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for a detailed tutorial to building and sharing your first Python packages.  
@@ -49,6 +47,7 @@ You are *strongly* encouraged to ship both! If the wheel is not present, pip wil
 
 ```
 **Note:** `python -m build` is the modern alternative to `setuptools`' `python setup.py sdist bdist_wheel`. It calls `setuptools` behind the scenes.
+
 ### Automatically via GitHub actions
 This requires either: 
 * Running `twine` as above in a workflow after setting up Python and installing it
@@ -88,7 +87,7 @@ jobs:
 
   **Note:** Gate this action on some criterion, e.g. a git tag as above, or [some other criterion](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows).
 
-### Anaconda cloud via conda-forge
+### Deploying to Anaconda
 This is only a brief guide to deploying to `conda-forge`. More information can be found in the [conda-forge docs](https://conda-forge.org/docs/maintainer/adding_pkgs.html).
 
 1. Fork https://github.com/conda-forge/staged-recipes
