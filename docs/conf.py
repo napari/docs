@@ -78,6 +78,7 @@ tags_extension = ["md", "rst"]
 
 mermaid_version = "9.4.0"
 mermaid_init_js = "mermaid.initialize({startOnLoad:true, securityLevel:'loose'});"
+mermaid_d3_zoom = True
 
 # -- Options for HTML output -------------------------------------------------
 

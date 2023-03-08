@@ -7,7 +7,9 @@ sphinx-external-toc
 sphinx-favicon
 sphinx-gallery
 sphinx_autodoc_typehints==1.12.0
-sphinxcontrib-mermaid
+# Use fork branch for the moment to test d3 zoom for diagrams
+# sphinxcontrib-mermaid
+git+https://github.com/dalthviz/sphinxcontrib-mermaid@d3_zoom
 myst-nb
 napari-sphinx-theme
 matplotlib
