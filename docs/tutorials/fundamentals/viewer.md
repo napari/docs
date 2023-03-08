@@ -117,7 +117,7 @@ The main menu consists of the **File**, **View**, **Window**, **Plugins**, and *
 
 * **Window** allows you to open the integrated console, display the layer controls and layer list.  
 
-* **Plugins** allows you to manage plugins and displays a list of plugins that are currently installed.  
+* **Plugins** allows you to install and manage plugins and displays a list of plugins that are currently installed.  
 
 * **Help** contains the citation and about information.  
 
@@ -236,7 +236,7 @@ and these changes will instantly propagate to the GUI. For more information abou
 
 ### Create Layer buttons
 
-New `Points`, `Shapes`, and `Labels` layers can be added to the viewer using the layer buttons between the layer controls and layer list. These correspond to the following calls:
+New empty `Points`, `Shapes`, and `Labels` layers can be added to the viewer using the layer buttons between the layer controls and layer list. This is equivalent to, for example, the following code to make an empty `Points` layer:
 
 ```{code-cell} python
 import napari
@@ -247,7 +247,7 @@ viewer.add_shapes()
 viewer.add_labels()
 ```
 
-but with empty data. Once added, either in the GUI or via the console, these layers become accessible in the layers list section of the GUI and at `viewer.layers`.
+Once added, either in the GUI or via the console, these layers become accessible in the layers list section of the GUI and at `viewer.layers`.
 
 Layers can be deleted by selecting them and clicking on the trash icon, or by dragging the layers and dropping them into the trash.
 
