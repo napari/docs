@@ -6,4 +6,4 @@ These guides will be more valuable if you are familiar with the Python programmi
 * 2: [Deploying your plugin](./2-deploying-your-plugin.md) Starts at about minute 54:00.  
 * 3: [Version management](./3-version-management.md) Starts at about timestamp 1:01:00.   
 * 4: [Developer tools](./4-developer-tools.md) Starts at about timestamp 1:04:12.  
-* 5: [Survey/Q&A](./5-Survey.md) Starts at about timestamp 1:15:27.  
+* 5: [Survey/Q&A](./5-survey.md) Starts at about timestamp 1:15:27.  
