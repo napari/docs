@@ -21,6 +21,7 @@ from urllib.parse import urlparse, urlunparse
 
 import qtgallery
 from jinja2.filters import FILTERS
+from sphinxcontrib.mermaid import mermaid
 
 import napari
 from napari._version import __version_tuple__
@@ -78,7 +79,6 @@ tags_extension = ["md", "rst"]
 
 mermaid_version = "9.4.0"
 mermaid_init_js = "mermaid.initialize({startOnLoad:true, securityLevel:'loose'});"
-mermaid_d3_zoom = True
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -241,6 +241,7 @@ def setup(app):
     """
     app.registry.source_suffix.pop(".ipynb", None)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
+    app.connect('html-page-context', install_mermaid_d3_zoom)
 
 
 def get_attributes(item, obj, modulename):
@@ -296,3 +297,30 @@ def rewrite_github_anchor(app, uri: str):
             fragment = f'user-content-{parsed.fragment}'
             return urlunparse(parsed._replace(fragment=fragment))
     return None
+
+
+def install_mermaid_d3_zoom(app, pagename, template, context, doctree):
+    """
+    Use d3 to add a zoom funtionality to pages with mermaid diagrams.
+    """
+    # Only add d3 and zoom script to the page if a mermaid diagram is present
+    if doctree and not doctree.next_node(mermaid):
+        return
+
+    d3_js_url = "https://unpkg.com/d3/dist/d3.min.js"
+    d3_js_script = """
+    window.addEventListener('load', function () {
+      var svgs = d3.selectAll(".mermaid svg");
+      svgs.each(function() {
+        var svg = d3.select(this);
+        svg.html("<g>" + svg.html() + "</g>");
+        var inner = svg.select("g");
+        var zoom = d3.zoom().on("zoom", function(event) {
+          inner.attr("transform", event.transform);
+        });
+        svg.call(zoom);
+      });
+    });
+    """
+    app.add_js_file(d3_js_url, priority=500)
+    app.add_js_file(None, body=d3_js_script, priority=500)
