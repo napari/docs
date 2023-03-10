@@ -35,6 +35,28 @@ CONSOLE_MODULE_PATH = Path(qt_console.__file__)
 
 # ---- Utility functions
 def generate_dependencies_graph(options):
+    """
+    Generate the module dependency analysis for the given options.
+
+    The options follow the arguments that the pydeps package CLI supports.
+
+    Parameters
+    ----------
+    options : dict
+        Dictionary with the pydeps CLI arguments to use.
+
+    Returns
+    -------
+    dep_graph : DepGraph
+        Result dependency graph constructed by pydeps.
+    dot_src : str
+        Result dependecy graph description using .dot format.
+        It can return `None` depending on the options passed.
+    graph_content : bytes
+        Result dependency graph in binary format.
+        It can return `None` depending on the options passed.
+
+    """
     colors.START_COLOR = options["start_color"]
     target = Target(options["fname"])
     with target.chdir_work():
@@ -55,6 +77,27 @@ def generate_directory_layout(
     root_directory=NAPARI_ROOT_DIRECTORY_PATH,
     output_file=None,
 ):
+    """
+    Generate the code base related directory layout given the module
+    dependencies graph.
+
+    Parameters
+    ----------
+    dependencies_graph : DepGraph
+        Dependency graph constructed by pydeps.
+    root_directory : Path, optional
+        Path to the root directory where the modules are located.
+        The default is NAPARI_ROOT_DIRECTORY_PATH.
+    output_file : str, optional
+        Path to file to write with the directory layout output.
+        The default is None.
+
+    Returns
+    -------
+    directory_layout_content: str
+        The directory layout generated.
+
+    """
     dependencies_dict = json.loads(str(dependencies_graph))
     files_to_include = []
     for dependency in dependencies_dict.values():
@@ -99,10 +142,62 @@ def generate_mermaid_diagram(
     graph_node_external_style=None,
     graph_link_default_style=None,
     graph_urls_prefix=None,
+    graph_title=None,
+    graph_description=None,
 ):
+    """
+    Generate a mermaid diagram given a dependencies diagram and a set of
+    options.
+
+    Parameters
+    ----------
+    dependencies_graph : DepGraph
+        Dependency graph constructed by pydeps.
+    graph_orientation : str, optional
+        The orientation of the graph to be created and supported by mermaid.
+        For more info see:
+            https://mermaid.js.org/syntax/flowchart.html#flowchart-orientation
+        The default is "LR".
+    graph_node_default_style : str, optional
+        The default style that should be used for the graph nodes/vertices by
+        mermaid. For more info see:
+            https://mermaid.js.org/syntax/flowchart.html#styling-and-classes
+        The default is None.
+    graph_node_external_style : str, optional
+        The style that should be used for the graph nodes/vertices by mermaid
+        that are detected as external modules. For more info see:
+            https://mermaid.js.org/syntax/flowchart.html#styling-and-classes
+        The default is None.
+    graph_link_default_style : str, optional
+        The default style that should be used for the graph edges/links by
+        mermaid. For more info see:
+            https://mermaid.js.org/syntax/flowchart.html#styling-and-classes
+        The default is None.
+    graph_urls_prefix : str, optional
+        The base url used to add links to the nodes/vertices in the graph.
+        For more info see:
+            https://mermaid.js.org/syntax/flowchart.html#interaction
+        The default is None.
+    graph_title : str, optional
+        Accesible title for the graph. For more info see:
+            https://mermaid.js.org/config/accessibility.html#accessible-title-and-description
+        The default is None.
+    graph_description : str, optional
+        Accesible description for the graph. The default is None.
+
+    Returns
+    -------
+    mermaid_diagram_content : str
+        The mermaid diagram.
+
+    """
     dependencies_dict = json.loads(str(dependencies_graph))
     mermaid_diagram_content = "```{mermaid}\n"
     mermaid_diagram_content += f"graph {graph_orientation or 'LR'}\n"
+    if graph_title:
+        mermaid_diagram_content += f"\taccTitle: {graph_title}\n"
+    if graph_description:
+        mermaid_diagram_content += f"\taccDescr: {graph_description}\n"
     external_nodes = []
     subgraphs = {}
     for dependency in dependencies_dict.values():
@@ -177,6 +272,32 @@ def generate_docs_ui_section_page(
     directory_layout,
     output_file=None,
 ):
+    """
+    Generate the markdown page content for a UI section.
+
+    The generated content consists of a title, a dependencies diagram and
+    a directory layout.
+
+    Both, dependencies diagram and directory layout, have a subtitle
+    before them.
+
+    Parameters
+    ----------
+    section_name : str
+        The name of the UI section. It will be used as the page title.
+    mermaid_diagram : str
+        DESCRIPTION.
+    directory_layout : str
+        DESCRIPTION.
+    output_file : Path, optional
+        Path to file where the content should be written. The default is None.
+
+    Returns
+    -------
+    page_content : str
+        The UI section page content.
+
+    """
     page_content = f"## {section_name}\n"
     page_content += "### Dependencies diagram (related `napari` modules)\n"
     page_content += mermaid_diagram
@@ -193,16 +314,58 @@ def generate_docs_ui_section(
     section_name,
     output_page,
     pydeps_args,
-    mermaid_graph_direction,
+    mermaid_graph_base_properties,
 ):
+    """
+    Generate the needed content for a UI section page as well as a fomatted
+    page for the section.
+
+    Parameters
+    ----------
+    section_name : str
+        The name of the UI section.
+    output_page : Path
+        Path to file where the generated page content will be written.
+    pydeps_args : list
+        List with the arguments that will be passed to pydeps.
+    mermaid_graph_base_properties : dict
+        Dictionary with the base configuration needed to generate a mermaid
+        diagram.
+
+    Returns
+    -------
+    dep_graph : DepGraph
+        DESCRIPTION.
+    dot_src : str
+        Dot description of the generated dependencies graph.
+    pydeps_graph : bytes
+        Generated dependencies graph by pydeps.
+    mermaid_graph : str
+        Generated mermaid graph.
+    dir_layout : str
+        Generated directory layout of the UI section.
+    ui_page : str
+        Content of generated UI section page.
+
+    """
     options = cli.parse_args(pydeps_args)
     (
         dep_graph,
         dot_src,
         pydeps_graph,
     ) = generate_dependencies_graph(options)
+    graph_title = (
+        f"Dependencies between modules in the napari {section_name} UI section"
+    )
+    graph_description = (
+        "Diagram showing the dependencies between the modules "
+        f"involved in the definition of the napari {section_name} UI section"
+    )
     mermaid_graph = generate_mermaid_diagram(
-        dep_graph, **mermaid_graph_direction
+        dep_graph,
+        **mermaid_graph_base_properties,
+        graph_title=graph_title,
+        graph_description=graph_description,
     )
     dir_layout = generate_directory_layout(dep_graph)
     ui_page = generate_docs_ui_section_page(
@@ -217,7 +380,7 @@ def generate_docs_ui_section(
 # ---- Main and UI sections parameters
 def main():
     # General 'settings'
-    mermaid_graph_settings = {
+    mermaid_graph_base_settings = {
         "graph_orientation": "LR",
         "graph_node_default_style": "fill:#00c3ff,color:black;",
         "graph_node_external_style": "fill:#ffa600,color:black;",
@@ -276,7 +439,7 @@ def main():
             layer_list_section_name,
             layer_list_output_page,
             layer_list_pydeps_args,
-            mermaid_graph_settings,
+            mermaid_graph_base_settings,
         )
     )
 
@@ -333,7 +496,7 @@ def main():
             layer_controls_section_name,
             layer_controls_output_page,
             layer_controls_pydeps_args,
-            mermaid_graph_settings,
+            mermaid_graph_base_settings,
         )
     )
 
@@ -377,7 +540,7 @@ def main():
             application_status_bar_section_name,
             application_status_bar_output_page,
             application_status_bar_pydeps_args,
-            mermaid_graph_settings,
+            mermaid_graph_base_settings,
         )
     )
 
@@ -419,7 +582,7 @@ def main():
             application_menus_section_name,
             application_menus_output_page,
             application_menus_pydeps_args,
-            mermaid_graph_settings,
+            mermaid_graph_base_settings,
         )
     )
 
@@ -461,7 +624,7 @@ def main():
             viewer_section_name,
             viewer_output_page,
             viewer_pydeps_args,
-            mermaid_graph_settings,
+            mermaid_graph_base_settings,
         )
     )
 
@@ -509,7 +672,7 @@ def main():
             dialogs_section_name,
             dialogs_output_page,
             dialogs_pydeps_args,
-            mermaid_graph_settings,
+            mermaid_graph_base_settings,
         )
     )
 
@@ -550,7 +713,7 @@ def main():
             console_section_name,
             console_output_page,
             console_pydeps_args,
-            mermaid_graph_settings,
+            mermaid_graph_base_settings,
         )
     )
 
@@ -558,13 +721,13 @@ def main():
         section_name,
         output_page,
         pydeps_args,
-        mermaid_graph_direction,
+        mermaid_graph_base_settings,
     ) in ui_sections:
         generate_docs_ui_section(
             section_name,
             output_page,
             pydeps_args,
-            mermaid_graph_direction,
+            mermaid_graph_base_settings,
         )
 
 
