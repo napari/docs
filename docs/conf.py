@@ -65,6 +65,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
+    "sphinx_issues",
 ]
 
 external_toc_path = "_toc.yml"
@@ -74,6 +75,10 @@ tags_create_tags = True
 tags_output_dir = "_tags"
 tags_overview_title = "Tags"
 tags_extension = ["md", "rst"]
+
+# Path to GitHub repo {group}/{project}  (note that `group` is the GitHub user
+# or organization)
+issues_github_path = "napari/napari"
 
 # -- Options for HTML output -------------------------------------------------
 
