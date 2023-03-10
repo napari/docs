@@ -11,75 +11,75 @@ For more information, examples, and documentation, please visit our website:
 https://github.com/napari/napari
 
 ## Highlights
-This release is the first that adds support for persistent settings in napari (#2212).
+This release is the first that adds support for persistent settings in napari ({pr}`2212`).
 Right now we just store the current theme and window geometry but we will be expanding 
 this to include a full set of preferences in future releases.
 
 We've also made plugin installation from our plugin dialog more flexible, including
 supporting installation from anything supported by `pip`, such as a
-package name, url, or local file (#2319).
+package name, url, or local file ({pr}`2319`).
 
 
 ## New Features
-- Add the ability to show contours of labels (#2168)
-- Add initial settings management for theme and window geometry (#2212)
-- More flexible plugin install (from url, name or file)  (#2319)
+- Add the ability to show contours of labels ({pr}`2168`)
+- Add initial settings management for theme and window geometry ({pr}`2212`)
+- More flexible plugin install (from url, name or file)  ({pr}`2319`)
 
 
 ## Improvements
-- Use pydantic for viewer model (#2066)
-- Use vectorized indexing for xarray arrays in labels (#2191)
-- Add basic composite tree model (#2217)
-- Add Qt Tree Model and View (#2222)
-- Change status_format to return an existing string as-is (#2235)
-- Add translator stub and example (#2254)
-- Add hook implementation function name to plugin call order sorter (#2255)
-- Add `theme` parameter to `get_stylesheet` (#2263)
-- Add typing to event.py (#2269)
-- Add `canvas.background_color_override` (#2270)
-- QColoredSVGIcon class for dynamic colorized svg icons (#2279)
-- Add EventedSet class (#2280)
-- Refactor icon build process (#2285)
-- Add more tooltips (#2292)
-- Make contour thickness settable (#2296)
-- Add `_json_encode` method API for EventedModel serdes (#2297)
-- Don't subclass `Layer` directly from `Image`, (adds `_ImageBase`) (#2307)
-- Disable run pre release test outside napari main repository (#2331)
+- Use pydantic for viewer model ({pr}`2066`)
+- Use vectorized indexing for xarray arrays in labels ({pr}`2191`)
+- Add basic composite tree model ({pr}`2217`)
+- Add Qt Tree Model and View ({pr}`2222`)
+- Change status_format to return an existing string as-is ({pr}`2235`)
+- Add translator stub and example ({pr}`2254`)
+- Add hook implementation function name to plugin call order sorter ({pr}`2255`)
+- Add `theme` parameter to `get_stylesheet` ({pr}`2263`)
+- Add typing to event.py ({pr}`2269`)
+- Add `canvas.background_color_override` ({pr}`2270`)
+- QColoredSVGIcon class for dynamic colorized svg icons ({pr}`2279`)
+- Add EventedSet class ({pr}`2280`)
+- Refactor icon build process ({pr}`2285`)
+- Add more tooltips ({pr}`2292`)
+- Make contour thickness settable ({pr}`2296`)
+- Add `_json_encode` method API for EventedModel serdes ({pr}`2297`)
+- Don't subclass `Layer` directly from `Image`, (adds `_ImageBase`) ({pr}`2307`)
+- Disable run pre release test outside napari main repository ({pr}`2331`)
 
 
 ## Bug Fixes
-- Fix QtPoll to poll when camera moves (#2227)
-- Prevent garbage collection of viewer during startup. (#2262)
-- Fix EventedModel signatures with PySide2 imported (#2265)
-- Remove callsignature (#2266)
-- Fix bug with not display points close to given layer (#2289)
-- Fix plugin discovery in bundle (use certifi context for urlopen) (#2298)
-- Call processEvents before nbscreenshot (#2303)
-- Add handling of python <= 3.7 for translator (#2305)
-- Add parent parameter to about dialog to correctly inherit and apply theme (#2308)
-- Remove unneeded stylesheet on QtAbout dialog (#2312)
-- Avoid importing xarray (and other array libs) for equality checkers (#2325)
+- Fix QtPoll to poll when camera moves ({pr}`2227`)
+- Prevent garbage collection of viewer during startup. ({pr}`2262`)
+- Fix EventedModel signatures with PySide2 imported ({pr}`2265`)
+- Remove callsignature ({pr}`2266`)
+- Fix bug with not display points close to given layer ({pr}`2289`)
+- Fix plugin discovery in bundle (use certifi context for urlopen) ({pr}`2298`)
+- Call processEvents before nbscreenshot ({pr}`2303`)
+- Add handling of python <= 3.7 for translator ({pr}`2305`)
+- Add parent parameter to about dialog to correctly inherit and apply theme ({pr}`2308`)
+- Remove unneeded stylesheet on QtAbout dialog ({pr}`2312`)
+- Avoid importing xarray (and other array libs) for equality checkers ({pr}`2325`)
 
 ## API Changes
 - The ViewerModel is now a Pydantic BaseModel and so subclassing the Viewer might require
 reading some of the [Pydantic BaseModel documentation](https://pydantic-docs.helpmanual.io/usage/models/).
 Otherwise the API of the ViewerModel is unchanged.
-- Because `Labels` no longer inherit from `Image` (#2307), magicgui function
+- Because `Labels` no longer inherit from `Image` ({pr}`2307`), magicgui function
   parameters annotated as `napari.layers.Image` will no longer include
   `napari.layers.Labels` layer types in the dropdown menu. (`napari.layers.Layer`
   may still be used to show all layer types in the magicgui-generated dropdown
   menu.)
 
 ## Build Tools and Support
-- Add missing release notes 0.4.5 (#2250)
-- Explicitly document ability to implement multiple of the same hook (#2256)
-- Update install instructions to work with zsh default Mac shell (#2258)
-- Fix broken links in README (#2275)
-- Documentation typos (#2294)
-- Documentation on napari types in magicgui (#2306)
-- Pin pydantic < 1.8.0 (#2323)
-- Fix docs build with code execution (#2324)
-- Pin pydantic != 1.8.0 (#2333)
+- Add missing release notes 0.4.5 ({pr}`2250`)
+- Explicitly document ability to implement multiple of the same hook ({pr}`2256`)
+- Update install instructions to work with zsh default Mac shell ({pr}`2258`)
+- Fix broken links in README ({pr}`2275`)
+- Documentation typos ({pr}`2294`)
+- Documentation on napari types in magicgui ({pr}`2306`)
+- Pin pydantic < 1.8.0 ({pr}`2323`)
+- Fix docs build with code execution ({pr}`2324`)
+- Pin pydantic != 1.8.0 ({pr}`2333`)
 
 
 ## 12 authors added to this release (alphabetical)

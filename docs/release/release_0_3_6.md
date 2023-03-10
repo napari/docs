@@ -12,7 +12,7 @@ https://github.com/napari/napari
 
 ## Highlights
 This release contains the long awaited addition of text to both the points and
-shapes layers (#1374). Checkout our `examples/*_with_text.py` for simple usage
+shapes layers ({pr}`1374`). Checkout our `examples/*_with_text.py` for simple usage
 and this [segmentation annotation tutorial](https://napari.org/tutorials/segmentation/annotate_segmentation)
 for a more real-world use case.
 
@@ -29,57 +29,57 @@ room at https://napari.zulipchat.com!
 
 
 ## New Features
-- Functions to split/combine multiple layers along an axis (#1322)
-- Add text to shapes and points via TextManager (#1374)
-- Add circle/spherical brush to Labels paint brush (#1429)
+- Functions to split/combine multiple layers along an axis ({pr}`1322`)
+- Add text to shapes and points via TextManager ({pr}`1374`)
+- Add circle/spherical brush to Labels paint brush ({pr}`1429`)
 
 
 ## Improvements
-- Add ability to run napari script with/without gui_qt from CLI (#1373)
-- Event handler refactor for image layer  "reverted by (#1416)" (#1376)
-- Add ndim as a keyword argument to shapes to support creating empty layers (#1379)
-- Add helpful error on multichannel IndexError (#1381)
-- Use qlistwidget for QtLayerList "reverted by (#1416)" (#1391)
-- Event handler surface layer  "reverted by (#1416)" (#1396)
-- Revert "event handler refactors (#1376), (#1391), (#1396)" (#1416)
-- Move contrast limits and gamma to the shader by vendoring vispy code (#1456)
-- Reduce attenuation default and range (#1460)
+- Add ability to run napari script with/without gui_qt from CLI ({pr}`1373`)
+- Event handler refactor for image layer  "reverted by (#1416)" ({pr}`1376`)
+- Add ndim as a keyword argument to shapes to support creating empty layers ({pr}`1379`)
+- Add helpful error on multichannel IndexError ({pr}`1381`)
+- Use qlistwidget for QtLayerList "reverted by (#1416)" ({pr}`1391`)
+- Event handler surface layer  "reverted by (#1416)" ({pr}`1396`)
+- Revert "event handler refactors (#1376), (#1391), (#1396)" ({pr}`1416`)
+- Move contrast limits and gamma to the shader by vendoring vispy code ({pr}`1456`)
+- Reduce attenuation default and range ({pr}`1460`)
 
 
 ## Bug Fixes
-- Revert "remove scipy.stats import (#1250)" (#1371)
-- Fix vispy volume colormap changing (#1402)
-- Fix vertical alignment of QLabel in QtDimSliderWidget (#1415)
-- Fix adding single shape duplicating properties (#1427)
-- Fix viewing properties for multiscale labels layers (#1433)
-- Fix trim of layer number (#1439)
-- Hide status bar line on windows (#1440)
-- Handle nested zarr path (#1441)
-- Toggle image/ volume nodes on ndisplay change (#1445)
-- Fix attenuation setting (#1454)
-- Fix toggle ndisplay z-order points (#1463)
-- Fix edge color select bug (#1464)
-- Proper recognition tiff files with ".TIF" extension (#1472)
+- Revert "remove scipy.stats import (#1250)" ({pr}`1371`)
+- Fix vispy volume colormap changing ({pr}`1402`)
+- Fix vertical alignment of QLabel in QtDimSliderWidget ({pr}`1415`)
+- Fix adding single shape duplicating properties ({pr}`1427`)
+- Fix viewing properties for multiscale labels layers ({pr}`1433`)
+- Fix trim of layer number ({pr}`1439`)
+- Hide status bar line on windows ({pr}`1440`)
+- Handle nested zarr path ({pr}`1441`)
+- Toggle image/ volume nodes on ndisplay change ({pr}`1445`)
+- Fix attenuation setting ({pr}`1454`)
+- Fix toggle ndisplay z-order points ({pr}`1463`)
+- Fix edge color select bug ({pr}`1464`)
+- Proper recognition tiff files with ".TIF" extension ({pr}`1472`)
 
 
 ## Build Tools
-- Updates plugin dev docs to encourage github topic (#1366)
-- Refactor all tests to hide GUI (#1372)
-- Fix two remaining tests that try to show the viewer. (#1375)
-- Fix windows tests (#1377)
-- Dedicated testing doc (#1378)
-- Rename mark to avoid warning on pytest ordering package (#1383)
-- Rename viewer_factory -> make_test_viewer, don't return view (#1386)
-- Fix inconsistency in docs (#1420)
-- Docreformat (#1428)
-- DOC: autoreformat of more docstrings. (#1437)
-- Fix typos using codespell (#1438)
-- Preserve tests from EVH revert (#1452)
-- Fix typos (#1468)
-- DOC: minor doc reformatting. (#1469)
-- DOC: update param names to match function signature. (#1479)
-- Fix events docstring type (#1481)
-- Don't look for release notes in pre-releases (#1483)
+- Updates plugin dev docs to encourage github topic ({pr}`1366`)
+- Refactor all tests to hide GUI ({pr}`1372`)
+- Fix two remaining tests that try to show the viewer. ({pr}`1375`)
+- Fix windows tests ({pr}`1377`)
+- Dedicated testing doc ({pr}`1378`)
+- Rename mark to avoid warning on pytest ordering package ({pr}`1383`)
+- Rename viewer_factory -> make_test_viewer, don't return view ({pr}`1386`)
+- Fix inconsistency in docs ({pr}`1420`)
+- Docreformat ({pr}`1428`)
+- DOC: autoreformat of more docstrings. ({pr}`1437`)
+- Fix typos using codespell ({pr}`1438`)
+- Preserve tests from EVH revert ({pr}`1452`)
+- Fix typos ({pr}`1468`)
+- DOC: minor doc reformatting. ({pr}`1469`)
+- DOC: update param names to match function signature. ({pr}`1479`)
+- Fix events docstring type ({pr}`1481`)
+- Don't look for release notes in pre-releases ({pr}`1483`)
 
 
 ## 14 authors added to this release (alphabetical)

@@ -8,9 +8,9 @@ rendering), and the scientific Python stack (numpy, scipy).
 
 This is a small release containing some new features and fixing a few issues that have come up since 0.4.13 was released.
 
-This release adds the ability to convert a shapes layer to a labels layer from a context menu available on right clicking the layer list entry (#3978). Our vectors layer has gained the 
-ability to render vectors in 2D across multiple slices (#2902) and points in the points
-layer can now be hidden individually (#3625).
+This release adds the ability to convert a shapes layer to a labels layer from a context menu available on right clicking the layer list entry ({pr}`3978`). Our vectors layer has gained the 
+ability to render vectors in 2D across multiple slices ({pr}`2902`) and points in the points
+layer can now be hidden individually ({pr}`3625`).
 
 For more information, examples, and documentation, please visit our website:
 https://github.com/napari/napari
@@ -18,34 +18,34 @@ https://github.com/napari/napari
 Complete list of changes below:
 
 ## Highlights
-- Enable shapes layer (right click) > convert to labels (#3978)
-- Out-of-slice rendering for Vectors (#2902)
-- Hide points individually (#3625)
+- Enable shapes layer (right click) > convert to labels ({pr}`3978`)
+- Out-of-slice rendering for Vectors ({pr}`2902`)
+- Hide points individually ({pr}`3625`)
 
 ## New Features
 
 ## Improvements
-- Update tests to remove warnings (#3974)
-- Add test to check that things are removed properly (#3996)
-- Change base point slice thickness to half a unit (#3997)
-- Change base vector slice thickness to half a unit (#4001)
-- Use scikit-image[data] in the bundle (#4024)
-- Rename n_dimensional to out_of_slice_display in Points and Vectors (#4007)
-- Raise reader plugin errors sooner, (avoid cryptic error messages) (#4026)
-- Unlink close button from plugins (#4027)
-- Update QtProgressBar total when progress total is changed (#4034)
-- Update on merge to stack action ordering (#4033)
+- Update tests to remove warnings ({pr}`3974`)
+- Add test to check that things are removed properly ({pr}`3996`)
+- Change base point slice thickness to half a unit ({pr}`3997`)
+- Change base vector slice thickness to half a unit ({pr}`4001`)
+- Use scikit-image[data] in the bundle ({pr}`4024`)
+- Rename n_dimensional to out_of_slice_display in Points and Vectors ({pr}`4007`)
+- Raise reader plugin errors sooner, (avoid cryptic error messages) ({pr}`4026`)
+- Unlink close button from plugins ({pr}`4027`)
+- Update QtProgressBar total when progress total is changed ({pr}`4034`)
+- Update on merge to stack action ordering ({pr}`4033`)
 
 ## Bug Fixes
-- Fix about on python 3.10 (#3972)
-- Revert changes to scikit-image test API (#3979)
-- Fix missing builtins in bundle (#3982)
-- Don't use texture_format auto if float textures not available on machine (#3990)
-- Fix error when setting ndisplay=3 with empty shapes layer in viewer (#4003)
-- Fix bug preventing close button on dock widgets (#4006)
-- Fix point symbol on instantiation (#4043)
-- Only set dims kwargs on viewer after adding layer (#4021)
-- Imsave deprecation (#4057)
+- Fix about on python 3.10 ({pr}`3972`)
+- Revert changes to scikit-image test API ({pr}`3979`)
+- Fix missing builtins in bundle ({pr}`3982`)
+- Don't use texture_format auto if float textures not available on machine ({pr}`3990`)
+- Fix error when setting ndisplay=3 with empty shapes layer in viewer ({pr}`4003`)
+- Fix bug preventing close button on dock widgets ({pr}`4006`)
+- Fix point symbol on instantiation ({pr}`4043`)
+- Only set dims kwargs on viewer after adding layer ({pr}`4021`)
+- Imsave deprecation ({pr}`4057`)
 
 ## API Changes
 
@@ -53,11 +53,11 @@ Complete list of changes below:
 
 
 ## Build Tools and Docs
-- DOC: Misc doc syntax. (#3985)
-- Fix include_package_data inclusion in the "your first plugin" docs page (#4022)
-- 0.4.14 translation strings (#4029)
-- Use python -m pytest with xvfb-action (#4046)
-- Update packaging files, remove setup.py and requirements.txt (#4014)
+- DOC: Misc doc syntax. ({pr}`3985`)
+- Fix include_package_data inclusion in the "your first plugin" docs page ({pr}`4022`)
+- 0.4.14 translation strings ({pr}`4029`)
+- Use python -m pytest with xvfb-action ({pr}`4046`)
+- Update packaging files, remove setup.py and requirements.txt ({pr}`4014`)
 
 ## 11 authors added to this release (alphabetical)
 - [Alister Burt](https://github.com/napari/napari/commits?author=alisterburt) - @alisterburt

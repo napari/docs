@@ -14,35 +14,35 @@ https://github.com/napari/napari
 This release contains a number of bug fixes on various platforms. For those
 interested in napari performance, we have added a new performance monitoring
 mode, that can be activated by the `NAPARI_PERFMON` environment variable, see
-(#1262) for details. We have also added a page in the explanations section of
+({pr}`1262`) for details. We have also added a page in the explanations section of
 our docs on napari's [rendering](https://napari.org/stable/guides/rendering.html)
 including plans for the future.
 
 
 ## New Features
-- Allow using of custom color dictionary in labels layer (#1339 and #1362)
-- Allow Shapes face and edge colors to be mapped to properties (#1342)
-- Add performance monitoring widget (#1262)
+- Allow using of custom color dictionary in labels layer ({pr}`1339` and {pr}`1362`)
+- Allow Shapes face and edge colors to be mapped to properties ({pr}`1342`)
+- Add performance monitoring widget ({pr}`1262`)
 
 
 ## Improvements
-- Factor out ImageSlice and ImageView from Image (#1343)
+- Factor out ImageSlice and ImageView from Image ({pr}`1343`)
 
 ## Bug Fixes
-- Fix warning for python 3.8 (#1335)
-- Fix range slider position (#1344)
-- Fix Linux and Windows key hold detection (#1350)
-- Fix crash when selecting all points (#1358)
-- Fix deleting layers changing dims (#1359)
-- Revert "remove scipy.stats import (#1250)" (#1371)
+- Fix warning for python 3.8 ({pr}`1335`)
+- Fix range slider position ({pr}`1344`)
+- Fix Linux and Windows key hold detection ({pr}`1350`)
+- Fix crash when selecting all points ({pr}`1358`)
+- Fix deleting layers changing dims ({pr}`1359`)
+- Revert "remove scipy.stats import (#1250)" ({pr}`1371`)
 
 
 ## Build Tools and Support
-- Remove broken link from BENCHMARKS.md (#1236)
-- New documentation on rendering (#1328)
-- Remove incorrect dashes in cirrus push_docs task (#1330)
-- Use correct pyqt version in tests (#1331)
-- Fix docs version, reformat, and add explanations (#1368)
+- Remove broken link from BENCHMARKS.md ({pr}`1236`)
+- New documentation on rendering ({pr}`1328`)
+- Remove incorrect dashes in cirrus push_docs task ({pr}`1330`)
+- Use correct pyqt version in tests ({pr}`1331`)
+- Fix docs version, reformat, and add explanations ({pr}`1368`)
 
 
 ## 8 authors added to this release (alphabetical)

@@ -13,46 +13,46 @@ https://github.com/napari/napari
 ## Highlights
 
 This is an emergency patch release to fix a regression in `0.4.1` that broke
-magicgui generated dockwidgets which accepted layers as input (#1962). The
+magicgui generated dockwidgets which accepted layers as input ({pr}`1962`). The
 release also contains a number of other bug fixes and improvements, notably
 a fix to a performance regression when adding many layers that came in the
-`0.3.6` release (#1945), and the beginning of adopting evented dataclasses
+`0.3.6` release ({pr}`1945`), and the beginning of adopting evented dataclasses
 for our model files, which will result in a dramatic simplification of that
 part of the codebase.
 
 ## Improvements
-- async-28: Misc Cleanup (#1900)
-- async-29: Shared Memory Server (#1909)
-- Use evented dataclass for axes (#1910)
-- Use evented dataclass for scalebar (#1911)
-- Use evented dataclass for cursor (#1912)
-- Use evented dataclass for grid (#1913)
-- Use evented dataclass for camera (#1914)
-- Use evented dataclass for colormap (#1916)
-- Remove add layers mixin (#1921)
+- async-28: Misc Cleanup ({pr}`1900`)
+- async-29: Shared Memory Server ({pr}`1909`)
+- Use evented dataclass for axes ({pr}`1910`)
+- Use evented dataclass for scalebar ({pr}`1911`)
+- Use evented dataclass for cursor ({pr}`1912`)
+- Use evented dataclass for grid ({pr}`1913`)
+- Use evented dataclass for camera ({pr}`1914`)
+- Use evented dataclass for colormap ({pr}`1916`)
+- Remove add layers mixin ({pr}`1921`)
 
 ## Bug Fixes
-- Fix performance issues 1 - adding layers (#1945)
-- Fix track labels lookup (#1946)
-- Update sliders when change scale of layer (#1951)
-- Fix evented dataclass for python 3.9 (#1958)
-- Refine TypedMutableSequence.__getitem__ error type, add magicgui tests (#1962)
+- Fix performance issues 1 - adding layers ({pr}`1945`)
+- Fix track labels lookup ({pr}`1946`)
+- Update sliders when change scale of layer ({pr}`1951`)
+- Fix evented dataclass for python 3.9 ({pr}`1958`)
+- Refine TypedMutableSequence.__getitem__ error type, add magicgui tests ({pr}`1962`)
 
 ## API Changes
 - ``Viewer.camera.ndisplay`` has been dropped. Instead, use
-  ``Viewer.dims.ndisplay``. (#1914)
+  ``Viewer.dims.ndisplay``. ({pr}`1914`)
 
 ## Deprecations
-- All existing deprecations have been bumped by one release (#1963)
+- All existing deprecations have been bumped by one release ({pr}`1963`)
 
 ## Build Tools and Docs
-- Fix checks for running under cProfile and yappi (#1924)
-- Fix missing vispy.ext.six (#1930)
-- Replace calls to layer.shape in tests (#1938)
-- Add pims to bundle (#1939)
-- Register sync_only pytest mark to fix warning (#1941)
-- Don't run app bundling in forked repos (#1953)
-- Add tests for #1895 (#1961)
+- Fix checks for running under cProfile and yappi ({pr}`1924`)
+- Fix missing vispy.ext.six ({pr}`1930`)
+- Replace calls to layer.shape in tests ({pr}`1938`)
+- Add pims to bundle ({pr}`1939`)
+- Register sync_only pytest mark to fix warning ({pr}`1941`)
+- Don't run app bundling in forked repos ({pr}`1953`)
+- Add tests for #1895 ({pr}`1961`)
 
 
 ## 8 authors added to this release (alphabetical)

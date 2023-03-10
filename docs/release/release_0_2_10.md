@@ -13,10 +13,10 @@ https://github.com/napari/napari
 
 ## Bug Fixes
 
-- remove calls to QPoint.toTuple which is invalid in PyQt5 (#866)
-- fix aspect ratio press (#871)
-- fix None label (#872)
-- drop zarr and numcodecs dependency (#873)
+- remove calls to QPoint.toTuple which is invalid in PyQt5 ({pr}`866`)
+- fix aspect ratio press ({pr}`871`)
+- fix None label ({pr}`872`)
+- drop zarr and numcodecs dependency ({pr}`873`)
 
 ## 2 authors added to this release (alphabetical)
 

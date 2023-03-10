@@ -20,33 +20,33 @@ https://github.com/napari/napari
 
 ## Improvements
 
-- Represent color as Nx4 array in Points  (#782)
-- Qt/Vispy connection & lambda refactor (#859)
-- Improve slider step precision based on data range (#884)
-- Allow Points display properties to be set by point properties (#895)
-- Refactor `add_*` methods (#897)
-- Add `_add_layer_data` method and tests (#909)
+- Represent color as Nx4 array in Points  ({pr}`782`)
+- Qt/Vispy connection & lambda refactor ({pr}`859`)
+- Improve slider step precision based on data range ({pr}`884`)
+- Allow Points display properties to be set by point properties ({pr}`895`)
+- Refactor `add_*` methods ({pr}`897`)
+- Add `_add_layer_data` method and tests ({pr}`909`)
 
 ## Bug Fixes
 
-- Fix clim popup position in floating widgets (#869)
-- Fix points selection (#902)
-- Move benchmarks under napari directory but not distributed (#913)
-- Patch py3.8 on windows (#915)
-- Fix nD Shapes.to_labels (#920)
-- Fix singleton dims (#923)
+- Fix clim popup position in floating widgets ({pr}`869`)
+- Fix points selection ({pr}`902`)
+- Move benchmarks under napari directory but not distributed ({pr}`913`)
+- Patch py3.8 on windows ({pr}`915`)
+- Fix nD Shapes.to_labels ({pr}`920`)
+- Fix singleton dims ({pr}`923`)
 
 ## Support
 
-- Add PyQt5 tests to Linux and OSX CI (#867)
-- Change autodevdoc script to use new git reference (#876)
-- Fix invalid instructions in setup.py (#877)
-- Bump tests to python 3.8, general tests fix (#878)
-- Clean up setup.py (#880)
-- Fix osx py3.6 tests (#916)
-- Add Python 3.8 to PyPI tags (#917)
-- Relocate existing tests for appropriate discoverability. (#918)
-- Import scipy stats to prevent strange bug in tests (#927)
+- Add PyQt5 tests to Linux and OSX CI ({pr}`867`)
+- Change autodevdoc script to use new git reference ({pr}`876`)
+- Fix invalid instructions in setup.py ({pr}`877`)
+- Bump tests to python 3.8, general tests fix ({pr}`878`)
+- Clean up setup.py ({pr}`880`)
+- Fix osx py3.6 tests ({pr}`916`)
+- Add Python 3.8 to PyPI tags ({pr}`917`)
+- Relocate existing tests for appropriate discoverability. ({pr}`918`)
+- Import scipy stats to prevent strange bug in tests ({pr}`927`)
 
 ## 7 authors added to this release (alphabetical)
 

@@ -11,23 +11,23 @@ https://github.com/napari/napari
 
 ## New Features
 
-- Add gamma slider (#610)
+- Add gamma slider ({pr}`610`)
 
 ## Improvements
 
-- Make `_on_data_change` only get called once when ndisplay changes (#629)
-- fix undefined variables, remove unused imports (#633)
-- Raise informative warning when no Qt loop is detected (#642)
+- Make `_on_data_change` only get called once when ndisplay changes ({pr}`629`)
+- fix undefined variables, remove unused imports ({pr}`633`)
+- Raise informative warning when no Qt loop is detected ({pr}`642`)
 
 ## Bug Fixes
 
-- gui_qt: Ipython command is `%gui qt` in docs (#636)
-- Calculate minimum thumbnail side length so they are never zero width (#643)
+- gui_qt: Ipython command is `%gui qt` in docs ({pr}`636`)
+- Calculate minimum thumbnail side length so they are never zero width ({pr}`643`)
 
 ## Deprecations
 
 - napari.Viewer.add_multichannel was removed. Use `napari.Viewer.add_image(...,
-  channel_axis=num)`   (#619)
+  channel_axis=num)`   ({pr}`619`)
 
 ## 4 authors added to this release (alphabetical)
 

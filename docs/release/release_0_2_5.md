@@ -11,19 +11,19 @@ https://github.com/napari/napari
 
 ## New Features
 
-- Basic "play" functionality (animate a dimension) (#607)
+- Basic "play" functionality (animate a dimension) ({pr}`607`)
 
 ## Improvements
 
-- Add linter pre-commit hook  (#638)
-- Modify dims QScrollbar with scroll-to-click behavior (#664)
+- Add linter pre-commit hook  ({pr}`638`)
+- Modify dims QScrollbar with scroll-to-click behavior ({pr}`664`)
 
 ## Bug Fixes
 
-- Fix np.pad() usage (#649)
-- Bump vispy, remove unnecessary data.copy() (#657)
-- Update Cirrus OSX image and patch windows builds (#658)
-- Avoid numcodecs 0.6.4 for now (#666)
+- Fix np.pad() usage ({pr}`649`)
+- Bump vispy, remove unnecessary data.copy() ({pr}`657`)
+- Update Cirrus OSX image and patch windows builds ({pr}`658`)
+- Avoid numcodecs 0.6.4 for now ({pr}`666`)
 
 ## 4 authors added to this release (alphabetical)
 

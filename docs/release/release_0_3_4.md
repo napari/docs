@@ -20,8 +20,8 @@ https://github.com/napari/napari
 
 ## Build Tools
 
-- Add check-manifest to CI and release workflow (#1318)
-- Packaging and setup.py refactor (#1324)
+- Add check-manifest to CI and release workflow ({pr}`1318`)
+- Packaging and setup.py refactor ({pr}`1324`)
 
 ## 1 author added to this release (alphabetical)
 

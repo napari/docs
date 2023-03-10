@@ -11,36 +11,36 @@ https://github.com/napari/napari
 
 ## Highlights
 
-- better support for surface timeseries (#831)
-- contrast limits slider popup on right click (#837)
-- better isosurface rendering with colormaps (#840)
-- attenuated MIP mode for better 3D rendering (#846)
+- better support for surface timeseries ({pr}`831`)
+- contrast limits slider popup on right click ({pr}`837`)
+- better isosurface rendering with colormaps ({pr}`840`)
+- attenuated MIP mode for better 3D rendering ({pr}`846`)
 
 ## New Features
 
-- convert layer properties to dictionary (#686)
-- better support for surface timeseries (#831)
-- make `contrast_limits_range` public and climSlider popup on right click (#837)
-- attenuated MIP mode for better 3D rendering (#846)
+- convert layer properties to dictionary ({pr}`686`)
+- better support for surface timeseries ({pr}`831`)
+- make `contrast_limits_range` public and climSlider popup on right click ({pr}`837`)
+- attenuated MIP mode for better 3D rendering ({pr}`846`)
 
 ## Improvements
 
-- bump numpydoc dependency to 0_9_2 for faster startup (#830)
-- better isosurface rendering with colormaps (#840)
-- add nearest interpolation mode to volume rendering for better labels support (#841)
-- refactor RangeSlider to accept data range and values. (#844)
-- in bindings logic, check if generator, not generator function (#853)
+- bump numpydoc dependency to 0_9_2 for faster startup ({pr}`830`)
+- better isosurface rendering with colormaps ({pr}`840`)
+- add nearest interpolation mode to volume rendering for better labels support ({pr}`841`)
+- refactor RangeSlider to accept data range and values. ({pr}`844`)
+- in bindings logic, check if generator, not generator function ({pr}`853`)
 
 ## Bug Fixes
 
-- fix fullscreen crash for test_viewer (#849)
-- fix RangeSlider.rangeChange emit type bug (#856)
+- fix fullscreen crash for test_viewer ({pr}`849`)
+- fix RangeSlider.rangeChange emit type bug ({pr}`856`)
 
 ## API Changes
 
 - `edge_color` and `face_color` now refer to colors of all points and shapes
   in layer, `current_edge_color` and `current_face_color` now refer to the
-  colors currently selected in the GUI (#686)
+  colors currently selected in the GUI ({pr}`686`)
 
 ## 5 authors added to this release (alphabetical)
 

@@ -11,22 +11,22 @@ https://github.com/napari/napari
 
 ## New Features
 
-- add loading from paths for images (#601)
+- add loading from paths for images ({pr}`601`)
 
 ## Improvements
 
-- Add the turbo colormap (#599)
-- Move markdown files to docs folder (#602)
-- Standardize usage of cmaps and add cmap tests (#622)
+- Add the turbo colormap ({pr}`599`)
+- Move markdown files to docs folder ({pr}`602`)
+- Standardize usage of cmaps and add cmap tests ({pr}`622`)
 
 ## Bug Fixes
 
-- Add numpydoc to default dependencies (#598)
-- fix dimensions change when no layers (#603)
-- fix bracket highlighting (#606)
-- fix for data overwriting during 3D rendering of float32 array (#613)
-- fix `io.magic_imread()` in `__main__.py` (#626)
-- Include LICENSE file in source distribution (#628)
+- Add numpydoc to default dependencies ({pr}`598`)
+- fix dimensions change when no layers ({pr}`603`)
+- fix bracket highlighting ({pr}`606`)
+- fix for data overwriting during 3D rendering of float32 array ({pr}`613`)
+- fix `io.magic_imread()` in `__main__.py` ({pr}`626`)
+- Include LICENSE file in source distribution ({pr}`628`)
 
 ## 5 authors added to this release (alphabetical)
 

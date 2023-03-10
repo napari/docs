@@ -18,15 +18,15 @@ https://github.com/napari/napari
 
 This release is focused on documentation improvements and bug fixes, with few
 changes to napari's API. The napari documentation is now entirely contained,
-built, and deployed from the napari repository (#4047, #4147, #4154, #4176,
-#4183). This and ongoing work will make it easier for the community to
+built, and deployed from the napari repository ({pr}`4047`, {pr}`4147`, {pr}`4154`, {pr}`4176`,
+{pr}`4183`). This and ongoing work will make it easier for the community to
 contribute documentation to the project and help others use napari. We have a
 new [documentation contributing guide](docs_contributing_guide) to help
 community members contribute documentation pages.
 
 Our volume display layers (`Image` and `Labels`) have gained a new slicing
 plane mode and user interface to view slices of the data embedded within a
-larger volume (#3759). This had been previously available as an experimental
+larger volume ({pr}`3759`). This had been previously available as an experimental
 API, and is now much improved, with new user interface controls. See the
 [volume plane rendering](https://github.com/napari/napari/blob/e1ebbc20ccd3136dee1a7f1c051ea65d020b429c/examples/volume_plane_rendering.py)
 example for details.
@@ -42,86 +42,86 @@ details.
 
 Finally, we have made some updates to how our application works. We now provide
 a bundle based on conda, which should help with plugin installation on
-different platforms (#3555). Additionally, the plugin listing inside the app is
+different platforms ({pr}`3555`). Additionally, the plugin listing inside the app is
 now based on the napari hub API, which allows plugin authors to distribute
-plugins on PyPI but have them not be listed in the app (#4074).
+plugins on PyPI but have them not be listed in the app ({pr}`4074`).
 
 Keep reading below for the full list of changes!
 
 ## New Features
 
-- Add edge_width per-point and edge_width_is_relative (#3999)
-- Support error reporting via napari-error-reporter (#4055)
-- volume plane interactive controls (#3759)
+- Add edge_width per-point and edge_width_is_relative ({pr}`3999`)
+- Support error reporting via napari-error-reporter ({pr}`4055`)
+- volume plane interactive controls ({pr}`3759`)
 
 ## Improvements
 
-- avoid repeated computation of layers.extent when adding a new Labels layer (#4037)
-- Add style encoding for strings (#4051)
-- Cache layerlist expensive properties (#4054)
-- Prevent errors in qt/test_plugin_widgets from installed plugins (#4058)
-- Add a `recurse` option to `EventedModel.update` (#4062)
-- Only add progress widget on worker start (#4068)
-- minor refactor of Layer._slice_indices (#4072)
-- Improve missing widget name error for npe2 plugins (#4080)
-- Update shapes color mapping when changing property (#4081)
-- reduce NumPy overhead in ScaleTranslate and Affine transform calls (#4094)
-- Remove remaining references to requirements.txt (#4105)
-- Try to standardise API as list of strings. (#4107)
-- Prototype a conda-based bundle (#3555)
-- Use napari hub api to list plugins (#4074)
+- avoid repeated computation of layers.extent when adding a new Labels layer ({pr}`4037`)
+- Add style encoding for strings ({pr}`4051`)
+- Cache layerlist expensive properties ({pr}`4054`)
+- Prevent errors in qt/test_plugin_widgets from installed plugins ({pr}`4058`)
+- Add a `recurse` option to `EventedModel.update` ({pr}`4062`)
+- Only add progress widget on worker start ({pr}`4068`)
+- minor refactor of Layer._slice_indices ({pr}`4072`)
+- Improve missing widget name error for npe2 plugins ({pr}`4080`)
+- Update shapes color mapping when changing property ({pr}`4081`)
+- reduce NumPy overhead in ScaleTranslate and Affine transform calls ({pr}`4094`)
+- Remove remaining references to requirements.txt ({pr}`4105`)
+- Try to standardise API as list of strings. ({pr}`4107`)
+- Prototype a conda-based bundle ({pr}`3555`)
+- Use napari hub api to list plugins ({pr}`4074`)
 
 ## Documentation
 
-- Use cells3d image in README example (#3823)
-- update event tables in the in-depth guides (#4030)
-- add quick start (#4041)
-- New documentation infrastructure (#4047)
-- Add Grzegorz to 0.4.14 release notes (#4061)
-- remove `--checkout npe2` instructions for cookiecutter in documentation (#4092)
-- Clarify that napari should be installed (#4101)
-- Move workshop out of tutorials into usage (#4123)
-- Refactor layers content (#4124)
-- Organize tutorials sections (#4137)
-- Add release management docs (#4139)
-- Use napari-sphinx-theme in docs build (#4147)
-- Add new core developers (#4157)
-- Move most examples to use features instead of properties (#4162)
-- improve examples/add_points_on_nD_shapes.py camera/dims setup (#4161)
-- Add docs contributor's guide and docs template (#4168)
-- Adds calendar to docs  (#4176)
-- add licensing page (#4185)
-- Update release notes for 0.4.15rc1 (#4193)
-- Fix plausible not added to docs (#4199)
-- Documentation for scale in layers documentation (#4204)
-- Fix EULA/licensing/signing issues post-merge (#4210)
-- Add PRs made after 0.4.15rc1 to release notes (#4217)
+- Use cells3d image in README example ({pr}`3823`)
+- update event tables in the in-depth guides ({pr}`4030`)
+- add quick start ({pr}`4041`)
+- New documentation infrastructure ({pr}`4047`)
+- Add Grzegorz to 0.4.14 release notes ({pr}`4061`)
+- remove `--checkout npe2` instructions for cookiecutter in documentation ({pr}`4092`)
+- Clarify that napari should be installed ({pr}`4101`)
+- Move workshop out of tutorials into usage ({pr}`4123`)
+- Refactor layers content ({pr}`4124`)
+- Organize tutorials sections ({pr}`4137`)
+- Add release management docs ({pr}`4139`)
+- Use napari-sphinx-theme in docs build ({pr}`4147`)
+- Add new core developers ({pr}`4157`)
+- Move most examples to use features instead of properties ({pr}`4162`)
+- improve examples/add_points_on_nD_shapes.py camera/dims setup ({pr}`4161`)
+- Add docs contributor's guide and docs template ({pr}`4168`)
+- Adds calendar to docs  ({pr}`4176`)
+- add licensing page ({pr}`4185`)
+- Update release notes for 0.4.15rc1 ({pr}`4193`)
+- Fix plausible not added to docs ({pr}`4199`)
+- Documentation for scale in layers documentation ({pr}`4204`)
+- Fix EULA/licensing/signing issues post-merge ({pr}`4210`)
+- Add PRs made after 0.4.15rc1 to release notes ({pr}`4217`)
 
 ## Bug Fixes
 
-- Fix single colormap create (#4067)
-- Fix ampersand in sample menu (#4070)
-- Fix json usage when setting preferences from nested environment variables (#4078)
-- Fix import in plugin_manager that is causing typing fails (#4106)
-- Contrast limits popup fix (#4122)
-- Prevent deepcopy of layer._source (#4128)
-- Always pass list of strings to npe2. (#4130)
-- Don't validate defaults on `EventedModel` (#4138)
-- support conda-style (pyside2-)rcc locations (#4144)
-- Fix style encoding tests on main (#4150)
-- Fix bug in continuous autocontrast button, add tests (#4152)
-- Tracks graph shader buffer order update (#4165)
-- block points add mode in 3D when layer.ndim == 2 (#4184)
-- fix bugs in setting plane orientation with nD data (#4197)
-- Add value method to extension2reader widget (#4179)
-- Add hook implementation name to order sorting (#4180)
-- Add dependencies helper and fix pyside issue when filtering plugins (#4214)
-- Add plugin dialog initial tests (#4216)
-- Update napari pin for conda/mamba install in constructor bundle (#4220)
-- Adjust conditions that control package signing and artifact uploads (constructor installers) (#4221)
-- Fix name normalization of already installed plugins (#4223)
-- Use conda instead of mamba in windows conda-forge bundled app (#4225)
-- Remove access to private npe2 plugin manager attributes (#4236)
+- Fix single colormap create ({pr}`4067`)
+- Fix ampersand in sample menu ({pr}`4070`)
+- Fix json usage when setting preferences from nested environment variables ({pr}`4078`)
+- Fix import in plugin_manager that is causing typing fails ({pr}`4106`)
+- Contrast limits popup fix ({pr}`4122`)
+- Prevent deepcopy of layer._source ({pr}`4128`)
+- Always pass list of strings to npe2. ({pr}`4130`)
+- Don't validate defaults on `EventedModel` ({pr}`4138`)
+- support conda-style (pyside2-)rcc locations ({pr}`4144`)
+- Fix style encoding tests on main ({pr}`4150`)
+- Fix bug in continuous autocontrast button, add tests ({pr}`4152`)
+- Tracks graph shader buffer order update ({pr}`4165`)
+- block points add mode in 3D when layer.ndim == 2 ({pr}`4184`)
+- fix bugs in setting plane orientation with nD data ({pr}`4197`)
+- Add value method to extension2reader widget ({pr}`4179`)
+- Add hook implementation name to order sorting ({pr}`4180`)
+- Add dependencies helper and fix pyside issue when filtering plugins ({pr}`4214`)
+- Add plugin dialog initial tests ({pr}`4216`)
+- Update napari pin for conda/mamba install in constructor bundle ({pr}`4220`)
+- Adjust conditions that control package signing and artifact uploads (constructor installers) ({pr}`4221`)
+- Fix name normalization of already installed plugins ({pr}`4223`)
+- Use conda instead of mamba in windows conda-forge bundled app ({pr}`4225`)
+- Remove access to private npe2 plugin manager attributes ({pr}`4236`)
 
 ## API Changes
 
@@ -131,25 +131,25 @@ Keep reading below for the full list of changes!
 
 ## Build Tools
 
-- Don't use git+https to install on CI (#4116)
-- Add markupsafe pin to bundle build (#4118)
-- Don't pip install from github in comprehensive tests (avoid another LFS leak) (#4141)
-- fix make docs for non editable installs (#4156)
-- Deploy docs workflow (#4154)
-- Allow the calendar to build correctly in PR build docs (#4181)
-- Deploy to napari.github.io (#4183)
+- Don't use git+https to install on CI ({pr}`4116`)
+- Add markupsafe pin to bundle build ({pr}`4118`)
+- Don't pip install from github in comprehensive tests (avoid another LFS leak) ({pr}`4141`)
+- fix make docs for non editable installs ({pr}`4156`)
+- Deploy docs workflow ({pr}`4154`)
+- Allow the calendar to build correctly in PR build docs ({pr}`4181`)
+- Deploy to napari.github.io ({pr}`4183`)
 
 ## Other Pull Requests
 
-- [pre-commit.ci] pre-commit autoupdate (#4032)
-- remove leftover comments on `Points.n_dimensional` (#4052)
-- Drop python 3.7 (#4063)
-- avoid scikit-image deprecation warnings in test suite (#4071)
-- bump magicgui dep (fix `_normalize_slot` AttributeError and minreqs test) (#4082)
-- Refactor dummy text data for vispy (#4097)
-- Add stateful StyleEncoding tests (#4113)
-- Remove print statement (#4178)
-- Adding tests missing from PR #4165 (#4170)
+- [pre-commit.ci] pre-commit autoupdate ({pr}`4032`)
+- remove leftover comments on `Points.n_dimensional` ({pr}`4052`)
+- Drop python 3.7 ({pr}`4063`)
+- avoid scikit-image deprecation warnings in test suite ({pr}`4071`)
+- bump magicgui dep (fix `_normalize_slot` AttributeError and minreqs test) ({pr}`4082`)
+- Refactor dummy text data for vispy ({pr}`4097`)
+- Add stateful StyleEncoding tests ({pr}`4113`)
+- Remove print statement ({pr}`4178`)
+- Adding tests missing from PR #4165 ({pr}`4170`)
 
 ## 19 authors added to this release (alphabetical)
 

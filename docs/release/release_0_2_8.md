@@ -11,14 +11,14 @@ https://github.com/napari/napari
 
 ## New Features
 
-- Add `napari --info` and `--citation` to CLI (#814)
+- Add `napari --info` and `--citation` to CLI ({pr}`814`)
 
 ## Bug Fixes
 
-- Fix broken links in CODE_OF_CONDUCT.md (#815)
-- Modify visibility changed slot to only update if object visible (#822)
-- Fix broken link in CONTRIBUTING.md (#824)
-- Make compatible with numpy 1.18 (#827)
+- Fix broken links in CODE_OF_CONDUCT.md ({pr}`815`)
+- Modify visibility changed slot to only update if object visible ({pr}`822`)
+- Fix broken link in CONTRIBUTING.md ({pr}`824`)
+- Make compatible with numpy 1.18 ({pr}`827`)
 
 ## 5 authors added to this release (alphabetical)
 
