@@ -270,7 +270,8 @@ same. Effectively, the two datasets are broadcast together using [NumPy broadcas
 
 For example, the following commands from the console will add both 2D and 3D datasets to the same viewer:
 
-```{code-cell} python  
+```{code-cell} python
+:tags: [remove-output]
 import numpy as np
 from skimage import data
 
