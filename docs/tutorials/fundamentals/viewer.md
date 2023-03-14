@@ -253,7 +253,7 @@ Layers can be deleted by selecting them and clicking on the trash icon, or by dr
 
 In the console a layer at index `i` can be removed by:
 
-```{code-cell} python
+```python
 viewer.layers.pop(i)
 ```
 
@@ -297,7 +297,7 @@ nbscreenshot(viewer, alt_text="A 2d view of the moon on top of which is overlaid
 
 In order to get or update the current position of the slider, use:
 
-```{code-cell} python
+```python
 # to get the current position  
 viewer.dims.current_step
 # to change the current position  
