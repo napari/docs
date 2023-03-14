@@ -238,7 +238,7 @@ and these changes will instantly propagate to the GUI. For more information abou
 
 New empty `Points`, `Shapes`, and `Labels` layers can be added to the viewer using the layer buttons between the layer controls and layer list. This is equivalent to, for example, the following code to make an empty `Points` layer:
 
-```{code-cell} python
+```python
 import napari
 
 viewer = napari.Viewer()
