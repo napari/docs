@@ -239,15 +239,10 @@ and these changes will instantly propagate to the GUI. For more information abou
 New empty `Points`, `Shapes`, and `Labels` layers can be added to the viewer using the layer buttons between the layer controls and layer list. This is equivalent to, for example, the following code to make an empty `Points` layer:
 
 ```python
-import napari
-
-viewer = napari.Viewer()
 viewer.add_points()
-viewer.add_shapes()
-viewer.add_labels()
 ```
 
-Once added, either in the GUI or via the console, these layers become accessible in the layers list section of the GUI and at `viewer.layers`.
+Once added, either in the GUI or via the console, these layers become accessible in the layers list section of the GUI and at `viewer.layers`. For example, an empty Points layer created using the code snippet above can be accessed using `viewer.layers['Points']`.
 
 Layers can be deleted by selecting them and clicking on the trash icon, or by dragging the layers and dropping them into the trash.
 
