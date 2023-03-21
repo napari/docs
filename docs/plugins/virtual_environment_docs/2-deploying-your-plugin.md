@@ -15,7 +15,7 @@ This guide explains some of the techniques you can use to deploy your plugin.
 PyPI and Anaconda are two options for how you distribute your package and allow your users to more easily find and install it.  Try to deploy to both! But for now, try to at least use PyPI. You can always also provide your users with manual installation instructions (e.g. if you want them to use `conda` or have specific dependencies).
 
 ### Building your package 
-**sdist** means source distribution. An **sdist** includes all of the files that are required to *build* your package. An **sdist** may require specific additional software (e.g. compilers) to actually build.
+`sdist` means source distribution. An `sdist` includes all of the files that are required to *build* your package. An `sdist` may require specific additional software (e.g. compilers) to actually build.
 
 **wheel** is a prebuilt package, ready to drop into site-packages. It includes compiled OS-specific extensions (if applicable).
 

@@ -43,7 +43,7 @@ Answer:
 * Oftentimes, this comes down to knowing and/or learning the Qt API really well.  
 
 ### Better signal or slot documentation or functionality
-Question: How to create better signal/slot documentation/functionality as the user interacts with the core napari interface? For example, creating/editing/deleting a point or shape layer?
+Question: How can we find the different signals/slots we can connect callbacks to as the user interacts with the core napari interface e.g. creating/editing/deleting a `points` or `shapes` layer?
 
 Answer: 
 [https://napari.org/guides/stable/events_reference.html](https://napari.org/stable/guides/events_reference.html)  
@@ -56,7 +56,7 @@ Granted, this is a work in progress.
     Viewer.layers.events.changed  
     Viewer.layers.events.reordered  
 
-Editing a point or shape layer may be complicated, because it may be a pure NumPy object. 
+Getting an event when the user is editing the data inside a point or shape layer (outside of the GUI interface) is complicated, because the user will be directly editing the native array object.
 
 ### Github tests failing  
 Question: How do you avoid github tests failing?  
