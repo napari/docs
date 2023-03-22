@@ -43,6 +43,7 @@ Answer:
 Granted, this is a work in progress. 
 
 ## How do you create or delete a point or shape layer?  
+For example, these events are emitted when the user interacts with the layer list: 
     Viewer.layers.events.inserted  
     Viewer.layers.events.removed  
     Viewer.layers.events.moved  
