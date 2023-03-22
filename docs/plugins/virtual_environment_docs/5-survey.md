@@ -3,22 +3,17 @@
 This guide contains questions that were submitted to our survey on testing.  
 
 ## This guide covers:   
-* [Questions](#questions)  
-    - [Testing plugins](#testing-plugins)  
-    - [Testing widgets](#testing-widgets)  
-    - [Better signal or slot documentation or functionality](#better-signal-or-slot-documentation-or-functionality)  
-    - [Creating or deleting a point or shape layer](#creating-or-deleting-a-point-or-shape-layer)  
-    - [Github tests failing](#github-tests-failing)  
-    - [Cancelling a method](#cancelling-a-method)  
-    - [Testing environments](#testing-environments)  
-* [Topics](#topics)  
-    - [npe2](#npe2)  
-    - [Widget development](#widget-development)
+- [What are the best practices to test a plugin with multiple sequential steps?](#what-are-the-best-practices-to-test-a-plugin-with-multiple-sequential-steps)  
+- [How do you test widgets, the napari viewer, graphical user interfaces, and Qt in general?](#how-do-you-test-widgets-the-napari-viewer-graphical-user-interfaces-and-qt-in-general)  
+- [How to find the different signals or slots?](#how-to-find-the-different-signals-or-slots)  
+- [How do you create or delete a point or shape layer?](#how-do-you-create-or-delete-a-point-or-shape-layer)  
+- [How do you avoid github tests failing?](#how-do-you-avoid-github-tests-failing)  
+- [How do you make a process cancellable](#how-do-you-make-a-process-cancellable)  
+- [Are there testing environments in napari?](#are-there-testing-environments-in-napari)  
+- [Introduction to npe2? Migrating to new plug-in architecture?](#introduction-to-npe2-migrating-to-new-plug-in-architecture)  
+- [What is the optimal setup to quickly iterate in widget development?](#what-is-the-optimal-setup-to-quickly-iterate-in-widget-development)  
   
-## Questions
-
-### Testing plugins    
-Question: What are the best practices to test a plugin with multiple sequential steps?  
+## What are the best practices to test a plugin with multiple sequential steps?
 e.g. Is it ok to rely on the "results" of a test to run the next test or should they all be fully independent?  
 
 Answer:  
@@ -31,9 +26,7 @@ Answer:
 
 *This is definitely an art form. It takes time. Be patient.*
 
-### Testing widgets
-Question: How do you test widgets, the napari viewer, and graphical user interfaces? How do you test Qt in general?
-
+## How do you test widgets, the napari viewer, graphical user interfaces, and Qt in general?
 Answer:
 * Try not to!
 * You should generally trust that a button click (for example) will call your callback and focus on testing that your callback does what it's supposed to do given that it gets called following some UI interaction.
@@ -42,14 +35,14 @@ Answer:
     - qtbot - [https://pytest-qt.readthedocs.io/en/latest/reference.html?highlight=qtbot#module-pytestqt.qtbot](https://pytest-qt.readthedocs.io/en/latest/reference.html?highlight=qtbot#module-pytestqt.qtbot)
 * Oftentimes, this comes down to knowing and/or learning the Qt API really well.  
 
-### Better signal or slot documentation or functionality
+## How to find the different signals or slots?
 Question: How can we find the different signals/slots we can connect callbacks to as the user interacts with the core napari interface e.g. creating/editing/deleting a `points` or `shapes` layer?
 
 Answer: 
 [https://napari.org/guides/stable/events_reference.html](https://napari.org/stable/guides/events_reference.html)  
 Granted, this is a work in progress. 
 
-### Creating or deleting a point or shape layer:  
+## How do you create or delete a point or shape layer?  
     Viewer.layers.events.inserted  
     Viewer.layers.events.removed  
     Viewer.layers.events.moved  
@@ -58,14 +51,12 @@ Granted, this is a work in progress.
 
 Getting an event when the user is editing the data inside a point or shape layer (outside of the GUI interface) is complicated, because the user will be directly editing the native array object.
 
-### Github tests failing  
-Question: How do you avoid github tests failing?  
-  
+## How do you avoid github tests failing?  
 Answer:  
 * First make sure all your tests are passing locally.  
 * After that, it's complicated. More background or context is needed to answer this question.  
   
-### Cancelling a method  
+## How do you make a process cancellable? 
 Question: How do you make a process cancellable to interrupt a method that is running in a for loop, for example?  
 
 Answer:  
@@ -73,15 +64,10 @@ Answer:
 * In multithreaded python, there are many different patterns. Consider using a generator-based thread worker:  
   https://napari.org/stable/guides/threading.html#generators-for-the-win  
 
-### Testing environments  
-Question: Are there testing environments in napari?  
+## Are there testing environments in napari?
 Answer: Napari does not create or otherwise manage environments.  
   
-## Topics  
-  
-### npe2  
-Question: Introduction to npe2? Migrating to new plug-in architecture?   
-  
+## Introduction to npe2? Migrating to new plug-in architecture?     
 Answer:  
 * The primary difference is in how plugins are discovered:  
     - npe1 used decorators, requiring module import.  
@@ -92,9 +78,7 @@ Answer:
 * Guides for each type of contribution: https://napari.org/stable/plugins/guides.html  
 * Migration guide: https://napari.org/stable/plugins/npe2_migration_guide.html  
   
-### Widget development  
-Question: What is the optimal setup to quickly iterate in widget development?    
-  
+## What is the optimal setup to quickly iterate in widget development?
 Answer:   
 * Create a script that will start napari and load your widget without any UI interaction.  
 * Don't test as a plugin. Start by directly calling `viewer.window.add_dock_widget` with a manually created widget.  
@@ -105,7 +89,7 @@ Answer:
   This will monitor a file/directory for changes, and re-run a command each time (which is why step #1 is also useful).  
 
 
-## Other topics in this series:
+## Other guides in this series:
 
 * [Virtual environments](./1-virtual-environments.md)   
 * [Deploying your plugin](./2-deploying-your-plugin.md)  
