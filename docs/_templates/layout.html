@@ -3,3 +3,11 @@
     <script async defer data-domain="napari.org" src="https://plausible.io/js/plausible.js"></script>
     {{ super() }}
 {% endblock %}
+
+{% block docs_body %}
+    {% if pagename.startswith('release/release_') %}
+        {{ body|linkify_prs() }}
+    {%- endif %}
+    {{ super() }}
+{% endblock %}
+

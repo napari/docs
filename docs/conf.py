@@ -155,6 +155,7 @@ myst_enable_extensions = [
     'dollarmath',
     'substitution',
     'tasklist',
+    'linkify',
 ]
 
 myst_heading_anchors = 3
@@ -173,6 +174,18 @@ myst_substitutions = {
    "python_version_code": f"`python={python_version}`",
    "conda_create_env": f"```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```",
 }
+
+def linkify_prs(input):
+    return re.sub(
+        r'[^&]#(?P<id>[0-9]+)',
+        r' <a href="https://github.com/napari/napari/issues/\g<id>">napari/napari#\g<id>',
+        input
+    )
+
+# linkifyers = {
+#     "(?P<id>[0-9a-f]{7,40})": "https://github.com/napari/napari/commit/%(id)s",
+#     "(?P<org>[a-zA-Z0-9_-]+)/(?P<repo>[a-zA-Z0-9_-]+)#(?P<id>[0-9]+)": "https://github.com/%(org)s/%(repo)s/issues/%(id)s",
+# }
 
 nb_output_stderr = 'show'
 
@@ -255,6 +268,7 @@ def get_attributes(item, obj, modulename):
 
 
 FILTERS["get_attributes"] = get_attributes
+FILTERS["linkify_prs"] = linkify_prs
 
 autosummary_ignore_module_all = False
 
