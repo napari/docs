@@ -14,8 +14,9 @@ In increasing order of work, but decreasing order of magic, the methods of bumpi
 ## Using git tags:  
 You can use [setuptools_scm](https://github.com/pypa/setuptools_scm) to automatically generate version numbers for your package based on tagged commits.
 
-   `# configure in pyproject.toml, then…`  
-   `$ git tag -a v0.1.0 -m v0.1.0`  
+   ```console  
+   # configure in pyproject.toml, then…  
+   $ git tag -a v0.1.0 -m v0.1.0```
 
   The next time you run `python -m build`, either locally or in GitHub actions, your package version will be based on the latest git tag.
 
