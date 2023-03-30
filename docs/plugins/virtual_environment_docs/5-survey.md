@@ -44,11 +44,13 @@ Granted, this is a work in progress.
 
 ## How do you create or delete a point or shape layer?  
 For example, these events are emitted when the user interacts with the layer list: 
+```console  
     Viewer.layers.events.inserted  
     Viewer.layers.events.removed  
     Viewer.layers.events.moved  
     Viewer.layers.events.changed  
     Viewer.layers.events.reordered  
+```    
 
 Getting an event when the user is editing the data inside a point or shape layer (outside of the GUI interface) is complicated, because the user will be directly editing the native array object.
 
