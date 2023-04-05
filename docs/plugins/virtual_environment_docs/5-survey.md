@@ -70,7 +70,7 @@ Answer:
 ## Are there testing environments in napari?
 Answer: Napari does not create or otherwise manage environments.  
   
-## Introduction to npe2? Migrating to new plug-in architecture?     
+## Introduction to npe2? Migrating to new plugin architecture?     
 Answer:  
 * The primary difference is in how plugins are discovered:  
     - npe1 used decorators, requiring module import.  
