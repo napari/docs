@@ -19,10 +19,8 @@ e.g. Is it ok to rely on the "results" of a test to run the next test or should 
 Answer:  
 * Ideally, aim for unit testing.  
 * Tests should not pass/fail together.  
-* Use fixtures to provide a test with inputs, even if you have to make them up.  
-  https://docs.pytest.org/en/6.2.x/fixture.html 
-* Use mocks (mock-ups) to assert that specific calls are made, without necessarily caring about what happens after that call is made.  
-  https://docs.python.org/3/library/unittest.mock.html 
+* Use [fixtures](https://docs.pytest.org/en/6.2.x/fixture.html) to provide a test with inputs, even if you have to make them up.  
+* Use [mocks (mock-ups)](https://docs.python.org/3/library/unittest.mock.html) to assert that specific calls are made, without necessarily caring about what happens after that call is made.  
 
 *This is definitely an art form. It takes time. Be patient.*
 
