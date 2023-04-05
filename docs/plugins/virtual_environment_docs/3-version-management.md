@@ -16,7 +16,8 @@ You can use [setuptools_scm](https://github.com/pypa/setuptools_scm) to automati
 
    ```console  
    # configure in pyproject.toml, then…  
-   $ git tag -a v0.1.0 -m v0.1.0```
+   $ git tag -a v0.1.0 -m v0.1.0
+  ```
 
   The next time you run `python -m build`, either locally or in GitHub actions, your package version will be based on the latest git tag.
 
