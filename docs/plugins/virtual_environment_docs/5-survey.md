@@ -6,7 +6,6 @@ This guide contains questions that were submitted to our survey on testing.
 - [What are the best practices to test a plugin with multiple sequential steps?](#what-are-the-best-practices-to-test-a-plugin-with-multiple-sequential-steps)  
 - [How do you test widgets, the napari viewer, graphical user interfaces, and Qt in general?](#how-do-you-test-widgets-the-napari-viewer-graphical-user-interfaces-and-qt-in-general)  
 - [How to find the different signals or slots?](#how-to-find-the-different-signals-or-slots)  
-- [How do you create or delete a point or shape layer?](#how-do-you-create-or-delete-a-point-or-shape-layer)  
 - [How do you avoid github tests failing?](#how-do-you-avoid-github-tests-failing)  
 - [How do you make a process cancellable](#how-do-you-make-a-process-cancellable)  
 - [Are there testing environments in napari?](#are-there-testing-environments-in-napari)  
@@ -38,9 +37,9 @@ Question: How can we find the different signals/slots we can connect callbacks t
 
 Answer: 
 [https://napari.org/guides/stable/events_reference.html](https://napari.org/stable/guides/events_reference.html)  
+
 Granted, this is a work in progress. 
 
-## How do you create or delete a point or shape layer?  
 For example, these events are emitted when the user interacts with the layer list: 
 ```console  
     Viewer.layers.events.inserted  
