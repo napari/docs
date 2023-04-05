@@ -52,7 +52,7 @@ For example, these events are emitted when the user interacts with the layer lis
     Viewer.layers.events.reordered  
 ```    
 
-Getting an event when the user is editing the data inside a point or shape layer (outside of the GUI interface) is complicated, because the user will be directly editing the native array object.
+Getting an event when the user is editing the data inside a `points` or `shapes` layer (outside of the GUI interface) is complicated, because the user will be directly editing the native array object.
 
 ## How do you avoid github tests failing?  
 Answer:  
