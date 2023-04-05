@@ -92,7 +92,7 @@ jobs:
 
   **Note:** Gate this action on some criterion, e.g. a git tag as above, or [some other criterion](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows).
 
-### Deploying to Anaconda
+## Deploying to Anaconda
 This is only a brief guide to deploying to `conda-forge`. More information can be found in the [conda-forge docs](https://conda-forge.org/docs/maintainer/adding_pkgs.html).
 
 1. Fork https://github.com/conda-forge/staged-recipes
