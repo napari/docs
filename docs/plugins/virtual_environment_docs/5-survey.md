@@ -31,7 +31,7 @@ Answer:
 * Try not to!
 * You should generally trust that a button click (for example) will call your callback and focus on testing that your callback does what it's supposed to do given that it gets called following some UI interaction.
 * However: If you have a scenario where you are actually creating a complicated widget directly in Qt, see `pytest-qt` for lots of tips, specifically `qtbot`.
-    - pytest-qt - [https://pytest-qt.readthedocs.io/en/latest/intro.html](https://pytest-qt.readthedocs.io/en/latest/intro.html)
+    - [pytest-qt](https://pytest-qt.readthedocs.io/en/latest/intro.html)
     - qtbot - [https://pytest-qt.readthedocs.io/en/latest/reference.html?highlight=qtbot#module-pytestqt.qtbot](https://pytest-qt.readthedocs.io/en/latest/reference.html?highlight=qtbot#module-pytestqt.qtbot)
 * Oftentimes, this comes down to knowing and/or learning the Qt API really well.  
 
