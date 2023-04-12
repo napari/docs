@@ -83,7 +83,7 @@ tags_extension = ["md", "rst"]
 html_theme = 'napari'
 
 # Define the json_url for our version switcher.
-json_url = "https://napari.org/version_switcher.json"
+json_url = "https://napari.org/dev/_static/version_switcher.json"
 
 if version == "dev":
     version_match = "latest"
