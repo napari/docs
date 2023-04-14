@@ -280,7 +280,7 @@ installed on your system, you can also run a "headless GUI" build by using the
 $ make docs-xvfb
 ```
 
-This will prevent all but the first napari window to be shown during the docs
+This will prevent all but the first napari window from being shown during the docs
 build.
 ````
 
