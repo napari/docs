@@ -276,7 +276,7 @@ on your terminal.
 Alternatively, when you submit your pull request, the napari docs repository
 continuous integration includes a GitHub action that builds the documentation
 and saves the artifact for you to preview or download. This is another way to check that
-your built documentation looks as you expect. To check out the built
+your built documentation looks as you expect. To view the built
 documentation, go to your PR, scroll down to the continuous integration tests,
 and choose one of the following options.
 
