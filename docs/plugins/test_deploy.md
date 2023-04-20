@@ -119,8 +119,8 @@ development process, see the [napari hub GitHub’s
 Wiki](https://github.com/chanzuckerberg/napari-hub/wiki).
 
 If you want your plugin to be available on PyPI, but not visible on the napari
-hub, you can add a `.napari/config.yml` file to the root of your repository with
-a visibility key. For details, see the [customization
+hub, you can add a `.napari-hub/config.yml` file to the root of your repository
+with a visibility key. For details, see the [customization
 guide][hub-guide-custom-viz].
 ```
 
