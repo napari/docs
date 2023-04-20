@@ -107,10 +107,8 @@ description for your plugin, see the following documentation in the [napari hub
 GitHub](https://github.com/chanzuckerberg/napari-hub/tree/main/docs)’s docs
 folder:
 
-- [Customizing your plugin’s
-  listing](https://github.com/chanzuckerberg/napari-hub/blob/main/docs/customizing-plugin-listing.md)
-- [Writing the perfect description for your
-  plugin](https://github.com/chanzuckerberg/napari-hub/blob/main/docs/writing-the-perfect-description.md)
+- [Customizing your plugin’s listing][hub-guide]
+- [Writing the perfect description for your plugin][hub-description-guide]
 
 ```{admonition} The hub
 For more about the napari hub, see the [napari hub About
@@ -126,7 +124,8 @@ guide][hub-guide-custom-viz].
 
 Finally, once you have curated your package metadata and description, you can
 preview your metadata, and check any missing fields using the
-napari hub preview page service. Check out [this guide](https://github.com/chanzuckerberg/napari-hub/blob/main/docs/setting-up-preview.md) for instructions on how to set it up.
+napari hub preview page service. Check out [this guide][hub-preview-guide]
+for instructions on how to set it up.
 
 ## Deployment
 
@@ -136,7 +135,7 @@ PyPI][pypi-upload] after which it will be installable using `python -m pip insta
 in the builtin plugin installer dialog.
 
 If you used the {ref}`plugin-cookiecutter-template`, you can also
-[setup automated deployments][autodeploy] on github for every tagged commit.
+[setup automated deployments][autodeploy] on GitHub for every tagged commit.
 
 ````{admonition} What about conda?
 While you are free to distribute your plugin on anaconda cloud in addition to
@@ -155,7 +154,8 @@ forum](https://forum.image.sc/tag/napari).
 [classifier]: https://pypi.org/classifiers/
 [pypi]: https://pypi.org/
 [pypi-upload]: https://packaging.python.org/tutorials/packaging-projects/#uploading-the-distribution-archives
-[hubguide]: https://github.com/chanzuckerberg/napari-hub/blob/main/docs/customizing-plugin-listing.md
+[hub-guide]: https://github.com/chanzuckerberg/napari-hub/wiki/Customizing-your-plugin's-listing
 [hub-guide-custom-viz]: https://github.com/chanzuckerberg/napari-hub/wiki/Customizing-your-plugin's-listing#visibility
-[hub-guide-preview]: https://github.com/chanzuckerberg/napari-hub/blob/main/docs/setting-up-preview.md
+[hub-preview-guide]: https://github.com/chanzuckerberg/napari-hub/wiki/Setting-up-the-napari-hub-Plugin-Preview-Page-for-your-PRs
+[hub-description-guide]: https://github.com/chanzuckerberg/napari-hub/wiki/Writing-the-Perfect-Description-for-your-Plugin
 [autodeploy]: https://github.com/napari/cookiecutter-napari-plugin#set-up-automatic-deployments
