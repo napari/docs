@@ -4,9 +4,9 @@
 (plugin-testing-tips)=
 ## Tips for testing napari plugins
 
-Testing is a big topic!  If you are completely new to writing tests in python,
+Testing is a big topic!  If you are completely new to writing tests in Python,
 consider reading this post on [Getting Started With Testing in
-Python](https://realpython.com/python-testing/)
+Python](https://realpython.com/python-testing/).
 
 We recommend using
 [pytest](https://docs.pytest.org/en/6.2.x/getting-started.html) for testing your
@@ -104,8 +104,7 @@ Once your package is listed on [PyPI] (and includes the `Framework :: napari`
 [classifier]), it will also be visible on the [napari
 hub](https://napari-hub.org/). To ensure you are providing the relevant metadata and
 description for your plugin, see the following documentation in the [napari hub
-GitHub](https://github.com/chanzuckerberg/napari-hub/tree/main/docs)’s docs
-folder:
+GitHub’s docs folder](https://github.com/chanzuckerberg/napari-hub/tree/main/docs):
 
 - [Customizing your plugin’s listing][hub-guide]
 - [Writing the perfect description for your plugin][hub-description-guide]
