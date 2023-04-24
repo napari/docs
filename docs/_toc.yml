@@ -25,7 +25,6 @@ subtrees:
             subtrees:
             - entries:
               - file: tutorials/processing/dask
-              - file: tutorials/processing/brain_dataset_tutorial
           - file: tutorials/segmentation/index
             subtrees:
             - entries:
