@@ -99,7 +99,7 @@ It supports the following installer types:
 
 The configuration is done through a `construct.yaml` file, documented [here][7]. 
 We generate one on the fly in the `build_installers.py` script found in `napari/packaging`.
-For napari 0.4.17 we would have built this configuration file:
+For a hypothetical napari v1.2.3 we would have built this configuration file:
 
 
 ```yaml
@@ -118,10 +118,10 @@ specs: # specs for the 'base'  environment
   - mamba    # we add these to manage different napari versions
   - pip      # we add these to manage different napari versions
 extra_envs:
-  napari-0.4.17: # this is the environment that will actually contain the napari packages
+  napari-1.2.3: # this is the environment that will actually contain the napari packages
     specs:
-      - napari=0.4.17=*pyside*
-      - napari-menu=0.4.17
+      - napari=1.2.3=*pyside*
+      - napari-menu=1.2.3
       - python   # pinned to a specific version, configured by CI
       - conda    # needed for the plugin manager
       - mamba    # needed for the plugin manager
@@ -130,11 +130,11 @@ menu_packages:
   - napari-menu  # don't create shortcuts for anything else in the environment
 
 # linux-specific config
-default_prefix: $HOME/napari-0.4.17  # default installation path
+default_prefix: $HOME/napari-1.2.3  # default installation path
 
 # macos-specific config
 default_location_pkg : Library # first component of the default path under ~/
-pkg_name: napari-0.4.17  # second component of the default path
+pkg_name: napari-1.2.3  # second component of the default path
 installer_type: pkg  # otherwise, defaults to sh (Linux-like)
 welcome_image: resources/napari_1227x600.png  # bg image with the napari logo on bottom-left corner
 welcome_file: resources/osx_pkg_welcome.rtf  # rendered text in the first screen
@@ -146,9 +146,9 @@ signing_identity_name: "Apple Developer ID: ..."  # Name of our installer signin
 welcome_image: resources/napari_164x314.png  # logo image for the first screen
 header_image:  resources/napari_150x57.png  # logo image (top left) for the rest of the installer
 icon_image: napari/resources/icon.ico  # favicon for the taskbar and title bar
-default_prefix: '%USERPROFILE%/napari-0.4.17'  # default location for user installs
-default_prefix_domain_user: '%LOCALAPPDATA%/napari-0.4.17'  # default location for network installs
-default_prefix_all_users: '%ALLUSERSPROFILE%/napari-0.4.17'  # default location for admin installs
+default_prefix: '%USERPROFILE%/napari-1.2.3'  # default location for user installs
+default_prefix_domain_user: '%LOCALAPPDATA%/napari-1.2.3'  # default location for network installs
+default_prefix_all_users: '%ALLUSERSPROFILE%/napari-1.2.3'  # default location for admin installs
 signing_certificate: certificate.pfx  # path to signing certificate
 ```
 
