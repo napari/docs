@@ -16,3 +16,5 @@ project and the onboarding of new contributors.
 
 - [Core Developer guide](./core_dev_guide)
 - [Release guide](./release)
+- [Maintenance](./maintenance)
+
