@@ -1,7 +1,6 @@
 # Maintenance
 
-This document describes the maintenance tasks that need to be performed from time to time. 
-To rare to depend only on personal memory. 
+This document describes maintenance tasks that need to be performed from time to time. Its purpose is to avoid relying on personal memory alone, and it should be updated regularly.
 
 ## Refreshing tokens for the auto upgrade of test constraints and vendored packages. 
 
@@ -11,11 +10,11 @@ But this requires additional actions by core devs.
 
 
 To get automatically running workflows, we need to create a personal access token (PAT) and add it to the repository secrets.
-For security reasons, we decide to create a fine-grained token. It allows us to provide only the required permissions.
+For security reasons, it is recommended to create a [fine-grained token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-fine-grained-personal-access-token). It allows us to provide only the required permissions.
 
-The token has a one-year expiration date. After that, it needs to be refreshed.
+The token should have a one-year expiration date. After that, it needs to be refreshed.
 
-The token is stored in `GHA_TOKEN` and the required permissions are:
+The token should be named `GHA_TOKEN` and the required permissions are:
 
  * **read** to repository metadata
  * **read and write** to pull requests
@@ -30,17 +29,17 @@ The token is stored in `GHA_TOKEN` and the required permissions are:
 
 ## Refreshing the token
 
-To create a new token There is a need to go to the personal settings page and select Developer settings at the bottom of the left menu. On the visible screen expand the Personal access tokens section and click the Fine-grained token link.
+To create a new token, go to the personal settings page and select _Developer settings_ at the bottom of the left menu. On the visible screen, expand the _Personal access tokens_ section and click the _Fine-grained token_ link.
 
 ![View on list of fine-grained tokens](../images/fine_grained_token.png)
 
-Then click the Generate new token button in the upper right corner.
+Then click the _Generate new token_ button in the upper right corner.
 
 Fill the form:
 
 1. Set expiration to custom and then select the proper date
 2. Select **napari** to be the resource owner 
-3. Select **Only selected repositories** and then select **napari/napari** repository
+3. Select _Only selected repositories_ and then select **napari/napari** repository
 
 ![screenshot of the token creation form](../images/token_permission_form.png)
 
@@ -48,14 +47,14 @@ Fill the form:
 
 ![screenshot of the token creation form](../images/token_permission_selection.png)
 
-5. Click the Generate token button
+5. Click the _Generate token_ button
 6. Copy token 
 7. Go to the napari repository settings
-8. Expand the Secrets and variables section and select Actions
-9. Click the edit button for the GHA_TOKEN secret
+8. Expand the _Secrets and variables_ section and select _Actions_
+9. Click the edit button for the `GHA_TOKEN` secret
 
 ![screenshot of the token creation form](../images/secrets_section.png)
 
 10. Paste a new token to the value field
 
-To validate if the token is working, you can run the " Upgrade test constraints" workflow manually. Ensure that there will be some packages to update.
+To validate if the token is working, you can run the "Upgrade test constraints" workflow manually. Ensure that there will be some packages to update.
