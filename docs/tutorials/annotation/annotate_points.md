@@ -72,7 +72,10 @@ def create_label_menu(points_layer, labels):
 
     def label_changed(event):
         """Update the Points layer when the label menu selection changes"""
-        selected_label = event.value
+        try:
+            selected_label = event.value
+        except AttributeError:
+            selected_label = event
         current_properties = points_layer.current_properties
         current_properties['label'] = np.asarray([selected_label])
         points_layer.current_properties = current_properties
@@ -97,14 +100,17 @@ def point_annotator(
     """
     stack = imread(im_path)
 
+    fake_data = [[0.0, 0.0, 0.0]] * len(labels)
+
     viewer = napari.view_image(stack)
     points_layer = viewer.add_points(
+        data=fake_data,
         properties={'label': labels},
         edge_color='label',
         edge_color_cycle=COLOR_CYCLE,
         symbol='o',
         face_color='transparent',
-        edge_width=8,
+        edge_width=0.5,
         size=12,
         ndim=3
     )
@@ -113,6 +119,8 @@ def point_annotator(
     # add the label menu widget to the viewer
     label_widget = create_label_menu(points_layer, labels)
     viewer.window.add_dock_widget(label_widget)
+
+    point_layer.data = []
 
     @viewer.bind_key('.')
     def next_label(event=None):
