@@ -79,6 +79,7 @@ def create_label_menu(points_layer, labels):
         current_properties = points_layer.current_properties
         current_properties['label'] = np.asarray([selected_label])
         points_layer.current_properties = current_properties
+        points_layer.refresh_colors()
 
     label_menu.changed.connect(label_changed)
 
@@ -132,6 +133,7 @@ def point_annotator(
         new_label = labels[new_ind]
         current_properties['label'] = np.array([new_label])
         points_layer.current_properties = current_properties
+        points_layer.refresh_colors()
 
     def next_on_click(layer, event):
         """Mouse click binding to advance the label when a point is added"""
@@ -156,6 +158,7 @@ def point_annotator(
         new_label = labels[new_ind]
         current_properties['label'] = np.array([new_label])
         points_layer.current_properties = current_properties
+        points_layer.refresh_colors()
 ```
 
 ## `point_annotator()`
