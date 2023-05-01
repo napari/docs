@@ -97,12 +97,9 @@ def point_annotator(
     """
     stack = imread(im_path)
 
-    fake_data = [[0.0, 0.0, 0.0]] * len(labels)
-
     viewer = napari.view_image(stack)
     points_layer = viewer.add_points(
-        data=fake_data,
-        properties={'label': labels},
+        feature_defaults={'label': labels},
         edge_color='label',
         edge_color_cycle=COLOR_CYCLE,
         symbol='o',
@@ -116,8 +113,6 @@ def point_annotator(
     # add the label menu widget to the viewer
     label_widget = create_label_menu(points_layer, labels)
     viewer.window.add_dock_widget(label_widget)
-
-    point_layer.data = []
 
     @viewer.bind_key('.')
     def next_label(event=None):
