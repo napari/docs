@@ -99,7 +99,8 @@ def point_annotator(
 
     viewer = napari.view_image(stack)
     points_layer = viewer.add_points(
-        feature_defaults={'label': labels},
+        features={"label": np.array([], dtype=str)},  # we need to set empty features to set defaults
+        feature_defaults={'label': labels[:1]},  # set the first label as default feature
         edge_color='label',
         edge_color_cycle=COLOR_CYCLE,
         symbol='o',
