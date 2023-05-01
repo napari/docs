@@ -70,14 +70,10 @@ def create_label_menu(points_layer, labels):
 
     points_layer.events.current_properties.connect(update_label_menu)
 
-    def label_changed(event):
+    def label_changed(new_label):
         """Update the Points layer when the label menu selection changes"""
-        try:
-            selected_label = event.value
-        except AttributeError:
-            selected_label = event
         current_properties = points_layer.current_properties
-        current_properties['label'] = np.asarray([selected_label])
+        current_properties['label'] = np.asarray([new_label])
         points_layer.current_properties = current_properties
         points_layer.refresh_colors()
 
