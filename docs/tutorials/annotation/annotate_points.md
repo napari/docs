@@ -111,7 +111,7 @@ def point_annotator(
         edge_color_cycle=COLOR_CYCLE,
         symbol='o',
         face_color='transparent',
-        edge_width=0.5,
+        edge_width=0.5,  # fraction of point size
         size=12,
         ndim=3
     )
