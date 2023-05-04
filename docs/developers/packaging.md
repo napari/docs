@@ -60,29 +60,16 @@ A software installer is usually expected to fulfill these requirements:
 * It will provide a convenient way of opening the application, like a shortcut or a menu entry.
 * It will allow the user to uninstall the application, leaving no artifacts behind.
 
-Right now, we are using two ways of generating the installers:
-
-* With `briefcase`, which takes PyPI packages.
-* With `constructor`, which takes `conda` packages.
-
+We use`constructor` to build the bundled installers, which takes `conda` packages.
 `conda` packages offer several advantages when it comes to bundling dependencies, since it makes
 very few assumptions about the underlying system installation. As a result, `constructor` bundles
 include libraries that might be missing in the target system and hence should provide a more robust
 user experience.
 
-### Briefcase-based installers
-
-[`briefcase`][5] based installers are marked for deprecation so we will not discuss them here.
-If you are curious, you can check `bundle.py` and `.github/workflows/make_bundle.yml` for
-details.
-
-### Constructor-based installers
-
-We use `constructor` to build the `napari` installers through the
-`.github/workflows/make_bundle_conda.yml` workflow, which only specifies the triggers used to call
-the actual workflow implementation under the `napari/packaging` repository. This repository stores
-all the logic and files needed to create the nightly `conda` packages and the `constructor`
-installers.
+The automation is implemented in the `.github/workflows/make_bundle_conda.yml` workflow, which only
+specifies the triggers used to call the actual workflow implementation under the `napari/packaging`
+repository. This repository stores all the logic and files needed to create the nightly `conda`
+packages and the `constructor` installers.
 
 [`constructor`][6] allows you to build cross-platform installers out of `conda` packages. It
 supports the following installer types:
@@ -318,7 +305,6 @@ a high-level list of the main changes introduced in the stack.
 [2]: https://github.com/napari/napari/blob/main/.github/workflows/make_release.yml
 [3]: https://github.com/napari/napari/blob/main/Makefile#L20
 [4]: https://github.com/pypa/gh-action-pypi-publish
-[5]: https://github.com/beeware/briefcase
 [6]: https://github.com/conda/constructor
 [7]: https://github.com/conda/constructor/blob/main/CONSTRUCT.md
 [8]: https://conda-forge.org/docs/maintainer/updating_pkgs.html#rerendering-feedstocks
