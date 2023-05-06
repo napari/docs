@@ -148,7 +148,7 @@ each click will add a vertex at the clicked location. To finish drawing a polygo
 you must click the`escape` key, which will add a final vertex at the current mouse 
 position and complete the polygon. You'll then be able to start adding another one.
 
-Polygons can also be created with the polygon lasso creation tool. This can be found
+`Polygons` can also be created with the polygon lasso creation tool. This can be found
 in the layer control panel or by pressing `shift+P`. The tool can be used to draw 
 complex `Polygons` with the mouse
 For mouse draw mode the sequence of events by the user is as follows:
@@ -157,7 +157,7 @@ For mouse draw mode the sequence of events by the user is as follows:
     2. Move mouse while not mouse pressed
     3. Mouse press to finish draw
 
-Shapes can also be drawn using a tablet when using the polygon lasso tool. In this case, 
+`Polygons` can also be drawn using a tablet when using the polygon lasso tool. In this case, 
 drawing is started by touching the tablet screen with the tablet pencil. The drawing will 
 be ongoing for as long as the pencil is moved while touching the tablet screen. For both 
 modes, vertices are added only if the vertex to be added is at least 10 screen pixels away 
