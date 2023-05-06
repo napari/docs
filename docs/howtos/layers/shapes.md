@@ -140,12 +140,38 @@ centered on that click.
 `Polygons` can be added using an array of N vertices. Polygons are closed by
 default, and so you don't also need to include the first point at the end of the
 array. The order of the vertices will determine the triangulation of the
-polygon, which can be non-convex, but cannot have holes. The polygon creation
-tool can be selected from the layer control panel or by pressing the `P` key
-when the shapes layer is selected. When adding a polygon each click will add a
-vertex at the clicked location. To finish drawing a polygon you must click the
-`escape` key, which will add a final vertex at the current mouse position and
-complete the polygon. You'll then be able to start adding another one.
+polygon, which can be non-convex, but cannot have holes. For drawing polygons, 
+multiple tools can be used.
+The polygon creation tool can be selected from the layer control panel or by 
+pressing the `P` key when the shapes layer is selected. When adding a polygon 
+each click will add a vertex at the clicked location. To finish drawing a polygon 
+you must click the`escape` key, which will add a final vertex at the current mouse 
+position and complete the polygon. You'll then be able to start adding another one.
+
+Polygons can also be created with the polygon lasso creation tool. This can be found
+in the layer control panel or by pressing `shift+P`. The tool can be used to draw 
+complex `Polygons` with the mouse
+For mouse draw mode the sequence of events by the user is as follows:
+
+    1. Mouse press
+    2. Move mouse while not mouse pressed
+    3. Mouse press to finish draw
+
+Shapes can also be drawn using a tablet when using the polygon lasso tool. In this case, 
+drawing is started by touching the tablet screen with the tablet pencil. The drawing will 
+be ongoing for as long as the pencil is moved while touching the tablet screen. For both 
+modes, vertices are added only if the vertex to be added is at least 10 screen pixels away 
+from the previous vertex. As with the polygon creation tool drawing the shape can also be 
+finished by pressing the `escape` key.
+
+When finishing a drawing using the polygon lasso tool an implementation of the Ramer–Douglas–Peucker 
+algorithm is applied to reduce the number of points that make up the shape, while conserving its
+contours. The agressiveness by which the algorithm reduces the number of points of a shape is 
+determined by an `epsilon` parameter. If 0 no points are removed. The higher the value of `epsilon`
+the more points get removed. The value of `epsilon` can be set by in napari going to 
+`File` -> `Preferences` (or `control + shift + P`), then in the menu on the left clicking on 
+`Experimental` and then adjusting the value of `RDP epsilon`. The default value is 0.5 and cannot 
+set lower than 0.
 
 `Paths` are like polygons but are not closed or filled in. They can also be
 added using an array of N vertices. The path creation tool can be selected from
