@@ -148,26 +148,32 @@ each click will add a vertex at the clicked location. To finish drawing a polygo
 you must click the`escape` key, which will add a final vertex at the current mouse 
 position and complete the polygon. You'll then be able to start adding another one.
 
-`Polygons` can also be created with the polygon lasso creation tool, which can be found
-in the layer control panel or by pressing `shift+P`. The tool can be used to draw 
-complex `Polygons` with the mouse.
-The polygon lasso supports using the mouse or tablet. When using the mouse, the sequence of events to draw a polygon is as follows:
+`Polygons` can also be created with the polygon lasso creation tool, which can be 
+found in the layer control panel or by pressing `shift+P`. The tool can be used to 
+draw complex `Polygons` with the mouse. The polygon lasso supports using the mouse 
+or tablet. When using the mouse, the sequence of events to draw a polygon is as 
+follows:
 
     1. Click mouse (left-click) to begin drawing.
-    2. Move mouse—without holding down the mouse button—to draw the polygon.
+    2. Move mouse — without holding down the mouse button — to draw the polygon.
     3. Click mouse (left-click) or press `escape` to end drawing—the polygon will auto-complete.
 
 The polygon lasso tool can also be used to draw `Polygons` using a tablet. In this case, 
-drawing the polygon is started by touching the tablet screen with the tablet stylus and drawing will continue for as long as the pencil is moved while touching the tablet screen. Note that similar behavior is also available when using a macOS trackpad, using three-finger drag mode.  
-For both 
-modes, vertices are added only if the vertex to be added is at least 10 screen pixels away 
-from the previous vertex. As with the polygon creation tool drawing the shape can also be 
+drawing the polygon is started by touching the tablet screen with the tablet stylus and 
+drawing will continue for as long as the pencil is moved while touching the tablet screen. 
+Note that similar behavior is also available when using a macOS trackpad, using three-finger 
+drag mode.  
+For both modes, vertices are added only if the vertex to be added is at least 10 screen pixels 
+away from the previous vertex. As with the polygon creation tool drawing the shape can also be 
 finished by pressing the `escape` key.
 
 After finishing drawing a polygon using the polygon lasso tool, an implementation of the [Ramer–Douglas–Peucker 
-algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm) is applied to reduce the number of vertexes that make up the shape, while preserving its
-contours. The aggressiveness with which the algorithm reduces the number of points of the polygon is 
-determined by an `epsilon` parameter, which is a perpendicular distance threshold. Any vertexes beyond the threshold will be preserved, so if `epsilon` is set to `0`, no vertexes will be removed. With increasing values of `epsilon`, more and more vertexes will be removed. The value of `epsilon` can be set by in napari going to 
+algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm) is applied to reduce the 
+number of vertices that make up the shape, while preserving its contours. The aggressiveness with 
+which the algorithm reduces the number of points of the polygon is determined by an `epsilon` parameter, 
+which is a perpendicular distance threshold. Any vertices beyond the threshold will be preserved, so 
+if `epsilon` is set to `0`, no vertices will be removed. With increasing values of `epsilon`, more and 
+more vertices will be removed. The value of `epsilon` can be set in napari by going to 
 `File` -> `Preferences` (or `control + shift + P`), then in the menu on the left clicking on 
 `Experimental` and then adjusting the value of `RDP epsilon`. The default value is 0.5 and cannot 
 set lower than 0.
