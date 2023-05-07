@@ -164,8 +164,8 @@ modes, vertices are added only if the vertex to be added is at least 10 screen p
 from the previous vertex. As with the polygon creation tool drawing the shape can also be 
 finished by pressing the `escape` key.
 
-When finishing a drawing using the polygon lasso tool an implementation of the Ramer–Douglas–Peucker 
-algorithm is applied to reduce the number of points that make up the shape, while conserving its
+After finishing drawing a polygon using the polygon lasso tool, an implementation of the [Ramer–Douglas–Peucker 
+algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm) is applied to reduce the number of vertexes that make up the shape, while preserving its
 contours. The aggressiveness with which the algorithm reduces the number of points of the polygon is 
 determined by an `epsilon` parameter. If 0 no points are removed. The higher the value of `epsilon`
 the more points get removed. The value of `epsilon` can be set by in napari going to 
