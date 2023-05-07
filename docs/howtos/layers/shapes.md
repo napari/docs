@@ -170,7 +170,7 @@ finished by pressing the `escape` key.
 After finishing drawing a polygon using the polygon lasso tool, an implementation of the [Ramer–Douglas–Peucker 
 algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm) is applied to reduce the 
 number of vertices that make up the shape, while preserving its contours. The aggressiveness with 
-which the algorithm reduces the number of points of the polygon is determined by an `epsilon` parameter, 
+which the algorithm reduces the number of vertices of the polygon is determined by an `epsilon` parameter, 
 which is a perpendicular distance threshold. Any vertices beyond the threshold will be preserved, so 
 if `epsilon` is set to `0`, no vertices will be removed. With increasing values of `epsilon`, more and 
 more vertices will be removed. The value of `epsilon` can be set in napari by going to 
