@@ -150,7 +150,7 @@ position and complete the polygon. You'll then be able to start adding another o
 
 `Polygons` can also be created with the polygon lasso creation tool, which can be 
 found in the layer control panel or by pressing `shift+P`. The tool can be used to 
-draw complex `Polygons` with the mouse. The polygon lasso supports using the mouse 
+draw complex `Polygons` with the mouse
 or tablet. When using the mouse, the sequence of events to draw a polygon is as 
 follows:
 
