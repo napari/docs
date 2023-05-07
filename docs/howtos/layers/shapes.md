@@ -167,8 +167,7 @@ finished by pressing the `escape` key.
 After finishing drawing a polygon using the polygon lasso tool, an implementation of the [Ramer–Douglas–Peucker 
 algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm) is applied to reduce the number of vertexes that make up the shape, while preserving its
 contours. The aggressiveness with which the algorithm reduces the number of points of the polygon is 
-determined by an `epsilon` parameter. If 0 no points are removed. The higher the value of `epsilon`
-the more points get removed. The value of `epsilon` can be set by in napari going to 
+determined by an `epsilon` parameter, which is a perpendicular distance threshold. Any vertexes beyond the threshold will be preserved, so if `epsilon` is set to `0`, no vertexes will be removed. With increasing values of `epsilon`, more and more vertexes will be removed. The value of `epsilon` can be set by in napari going to 
 `File` -> `Preferences` (or `control + shift + P`), then in the menu on the left clicking on 
 `Experimental` and then adjusting the value of `RDP epsilon`. The default value is 0.5 and cannot 
 set lower than 0.
