@@ -157,7 +157,7 @@ The polygon lasso supports using the mouse or tablet. When using the mouse, the 
     2. Move mouse while not mouse pressed
     3. Mouse press to finish draw
 
-`Polygons` can also be drawn using a tablet when using the polygon lasso tool. In this case, 
+The polygon lasso tool can also be used to draw `Polygons` using a tablet. In this case, 
 drawing is started by touching the tablet screen with the tablet pencil. The drawing will 
 be ongoing for as long as the pencil is moved while touching the tablet screen. For both 
 modes, vertices are added only if the vertex to be added is at least 10 screen pixels away 
