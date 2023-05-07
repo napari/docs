@@ -154,9 +154,9 @@ draw complex `Polygons` with the mouse
 or tablet. When using the mouse, the sequence of events to draw a polygon is as 
 follows:
 
-    1. Click mouse (left-click) to begin drawing.
-    2. Move mouse — without holding down the mouse button — to draw the polygon.
-    3. Click mouse (left-click) or press `escape` to end drawing—the polygon will auto-complete.
+1. Click mouse (left-click) to begin drawing.
+2. Move mouse — without holding down the mouse button — to draw the polygon.
+3. Click mouse (left-click) or press `escape` to end drawing—the polygon will auto-complete.
 
 The polygon lasso tool can also be used to draw `Polygons` using a tablet. In this case, 
 drawing the polygon is started by touching the tablet screen with the tablet stylus and 
