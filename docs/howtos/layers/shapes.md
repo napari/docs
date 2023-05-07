@@ -166,7 +166,7 @@ finished by pressing the `escape` key.
 
 When finishing a drawing using the polygon lasso tool an implementation of the Ramer–Douglas–Peucker 
 algorithm is applied to reduce the number of points that make up the shape, while conserving its
-contours. The agressiveness by which the algorithm reduces the number of points of a shape is 
+contours. The aggressiveness with which the algorithm reduces the number of points of the polygon is 
 determined by an `epsilon` parameter. If 0 no points are removed. The higher the value of `epsilon`
 the more points get removed. The value of `epsilon` can be set by in napari going to 
 `File` -> `Preferences` (or `control + shift + P`), then in the menu on the left clicking on 
