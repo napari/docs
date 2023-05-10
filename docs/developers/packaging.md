@@ -96,7 +96,6 @@ The configuration is done through a `construct.yaml` file, documented [here][7].
 the fly in the `build_installers.py` script found in `napari/packaging`.
 Roughly, we will build this configuration file:
 
-
 ```yaml
 # os-agnostic configuration
 name: napari
@@ -209,7 +208,6 @@ On Windows, any Microsoft-blessed certificate will do. Our `constructor` fork al
 a path to a PFX certificate and then have the Windows SDK `signtool` add the signature. Note that
 `signtool` is not installed by default on Windows (but it is on GitHub Actions).
 
-
 ---
 
 More details about our packaging infrastructure can be found in the [NAP-2 document][nap-2].
@@ -229,9 +227,9 @@ moving pieces being juggled to make this work. Let's begin by enumerating the st
    shortcut creation when the user runs the installer on their machine.
 2. `conda-standalone` is a frozen version of `conda`. Among its dependencies, we can find
    `menuinst`, which handles the creation of shortcuts and menu entries.
-4. `menuinst` was only used on Windows before our work, so we basically rewrote it to handle
+3. `menuinst` was only used on Windows before our work, so we basically rewrote it to handle
    cross-platform shortcuts.
-3. `conda` interfaces with `menuinst` to delegate the shortcut creation. Since this was only enabled
+4. `conda` interfaces with `menuinst` to delegate the shortcut creation. Since this was only enabled
    on Windows, we needed to unlock the other platforms and rewrite the parts that assumed Windows
    only behaviour. Surprise, this involved custom solver behaviour too!
 
@@ -262,7 +260,6 @@ Very fun! So where do all these packages live?
 | `conda-standalone` | _N/A_                                           | [conda-forge/conda-standalone-feedstock PR#21][13] |
 | `conda`            | [jaimergp/conda @ `cep-menuinst`][10]           | [jaimergp-forge/conda-feedstock][14]               |
 | `menuinst`         | [jaimergp/menuinst @ `cep`][11]                 | [jaimergp-forge/menuinst-feedstock][15]            |
-
 
 Most of the forks live in `jaimergp`'s account, under a non-default branch. They are published
 through the `jaimergp-forge` every time a commit to `master` is made. Versions are arbitrary here,
@@ -312,6 +309,125 @@ a high-level list of the main changes introduced in the stack.
 * Add signing for Windows
 * Add notarization for macOS PKG
 
+#### `constructor-manager` stack for handling updates and recovery
+
+Constructor installers come with a `constructor-manager` stack that allows users to perform
+"updates in place", recover from a broken installation, rollback to a previous version or restore
+point and finally uninstall the entire application. The constructor manager stack is application
+agnostic in that it can be used for any othe application using the updated constructor stack
+to build and distribute installers that may or may not handle additional plugins.
+
+![Constructor manager stack](images/constructor_manager_stack.png)
+
+This stack is composed of three main packages [19]:
+
+* `constructor-manager-backend`: Provides a simplified command line interface on top of
+  `conda`, `mamba` and `conda-lock` to query for updates and perform the actual installation,
+  reset or uninstallation of the application.
+* `constructor-manager-client`: Provides a Python API to interact with the backend and
+  perform the same operations as the CLI.
+* `constructor-manager-ui`: Provides a Qt-based UI to interact with the backend via the client
+  to perform the same operations as the CLI. Additonal shortcuts will be created to access
+  this application on the different operating systems. It can also be opened from within
+  `napari` in the `Help` menu.
+
+The constructor based installers will contain 3 main environments when created:
+
+* A `base` environment which will contain:
+  * `conda`: package and environment manager)
+  * `mamba`: conda "replacement" for performing faster solves, transactions and downloads.
+  * `conda-lock`: create locked and reproducible environments.
+* A `constructor-manager` environment which will contain:
+  * `constructor-manager-backend` [napari/packaging#34](https://github.com/napari/packaging/pull/34)
+  * `constructor-manager-client` [napari/packaging#46](https://github.com/napari/packaging/pull/46)
+  * `constructor-manager-ui` [napari/packaging#63](https://github.com/napari/packaging/pull/63)
+* An application environment, using the conventions `<package-name>-<version>`, for the example image above, `napari-0.4.15`
+
+##### `constructor-manager-backend`
+
+This package is in charge of providing a CLI utility that will work under the hood with `conda`,
+`mamba` and `conda-lock` (living in the `base` environment) to provide the following
+functionalities in the creation of bundle applications:
+
+The backend can be called using the CLI program `constructor-manager` and the following actions are
+available
+
+* `check-updates`: Query for new updates available for the managed application by providing one
+  or more anaconda.org channels. By default we query the `conda-forge` channel located at [anaconda.org](https://anaconda.org/conda-forge/)
+* `update`: update a current application to a new version of it. This process will create a new
+  conda environment following the convention `<package-name>-<new-version>`, create new menu
+  shortcuts [20], create a new restore point (using conda-lock), remove the old environment and
+  the corresponding shortcuts for the old versions of the managed application.
+* `revert`: this will revert the current application to the previously installed version on the
+  computer if a restore point is found. This will follow a similar process of creating a new
+  conda environment with the convention `<package-name>-<old-version>`.
+* `restore`: similar to revert but restore to a previously found state of the current version.
+  This command could become a single one by providing the specific restore file (which is created
+  by conda lock)
+* `lock-environment`: create a lock file of the current state of the application environment.
+  This can be called by the client applications (using constructor-manager-client) to check for
+  changes in the environment. If no changes are detected, no lock is created.
+* `uninstall`: to be implemented.
+* `get-status`: get information on a currently running update/restore/revert in progress.
+
+Some of these commands can be run in parallel others create a lock to prevent multiple instances
+of an update/restore/revert process.
+
+More information on the [README](https://github.com/goanpeca/packaging/blob/constructor-updater/constructor-manager-cli/README.md) of the package.
+
+##### `constructor-manager-client`
+
+This package which in its present form is a `qtpy` (worker and signal) based library providing an
+API to call the `constructor-manager-backend`. It provides a python library to run workers and
+query information on the different processes managed by the constructor manager.
+
+The library is imported with
+
+```python
+from constructor_manager_client import api
+```
+
+* `check_updates`: Query for new updates available for the managed application by providing one
+  or more anaconda.org channels. By default we query the `conda-forge` channel located at [anaconda.org](https://anaconda.org/conda-forge/).
+* `update`: update a current application to a new version of it. This process will create a new
+  conda environment following the convention `<package-name>-<new-version>`, create new menu
+  shortcuts [20], create a new restore point (using conda-lock), remove the old environment and
+  the corresponding shortcuts for the old versions of the managed application.
+* `revert`: this will revert the current application to the previously installed version on the
+  computer if a restore point is found. This will follow a similar process of creating a new conda
+  environment with the convention `<package-name>-<old-version>`.
+* `restore`: similar to revert but restore to a previously found state of the current version.
+  This command could become a single one by providing the specific restore file (which is created
+  by conda lock).
+* `lock_environment`: create a lock file of the current state of the application environment.
+  This can be called by the client applications (using constructor-manager-client) to check
+  for changes in the environment. If no changes are detected, no lock is created.
+* `uninstall`: to be implemented
+* `get_status`: get information on a currently running update/restore/revert in progress.
+* `open_application`: open a give application created with `conda` and `menuinst` un a cross
+  platform way
+
+Some of these commands can be run in parallel others create a lock to prevent multiple instances
+of an update/restore/revert process.
+
+This library is meant to be used in the application environment by the applications themselves so
+they can query the information to know about new updates and either trigger them directly in a
+detached process (to be implemented in a following version) or to open the `constructor-manager-ui`
+to handle those actions directly.
+
+More information on the [README](https://github.com/goanpeca/packaging/blob/constructor-cli/constructor-manager/README.md) of the package.
+
+##### `constructor-manager-ui`
+
+which in its present form is a pyqt/pyside based application. It provides a graphical interface
+to run the different actions to manage an application built with `constructor`
+
+The ui is called from the command line interface with `constructor-manager-ui <package-name>`.
+Since the application will be called using standard application calls created by menuinst,
+arguments will be passed with configuration files handled by `constructor-manager-client` calls.
+
+![Constructor manager UI](images/constructor_manager_ui.png)
+
 <!-- hyperlinks -->
 
 [1]: https://github.com/conda-forge/napari-feedstock
@@ -332,4 +448,6 @@ a high-level list of the main changes introduced in the stack.
 [16]: https://github.com/conda-forge/napari-feedstock/pulls?q=is%3Apr+sort%3Aupdated-desc+is%3Aclosed
 [17]: https://anaconda.org/napari
 [18]: https://github.com/napari/packaging/issues/15
+[19]: https://github.com/napari/packaging
+[20]: https://github.com/conda/menuinst/tree/cep-devel/menuinst
 [nap-2]: https://napari.org/dev/naps/2-conda-based-packaging.html
