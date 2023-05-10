@@ -3,6 +3,7 @@
 <!-- Tell us about your new content, improvement, or fix! -->
 <!-- If you can, please add an image, or an animation "An image is worth a thousand words!" -->
 <!-- You can use https://www.cockos.com/licecap/ or similar to create animations -->
+<!-- You can also see a preview of the documentation changes you are submitting by clicking on "Details" to the right of the "Check the rendered docs here!" check on your PR.>
 
 ## Type of change
 <!-- Please delete options that are not relevant. -->

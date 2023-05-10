@@ -11,7 +11,8 @@ The napari documentation is built from sources located at the
 repository is where all the narrative documentation (e.g. tutorials, how-to
 guides) pull requests should be made. Meanwhile, changes to docstrings or to the
 [examples gallery](https://napari.org/gallery) should be made to the
-[napari/napari](https://github.com/napari/napari) repository.
+[napari/napari](https://github.com/napari/napari) repository (see also
+[](add-examples)).
 
 ## Prerequisites
 
@@ -203,9 +204,9 @@ your pull request.
 
 ### 3.1. Building locally
 
-To build the documentation locally, run `make docs` from the root of your local
-clone of the `napari/docs` repository (assuming you've installed the
-[docs prerequisites](#prerequisites)).
+To build the documentation locally from scratch, run `make docs` from the root
+of your local clone of the `napari/docs` repository (assuming you've installed
+the [docs prerequisites](#prerequisites)).
 
 ```bash
 make docs
@@ -258,7 +259,7 @@ There's another `make` task you can use for live previews while editing docs:
 ```shell
 $ make html-live
 # or for faster reloads:
-# make html-live SPHINXOPTS="-j4"
+$ make html-live SPHINXOPTS="-j4"
 ```
 
 The first run will take a bit longer and a few napari instances will pop up
@@ -271,26 +272,50 @@ Once you are done with the live previews, you can exit via <kbd>Ctrl</kbd>+<kbd>
 on your terminal.
 ````
 
+````{tip}
+If you have [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml)
+installed on your system, you can also run a "headless GUI" build by using the
+`docs-xvfb` command:
+
+```shell
+$ make docs-xvfb
+```
+
+This will prevent all but the first napari window from being shown during the docs
+build.
+````
+
 ### 3.2. Use the CI artifacts
 
 Alternatively, when you submit your pull request, the napari docs repository
 continuous integration includes a GitHub action that builds the documentation
-and saves the artifact for you to download. This is another way to check that
-your built documentation looks as you expect. To download the built
+and saves the artifact for you to preview or download. This is another way to check that
+your built documentation looks as you expect. To view the built
 documentation, go to your PR, scroll down to the continuous integration tests,
-then:
+and choose one of the following options.
+
+**To preview on your browser:**
+
+Click on **Details** next to the `Check the rendered docs here!` check:
+
+![CircleCI check is highlighted](images/circleci-link.png)
+
+This will open a preview of the website on your browser, and you can then
+navigate to the page where you expect to see your changes.
+
+**To download the built documentation pages:**
 
 1. Click on **Details** next to `Build PR Docs / Build & Upload Artifact (pull_request)`:
 
-![doc-continuous-integration-1](images/doc-ci-1.png)
+![The "Build PR Docs / Build & Upload Artifact" check is highlighted](images/doc-ci-1.png)
 
 2. Click on **Summary** on the top left corner:
 
-![doc-continuous-integration-1](images/doc-ci-2.png)
+![Summary link in the "Build PR Docs / Build & Uplod Artifact" GitHub Action page](images/doc-ci-2.png)
 
 3. Scroll down to **Artifacts** and click on **docs** to download the built documentation:
 
-![doc-continuous-integration-1](images/doc-ci-3.png)
+!["docs" link in the Artifacts section of the "Build PR Docs / Build & Uplod Artifact" GitHub Action page is highlighted](images/doc-ci-3.png)
 
 4. Extract the compressed archive and open the `docs/index.html` file on your preferred browser.
    You can also use Python's `http.server` module to open a local server on
