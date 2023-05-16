@@ -12,20 +12,26 @@ repository is where all the narrative documentation (e.g. tutorials, how-to
 guides) pull requests should be made. Meanwhile, changes to docstrings or to the
 [examples gallery](https://napari.org/gallery) should be made to the
 [napari/napari](https://github.com/napari/napari) repository (see also
-[](add-examples)). A subset of the documentation around plugins is pulled in from
-the [napari/npe2](https://github.com/napari/npe2) repository.
+[](add-examples)). A subset of the documentation around [plugins](https://napari.org/plugins) is pulled in from
+the [napari/npe2](https://github.com/napari/npe2) repository (e.g. [contributions](https://napari.org/plugins/contributions.html)).
 
-```{admonition} Note
+The napari documentation is written in [Myst markdown](https://myst-parser.readthedocs.io/en/latest/index.html), a strict superset
+of [commonmark](https://spec.commonmark.org/) Markdown with some additional features
+(see a [markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)).
+The documentation is built using [Sphinx](https://www.sphinx-doc.org/en/master/), so to make changes to how [napari.org](https://napari.org/dev) functions or appears site-wide, you will need to edit the [napari-sphinx-theme](https://github.com/napari/napari-sphinx-theme).
+
+```{admonition} Contributing to the napari documentation without local setup
+:class: tip
   If you are adding new documentation or modifying existing documentation and would prefer a simpler workflow,
   you can you can use the
   GitHub web interface to open your pull request
-  by either [uploading file(s) from your computer](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository), [creating and editing a new file](https://docs.github.com/en/repositories/working-with-files/managing-files/creating-new-files) or [editing an existing file](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files) on [napari-docs GitHub](https://github.com/napari/docs).
+  by either [uploading file(s) from your computer](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository), [creating and editing a new file](https://docs.github.com/en/repositories/working-with-files/managing-files/creating-new-files) or [editing an existing file](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files) on the [napari-docs](https://github.com/napari/docs) GitHub repository.
 
-  You will also be able to [preview the documentation](index.html#use-the-ci-artifacts) as it would appear on [napari.org](https://napari.org/dev) by
+  You will also be able to [preview the documentation](./index#use-the-ci-artifacts) as it would appear on [napari.org](https://napari.org/dev) by
   downloading the built documentation via a link provided by a comment from the
   `github-actions` bot.
   A member of the maintenance
-  team will help with updating the [napari.org](https://napari.org/dev) table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](index.html#update-toc)) and making sure your documentation has built
+  team will help with updating the [napari.org](https://napari.org/dev) table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](./index#update-toc)) and making sure your documentation has built
   correctly.
 
   If you would like to see new documentation added to napari but are not clear on these instructions or don't have the time to write it yourself, you can also [open an issue](https://github.com/napari/docs/issues/new/choose).
@@ -42,7 +48,8 @@ you will require:
 ```{note}
 The napari documentation is built using `make` which does not work on paths which contain spaces.
 It is important that you clone the `napari/docs` repository to a path that does not contain spaces.
-For example `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but `C:\Users\my username\Documents\GitHub\napari-docs` is not.
+For example `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but \
+`C:\Users\my <SPACE> username\Documents\GitHub\napari-docs` is not.
 ```
 
 You should first [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
@@ -229,7 +236,7 @@ make docs
 ```
 
 If the changes you have made to documentation don't involve changing the napari gallery,
-you can speed up this build by running `make html-noplot` instead. This will skip the
+you can speed up this build by running `make html-noplot` or `make html-live` instead. This will skip the
 gallery build, which involves launching up napari and rendering all the examples.
 
 ```bash
