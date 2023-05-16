@@ -6,7 +6,7 @@ documentation.
 
 ## Organization of the documentation
 
-The full napari documentation is built from multiple sources that is organised into multiple repositories:
+The napari documentation is built from multiple sources that are organised into multiple repositories:
 1. The main napari documentation is built from sources located at the
 [napari/docs](https://github.com/napari/docs) repository on GitHub.
 That repository is where all the narrative documentation (e.g. tutorials, how-to
@@ -20,17 +20,17 @@ with some additional features.
 the [napari/npe2](https://github.com/napari/npe2) repository
 (e.g. the [contributions reference page](https://napari.org/plugins/contributions.html)) and should be modified there.
 This is documentation is written with [Jinja](https://jinja.palletsprojects.com/en/3.1.x/).
-3. Changes to docstrings or to the
+3. Changes to docstrings (for the [API reference](https://napari.org/stable/api/index.html)) or to the
 [examples gallery](https://napari.org/gallery) should be made to the
 [napari/napari](https://github.com/napari/napari) repository (see also
-[](add-examples)).
+[the guide on adding examples to the gallery](add-examples)).
 4. Changes to how [napari.org](https://napari.org/dev) appears site-wide are made to the
 [napari-sphinx-theme](https://github.com/napari/napari-sphinx-theme).
 
 (contributing-without-local-setup)=
 ## Contributing to the napari documentation without a local setup
 
-If you would like to see new documentation added to napari but are not clear on these instructions or don't have the time to write it yourself, you can [open an issue](https://github.com/napari/docs/issues/new/choose).
+If you would like to see new documentation added to napari or want to see changes to existing documentation, but are not clear on these instructions or don't have the time to write it yourself, you can [open an issue](https://github.com/napari/docs/issues/new/choose).
 If you are adding new documentation or modifying existing documentation and would prefer a simpler workflow than the local setup guide described below,
 you can use the GitHub web interface to open your pull request
 by either [uploading file(s) from your computer](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository),
@@ -38,14 +38,13 @@ by either [uploading file(s) from your computer](https://docs.github.com/en/repo
 or [editing an existing file](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)
 on the [napari-docs](https://github.com/napari/docs) GitHub repository.
 
-You will also be able to [preview the documentation](use-the-ci-artifacts) as it would appear on [napari.org](https://napari.org/dev) by
+You will also be able to [preview the documentation](use-ci-artifacts) as it would appear on [napari.org](https://napari.org/dev) by
 downloading the built documentation via a link provided by a comment from the `github-actions` bot.
 A member of the maintenance
-team will help with updating the [napari.org](https://napari.org/dev) table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](#update-toc)) and making sure your documentation has built
-correctly.
+team will help with updating the [napari.org](https://napari.org/dev) table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](update-toc)) and making sure your documentation has built correctly.
 
 
-(prerquisites)=
+(prerequisites)=
 ## Prerequisites for a local setup to contribute to the napari documentation
 
 Prerequisites depend on the type of contribution you wish to make. In general,
@@ -57,7 +56,7 @@ you will require:
 ```{note}
 The napari documentation is built using `make` which does not work on paths which contain spaces.
 It is important that you clone the `napari/docs` repository to a path that does not contain spaces.
-For example `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but \
+For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but \
 `C:\Users\my username\Documents\GitHub\napari-docs` is not.
 ```
 
@@ -147,6 +146,15 @@ Run `jupytext your-notebook.ipynb --to myst` to create a new MyST version of you
 `your-notebook.md`. Edit this file to include the relevant sections from the docs template.
 ```
 
+```{admonition} How to check for broken links
+:class: tip
+
+If you have modified lots of document links, you can check that they all work by running `make linkcheck-files` in the `napari/docs` folder. However, this can take a long time to run, so if you have only modified a links in a single document, you can run:
+
+```bash
+make linkcheck-files FILES=path/to/your/document.md
+```
+
 ### Next steps
 
 Depending on the type of contribution you are making, you may be able to skip
@@ -157,7 +165,7 @@ some steps:
 * For all other documentation changes, follow the steps below.
 
 (update-toc)=
-## 2. Update the table of contents (TOC) file (`_toc.yml`)
+## 2. Update the table of contents
 
 If you are adding a new documentation file, you will need to add your document
 to the correct folder based on its content (see the [list above](#0-before-you-start)
@@ -229,7 +237,7 @@ development installation of napari installed. [Examples](gallery)
 are automatically executed when the documentation is built and code problems can
 also be caught when previewing the built documentation. If your documentation
 change does not include code, you only need the napari docs dependencies
-installed.
+installed (in which case you could also preview your document with the [VScode Myst extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight) or [Myst live preview](https://myst-parser.readthedocs.io/en/latest/live-preview.html#)).
 
 There are two ways you can preview the documentation website: by building
 locally, or downloading the GitHub Actions built documentation when you submit
@@ -239,7 +247,7 @@ your pull request.
 
 To build the documentation locally from scratch, run `make docs` from the root
 of your local clone of the `napari/docs` repository (assuming you've installed
-the [docs prerequisites](#prerequisites)).
+the [docs prerequisites](prerequisites)).
 
 ```bash
 make docs
@@ -264,7 +272,7 @@ $ python3 -m http.server --directory docs/_build
 ```
 
 ````{note}
-The `make docs` command above assumes your have a local clone of the
+The `make docs` command above assumes you have a local clone of the
 [`napari/napari`](https://github.com/napari/napari) repo at the same level as
 the `napari/docs` clone. If that's not the case, you can specify the location of
 the examples gallery folder by executing
@@ -328,6 +336,7 @@ This will prevent all but the first napari window from being shown during the do
 build.
 ````
 
+(use-ci-artifacts)=
 ### 3.2. Use the CI artifacts
 
 Alternatively, when you submit your pull request, the napari docs repository
