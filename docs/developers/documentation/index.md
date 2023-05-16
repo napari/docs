@@ -14,19 +14,42 @@ guides) pull requests should be made. Meanwhile, changes to docstrings or to the
 [napari/napari](https://github.com/napari/napari) repository (see also
 [](add-examples)).
 
+```{admonition} Note
+  If you are adding new documentation or modifying existing documentation and would prefer a simpler workflow,
+  you can you can use the
+  GitHub web interface to open your pull request
+  by either [uploading file(s) from your computer](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository), [creating and editing a new file](https://docs.github.com/en/repositories/working-with-files/managing-files/creating-new-files) or [editing an existing file](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files) on [napari-docs GitHub](https://github.com/napari/docs).
+
+  You will also be able to [preview the documentation](index.html#use-the-ci-artifacts) as it would appear on [napari.org](https://napari.org/dev) by
+  downloading the built documentation via a link provided by a comment from the
+  `github-actions` bot.
+  A member of the maintenance
+  team will help with updating the [napari.org](https://napari.org/dev) table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](index.html#update-toc)) and making sure your documentation has built
+  correctly.
+
+  If you would like to see new documentation added to napari but are not clear on these instructions or don't have the time to write it yourself, you can also [open an issue](https://github.com/napari/docs/issues/new/choose).
+```
+
 ## Prerequisites
 
 Prerequisites depend on the type of contribution you wish to make. In general,
 you will require:
 
-- Some familiarity with [`git`](https://git-scm.com);
+- Some familiarity with [`git`](https://git-scm.com).
 - A [GitHub](https://github.com) account.
+
+```{note}
+The napari documentation is built using `make` which does not work on paths which contain spaces.
+It is important that you clone the `napari/docs` repository to a path that does not contain spaces.
+For example `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but `C:\Users\my username\Documents\GitHub\napari-docs` is not.
+```
 
 You should first [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 and clone the [napari/napari](https://github.com/napari/napari) and the [napari/docs](https://github.com/napari/docs) repo to your
 machine. Next, navigate to your local clone of the `napari/docs` repository:
 
 ```bash
+git clone https://github.com/napari/napari.git
 git clone git@github.com:<your-username>/docs.git napari-docs
 cd napari-docs/
 ```
@@ -48,7 +71,7 @@ This setup, with these dependencies, will allow you to preview your document loc
 ## 0. Before you start
 
 If you'd like to contribute a brand new document to our usage section, it might
-be worth [opening an issue](https://github.com/napari/napari/issues/new?assignees=&labels=documentation&template=documentation.md&title=)
+be worth [opening an issue](https://github.com/napari/docs/issues/new/choose)
 on our repository first to discuss the content you'd like to see and get some
 early feedback from the community. The napari team can also suggest what type of
 document would be best suited, and whether there are already existing documents
@@ -63,7 +86,7 @@ want to contribute. The paths are listed in parentheses below.
   detailed, reproducible step by step guides, usually combining multiple napari features to complete a potentially complex task
 - [**How-tos**](../../howtos/index) (in [`napari/docs/howtos`](https://github.com/napari/docs/tree/main/docs/howtos)):
   simple step by step guides demonstrating the use of common features
-- [**Getting started**](../../tutorials/start_index) (in [`napari/docs/tutorials/fundamentals`](https://github.com/napari/docs/tree/main/docs/tutorials/fundamentals):
+- [**Getting started**](../../tutorials/start_index) (in [`napari/docs/tutorials/fundamentals`](https://github.com/napari/docs/tree/main/docs/tutorials/fundamentals)):
   these documents are a mix of tutorials and how-tos covering the fundamentals of installing and working with napari for beginners
 
 The [**Examples gallery**](../../gallery) sources are in the [main `napari/napari` repository](https://github.com/napari/napari/tree/main/examples)
@@ -112,14 +135,6 @@ Run `jupytext your-notebook.ipynb --to myst` to create a new MyST version of you
 Depending on the type of contribution you are making, you may be able to skip
 some steps:
 
-* If you are adding new documentation and would prefer a simpler workflow,
-  you can you can use the
-  [GitHub web interface to open your pull request](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository).
-  A member of the maintenance
-  team will help with updating TOC and making sure your documentation has built
-  correctly. You will also be able to preview the documentation yourself by
-  downloading the built documentation via a link provided by a comment from the
-  `github-actions` bot.
 * If you are amending an existing document you can skip straight
   to [Step #3 - Preview your document](#3-preview-your-document)
 * For all other documentation changes, follow the steps below.
@@ -212,6 +227,24 @@ the [docs prerequisites](#prerequisites)).
 make docs
 ```
 
+If the changes you have made to documentation don't involve changing the napari gallery,
+you can speed up this build by running `make html-noplot` instead. This will skip the
+gallery build, which involves launching up napari and rendering all the examples.
+
+```bash
+make docs-install
+make html-noplot
+```
+
+The rendered HTML will be placed in `docs/_build`. Find `index.html` in this
+folder and drag it into a browser to preview the website with your new document.
+You can also run this Python one-liner to deploy a quick local server on
+[http://localhost:8000](http://localhost:8000):
+
+```shell
+$ python3 -m http.server --directory docs/_build
+```
+
 ````{note}
 The `make docs` command above assumes your have a local clone of the
 [`napari/napari`](https://github.com/napari/napari) repo at the same level as
@@ -243,15 +276,6 @@ make docs GALLERY_PATH=../../napari/examples
 ```
 
 ````
-
-The rendered HTML will be placed in `docs/_build`. Find `index.html` in this
-folder and drag it into a browser to preview the website with your new document.
-You can also run this Python one-liner to deploy a quick local server on
-[http://localhost:8000](http://localhost:8000):
-
-```shell
-$ python3 -m http.server --directory docs/_build
-```
 
 ````{tip}
 There's another `make` task you can use for live previews while editing docs:
