@@ -12,7 +12,8 @@ repository is where all the narrative documentation (e.g. tutorials, how-to
 guides) pull requests should be made. Meanwhile, changes to docstrings or to the
 [examples gallery](https://napari.org/gallery) should be made to the
 [napari/napari](https://github.com/napari/napari) repository (see also
-[](add-examples)).
+[](add-examples)). A subset of the documentation around plugins is pulled in from
+the [napari/npe2](https://github.com/napari/npe2) repository.
 
 ```{admonition} Note
   If you are adding new documentation or modifying existing documentation and would prefer a simpler workflow,
