@@ -340,3 +340,70 @@ You can also reach out to us on [zulip](https://napari.zulipchat.com/#narrow/str
 
 Not sure where to place your document or update `_toc.yml`? Make a best guess and open the pull request - the napari team will
 help you edit your document and find the right spot!
+
+## Building the documentation on Windows
+
+The documentation build requires some linux specific commands, so some extra steps are required to build the documentation on Windows. There are multiple tools for this, but [Git Bash](https://gitforwindows.org/) is recommended.
+
+### Prerequisites
+
+You will need to install [make](https://www.gnu.org/software/make/).
+This can be done with [Chocolatey](https://chocolatey.org/), a package manager for Windows.
+First, install Chocolatey by following the instructions [here](https://chocolatey.org/install).
+Then, install make with the following command:
+
+```bash
+choco install make
+```
+
+Alternatively, you can download the latest make binary without guile from [ezwinports](https://sourceforge.net/projects/ezwinports/) and [add it to your PATH](https://learn.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)#to-add-a-path-to-the-path-environment-variable).
+
+### Git Bash
+
+First, you will need to install make on Windows:
+1. Install Chocolatey (a Windows package manager) by following the instructions [here](https://chocolatey.org/install).
+2. Install make with `choco install make`.
+
+Alternatively, you can download the latest make binary without guile from [ezwinports](https://sourceforge.net/projects/ezwinports/) and [add it to your PATH](https://learn.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)#to-add-a-path-to-the-path-environment-variable).
+
+
+Then install Git Bash and build the documentation:
+1. Install [Git Bash](https://gitforwindows.org/) (you are likely to have this already if you use git on Windows!).
+2. Activate your virtual environment in Git Bash.
+    * Conda environment: To have your conda environment available in Git Bash, launch Git Bash, then run `conda init bash` from `anaconda prompt` and restart Git Bash. The conda environment can then be activated from Git Bash with `conda activate <env_name>`.
+    * Virtualenv: To have your virtualenv available in Git Bash, launch Git Bash, then run `source <path_to_virtualenv>/Scripts/activate`.
+3. From Git Bash, `cd` to the napari docs repository and run `make docs` or other `make` commands to build the documentation.
+
+```{tip}
+If you use git bash a lot, you may want to set conda to not initialize on bash by default to speed up the launch process. This can be done with `conda config --set auto_activate_base false`. You can then activate conda in Git Bash with `conda activate base`.
+```
+
+````{note}
+If you are using an IDE, it is likely that it will not use Git Bash by default. You may need to configure your IDE to use Git Bash as the default terminal for the napari docs. For example, in VS Code, you can set the default terminal to Git Bash for the napari docs by adding the following to your workspace settings:
+
+```json
+"terminal.integrated.defaultProfile.windows": "Git Bash"
+```
+
+````
+
+### Windows Subsystem for Linux
+
+Alternatively, you can install WSL and run napari from Ubuntu on Windows. However, this is a bit more involved than using Git Bash.
+
+1. Install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (`wsl --install` from command prompt as an administrator).
+2. Restart your computer. On restart, you will be prompted to create a user account for WSL. This account is separate from your Windows account, but you can use the same username and password if you wish.
+3. Open up the Ubuntu distribution from the start menu and run `sudo apt update && sudo apt upgrade` to update the distribution.
+4. Install a napari development environment following the [contributor guide](dev-installation) in Ubuntu.
+5. Install some common QT packages `sudo apt-get install -y libdbus-1-3 libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xinput0 libxcb-xfixes0`.
+6. Install some OpenGL related packages `sudo apt install ubuntu-desktop mesa-utils`.
+7. Install an Xserver for Windows [https://sourceforge.net/projects/vcxsrv/ ](Vcxsrv). When launching it, choose the options as default, except tick "disable access control". 
+8. Export environment variables:
+    ```
+    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+    export LIBGL_ALWAYS_INDIRECT=0
+    mkdir ~/temp
+    export XDG_RUNTIME_DIR=~/temp
+    export RUNLEVEL=3
+    ```
+9. Run `make docs` or other `make` commands to build the documentation.
