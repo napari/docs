@@ -385,7 +385,7 @@ $ python3 -m http.server
 Once you have written and previewed your document, it's time to open a pull request to [napari's docs repository](https://github.com/napari/docs) and contribute it to our codebase.
 
 If you are simply contributing one file (e.g., a tutorial or how-to page) you
-can use the [GitHub web interface to open your pull request](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository). Ensure you
+can use the [GitHub web interface to open your pull request](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository). Ensure your
 document is added to the correct folder based on its content (see the
 [list above](#0-before-you-start) for common locations).
 
