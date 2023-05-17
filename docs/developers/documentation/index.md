@@ -39,7 +39,7 @@ or [editing an existing file](https://docs.github.com/en/repositories/working-wi
 on the [napari-docs](https://github.com/napari/docs) GitHub repository.
 
 You will also be able to [preview the documentation](use-ci-artifacts) as it would appear on [napari.org](https://napari.org/dev) by
-downloading the built documentation via a link provided by a comment from the `github-actions` bot.
+downloading the built documentation via a link provided by a comment from the `github-actions` bot, or previewing a live version of the website corresponding to your changes on [CircleCI](https://circleci.com/).
 A member of the maintenance
 team will help with updating the [napari.org](https://napari.org/dev) table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](update-toc)) and making sure your documentation has built correctly.
 
