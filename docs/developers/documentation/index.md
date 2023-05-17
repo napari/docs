@@ -68,7 +68,7 @@ machine. Next, navigate to your local clone of the `napari/docs` repository:
 
 ```bash
 git clone https://github.com/napari/napari.git
-git clone git@github.com:<your-username>/docs.git napari-docs
+git clone https://github.com/<your-username>/docs.git napari-docs
 cd napari-docs/
 ```
 
