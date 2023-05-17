@@ -6,7 +6,7 @@ documentation.
 
 ## Organization of the documentation
 
-The napari documentation is built from multiple sources that are organised into multiple repositories:
+The napari documentation is built from multiple sources that are organised into repositories:
 1. The main napari documentation is built from sources located at the
 [napari/docs](https://github.com/napari/docs) repository on GitHub.
 That repository is where all the narrative documentation (e.g. tutorials, how-to
@@ -31,12 +31,14 @@ This is documentation is written with [Jinja](https://jinja.palletsprojects.com/
 ## Contributing to the napari documentation without a local setup
 
 If you would like to see new documentation added to napari or want to see changes to existing documentation, but are not clear on these instructions or don't have the time to write it yourself, you can [open an issue](https://github.com/napari/docs/issues/new/choose).
+
 If you are adding new documentation or modifying existing documentation and would prefer a simpler workflow than the local setup guide described below,
 you can use the GitHub web interface to open your pull request
 by either [uploading file(s) from your computer](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository),
 [creating and editing a new file](https://docs.github.com/en/repositories/working-with-files/managing-files/creating-new-files)
 or [editing an existing file](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)
 on the [napari-docs](https://github.com/napari/docs) GitHub repository.
+You can also first [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the [napari-docs](https://github.com/napari/docs) repository to your own GitHub account, create a [feature branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch), upload/create/edit files through the GitHub web interface, and then [open a pull request from your fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) back to [napari-docs](https://github.com/napari/docs).
 
 You will also be able to [preview the documentation](use-ci-artifacts) as it would appear on [napari.org](https://napari.org/dev) by
 downloading the built documentation via a link provided by a comment from the `github-actions` bot, or previewing a live version of the website corresponding to your changes on [CircleCI](https://circleci.com/).
