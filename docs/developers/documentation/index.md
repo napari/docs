@@ -383,17 +383,18 @@ Alternatively, you can install WSL and run napari from Ubuntu on Windows. Howeve
 2. Restart your computer. On restart, you will be prompted to create a user account for WSL. This account is separate from your Windows account, but you can use the same username and password if you wish.
 3. Open up the Ubuntu distribution from the start menu and run `sudo apt update && sudo apt upgrade` to update the distribution.
 4. Install a napari development environment following the [contributor guide](dev-installation) in Ubuntu.
-5. Install some common QT packages `sudo apt-get install -y libdbus-1-3 libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xinput0 libxcb-xfixes0`.
-6. Install some OpenGL related packages `sudo apt install ubuntu-desktop mesa-utils`.
-7. Install an Xserver for Windows [https://sourceforge.net/projects/vcxsrv/ ](Vcxsrv). When launching it, choose the options as default, except tick "disable access control".
-8. Export environment variables:
+5. Install some common QT packages and OpenGL `sudo apt install -y libdbus-1-3 libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xinput0 libxcb-xfixes0 mesa-utils libglu1-mesa-dev freeglut3-dev mesa-common-dev`.
+6. Install an Xserver for Windows [Vcxsrv](https://sourceforge.net/projects/vcxsrv/). When launching it, choose the options as default, except tick "disable access control".
+7. Export environment variables (you will need to do this for every new shell you open, unless you add them to your `.bashrc`):
 
     ```bash
+    mkdir ~/temp
+
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
     export LIBGL_ALWAYS_INDIRECT=0
-    mkdir ~/temp
     export XDG_RUNTIME_DIR=~/temp
     export RUNLEVEL=3
     ```
 
+8. You can test that all of this OpenGL setup and Xserver is working by running `glxgears` from the Ubuntu terminal. You should see a window with some gears spinning.
 9. Run `make docs` or other `make` commands to build the documentation.
