@@ -46,12 +46,6 @@ You may also want:
 This is the easiest way to install napari if you only wish to use it as a standalone GUI app.
 This installation method does not have any prerequisites.
 
-```{important}
-Note that the bundled app is still
-in active development, and may not be very stable. We strongly recommend
-[installing as a Python package instead](#install-as-python-package-recommended).
-```
-
 [Click here](#install-as-a-bundled-app) to see instructions
 for installing the bundled app.
 
@@ -231,6 +225,12 @@ are interested in. For example, the bundles for napari {{ napari_version }} can 
 accessed {{ '[here](https://github.com/napari/napari/releases/tag/vNAPARI_VER)'.replace('NAPARI_VER', napari_version) }}.
 To get to the download link, just scroll all the way to bottom of the page and
 expand the `Assets` section. You can then download the appropriate file for your platform.
+
+```{important}
+Note that the bundled app is still
+in active development, and may not be very stable. We strongly recommend
+[installing as a Python package instead](#install-as-python-package-recommended).
+```
 
 <!-- #endregion -->
 
