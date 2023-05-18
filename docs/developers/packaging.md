@@ -70,7 +70,7 @@ A software installer is usually expected to fulfill these requirements:
 * It will provide a convenient way of opening the application, like a shortcut or a menu entry.
 * It will allow the user to uninstall the application, leaving no artifacts behind.
 
-We use`constructor` to build the bundled installers, which takes `conda` packages.
+We use `constructor` to build the bundled installers, which takes `conda` packages.
 `conda` packages offer several advantages when it comes to bundling dependencies, since it makes very few assumptions about the underlying system installation. 
 As a result, `constructor` bundles include libraries that might be missing in the target system and hence should provide a more robust user experience.
 

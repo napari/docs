@@ -218,7 +218,7 @@ you're not using.
 ## Install as a bundled app
 
 napari can also be installed as a bundled app on each of the major platforms,
-MacOS, Windows, and Linux with a simple one click download and installation
+MacOS, Windows, and Linux with a simple one-click download and installation
 process. You might want to install napari as a bundled app if you are unfamiliar
 with installing Python packages or if you were unable to get the installation
 process described above working. The bundled app version of napari is the same
@@ -230,11 +230,7 @@ page](https://github.com/napari/napari/releases) and scroll to the release you
 are interested in. For example, the bundles for napari {{ napari_version }} can be
 accessed {{ '[here](https://github.com/napari/napari/releases/tag/vNAPARI_VER)'.replace('NAPARI_VER', napari_version) }}.
 To get to the download link, just scroll all the way to bottom of the page and
-expand the `Assets` section to get a view that looks like this:
-
-![Cropped screenshot from GitHub with the Assets section (or "tab") expanded, containing links to download the app in the form of files for Linux, macOS, Windows, in addition to other links.](../assets/tutorials/installation/bundle_assets.png)
-
-You can then download the appropriate file for your platform.
+expand the `Assets` section. You can then download the appropriate file for your platform.
 
 <!-- #endregion -->
 
