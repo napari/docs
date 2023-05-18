@@ -100,7 +100,7 @@ company: Napari
 license: EULA.md
 channels:
   # - local  # only in certain situations, like nightly installers where we build napari locally
-  - napari/label/bundle_tools  # temporary location of our forks of the constructor stack
+  - napari/label/bundle_tools_2  # temporary location of our forks of the constructor stack
   - conda-forge
 specs: # specs for the 'base'  environment
   - python   # pinned to the version of the running interpreter, configured in the CI
@@ -146,7 +146,7 @@ The main OS-agnostic keys are:
 
 * `channels`: where the packages will be downloaded from. 
   We mainly rely on `conda-forge` for this, where `napari` is published. 
-  However, we also have `napari/label/bundle_tools`, where we store our `constructor` stack forks (more on this later). 
+  However, we also have `napari/label/bundle_tools_2`, where we store our `constructor` stack forks (more on this later). 
   In nightly installers, we locally build our own development packages for `conda`, without resorting to `conda-forge`. 
   To make use of those (which are eventually published to `napari/label/nightly`), 
   we unpack the GitHub Actions artifact in a specific location that `constructor` recognizes as a _local_ channel once indexed.
