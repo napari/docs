@@ -352,7 +352,7 @@ First, you will need to install `make` on Windows:
 1. Install Chocolatey (a Windows package manager) by following the instructions [here](https://chocolatey.org/install).
 2. Install `make` with `choco install make`.
 
-Alternatively, you can download the latest make binary without guile from [ezwinports](https://sourceforge.net/projects/ezwinports/) and [add it to your PATH](https://learn.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)#to-add-a-path-to-the-path-environment-variable).
+Alternatively, you can download the latest `make` binary without guile from [ezwinports](https://sourceforge.net/projects/ezwinports/) and [add it to your PATH](https://learn.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)#to-add-a-path-to-the-path-environment-variable).
 
 Then install Git Bash and build the documentation:
 
@@ -375,9 +375,9 @@ If you are using an IDE, it is likely that it will not use Git Bash by default. 
 
 ````
 
-### Windows Subsystem for Linux
+### Windows Subsystem for Linux (WSL)
 
-Alternatively, you can install WSL and run napari from Ubuntu on Windows.
+Alternatively, you can install WSL, which will allow you to run a Linux environment directly on Windows (without any virtual machines, etc.). Then you can run scripts and command line utilities, as well as python and napari from for example Ubuntu on your Windows machine.
 
 1. Install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (`wsl --install` from command prompt as an administrator).
 2. Restart your computer. On restart, you will be prompted to create a user account for WSL. This account is separate from your Windows account, but you can use the same username and password if you wish.
