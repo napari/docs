@@ -347,7 +347,7 @@ The documentation build requires some linux specific commands, so some extra ste
 
 ### Git Bash
 
-First, you will need to install make on Windows:
+First, you will need to install `make` on Windows:
 
 1. Install Chocolatey (a Windows package manager) by following the instructions [here](https://chocolatey.org/install).
 2. Install make with `choco install make`.
