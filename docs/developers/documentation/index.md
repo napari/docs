@@ -10,7 +10,7 @@ The napari documentation is built from multiple sources that are organised into 
 1. The main napari documentation is built from sources located at the
 [napari/docs](https://github.com/napari/docs) repository on GitHub.
 That repository is where all the narrative documentation (e.g. tutorials, how-to
-guides) pull requests should be made.
+guides, etc. on napari.org) pull requests should be made.
 This narrative napari documentation is written in
 [Myst markdown](https://myst-parser.readthedocs.io/en/latest/index.html),
 a version of [commonmark](https://spec.commonmark.org/) Markdown
