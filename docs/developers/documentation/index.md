@@ -167,7 +167,7 @@ some steps:
 * For all other documentation changes, follow the steps below.
 
 (update-toc)=
-## 2. Update the table of contents
+## 2. Update the table of contents (TOC)
 
 If you are adding a new documentation file, you will need to add your document
 to the correct folder based on its content (see the [list above](#0-before-you-start)
