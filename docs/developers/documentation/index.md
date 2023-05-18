@@ -343,7 +343,7 @@ help you edit your document and find the right spot!
 
 ## Building the documentation on Windows
 
-The documentation build requires some linux specific commands, so some extra steps are required to build the documentation on Windows. There are multiple tools for this, but [Git Bash](https://gitforwindows.org/) is recommended.
+The documentation build requires some linux specific commands, so some extra steps are required to build the documentation on Windows. There are multiple tools for this, but [Git Bash](https://gitforwindows.org/) or [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) is recommended.
 
 ### Git Bash
 
@@ -356,9 +356,9 @@ Alternatively, you can download the latest make binary without guile from [ezwin
 
 Then install Git Bash and build the documentation:
 
-1. Install [Git Bash](https://gitforwindows.org/) (you are likely to have this already if you use git on Windows!).
+1. Install [Git Bash](https://gitforwindows.org/) (you should already have this if you use git on Windows).
 2. Activate your virtual environment in Git Bash.
-    - Conda environment: To have your conda environment available in Git Bash, launch Git Bash, then run `conda init bash` from `anaconda prompt` and restart Git Bash. The conda environment can then be activated from Git Bash with `conda activate <env_name>`.
+    - Conda environment: To have your conda environment available in Git Bash, launch Git Bash, then run `conda init bash` from anaconda prompt and restart Git Bash. The conda environment can then be activated from Git Bash with `conda activate <env_name>`.
     - Virtualenv: To have your virtualenv available in Git Bash, launch Git Bash, then run `source <path_to_virtualenv>/Scripts/activate`.
 3. From Git Bash, `cd` to the napari docs repository and run `make docs` or other `make` commands to build the documentation.
 
@@ -377,15 +377,24 @@ If you are using an IDE, it is likely that it will not use Git Bash by default. 
 
 ### Windows Subsystem for Linux
 
-Alternatively, you can install WSL and run napari from Ubuntu on Windows. However, this is a bit more involved than using Git Bash.
+Alternatively, you can install WSL and run napari from Ubuntu on Windows.
 
 1. Install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (`wsl --install` from command prompt as an administrator).
 2. Restart your computer. On restart, you will be prompted to create a user account for WSL. This account is separate from your Windows account, but you can use the same username and password if you wish.
 3. Open up the Ubuntu distribution from the start menu and run `sudo apt update && sudo apt upgrade` to update the distribution.
 4. Install a napari development environment following the [contributor guide](dev-installation) in Ubuntu.
 5. Install some common QT packages and OpenGL `sudo apt install -y libdbus-1-3 libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xinput0 libxcb-xfixes0 mesa-utils libglu1-mesa-dev freeglut3-dev mesa-common-dev '^libxcb.*-dev' libx11-xcb-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev`.
-6. Install an Xserver for Windows [Vcxsrv](https://sourceforge.net/projects/vcxsrv/). When launching it, choose the options as default, except tick "disable access control".
-7. Export environment variables (you will need to do this for every new shell you open, unless you add them to your `.bashrc`):
+6. You can test that all of this OpenGL setup is working by running `glxgears` from the Ubuntu terminal. You should see a window with some gears spinning.
+7. `pip install pyqt5-tools`.
+8. Run `make docs` or other `make` commands to build the documentation.
+
+````{admonition} Route graphical output to Windows
+:class: tip
+
+If you are getting errors running `glxgears` then you may need to route the graphical output to Windows. To do this:
+
+1. Install an Xserver for Windows, [Vcxsrv](https://sourceforge.net/projects/vcxsrv/). When launching it, choose the options as default, except tick "disable access control".
+2. Export environment variables (you will need to do this for every new shell you open, unless you add them to your `.bashrc`):
 
     ```bash
     mkdir ~/temp
@@ -396,6 +405,4 @@ Alternatively, you can install WSL and run napari from Ubuntu on Windows. Howeve
     export RUNLEVEL=3
     ```
 
-8. You can test that all of this OpenGL setup and Xserver is working by running `glxgears` from the Ubuntu terminal. You should see a window with some gears spinning.
-9. `pip install pyqt5-tools`.
-10. Run `make docs` or other `make` commands to build the documentation.
+`````
