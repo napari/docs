@@ -365,6 +365,11 @@ the following, to indicate 3D mode:
 
 ![image: 3D_button](../assets/tutorials/3D_button.png)
 
+Note that this mode can be entered programmatically using:
+```python
+viewer.dims.ndisplay = 3
+```
+
 In this mode, when you can drag with the mouse you will rotate the 3D rendering (change the camera view of the
 image) and see what it looks like from the side, back, or a different angle. To do this, click on the image and
 drag the cursor to a new position, which will give something like the following view:
