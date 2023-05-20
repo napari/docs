@@ -379,7 +379,7 @@ viewer.camera.angles = (3, 38, 53)
 nbscreenshot(viewer, alt_text="A rotated 3D view")
 ```
 
-Note that if you want to drag the rendering itself, instead of rotating the view, you have tohold down the 
+Note that if you want to drag the canvas/rendering itself, instead of rotating the view, you have to hold down the 
 Shift key while dragging with the mouse. Finally, while in 3D mode you can change the perspective of the 
 3D view by right-clicking on the 2D/3D mode button, which will bring up the perspective slider.
 
