@@ -6,7 +6,7 @@ documentation.
 
 ## Organization of the documentation
 
-The napari documentation is built from multiple sources that are organised into repositories:
+The napari documentation is built from multiple sources that are organized into repositories:
 1. The main napari documentation is built from sources located at the
 [napari/docs](https://github.com/napari/docs) repository on GitHub.
 That repository is where all the narrative documentation (e.g. tutorials, how-to
