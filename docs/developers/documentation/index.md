@@ -12,7 +12,7 @@ The napari documentation is built from multiple sources that are organised into 
 That repository is where all the narrative documentation (e.g. tutorials, how-to
 guides, etc. on napari.org) pull requests should be made.
 This narrative napari documentation is written in
-[Myst markdown](https://myst-parser.readthedocs.io/en/latest/index.html),
+[MyST markdown](https://myst-parser.readthedocs.io/en/latest/index.html),
 a version of [commonmark](https://spec.commonmark.org/) Markdown
 (see a [markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet))
 with some additional features.
@@ -44,7 +44,6 @@ You will also be able to [preview the documentation](use-ci-artifacts) as it wou
 using the `Check the rendered docs here!` action at the bottom of your PR which will go to a preview site on [CircleCI](https://circleci.com/).
 A member of the maintenance
 team will help with updating the [napari.org](https://napari.org/dev) table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](update-toc)) and making sure your documentation has built correctly.
-
 
 (prerequisites)=
 ## Prerequisites for a local setup to contribute to the napari documentation
@@ -237,13 +236,15 @@ If your documentation change includes code, it is important that you ensure
 the code is working and executable. This is why you will need to have a
 development installation of napari installed. [Examples](gallery)
 are automatically executed when the documentation is built and code problems can
-also be caught when previewing the built documentation. If your documentation
-change does not include code, you only need the napari docs dependencies
-installed (in which case you could also preview your document with the [VScode Myst extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight) or [Myst live preview](https://myst-parser.readthedocs.io/en/latest/live-preview.html#)).
+also be caught when previewing the built documentation.
 
-There are two ways you can preview the documentation website: by building
+There are two ways you can build and preview the documentation website as it would appear on [napari.org](https://napari.org): by building
 locally, or downloading the GitHub Actions built documentation when you submit
 your pull request.
+
+```{tip}
+To see the markdown document structure and content change in real-time without building, you can use a MyST markdown preview tool like [VScode](https://code.visualstudio.com/) with the [MyST extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight) or [MyST live preview](https://myst-parser.readthedocs.io/en/latest/live-preview.html#). This can also help you to spot any markdown formatting errors that may have occurred. However, this MyST markdown preview will have some differences to the final built html documentation due to autogeneration, so it is still important to build and preview the documentation before submitting your pull request.
+```
 
 ### 3.1. Building locally
 
