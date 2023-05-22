@@ -379,9 +379,10 @@ If you are using an IDE, it is likely that it will not use Git Bash by default. 
 
 Alternatively, you can install WSL, which will allow you to run a Linux environment directly on Windows (without any virtual machines, etc.). Then you can run scripts and command line utilities, as well as python and napari from for example Ubuntu on your Windows machine.
 
-1. Install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (`wsl --install` from command prompt as an administrator).
+1. Install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and [choose a linux distribution](https://learn.microsoft.com/en-us/windows/wsl/install#change-the-default-linux-distribution-installed).
+We will use Ubuntu for this guide since it is the default WSL distribution, easy to install, and works well with [WSLg](https://github.com/microsoft/wslg). The default method to perform this installation is to run `wsl --install -d Ubuntu` from command prompt as an administrator but you can refer to the [guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for other installation methods.
 2. Restart your computer. On restart, you will be prompted to create a user account for WSL. This account is separate from your Windows account, but you can use the same username and password if you wish.
-3. Open up the Ubuntu distribution from the start menu and run `sudo apt update && sudo apt upgrade` to update the distribution.
+3. [Open up the Ubuntu distribution](https://learn.microsoft.com/en-us/windows/wsl/install#ways-to-run-multiple-linux-distributions-with-wsl) via the `Ubuntu` command and run `sudo apt update && sudo apt upgrade` to update the distribution.
 4. Install a napari development environment following the [contributor guide](dev-installation) in Ubuntu.
 5. Install some common QT packages and OpenGL `sudo apt install -y libdbus-1-3 libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xinput0 libxcb-xfixes0 mesa-utils libglu1-mesa-dev freeglut3-dev mesa-common-dev '^libxcb.*-dev' libx11-xcb-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev`.
 6. You can test that all of this OpenGL setup is working by running `glxgears` from the Ubuntu terminal. You should see a window with some gears spinning.
@@ -391,7 +392,8 @@ Alternatively, you can install WSL, which will allow you to run a Linux environm
 ````{admonition} Route graphical output to Windows
 :class: tip
 
-If you are getting errors running `glxgears` then you may need to route the graphical output to Windows. To do this:
+By default, the graphical interface to `glxgears` or `napari` from WSL should be visible on Windows via `WSLg` without any configuration.
+However, if you are getting errors running `glxgears` or can't see the interface to graphical applications, then you may need to route the graphical output to Windows. To do this:
 
 1. Install an Xserver for Windows, [Vcxsrv](https://sourceforge.net/projects/vcxsrv/). When launching it, choose the options as default, except tick "disable access control".
 2. Export environment variables (you will need to do this for every new shell you open, unless you add them to your `.bashrc`):
@@ -404,5 +406,6 @@ If you are getting errors running `glxgears` then you may need to route the grap
     export XDG_RUNTIME_DIR=~/temp
     export RUNLEVEL=3
     ```
+3. Run `glxgears` from the Ubuntu terminal. You should see a window with some gears spinning.
 
-`````
+````
