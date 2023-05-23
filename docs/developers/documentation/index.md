@@ -383,11 +383,14 @@ Alternatively, you can install WSL, which will allow you to run a Linux environm
 We will use Ubuntu for this guide since it is the default WSL distribution, easy to install, and works well with [WSLg](https://github.com/microsoft/wslg). The default method to perform this installation is to run `wsl --install -d Ubuntu` from command prompt as an administrator but you can refer to the [guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for other installation methods.
 2. Restart your computer. On restart, you will be prompted to create a user account for WSL. This account is separate from your Windows account, but you can use the same username and password if you wish.
 3. [Open up the Ubuntu distribution](https://learn.microsoft.com/en-us/windows/wsl/install#ways-to-run-multiple-linux-distributions-with-wsl) via the `Ubuntu` command and run `sudo apt update && sudo apt upgrade` to update the distribution.
-4. Install a napari development environment following the [contributor guide](dev-installation) in Ubuntu.
+4. Install a napari development environment in Ubuntu following the [contributor guide](dev-installation) and activate the virtual environment that napari was installed into.
 5. Install some common QT packages and OpenGL `sudo apt install -y libdbus-1-3 libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xinput0 libxcb-xfixes0 mesa-utils libglu1-mesa-dev freeglut3-dev mesa-common-dev '^libxcb.*-dev' libx11-xcb-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev`.
 6. You can test that all of this OpenGL setup is working by running `glxgears` from the Ubuntu terminal. You should see a window with some gears spinning.
-7. `pip install pyqt5-tools`.
-8. Run `make docs` or other `make` commands to build the documentation.
+7. `sudo apt install fontconfig`.
+8. `pip install pyqt5-tools`.
+9. Fork the napari docs repository and clone it to the same parent folder as the napari repository (see [](#prerequisites)). Then navigate to the napari docs folder via `cd napari-docs`.
+10. Install `make` with `sudo apt install make`.
+11. Run `make docs` or other `make` commands to build the documentation.
 
 ````{admonition} Route graphical output to Windows
 :class: tip
