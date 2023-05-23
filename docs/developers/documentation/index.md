@@ -343,7 +343,7 @@ help you edit your document and find the right spot!
 
 ## Building the documentation on Windows
 
-The documentation build requires some linux specific commands, so some extra steps are required to build the documentation on Windows. There are multiple tools for this, but [Git Bash](https://gitforwindows.org/) or [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) is recommended.
+The documentation build requires some Linux specific commands, so some extra steps are required to build the documentation on Windows. There are multiple tools for this, but [Git Bash](https://gitforwindows.org/) or [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) is recommended.
 
 ### Git Bash
 
@@ -377,9 +377,9 @@ If you are using an IDE, it is likely that it will not use Git Bash by default. 
 
 ### Windows Subsystem for Linux (WSL)
 
-Alternatively, you can install WSL, which will allow you to run a Linux environment directly on Windows (without any virtual machines, etc.). Then you can run scripts and command line utilities, as well as python and napari from for example Ubuntu on your Windows machine.
+Alternatively, you can install WSL, which will allow you to run a Linux environment directly on Windows (without any virtual machines, etc.). You need to have Windows 10 version 2004 and higher or Windows 11. Then you can run scripts and command line utilities, as well as python and napari from for example Ubuntu on your Windows machine.
 
-1. Install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and [choose a linux distribution](https://learn.microsoft.com/en-us/windows/wsl/install#change-the-default-linux-distribution-installed).
+1. Install the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install) and [choose a linux distribution](https://learn.microsoft.com/en-us/windows/wsl/install#change-the-default-linux-distribution-installed).
 We will use Ubuntu for this guide since it is the default WSL distribution, easy to install, and works well with [WSLg](https://github.com/microsoft/wslg). The default method to perform this installation is to run `wsl --install -d Ubuntu` from command prompt as an administrator but you can refer to the [guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10) for other installation methods.
 2. Restart your computer. On restart, you will be prompted to create a user account for WSL. This account is separate from your Windows account, but you can use the same username and password if you wish.
 3. [Open up the Ubuntu distribution](https://learn.microsoft.com/en-us/windows/wsl/install#ways-to-run-multiple-linux-distributions-with-wsl) via the `Ubuntu` command and run `sudo apt update && sudo apt upgrade` to update the distribution.
