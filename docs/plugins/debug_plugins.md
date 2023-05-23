@@ -22,7 +22,7 @@ To quickly get started with debugging your plugin, you can do the following:
 
     viewer = Viewer()
     dock_widget, plugin_widget = viewer.window.add_plugin_dock_widget(
-        "napari-cookiecut", "Example QWidget"
+        "YOUR_PLUGIN_NAME", "YOUR_WIDGET_NAME"
     )
     # Optional steps to setup your plugin to a state of failure
     # E.g. plugin_widget.parameter_name.value = "some value"
