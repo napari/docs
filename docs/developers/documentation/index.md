@@ -343,7 +343,7 @@ help you edit your document and find the right spot!
 
 ## Building the documentation on Windows
 
-The documentation build requires some Linux specific commands, so some extra steps are required to build the documentation on Windows. There are multiple tools for this, but [Git Bash](https://gitforwindows.org/) or [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) is recommended.
+The documentation build requires some Linux specific commands, so some extra steps are required to build the documentation on Windows. There are multiple tools for this, but [Git Bash](https://gitforwindows.org/) or [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) are recommended.
 
 ### Git Bash
 
@@ -356,18 +356,18 @@ Alternatively, you can download the latest `make` binary without guile from [ezw
 
 Then install Git Bash and build the documentation:
 
-1. Install [Git Bash](https://gitforwindows.org/) (you should already have this if you use git on Windows).
+1. Install [Git Bash](https://gitforwindows.org/) (you should already have this if you use `git` on Windows).
 2. Activate your virtual environment in Git Bash.
     - Conda environment: To have your conda environment available in Git Bash, launch Git Bash, then run `conda init bash` from anaconda prompt and restart Git Bash. The conda environment can then be activated from Git Bash with `conda activate <env_name>`.
     - Virtualenv: To have your virtualenv available in Git Bash, launch Git Bash, then run `source <path_to_virtualenv>/Scripts/activate`.
 3. From Git Bash, `cd` to the napari docs repository and run `make docs` or other `make` commands to build the documentation.
 
 ```{tip}
-If you use git bash a lot, you may want to set conda to not initialize on bash by default to speed up the launch process. This can be done with `conda config --set auto_activate_base false`. You can then activate conda in Git Bash with `conda activate base`.
+If you use Git Bash a lot, you may want to set conda to not initialize on bash by default to speed up the launch process. This can be done with `conda config --set auto_activate_base false`. You can then activate conda in Git Bash with `conda activate base`.
 ```
 
 ````{note}
-If you are using an IDE, it is likely that it will not use Git Bash by default. You may need to configure your IDE to use Git Bash as the default terminal for the napari docs. For example, in VS Code, you can set the default terminal to Git Bash for the napari docs by adding the following to your workspace settings:
+If you are using an IDE, it is likely that it will not use Git Bash by default. You may need to configure your IDE to use Git Bash as the default terminal for the napari docs. For example, in VS Code, you can set the default terminal to Git Bash for the napari docs repository by adding the following to your workspace settings:
 
 ```json
 "terminal.integrated.defaultProfile.windows": "Git Bash"
