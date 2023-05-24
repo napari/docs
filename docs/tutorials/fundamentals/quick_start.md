@@ -85,7 +85,7 @@ napari
 - If you installed the bundled app:
 
     Click on the app icon to open it.<br>
-    *Note: macOS users might need to right click on the app icon and select "Open" to bypass the security check. You can also go to System Setting> Security and Privacy and click on "Open Anyway".*
+    *Note: macOS users might need to right click on the app icon and select "Open" to bypass the security check. You can also go to System Settings > Privacy & Security and click on "Open Anyway".*
 
 +++
 
