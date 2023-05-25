@@ -48,7 +48,12 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 
 ### Installation
 
-- Download the napari {{ napari_version }} bundled app for a simple installation. The step-by-step installers are available for macOS, Linux, and Windows in {{ '[the Releases page](https://github.com/napari/napari/releases/vNAPARI_VER)'.replace('NAPARI_VER', napari_version) }}, in the Assets section at the bottom.
+- Download the napari {{ napari_version }} bundled app for a simple installation:
+  - Linux: {{ '[`napari-NAPARI_VER-Linux-x86_64.sh`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.sh)'.replace('NAPARI_VER', napari_version) }}.
+  - macOS (Intel): {{ '[`napari-NAPARI_VER-macOS-x86_64.pkg`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.pkg)'.replace('NAPARI_VER', napari_version) }}.
+  - macOS (Apple Silicon): {{ '[`napari-NAPARI_VER-macOS-arm64.pkg`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-arm64.pkg)'.replace('NAPARI_VER', napari_version) }}.
+  - Windows: {{ '[`napari-NAPARI_VER-Windows-x86_64.exe`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}.
+  - Other artifacts can be found in the {{ '[the Releases page](https://github.com/napari/napari/releases/vNAPARI_VER)'.replace('NAPARI_VER', napari_version) }}, by the Assets section at the bottom.
 
 - For those familiar with Python:
 
