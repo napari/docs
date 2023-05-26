@@ -163,9 +163,12 @@ drawing the polygon is started by touching the tablet screen with the tablet sty
 drawing will continue for as long as the pencil is moved while touching the tablet screen. 
 Note that similar behavior is also available when using a macOS trackpad, using three-finger 
 drag mode.  
-For both modes, vertices are added only if the vertex to be added is at least 10 screen pixels 
-away from the previous vertex. As with the polygon creation tool drawing the shape can also be 
-finished by pressing the `escape` key.
+For both modes, vertices are added only if the vertex to be added is at a certain number of screen pixels 
+away from the previous vertex. This value can be adjusted in the settings in napari by going to 
+`File` -> `Preferences` (or `control + shift + P`), then in the menu on the left-clicking on 
+`Experimental` and then adjusting the value of ` Minimum distance threshold of shapes lasso tool`.
+The default is 10 and can be any integer higher than 0 and lower than 50. As with the polygon creation 
+tool drawing the shape can also be finished by pressing the `escape` key.
 
 After finishing drawing a polygon using the polygon lasso tool, an implementation of the [Ramer–Douglas–Peucker 
 algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm) is applied to reduce the 
@@ -174,7 +177,7 @@ which the algorithm reduces the number of points of the polygon is determined by
 which is a perpendicular distance threshold. Any vertices beyond the threshold will be preserved, so 
 if `epsilon` is set to `0`, no vertices will be removed. With increasing values of `epsilon`, more and 
 more vertices will be removed. The value of `epsilon` can be set in napari by going to 
-`File` -> `Preferences` (or `control + shift + P`), then in the menu on the left clicking on 
+`File` -> `Preferences` (or `control + shift + P`), then in the menu on the left-clicking on 
 `Experimental` and then adjusting the value of `RDP epsilon`. The default value is 0.5 and cannot 
 set lower than 0.
 
