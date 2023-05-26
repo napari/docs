@@ -365,7 +365,7 @@ the following, to indicate 3D mode:
 
 ![image: 3D_button](../assets/tutorials/3D_button.png)
 
-Note that this mode can be entered programmatically using:
+This mode can be entered programmatically using:
 ```python
 viewer.dims.ndisplay = 3
 ```
