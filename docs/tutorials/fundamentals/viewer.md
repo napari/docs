@@ -391,6 +391,7 @@ dragging the mouse or by right-clicking (on macOS holding Control and clicking) 
 button, which will bring up the perspective slider. The camera perspective can also be altered programmatically:
 ```python
 viewer.camera.perspective = 45
+```
 
 #### Roll dimensions  
 
