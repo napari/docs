@@ -244,7 +244,7 @@ contributing to napari please check our [contributing
 guidelines](../../developers/contributing.md)
 - if you are running into issues or bugs, please open a new issue on our [issue
 tracker](https://github.com/napari/napari/issues)
-    - include the output of `napari -info`
+    - include the output of `napari --info`
     (or go to `Help>Info` in the viewer and copy paste the information)
 - if you want help using napari, we are a community partner on the [imagesc
 forum](https://forum.image.sc/tags/napari) and all usage support requests should
