@@ -17,7 +17,7 @@ PyPI and Anaconda are two options for how you distribute your package and allow 
 ### Building your package 
 `sdist` means source distribution. An `sdist` includes all of the files that are required to *build* your package. An `sdist` may require specific additional software (e.g. compilers) to actually build.
 
-**wheel** is a prebuilt package, ready to drop into site-packages. It includes compiled OS-specific extensions (if applicable).
+`wheel` is a prebuilt package, ready to drop into your `site-packages` directory. It includes compiled OS-specific extensions (if applicable).
 
 You are *strongly* encouraged to ship both! If the wheel is not present, pip will try to build it from the sdist before installation, and that may fail depending on the package. To see if a given package ships a wheel, check here: https://pypi.org/project/napari/#files
 
