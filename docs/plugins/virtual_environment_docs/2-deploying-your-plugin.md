@@ -19,7 +19,7 @@ PyPI and Anaconda are two options for how you distribute your package and allow 
 
 `wheel` is a prebuilt package, ready to drop into your `site-packages` directory. It includes compiled OS-specific extensions (if applicable).
 
-You are *strongly* encouraged to ship both! If the wheel is not present, pip will try to build it from the sdist before installation, and that may fail depending on the package. To see if a given package ships a wheel, check here: https://pypi.org/project/napari/#files
+You are *strongly* encouraged to ship both! If the `wheel` is not present, `pip` will try to build it from the `sdist` before installation, and that may fail depending on the package. To see if a given package ships a `wheel`, check here: https://pypi.org/project/napari/#files
 
 **Note:** This goes for dependencies too! Check all your dependencies for wheel availability.  
 
