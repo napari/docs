@@ -5,16 +5,22 @@ from which this script will be called.
 """
 import sys
 from pathlib import Path
+from importlib.metadata import version
 
 DOCS = Path(__file__).parent.parent.absolute()
 NPE = DOCS.parent.absolute() / 'npe2'
 
 def prep_npe2():
     #   some plugin docs live in npe2 for testing purposes
+    if NPE.exists():
+        return
     from subprocess import check_call
+
+    npe2_version = version("npe2")
 
     check_call(f"rm -rf {NPE}".split())
     check_call(f"git clone https://github.com/napari/npe2 {NPE}".split())
+    check_call(f"git checkout tags/v{npe2_version}".split(), cwd="npe2")
     check_call([sys.executable, f"{NPE}/_docs/render.py", DOCS / 'plugins'])
     check_call(f"rm -rf {NPE}".split())
 
