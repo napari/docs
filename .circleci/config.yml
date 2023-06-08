@@ -52,8 +52,7 @@ jobs:
           name: Build docs
           command: |
             . venv/bin/activate
-            python -m pip install -r requirements.txt
-            xvfb-run --auto-servernum make docs-build GALLERY_PATH=../napari/examples/
+            xvfb-run --auto-servernum make docs GALLERY_PATH=../napari/examples/
       - store_artifacts:
           path: docs/_build/
       - persist_to_workspace:
