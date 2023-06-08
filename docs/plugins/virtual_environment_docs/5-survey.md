@@ -9,7 +9,7 @@ This guide contains questions that were submitted to our survey on testing.
 - [How do you avoid github tests failing?](#how-do-you-avoid-github-tests-failing)  
 - [How do you make a process cancellable](#how-do-you-make-a-process-cancellable)  
 - [Are there testing environments in napari?](#are-there-testing-environments-in-napari)  
-- [Introduction to npe2? Migrating to new plug-in architecture?](#introduction-to-npe2-migrating-to-new-plug-in-architecture)  
+- [Introduction to npe2? Migrating to new plug-in architecture?](#introduction-to-npe2-migrating-to-new-plugin-architecture)  
 - [What is the optimal setup to quickly iterate in widget development?](#what-is-the-optimal-setup-to-quickly-iterate-in-widget-development)  
   
 ## What are the best practices to test a plugin with multiple sequential steps?
