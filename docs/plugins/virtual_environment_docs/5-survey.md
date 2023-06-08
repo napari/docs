@@ -31,7 +31,7 @@ Answer:
     - [pytest-qt](https://pytest-qt.readthedocs.io/en/latest/intro.html)
     - [qtbot](https://pytest-qt.readthedocs.io/en/latest/reference.html?highlight=qtbot#module-pytestqt.qtbot)
 * Oftentimes, this comes down to knowing and/or learning the Qt API really well.  
-* Please see also the [In-depth guide to plugin testing](../../../../docs/plugins/testing_workshop_docs).
+* Please see also the [In-depth guide to plugin testing](../testing_workshop_docs/index.md).
 ## How to find the different signals or slots?
 Question: How can we find the different signals/slots we can connect callbacks to as the user interacts with the core napari interface e.g. creating/editing/deleting a `points` or `shapes` layer?
 
