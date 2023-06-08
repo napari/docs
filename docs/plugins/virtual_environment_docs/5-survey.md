@@ -61,7 +61,7 @@ Question: How do you make a process cancellable to interrupt a method that is ru
 
 Answer:  
 * In single-threaded python, use `Ctrl-C`  
-* In multithreaded python, there are many different patterns. Consider using a [generator-based thread worker].(https://napari.org/stable/guides/threading.html#generators-for-the-win)    
+* In multithreaded python, there are many different patterns. Consider using a [generator-based thread worker](https://napari.org/stable/guides/threading.html#generators-for-the-win).    
 
 ## Are there testing environments in napari?
 Answer: Napari does not create or otherwise manage environments.  
