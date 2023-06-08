@@ -82,8 +82,7 @@ Additional resources:
 Answer:   
 * Create a script that will start napari and load your widget without any UI interaction.  
 * Don't test as a plugin. Start by directly calling `viewer.window.add_dock_widget` with a manually created widget.  
-* Familiarize yourself with auto-reload features.  
-  https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html   
+* Familiarize yourself with the [IPython auto-reload features](https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html).   
 * Consider using watchmedo from watchdog:  
   https://github.com/gorakhargosh/watchdog  
   This will monitor a file/directory for changes, and re-run a command each time (which is why step #1 is also useful).  
