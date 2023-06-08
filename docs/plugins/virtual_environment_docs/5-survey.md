@@ -73,9 +73,10 @@ Answer:
     - npe2 uses static manifests (`napari.yaml`), describing contributions without requiring import.  
     - See also the [Your First Plugin tutorial](https://napari.org/stable/plugins/first_plugin.html)  
   
-* Contributions Reference: https://napari.org/stable/plugins/contributions.html  
-* Guides for each type of contribution: https://napari.org/stable/plugins/guides.html  
-* Migration guide: https://napari.org/stable/plugins/npe2_migration_guide.html  
+Additional resources:
+* [Contributions Reference](https://napari.org/stable/plugins/contributions.html)  
+* [Guides for each type of contribution](https://napari.org/stable/plugins/guides.html)  
+* [Migration guide](https://napari.org/stable/plugins/npe2_migration_guide.html)  
   
 ## What is the optimal setup to quickly iterate in widget development?
 Answer:   
