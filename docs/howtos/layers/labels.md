@@ -288,8 +288,8 @@ finishing drawing the polygon will be cut off so that the part outside the canva
 removed. This ensures that the dimensions of the label image are not larger than the image
 for which you are segmenting of for which you are editing the segmentations.
 
-If using the `polygon` tool for adding or editing segmentations of 3D image data, this only 
-adjusts the label layer in one plane, with the exception when viewing the image data as RGB. 
+Note: if you use the `polygon` tool for adding or editing segmentations of 3D image data, you can only 
+adjust labels in one plane, with the exception when viewing the image data as RGB. 
 The `polygon` tool cannot be activated if the number of displayed dimensions is higher than two.
 If already active upon toggling the number of displayed dimensions, the `polygon` tool will be 
 automatically deactivated.
