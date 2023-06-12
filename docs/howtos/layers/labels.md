@@ -268,9 +268,8 @@ layer is selected.
 Another tool that can be used to quickly add or edit image segmentations is the 
 `polygon` tool. It combines functionality of the `paintbrush` and `fill bucket` 
 tool. The `polygon` tool can be activated by clicking on the icon resembling a 
-polygon in the layer control panel or by pressing `3`. Once activated, click 
-anywhere on the canvas to start drawing the polygon. After clicking on the canvas 
-the mouse. A vertex to be added will track your mouse cursor and a line with the 
+polygon in the layer control panel or by pressing `3`. Once activated, left-click 
+anywhere on the canvas to start drawing the polygon. A vertex to be added will track your mouse cursor and a line with the 
 color of the label you are drawing with will appear between the initial vertex and 
 the vertex to be added. Click again to set the vertex that is tracking the mouse cursor. 
 Once you move the mouse again, an enclosed polygon will be visible in the color of the 
