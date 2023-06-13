@@ -14,3 +14,4 @@ matplotlib
 qtgallery
 lxml
 imageio-ffmpeg
+tomli-w
