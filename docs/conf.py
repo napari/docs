@@ -88,7 +88,7 @@ mermaid_init_js = "mermaid.initialize({startOnLoad:true, securityLevel:'loose'})
 html_theme = 'napari'
 
 # Define the json_url for our version switcher.
-json_url = "https://napari.org/version_switcher.json"
+json_url = "https://napari.org/dev/_static/version_switcher.json"
 
 if version == "dev":
     version_match = "latest"
@@ -103,7 +103,7 @@ html_theme_options = {
     "navbar_start": ["navbar-project"],
     "navbar_end": ["version-switcher", "navbar-icon-links"],
     "switcher": {
-        "json_url": "https://napari.org/version_switcher.json",
+        "json_url": json_url,
         "version_match": version_match,
     },
 }
@@ -225,7 +225,7 @@ sphinx_gallery_conf = {
     'download_all_examples': False,
     'min_reported_time': 10,
     'only_warn_on_example_error': True,
-    'image_scrapers': (qtgallery.qtscraper,),
+    'image_scrapers': ("matplotlib", qtgallery.qtscraper,),
     'reset_modules': (reset_napari_theme,),
     'reference_url': {'napari': None},
     'within_subsection_order': ExampleTitleSortKey,
