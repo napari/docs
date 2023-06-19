@@ -83,7 +83,7 @@ tags_extension = ["md", "rst"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'napari'
+html_theme = 'napari_sphinx_theme'
 
 # Define the json_url for our version switcher.
 json_url = "https://napari.org/dev/_static/version_switcher.json"
