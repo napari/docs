@@ -1,0 +1,225 @@
+(nap-7)=
+
+# NAP-7 — Key Binding Dispatch
+
+```{eval-rst}
+:Author: "Kira Evans <mailto:contact@kne42.me>"
+:Created: 2023-06-20
+:Status: Draft
+:Type: Standards Track
+```
+
+## Abstract
+
+With the switching of internal key binding to use app-model's representation[^id1], there is discussion as to what exactly constitutes a valid key binding and how conflicts are handled[^id2].
+
+This NAP seeks to clarify and propose a solution for how key bindings will be dispatched according to their priority, enablement, and potential conflicts.
+
+## Motivation and Scope
+
+### Background
+
+Plugin developers are able to export commands in their manifest file but cannot similarly set their shortcuts in a code-free way. npe2 provides an option to bind commands to key binding but it is undocumented and unsupported since napari still uses an old dispatch system of chainmaps.
+
+### A more versatile system
+
+The proposed dispatch system would leverage weights to clearly separate default, plugin, and user-defined key binding as well as support a more advanced conditional system which would determine if a keybinding is active/enabled or not. Both of these properties are already part of the specification defined by app-model.
+
+Separation of different sources of key binding makes it easier for a user to determine who set the binding as well as how to restore the default.
+
+Conditional evaluation allows plugin developers to tie their keybinding to a specific viewer state.
+
+### Definitions
+
+**modifier keys** refer to `ctrl`, `shift`, `alt`, and `meta`. `meta` is also known as `cmd`, `win`, or `super` on osx, windows, or linux, respectively
+
+a **base key** is one of the following supported keys:
+- `f1-f12`, `a-z`, `0-9`
+- `` ` ``, `-`, `=`, `[`, `]`, `\`, `;`, `'`, `,`, `.`, `/`
+- `left`, `up`, `right`, `down`, `pageup`, `pagedown`, `end`, `home`
+- `tab`, `enter`, `escape`, `space`, `backspace`, `delete`
+- `pausebreak`, `capslock`, `insert`, `numlock`, `printscreen`
+- `numpad0-numpad9`, `numpad_decimal`, `numpad_multiply`, `numpad_divide`, `numpad_add`, `numpad_subtract`
+
+a **key combination** is a base key pressed with one or more modifier keys, e.g. `ctrl+c` or `ctrl+shift+z`
+
+a **key chord** consists of two parts, of which each can be either a base key or a key combination, e.g, `ctrl+x v`
+
+a **key sequence** refers to a series of inputs by the user which can be a base key, key combination, or key chord
+
+a **key binding** binds a key sequence to a command with conditional activation
+
+### Key binding validity: convenience vs. complexity
+
+Some users want to use traditional modifier keys as a base key in key binding for convenience purposes [^id2]. However, this can lead to conflicts since many key binding may include the modifier key in their key sequence and thus cause confusion and cost extra engineering effort.
+
+The proposed restrictions on what key sequences can be used in a key binding aim to allow for the simplest user need while cutting down on any unnecessary complexities:
+
+- key combinations containing any modifier keys as a base key are invalid
+- key chords cannot contain a base key that is a modifier key (aka a single modifier)
+
+Here are some examples:
+- `alt` is **valid** as a base key because it contains no other modifiers and no other parts
+- `alt-meta` is **invalid** because it is a key combination comprised of only modifiers
+- `alt+t` is **valid** as a key combination
+- `alt t` is **invalid** because it is a key chord whose first part is a single modifier 
+- `ctrl+x alt` is **invalid** because it is a key chord whose second part is a single modifier
+- `ctrl+x alt+v` is **valid** as a key chord
+- `meta meta` is **invalid** because it is a key chord comprised of only single modifier parts
+
+## Detailed Description
+
+Even with conditional activation, many key bindings may find that they share the exact same key sequence as another key binding (a direct conflict), or that their key sequence is a subset of another key binding's key sequence (an indirect conflict). This requires the establishment of a system to determine when and how key bindings should be dispatched.
+
+### Key binding properties
+
+All key binding entries contain the following information:
+- `command_id` is the unique identifier of the command that will be executed by this key binding
+- `weight` is the main determinant of key binding priority. high value means a higher priority
+- `when` is the context expression that is evaluated to determine if the key binding is active; if not provided, the key binding is always considered active
+- (autoset) `block_rule` is enabled if `command_id == ''` and disables all lower priority key bindings
+- (autoset) `negate_rule` is enabled if `command_id` is prefixed with `-` and disables all lower priority key bindings with the same sequence bound to this command
+
+```python=
+from dataclasses import dataclass, field
+
+from app_model.expressions import Expr
+
+@dataclass(order=True)
+class KeyBindingEntry:
+    command_id: str = field(compare=False)
+    weight: int
+    when: Optional[Expr] = field(compare=False)
+    block_rule: bool = field(init=False)
+    negate_rule: bool = field(init=False)
+    
+    def __post_init__(self):
+        self.block_rule = self.command_id == ''
+        self.negate_rule = self.command_id.startswith('-')
+```
+
+### Direct conflicts
+
+When two key bindings share the same key sequence, they are considered to be in direct conflict. They are sorted first according to their weight, then whether they are a blocking rule, whether they are a negate rule, and otherwise, based on their insertion order. This is done in ascending order such that higher weights and blocking/negate rules are moved further down the list.
+
+Key bindings will automatically be assigned weights depending on who set them, prioritizing default ones the least and user-set ones the most:
+
+```python=
+from enum import IntEnum
+
+class KeyBindingWeights(IntEnum):
+    CORE = 0
+    PLUGIN = 300
+    USER = 500
+```
+
+### Indirect conflicts
+
+When a key sequence matches a key binding and is also a sub-sequence of a key sequence used by another key binding, it is considered an indirect conflict.
+
+There are two ways indirect conflicts can exist:
+- (A) the provided key sequence is a single modifier that is a modifier in another key binding's key combination or is a modifier in the first key combination of a key binding's key chord
+- (B) the provided key sequence is a base key or key combination that is the first part of another key binding's key chord
+
+In case (A), the corresponding command will not be triggered immediately, but will be delayed by user-defined miliseconds (e.g. 200ms), after which the press logic for the command will execute. If another key binding is triggered, this action will be canceled. If the base key is released early, the press logic will execute immediately and the delayed action will be canceled, along with the release logic being executed immediately afterwards.
+
+In case (B), the corresponding command will never be triggered so long as it indirectly conflicts with another key binding. In this sense, multi-part key bindings will always take priority over single-part key bindings.
+
+### Finding a match
+
+When checking if an active key binding matches the entered key sequence, the resolver will fetch the pre-sorted list of direct conflicts and check if the last entry is active using its `when` property, moving to the next entry if it is not. It will return no match if it encounters a blocking rule and for a negate rule, will store the affected command in an ignore list and continue to the next entry. If no special rules are present, it will return a match if the command is not in an ignore list, otherwise continuing to the next entry, and so on, until no more entries remain.
+
+In psuedo-code this reads as:
+```python=
+def find_active_match(entries: List[KeyBindingEntry]) -> KeyBindingEntry:
+    ignored_commands = []
+
+    for entry in reversed(entries):
+        if isactive(entry.when):
+            if entry.block_rule:
+                return None
+            elif entry.negate_rule:
+                ignored_commands.append(entry.command_id[1:])
+            elif entry.command_id not in ignored_commands:
+                return entry
+```
+
+### Leveraging data structures to find conflicts
+
+Finding indirect conflicts can be tricky and computationally intensive. As such, all subsets are encoded in a data structure similar to a [trie or prefix tree](https://en.wikipedia.org/wiki/Trie).
+
+```{figure} ./_static/kb-example-graph.png
+---
+name: example-graph
+---
+Fig 1. Example of a prefix multitree
+```
+
+## Related Work
+
+This section should list relevant and/or similar technologies, possibly in
+other libraries. It does not need to be comprehensive, just list the major
+examples of prior and relevant art.
+
+## Implementation
+
+```python=
+class Node:
+    root: List[KeyBindingEntry]
+    children: Dict[KeyCode, Node]
+```
+
+This section lists the major steps required to implement the NAP. Where
+possible, it should be noted where one step is dependent on another, and which
+steps may be optionally omitted. Where it makes sense, each step should
+include a link to related pull requests as the implementation progresses.
+
+Any pull requests or development branches containing work on this NAP
+should be linked to from here. (A NAP does not need to be implemented in a
+single pull request if it makes sense to implement it in discrete phases).
+
+If a new NAP document is created, it should be added to the documentation Table
+of Contents as an item on `napari/docs/_toc.yml`.
+
+## Backward Compatibility
+
+This section describes the ways in which the NAP affects backward
+compatibility, including both breakages and decisions that better support
+backward compatibility.
+
+## Future Work
+
+This section describes work that is out of scope for the NAP, but that the
+NAP might suggest, or that the NAP author envisions as potential future
+expansion of the work or related work.
+
+## Alternatives
+
+If there were any alternative solutions to solving the same problem, they
+should be discussed here, along with a justification for the chosen
+approach.
+
+## Discussion
+
+This section may just be a bullet list including links to any discussions
+regarding the NAP, but could also contain additional comments about that
+discussion:
+
+- This includes links to discussion forum threads or relevant GitHub discussions.
+
+## References and Footnotes
+
+[^id1]: napari #5103, <https://github.com/napari/napari/pull/5103>
+
+[^id2]: napari #5747, <https://github.com/napari/napari/issues/5747>
+
+[^id3]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
+    <https://creativecommons.org/publicdomain/zero/1.0/>
+
+[^id4]: <https://dancohen.org/2013/11/26/cc0-by/>
+
+## Copyright
+
+This document is dedicated to the public domain with the Creative Commons CC0
+license [^id3]. Attribution to this source is encouraged where appropriate, as per
+CC0+BY [^id4].
