@@ -104,6 +104,7 @@ html_theme_options = {
         "json_url": json_url,
         "version_match": version_match,
     },
+    "navbar_persistent": [],
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
