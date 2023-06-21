@@ -11,13 +11,11 @@
 
 ## Abstract
 
-With the switching of internal key binding to use app-model's representation[^id1], there is discussion as to what exactly constitutes a valid key binding and how conflicts are handled[^id2].
+With the switching of the internal key binding system to use app-model's representation[^id1], there is discussion as to what exactly constitutes a valid key binding and how conflicts are handled[^id2].
 
 This NAP seeks to clarify and propose a solution for how key bindings will be dispatched according to their priority, enablement, and potential conflicts.
 
 ## Motivation and Scope
-
-### Background
 
 Plugin developers are able to export commands in their manifest file but cannot similarly set their shortcuts in a code-free way. npe2 provides an option to bind commands to key binding but it is undocumented and unsupported since napari still uses an old dispatch system of chainmaps.
 
@@ -80,7 +78,7 @@ All key binding entries contain the following information:
 - (autoset) `block_rule` is enabled if `command_id == ''` and disables all lower priority key bindings
 - (autoset) `negate_rule` is enabled if `command_id` is prefixed with `-` and disables all lower priority key bindings with the same sequence bound to this command
 
-```python=
+```python
 from dataclasses import dataclass, field
 
 from app_model.expressions import Expr
@@ -104,7 +102,7 @@ When two key bindings share the same key sequence, they are considered to be in 
 
 Key bindings will automatically be assigned weights depending on who set them, prioritizing default ones the least and user-set ones the most:
 
-```python=
+```python
 from enum import IntEnum
 
 class KeyBindingWeights(IntEnum):
@@ -118,8 +116,10 @@ class KeyBindingWeights(IntEnum):
 When a key sequence matches a key binding and is also a sub-sequence of a key sequence used by another key binding, it is considered an indirect conflict.
 
 There are two ways indirect conflicts can exist:
-- (A) the provided key sequence is a single modifier that is a modifier in another key binding's key combination or is a modifier in the first key combination of a key binding's key chord
-- (B) the provided key sequence is a base key or key combination that is the first part of another key binding's key chord
+
+A. the provided key sequence is a single modifier that is a modifier in another key binding's key combination or is a modifier in the first key combination of a key binding's key chord
+
+B. the provided key sequence is a base key or key combination that is the first part of another key binding's key chord
 
 In case (A), the corresponding command will not be triggered immediately, but will be delayed by user-defined miliseconds (e.g. 200ms), after which the press logic for the command will execute. If another key binding is triggered, this action will be canceled. If the base key is released early, the press logic will execute immediately and the delayed action will be canceled, along with the release logic being executed immediately afterwards.
 
@@ -127,11 +127,11 @@ In case (B), the corresponding command will never be triggered so long as it ind
 
 ### Finding a match
 
-When checking if an active key binding matches the entered key sequence, the resolver will fetch the pre-sorted list of direct conflicts and check if the last entry is active using its `when` property, moving to the next entry if it is not. It will return no match if it encounters a blocking rule and for a negate rule, will store the affected command in an ignore list and continue to the next entry. If no special rules are present, it will return a match if the command is not in an ignore list, otherwise continuing to the next entry, and so on, until no more entries remain.
+When checking if an active key binding matches the entered key sequence, the resolver will fetch the pre-sorted list of direct conflicts and check if the last entry is active using its `when` property, moving to the next entry if it is not. When it encounters a blocking rule, it will return no match, and for a negate rule, it will store the affected command in an ignore list and continue to the next entry. If no special rules are present, it will return a match if the command is not in an ignore list, otherwise continuing to the next entry, and so on, until no more entries remain.
 
 In psuedo-code this reads as:
-```python=
-def find_active_match(entries: List[KeyBindingEntry]) -> KeyBindingEntry:
+```python
+def find_active_match(entries: List[KeyBindingEntry]) -> Optional[KeyBindingEntry]:
     ignored_commands = []
 
     for entry in reversed(entries):
@@ -146,13 +146,54 @@ def find_active_match(entries: List[KeyBindingEntry]) -> KeyBindingEntry:
 
 ### Leveraging data structures to find conflicts
 
-Finding indirect conflicts can be tricky and computationally intensive. As such, all subsets are encoded in a data structure similar to a [trie or prefix tree](https://en.wikipedia.org/wiki/Trie).
+Finding indirect conflicts can be tricky and computationally intensive. As such, all subsets are encoded in a data structure similar to a _[trie](https://en.wikipedia.org/wiki/Trie)_ (aka a _prefix tree_). Since modifier keys do not care about what order they are pressed in, we will use a directed acyclic graph instead of a traditional tree, essentially making this a _prefix [multitree](https://en.wikipedia.org/wiki/Multitree)_.
 
 ```{figure} ./_static/kb-example-graph.png
 ---
-name: example-graph
+name: fig-1
 ---
-Fig 1. Example of a prefix multitree
+Fig. 1: Example of a prefix multitree. Filled nodes have at least one key binding as detailed on the legend in the top left corner.
+```
+
+This effectively breaks the key sequences of the key bindings into their respective components, as in {ref}`Fig. 1 <fig-1>`, and can be represented with a fairly simple data structure:
+
+```python
+from app_model.types import KeyBinding
+
+@dataclass
+class Node:
+    value: KeyBinding
+    root: List[KeyBindingEntry]
+    children: Dict[KeyCode, Node]
+```
+
+To check if a key binding has an indirect conflict, the children of the node can be recursively searched depth-first:
+
+```python
+def check_active_children(children: Dict[Node]) -> bool:
+    for child in children.values():
+        if find_active_match(child.root):
+            return True
+        elif check_active_children(child.children):
+            return True
+```
+
+Additionally, in the future, this data structure could be used for command completion.
+
+### Completing the dispatch
+
+Putting everything together, the following psuedo code represents the logic of key binding dispatch:
+
+```python
+from app_model.types import KeyBinding, KeyCode, KeyMod
+
+class KeyBindingResolver:
+    root: Dict[KeyCode, Node]
+
+    ...
+
+    def fetch_node(self, key_binding: KeyBinding) -> Optional[Node]:
+        kb_parts = ...
 ```
 
 ## Related Work
@@ -162,12 +203,6 @@ other libraries. It does not need to be comprehensive, just list the major
 examples of prior and relevant art.
 
 ## Implementation
-
-```python=
-class Node:
-    root: List[KeyBindingEntry]
-    children: Dict[KeyCode, Node]
-```
 
 This section lists the major steps required to implement the NAP. Where
 possible, it should be noted where one step is dependent on another, and which
@@ -207,6 +242,12 @@ discussion:
 
 - This includes links to discussion forum threads or relevant GitHub discussions.
 
+## Copyright
+
+This document is dedicated to the public domain with the Creative Commons CC0
+license [^id3]. Attribution to this source is encouraged where appropriate, as per
+CC0+BY [^id4].
+
 ## References and Footnotes
 
 [^id1]: napari #5103, <https://github.com/napari/napari/pull/5103>
@@ -217,9 +258,3 @@ discussion:
     <https://creativecommons.org/publicdomain/zero/1.0/>
 
 [^id4]: <https://dancohen.org/2013/11/26/cc0-by/>
-
-## Copyright
-
-This document is dedicated to the public domain with the Creative Commons CC0
-license [^id3]. Attribution to this source is encouraged where appropriate, as per
-CC0+BY [^id4].
