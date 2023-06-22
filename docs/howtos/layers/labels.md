@@ -267,17 +267,19 @@ layer is selected.
 
 Another tool that can be used to quickly add or edit image segmentations is the 
 `polygon` tool. It combines functionality of the `paintbrush` and `fill bucket` 
-tool. The `polygon` tool can be activated by clicking on the icon resembling a 
-polygon in the layer control panel or by pressing `3`. Once activated, left-click 
-anywhere on the canvas to start drawing the polygon. A vertex to be added will track your mouse cursor and a line with the 
-color of the label you are drawing with will appear between the initial vertex and 
-the vertex to be added. Click again to set the vertex that is tracking the mouse cursor. 
-Once you move the mouse again, an enclosed polygon will be visible in the color of the 
-label and a new vertex will track the mouse cursor. The polygon overlay has an opacity 
+tool by allowing for drawing enclosed instance segmentations. The `polygon` tool 
+can be activated by clicking on the icon resembling a polygon in the layer control 
+panel or by pressing `3`. Once activated, the user actions are as follows:
+1. Left-click anywhere on the canvas to start drawing the polygon.
+2. Move the mouse to the location where you want the next vertex to be.
+3. Click again to set the vertex that is tracking the mouse cursor.
+4. After this step a polygon overlay will appear when moving the mouse. Repeat step 2 and 3
+   until the shape to be segmented is enclosed by the polygon overlay. 
+5. Press `enter` to finish drawing at any time or double click within a radius of 20 screen pixels
+   of the first vertex. 
+
+The polygon overlay will have the color of the label. The polygon overlay also has an opacity 
 that can be adjusted the value of the `opacity` slider in the layer control panel. 
-Repeat the process of moving the mouse and clicking on the canvas until your object 
-of interest is encapsulated. Press `enter` to finish drawing at any time
-or double click within a radius of 20 screen pixels from the first vertex.
 Until the drawing process is finished, changes are not permanent as the polygon is only
 added to the label image upon finishing the drawing process. The drawing process can be
 cancelled any time by pressing `escape`. This will delete the polygon being added and will 
