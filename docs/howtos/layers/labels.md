@@ -270,6 +270,7 @@ Another tool that can be used to quickly add or edit image segmentations is the
 tool by allowing for readily drawing enclosed instance segmentations. The `polygon` tool 
 can be activated by clicking on the icon resembling a polygon in the layer control 
 panel or by pressing `3`. Once activated, the user actions are as follows:
+
 1. Left-click anywhere on the canvas to start drawing the polygon.
 2. Move the mouse to the location where you want the next vertex to be.
 3. Click again to set the vertex that is tracking the mouse cursor.
