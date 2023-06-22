@@ -555,7 +555,8 @@ def napari_experimental_provide_dock_widget():
 
 ### `magicgui.widgets.create_widget`
 
-If you want to create a layer selection as [shown above](magicgui-and-type-annotations) but you cannot use the {func}`@magicgui <magicgui.magicgui>` decorator, you can create the selection widget with the {func}`create_widget <magicgui.widgets.create_widget>` function. In the following example we subclass `QtWidgets.QWidget` and add a widget that is annotated as {attr}`napari.types.ImageData`
+If you want to create a layer selection as [shown above](#magicgui-and-type-annotations) but you cannot use the {func}`@magicgui <magicgui.magicgui>` decorator, you can create the selection widget with the {func}`create_widget <magicgui.widgets.create_widget>` function. In the following example we subclass `QtWidgets.QWidget` and add a widget that is annotated as {attr}`napari.types.ImageData`:
+
 ```python
 from magicgui.widgets import create_widget
 from qtpy.QtWidgets import QWidget
