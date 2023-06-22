@@ -267,7 +267,7 @@ layer is selected.
 
 Another tool that can be used to quickly add or edit image segmentations is the 
 `polygon` tool. It combines functionality of the `paintbrush` and `fill bucket` 
-tool by allowing for drawing enclosed instance segmentations. The `polygon` tool 
+tool by allowing for readily drawing enclosed instance segmentations. The `polygon` tool 
 can be activated by clicking on the icon resembling a polygon in the layer control 
 panel or by pressing `3`. Once activated, the user actions are as follows:
 1. Left-click anywhere on the canvas to start drawing the polygon.
@@ -275,16 +275,14 @@ panel or by pressing `3`. Once activated, the user actions are as follows:
 3. Click again to set the vertex that is tracking the mouse cursor.
 4. After this step a polygon overlay will appear when moving the mouse. Repeat step 2 and 3
    until the shape to be segmented is enclosed by the polygon overlay. 
-5. Press `enter` to finish drawing at any time or double click within a radius of 20 screen pixels
-   of the first vertex. 
+5. To cancel the drawing at any time without making a permanent change on the labels layer press
+   `escape`. This will delete the polygon overlay
+6. Press `enter` to finish drawing at any time or double click within a radius of 20 screen pixels
+   of the first vertex. This will add the polygon overlay to the labels layer.
 
 The polygon overlay will have the color of the label. The polygon overlay also has an opacity 
 that can be adjusted the value of the `opacity` slider in the layer control panel. 
-Until the drawing process is finished, changes are not permanent as the polygon is only
-added to the label image upon finishing the drawing process. The drawing process can be
-cancelled any time by pressing `escape`. This will delete the polygon being added and will 
-ensure the label layer is not changed.
-While the polygon overlay may be visible outside the canvas space during drawing, upon 
+Furthermore, while the polygon overlay may be visible outside the canvas space during drawing, upon 
 finishing drawing the polygon will be cut off so that the part outside the canvas space is
 removed. This ensures that the dimensions of the label image are not larger than the image
 for which you are segmenting of for which you are editing the segmentations.
