@@ -360,6 +360,12 @@ def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
             return True
 ```
 
+While this solution is undoubtedly more elegant, it has a much higher runtime complexity. Imagine that every possible valid key binding has at least one entry. Letting _K_ be the number of valid key codes, the amount of possible combinations for the first part of a key chord would be _16 * K_, plus 4 to include single modifiers. Combining this with the second part, it would be _(16 * K + 4)(16 * K)_, resulting in a conflict search runtime complexity of _O(n^2)_.
+
+On the other hand, for a prefix tree, the amount of options for each node would be at most _K - D_, where _D_ is the depth of the node relative to the last completed key combination. When searching a key sequence with 4 modifiers for each part, the maximum number of options visited for one part would be _K + (K-1) + (K-2) + (K-3) + (K-4)_, or _2(5K-10)_ for two parts, resulting in a conflict search runtime complexity of _O(n)_.
+
+Therefore, when searching for indirect conflicts, using a prefix-based data structure would be significantly more efficient than a mapping-based one, especially when an indirect conflict does not exist, since a mapping-based approach would have to check every key in the map.
+
 ## Discussion
 
 This section may just be a bullet list including links to any discussions
