@@ -52,7 +52,8 @@ jobs:
           name: Build docs
           command: |
             . venv/bin/activate
-            herbstluftwm
+            herbstluftwm &
+            sleep 1
             xvfb-run --auto-servernum make docs GALLERY_PATH=../napari/examples/
       - store_artifacts:
           path: docs/_build/
