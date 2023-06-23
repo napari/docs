@@ -283,9 +283,82 @@ expansion of the work or related work.
 
 ## Alternatives
 
-If there were any alternative solutions to solving the same problem, they
-should be discussed here, along with a justification for the chosen
-approach.
+### Mapping approach
+
+As opposed to the prefix tree approach, the key bindings could be stored in a map in integer form (as `KeyMod`, `KeyCode`, `KeyCombo`, and `KeyChord` are all `int`s):
+```python
+keymap = Dict[int, List[KeyBindingEntry]] = {
+    KeyMod.CtrlCmd | KeyCode.KeyZ: ...,
+    KeyMod.CtrlCmd | KeyMod.Shift | KeyCode.KeyZ: ...,
+    KeyMod.CtrlCmd | KeyCode.KeyX: ...,
+    KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyC): ...,
+    KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyV): ...,
+    KeyMod.Shift : ...,
+}
+```
+
+To determine if an indirect conflict is present, entries would be filtered via bitwise operations:
+```python
+def has_shift(key: int) -> bool:
+    return bool(key & KeyMod.Shift)
+
+def starts_with_ctrl_cmd_x(key: int) -> bool:
+    return key & 0x0000FFFF == (KeyMod.CtrlCmd | KeyCode.KeyX)
+
+def multi_part(key: int) -> bool:
+    return key > 0x0000FFFF
+
+> list(filter(has_shift, keymap))
+[<KeyCombo.CtrlCmd|Shift|KeyZ: 3115>, <KeyMod.Shift: 1024>]
+
+> list(filter(starts_with_ctrl_cmd_x, keymap))
+[
+    <KeyCombo.CtrlCmd|KeyX: 2089>,
+    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyC: 20>),
+    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyV: 39>),
+]
+
+> list(filter(multi_part, keymap))
+[
+    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyC: 20>),
+    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyV: 39>),
+]
+```
+
+Note that because of the spec, querying for modifiers will only check the first part:
+```python
+> has_shift(KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyMod.Shift | KeyCode.KeyY))
+False
+```
+
+Putting this together:
+```python
+KEY_MOD_MASK = 0x00000F00
+PART_0_MASK = 0x0000FFFF
+
+def create_conflict_filter(conflict_key: int) -> Callable[[int], bool]:
+    if conflict_key & KEY_MOD_MASK == conflict_key:
+        # only comprised of modifier keys in first part
+        def inner(key: int) -> bool:
+            return key != conflict_key and key & conflict_key
+    elif conflict_key <= PART_0_MASK:
+        # one-part key sequence
+        def inner(key: int) -> bool:
+            return key > PART_0_MASK and key & PART_0_MASK == conflict_key
+    else:
+        # don't handle anything more complex
+        def inner(key: int) -> bool:
+            return NotImplemented
+
+    return inner
+
+def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
+    conflict_filter = create_conflict_filter(key)
+
+    for _, entries in filter(conflict_filter, entries.items()):
+        if find_active_match(entries):
+            return True
+```
 
 ## Discussion
 
