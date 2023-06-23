@@ -170,11 +170,11 @@ class Node:
 To check if a key binding has an indirect conflict, the children of the node can be recursively searched depth-first:
 
 ```python
-def check_active_children(children: Dict[Node]) -> bool:
+def has_active_children(children: Dict[Node]) -> bool:
     for child in children.values():
         if find_active_match(child.root):
             return True
-        elif check_active_children(child.children):
+        elif has_active_children(child.children):
             return True
 ```
 
@@ -185,15 +185,68 @@ Additionally, in the future, this data structure could be used for command compl
 Putting everything together, the following psuedo code represents the logic of key binding dispatch:
 
 ```python
+from threading import Timer
+
 from app_model.types import KeyBinding, KeyCode, KeyMod
 
-class KeyBindingResolver:
+VALID_KEYS: List[KeyCode] = ...
+KEY2MOD: Dict[KeyCode, KeyMod] = ...
+MOD2KEY: Dict[KeyMod, KeyCode] = ...
+PRESS_HOLD_DELAY_MS: int = 200
+
+def search_node(children: Dict[KeyCode, Node], components: Sequence[KeyCode]) -> Optional[Node]:
+    first, *rest = components
+    if first in children:
+        node = children[first]
+        if rest:
+            return search_node(rest, node.children)
+        return node
+
+class KeyBindingDispatcher:
     root: Dict[KeyCode, Node]
-
+    prefix: Tuple[KeyCode]
+    timer: Optional[Timer]
+    active_key: Optional[KeyCode]
     ...
+    def on_key_press(self, mods: KeyMod, key: KeyCode):
+        self.active_key = None
+        if self.timer:
+            self.timer.cancel()
+            self.timer = None
+        if key not in VALID_KEYS:
+            # ignore input
+            self.prefix = ()
+            return
 
-    def fetch_node(self, key_binding: KeyBinding) -> Optional[Node]:
-        kb_parts = ...
+        keymod = key2mod(key)
+
+        if keymod is not None:
+            # modifier base key
+            if self.prefix:
+                # single modifier dispatch only works on first part of key binding
+                return
+
+            if mods & keymod:
+                mods ^= keymod
+
+            if mods == KeyMod.NONE:
+                # single modifier
+                if (node := search_node(self.root, (key,))) is None:
+                    return
+                if (match := find_active_match(node.root)):
+                    self.active_key = key
+                    if has_active_children(node.children):
+                        # conflicts; exec after delay
+                        self.timer = Timer(PRESS_HOLD_DELAY_MS / 1000, lambda: self.exec_press(match.command_id))
+                        self.timer.start()
+                    else:
+                        # no conflicts; exec immediately
+                        self.exec_press(match.command_id)
+        else:
+            # non-modifier base key
+            components = keycombo2components(mods | key)
+            if (node := search_node(self.root, self.prefix + components)) is None:
+                return
 ```
 
 ## Related Work
