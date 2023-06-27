@@ -49,7 +49,7 @@ a **key binding** binds a key sequence to a command with conditional activation
 
 ### Key binding validity: convenience vs. complexity
 
-Some users want to use traditional modifier keys as a base key in key binding for convenience purposes [^id2]. However, this can lead to conflicts since many key binding may include the modifier key in their key sequence and thus cause confusion and cost extra engineering effort.
+Some users want to use traditional modifier keys as a base key in key binding for convenience purposes [^id2]. However, this can lead to conflicts since many key bindings may include the modifier key in their key sequence and thus cause confusion and cost extra engineering effort.
 
 The proposed restrictions on what key sequences can be used in a key binding aim to allow for the simplest user need while cutting down on any unnecessary complexities:
 
@@ -146,7 +146,7 @@ def find_active_match(entries: List[KeyBindingEntry]) -> Optional[KeyBindingEntr
 
 ### Leveraging data structures to find conflicts
 
-Finding indirect conflicts can be tricky and computationally intensive. As such, all subsets are encoded in a data structure similar to a _[trie](https://en.wikipedia.org/wiki/Trie)_ (aka a _prefix tree_). Since modifier keys do not care about what order they are pressed in, we will use a directed acyclic graph instead of a traditional tree, essentially making this a _prefix [multitree](https://en.wikipedia.org/wiki/Multitree)_.
+Finding indirect conflicts can be tricky and computationally intensive. As such, all subsets are encoded in a data structure similar to a _[trie](https://en.wikipedia.org/wiki/Trie)_ (aka a _prefix tree_). Since modifier keys do not care about what order they are pressed in, we will use a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph) instead of a traditional tree, essentially making this a _prefix [multitree](https://en.wikipedia.org/wiki/Multitree)_.
 
 ```{figure} ./_static/kb-example-graph.png
 ---
@@ -190,8 +190,6 @@ from threading import Timer
 from app_model.types import KeyBinding, KeyCode, KeyMod
 
 VALID_KEYS: List[KeyCode] = ...
-KEY2MOD: Dict[KeyCode, KeyMod] = ...
-MOD2KEY: Dict[KeyMod, KeyCode] = ...
 PRESS_HOLD_DELAY_MS: int = 200
 
 def search_node(children: Dict[KeyCode, Node], components: Sequence[KeyCode]) -> Optional[Node]:
@@ -206,6 +204,7 @@ class KeyBindingDispatcher:
     root: Dict[KeyCode, Node]
     prefix: Tuple[KeyCode]
     timer: Optional[Timer]
+    active_mods: Optional[KeyMod]
     active_key: Optional[KeyCode]
     ...
     def on_key_press(self, mods: KeyMod, key: KeyCode):
@@ -247,6 +246,33 @@ class KeyBindingDispatcher:
             components = keycombo2components(mods | key)
             if (node := search_node(self.root, self.prefix + components)) is None:
                 return
+            if (match := find_active_match(node.root)):
+                if not self.prefix:
+                    # first part of key binding, check for conflicts
+                    if has_active_children(node.children):
+                        return
+            self.active_key = key
+            self.active_mods = mods
+            self.exec_press(match.command_id)
+
+    def on_key_release(self, mods: KeyMod, key: KeyCode):
+        if self.active_key == key:
+            keymod = key2mod(key)
+
+            if keymod is not None:
+                # modifier base key
+                if self.timer is not None:
+                    # active timer, execute immediately
+                    if not self.timer.finished.is_set():
+                        # not already executed
+                        self.timer.cancel()
+                        self.exec_press(key)
+                    self.timer = None
+                    self.exec_release(key)
+                    self.active_key = None
+            else:
+                # release segment of key binding
+                self.exec_release(self.active_mods | self.active_key)
 ```
 
 ## Related Work
@@ -358,13 +384,15 @@ def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
     for _, entries in filter(conflict_filter, entries.items()):
         if find_active_match(entries):
             return True
+    
+    return False
 ```
 
 While this solution is undoubtedly more elegant, it has a much higher runtime complexity. Imagine that every possible valid key binding has at least one entry. Letting _K_ be the number of valid key codes, the amount of possible combinations for the first part of a key chord would be _16 * K_, plus 4 to include single modifiers. Combining this with the second part, it would be _(16 * K + 4)(16 * K)_, resulting in a conflict search runtime complexity of _O(n^2)_.
 
 On the other hand, for a prefix tree, the amount of options for each node would be at most _K - D_, where _D_ is the depth of the node relative to the last completed key combination. When searching a key sequence with 4 modifiers for each part, the maximum number of options visited for one part would be _K + (K-1) + (K-2) + (K-3) + (K-4)_, or _2(5K-10)_ for two parts, resulting in a conflict search runtime complexity of _O(n)_.
 
-Therefore, when searching for indirect conflicts, using a prefix-based data structure would be significantly more efficient than a mapping-based one, especially when an indirect conflict does not exist, since a mapping-based approach would have to check every key in the map.
+Therefore, when searching for indirect conflicts, using a prefix-based data structure would be significantly more efficient than a mapping-based one, especially when an indirect conflict does not exist, since a mapping-based approach would potentially have to check every key in the map.
 
 ## Discussion
 
