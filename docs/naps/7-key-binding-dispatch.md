@@ -4,7 +4,7 @@
 
 ```{eval-rst}
 :Author: "Kira Evans <mailto:contact@kne42.me>"
-:Created: 2023-06-20
+:Created: 2023-06-28
 :Status: Draft
 :Type: Standards Track
 ```
