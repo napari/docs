@@ -277,35 +277,46 @@ class KeyBindingDispatcher:
 
 ## Related Work
 
-This section should list relevant and/or similar technologies, possibly in
-other libraries. It does not need to be comprehensive, just list the major
-examples of prior and relevant art.
+The entire key binding system is heavily influenced by [VSCode's keyboard shortcuts](https://code.visualstudio.com/docs/getstarted/keybindings), and to a lesser extent, [Emacs](https://www.gnu.org/software/emacs/manual/html_node/emacs/Key-Bindings.html) and [vim](https://vimdoc.sourceforge.net/htmldoc/map.html). However, as these are text editors and napari is not a text-based application, special casing had to be devised with regards to key bindings, such as handling both press and release events, and the additional conflicts that arose because of them.
 
 ## Implementation
 
-This section lists the major steps required to implement the NAP. Where
-possible, it should be noted where one step is dependent on another, and which
-steps may be optionally omitted. Where it makes sense, each step should
-include a link to related pull requests as the implementation progresses.
-
-Any pull requests or development branches containing work on this NAP
-should be linked to from here. (A NAP does not need to be implemented in a
-single pull request if it makes sense to implement it in discrete phases).
-
-If a new NAP document is created, it should be added to the documentation Table
-of Contents as an item on `napari/docs/_toc.yml`.
+- read and handle plugin key binding contributions (see [napari #5338](https://github.com/napari/napari/pull/5338))
+- convert existing key bindings into actions that can be used by `app-model` (see [napari #5338](https://github.com/napari/napari/pull/5338))
+- implement key binding resolution system as detailed in this NAP
+- remove old action manager
+- deprecate and translate key bindings set via `bind_key` for backwards compatibility (see below)
 
 ## Backward Compatibility
 
-This section describes the ways in which the NAP affects backward
-compatibility, including both breakages and decisions that better support
-backward compatibility.
+A change in the key binding dispatch system would affect anyone using `keymap` or `class_keymap` from the original `KeymapProvider`, as well as `bind_key` [^id3].
+
+While `keymap` and `class_keymap` are unlikely to be commonly used, `bind_key` is, and thus will receive proper deprecation and continue to work by creating an equivalent entry in the new key binding dispatch system.
+
+For example, following is how a user might have defined a key binding for an `Image` layer:
+```python
+@Image.bind_key('Control-C')
+def foo(layer):
+    ...
+```
+
+An entry would be created equivalent to:
+```python
+def wrapper(layer: Image):
+    yield from foo
+
+action = Action(id=foo.__qualname__, title=foo.__name__, callback=wrapper)
+entry = KeyBindingEntry(command_id=foo.__qualname__, weight=KeyBindingWeight.USER, when=parse_expression("active_layer_type == 'image'"))
+
+register_action(action)
+register_key_binding('Ctrl+C', entry)
+```
 
 ## Future Work
 
-This section describes work that is out of scope for the NAP, but that the
-NAP might suggest, or that the NAP author envisions as potential future
-expansion of the work or related work.
+Future work may include key binding completion suggestions for key chords when the user inputs the first part of a binding.
+
+Out of scope is work related to the GUI and how it may have to handle the new system.
 
 ## Alternatives
 
@@ -390,23 +401,19 @@ def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
 
 While this solution is undoubtedly more elegant, it has a much higher runtime complexity. Imagine that every possible valid key binding has at least one entry. Letting _K_ be the number of valid key codes, the amount of possible combinations for the first part of a key chord would be _16 * K_, plus 4 to include single modifiers. Combining this with the second part, it would be _(16 * K + 4)(16 * K)_, resulting in a conflict search runtime complexity of _O(n^2)_.
 
-On the other hand, for a prefix tree, the amount of options for each node would be at most _K - D_, where _D_ is the depth of the node relative to the last completed key combination. When searching a key sequence with 4 modifiers for each part, the maximum number of options visited for one part would be _K + (K-1) + (K-2) + (K-3) + (K-4)_, or _2(5K-10)_ for two parts, resulting in a conflict search runtime complexity of _O(n)_.
+On the other hand, for a prefix tree, the amount of options for each node would be at most _K - D_, where _D_ is the depth of the node relative to the last completed part. When searching a key sequence with 4 modifiers for each part, the maximum number of options visited for one part would be _K + (K-1) + (K-2) + (K-3) + (K-4)_, or _2(5K-10)_ for two parts, resulting in a conflict search runtime complexity of _O(n)_.
 
 Therefore, when searching for indirect conflicts, using a prefix-based data structure would be significantly more efficient than a mapping-based one, especially when an indirect conflict does not exist, since a mapping-based approach would potentially have to check every key in the map.
 
 ## Discussion
 
-This section may just be a bullet list including links to any discussions
-regarding the NAP, but could also contain additional comments about that
-discussion:
-
-- This includes links to discussion forum threads or relevant GitHub discussions.
+- **[April 19, 2023: napari #5747](https://github.com/napari/napari/issues/5747)** is opened, with discussion about what should be valid as a key binding. Arguments are made for the inclusion of single-modifier key bindings.
 
 ## Copyright
 
 This document is dedicated to the public domain with the Creative Commons CC0
-license [^id3]. Attribution to this source is encouraged where appropriate, as per
-CC0+BY [^id4].
+license [^id4]. Attribution to this source is encouraged where appropriate, as per
+CC0+BY [^id5].
 
 ## References and Footnotes
 
@@ -414,7 +421,9 @@ CC0+BY [^id4].
 
 [^id2]: napari #5747, <https://github.com/napari/napari/issues/5747>
 
-[^id3]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
+[^id3]: KeymapProvider implementation, <https://github.com/napari/napari/blob/v0.4.17/napari/utils/key_bindings.py#L347C1-L369>
+
+[^id4]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
     <https://creativecommons.org/publicdomain/zero/1.0/>
 
-[^id4]: <https://dancohen.org/2013/11/26/cc0-by/>
+[^id5]: <https://dancohen.org/2013/11/26/cc0-by/>
