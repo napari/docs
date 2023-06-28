@@ -303,7 +303,7 @@ def foo(layer):
 An entry would be created equivalent to:
 ```python
 def wrapper(layer: Image):
-    yield from foo
+    yield from foo(layer)
 
 action = Action(id=foo.__qualname__, title=foo.__name__, callback=wrapper)
 entry = KeyBindingEntry(command_id=foo.__qualname__, weight=KeyBindingWeight.USER, when=parse_expression("active_layer_type == 'image'"))
