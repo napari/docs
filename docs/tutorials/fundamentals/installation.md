@@ -211,20 +211,20 @@ If you switch backends, it's a good idea to `pip uninstall` the one
 you're not using.
 ```
 
-## Using constraints file
+## Using constraints files
 
-Since napari 0.4.18 we are storing constraints file with information against which exact depenedcy version napari was tested. 
-It could be usefull if you need to install napari as package from pypi and ends with environment that napari does not start or work properly. 
+Since napari 0.4.18, we store constraints files with information about each exact dependency version against which napari was tested.
+This could be useful if you need to install napari as a package from PyPI, and prevents creating environments where napari does not start or work properly.
 
-The constraints files are stored in repository `resources/constraints/constraints_py3.10.txt`. To find
-constraints for interesting relese go under the link `https://github.com/napari/napari/tree/{tag}/resources/constraints` 
-With substitute `{tag}` with looked napari version. 
+The constraints files are stored in the napari repository under `resources/constraints/constraints_py3.10.txt`. To find
+constraints for specific releases, go under the link `https://github.com/napari/napari/tree/{tag}/resources/constraints`
+replacing `{tag}` with the desired napari version.
 
 ```sh
 pip install napari[backend_selection] -c path/to/constraints/file
 ```
 
-For example, when you would like to install napari on python 3.10:
+For example, if you would like to install napari on python 3.10:
 
 ```sh
 pip install napari[all, pyqt] -c constraints_py3.10.txt
