@@ -46,7 +46,7 @@ Read more about napari’s [mission and values](https://napari.org/community/mis
 
 ## Institutional and funding Partners
 
-- [Chan Zuckberg Initiative Foundation.](https://chanzuckerberg.com/science) Representative [Kyle I. S. Harrington](https://github.com/kephale).
+- [Chan Zuckerberg Initiative Foundation.](https://chanzuckerberg.com/science) Representative [Kyle I. S. Harrington](https://github.com/kephale).
 
     - The napari project and community have been generously supported by the [CZI Science Imaging Program.](https://chanzuckerberg.com/science/programs-resources/imaging/)
     - Since late 2018, Juan Nunez-Iglesias has been supported by a CZI Imaging Software Fellowship.
