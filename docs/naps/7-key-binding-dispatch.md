@@ -4,7 +4,7 @@
 
 ```{eval-rst}
 :Author: "Kira Evans <mailto:contact@kne42.me>"
-:Created: 2023-06-28
+:Created: 2023-06-30
 :Status: Draft
 :Type: Standards Track
 ```
@@ -170,7 +170,7 @@ class Node:
 To check if a key binding has an indirect conflict, the children of the node can be recursively searched depth-first:
 
 ```python
-def has_active_children(children: Dict[Node]) -> bool:
+def has_active_children(children: Dict[KeyCode, Node]) -> bool:
     for child in children.values():
         if find_active_match(child.root):
             return True
@@ -392,7 +392,7 @@ def create_conflict_filter(conflict_key: int) -> Callable[[int], bool]:
 def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
     conflict_filter = create_conflict_filter(key)
 
-    for _, entries in filter(conflict_filter, entries.items()):
+    for _, entries in filter(conflict_filter, keymap.items()):
         if find_active_match(entries):
             return True
     
