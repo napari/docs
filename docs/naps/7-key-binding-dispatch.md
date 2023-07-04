@@ -129,7 +129,7 @@ In case (B), the corresponding command will never be triggered so long as it ind
 
 When checking if an active key binding matches the entered key sequence, the resolver will fetch the pre-sorted list of direct conflicts and check if the last entry is active using its `when` property, moving to the next entry if it is not. When it encounters a blocking rule, it will return no match, and for a negate rule, it will store the affected command in an ignore list and continue to the next entry. If no special rules are present, it will return a match if the command is not in an ignore list, otherwise continuing to the next entry, and so on, until no more entries remain.
 
-In psuedo-code this reads as:
+In pseudo-code this reads as:
 ```python
 def find_active_match(entries: List[KeyBindingEntry]) -> Optional[KeyBindingEntry]:
     ignored_commands = []
@@ -225,7 +225,7 @@ def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
 
 ### Completing the dispatch
 
-Putting everything together, the following psuedo code represents the logic of key binding dispatch:
+Putting everything together, the following pseudo-code represents the logic of key binding dispatch:
 
 ```python
 from threading import Timer
