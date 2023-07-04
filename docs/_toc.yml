@@ -75,11 +75,20 @@ subtrees:
   - file: plugins/index
     subtrees:
     - entries:
-      - file: plugins/find_and_install_plugin
-      - file: plugins/first_plugin
-      - file: plugins/manifest
-      - file: plugins/contributions
-      - file: plugins/guides
+      - file: plugins/getting-started/index
+      subtrees:
+        - file: plugins/finding-and-installing-plugins
+      - file: plugins/building-a-plugin/index
+      subtrees:
+        - file: plugins/first-plugin
+        - file: plugins/manifest
+        - file: plugins/contributions
+        - file: plugins/guides
+        - file: plugins/debug-plugins.md
+      - file: plugins/test-and-publishing/index
+      subtrees:
+        - file: plugins/testing
+        - file: plugins/publishing
       - file: plugins/test_deploy
       - file: plugins/best_practices
       - file: plugins/debug_plugins
