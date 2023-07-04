@@ -7,19 +7,19 @@ field in a specific contribution, See the
 [contributions reference](./contributions)
 
 
-```{include} _npe2_readers_guide.md
+```{include} ../_npe2_readers_guide.md
 ```
 ----------------
 
-```{include} _npe2_writers_guide.md
+```{include} ../_npe2_writers_guide.md
 ```
 ----------------
 
-```{include} _npe2_widgets_guide.md
+```{include} ../_npe2_widgets_guide.md
 ```
 ----------------
 
-```{include} _npe2_sample_data_guide.md
+```{include} ../_npe2_sample_data_guide.md
 ```
 ----------------
 

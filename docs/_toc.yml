@@ -77,9 +77,11 @@ subtrees:
     - entries:
       - file: plugins/getting_started/index
       subtrees:
-        - file: plugins/finding_and_installing-plugins
+        - entries:
+          - file: plugins/finding_and_installing-plugins
       - file: plugins/building_a_plugin/index
       subtrees:
+      - entries:
         - file: plugins/first_plugin
         - file: plugins/guides
         - file: plugins/debug_plugins
@@ -94,6 +96,7 @@ subtrees:
             - file: plugins/virtual_environment_docs/5-survey
       - file: plugins/testing_and_publishing/index
       subtrees:
+      - entries:
         - file: plugins/test_deploy
         - file: plugins/publishing
         - file: plugins/testing_workshop_docs/index
@@ -106,10 +109,12 @@ subtrees:
             - file: plugins/testing_workshop_docs/testing-resources
       - file: plugins/advanced_topics/index
       subtrees:
+      - entries:
         - file: plugins/npe2_migration_guide
         - file: plugins/npe1
       - file: plugins/technical_references/index
       subtrees:
+      - entries:
         - file: plugins/manifest
         - file: plugins/contributions
   - file: community/index

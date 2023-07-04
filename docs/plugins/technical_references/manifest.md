@@ -1,4 +1,4 @@
 (plugin-manifest)=
 
-```{include} _npe2_manifest.md
+```{include} ../_npe2_manifest.md
 ```
