@@ -77,8 +77,8 @@ subtrees:
     - entries:
       - file: plugins/getting_started/index
       subtrees:
-        - entries:
-          - file: plugins/finding_and_installing-plugins
+      - entries:
+        - file: plugins/finding_and_installing-plugins
       - file: plugins/building_a_plugin/index
       subtrees:
       - entries:
