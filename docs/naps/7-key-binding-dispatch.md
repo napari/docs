@@ -4,7 +4,7 @@
 
 ```{eval-rst}
 :Author: "Kira Evans <mailto:contact@kne42.me>"
-:Created: 2023-06-30
+:Created: 2023-07-03
 :Status: Draft
 :Type: Standards Track
 ```
@@ -144,41 +144,84 @@ def find_active_match(entries: List[KeyBindingEntry]) -> Optional[KeyBindingEntr
                 return entry
 ```
 
-### Leveraging data structures to find conflicts
+### Lookup and partial matches
 
-Finding indirect conflicts can be tricky and computationally intensive. As such, all subsets are encoded in a data structure similar to a _[trie](https://en.wikipedia.org/wiki/Trie)_ (aka a _prefix tree_). Since modifier keys do not care about what order they are pressed in, we will use a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph) instead of a traditional tree, essentially making this a _prefix [multitree](https://en.wikipedia.org/wiki/Multitree)_.
-
-```{figure} ./_static/kb-example-graph.png
----
-name: fig-1
----
-Fig. 1: Example of a prefix multitree. Filled nodes have at least one key binding as detailed on the legend in the top left corner.
-```
-
-This effectively breaks the key sequences of the key bindings into their respective components, as in {ref}`Fig. 1 <fig-1>`, and can be represented with a fairly simple data structure:
-
+Key bindings can be stored in a map in integer form, as `KeyMod`, `KeyCode`, `KeyCombo`, and `KeyChord` are all represented as unique `int`s with 16 bits per part:
 ```python
-from app_model.types import KeyBinding
-
-@dataclass
-class Node:
-    value: KeyBinding
-    root: List[KeyBindingEntry]
-    children: Dict[KeyCode, Node]
+keymap = Dict[int, List[KeyBindingEntry]] = {
+    KeyMod.CtrlCmd | KeyCode.KeyZ: ...,
+    KeyMod.CtrlCmd | KeyMod.Shift | KeyCode.KeyZ: ...,
+    KeyMod.CtrlCmd | KeyCode.KeyX: ...,
+    KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyC): ...,
+    KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyV): ...,
+    KeyMod.Shift : ...,
+}
 ```
 
-To check if a key binding has an indirect conflict, the children of the node can be recursively searched depth-first:
-
+To determine if an indirect conflict is present, entries would be filtered via bitwise operations:
 ```python
-def has_active_children(children: Dict[KeyCode, Node]) -> bool:
-    for child in children.values():
-        if find_active_match(child.root):
-            return True
-        elif has_active_children(child.children):
-            return True
+def has_shift(key: int) -> bool:
+    return bool(key & KeyMod.Shift)
+
+def starts_with_ctrl_cmd_x(key: int) -> bool:
+    return key & 0x0000FFFF == (KeyMod.CtrlCmd | KeyCode.KeyX)
+
+def multi_part(key: int) -> bool:
+    return key > 0x0000FFFF
+
+> list(filter(has_shift, keymap))
+[<KeyCombo.CtrlCmd|Shift|KeyZ: 3115>, <KeyMod.Shift: 1024>]
+
+> list(filter(starts_with_ctrl_cmd_x, keymap))
+[
+    <KeyCombo.CtrlCmd|KeyX: 2089>,
+    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyC: 20>),
+    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyV: 39>),
+]
+
+> list(filter(multi_part, keymap))
+[
+    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyC: 20>),
+    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyV: 39>),
+]
 ```
 
-Additionally, in the future, this data structure could be used for command completion.
+Note that because of the spec, querying for modifiers will only check the first part:
+```python
+> has_shift(KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyMod.Shift | KeyCode.KeyY))
+False
+```
+
+In a more generic form:
+```python
+KEY_MOD_MASK = 0x00000F00
+PART_0_MASK = 0x0000FFFF
+
+def create_conflict_filter(conflict_key: int) -> Callable[[int], bool]:
+    if conflict_key & KEY_MOD_MASK == conflict_key:
+        # only comprised of modifier keys in first part
+        def inner(key: int) -> bool:
+            return key != conflict_key and key & conflict_key
+    elif conflict_key <= PART_0_MASK:
+        # one-part key sequence
+        def inner(key: int) -> bool:
+            return key > PART_0_MASK and key & PART_0_MASK == conflict_key
+    else:
+        # don't handle anything more complex
+        def inner(key: int) -> bool:
+            return NotImplemented
+
+    return inner
+
+def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
+    conflict_filter = create_conflict_filter(key)
+
+    for _, entries in filter(conflict_filter, keymap.items()):
+        if find_active_match(entries):
+            return True
+    
+    return False
+```
 
 ### Completing the dispatch
 
@@ -192,29 +235,22 @@ from app_model.types import KeyBinding, KeyCode, KeyMod
 VALID_KEYS: List[KeyCode] = ...
 PRESS_HOLD_DELAY_MS: int = 200
 
-def search_node(children: Dict[KeyCode, Node], components: Sequence[KeyCode]) -> Optional[Node]:
-    first, *rest = components
-    if first in children:
-        node = children[first]
-        if rest:
-            return search_node(rest, node.children)
-        return node
-
 class KeyBindingDispatcher:
-    root: Dict[KeyCode, Node]
-    prefix: Tuple[KeyCode]
+    keymap: Dict[int, List[KeyBindingEntry]]
+    is_prefix: bool
+    prefix: int
     timer: Optional[Timer]
-    active_mods: Optional[KeyMod]
-    active_key: Optional[KeyCode]
+    active_combo: int
     ...
     def on_key_press(self, mods: KeyMod, key: KeyCode):
-        self.active_key = None
+        self.is_prefix = False
+        self.active_combo = 0
         if self.timer:
             self.timer.cancel()
             self.timer = None
         if key not in VALID_KEYS:
             # ignore input
-            self.prefix = ()
+            self.prefix = 0
             return
 
         keymod = key2mod(key)
@@ -230,11 +266,9 @@ class KeyBindingDispatcher:
 
             if mods == KeyMod.NONE:
                 # single modifier
-                if (node := search_node(self.root, (key,))) is None:
-                    return
-                if (match := find_active_match(node.root)):
-                    self.active_key = key
-                    if has_active_children(node.children):
+                if (entries := self.keymap.get(keymod)) and (match := find_active_match(entries)):
+                    self.active_combo = key
+                    if has_conflicts(keymod, self.keymap):
                         # conflicts; exec after delay
                         self.timer = Timer(PRESS_HOLD_DELAY_MS / 1000, lambda: self.exec_press(match.command_id))
                         self.timer.start()
@@ -243,20 +277,25 @@ class KeyBindingDispatcher:
                         self.exec_press(match.command_id)
         else:
             # non-modifier base key
-            components = keycombo2components(mods | key)
-            if (node := search_node(self.root, self.prefix + components)) is None:
-                return
-            if (match := find_active_match(node.root)):
-                if not self.prefix:
+            key_seq = mods | key
+            if self.prefix:
+                key_seq = KeyChord(self.prefix, key_seq)
+                
+            if (entries := self.keymap.get(key_seq) and (match := find_active_match(entries)):
+                self.active_combo = mods | key
+                if not self.prefix and has_conflicts(key_seq, self.keymap):
                     # first part of key binding, check for conflicts
-                    if has_active_children(node.children):
-                        return
-            self.active_key = key
-            self.active_mods = mods
-            self.exec_press(match.command_id)
+                    self.is_prefix = True
+                    return
+                self.exec_press(match.command_id)
 
     def on_key_release(self, mods: KeyMod, key: KeyCode):
-        if self.active_key == key:
+        if self.active_combo & key:
+            if self.is_prefix:
+                self.prefix = self.active_combo
+                self.prefix = False
+                return
+
             keymod = key2mod(key)
 
             if keymod is not None:
@@ -269,10 +308,10 @@ class KeyBindingDispatcher:
                         self.exec_press(key)
                     self.timer = None
                     self.exec_release(key)
-                    self.active_key = None
+                    self.active_combo = 0
             else:
                 # release segment of key binding
-                self.exec_release(self.active_mods | self.active_key)
+                self.exec_release(key_combo)
 ```
 
 ## Related Work
@@ -320,90 +359,49 @@ Out of scope is work related to the GUI and how it may have to handle the new sy
 
 ## Alternatives
 
-### Mapping approach
+Although a mapping approach is very effective for looking up individual keys, it loses its efficiency when performing a partial search, since its items are traversed like a list to perform that search. 
 
-As opposed to the prefix tree approach, the key bindings could be stored in a map in integer form (as `KeyMod`, `KeyCode`, `KeyCombo`, and `KeyChord` are all `int`s):
-```python
-keymap = Dict[int, List[KeyBindingEntry]] = {
-    KeyMod.CtrlCmd | KeyCode.KeyZ: ...,
-    KeyMod.CtrlCmd | KeyMod.Shift | KeyCode.KeyZ: ...,
-    KeyMod.CtrlCmd | KeyCode.KeyX: ...,
-    KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyC): ...,
-    KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyV): ...,
-    KeyMod.Shift : ...,
-}
+This inefficiency can be mitigated by using a data structure where entries are stored similar to a _[trie](https://en.wikipedia.org/wiki/Trie)_ (aka a _prefix tree_). Since modifier keys do not care about what order they are pressed in, we will use a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph) instead of a traditional tree, essentially making this a _prefix [multitree](https://en.wikipedia.org/wiki/Multitree)_.
+
+```{figure} ./_static/kb-example-graph.png
+---
+name: fig-1
+---
+Fig. 1: Example of a prefix multitree. Filled nodes have at least one key binding as detailed on the legend in the top left corner.
 ```
 
-To determine if an indirect conflict is present, entries would be filtered via bitwise operations:
+This effectively breaks the key sequences of the key bindings into their respective components, as in {ref}`Fig. 1 <fig-1>`, and can be represented with a fairly simple data structure:
+
 ```python
-def has_shift(key: int) -> bool:
-    return bool(key & KeyMod.Shift)
+from app_model.types import KeyBinding
 
-def starts_with_ctrl_cmd_x(key: int) -> bool:
-    return key & 0x0000FFFF == (KeyMod.CtrlCmd | KeyCode.KeyX)
-
-def multi_part(key: int) -> bool:
-    return key > 0x0000FFFF
-
-> list(filter(has_shift, keymap))
-[<KeyCombo.CtrlCmd|Shift|KeyZ: 3115>, <KeyMod.Shift: 1024>]
-
-> list(filter(starts_with_ctrl_cmd_x, keymap))
-[
-    <KeyCombo.CtrlCmd|KeyX: 2089>,
-    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyC: 20>),
-    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyV: 39>),
-]
-
-> list(filter(multi_part, keymap))
-[
-    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyC: 20>),
-    KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyV: 39>),
-]
+@dataclass
+class Node:
+    value: KeyBinding
+    root: List[KeyBindingEntry]
+    children: Dict[KeyCode, Node]
 ```
 
-Note that because of the spec, querying for modifiers will only check the first part:
+To check if a key binding has an indirect conflict, the children of the node can be recursively searched depth-first:
+
 ```python
-> has_shift(KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyMod.Shift | KeyCode.KeyY))
-False
-```
-
-Putting this together:
-```python
-KEY_MOD_MASK = 0x00000F00
-PART_0_MASK = 0x0000FFFF
-
-def create_conflict_filter(conflict_key: int) -> Callable[[int], bool]:
-    if conflict_key & KEY_MOD_MASK == conflict_key:
-        # only comprised of modifier keys in first part
-        def inner(key: int) -> bool:
-            return key != conflict_key and key & conflict_key
-    elif conflict_key <= PART_0_MASK:
-        # one-part key sequence
-        def inner(key: int) -> bool:
-            return key > PART_0_MASK and key & PART_0_MASK == conflict_key
-    else:
-        # don't handle anything more complex
-        def inner(key: int) -> bool:
-            return NotImplemented
-
-    return inner
-
-def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
-    conflict_filter = create_conflict_filter(key)
-
-    for _, entries in filter(conflict_filter, keymap.items()):
-        if find_active_match(entries):
+def has_active_children(children: Dict[KeyCode, Node]) -> bool:
+    for child in children.values():
+        if find_active_match(child.root):
             return True
-    
-    return False
+        elif has_active_children(child.children):
+            return True
 ```
 
-While this solution is undoubtedly more elegant, it has a much higher runtime complexity. Imagine that every possible valid key binding has at least one entry. Letting _K_ be the number of valid key codes, the amount of possible combinations for the first part of a key chord would be _16 * K_, plus 4 to include single modifiers. Combining this with the second part, it would be _(16 * K + 4)(16 * K)_, resulting in a conflict search runtime complexity of _O(n^2)_.
+In the mapping case, imagine that every possible valid key binding has at least one entry. Letting _K_ be the number of valid key codes, the amount of possible combinations for the first part of a key chord would be _16 * K_, plus 4 to include single modifiers. Combining this with the second part, it would be _(16 * K + 4)(16 * K)_, resulting in a conflict search runtime complexity of _O(n)_.
 
-On the other hand, for a prefix tree, the amount of options for each node would be at most _K - D_, where _D_ is the depth of the node relative to the last completed part. When searching a key sequence with 4 modifiers for each part, the maximum number of options visited for one part would be _K + (K-1) + (K-2) + (K-3) + (K-4)_, or _2(5K-10)_ for two parts, resulting in a conflict search runtime complexity of _O(n)_.
+On the other hand, for a prefix tree, the amount of options for each node would be at most _K - D_, where _D_ is the depth of the node relative to the last completed part. When searching a key sequence with 4 modifiers for each part, the maximum number of options visited for one part would be _K + (K-1) + (K-2) + (K-3) + (K-4)_, or _2(5K-10)_ for two parts, resulting in a conflict search runtime complexity of _O(log(n))_.
 
-Therefore, when searching for indirect conflicts, using a prefix-based data structure would be significantly more efficient than a mapping-based one, especially when an indirect conflict does not exist, since a mapping-based approach would potentially have to check every key in the map.
+Therefore, when searching for indirect conflicts, using a prefix-based data structure would be more efficient than a mapping-based one. However, when [put to a test on VSCode's default key bindings](https://gist.github.com/kne42/82d20e0ed48ccef0ac30aee7c2924b79), which are comprised of approximately 900 entries, the difference in speed was not significant, with the prefix tree approach finishing only 59ms faster with an average of 109ms over the mapping one with an average of 168ms over 700 runs. For the test, `when` conditionals were simulated to take 3µs to evaluate and both methods were searching for the conflict of the most common modifier (which would be `Ctrl` on Windows/Linux or `Cmd` on MacOS).
+
+Although the prefix tree is approximately 50% faster at finding indirect conflicts, a difference of ~60ms is not significant enough to be noticed by the user. It then comes down to other factors to determine which implementation is better. While a prefix tree approach would be able to handle more than two-part key bindings, it is arguable that any more parts might be confusing to the user. It's also possible to save the "state" of the search in the sense of narrowing down to a specific node, which may be useful for key binding completion.
+
+However, the mapping approach is a lot cleaner code-wise, as it requires no additional logic to construct or update the data structure. Additionally, the user and the GUI can much more easily read this data structure and perform more complicated searches on it using bitwise operations. The mapping approach was ultimately chosen due to its lower barrier of entry to read and maintain for developers.
 
 ## Discussion
 
