@@ -100,7 +100,7 @@ company: Napari
 license: EULA.md
 channels:
   # - local  # only in certain situations, like nightly installers where we build napari locally
-  - napari/label/bundle_tools_2  # temporary location of our forks of the constructor stack
+  - napari/label/bundle_tools_3  # temporary location of our forks of the constructor stack
   - conda-forge
 specs: # specs for the 'base'  environment
   - python   # pinned to the version of the running interpreter, configured in the CI
