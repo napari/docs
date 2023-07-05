@@ -110,9 +110,10 @@ specs: # specs for the 'base'  environment
 extra_envs:
   napari-1.2.3: # this is the environment that will actually contain the napari packages
     specs:
-      - napari=1.2.3=*pyside*
+      - napari=1.2.3
       - napari-menu=1.2.3
       - python   # pinned to a specific version, configured by CI
+      - pyside2  # pinned to a specific version, configured by CI
       - conda    # needed for the plugin manager
       - mamba    # needed for the plugin manager
       - pip      # needed for the plugin manager
@@ -146,7 +147,7 @@ The main OS-agnostic keys are:
 
 * `channels`: where the packages will be downloaded from. 
   We mainly rely on `conda-forge` for this, where `napari` is published. 
-  However, we also have `napari/label/bundle_tools_2`, where we store our `constructor` stack forks (more on this later). 
+  However, we also have `napari/label/bundle_tools_3`, where we store our `constructor` stack forks (more on this later). 
   In nightly installers, we locally build our own development packages for `conda`, without resorting to `conda-forge`. 
   To make use of those (which are eventually published to `napari/label/nightly`), 
   we unpack the GitHub Actions artifact in a specific location that `constructor` recognizes as a _local_ channel once indexed.
@@ -255,7 +256,7 @@ Very fun! So where do all these packages live?
 | `constructor`      | [jaimergp/constructor @ `menuinst-cep`][9]      | [jaimergp-forge/constructor-feedstock][12]         |
 | `conda-standalone` | _Same as feedstock_.                            | [conda-forge/conda-standalone-feedstock PR#21][13] |
 | `conda`            | [jaimergp/conda @ `cep-menuinst`][10]           | [jaimergp-forge/conda-feedstock][14]               |
-| `menuinst`         | [jaimergp/menuinst @ `cep`][11]                 | [jaimergp-forge/menuinst-feedstock][15]            |
+| `menuinst`         | [conda/menuinst @ `cep-devel`][11]                 | [jaimergp-forge/menuinst-feedstock][15]            |
 
 
 Most of the forks live in `jaimergp`'s account, under a non-default branch. They are published
@@ -283,11 +284,10 @@ a high-level list of the main changes introduced in the stack.
 * Maintain backwards compatibility with Windows
 * Simplify API
 * Remove CLI
-* Provide binary launchers for better compatibility with the macOS permissions system
+* Provide binary launchers for better compatibility with the macOS permissions and events system
 
 ##### Changes in `conda`
 
-* Add API support for menuinst v2
 * Enable code paths for non-Windows Platforms
 * Fix shortcut removal logic
 * Add `--shortcuts-only` flag to support `menu_packages` constructor key natively
@@ -318,7 +318,7 @@ a high-level list of the main changes introduced in the stack.
 [8]: https://conda-forge.org/docs/maintainer/updating_pkgs.html#rerendering-feedstocks
 [9]: https://github.com/jaimergp/constructor/tree/menuinst-cep
 [10]: https://github.com/jaimergp/conda/tree/cep-menuinst
-[11]: https://github.com/jaimergp/menuinst/tree/cep
+[11]: https://github.com/conda/menuinst/tree/cep-devel
 [12]: https://github.com/jaimergp-forge/constructor-feedstock
 [13]: https://github.com/conda-forge/conda-standalone-feedstock
 [14]: https://github.com/jaimergp-forge/conda-feedstock
