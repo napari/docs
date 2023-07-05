@@ -199,7 +199,7 @@ Running `python reproduce_issue.py` will run our widget for the inputs `False, 0
 
 ## Isolate the issue from napari
 
-This solution ties in with the idea of test-driven development (see the [napari testing guidelines](../testing_and_publishing/test_deploy.md#prefer-smaller-unit-tests-when-possible)). The idea is to trust that napari will provide the information you expect it to, and test your widgets independently of the viewer. In the case above we can verify that input values work as expected like so:
+This solution ties in with the idea of test-driven development (see the [napari testing guidelines](../testing_and_publishing/test.md#prefer-smaller-unit-tests-when-possible)). The idea is to trust that napari will provide the information you expect it to, and test your widgets independently of the viewer. In the case above we can verify that input values work as expected like so:
 
 ```Python
 # test_print.py

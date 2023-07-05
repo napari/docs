@@ -14,7 +14,7 @@ If you're just getting started with napari plugins, try our
 For a list of all available contribution points and specifications,
 see the [Contributions reference](../technical_references/contributions)
 
-If you're ready to publish your plugin, see [Test and deploy](../testing_and_publishing/test_deploy)
+If you've followed the [Testing guidelines](../testing_and_publishing/test) and are ready to publish your plugin, see [Publish your plugin](../testing_and_publishing/deploy).
 
 For special considerations when building a napari plugin, see
 {ref}`best-practices`.

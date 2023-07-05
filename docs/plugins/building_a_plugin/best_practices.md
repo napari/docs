@@ -348,7 +348,7 @@ You need to explicitly _exclude_ the top-level `tests` directory from the packag
 
 ```toml
 # pyproject.toml
-...
+
 [options.packages.find]
 exclude =
     tests
@@ -357,7 +357,7 @@ exclude =
 
 ```python
 # setup.py
-...
+
 setup(
     ...
     packages=find_packages(exclude=("tests", "tests.*")),

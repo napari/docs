@@ -297,7 +297,7 @@ of available contributions and their fields in the
 specific contribution type in the [Guides](../building_a_plugin/guides).
 
 Review the [Best Practices](../building_a_plugin/best_practices) when developing plugins and,
-when you're ready to share your plugin, see [Testing and Deployment](../testing_and_publishing/test_deploy).
+when you're ready to share your plugin, see [Testing and Publishing](../testing_and_publishing/index).
 
 [miniconda]: https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html
 [python_env]: https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html#managing-python

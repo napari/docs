@@ -195,8 +195,8 @@ python -m pip install "napari[pyqt5]"    # for PyQt5
 python -m pip install "napari[pyside2]"  # for PySide2
 ```
 
+(note-m1)=
 ```{note}
-:name: note-m1
 
 For arm64 macOS machines (Apple Silicon), pre-compiled PyQt5 or PySide2 packages
 ([wheels](https://realpython.com/python-wheels/)) are not available on 
