@@ -37,13 +37,13 @@ In depth guides to build a plugin for napari.
 :link: virtual-environments-and-useful-tools
 :link-type: ref
 
-Tools and tips when building napari plugins or: firehose of stuff I wish I knew earlier
+Workshop on virtual environments and useful tools for plugin development.
 
 ::::
 
 ::::{grid}
 :::{grid-item-card} Testing and publishing
-:link: test-and-deploy
+:link: plugin-test-deploy
 :link-type: ref
 
 How to test your plugin works and how to publish it to PyPI,

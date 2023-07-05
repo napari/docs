@@ -85,7 +85,7 @@ python -m pip install "napari[all]" --upgrade
 *(See [Choosing a different Qt backend](#choosing-a-different-qt-backend) below for an explanation of the `[all]`
 notation.)*
 
-*(See[Using constraints file](#using-constraints-file) for help installing older versions of napari)*
+*(See[Using constraints file](#using-constraints-files) for help installing older versions of napari)*
 
 ````
 

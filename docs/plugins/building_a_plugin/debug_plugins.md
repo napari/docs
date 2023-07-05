@@ -199,7 +199,7 @@ Running `python reproduce_issue.py` will run our widget for the inputs `False, 0
 
 ## Isolate the issue from napari
 
-This solution ties in with the idea of test-driven development (see the [napari testing guidelines](./test_deploy.md#prefer-smaller-unit-tests-when-possible)). The idea is to trust that napari will provide the information you expect it to, and test your widgets independently of the viewer. In the case above we can verify that input values work as expected like so:
+This solution ties in with the idea of test-driven development (see the [napari testing guidelines](../testing_and_publishing/test_deploy.md#prefer-smaller-unit-tests-when-possible)). The idea is to trust that napari will provide the information you expect it to, and test your widgets independently of the viewer. In the case above we can verify that input values work as expected like so:
 
 ```Python
 # test_print.py
@@ -216,7 +216,7 @@ if __name__ == "__main__":
     test_false_inputs()
 ```
 
-Then, for `python test_print.py` you can use any of your usual debugging tools - such as the visual debugger provided by a Python IDE (e.g. PyCharm, VSCode, or Spyder). Further, an isolated test like this can be integrated into a [testing suite for your napari plugin](test_deploy).
+Then, for `python test_print.py` you can use any of your usual debugging tools - such as the visual debugger provided by a Python IDE (e.g. PyCharm, VSCode, or Spyder). Further, an isolated test like this can be integrated into a [testing suite for your napari plugin](plugin-test-deploy).
 
 ## Logging and user messages in napari
 

@@ -209,7 +209,7 @@ functionality by simply installing your package along with napari:
 (plugin-sharing)=
 ### Step 4: Deploy your plugin
 
-See [testing and deploying](./test_deploy) your plugin.  (This hasn't changed
+See [testing and deploying](plugin-test-deploy) your plugin.  (This hasn't changed
 significantly with the secod generation (`npe2`) plugin engine).
 
 

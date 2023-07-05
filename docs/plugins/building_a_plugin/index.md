@@ -9,12 +9,12 @@ Plugins allow developers to customize and extend napari.  This includes
 - Changing the look of napari with a color [theme]
 
 If you're just getting started with napari plugins, try our
-[Your First Plugin](./first_plugin) tutorial.
+[Your First Plugin](../building_a_plugin/first_plugin) tutorial.
 
 For a list of all available contribution points and specifications,
-see the [Contributions reference](./contributions)
+see the [Contributions reference](../technical_references/contributions)
 
-If you're ready to publish your plugin, see [Test and deploy](./test_deploy)
+If you're ready to publish your plugin, see [Test and deploy](../testing_and_publishing/test_deploy)
 
 For special considerations when building a napari plugin, see
 {ref}`best-practices`.
