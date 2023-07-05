@@ -12,14 +12,14 @@ The following resources are designed to assist you in comprehending the usage of
 :link: plugins-getting-started
 :link-type: ref
 
-Introduction to napari plugins, what they can provide,
-how to install them, and where to get support.
+Introduction to napari plugins, what they can provide, and where to get support.
 :::
 
-:::{grid-item-card} Tutorials
+:::{grid-item-card} Finding and installing plugins
+:link: find-and-install-plugins
+:link-type: ref
 
-The tutorials provide examples of how to find and use plugins,
-and how to create your own.
+How to find and install plugins from the napari plugin installer or napari hub.
 :::
 ::::
 :::::
@@ -33,7 +33,11 @@ In depth guides to build a plugin for napari.
 
 :::
 
-:::{grid-item-card} TODO
+:::{grid-item-card} Virtual environments and useful tools
+:link: virtual-environments-and-useful-tools
+:link-type: ref
+
+Tools and tips when building napari plugins or: firehose of stuff I wish I knew earlier
 
 ::::
 
@@ -47,6 +51,8 @@ along with some tips for making your plugin easy to find.
 :::
 
 :::{grid-item-card} Technical references
+:link: plugin-technical-references
+:link-type: ref
 
 Technical references for the plugin system and the plugin API
 and guides to convert from first generation plugins to npe2.
