@@ -1,5 +1,5 @@
 (find-and-install-plugins)=
-# Finding and installing a napari plugin
+# Finding and installing plugins
 
 napari plugins are Python packages distributed on the Python Package Index
 (PyPI), and annotated with the tag [`Framework ::

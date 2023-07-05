@@ -1,4 +1,4 @@
-# Contribution Guides
+# Plugin contributions
 
 This page provides guides on many of the plugin contribution patterns.
 Each provides a general overview of the purpose of the contribution and

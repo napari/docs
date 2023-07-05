@@ -1,6 +1,6 @@
 (npe2-migration-guide)=
 
-# `npe2` migration guide
+# Migration to `npe2`
 
 This document details how to convert a plugin using the first generation
 `napari-plugin-engine`, to the new `npe2` format.

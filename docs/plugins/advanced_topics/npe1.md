@@ -1,5 +1,5 @@
 (napari-plugin-engine)=
-# 1st Gen Plugin Guide (*Deprecated*)
+# First generation plugins (*Deprecated*)
 
 ```{Admonition} DEPRECATED
 :class: warning

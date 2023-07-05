@@ -81,6 +81,7 @@ subtrees:
           - file: plugins/getting_started/finding_and_installing_plugins
       - file: plugins/building_a_plugin/index
         subtrees:
+        maxdepth: 1
         - entries:
           - file: plugins/building_a_plugin/first_plugin
           - file: plugins/building_a_plugin/guides
@@ -96,8 +97,10 @@ subtrees:
               - file: plugins/virtual_environment_docs/5-survey
       - file: plugins/testing_and_publishing/index
         subtrees:
+        maxdepth: 1
         - entries:
-          - file: plugins/testing_and_publishing/test_deploy
+          - file: plugins/testing_and_publishing/test
+          - file: plugins/testing_and_publishing/deploy
           - file: plugins/testing_workshop_docs/index
             subtrees:
             - entries:
