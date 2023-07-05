@@ -53,7 +53,7 @@ command line using conda in your readme or documentation.
 
 A future version of napari and the napari stand-alone application may support
 directly installing from conda. As such, publishing to conda-forge can be a good
-idea. Checkout [deploying to anaconda](#deploying-to-anaconda) for more details.
+idea. Checkout [deploying to anaconda](deploying-to-anaconda) for more details.
 ````
 
 When you are ready for users, announce your plugin on the [Image.sc

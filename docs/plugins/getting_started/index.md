@@ -3,7 +3,7 @@
 
 Using plugins enables you to rapidly extend napari with new functionality.
 
-:::{grid}
+::::{grid}
 :::{grid-item-card} Using published plugins
 :link: find-and-install-plugins
 :link-type: ref
@@ -12,16 +12,12 @@ How to find and install plugins from the napari plugin installer or napari hub.
 :::
 
 :::{grid-item-card} Napari hub
-:link: napari_hub
-:link-type: ref
+:link: https://napari-hub.org
+:link-type: url
 
 Head over to the napari hub to search for plugins that suit your needs.
 :::
 ::::
-
-If you are looking to **use** published plugins, see the
-[guide on installing plugins](find-and-install-plugins), or head to the [napari hub][napari_hub] to
-search for plugins.
 
 ## Looking for help?
 
