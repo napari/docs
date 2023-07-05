@@ -184,7 +184,7 @@ them.
 
 Running `python -m pip install "napari[all]"` will install the default framework, which is currently 
 PyQt5--but this could change in the future. However, if you have a Mac with the newer arm64
-architecture (Apple Silicon), this will not work--see {ref}`note-m1`.
+architecture (Apple Silicon), this will not work--see [note on m1](note-m1).
 
 To install napari with a specific framework, you can use:
 

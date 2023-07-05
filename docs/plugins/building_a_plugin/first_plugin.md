@@ -1,3 +1,4 @@
+(your-first-plugin)=
 # Your first plugin
 
 In this tutorial, we'll step through the fundamental concepts for building a

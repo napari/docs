@@ -8,16 +8,39 @@ Plugins allow developers to customize and extend napari.  This includes
 - Providing [sample data][sample_data]
 - Changing the look of napari with a color [theme]
 
-If you're just getting started with napari plugins, try our
-[Your First Plugin](../building_a_plugin/first_plugin) tutorial.
+::::{grid}
+:::{grid-item-card} Your first plugin
+:link: your-first-plugin
+:link-type: ref
+If you're just getting started with napari plugins, try our tutorial to build your first plugin!
 
-For a list of all available contribution points and specifications,
-see the [Contributions reference](../technical_references/contributions)
+:::
 
-If you've followed the [Testing guidelines](../testing_and_publishing/test) and are ready to publish your plugin, see [Publish your plugin](../testing_and_publishing/deploy).
+:::{grid-item-card} Plugin functionality
+:link: plugin-contribution-guides
+:link-type: ref
 
-For special considerations when building a napari plugin, see
-{ref}`best-practices`.
+New pieces of functionality are termed contributions. To understand what plugins can add to napari, see the plugin contributions guide.
+
+:::
+::::
+
+::::{grid}
+:::{grid-item-card} Best practices
+:link: best-practices
+:link-type: ref
+
+There are a few best practices to keep in mind when building a plugin. See the best practices guide for details.
+
+:::
+
+:::{grid-item-card} Testing and publishing
+:link: plugin-test-deploy
+:link-type: ref
+
+Testing your plugin is an important step before publishing. Once your plugin is ready, you can publish it to PyPI, conda-forge and the napari-hub. See the testing and publishing guide for details.
+:::
+::::
 
 ```{admonition} Introducing npe2
 :class: important

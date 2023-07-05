@@ -3,7 +3,8 @@
 
 Plugins are a powerful way to extend the functionality of napari and share these extensions with the community.
 While scripts and widgets can also be used to extend napari, plugins offer the most convenient method for publicly sharing additional features.
-The following resources are designed to assist you in comprehending the usage of napari plugins and guiding you through the process of creating your own plugins for napari.
+
+Check out the user focused content to guide you through installing and using napari plugins, or the developer focused content to start creating your own plugins for napari.
 
 ::::::{tab-set}
 :::::{tab-item} For plugin users

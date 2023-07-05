@@ -1,3 +1,4 @@
+(plugin-test)=
 # Testing guidelines
 
 (plugin-testing-tips)=

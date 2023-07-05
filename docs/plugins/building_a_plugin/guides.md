@@ -1,3 +1,4 @@
+(plugin-contribution-guides)=
 # Plugin contributions
 
 This page provides guides on many of the plugin contribution patterns.

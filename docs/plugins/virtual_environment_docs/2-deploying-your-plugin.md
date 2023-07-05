@@ -3,12 +3,15 @@
 This guide explains some of the techniques you can use to deploy your plugin. 
 
 ## This guide covers:   
-* [Overview of PyPI and Anaconda](#overview-of-pypi-and-anaconda)
-* [Building your package](#building-your-package)
-* [Deploying plugins to PyPI](#deploying-plugins-to-pypi)
-    - [Manually via twine](#manually-via-twine)
+- [Deploying your plugin](#deploying-your-plugin)
+  - [This guide covers:](#this-guide-covers)
+  - [Overview of PyPI and Anaconda](#overview-of-pypi-and-anaconda)
+    - [Building your package](#building-your-package)
+  - [Deploying plugins to PyPI](#deploying-plugins-to-pypi)
+    - [Manually via **twine**.](#manually-via-twine)
     - [Automatically via GitHub actions](#automatically-via-github-actions)
-* [Deploying plugins to Anaconda](#deploying-to-anaconda)
+  - [Deploying to Anaconda](#deploying-to-anaconda)
+  - [Other topics in this series:](#other-topics-in-this-series)
 
 
 ## Overview of PyPI and Anaconda
@@ -92,6 +95,7 @@ jobs:
 
   **Note:** Gate this action on some criterion, e.g. a git tag as above, or [some other criterion](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows).
 
+(deploying-to-anaconda)=
 ## Deploying to Anaconda
 This is only a brief guide to deploying to `conda-forge`. More information can be found in the [conda-forge docs](https://conda-forge.org/docs/maintainer/adding_pkgs.html).
 
