@@ -139,7 +139,7 @@ The **canvas** is in the center of the viewer and contains the visual display of
 
 Layers are one of the basic napari objects. There are different layer types for `Image`, `Points`, `Shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added, they populate the layer list located on the bottom left side of the canvas.
 
-The layer list contains one widget for each of the layers that have been added to the viewer and includes a `thumbnail` that shows a miniaturized version of the currently viewed data, a `name` that is an editable text box, a `visibility` button that can be toggled on or off to show or hide the layer, and an `icon` for the layer type.  
+The layer list contains one widget for each of the layers that have been added to the viewer and includes a `thumbnail` that shows a miniaturized version of the currently viewed data, a `name` that is an editable text box, a `visibility` button (eye icon) that can be toggled on or off to show or hide the layer, and an `icon` for the layer type. Note that you can Option/Alt-click on the `visibility` button to show *just* that one layer, hiding all others. If you then Option/Alt-click on the `visibility` button of a layer a second time, the visibility state of all layers will be restored.  
 
 Adding the following three image layers using the code below adds three-layer widgets to the layer list as follows:  
 
@@ -340,9 +340,10 @@ The console (when available) appears at the bottom of the viewer as shown below:
 
 +++
 
-#### 2D/3D button  
+#### Toggle ndisplay (2D/3D) button  
 
-The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data. Run the following code:
+The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data. 
+For example, run the following code:
 
 
 ```{code-cell} python
@@ -359,11 +360,19 @@ labeled = ndi.label(blobs)[0]
 viewer.add_labels(labeled, name='blob ID')
 ```
 
-then, by clicking the 2D/3D button, you can rotate the image (the camera view of the image) with the mouse to see what it looks like from the side, back, or a different angle. To do this, click on the image and drag the cursor to a new position. This gives something like the following view: 
+then, by clicking the 2D/3D button, you can switch to viewing the 3D rendering. Note that the icon will change to
+the following, to indicate 3D mode: 
 
 ![image: 3D_button](../assets/tutorials/3D_button.png)
 
-and rotating the camera view with the mouse gives something like the following view:
+This mode can be entered programmatically using:
+```python
+viewer.dims.ndisplay = 3
+```
+
+In this mode, when you can drag with the mouse you will rotate the 3D rendering (change the camera view of the
+image) and see what it looks like from the side, back, or a different angle. To do this, click on the image and
+drag the cursor to a new position, which will give something like the following view:
 
 ```{code-cell} python
 :tags: [hide-input]  
@@ -374,7 +383,15 @@ viewer.camera.zoom = 2
 viewer.camera.angles = (3, 38, 53)
 nbscreenshot(viewer, alt_text="A rotated 3D view")
 ```
-<!-- This is commented out. ![image: Rotated image](../assets/tutorials/rotated-image.png) -->  
+
+Note that if you want to drag the canvas/rendering itself, instead of rotating the view, you have to hold down the 
+Shift key while dragging with the mouse. Finally, while in 3D mode you can change the perspective of the 
+3D view by holding Shift, pressing the right mouse button (on macOS holding Control) and
+dragging the mouse or by right-clicking (on macOS holding Control and clicking) on the 2D/3D mode
+button, which will bring up the perspective slider. The camera perspective can also be altered programmatically:
+```python
+viewer.camera.perspective = 45
+```
 
 #### Roll dimensions  
 
