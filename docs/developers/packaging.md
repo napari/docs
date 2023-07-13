@@ -260,9 +260,9 @@ Very fun! So where do all these packages live?
 
 
 Most of the forks live in `jaimergp`'s account, under a non-default branch. They are published
-through the `jaimergp-forge` every time a commit to `master` is made. Versions are arbitrary here,
-but they are set to be greater than the latest official version, and the `build` number is
-incremented for every rebuild.
+through the `jaimergp-forge` every time a commit to `main` (`master` in some repos) is made.
+Versions are arbitrary here, but they are set to be greater than the latest official version, and
+the `build` number is incremented for every rebuild.
 
 The only exception is `conda-standalone`. It doesn't have its own repository or fork because it's
 basically a repackaged `conda` with some patches. Those patches live in the feedstock only. The
