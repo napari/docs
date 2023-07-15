@@ -205,7 +205,7 @@ keymap = Dict[int, List[KeyBindingEntry]] = {
 }
 ```
 
-To determine if an indirect conflict is present, entries would be filtered via bitwise operations:
+Due to the ability of key sequences to be encoded as 32-bit integers, bitwise operations can be performed to determine certain properties of these sequences:
 ```python
 def has_shift(key: int) -> bool:
     return bool(key & KeyMod.Shift)
@@ -215,7 +215,10 @@ def starts_with_ctrl_cmd_x(key: int) -> bool:
 
 def multi_part(key: int) -> bool:
     return key > 0x0000FFFF
+```
 
+As such, entries in the keymap can be filtered to find conflicts:
+```python
 > list(filter(has_shift, keymap))
 [<KeyCombo.CtrlCmd|Shift|KeyZ: 3115>, <KeyMod.Shift: 1024>]
 
@@ -233,7 +236,7 @@ def multi_part(key: int) -> bool:
 ]
 ```
 
-Note that because of the spec, querying for modifiers will only check the first part:
+Note that because modifiers are encoded in the `(8, 12]`-bit range, querying for modifiers will only check the first part unless they are shifted by 16:
 ```python
 > has_shift(KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyMod.Shift | KeyCode.KeyY))
 False
