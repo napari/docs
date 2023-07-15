@@ -31,8 +31,9 @@ Conditional evaluation allows plugin developers to tie their keybinding to a spe
 
 **modifier keys** refer to `ctrl`, `shift`, `alt`, and `meta`. `meta` is also known as `cmd`, `win`, or `super` on osx, windows, or linux, respectively
 
-a **base key** is one of the following supported keys:
-- `f1-f12`, `a-z`, `0-9`
+a **base key** is a key that when pressed without a modifier key, produces one of the following [key codes](https://w3c.github.io/uievents-code/#keyboard-101):
+- `a-z`, `0-9`
+- `f1-f12`
 - `` ` ``, `-`, `=`, `[`, `]`, `\`, `;`, `'`, `,`, `.`, `/`
 - `left`, `up`, `right`, `down`, `pageup`, `pagedown`, `end`, `home`
 - `tab`, `enter`, `escape`, `space`, `backspace`, `delete`
