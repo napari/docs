@@ -58,7 +58,7 @@ The proposed restrictions on what key sequences can be used in a key binding aim
 
 Here are some examples:
 - `alt` is **valid** as a base key because it contains no other modifiers and no other parts
-- `alt-meta` is **invalid** because it is a key combination comprised of only modifiers
+- `alt+meta` is **invalid** because it is a key combination comprised of only modifiers
 - `alt+t` is **valid** as a key combination
 - `alt t` is **invalid** because it is a key chord whose first part is a single modifier 
 - `ctrl+x alt` is **invalid** because it is a key chord whose second part is a single modifier
@@ -463,7 +463,6 @@ This document is dedicated to the public domain with the Creative Commons CC0
 license [^id4]. Attribution to this source is encouraged where appropriate, as per
 CC0+BY [^id5].
 
-## References and Footnotes
 
 [^id1]: napari #5103, <https://github.com/napari/napari/pull/5103>
 
