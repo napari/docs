@@ -74,9 +74,9 @@ Even with conditional activation, many key bindings may find that they share the
 All key binding entries contain the following information:
 - `command_id` is the unique identifier of the command that will be executed by this key binding
 - `weight` is the main determinant of key binding priority. high value means a higher priority
-- `when` is the context expression that is evaluated to determine if the key binding is active; if not provided, the key binding is always considered active
-- (autoset) `block_rule` is enabled if `command_id == ''` and disables all lower priority key bindings
-- (autoset) `negate_rule` is enabled if `command_id` is prefixed with `-` and disables all lower priority key bindings with the same sequence bound to this command
+- `when` is the context expression that is evaluated to determine whether the rule is active; if not provided, the rule is always considered active
+- (autoset) `block_rule` is enabled if `command_id == ''` and disables all key bindings of their weight and below
+- (autoset) `negate_rule` is enabled if `command_id` is prefixed with `-` and disables all key bindings of their weight and below with the same sequence bound to this command
 
 ```python
 from dataclasses import dataclass, field
@@ -94,6 +94,53 @@ class KeyBindingEntry:
     def __post_init__(self):
         self.block_rule = self.command_id == ''
         self.negate_rule = self.command_id.startswith('-')
+```
+
+### Types of key binding rules
+
+There are three ways to modify how a key binding interacts with a command: an assign rule, a negate rule, and a block rule. Note that negate and block rules only affect key bindings of their weight and below.
+
+An assign rule tells the dispatcher to execute the given command when the rule is enabled:
+```json
+{
+    "key": "ctrl+y",
+    "command_id": "redo",
+}
+```
+
+A negate rule is denoted by prefixing the `command_id` with `-` and effectively cancels out assign rules to the same command for that key sequence. For example, to rebind the example for the `redo` command above from `ctrl+y` to `ctrl+shift+z`, one would need the following rules:
+```json
+[
+    {
+        "key": "ctrl+y",
+        "command_id": "-redo",
+    },
+    {
+        "key": "ctrl+shift+z",
+        "command_id": "redo",
+    },
+]
+```
+
+A block rule is denoted by simply leaving the `command_id` as blank and prevents any commands for that key sequence from being executed. This cannot be set via the GUI. The below example includes a block rule that disables the previous two rules bound to `tab`:
+```json
+[
+    {
+        "key": "tab",
+        "command_id": "points.toggle_last_mode",
+        "when": "layer_type == 'points'",
+    },
+    {
+        "key": "tab",
+        "command_id": "labels.toggle_last_mode",
+        "when": "layer_type == 'labels'",
+    },
+    {
+        "key": "tab",
+        "command_id": "",
+        "_comment": "This disables the two previous rules.",
+    },
+]
 ```
 
 ### Direct conflicts
