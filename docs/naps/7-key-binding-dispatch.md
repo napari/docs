@@ -164,9 +164,9 @@ When a key sequence matches a key binding and is also a sub-sequence of a key se
 
 There are two ways indirect conflicts can exist:
 
-A. the provided key sequence is a single modifier that is a modifier in another key binding's key combination or is a modifier in the first key combination of a key binding's key chord
+A. The provided key sequence is a single modifier that is a modifier in another key binding's key combination or is a modifier in the first key combination of a key binding's key chord. For example, a base key of `ctrl` would conflict with the key combination of `ctrl+c` and the key chord of `ctrl+x m`.
 
-B. the provided key sequence is a base key or key combination that is the first part of another key binding's key chord
+B. The provided key sequence is a base key or key combination that is the first part of another key binding's key chord. For example, a key combination of `ctrl+l` would conflict with the key chord of `ctrl+l p`.
 
 In case (A), the corresponding command will not be triggered immediately, but will be delayed by user-defined miliseconds (e.g. 200ms), after which the press logic for the command will execute. If another key binding is triggered, this action will be canceled. If the base key is released early, the press logic will execute immediately and the delayed action will be canceled, along with the release logic being executed immediately afterwards.
 
