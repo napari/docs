@@ -464,6 +464,7 @@ This document is dedicated to the public domain with the Creative Commons CC0
 license [^id4]. Attribution to this source is encouraged where appropriate, as per
 CC0+BY [^id5].
 
+## References and Footnotes
 
 [^id1]: napari #5103, <https://github.com/napari/napari/pull/5103>
 
