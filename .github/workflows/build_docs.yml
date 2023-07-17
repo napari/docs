@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Clone docs repo
         uses: actions/checkout@v3
-        
+
       - name: Clone main repo
         uses: actions/checkout@v3
         with:
@@ -21,7 +21,7 @@ jobs:
           repository: napari/napari
           # ensure version metadata is proper
           fetch-depth: 0
-      
+
       - name: Copy examples to docs folder
         run: |
           cp -R napari/examples .
