@@ -1,4 +1,4 @@
-# Contributing resources
+# Contributing
 
 Here you can find resources about the contributing workflow, governance of the
 project and the onboarding of new contributors.
