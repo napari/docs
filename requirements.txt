@@ -13,3 +13,4 @@ napari-sphinx-theme
 matplotlib
 lxml
 imageio-ffmpeg
+npe2
