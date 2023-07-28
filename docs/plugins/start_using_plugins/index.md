@@ -1,5 +1,5 @@
 (plugins-getting-started)=
-# Getting started
+# Start using plugins
 
 Using plugins enables you to rapidly extend napari with new functionality.
 

@@ -9,7 +9,7 @@ Check out the user focused content to guide you through installing and using nap
 ::::::{tab-set}
 :::::{tab-item} For plugin users
 ::::{grid}
-:::{grid-item-card} Getting started
+:::{grid-item-card} Start using plugins
 :link: plugins-getting-started
 :link-type: ref
 
