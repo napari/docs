@@ -7,11 +7,11 @@ At the end, we'll point you to a "cookiecutter" template
 repository that helps automate the creation of new plugins, and adds a number
 of conveniences for testing, maintaining, and deploying your plugin.
 
-````{admonition} new plugin format!
+```{admonition} new plugin format!
 :class: important
 This page describes the creation of a plugin targeting `npe2`, the second
 generation plugin engine.
-````
+```
 
 ## Before you start
 
@@ -28,16 +28,14 @@ environment to use and test your plugin.
 See the [installation guide](installation) if this is your first time
 installing napari.
 
-
 ## What is a plugin?
 
 Napari plugins are just Python packages. *Minimally*, they must:
 
 1. Include a static [plugin manifest](./manifest) file that details the
    [contributions](./contributions) contained in the plugin.
-2. Declare a `napari.manifest` [entry point][entry_points] that allows
+1. Declare a `napari.manifest` [entry point][entry_points] that allows
    napari to detect the plugin at runtime.
-
 
 ## 1. Create a new directory
 
@@ -57,13 +55,16 @@ then create a `napari_hello` directory with a single `__init__.py` file inside o
 ::::{tab-set}
 
 :::{tab-item} macOS / Linux
+
 ```sh
 mkdir napari_hello
 touch napari_hello/__init__.py napari_hello/napari.yaml pyproject.toml setup.cfg
 ```
+
 :::
 
 :::{tab-item} Windows
+
 ```bat
 mkdir napari_hello
 copy /b napari_hello\__init__.py +,,
@@ -71,6 +72,7 @@ copy /b napari_hello\napari.yaml +,,
 copy /b pyproject.toml +,,
 copy /b setup.cfg +,,
 ```
+
 :::
 
 ::::
@@ -166,16 +168,15 @@ It just uses the napari notifications API to show a message:
 ```python
 from napari.utils.notifications import show_info
 
+
 def show_hello_message():
-    show_info('Hello, world!')
+    show_info("Hello, world!")
 ```
 
 *(It doesn't look like a widget yet! We're going to use napari's widget
 autogeneration capabilities to turn this function into a widget)*
 
-
 ### Add a `napari.yaml` manifest
-
 
 If you haven't already, create an empty [plugin manifest](./manifest) file at `napari_hello/napari.yaml`
 We will use this file to tell napari:
@@ -183,9 +184,9 @@ We will use this file to tell napari:
 1. That our plugin contributes a [**command**](contributions-commands)
    (we give the command an ID of `napari-hello.say_hi`. It must start with our plugin
    name, and be unique).
-2. The location of the function that executes the command (the `python_name`, pointing
+1. The location of the function that executes the command (the `python_name`, pointing
    to the `show_hello_message` function in the `napari_hello` module).
-3. That our plugin contributes a [**widget**](contributions-widgets),
+1. That our plugin contributes a [**widget**](contributions-widgets),
    and that we'd like napari to **autogenerate** the widget from the command signature
    (so we don't need to deal with any GUI code).
 
@@ -220,21 +221,21 @@ Lastly, let's make a few small changes to `setup.cfg`.
    **`install_requires`**. (You should add *all* of your package dependencies
    here.  Assume nothing about your user's environment!  Not even napari.)
 
-2. We need to instruct setuptools to *include* that `napari.yaml` file
+1. We need to instruct setuptools to *include* that `napari.yaml` file
    when it bundles our package for distribution, by adding
    **`include_package_data = True`** to the `[options]` section.
 
-3. In order for napari to find our plugin when it's installed in
+1. In order for napari to find our plugin when it's installed in
    the environment, we need to add a `napari.manifest` entry to our
    **`[options.entry_points]`** that points to the `napari.yaml`
    file we added to the `napari_hello` module.
 
-    ```{tip}
-    Entry points are a standard Python mechanism for an installed distribution to
-    advertise components it provides to be discovered and used by other code.
+   ```{tip}
+   Entry points are a standard Python mechanism for an installed distribution to
+   advertise components it provides to be discovered and used by other code.
 
-    See the [Entry points specification][entry_points] for details.
-    ```
+   See the [Entry points specification][entry_points] for details.
+   ```
 
 With the above changes, your final `setup.cfg` file should look like this:
 
@@ -299,8 +300,8 @@ specific contribution type in the [Guides](./guides).
 Review the [Best Practices](./best_practices) when developing plugins and,
 when you're ready to share your plugin, see [Testing and Deployment](./test_deploy).
 
+[cookiecutter]: https://github.com/napari/cookiecutter-napari-plugin
+[editable_mode]: https://pip.pypa.io/en/stable/cli/pip_install/#editable-installs
+[entry_points]: https://packaging.python.org/en/latest/specifications/entry-points/
 [miniconda]: https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html
 [python_env]: https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html#managing-python
-[editable_mode]: https://pip.pypa.io/en/stable/cli/pip_install/#editable-installs
-[cookiecutter]: https://github.com/napari/cookiecutter-napari-plugin
-[entry_points]: https://packaging.python.org/en/latest/specifications/entry-points/

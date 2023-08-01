@@ -27,7 +27,7 @@ dissenting opinions.
 
 Because the NAPs are maintained as text files in a versioned repository,
 their revision history is the historical record of the feature proposal
-[^id3].
+\[^id3\].
 
 ### Scope of NAPs
 
@@ -86,7 +86,7 @@ There are three kinds of NAPs:
 
 1. A **Standards Track** NAP describes a new feature or implementation
    for napari.
-2. An **Informational** NAP describes a napari design issue, or provides
+1. An **Informational** NAP describes a napari design issue, or provides
    general guidelines or information to the napari community, but does not
    propose a new feature. Informational NAPs do not necessarily represent a
    napari community consensus or recommendation, so users and
@@ -99,7 +99,7 @@ There are three kinds of NAPs:
    library and many other packages follow this PEP, Jupyter built the
    functionality of pressing Shift-TAB to display just one line of the
    docstring of the item under the cursor.
-3. A **Process** NAP describes a process surrounding napari, or
+1. A **Process** NAP describes a process surrounding napari, or
    proposes a change to (or an event in) a process. Process NAPs are
    like Standards Track NAPs but apply to areas other than the napari
    library itself. They may propose an implementation, but not to
@@ -121,7 +121,7 @@ Each NAP must have a champion---someone who writes the NAP using the style
 and format described below, shepherds the discussions in the appropriate
 forums, and attempts to build community consensus around the idea. The NAP
 champion (a.k.a. Author) should first attempt to ascertain whether the idea
-is suitable for a NAP. Posting to the napari [issues list] is the best
+is suitable for a NAP. Posting to the napari \[issues list\] is the best
 way to do this.
 
 The proposal should be submitted as a draft NAP via a [GitHub pull
@@ -279,7 +279,7 @@ these cases will depend on the nature and purpose of the NAP being updated.
 NAPs are UTF-8 encoded text files using the [MyST markdown] format.  Please
 see the {ref}`nap-template` file and the [MyST markdown cheat sheet] for
 more information.  We use [Sphinx] to convert NAPs to HTML for viewing on
-the web [^id4].
+the web \[^id4\].
 
 ### Header Preamble
 
@@ -318,12 +318,12 @@ on a separate line.
 
 ## References and Footnotes
 
-[^id3]: This historical record is available by the normal git commands
-    for retrieving older revisions, and can also be browsed on
-    [GitHub](https://github.com/napari/docs/tree/main/docs/naps).
+\[^id3\]: This historical record is available by the normal git commands
+for retrieving older revisions, and can also be browsed on
+[GitHub](https://github.com/napari/docs/tree/main/docs/naps).
 
-[^id4]: The URL for viewing NAPs on the web is
-    <https://napari.org/naps/>
+\[^id4\]: The URL for viewing NAPs on the web is
+<https://napari.org/naps/>
 
 ## Acknowledgements
 
@@ -334,11 +334,9 @@ This process was based on existing process from the scikit-image (SKIPs), NumPy
 
 This document has been placed in the public domain.
 
-[developer forum]: https://forum.image.sc/tag/napari
 [github pull request]: https://github.com/napari/napari/pulls
-[issue tracker]: https://github.com/napari/napari/issues
-[repo]: https://github.com/napari/napari
-[MyST markdown]: https://myst-parser.readthedocs.io/en/latest/index.html
-[MyST markdown cheat sheet]: https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html
+[myst markdown]: https://myst-parser.readthedocs.io/en/latest/index.html
+[myst markdown cheat sheet]: https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html
 [napari steering council]: https://napari.org/community/governance.html
+[repo]: https://github.com/napari/napari
 [sphinx]: https://www.sphinx-doc.org/en/stable/

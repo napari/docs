@@ -7,11 +7,11 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Ahmet Can Solak](https://github.com/napari/napari/commits?author=AhmetCanSolak) - [@AhmetCanSolak](https://github.com/AhmetCanSolak)
 - [Alister Burt](https://github.com/napari/napari/commits?author=alisterburt) - [@alisterburt](https://github.com/alisterburt)
 - [Andy Sweet](https://github.com/napari/napari/commits?author=andy-sweet) - [@andy-sweet](https://github.com/andy-sweet)
-- [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)*
+- [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)\*
 - [Genevieve Buckley](https://github.com/napari/napari/commits?author=GenevieveBuckley) - [@GenevieveBuckley](https://github.com/GenevieveBuckley)
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - [@Czaki](https://github.com/Czaki)
-- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) - [@jni](https://github.com/jni)*
-- [Kevin Yamauchi](https://github.com/napari/napari/commits?author=kevinyamauchi) - [@kevinyamauchi](https://github.com/kevinyamauchi)*
+- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) - [@jni](https://github.com/jni)\*
+- [Kevin Yamauchi](https://github.com/napari/napari/commits?author=kevinyamauchi) - [@kevinyamauchi](https://github.com/kevinyamauchi)\*
 - [Kira Evans](https://github.com/napari/napari/commits?author=kne42) - [@kne42](https://github.com/kne42)
 - [Loic Royer](https://github.com/napari/napari/commits?author=royerloic) - [@royerloic](https://github.com/royerloic)^
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - [@brisvag](https://github.com/brisvag)
@@ -20,7 +20,7 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - [@psobolewskiPhD](https://github.com/psobolewskiPhD)
 - [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - [@tlambert03](https://github.com/tlambert03)^
 
-<sub>* on the napari [steering council](https://napari.org/community/governance.html#steering-council).</sub>
+<sub>\* on the napari [steering council](https://napari.org/community/governance.html#steering-council).</sub>
 
 <sub>^ emeritus [steering council](https://napari.org/community/governance.html#steering-council).</sub>
 
@@ -48,12 +48,12 @@ Read more about napari’s [mission and values](https://napari.org/community/mis
 
 - [Chan Zuckerberg Initiative Foundation.](https://chanzuckerberg.com/science) Representative [Kyle I. S. Harrington](https://github.com/kephale).
 
-    - The napari project and community have been generously supported by the [CZI Science Imaging Program.](https://chanzuckerberg.com/science/programs-resources/imaging/)
-    - Since late 2018, Juan Nunez-Iglesias has been supported by a CZI Imaging Software Fellowship.
-    - The CZI Imaging Tech Team, under the leadership of Nicholas Sofroniew and engineering management of Justine Larsen, has been making direct engineering and design contributions to improve and expand napari.
-    - The CZI Imaging Tech Team has supported [Quansight Labs](https://labs.quansight.org) and independent contractors to improve and expand napari.
-    - The CZI Imaging Tech Team, through an effort led by Justin Kiggins, has created [napari-hub.org](https://www.napari-hub.org/), a site to make discovering and sharing napari plugins easier.
-    - CZI has launched a [grant program](https://chanzuckerberg.com/rfa/napari-plugin-grants/) to help accelerate the napari plugin developer community.
+  - The napari project and community have been generously supported by the [CZI Science Imaging Program.](https://chanzuckerberg.com/science/programs-resources/imaging/)
+  - Since late 2018, Juan Nunez-Iglesias has been supported by a CZI Imaging Software Fellowship.
+  - The CZI Imaging Tech Team, under the leadership of Nicholas Sofroniew and engineering management of Justine Larsen, has been making direct engineering and design contributions to improve and expand napari.
+  - The CZI Imaging Tech Team has supported [Quansight Labs](https://labs.quansight.org) and independent contractors to improve and expand napari.
+  - The CZI Imaging Tech Team, through an effort led by Justin Kiggins, has created [napari-hub.org](https://www.napari-hub.org/), a site to make discovering and sharing napari plugins easier.
+  - CZI has launched a [grant program](https://chanzuckerberg.com/rfa/napari-plugin-grants/) to help accelerate the napari plugin developer community.
 
 The current representative of the Insitutional and Funding Partner Advisory Council on the napari steering council is Nicholas Sofroniew.
 

@@ -64,13 +64,13 @@ napari as part of their official duties, or by committing significant funding
 to napari, as determined by the SC.
 
 This NAP proposes the following benefits for IFPs:
+
 - acknowledgement on the napari website, and in talks about the napari project.
 - ability to promote their contribution on their own sites and communications.
 - ability to improve the project for their specific use cases via their
   engineering, design, and other efforts.
 - ability to provide input to the project via the IFPAC and the IFPAC-elected
   SC member.
-
 
 ## Related Work
 
@@ -106,8 +106,7 @@ An initial proposal for the additions to the governance is included below:
 > a member elected by the Institutional and Funding Partner Advisory Council,
 > as detailed below. This member need not be an existing core developer.
 
-
->### Institutional and Funding Partners
+> ### Institutional and Funding Partners
 >
 > The SC is the primary leadership body for napari. No outside institution,
 > individual or legal entity has the ability to own or control the project
@@ -213,7 +212,6 @@ Agreed, the SC can help promote this rationale.
 NAP-1 does not prescribe the rules for the IFP Advisory Council, but does ask them to describe their
 processes openly.
 
-
 ## References and Footnotes
 
 - [Open Force Field Consortium
@@ -224,13 +222,11 @@ processes openly.
 ## Copyright
 
 This document is dedicated to the public domain with the Creative Commons CC0
-license[^id3]. Attribution to this source is encouraged where appropriate, as
+license\[^id3\]. Attribution to this source is encouraged where appropriate, as
 per CC0+BY[^id4].
 
-[^id3]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
+\[^id3\]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
 <https://creativecommons.org/publicdomain/zero/1.0/>
 
-[^id4]: <https://dancohen.org/2013/11/26/cc0-by/>
-
-[^NumFOCUS-Fiscal-Sponsorship]: https://numfocus.org/projects-overview
-
+[^id4]: https://dancohen.org/2013/11/26/cc0-by/
+[^numfocus-fiscal-sponsorship]: https://numfocus.org/projects-overview

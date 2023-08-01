@@ -97,7 +97,7 @@ subclass of
 which is Octree-specific, see {ref}`future-work-atlas-2D`.
 
 The {class}`~napari._vispy.experimental.texture_atlas.TextureAtlas2D` class
-is a subclass of the generic Vispy ``Texture2D`` class. Like ``Texture2D``
+is a subclass of the generic Vispy `Texture2D` class. Like `Texture2D`
 the {class}`~napari._vispy.experimental.texture_atlas.TextureAtlas2D` class
 owns one texture. However
 {class}`~napari._vispy.experimental.texture_atlas.TextureAtlas2D` uses this
@@ -172,15 +172,16 @@ shows how many ideal chunks are "covered" by a chunk at a higher level:
 
 | Levels Above Ideal | Coverage |
 | -----------------: | -------: |
-| 1                  | 4        |
-| 2                  | 16       |
-| 3                  | 64       |
+|                  1 |        4 |
+|                  2 |       16 |
+|                  3 |       64 |
 
 Although data 3 levels above will be quite blurry, it's pretty amazing you
 can load one chunk and it will cover 64 ideal chunks. This is the heart of
 the power of Octrees, Quadtrees or multiscale images.
 
 (octree-config)=
+
 ### Octree configuration file
 
 Setting `NAPARI_OCTREE=1` enables Octree rendering with the default
@@ -215,24 +216,24 @@ config file format:
 The `loader_defaults` key contains settings that will be used by the
 {class}`~napari.components.experimental.chunk._loader.ChunkLoader`.
 
-| Setting               | Description                                                |
-| :-------------------- | :--------------------------------------------------------- |
-| `log_path`            | Write `ChunkLoader` log file to this path. For debugging.  |
-| `force_synchronous`   | If `true` the `ChunkLoader` loads synchronously.           |
-| `num_workers`         | The number of worker threads or processes.                 |
-| `use_processes`       | If `true` use worker processes instead of threads.         |
-| `auto_async_ms`       | Switch to synchronous if loads are faster than this.       |
-| `delay_queue_ms`      | Delay loads by this much.                                  |
-| `num_workers`         | The number of worker threads or processes.                 |
+| Setting             | Description                                               |
+| :------------------ | :-------------------------------------------------------- |
+| `log_path`          | Write `ChunkLoader` log file to this path. For debugging. |
+| `force_synchronous` | If `true` the `ChunkLoader` loads synchronously.          |
+| `num_workers`       | The number of worker threads or processes.                |
+| `use_processes`     | If `true` use worker processes instead of threads.        |
+| `auto_async_ms`     | Switch to synchronous if loads are faster than this.      |
+| `delay_queue_ms`    | Delay loads by this much.                                 |
+| `num_workers`       | The number of worker threads or processes.                |
 
 The `octree` key contains these settings:
 
-| Setting               | Description                                                |
-| :-------------------- | :--------------------------------------------------------- |
-| `enabled`             | If `false` then use the old `Image` class.                 |
-| `tile_size`           | Size of render tiles to use for rending.                   |
-| `log_path`            | Octree specific log file for debugging.                    |
-| `loaders`             | Optional custom loaders, see below.                        |
+| Setting     | Description                                |
+| :---------- | :----------------------------------------- |
+| `enabled`   | If `false` then use the old `Image` class. |
+| `tile_size` | Size of render tiles to use for rending.   |
+| `log_path`  | Octree specific log file for debugging.    |
+| `loaders`   | Optional custom loaders, see below.        |
 
 The `loaders` key lets you define and configure multiple
 {class}`~napari.components.experimental.chunk._pool.LoaderPool` pools. The
@@ -355,8 +356,8 @@ to stop creating the "extra" downsampled levels, as described in {ref}`future-wo
 tearing down the Octree is fast enough, and make sure loads for the
 previous slices are canceled and everything is cleaned up.
 
-
 (future-work-atlas-2D)=
+
 ### Future work: Extending TextureAtlas2D
 
 We could improve our
@@ -364,9 +365,9 @@ We could improve our
 a number of ways:
 
 1. Support setting the atlas's full texture size on the fly.
-2. Support setting the atlas's tile size on the fly.
-3. Support a mix of tiles sizes in one atlas.
-4. Allow an atlas to have more than one backing texture.
+1. Support setting the atlas's tile size on the fly.
+1. Support a mix of tiles sizes in one atlas.
+1. Allow an atlas to have more than one backing texture.
 
 One reason to consider these changes is so we could support "large tiles"
 in certain cases. Often the coarsest level of multi-scale data "in the

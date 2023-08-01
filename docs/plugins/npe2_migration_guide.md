@@ -78,7 +78,7 @@ The `npe2 convert` command will:
 
 1. Inspect your plugin for hook implementations, and generate an npe2-compatible
    [manifest file](./manifest), called `napari.yaml`.
-2. **Modify** your `setup.cfg` to use the new `napari.manifest` entry point, and
+1. **Modify** your `setup.cfg` to use the new `napari.manifest` entry point, and
    include the manifest file in your package data.
 
 Use the `npe2 convert` command, passing a path to a plugin
@@ -117,16 +117,15 @@ Now, update the local package metadata by repeating:
 The next time napari is run, your plugin should be discovered as an
 `npe2` plugin.
 
-----------------
+______________________________________________________________________
 
 ## Migration Reference
 
 > *This section goes into detail on the differences between first-generation and
-second-generation implementations. In many cases, this will be more detail than
-you need.  If you are still struggling with a specific conversion after using
-`npe2 convert` and reading the [contributions](./contributions) reference and
-[guides](./guides), this section may be of help.*
-
+> second-generation implementations. In many cases, this will be more detail than
+> you need.  If you are still struggling with a specific conversion after using
+> `npe2 convert` and reading the [contributions](./contributions) reference and
+> [guides](./guides), this section may be of help.*
 
 Existing `napari-plugin-engine` plugins expose functionality via *hook
 implementations*. These are functions decorated to indicate they fullfil a
@@ -483,12 +482,4 @@ napari-plugin-engine API, the npe2 adapter will likely become the only way that
 npe1 plugins are supported in the future, and the option to *not* use the npe2
 adaptor will be removed.
 
-
-[epg]: https://packaging.python.org/specifications/entry-points/
-[pd]: https://setuptools.pypa.io/en/latest/userguide/datafiles.html
-[npe1]: https://github.com/napari/napari-plugin-engine
-[npe2]: https://github.com/tlambert03/npe2
-[json]: https://www.json.org/
-[yaml]: https://yaml.org/
-[toml]: https://toml.io/
 [magicgui]: https://napari.org/magicgui

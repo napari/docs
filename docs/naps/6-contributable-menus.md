@@ -112,7 +112,6 @@ This NAP proposes new menu IDs and new top level menus to open for contribution.
 
 ![Right click layer context menu with new menu item and submenu contributed by a plugin](./_static/layer-context-menu.png)
 
-
 ### What do Menu Contributions do?
 
 `MenuItem` contributions can be thought of as auxiliary contributions that
@@ -151,6 +150,7 @@ being acted upon by the actions within the menu, and the likely output of those
 actions.
 
 ### The `Layers` Menu
+
 Currently the foremost example of such an object is the napari `Layers`, and this
 menu therefore contains five submenus organized by the types of processing
 the user may wish to perform on the selected `Layer` or `Layers`.
@@ -160,14 +160,14 @@ feeling of what might happen to their `Layers` as a result of clicking
 one of these menu items.
 
 1. `Visualization` - Items in this submenu allow you to generate visualizations from selected layer or layers.
-They do not change the layer data.
-2. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data.
-3. `Edit` - The items in this submenu change the data of your layer through `Filters` or `Transformations`.
-Additionally `Annotation Tools` provide a location for convenience layer editing tools e.g. `Labels` split/merge actions.
-Items in this submenu **should not** generate new layers, but rather act upon the existing layer data.
-3. `Generate` - Items in this submenu are the main *analysis* actions you can take on your layer.
-These items should add new layers to the viewer based on analyses and processing of data in your selected layer(s).
-The five proposed submenus are `Projection`, `Segmentation`, `Classification`, `Registration` and `Tracks`.
+   They do not change the layer data.
+1. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data.
+1. `Edit` - The items in this submenu change the data of your layer through `Filters` or `Transformations`.
+   Additionally `Annotation Tools` provide a location for convenience layer editing tools e.g. `Labels` split/merge actions.
+   Items in this submenu **should not** generate new layers, but rather act upon the existing layer data.
+1. `Generate` - Items in this submenu are the main *analysis* actions you can take on your layer.
+   These items should add new layers to the viewer based on analyses and processing of data in your selected layer(s).
+   The five proposed submenus are `Projection`, `Segmentation`, `Classification`, `Registration` and `Tracks`.
 
 Many of the actions in this menu exist in the right click layer context menu. These items
 should be replicated in the `Layers` menu as needed, both to aid discoverability and
@@ -485,8 +485,7 @@ containing individual submenus that make sense:
 - does not give the user a good indication of what inputs an action takes and what its output will be
 - is not semantically structured and is rather just a one stop shop for "plugin stuff"
 - will be difficult to extend further in meaningful ways as we develop more complex viewer
-interactions and plugin contributions e.g. multi canvas
-
+  interactions and plugin contributions e.g. multi canvas
 
 ## Discussion
 
@@ -500,16 +499,16 @@ interactions and plugin contributions e.g. multi canvas
 ## References and Footnotes
 
 All NAPs should be declared as dedicated to the public domain with the CC0
-license [^id3], as in `Copyright`, below, with attribution encouraged with
+license \[^id3\], as in `Copyright`, below, with attribution encouraged with
 CC0+BY [^id4].
 
-[^id3]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
-    <https://creativecommons.org/publicdomain/zero/1.0/>
-
-[^id4]: <https://dancohen.org/2013/11/26/cc0-by/>
+\[^id3\]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
+<https://creativecommons.org/publicdomain/zero/1.0/>
 
 ## Copyright
 
 This document is dedicated to the public domain with the Creative Commons CC0
-license [^id3]. Attribution to this source is encouraged where appropriate, as per
+license \[^id3\]. Attribution to this source is encouraged where appropriate, as per
 CC0+BY [^id4].
+
+[^id4]: https://dancohen.org/2013/11/26/cc0-by/

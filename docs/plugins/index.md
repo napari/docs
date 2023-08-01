@@ -1,6 +1,6 @@
 (plugins-index)=
-# Plugins
 
+# Plugins
 
 ```{note}
 These pages describe the process of **building** a plugin.
@@ -39,6 +39,7 @@ recommend migrating to `npe2`. See the
 ```
 
 (how-to-build-a-plugin)=
+
 ## How to build plugins
 
 If you're just getting started with napari plugins, try our
@@ -57,13 +58,10 @@ For special considerations when building a napari plugin, see
 If you have questions, try asking on the [zulip chat][napari_zulip].
 Submit issues to the [napari github repository][napari_issues].
 
-[npe1]: https://github.com/napari/napari-plugin-engine
-[npe2]: https://github.com/napari/npe2
 [napari_issues]: https://github.com/napari/napari/issues/new/choose
 [napari_zulip]: https://napari.zulipchat.com/
-[napari_hub]: https://napari-hub.org
 [readers]: contributions-readers
-[writers]: contributions-writers
-[widgets]: contributions-widgets
 [sample_data]: contributions-sample-data
 [theme]: contributions-themes
+[widgets]: contributions-widgets
+[writers]: contributions-writers

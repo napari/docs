@@ -10,11 +10,11 @@ The module can do several things:
 
 1. Time Qt Events
 
-2. Display a dockable **performance** widget.
+1. Display a dockable **performance** widget.
 
-3. Write JSON trace files viewable with `chrome://tracing`.
+1. Write JSON trace files viewable with `chrome://tracing`.
 
-4. Time any function that you specify in the config file.
+1. Time any function that you specify in the config file.
 
 ## Monitoring vs. profiling
 
@@ -29,7 +29,6 @@ With performance monitoring napari can run at close to full speed in many
 cases. This document discusses only napari's performance monitoring
 features. Profiling napari might be useful as well, but it is not discussed
 here.
-
 
 ## Enabling perfmon
 
@@ -46,8 +45,8 @@ creating a napari `Viewer`.
 Setting `NAPARI_PERFMON=1` does three things:
 
 1. Times Qt Events
-2. Shows the dockable **performance** widget.
-3. Reveals the **Debug** menu which you can use to create a trace file.
+1. Shows the dockable **performance** widget.
+1. Reveals the **Debug** menu which you can use to create a trace file.
 
 ## Configuration file format
 

@@ -34,8 +34,7 @@ with a concrete set of keys and values (the `Context`).
 
 In Python, **expressions** are simple combinations of **values** and
 **operations** that can be reduced to a single value. For example, `1 > 5` is an
-expression that always reduces to the value `False` when evaluated.  `x > 5 and
-y == 'hello'` is also an expression that reduces to a boolean value; however, in
+expression that always reduces to the value `False` when evaluated.  `x > 5 and y == 'hello'` is also an expression that reduces to a boolean value; however, in
 order to evaluate that expression, we need to be able to fill in the values for
 the variable **names** "`x`" and "`y`". Those values are provided by some
 **context** (or "namespace"), which maps the variable names to their values.
@@ -43,16 +42,16 @@ the variable **names** "`x`" and "`y`". Those values are provided by some
 The value of an `expression` depends on the context in which it is evaluated.
 
 ```python
-In [1]: expression = "x > 5 and y == 'hello'"
+In[1]: expression = "x > 5 and y == 'hello'"
 
-In [2]: context_a = {'x': 7, 'y': 'hello'}
+In[2]: context_a = {"x": 7, "y": "hello"}
 
-In [3]: context_b = {'x': 8, 'y': 'howdie!'}
+In[3]: context_b = {"x": 8, "y": "howdie!"}
 
-In [4]: eval(expression, context_a)
+In[4]: eval(expression, context_a)
 Out[4]: True
 
-In [5]: eval(expression, context_b)
+In[5]: eval(expression, context_b)
 Out[5]: False
 ```
 
@@ -104,7 +103,7 @@ The expression object can be evaluated by passing a context (a Mapping) to
 its `eval` method:
 
 ```python
-In [9]: expr.eval({'x': 7, 'y': 'hello'})
+In[9]: expr.eval({"x": 7, "y": "hello"})
 Out[9]: True
 ```
 
@@ -120,15 +119,16 @@ Out[11]: False
 The following operators are supported:
 
 ```
+
 | Operator     | Symbol  | Example                                             |
-|--------------|---------|-----------------------------------------------------|
+| ------------ | ------- | --------------------------------------------------- |
 | Equality     | ==      | "active_layer_type == image"                        |
 | Inequality   | !=      | "active_layer_type != labels"                       |
 | Or           | \|      | "active_layer_is_rgb \| all_layers_same_shape"      |
 | And          | &       | "active_layer_is_rgb & all_layers_same_shape"       |
 | Not          | ~       | ~active_layer_is_rgb                                |
 | Greater than | > >=    | "unselected_linked_layers >= 1"                     |
-| Less than    | < <=    | "layers_selection_count < 2"                        |
+| Less than    | \< \<=  | "layers_selection_count \< 2"                       |
 | Math         | + - * / | "layers_selection_count + unselected_linked_layers" |
 
 ### napari context keys
@@ -148,16 +148,15 @@ command:
 
 Some example context key names (currently) include:
 
-| Name     | Description |
-| -------- | -------- |
-| `layers_selection_count`  | Number of layers currently selected  |
-| `all_layers_linked`  | True when all selected layers are linked  |
-| `active_layer_is_rgb`  | True when the active layer is RGB  |
-| `active_layer_type`  | Lowercase name of active layer type, or None if no layer is active.  |
-| `only_images_selected`  | True when there is at least one selected layer and all selected layers are images  |
-| `active_layer_ndim` | Number of dimensions in the active layer, or `None` if nothing is active |
-...  many more
-
+| Name                     | Description                                                                       |
+| ------------------------ | --------------------------------------------------------------------------------- |
+| `layers_selection_count` | Number of layers currently selected                                               |
+| `all_layers_linked`      | True when all selected layers are linked                                          |
+| `active_layer_is_rgb`    | True when the active layer is RGB                                                 |
+| `active_layer_type`      | Lowercase name of active layer type, or None if no layer is active.               |
+| `only_images_selected`   | True when there is at least one selected layer and all selected layers are images |
+| `active_layer_ndim`      | Number of dimensions in the active layer, or `None` if nothing is active          |
+| ...  many more           |                                                                                   |
 
 ### `ContextKey` objects
 
@@ -175,6 +174,7 @@ declared as class attributes on a `ContextNamespace` class:
 
 ```python
 # all of the getters here receive an instance of viewer.layers.selection
+
 
 class LayerListContextKeys(ContextNamespace):
     layers_selection_count = ContextKey(
@@ -211,9 +211,9 @@ mappingproxy({
 A nice aspect of `ContextKeys` is that they can be used in expressions:
 
 ```python
-In [14]: expr = LayerListContextKeys.active_layer_ndim >= 3
+In[14]: expr = LayerListContextKeys.active_layer_ndim >= 3
 
-In [15]: expr.eval({'active_layer_ndim': 2})
+In[15]: expr.eval({"active_layer_ndim": 2})
 Out[15]: False
 ```
 
@@ -277,21 +277,22 @@ Out[3]: Context(
     SettingsAwareContext({})
 )
 ```
+
 The "root" context is a special `SettingsAwareContext` that can access keys in
 the global `settings`.  Because contexts are `ChainMaps`, they can all access
 the settings:
 
 ```python
-In [4]: ctx['settings.appearance.theme']
-Out[4]: 'dark'
+In[4]: ctx["settings.appearance.theme"]
+Out[4]: "dark"
 ```
 
 When we evaluate an expression, we can provide it one of these context objects:
 
 ```python
-In [5]: expr = LayerListContextKeys.layers_selection_count > 0
+In[5]: expr = LayerListContextKeys.layers_selection_count > 0
 
-In [6]: expr.eval(ctx)
+In[6]: expr.eval(ctx)
 Out[6]: False
 ```
 
@@ -304,19 +305,19 @@ the keys in their contexts. The aforementioned
 instance.
 
 ```python
-In [6]: ctx = get_context(viewer.layers)
+In[6]: ctx = get_context(viewer.layers)
 
-In [7]: llck = LayerListContextKeys(ctx)
+In[7]: llck = LayerListContextKeys(ctx)
 ```
 
 Attributes of an instantiated `ContextNamespace` now act as getters (and
 setters!) of their respective `ContextKey` in the associated `Context`.
 
 ```python
-In [8]: llck.layers_selection_count
+In[8]: llck.layers_selection_count
 Out[8]: 0
 
-In [9]: ctx['layers_selection_count']
+In[9]: ctx["layers_selection_count"]
 Out[9]: 0
 ```
 
@@ -345,53 +346,53 @@ Out[12]: 1
 
 1. napari creates special context "names" using `ContextKey` and `ContextNamespace`
 
-    ```python
-    class LayerListContextKeys(ContextNamespace):
-        active_layer_type = ContextKey(
-            None,
-            "Lowercase name of active layer type, or None of none active.",
-            lambda s: s.active and s.active._type_string
-        )
-        active_layer_is_rgb = ContextKey(
-            False,
-            "True when the active layer is RGB",
-            lambda s: getattr(s.active, "rgb", False)
-        )
-    ```
+   ```python
+   class LayerListContextKeys(ContextNamespace):
+       active_layer_type = ContextKey(
+           None,
+           "Lowercase name of active layer type, or None of none active.",
+           lambda s: s.active and s.active._type_string,
+       )
+       active_layer_is_rgb = ContextKey(
+           False,
+           "True when the active layer is RGB",
+           lambda s: getattr(s.active, "rgb", False),
+       )
+   ```
 
-2. _Internally_ (in napari code), we can use those objects directly to declare
+1. _Internally_ (in napari code), we can use those objects directly to declare
    expressions in an IDE-friendly way.  For example, here we are declaratively
    populating the layer-list context menu; this is a function that will split
    the current stack into multiple layers, but it is only enabled when the
    selected image is a (non-RGB) `Image` layer.
 
-    ```python
-    'napari:split_stack': {
-        'description': trans._('Split Stack'),
-        'action': _split_stack,
-        'enable_when': LLCK.active_layer_type == "image",
-        'show_when': ~LLCK.active_layer_is_rgb,
-    }
-    ```
+   ```python
+   "napari:split_stack": {
+       "description": trans._("Split Stack"),
+       "action": _split_stack,
+       "enable_when": LLCK.active_layer_type == "image",
+       "show_when": ~LLCK.active_layer_is_rgb,
+   }
+   ```
 
-3. _Externally_ (in plugin manifests), plugin developers use the string form to
+1. _Externally_ (in plugin manifests), plugin developers use the string form to
    express conditions.  For example, this plugin manifest offers up a command
    (just a callable) that is only enabled when the the active layer is an RGB
    image.
 
-    ```yaml
-    name: my_plugin
-    commands:
-      id: my_plugin.some_command
-      when: active_layer_is_rgb
-    ```
+   ```yaml
+   name: my_plugin
+   commands:
+     id: my_plugin.some_command
+     when: active_layer_is_rgb
+   ```
 
-    When this manifest is parsed, those expressions will be converted into
-    napari `Expr` objects internally.
+   When this manifest is parsed, those expressions will be converted into
+   napari `Expr` objects internally.
 
-4. During runtime, napari maintains and [updates contexts](#updating-contexts)
+1. During runtime, napari maintains and [updates contexts](#updating-contexts)
 
-5. As these contexts are updated, they emit events that allow menus, keybindings,
+1. As these contexts are updated, they emit events that allow menus, keybindings,
    and other things to update themselves accordingly.  For example, the layer-list
    context menu might update the items in the menu that are visible and/or enabled:
 
@@ -403,10 +404,10 @@ Out[12]: 1
    updates all of the "action" items in the menu according to their `when`
    clauses (declared internally or externally in steps 3 and 4)
 
-    ```python
-    # pseudocode
-    def update_from_context(self, context):
-        for item in self.actions():
-            expression = item.when  # or however you get the expression
-            item.setEnabled(expression.eval(ctx))
-    ```
+   ```python
+   # pseudocode
+   def update_from_context(self, context):
+       for item in self.actions():
+           expression = item.when  # or however you get the expression
+           item.setEnabled(expression.eval(ctx))
+   ```

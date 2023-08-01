@@ -68,9 +68,7 @@ def make_bbox(bbox_extents):
     maxr = bbox_extents[2]
     maxc = bbox_extents[3]
 
-    bbox_rect = np.array(
-        [[minr, minc], [maxr, minc], [maxr, maxc], [minr, maxc]]
-    )
+    bbox_rect = np.array([[minr, minc], [maxr, minc], [maxr, maxc], [minr, maxc]])
     bbox_rect = np.moveaxis(bbox_rect, 2, 0)
 
     return bbox_rect
@@ -91,7 +89,7 @@ def circularity(perimeter, area):
     circularity : float
         The circularity of the region as defined by 4*pi*area / perimeter^2
     """
-    circularity = 4 * np.pi * area / (perimeter ** 2)
+    circularity = 4 * np.pi * area / (perimeter**2)
 
     return circularity
 
@@ -102,43 +100,41 @@ label_image = segment(image)
 
 # create the properties dictionary
 properties = regionprops_table(
-    label_image, properties=('label', 'bbox', 'perimeter', 'area')
+    label_image, properties=("label", "bbox", "perimeter", "area")
 )
-properties['circularity'] = circularity(
-    properties['perimeter'], properties['area']
-)
+properties["circularity"] = circularity(properties["perimeter"], properties["area"])
 
 # create the bounding box rectangles
-bbox_rects = make_bbox([properties[f'bbox-{i}'] for i in range(4)])
+bbox_rects = make_bbox([properties[f"bbox-{i}"] for i in range(4)])
 
 # specify the display parameters for the text
 text_parameters = {
-    'string': 'label: {label}\ncirc: {circularity:.2f}',
-    'size': 12,
-    'color': 'green',
-    'anchor': 'upper_left',
-    'translation': [-3, 0],
+    "string": "label: {label}\ncirc: {circularity:.2f}",
+    "size": 12,
+    "color": "green",
+    "anchor": "upper_left",
+    "translation": [-3, 0],
 }
 
 # initialise viewer with coins image
-viewer = napari.view_image(image, name='coins', rgb=False)
+viewer = napari.view_image(image, name="coins", rgb=False)
 
 # add the labels
-label_layer = viewer.add_labels(label_image, name='segmentation')
+label_layer = viewer.add_labels(label_image, name="segmentation")
 
 shapes_layer = viewer.add_shapes(
     bbox_rects,
-    face_color='transparent',
-    edge_color='green',
+    face_color="transparent",
+    edge_color="green",
     properties=properties,
     text=text_parameters,
-    name='bounding box',
+    name="bounding box",
 )
 napari.run()
-
 ```
 
 ## Segmentation
+
 We start by defining a function to perform segmentation of an image based on intensity. Based on the [skimage segmentation example](https://scikit-image.org/docs/stable/auto_examples/applications/plot_thresholding.html), we determine the threshold intensity that separates the foreground and background pixels using [Otsu's method](https://en.wikipedia.org/wiki/Otsu%27s_method). We then perform some cleanup and generate a label image where each discrete region is given a unique integer index.
 
 ```python
@@ -178,10 +174,10 @@ image = data.coins()[50:-50, 50:-50]
 label_image = segment(image)
 
 # initialize viewer with coins image
-viewer = napari.view_image(image, name='coins', rgb=False)
+viewer = napari.view_image(image, name="coins", rgb=False)
 
 # add the labels
-label_layer = viewer.add_labels(label_image, name='segmentation')
+label_layer = viewer.add_labels(label_image, name="segmentation")
 
 napari.run()
 ```
@@ -195,7 +191,7 @@ Next, we use [`regionprops_table`](https://scikit-image.org/docs/dev/api/skimage
 ```python
 # create the properties dictionary
 properties = regionprops_table(
-    label_image, properties=('label', 'bbox', 'perimeter', 'area')
+    label_image, properties=("label", "bbox", "perimeter", "area")
 )
 ```
 
@@ -203,19 +199,24 @@ Conveniently, `regionprops_table()` returns a dictionary in the same format as t
 
 ```python
 {
-	'label': array([1, 2, 3, 4, 5, 6, 7, 8]),
-	'bbox-0': array([ 46,  55,  57,  60, 120, 122, 125, 129]),
-	'bbox-1': array([195, 136,  34,  84, 139, 201,  30,  85]),
-	'bbox-2': array([ 94,  94,  95,  95, 166, 166, 167, 167]),
-	'bbox-3': array([246, 177,  72, 124, 187, 247,  74, 124]),
-	'perimeter':
-		array(
-			[
-				165.88225099, 129.05382387, 123.98275606, 121.98275606,
-       			155.88225099, 149.05382387, 140.46803743, 125.39696962
-       		]
-   		),
-   	'area': array([1895, 1212, 1124, 1102, 1720, 1519, 1475, 1155])
+    "label": array([1, 2, 3, 4, 5, 6, 7, 8]),
+    "bbox-0": array([46, 55, 57, 60, 120, 122, 125, 129]),
+    "bbox-1": array([195, 136, 34, 84, 139, 201, 30, 85]),
+    "bbox-2": array([94, 94, 95, 95, 166, 166, 167, 167]),
+    "bbox-3": array([246, 177, 72, 124, 187, 247, 74, 124]),
+    "perimeter": array(
+        [
+            165.88225099,
+            129.05382387,
+            123.98275606,
+            121.98275606,
+            155.88225099,
+            149.05382387,
+            140.46803743,
+            125.39696962,
+        ]
+    ),
+    "area": array([1895, 1212, 1124, 1102, 1720, 1519, 1475, 1155]),
 }
 ```
 
@@ -237,7 +238,7 @@ def circularity(perimeter, area):
     circularity : float
         The circularity of the region as defined by 4*pi*area / perimeter^2
     """
-    circularity = 4 * np.pi * area / (perimeter ** 2)
+    circularity = 4 * np.pi * area / (perimeter**2)
 
     return circularity
 ```
@@ -245,9 +246,7 @@ def circularity(perimeter, area):
 We can then calculate the circularity of each region and save it as a property.
 
 ```python
-properties['circularity'] = circularity(
-    properties['perimeter'], properties['area']
-)
+properties["circularity"] = circularity(properties["perimeter"], properties["area"])
 ```
 
 We will use a napari shapes layer to visualize the bounding box of the segmentation. The napari shapes layer requires each shape to be defined by the coordinates of corner. Since regionprops returns the bounding box as a tuple of `(min_row, min_column, max_row, max_column)` we define a function `make_bbox()` to convert the regionprops bounding box to the napari shapes format.
@@ -274,9 +273,7 @@ def make_bbox(bbox_extents):
     maxr = bbox_extents[2]
     maxc = bbox_extents[3]
 
-    bbox_rect = np.array(
-        [[minr, minc], [maxr, minc], [maxr, maxc], [minr, maxc]]
-    )
+    bbox_rect = np.array([[minr, minc], [maxr, minc], [maxr, maxc], [minr, maxc]])
     bbox_rect = np.moveaxis(bbox_rect, 2, 0)
 
     return bbox_rect
@@ -286,20 +283,21 @@ Finally, we can use an list comprension to pass the bounding box extents to `mak
 
 ```python
 # create the bounding box rectangles
-bbox_rects = make_bbox([properties[f'bbox-{i}'] for i in range(4)])
+bbox_rects = make_bbox([properties[f"bbox-{i}"] for i in range(4)])
 ```
 
 ## Visualizing the segmentation results
+
 Now that we have performed out analysis, we can visualize the results in napari. To do so, we will utilize 3 napari layer types: (1) Image, (2) Labels, and (3) Shapes.
 
 As we saw above in the segmentation section, we can visualize the original image and the resulting label images as follows:
 
 ```python
 # initialise viewer with coins image
-viewer = napari.view_image(image, name='coins', rgb=False)
+viewer = napari.view_image(image, name="coins", rgb=False)
 
 # add the labels
-label_layer = viewer.add_labels(label_image, name='segmentation')
+label_layer = viewer.add_labels(label_image, name="segmentation")
 
 napari.run()
 ```
@@ -307,12 +305,9 @@ napari.run()
 Next, we will use the Shapes layer to overlay the bounding boxes for each detected object as well as display the calculated circularity. The code for creating the Shapes layer is listed here and each keyword argument is explained below.
 
 ```python
-    shapes_layer = viewer.add_shapes(
-        bbox_rects,
-        face_color='transparent',
-        edge_color='green',
-        name='bounding box'
-    )
+shapes_layer = viewer.add_shapes(
+    bbox_rects, face_color="transparent", edge_color="green", name="bounding box"
+)
 ```
 
 ![napari viewer showing eight roughly circular shapes, each colored differently. Each shape has a bounding box automatically generated around it.](../assets/tutorials/segmentation_bbox.png)
@@ -320,17 +315,18 @@ Next, we will use the Shapes layer to overlay the bounding boxes for each detect
 The first positional argument (`bbox_rects`) contains the bounding boxes we created above. We specified that the face of each bounding box has no color (`face_color='transparent'`) and the edges of the bounding box are green (`edge_color='green'`). Finally, the name of the layer displayed in the layer list in the napari GUI is `bounding box` (`name='bounding box'`).
 
 ## Annotating shapes with text
+
 We can further annotate our analysis by using text to display properties of each segmentation. The code to create a shapes layer with text is pasted here and explained below.
 
 ```python
-    shapes_layer = viewer.add_shapes(
-        bbox_rects,
-        face_color='transparent',
-        edge_color='green',
-        properties=properties,
-        text=text_parameters,
-        name='bounding box'
-    )
+shapes_layer = viewer.add_shapes(
+    bbox_rects,
+    face_color="transparent",
+    edge_color="green",
+    properties=properties,
+    text=text_parameters,
+    name="bounding box",
+)
 ```
 
 We will use `Shapes.properties` to store the annotations for each bounding box. The properties are definined as a dictionary where each key is the name of the property (i.e., label, circularity) and the values are arrays where each element contains the value for the corresponding shape (i.e., index matched to the Shape data). As a reminder, we created `labels` and `circularity` above and each is a list containing where each element is property value for the corresponding (i.e., index matched) shape.
@@ -338,8 +334,8 @@ We will use `Shapes.properties` to store the annotations for each bounding box. 
 ```python
 # create the properties dictionary
 properties = {
-    'label': labels,
-    'circularity': circularity,
+    "label": labels,
+    "circularity": circularity,
 }
 ```
 
@@ -347,11 +343,11 @@ Each bounding box can be annotated with text drawn from the layer `properties`. 
 
 ```python
 text_parameters = {
-    'string': 'label: {label}\ncirc: {circularity:.2f}',
-    'size': 12,
-    'color': 'green',
-    'anchor': 'upper_left',
-    'translation': [-3, 0]
+    "string": "label: {label}\ncirc: {circularity:.2f}",
+    "size": 12,
+    "color": "green",
+    "anchor": "upper_left",
+    "translation": [-3, 0],
 }
 ```
 
@@ -371,38 +367,39 @@ All together, the visualization code is:
 ```python
 # create the properties dictionary
 properties = {
-    'label': labels,
-    'circularity': circularity,
+    "label": labels,
+    "circularity": circularity,
 }
 
 # specify the display parameters for the text
 text_kwargs = {
-    'string': 'label: {label}\ncirc: {circularity:.2f}',
-    'size': 12,
-    'color': 'green',
-    'anchor': 'upper_left',
-    'translation': [-3, 0]
+    "string": "label: {label}\ncirc: {circularity:.2f}",
+    "size": 12,
+    "color": "green",
+    "anchor": "upper_left",
+    "translation": [-3, 0],
 }
 
 # initialise viewer with coins image
-viewer = napari.view_image(image, name='coins', rgb=False)
+viewer = napari.view_image(image, name="coins", rgb=False)
 
 # add the labels
-label_layer = viewer.add_labels(label_image, name='segmentation')
+label_layer = viewer.add_labels(label_image, name="segmentation")
 
 shapes_layer = viewer.add_shapes(
     bbox_rects,
-    face_color='transparent',
-    edge_color='green',
+    face_color="transparent",
+    edge_color="green",
     properties=properties,
     text=text_parameters,
-    name='bounding box'
+    name="bounding box",
 )
 
 napari.run()
 ```
 
 ## Summary
+
 In this tutorial, we have used napari to view and annotate segmentation results.
 
 ![napari viewer showing eight roughly circular shapes. The shapes are classified according to circularity and have bounding boxes automatically generated around them showing a circularity parameter and an integer for a label.](../assets/tutorials/annotated_bbox.png)

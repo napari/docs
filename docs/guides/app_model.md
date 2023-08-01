@@ -130,7 +130,6 @@ type.  It composes an
 and
 [`app_model.types.KeyBindingRule`](https://app-model.readthedocs.io/en/latest/types/#app_model.types.KeyBindingRule).
 
-
 The following code would register a new "Split RGB" command, to be added to a
 specific section of the layerlist context menu, with a `Cmd+Alt+T` keybinding.
 
@@ -146,7 +145,7 @@ from napari._app_model import get_app
 
 
 # `layers` will be injected layer when this action is invoked
-def split_rgb_layer(layers: 'LayerList'):
+def split_rgb_layer(layers: "LayerList"):
     ...
 
 
@@ -154,14 +153,14 @@ action = Action(
     id=CommandId.LAYER_SPLIT_RGB,
     title=CommandId.LAYER_SPLIT_RGB.title,
     callback=split_rgb_layer,
-    menus = [
+    menus=[
         {
-            'id': MenuId.LAYERLIST_CONTEXT,
-            'group': MenuGroup.LAYERLIST_CONTEXT.SPLIT_MERGE,
-            'when': LLCK.active_layer_is_rgb,
+            "id": MenuId.LAYERLIST_CONTEXT,
+            "group": MenuGroup.LAYERLIST_CONTEXT.SPLIT_MERGE,
+            "when": LLCK.active_layer_is_rgb,
         }
     ],
-    keybindings=[{'primary': KeyMod.CtrlCmd | KeyMod.Alt | KeyCode.KeyT }]
+    keybindings=[{"primary": KeyMod.CtrlCmd | KeyMod.Alt | KeyCode.KeyT}],
 )
 
 get_app().register_action(action)
@@ -198,7 +197,7 @@ A user/plugin provides a function
 ```python
 # some user provided function declares a need
 # for Points by using type annotations.
-def process_points(points: 'Points'):
+def process_points(points: "Points"):
     # do something with points
     print(points.name)
 ```
@@ -209,17 +208,16 @@ the `get_app().injection_store`
 ```python
 from napari._app_model import get_app
 
+
 # return annotation indicates what this provider provides
-def provide_points() -> Optional['Points']:
+def provide_points() -> Optional["Points"]:
     import napari.viewer
     from napari.layers import Points
 
     viewer = napari.viewer.current_viewer()
     if viewer is not None:
-        return next(
-            (i for i in viewer.layers if isinstance(i, Points)),
-            None
-        )
+        return next((i for i in viewer.layers if isinstance(i, Points)), None)
+
 
 get_app().injection_store.register_provider(provide_points)
 ```

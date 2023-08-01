@@ -1,4 +1,5 @@
 (napari-contributing)=
+
 # Contributing guide
 
 We welcome your contributions! Please see the provided steps below and never hesitate to contact us.
@@ -6,6 +7,7 @@ We welcome your contributions! Please see the provided steps below and never hes
 If you are a new user, we recommend checking out the detailed [Github Docs](https://docs.github.com/en).
 
 (dev-installation)=
+
 ## Setting up a development installation
 
 In order to make changes to `napari`, you will need to [fork](https://docs.github.com/en/get-started/quickstart/contributing-to-projects#forking-a-repository) the
@@ -13,71 +15,76 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
 
 1. Clone the forked repository to your local machine and change directories:
 
-    ```sh
-    git clone https://github.com/your-username/napari.git
-    cd napari
-    ```
+   ```sh
+   git clone https://github.com/your-username/napari.git
+   cd napari
+   ```
 
-2. Set the `upstream` remote to the base `napari` repository:
+1. Set the `upstream` remote to the base `napari` repository:
 
-    ```sh
-    git remote add upstream https://github.com/napari/napari.git
-    ```
+   ```sh
+   git remote add upstream https://github.com/napari/napari.git
+   ```
 
-3. If you haven't already, create a development environment:
+1. If you haven't already, create a development environment:
 
-    ::::{tab-set}
+   ::::{tab-set}
 
-    :::{tab-item} Using `conda`
-    After [installing `conda`](https://www.anaconda.com/products/distribution), create an environment called `napari-env` with Python {{ python_version }} and activate it.
+   :::{tab-item} Using `conda`
+   After [installing `conda`](https://www.anaconda.com/products/distribution), create an environment called `napari-env` with Python {{ python_version }} and activate it.
 
-    {{ conda_create_env }}
-    :::
+   {{ conda_create_env }}
+   :::
 
-    :::{tab-item} Using `venv`
-    After installing Python on your machine, create a virtual environment on your terminal and activate it. On Linux and MacOS, you can run
-    ```sh
-    python -m venv <path-to-env>
-    source <path-to-env>/bin/activate
-    ```
-    See the [venv](https://docs.python.org/3/library/venv.html) documentation for instructions on Windows.
-    :::
+   :::{tab-item} Using `venv`
+   After installing Python on your machine, create a virtual environment on your terminal and activate it. On Linux and MacOS, you can run
 
-    ::::
+   ```sh
+   python -m venv <path-to-env>
+   source <path-to-env>/bin/activate
+   ```
 
-    ```{note}
-    It is highly recommended to create a fresh environment when working with
-    napari, to prevent issues with outdated or conflicting packages in your
-    development environment.
-    ```
+   See the [venv](https://docs.python.org/3/library/venv.html) documentation for instructions on Windows.
+   :::
 
-4. Install the package in editable mode, along with all of the developer tools.
+   ::::
 
-    If you only want to use napari, you can install it on most macOS, Linux and
-    Windows systems with Python {{ python_version_range }}
-    by following the directions on the
-    [instructions page](../tutorials/fundamentals/installation.md#install-as-python-package-recommended).
+   ```{note}
+   It is highly recommended to create a fresh environment when working with
+   napari, to prevent issues with outdated or conflicting packages in your
+   development environment.
+   ```
 
-    napari supports different Qt backends, and you can choose which one to install and use.
+1. Install the package in editable mode, along with all of the developer tools.
 
-    For example, for PyQt5, the default, you would use the following:
-    ```sh
-    pip install -e ".[pyqt,dev]"  # (quotes only needed for zsh shell)
-    ```
+   If you only want to use napari, you can install it on most macOS, Linux and
+   Windows systems with Python {{ python_version_range }}
+   by following the directions on the
+   [instructions page](../tutorials/fundamentals/installation.md#install-as-python-package-recommended).
 
-    If you want to use PySide2 instead, you would use:
-    ```sh
-    pip install -e ".[pyside,dev]"  # (quotes only needed for zsh shell)
-    ```
+   napari supports different Qt backends, and you can choose which one to install and use.
 
-    Finally, if you already have a Qt backend installed or want to use an experimental one like Qt6 use:
-    ```sh
-    pip install -e ".[dev]"  # (quotes only needed for zsh shell)
-    ```
+   For example, for PyQt5, the default, you would use the following:
 
-    Note that in this last case you will need to install your Qt backend separately.
+   ```sh
+   pip install -e ".[pyqt,dev]"  # (quotes only needed for zsh shell)
+   ```
 
-5. We use [`pre-commit`](https://pre-commit.com) to format code with
+   If you want to use PySide2 instead, you would use:
+
+   ```sh
+   pip install -e ".[pyside,dev]"  # (quotes only needed for zsh shell)
+   ```
+
+   Finally, if you already have a Qt backend installed or want to use an experimental one like Qt6 use:
+
+   ```sh
+   pip install -e ".[dev]"  # (quotes only needed for zsh shell)
+   ```
+
+   Note that in this last case you will need to install your Qt backend separately.
+
+1. We use [`pre-commit`](https://pre-commit.com) to format code with
    [`black`](https://github.com/psf/black) and lint with
    [`ruff`](https://github.com/charliermarsh/ruff) automatically prior to each commit.
    To minimize test errors when submitting pull requests, please install `pre-commit`
@@ -113,6 +120,7 @@ Now you are all set to start developing with napari.
 If you wish to contribute documentation changes to napari, please read the [guide on contributing documentation](documentation/index.md).
 
 (add-examples)=
+
 ## Adding examples to the [Gallery](gallery)
 
 All of the examples in the [examples Gallery](gallery) are Python scripts that
@@ -143,7 +151,7 @@ import napari
 # create the viewer with an image
 viewer = napari.view_image(data.astronaut(), rgb=True)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     napari.run()
 ```
 
@@ -169,6 +177,7 @@ is not necessary—you can copy-paste the code above it. However, it is required
 Because our example gallery is built from Python scripts, you need to ensure this
 block is present in all contributed examples.
 ````
+
 ## Adding icons
 
 If you want to add a new icon to the app, make the icon in whatever program you
@@ -205,17 +214,16 @@ replace the values with your new colors.  For example
 from napari.utils.theme import get_theme, register_theme
 
 
-blue_theme = get_theme('dark')
+blue_theme = get_theme("dark")
 blue_theme.update(
-    background='rgb(28, 31, 48)',
-    foreground='rgb(45, 52, 71)',
-    primary='rgb(80, 88, 108)',
-    current='rgb(184, 112, 0)',
+    background="rgb(28, 31, 48)",
+    foreground="rgb(45, 52, 71)",
+    primary="rgb(80, 88, 108)",
+    current="rgb(184, 112, 0)",
 )
 
-register_theme('blue', blue_theme)
+register_theme("blue", blue_theme)
 ```
-
 
 To test out the theme, use the
 `qt_theme_sample.py` file from the command line as follows:
@@ -223,10 +231,13 @@ To test out the theme, use the
 ```sh
 python -m napari._qt.widgets.qt_theme_sample
 ```
+
 *note*: you may specify a theme with one additional argument on the command line:
+
 ```sh
 python -m napari._qt.widgets.qt_theme_sample dark
 ```
+
 (providing no arguments will show all themes in `theme.py`)
 
 ## Translations
@@ -253,17 +264,20 @@ To learn more, please see the {ref}`translations guide <translations>`.
 ## Making changes
 
 Create a new feature branch:
+
 ```sh
 git checkout main -b your-branch-name
 ```
 
 `git` will automatically detect changes to a repository.
 You can view them with:
+
 ```sh
 git status
 ```
 
 Add and commit your changed files:
+
 ```sh
 git add my-file-or-directory
 git commit -m "my message"
@@ -288,22 +302,26 @@ To set it, use `git config --global user.email your-address@example.com`.
 ## Keeping your branches up-to-date
 
 Switch to the `main` branch:
+
 ```sh
 git checkout main
 ```
 
 Fetch changes and update `main`:
+
 ```sh
 git pull upstream main --tags
 ```
 
 This is shorthand for:
+
 ```sh
 git fetch upstream main --tags
 git merge upstream/main
 ```
 
 Update your other branches:
+
 ```sh
 git checkout your-branch-name
 git merge main
@@ -312,6 +330,7 @@ git merge main
 ## Sharing your changes
 
 Update your remote branch:
+
 ```sh
 git push -u origin your-branch-name
 ```

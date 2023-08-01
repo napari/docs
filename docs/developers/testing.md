@@ -1,4 +1,5 @@
 (napari-testing)=
+
 # Testing
 
 ## Overview
@@ -7,13 +8,13 @@ We use unit tests, integration tests, and functional tests to ensure that
 `napari` works as intended. We have
 
 - Unit tests which test if individual modules or functions work correctly
-in isolation.
+  in isolation.
 
 - Integration tests which test if different modules or functions work properly
-when combined.
+  when combined.
 
 - Functional tests which test if slices of `napari` functionality work as
-intended in the whole system.
+  intended in the whole system.
 
 To get the most return on investment (ROI) from our coding, we strive to test as
 much as we can with unit tests, requiring fewer integration tests, and the least number
@@ -45,7 +46,7 @@ of tests.
 To run our test suite locally, run `pytest` on the command line.  If, for some reason
 you don't already have the test requirements in your environment, run `python -m pip install -e .[testing]`.
 
-There are a very small number of tests (<5) that require showing GUI elements, (such
+There are a very small number of tests (\<5) that require showing GUI elements, (such
 as testing screenshots). By default, these are only run during continuous integration.
 If you'd like to include them in local tests, set the environment variable "CI":
 
@@ -113,16 +114,16 @@ you create during testing are cleaned up at the end of each test:
 1. If you need a `QApplication` to be running for your test, you can use the
    [`qtbot`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot) fixture from `pytest-qt`
 
-    > note: fixtures in pytest can be a little mysterious, since it's not always
-    > clear where they are coming from.  In this case, using a pytest-qt fixture
-    > looks like this:
+   > note: fixtures in pytest can be a little mysterious, since it's not always
+   > clear where they are coming from.  In this case, using a pytest-qt fixture
+   > looks like this:
 
-    ```python
-    # just by putting `qtbot` in the list of arguments
-    # pytest-qt will start up an event loop for you
-    def test_something(qtbot):
-        ...
-    ```
+   ```python
+   # just by putting `qtbot` in the list of arguments
+   # pytest-qt will start up an event loop for you
+   def test_something(qtbot):
+       ...
+   ```
 
    `qtbot` provides a convenient
    [`addWidget`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot.addWidget)
@@ -131,15 +132,15 @@ you create during testing are cleaned up at the end of each test:
    convenient methods for interacting with your GUI tests (clicking, waiting
    signals, etc...).  See the [`qtbot` docs](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot) for details.
 
-    ```python
-    # the qtbot provides convenience methods like addWidget
-    def test_something_else(qtbot):
-        widget = QWidget()
-        qtbot.addWidget(widget)  # tell qtbot to clean this widget later
-        ...
-    ```
+   ```python
+   # the qtbot provides convenience methods like addWidget
+   def test_something_else(qtbot):
+       widget = QWidget()
+       qtbot.addWidget(widget)  # tell qtbot to clean this widget later
+       ...
+   ```
 
-2. When writing a test that requires a `napari.Viewer` object, we provide a
+1. When writing a test that requires a `napari.Viewer` object, we provide a
    [pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html) called
    `make_napari_viewer` that will take care of creating a viewer and cleaning up
    at the end of the test.  When using this function, it is **not** necessary to
@@ -147,15 +148,15 @@ you create during testing are cleaned up at the end of each test:
    using `qtbot.addWidget` or calling `viewer.close()`) at the end of the test.
    Duplicate cleanup may cause an error.  Use the fixture as follows:
 
-    ```python
-    # the make_napari_viewer fixture is defined in napari/utils/_testsupport.py
-    def test_something_with_a_viewer(make_napari_viewer):
-        # make_napari_viewer takes any keyword arguments that napari.Viewer() takes
-        viewer = make_napari_viewer()
+   ```python
+   # the make_napari_viewer fixture is defined in napari/utils/_testsupport.py
+   def test_something_with_a_viewer(make_napari_viewer):
+       # make_napari_viewer takes any keyword arguments that napari.Viewer() takes
+       viewer = make_napari_viewer()
 
-        # do stuff with the viewer, no qtbot or viewer.close() methods needed.
-        ...
-    ```
+       # do stuff with the viewer, no qtbot or viewer.close() methods needed.
+       ...
+   ```
 
 > If you're curious to see the actual `make_napari_viewer` fixture definition, it's
 > in `napari/utils/_testsupport.py`

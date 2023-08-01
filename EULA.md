@@ -7,9 +7,8 @@ https://napari.org.
 
 <!-- Links -->
 
-[napari_installers]: https://napari.org/stable/index.html#installation
-
 <!-- List of EULAs starts here -->
+
 <!--
     Manually collected from the license artifacts found in the conda bundle CI.
     Tip: Most licenses that need to be included are marked with a `LicenseRef-` prefix.
@@ -901,3 +900,5 @@ IF YOU COMPLY WITH THESE LICENSE TERMS, YOU HAVE THE RIGHTS BELOW.
     exclusion or limitation of incidental, consequential or other
     damages.
 ```
+
+[napari_installers]: https://napari.org/stable/index.html#installation

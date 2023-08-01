@@ -3,3 +3,11 @@ repos:
     rev: v4.4.0
     hooks:
     -   id: trailing-whitespace
+-   repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.16  # Use the ref you want to point at
+    hooks:
+    -   id: mdformat
+        # Optionally add plugins
+        additional_dependencies:
+        -   mdformat-gfm
+        -   mdformat-black

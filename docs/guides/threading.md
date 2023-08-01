@@ -33,8 +33,8 @@ It's a rich, complicated topic, and a full treatment is well beyond the scope
 of this document, but strategies generally fall into one of three camps:
 
 1. Multithreading
-2. Multprocessing
-3. Single-thread concurrency with
+1. Multprocessing
+1. Single-thread concurrency with
    [asyncio](https://docs.python.org/3/library/asyncio.html)
 
 For a good high level overview on concurrency in python, see
@@ -52,7 +52,6 @@ If you already have experience with any of these methods, you should be able to
 immediately leverage them in napari.  `napari` also provides a few
 convenience functions that allow you to easily run your long-running
 methods in another thread.
-
 
 ## Threading in napari with `@thread_worker`
 
@@ -102,9 +101,11 @@ the above example:
 ```python
 viewer = napari.Viewer()
 
+
 @thread_worker(connect={"returned": viewer.add_image})
 def average_large_image():
     return np.random.rand(1024, 512, 512).mean(0)
+
 
 average_large_image()
 napari.run()
@@ -126,10 +127,10 @@ As shown above, the `worker` object returned by a function decorated with
 signals that are emitted in response to certain events.  The base signals
 provided by the `worker` are:
 
-* `started` - emitted when the work is started
-* `finished` - emitted when the work is finished
-* `returned` [*value*] - emitted with return value when the function returns
-* `errored` [*exception*] - emitted with an `Exception` object if an
+- `started` - emitted when the work is started
+- `finished` - emitted when the work is finished
+- `returned` \[*value*\] - emitted with return value when the function returns
+- `errored` \[*exception*\] - emitted with an `Exception` object if an
   exception is raised in the thread.
 
 ### Example: Custom exception handler
@@ -146,6 +147,7 @@ def my_handler(exc):
         print(f"We had a minor problem {exc}")
     else:
         raise exc
+
 
 @thread_worker(connect={"errored": my_handler})
 def error_prone_function():
@@ -173,18 +175,18 @@ def my_generator():
 the end, we gain a number of valuable features, and a few extra signals and
 methods on the `worker`.
 
-* `yielded` [*value*]- emitted with a value when a value is yielded
-* `paused` - emitted when a running job has successfully paused
-* `resumed`  - emitted when a paused job has successfully resumed
-* `aborted` - emitted when a running job is successfully aborted
+- `yielded` \[*value*\]- emitted with a value when a value is yielded
+- `paused` - emitted when a running job has successfully paused
+- `resumed`  - emitted when a paused job has successfully resumed
+- `aborted` - emitted when a running job is successfully aborted
 
 Additionally, generator `workers` will also have a few additional methods:
 
-* `send` - send a value *into* the thread (see below)
-* `pause` - send a request to pause a running worker
-* `resume` - send a request to resume a paused worker
-* `toggle_pause` - send a request to toggle the running state of the worker
-* `quit` - send a request to abort the worker
+- `send` - send a value *into* the thread (see below)
+- `pause` - send a request to pause a running worker
+- `resume` - send a request to resume a paused worker
+- `toggle_pause` - send a request to toggle the running state of the worker
+- `quit` - send a request to abort the worker
 
 ### Retrieving intermediate results
 
@@ -193,7 +195,6 @@ intermediate results back in the main thread.  Continuing with our example of
 taking the mean projection of a large stack, if we yield the cumulative average
 as it is generated (rather than taking the average of the fully generated
 stack) we can watch the mean projection as it builds:
-
 
 ```{code-block} python
 ---
@@ -387,23 +388,23 @@ Let's break it down:
    {func}`@thread_worker <napari.qt.threading.thread_worker>` and instantiate
    it to create a `worker`.
 
-2. The most interesting line in this example is where we both
-   `yield` the current ``total`` to the main thread (`yield total`), *and*
+1. The most interesting line in this example is where we both
+   `yield` the current `total` to the main thread (`yield total`), *and*
    receive a new value from the main thread (with `new = yield`).
 
-3. In the main thread, we have connected that `worker.yielded` event
+1. In the main thread, we have connected that `worker.yielded` event
    to a callback that pauses the worker and updates the `result_label`
    widget.
 
-4. The thread will then wait indefinitely for the `resume()` command,
+1. The thread will then wait indefinitely for the `resume()` command,
    which we have connected to the `line_edit.returnPressed` signal.
 
-5. However, before that `resume()` command gets sent, we use
+1. However, before that `resume()` command gets sent, we use
    `worker.send()` to send the current value of the `line_edit` widget
    into the thread for multiplication by the existing total.
 
-6. Lastly, if the thread total ever goes to "0", we stop the thread by
-   returning the string ``"Game Over"``.  In the main thread, the
+1. Lastly, if the thread total ever goes to "0", we stop the thread by
+   returning the string `"Game Over"`.  In the main thread, the
    `worker.returned` event is connected to a callback that disables the
    `line_edit` widget and shows the string returned from the thread.
 
@@ -425,11 +426,13 @@ depending on your function type. The following three examples are equivalent:
 ```python
 from napari.qt.threading import thread_worker
 
+
 @thread_worker
 def my_function(arg1, arg2=None):
     ...
 
-worker = my_function('hello', arg2=42)
+
+worker = my_function("hello", arg2=42)
 ```
 
 **Using the** `create_worker` **function:**
@@ -437,21 +440,25 @@ worker = my_function('hello', arg2=42)
 ```python
 from napari.qt.threading import create_worker
 
+
 def my_function(arg1, arg2=None):
     ...
 
-worker = create_worker(my_function, 'hello', arg2=42)
+
+worker = create_worker(my_function, "hello", arg2=42)
 ```
 
-**Using a** ``Worker`` **class:**
+**Using a** `Worker` **class:**
 
 ```python
 from napari.qt.threading import FunctionWorker
 
+
 def my_function(arg1, arg2=None):
     ...
 
-worker = FunctionWorker(my_function, 'hello', arg2=42)
+
+worker = FunctionWorker(my_function, "hello", arg2=42)
 ```
 
 (the main difference between using `create_worker` and directly instantiating
@@ -476,10 +483,11 @@ keep in mind the following guidelines:
    {meth}`worker.run() <napari.qt.threading.WorkerBase.run>` →
    {meth}`worker.work() <napari.qt.threading.WorkerBase.work>`.
 
-2. When implementing the {meth}`~napari.qt.threading.WorkerBase.work` method,
+1. When implementing the {meth}`~napari.qt.threading.WorkerBase.work` method,
    it is important that you periodically check `self.abort_requested` in your
    thread loop, and exit the thread accordingly, otherwise `napari` will not
    be able to gracefully exit a long-running thread.
+
    ```python
    def work(self):
        i = 0
@@ -488,15 +496,15 @@ keep in mind the following guidelines:
                self.aborted.emit()
                break
                time.sleep(0.5)
-    ```
+   ```
 
-3. It is also important to be mindful of the fact that the
+1. It is also important to be mindful of the fact that the
    {meth}`worker.start() <napari.qt.threading.WorkerBase.start>` method adds
    the worker to a global Pool, such that it can request shutdown when exiting
    napari.  So if you re-implement `start`, please be sure to call
    `super().start()` to keep track of the `worker`.
 
-4. When reimplementing the {meth}`~napari.qt.threading.WorkerBase.run` method,
+1. When reimplementing the {meth}`~napari.qt.threading.WorkerBase.run` method,
    it is your responsibility to emit the `started`, `returned`,
    `finished`, and `errored` signals at the appropriate moments.
 
@@ -519,13 +527,16 @@ worker namespace).  To add custom signals to a
 ```python
 from qtpy.QtCore import QObject, Signal
 
+
 class MyWorkerSignals(QObject):
     signal_name = Signal()
+
 
 # or subclass one of the existing signals objects to "add"
 # additional signals:
 
 from napari.qt.threading import WorkerBaseSignals
+
 
 # WorkerBaseSignals already has started, finished, errored...
 class MyWorkerSignals(WorkerBaseSignals):
@@ -536,10 +547,8 @@ and then either directly override the `self._signals` attribute on the
 {class}`~napari.qt.threading.WorkerBase` class with an instance of your
 signals class:
 
-
 ```python
 class MyWorker(WorkerBase):
-
     def __init__(self):
         super().__init__()
         self._signals = MyWorkerSignals()
@@ -550,7 +559,6 @@ initializing the superclass in your `__init__` method:
 
 ```python
 class MyWorker(WorkerBase):
-
     def __init__(self):
         super().__init__(SignalsClass=MyWorkerSignals)
 ```

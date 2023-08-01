@@ -4,8 +4,8 @@
 
 Once a release is cut, napari is distributed in two main ways:
 
-* Packages: both to [PyPI][20] and [conda-forge][21].
-* Installers: bundles that include napari plus its runtime dependencies in a step-by-step
+- Packages: both to [PyPI][20] and [conda-forge][21].
+- Installers: bundles that include napari plus its runtime dependencies in a step-by-step
   executable.
 
 ## Packages
@@ -66,9 +66,9 @@ with no prior knowledge of `pip`, `conda`, virtual environments or anything.
 
 A software installer is usually expected to fulfill these requirements:
 
-* It will install the application so it can be run immediately after.
-* It will provide a convenient way of opening the application, like a shortcut or a menu entry.
-* It will allow the user to uninstall the application, leaving no artifacts behind.
+- It will install the application so it can be run immediately after.
+- It will provide a convenient way of opening the application, like a shortcut or a menu entry.
+- It will allow the user to uninstall the application, leaving no artifacts behind.
 
 We use `constructor` to build the bundled installers, which takes `conda` packages.
 `conda` packages offer several advantages when it comes to bundling dependencies, since it makes very few assumptions about the underlying system installation.
@@ -82,15 +82,14 @@ packages and the `constructor` installers.
 [`constructor`][6] allows you to build cross-platform installers out of `conda` packages.
 It supports the following installer types:
 
-* On Linux, a shell-based installer is generated; users can execute it with `bash installer.sh`.
-* On macOS, you can generate both PKG and shell-based installers.
+- On Linux, a shell-based installer is generated; users can execute it with `bash installer.sh`.
+- On macOS, you can generate both PKG and shell-based installers.
   PKG files are graphical installers native to macOS, so that's the method we use with napari.
-* On Windows, a graphical installer based on [NSIS][19] is generated.
+- On Windows, a graphical installer based on [NSIS][19] is generated.
 
 The configuration is done through a `construct.yaml` file, documented [here][7].
 We generate one on the fly in the `build_installers.py` script found in `napari/packaging`.
 For a hypothetical napari v1.2.3 we would have built this configuration file:
-
 
 ```yaml
 # os-agnostic configuration
@@ -145,16 +144,16 @@ signing_certificate: certificate.pfx  # path to signing certificate
 
 The main OS-agnostic keys are:
 
-* `channels`: where the packages will be downloaded from. 
-  We mainly rely on `conda-forge` for this, where `napari` is published. 
-  However, we also have `napari/label/bundle_tools_3`, where we store our `constructor` stack forks (more on this later). 
-  In nightly installers, we locally build our own development packages for `conda`, without resorting to `conda-forge`. 
-  To make use of those (which are eventually published to `napari/label/nightly`), 
+- `channels`: where the packages will be downloaded from.
+  We mainly rely on `conda-forge` for this, where `napari` is published.
+  However, we also have `napari/label/bundle_tools_3`, where we store our `constructor` stack forks (more on this later).
+  In nightly installers, we locally build our own development packages for `conda`, without resorting to `conda-forge`.
+  To make use of those (which are eventually published to `napari/label/nightly`),
   we unpack the GitHub Actions artifact in a specific location that `constructor` recognizes as a _local_ channel once indexed.
-* {{ '`extra_envs> napari-NAPARI_VER`'.replace('NAPARI_VER', napari_version) }}: the environment that will actually contain the napari installation.
+- {{ '`extra_envs> napari-NAPARI_VER`'.replace('NAPARI_VER', napari_version) }}: the environment that will actually contain the napari installation.
   In this key, you will find `specs`, which lists the conda packages to be installed in that environment.
   Constructor will perform a conda solve here to retrieve the needed dependencies.
-* `menu_packages`: restrict which packages can create shortcuts.
+- `menu_packages`: restrict which packages can create shortcuts.
   We only want the shortcuts provided by `napari-menu`, and not any that could come from the (many) dependencies of napari.
 
 Then, depending on the operating systems and the installer format, we customize the configuration a bit more.
@@ -166,18 +165,18 @@ This depends on each OS. Our general strategy is to put the general installation
 `envs/`, with environments named as `napari-<VERSION>`. However, there are several constrains we
 need to take into account to make this happen:
 
-* On Windows, users can choose between an "Only me" and "All users" installation. This changes what
+- On Windows, users can choose between an "Only me" and "All users" installation. This changes what
   we understand by "user directory". This is further complicated by the existence of "domain users",
   which are not guaranteed to have a user directory per se.
-* On macOS, the PKG installer does not offer a lot of flexibility for this configuration. We will
+- On macOS, the PKG installer does not offer a lot of flexibility for this configuration. We will
   put it under `~/Library/napari-<VERSION>`, by default.
 
 This means that if you install {{ napari_conda_version }} using the installer, the actual `napari` executable
 can be found, by default, on the following locations:
 
-* Linux: {{ '`~/.local/napari-NAPARI_VER/envs/napari-NAPARI_VER/bin/napari`'.replace('NAPARI_VER', napari_version) }}
-* macOS: {{ '`~/Library/napari-NAPARI_VER/envs/napari-NAPARI_VER/bin/napari`'.replace('NAPARI_VER', napari_version) }}`
-* Windows: {{ '`~/napari-NAPARI_VER/envs/napari-NAPARI_VER/Library/bin/napari`'.replace('NAPARI_VER', napari_version) }}
+- Linux: {{ '`~/.local/napari-NAPARI_VER/envs/napari-NAPARI_VER/bin/napari`'.replace('NAPARI_VER', napari_version) }}
+- macOS: {{ '`~/Library/napari-NAPARI_VER/envs/napari-NAPARI_VER/bin/napari`'.replace('NAPARI_VER', napari_version) }}\`
+- Windows: {{ '`~/napari-NAPARI_VER/envs/napari-NAPARI_VER/Library/bin/napari`'.replace('NAPARI_VER', napari_version) }}
 
 #### Branding
 
@@ -204,8 +203,7 @@ On Windows, any Microsoft-blessed certificate will do. Our `constructor` fork al
 a path to a PFX certificate and then have the Windows SDK `signtool` add the signature. Note that
 `signtool` is not installed by default on Windows (but it is on GitHub Actions).
 
-
----
+______________________________________________________________________
 
 More details about our packaging infrastructure can be found in the [NAP-2 document][nap-2].
 
@@ -222,11 +220,11 @@ moving pieces being juggled to make this work. Let's begin by enumerating the st
    version of `conda`) to be present at build time so it can be bundled in the installer. This
    is needed because that `conda-standalone` copy will handle the extraction, linking and
    shortcut creation when the user runs the installer on their machine.
-2. `conda-standalone` is a frozen version of `conda`. Among its dependencies, we can find
+1. `conda-standalone` is a frozen version of `conda`. Among its dependencies, we can find
    `menuinst`, which handles the creation of shortcuts and menu entries.
-4. `menuinst` was only used on Windows before our work, so we basically rewrote it to handle
+1. `menuinst` was only used on Windows before our work, so we basically rewrote it to handle
    cross-platform shortcuts.
-3. `conda` interfaces with `menuinst` to delegate the shortcut creation. Since this was only enabled
+1. `conda` interfaces with `menuinst` to delegate the shortcut creation. Since this was only enabled
    on Windows, we needed to unlock the other platforms and rewrite the parts that assumed Windows
    only behavior. Surprise, this involved custom solver behavior too!
 
@@ -244,20 +242,19 @@ For example, if a patch is introduced in `menuinst`, the following needs to happ
 it to the final napari installer:
 
 1. Write and test the patch. Make sure it passes its own CI.
-2. Make sure `conda` still works with the new changes. It needs to call `menuinst` after all.
-3. Create the `menuinst` package and upload it to Anaconda.org.
-4. Rebuild and upload `conda-standalone` so it picks the new `menuinst` version.
-5. Trigger the napari CI to build the new installer.
+1. Make sure `conda` still works with the new changes. It needs to call `menuinst` after all.
+1. Create the `menuinst` package and upload it to Anaconda.org.
+1. Rebuild and upload `conda-standalone` so it picks the new `menuinst` version.
+1. Trigger the napari CI to build the new installer.
 
 Very fun! So where do all these packages live?
 
-| Package            | Source                                          | Feedstock                                          |
-|--------------------|-------------------------------------------------|----------------------------------------------------|
-| `constructor`      | [jaimergp/constructor @ `menuinst-cep`][9]      | [jaimergp-forge/constructor-feedstock][12]         |
-| `conda-standalone` | _Same as feedstock_.                            | [conda-forge/conda-standalone-feedstock PR#21][13] |
-| `conda`            | [jaimergp/conda @ `cep-menuinst`][10]           | [jaimergp-forge/conda-feedstock][14]               |
-| `menuinst`         | [conda/menuinst @ `cep-devel`][11]                 | [jaimergp-forge/menuinst-feedstock][15]            |
-
+| Package            | Source                                     | Feedstock                                          |
+| ------------------ | ------------------------------------------ | -------------------------------------------------- |
+| `constructor`      | [jaimergp/constructor @ `menuinst-cep`][9] | [jaimergp-forge/constructor-feedstock][12]         |
+| `conda-standalone` | _Same as feedstock_.                       | [conda-forge/conda-standalone-feedstock PR#21][13] |
+| `conda`            | [jaimergp/conda @ `cep-menuinst`][10]      | [jaimergp-forge/conda-feedstock][14]               |
+| `menuinst`         | [conda/menuinst @ `cep-devel`][11]         | [jaimergp-forge/menuinst-feedstock][15]            |
 
 Most of the forks live in `jaimergp`'s account, under a non-default branch. They are published
 through the `jaimergp-forge` every time a commit to `main` (`master` in some repos) is made.
@@ -278,34 +275,34 @@ a high-level list of the main changes introduced in the stack.
 
 ##### Changes in `menuinst`
 
-* Add cross-platform specification for shortcut configuration
-* Enable support on Windows, Linux and macOS
-* Re-engineer environment activation
-* Maintain backwards compatibility with Windows
-* Simplify API
-* Remove CLI
-* Provide binary launchers for better compatibility with the macOS permissions and events system
+- Add cross-platform specification for shortcut configuration
+- Enable support on Windows, Linux and macOS
+- Re-engineer environment activation
+- Maintain backwards compatibility with Windows
+- Simplify API
+- Remove CLI
+- Provide binary launchers for better compatibility with the macOS permissions and events system
 
 ##### Changes in `conda`
 
-* Enable code paths for non-Windows Platforms
-* Fix shortcut removal logic
-* Add `--shortcuts-only` flag to support `menu_packages` constructor key natively
+- Enable code paths for non-Windows Platforms
+- Fix shortcut removal logic
+- Add `--shortcuts-only` flag to support `menu_packages` constructor key natively
 
 ##### Changes in `conda-standalone`
 
-* Unvendor menuinst patches
-* Do not vendor constructor NSIS scripts
-* Adapt `conda constructor` entry point for the new menuinst API
+- Unvendor menuinst patches
+- Do not vendor constructor NSIS scripts
+- Adapt `conda constructor` entry point for the new menuinst API
 
 ##### Changes in `constructor`
 
-* Use `--shortcuts-only`
-* Add branding options for macOS PKG installers
-* Always leave `_conda.exe` in the installation location
-* Do not offer options for `conda init` or PATH manipulations (these should be Anaconda specific)
-* Add signing for Windows
-* Add notarization for macOS PKG
+- Use `--shortcuts-only`
+- Add branding options for macOS PKG installers
+- Always leave `_conda.exe` in the installation location
+- Do not offer options for `conda init` or PATH manipulations (these should be Anaconda specific)
+- Add signing for Windows
+- Add notarization for macOS PKG
 
 <!-- hyperlinks -->
 

@@ -1,4 +1,5 @@
 (rendering-explanation)=
+
 # Rendering in napari
 
 ## Status
@@ -20,11 +21,11 @@ framerate gets slower:
 
 | Framerate | Milliseconds | User Experience |
 | --------: | -----------: | :-------------- |
-| 60Hz      | 16.7         | Great           |
-| 30Hz      | 33.3         | Good            |
-| 20Hz      | 50           | Acceptable      |
-| 10Hz      | 100          | Bad             |
-| 5Hz       | 200          | Unusable        |
+|      60Hz |         16.7 | Great           |
+|      30Hz |         33.3 | Good            |
+|      20Hz |           50 | Acceptable      |
+|      10Hz |          100 | Bad             |
+|       5Hz |          200 | Unusable        |
 
 The issue is not just aesthetic. Manipulating user interface elements like
 sliders becomes almost impossible if the framerate is really slow. This
@@ -74,7 +75,7 @@ to choose.
 Issues that napari has without asynchronous rendering include
 [#845](https://github.com/napari/napari/issues/845),
 [#1300](https://github.com/napari/napari/issues/1300), and
-[#1320](https://github.com/napari/napari/issues/1320]).
+[#1320](https://github.com/napari/napari/issues/1320%5D).
 
 ## RAM and VRAM
 
@@ -113,7 +114,7 @@ The above discussion leads to two rigid requirements for rendering:
 
 1. Never call `asarray` on user data from the GUI thread, since we don't know
    what it will do or how long it will take.
-2. Always break data into chunks. The exact maximum chunk size is TBD.
+1. Always break data into chunks. The exact maximum chunk size is TBD.
 
 ## Render algorithm
 
@@ -235,11 +236,11 @@ to make things work with non-image layers:
    geometry is called decimation and it can be slow and complicated. Also
    there is not one definitive decimation, there will be trade-offs between
    speed and quality.
-2. Sometimes we will to want downsample geometry into a format that
+1. Sometimes we will to want downsample geometry into a format that
    represents the data but does not look like the data. For example we
    might want to display a heatmap instead of millions of tiny points. This
    will require new code we did not need for the image layers.
-3. With images the data density is spatially uniform but with geometry
+1. With images the data density is spatially uniform but with geometry
    there might be pockets of super high density data. For example the data
    might have millions of points or triangles in a tiny geographic area.
    This might tax the rendering in new ways that images did not.

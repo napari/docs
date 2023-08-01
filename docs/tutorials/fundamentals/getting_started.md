@@ -1,4 +1,5 @@
 (getting_started)=
+
 # Getting started
 
 Welcome to the getting started with **napari** tutorial!
@@ -156,7 +157,7 @@ and where data changed in the GUI will be accessible in the notebook.
 
 To learn more about:
 
-* how to use the napari viewer graphical user interface (GUI),
+- how to use the napari viewer graphical user interface (GUI),
   checkout the [viewer tutorial](./viewer)
-* how to use the napari viewer with different types of napari layers, see
+- how to use the napari viewer with different types of napari layers, see
   [layers at a glance](../../guides/layers)

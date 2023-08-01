@@ -1,15 +1,6 @@
----
-jupytext:
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
----
+______________________________________________________________________
+
+## jupytext: text_representation: extension: .md format_name: myst format_version: 0.13 jupytext_version: 1.10.3 kernelspec: display_name: Python 3 language: python name: python3
 
 # Using the tracks layer
 
@@ -57,11 +48,11 @@ tracks_data = [
     [3, 1, 636, 100],
     [3, 2, 636, 200],
     [3, 3, 636, 500],
-    [3, 4, 636, 1000]
+    [3, 4, 636, 1000],
 ]
 
-viewer = napari.view_image(hubble_image, name='image')
-viewer.add_tracks(tracks_data, name='tracks')
+viewer = napari.view_image(hubble_image, name="image")
+viewer.add_tracks(tracks_data, name="tracks")
 
 napari.run()
 ```
@@ -145,23 +136,22 @@ single track. In this case, we have defined 2 tracks: track 0, which goes from
 `[10, 10, 10]` to `[20, 10, 10]` and track 1, which goes from `[10, 8, 5]` to
 `[7, 8, 10]` (coordinates written as `[x, y, z]`).
 
-| track_id | t | z  | y  | x  |
-|----------|---|----|----|----|
-| 0        | 0 | 10 | 10 | 10 |
-| 0        | 1 | 10 | 10 | 20 |
-| 1        | 0 | 5  | 8  | 10 |
-| 1        | 1 | 10 | 8  | 7  |
+| track_id | t   | z   | y   | x   |
+| -------- | --- | --- | --- | --- |
+| 0        | 0   | 10  | 10  | 10  |
+| 0        | 1   | 10  | 10  | 20  |
+| 1        | 0   | 5   | 8   | 10  |
+| 1        | 1   | 10  | 8   | 7   |
 
 The data in the array must be sorted by increasing `track_id` then time, as
 shown above.  We can pass the example data above to the tracks layer as follows:
 
 ```python
-
 tracks_data = [
     [0, 0, 10, 10, 10],
     [0, 1, 10, 10, 20],
     [1, 0, 5, 8, 10],
-    [1, 1, 10, 8, 7]
+    [1, 1, 10, 8, 7],
 ]
 
 viewer = napari.view_tracks(tracks_data)
@@ -179,21 +169,16 @@ For example, if we have a track 0, which splits into tracks 1 and 2 (i.e., track
 0 is the parent of tracks 1 and 2), we would define the graph as:
 
 ```python
-graph = {
-    1: [0],
-    2: [0]
-}
+graph = {1: [0], 2: [0]}
 ```
+
 If later tracks 1 and 2 merge into track 3 (i.e,. tracks 1 and 2 are the parent
 of track 3), the dictionary would become
 
 ```python
-graph = {
-    1: [0],
-    2: [0],
-    3: [1, 2]
-}
+graph = {1: [0], 2: [0], 3: [1, 2]}
 ```
+
 For a full example of 3d+t tracks data with a parent graph, please see our
 [`tracks_3d_with_graph.py` example](https://github.com/napari/napari/blob/main/examples/tracks_3d_with_graph.py).
 
@@ -225,7 +210,6 @@ viewer = napari.view_tracks(data, tail_width=5, name="my_tracks")
 
 # update the tail width to 3 pixels
 viewer.layers["my_tracks"].tail_width = 3
-
 ```
 
 Additionally, we can adjust the width of the track in the GUI using the "tail width" slider in the Tracks layer controls.
@@ -242,7 +226,6 @@ viewer = napari.view_tracks(data, tail_length=5, name="my_tracks")
 
 # update the tail width to 3 pixels
 viewer.layers["my_tracks"].tail_length = 3
-
 ```
 
 Additionally, we can adjust the width of the track in the GUI using the "tail length" slider in the Tracks layer controls.
@@ -259,28 +242,27 @@ from skimage import data
 
 hubble_image = data.hubble_deep_field()
 
-tracks_data = np.asarray([
-    [1, 0, 236, 0],
-    [1, 1, 236, 100],
-    [1, 2, 236, 200],
-    [1, 3, 236, 500],
-    [1, 4, 236, 1000],
-    [2, 0, 436, 0],
-    [2, 1, 436, 100],
-    [2, 2, 436, 200],
-    [2, 3, 436, 500],
-    [2, 4, 436, 1000],
-    [3, 0, 636, 0],
-    [3, 1, 636, 100],
-    [3, 2, 636, 200],
-    [3, 3, 636, 500],
-    [3, 4, 636, 1000]
-])
-track_confidence = np.array(5*[0.9] + 5*[0.3] + 5 * [0.1])
-properties = {
-    'time': tracks_data[:, 1],
-    'confidence': track_confidence
-}
+tracks_data = np.asarray(
+    [
+        [1, 0, 236, 0],
+        [1, 1, 236, 100],
+        [1, 2, 236, 200],
+        [1, 3, 236, 500],
+        [1, 4, 236, 1000],
+        [2, 0, 436, 0],
+        [2, 1, 436, 100],
+        [2, 2, 436, 200],
+        [2, 3, 436, 500],
+        [2, 4, 436, 1000],
+        [3, 0, 636, 0],
+        [3, 1, 636, 100],
+        [3, 2, 636, 200],
+        [3, 3, 636, 500],
+        [3, 4, 636, 1000],
+    ]
+)
+track_confidence = np.array(5 * [0.9] + 5 * [0.3] + 5 * [0.1])
+properties = {"time": tracks_data[:, 1], "confidence": track_confidence}
 
 viewer = napari.view_image(hubble_image)
 viewer.add_tracks(tracks_data, properties=properties)

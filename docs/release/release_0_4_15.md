@@ -62,7 +62,7 @@ Keep reading below for the full list of changes!
 - Prevent errors in qt/test_plugin_widgets from installed plugins (#4058)
 - Add a `recurse` option to `EventedModel.update` (#4062)
 - Only add progress widget on worker start (#4068)
-- minor refactor of Layer._slice_indices (#4072)
+- minor refactor of Layer.\_slice_indices (#4072)
 - Improve missing widget name error for npe2 plugins (#4080)
 - Update shapes color mapping when changing property (#4081)
 - reduce NumPy overhead in ScaleTranslate and Affine transform calls (#4094)
@@ -104,7 +104,7 @@ Keep reading below for the full list of changes!
 - Fix json usage when setting preferences from nested environment variables (#4078)
 - Fix import in plugin_manager that is causing typing fails (#4106)
 - Contrast limits popup fix (#4122)
-- Prevent deepcopy of layer._source (#4128)
+- Prevent deepcopy of layer.\_source (#4128)
 - Always pass list of strings to npe2. (#4130)
 - Don't validate defaults on `EventedModel` (#4138)
 - support conda-style (pyside2-)rcc locations (#4144)
@@ -125,9 +125,7 @@ Keep reading below for the full list of changes!
 
 ## API Changes
 
-
 ## Deprecations
-
 
 ## Build Tools
 
@@ -141,7 +139,7 @@ Keep reading below for the full list of changes!
 
 ## Other Pull Requests
 
-- [pre-commit.ci] pre-commit autoupdate (#4032)
+- \[pre-commit.ci\] pre-commit autoupdate (#4032)
 - remove leftover comments on `Points.n_dimensional` (#4052)
 - Drop python 3.7 (#4063)
 - avoid scikit-image deprecation warnings in test suite (#4071)
@@ -170,7 +168,7 @@ Keep reading below for the full list of changes!
 - [Matthias Bussonnier](https://github.com/napari/napari/commits?author=Carreau) - @Carreau
 - [Melissa Weber Mendonça](https://github.com/napari/napari/commits?author=melissawm) - @melissawm
 - [Nicholas Sofroniew](https://github.com/napari/napari/commits?author=sofroniewn) - @sofroniewn
-- [pre-commit-ci[bot]](https://github.com/napari/napari/commits?author=pre-commit-ci[bot]) - @pre-commit-ci[bot]
+- [pre-commit-ci\[bot\]](https://github.com/napari/napari/commits?author=pre-commit-ci%5Bbot%5D) - @pre-commit-ci\[bot\]
 - [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - @tlambert03
 
 ## 25 reviewers added to this release (alphabetical)
@@ -200,4 +198,3 @@ Keep reading below for the full list of changes!
 - [shahidhaider](https://github.com/napari/napari/commits?author=shahidhaider) - @shahidhaider
 - [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - @tlambert03
 - [Ziyang Liu](https://github.com/napari/napari/commits?author=potating-potato) - @potating-potato
-

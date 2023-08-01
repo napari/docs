@@ -1,4 +1,5 @@
 (community)=
+
 # Community
 
 There are several different ways to be a part of the napari community. From

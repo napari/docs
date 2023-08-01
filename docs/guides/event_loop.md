@@ -56,7 +56,7 @@ napari.run()
 # Anything below here will execute only after the viewer is closed.
 ```
 
------------
+______________________________________________________________________
 
 ## More in depth...
 
@@ -75,7 +75,7 @@ event_queue = Queue()
 while True:  # infinite loop!
     if not event_queue.is_empty():
         event = get_next_event()
-        if event.value == 'Quit':
+        if event.value == "Quit":
             break
         else:
             process_event(event)
@@ -94,7 +94,7 @@ A deep dive into the Qt event loop is beyond the scope of this document, but
 it's worth being aware of two critical steps in the "lifetime" of a Qt
 Application:
 
-1) Any program that would like to create a
+1. Any program that would like to create a
    [`QWidget`](https://doc.qt.io/qt-5/qwidget.html) (the class from which all
    napari's graphical elements are subclassed), must create a
    [`QApplication`](https://doc.qt.io/qt-5/qapplication.html) instance *before*
@@ -106,7 +106,7 @@ Application:
    app = QApplication([])  # where [] is a list of args passed to the App
    ```
 
-2) In order to actually show and interact with widgets, one must start the
+1. In order to actually show and interact with widgets, one must start the
    application's event loop:
 
    ```python
