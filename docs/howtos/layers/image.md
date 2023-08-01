@@ -1,15 +1,6 @@
----
-jupytext:
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
----
+______________________________________________________________________
+
+## jupytext: text_representation: extension: .md format_name: myst format_version: 0.13 jupytext_version: 1.10.3 kernelspec: display_name: Python 3 language: python name: python3
 
 # Using the image layer
 
@@ -297,8 +288,8 @@ extent of the contrast limits range slider will be set to those values.
 ## Saving without image compression
 
 When saving an image layer, lossless zlib compression is applied by default.
- To save with a different level of compression, consider using
- [imageio.imwrite](https://imageio.readthedocs.io/en/stable/_autosummary/imageio.v3.imwrite.html).
+To save with a different level of compression, consider using
+[imageio.imwrite](https://imageio.readthedocs.io/en/stable/_autosummary/imageio.v3.imwrite.html).
 Adjusting compression can be accomplished by including the appropriate kwargs
 as outlined in the following locations for
 [tiff](https://imageio.readthedocs.io/en/stable/_autosummary/imageio.plugins.tifffile.html#metadata-for-writing) or

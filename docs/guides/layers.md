@@ -1,4 +1,5 @@
 (layers-glance)=
+
 # Layers at a glance
 
 [Layers](napari.layers) are the basic viewable objects that can be added to a
@@ -18,7 +19,7 @@ object created from `data`, you can do
 
 ```python
 viewer = napari.Viewer()
-viewer.add_image(data, name='astronaut')
+viewer.add_image(data, name="astronaut")
 ```
 
 To learn more about the layers available, see the
@@ -37,6 +38,7 @@ one layer, hiding all others. If you then Option/Alt-click on the `visibility`
 button of a layer a second time, the visibility state of all layers will be restored.
 
 (layer_opacity)=
+
 ## Layer opacity
 
 All our layers support an opacity slider and `opacity` property that allow you
@@ -60,17 +62,17 @@ All our layers support three blending modes: `translucent`, `additive`, and
 `opaque`. These modes determine how the visuals for this layer get mixed with
 the visuals from the other layers.
 
-* An `opaque` layer hides any layer data below it.
-* A `translucent` setting will cause the layer to blend with the layers below
-it if you decrease its opacity but will fully block those layers if its opacity
-is `1`. This is a reasonable default, useful for many applications.
-* A `minimum` blending mode will cause the layer to blend using the minimum of each pixel's R, G, and B values. This mode is uniquely useful for
-blending multiple layers with inverted colormaps/LUTs, which represent measured signal with color on a white background. For some inspiration, see the twitter hashtag [#invertedLUT](https://twitter.com/hashtag/invertedLUT).
-* An `additive` blending mode will cause the layer to blend with the layers
-below even when it has full opacity. This mode is especially useful for
-visualizing multiple layers at the same time, such as cell biology applications
-where you have multiple different components of a cell labeled in different
-colors.
+- An `opaque` layer hides any layer data below it.
+- A `translucent` setting will cause the layer to blend with the layers below
+  it if you decrease its opacity but will fully block those layers if its opacity
+  is `1`. This is a reasonable default, useful for many applications.
+- A `minimum` blending mode will cause the layer to blend using the minimum of each pixel's R, G, and B values. This mode is uniquely useful for
+  blending multiple layers with inverted colormaps/LUTs, which represent measured signal with color on a white background. For some inspiration, see the twitter hashtag [#invertedLUT](https://twitter.com/hashtag/invertedLUT).
+- An `additive` blending mode will cause the layer to blend with the layers
+  below even when it has full opacity. This mode is especially useful for
+  visualizing multiple layers at the same time, such as cell biology applications
+  where you have multiple different components of a cell labeled in different
+  colors.
 
 For example:
 
@@ -134,13 +136,12 @@ existing layer using the `scale` as a keyword argument or property respectively.
 
 ```python
 # scaling while creating the image layer
-napari.view_image(retina, name='retina', scale=[1,10,1,1])
+napari.view_image(retina, name="retina", scale=[1, 10, 1, 1])
 # scaling an existing layer
-viewer.layers['retina'].scale = [1,10,1,1]
+viewer.layers["retina"].scale = [1, 10, 1, 1]
 ```
 
 ![napari viewer with an image where all layers are scaled equally; when rotated, the image appears flat. By using console below the canvas and applying a scale factor to one of the dimensions, the image's volume becomes apparent.](images/scaling.webm)
-
 
 ## Translating layers
 

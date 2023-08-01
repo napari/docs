@@ -1,17 +1,6 @@
----
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.13.0
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
----
+______________________________________________________________________
+
+## jupyter: jupytext: formats: ipynb,md text_representation: extension: .md format_name: markdown format_version: '1.3' jupytext_version: 1.13.0 kernelspec: display_name: Python 3 (ipykernel) language: python name: python3
 
 (installation)=
 
@@ -30,19 +19,23 @@ If you want to contribute code back into napari, you should follow the [developm
 Prerequisites differ depending on how you want to install napari.
 
 ### Prerequisites for installing napari as a Python package
+
 This installation method allows you to use napari from Python to programmatically
 interact with the app. It is the best way to install napari and make full use of
 all its features.
 
 It requires:
+
 - [Python {{ python_version_range }}](https://www.python.org/downloads/)
 - the ability to install python packages via [pip](https://pypi.org/project/pip/) OR [conda-forge](https://conda-forge.org/docs/user/introduction.html)
 
 You may also want:
+
 - an environment manager like [conda](https://docs.conda.io/en/latest/miniconda.html) or
-[venv](https://docs.python.org/3/library/venv.html) **(Highly recommended)**
+  [venv](https://docs.python.org/3/library/venv.html) **(Highly recommended)**
 
 ### Prerequisites for installing napari as a bundled app
+
 This is the easiest way to install napari if you only wish to use it as a standalone GUI app.
 This installation method does not have any prerequisites.
 
@@ -53,7 +46,7 @@ for installing the bundled app.
 
 Python package distributions of napari can be installed via `pip`, `conda-forge`, or from source.
 
-````{important}
+```{important}
 While not strictly required, it is highly recommended to install
 napari into a clean virtual environment using an environment manager like
 [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or
@@ -63,7 +56,7 @@ This should be set up *before* you install napari. For example, setting with
 up a Python {{ python_version }} environment with `conda`:
 
 {{ conda_create_env }}
-````
+```
 
 Choose one of the options below to install napari as a Python package.
 
@@ -88,7 +81,6 @@ notation.)*
 *(See[Using constraints file](#using-constraints-file) for help installing older versions of napari)*
 
 ````
-
 
 ````{admonition} **2. From conda-forge**
 :class: dropdown
@@ -141,7 +133,6 @@ mamba install napari
 
 ````
 
-
 ````{admonition} **3. From the main branch on Github**
 :class: dropdown
 
@@ -153,6 +144,7 @@ python -m pip install "git+https://github.com/napari/napari.git#egg=napari[all]"
 ````
 
 <!-- #region -->
+
 ## Checking it worked
 
 After installation you should be able to launch napari from the command line by
@@ -164,10 +156,11 @@ napari
 
 An empty napari viewer should appear as follows.
 
-````{note}
+```{note}
 You can check the napari version, to ensure it's what you expect, for example
 the current release {{ napari_version }}, using command: `napari --version` .
-````
+```
+
 ![macOS desktop with a napari viewer window without any image opened in the foreground, and a terminal in the background with the appropriate conda environment activated (if applicable) and the command to open napari entered.](../assets/tutorials/launch_cli_empty.png)
 
 ## Choosing a different Qt backend
@@ -253,21 +246,20 @@ accessed {{ '[here](https://github.com/napari/napari/releases/tag/vNAPARI_VER)'.
 To get to the download link, just scroll all the way to bottom of the page and
 expand the `Assets` section. You can then download the appropriate file for your platform.
 
-
 <!-- #endregion -->
 
 ## Next steps
 
 - to start learning how to use napari, checkout our [getting
-started](./getting_started) tutorial
+  started](./getting_started) tutorial
 - if you are interested in
-contributing to napari please check our [contributing
-guidelines](../../developers/contributing.md)
+  contributing to napari please check our [contributing
+  guidelines](../../developers/contributing.md)
 - if you are running into issues or bugs, please open a new issue on our [issue
-tracker](https://github.com/napari/napari/issues)
-    - include the output of `napari --info`
+  tracker](https://github.com/napari/napari/issues)
+  - include the output of `napari --info`
     (or go to `Help>Info` in the viewer and copy paste the information)
 - if you want help using napari, we are a community partner on the [imagesc
-forum](https://forum.image.sc/tags/napari) and all usage support requests should
-be posted on the forum with the tag `napari`. We look forward to interacting
-with you there!
+  forum](https://forum.image.sc/tags/napari) and all usage support requests should
+  be posted on the forum with the tag `napari`. We look forward to interacting
+  with you there!

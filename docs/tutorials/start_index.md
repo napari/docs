@@ -1,4 +1,4 @@
- # Getting started
+# Getting started
 
 The following documents will give you an overview of how to install and use
 napari. For more detailed use-cases, check out the [napari tutorials](./index)

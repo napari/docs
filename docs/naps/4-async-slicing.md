@@ -20,7 +20,7 @@ on the dimension slider positions and the current field of view.
 This project has two major goals.
 
 1. Slice layers asynchronously to keep napari responsive while allowing for slow slicing.
-2. Improve the logic of slicing layers to help developers better understand how it works and unlock new feature development.
+1. Improve the logic of slicing layers to help developers better understand how it works and unlock new feature development.
 
 We propose a lock-free asynchronous solution that uses Python's built-in
 `concurrent.futures` module and exploits napari's main event loop.
@@ -30,7 +30,6 @@ When the slice task is finished, we notify vispy and Qt objects back on the main
 so they can be safely updated.
 This approach allows us to gradually introduce asynchronous slicing to napari
 layer by layer without breaking other functionality that relies on existing layer slice state.
-
 
 ## Motivation and scope
 
@@ -45,7 +44,7 @@ by the host operating system.
 There are two main reasons why slicing can be slow.
 
 1. Some layer specific slicing operations perform non-trivial calculations (e.g. points).
-2. The layer data is read lazily (i.e. it is not in RAM) and latency from the source may be non-negligible (e.g. stored remotely, napari-omero plugin).
+1. The layer data is read lazily (i.e. it is not in RAM) and latency from the source may be non-negligible (e.g. stored remotely, napari-omero plugin).
 
 By slicing asynchronously, we can keep napari responsive while allowing for slow
 slicing operations. We could also consider optimizing napari to make (1) less of
@@ -55,9 +54,9 @@ Introducing asynchrony to software often complicates program flow and logic.
 However, the existing technical design of slicing is already complicated and
 often causes issues for developers.
 
-- Layers have too much state [^issue-792] [^issue-1353] [^issue-1775].
-- The logic is hard to understand and debug [^issue-2156].
-- The names of the classes are not self-explanatory [^issue-1574].
+- Layers have too much state \[^issue-792\] \[^issue-1353\] \[^issue-1775\].
+- The logic is hard to understand and debug \[^issue-2156\].
+- The names of the classes are not self-explanatory \[^issue-1574\].
 
 Some of these issues were caused by a previous effort around asynchronous slicing
 in an effort to keep it isolated from the core code base.
@@ -72,88 +71,82 @@ Each goal has many prioritized features where P0 is a must-have, P1 is a should-
 and P2 is a could-have. Some of these goals may already be achieved by napari in its
 current form, but are captured here to prevent any regression caused by this work.
 
-
 #### 1. Keep responding when slicing slow data
 
 - P0. When moving a dimension slider, the slider can still be controlled so that I can navigate to the desired location.
-	- Slider can be moved when data is in the middle of loading.
-	- Slider location does not return to position of last loaded slice after it was moved to a different position.
+  - Slider can be moved when data is in the middle of loading.
+  - Slider location does not return to position of last loaded slice after it was moved to a different position.
 - P0. When the slider is dragged, only slice at some positions so that I don’t wait for unwanted intermediate slicing positions.
-	- Once slider is moved, wait before performing slicing operation, and cancel any prior pending slices (i.e. be lazy).
-	- If we can reliably infer that slicing will be fast (e.g. data is a numpy array), consider skipping this delay.
+  - Once slider is moved, wait before performing slicing operation, and cancel any prior pending slices (i.e. be lazy).
+  - If we can reliably infer that slicing will be fast (e.g. data is a numpy array), consider skipping this delay.
 - P0. When slicing fails, I am notified so that I can understand what went wrong.
-    - May want to limit the number of notifications (e.g. lost network connection for remote data).
+  - May want to limit the number of notifications (e.g. lost network connection for remote data).
 - P1. When moving a dimension slider and the slice doesn’t immediately load, I am notified that it is being generated, so that I am aware that my action is being handled.
-	- Need a visual cue that a slice is loading.
-	- Show visual cue to identify the specific layer(s) that are loading in the case where one layer loads faster than another.
-
+  - Need a visual cue that a slice is loading.
+  - Show visual cue to identify the specific layer(s) that are loading in the case where one layer loads faster than another.
 
 #### 2. Clean up slice state and logic in layers
 
 - P0. Encapsulate the slice input and output state for each layer type, so that I can quickly and clearly identify those.
-	- Minimize number of (nested) classes per layer-type (e.g. `ImageSlice`, `ImageSliceData`, `ImageView`, `ImageLoader`).
+  - Minimize number of (nested) classes per layer-type (e.g. `ImageSlice`, `ImageSliceData`, `ImageView`, `ImageLoader`).
 - P0. Simplify the program flow of slicing, so that developing and debugging against allows for faster implementation.
-	- Reduce the complexity of the call stack associated with slicing a layer.
-	- The implementation details for some layer/data types might be complex (e.g. multi-scale image), but the high level logic should be simple.
+  - Reduce the complexity of the call stack associated with slicing a layer.
+  - The implementation details for some layer/data types might be complex (e.g. multi-scale image), but the high level logic should be simple.
 - P1. Move the slice state off the layer, so that its attributes only represent the whole data.
-	- Layer may still have a function to get a slice.
-	- May need alternatives to access currently private state, though doesn't necessarily need to be in the Layer (e.g. a plugin with an ND layer, that gets interaction data from 3D visualization , needs some way to get that data back to ND).
+  - Layer may still have a function to get a slice.
+  - May need alternatives to access currently private state, though doesn't necessarily need to be in the Layer (e.g. a plugin with an ND layer, that gets interaction data from 3D visualization , needs some way to get that data back to ND).
 - P2. Store multiple slices associated with each layer, so that I can cache previously generated slices.
-	- Pick a default cache size that should not strain most machines (e.g. 0-1GB).
-	- Make cache size a user defined preference.
-
+  - Pick a default cache size that should not strain most machines (e.g. 0-1GB).
+  - Make cache size a user defined preference.
 
 #### 3. Measure slicing latencies on representative examples
 
 - P0. Define representative examples that currently cause *desirable* behavior in napari, so that I can check that async slicing does not degrade those.
- 	- E.g. 2D slice of a 3D image layer where all data fits in RAM, but not VRAM.
+  - E.g. 2D slice of a 3D image layer where all data fits in RAM, but not VRAM.
 - P0. Define representative examples that currently cause *undesirable* behavior in napari, so that I can check that async slicing improves those.
-	- E.g. 2D slice of a 3D points layer where all data fits in RAM, but not VRAM.
-	- E.g. 2D slice of a 3D image layer where all data is not on local storage.
+  - E.g. 2D slice of a 3D points layer where all data fits in RAM, but not VRAM.
+  - E.g. 2D slice of a 3D image layer where all data is not on local storage.
 - P0. Define slicing benchmarks, so that I can understand if my changes impact overall timing or memory usage.
-	- E.g. Do not increase the latency of generating a single slice more than 10%.
-	- E.g. Decrease the latency of dealing with 25 slice requests over 1 second by 50%.
+  - E.g. Do not increase the latency of generating a single slice more than 10%.
+  - E.g. Decrease the latency of dealing with 25 slice requests over 1 second by 50%.
 - P1. Log specific slicing latencies, so that I can summarize important measurements beyond granular profile timings.
-	- Latency logs are local only (i.e. not sent/stored remotely).
-	- Add an easy way for users to enable writing these latency measurements.
-
+  - Latency logs are local only (i.e. not sent/stored remotely).
+  - Add an easy way for users to enable writing these latency measurements.
 
 ### Non-goals
 
 To help clarify the scope, we also define some things that were are not explicit goals of this project and briefly explain why they were omitted.
 
 - Make a single slicing operation faster.
-	- Useful, but can be done independently of this work.
+  - Useful, but can be done independently of this work.
 - Improve slicing functionality.
-	- Useful, but can be done independently of this work.
+  - Useful, but can be done independently of this work.
 - Make async a toggleable setting (i.e. async is always on).
-    - May complicate the program flow of slicing.
-    - May still automatically infer that slicing can be synchronously.
+  - May complicate the program flow of slicing.
+  - May still automatically infer that slicing can be synchronously.
 - When a slice doesn’t immediately load, show a low level of detail version of it, so that I can preview what is upcoming.
-	- Requires a low level of detail version to exist.
-	- Should be part of a to-be-defined multi-scale project.
+  - Requires a low level of detail version to exist.
+  - Should be part of a to-be-defined multi-scale project.
 - Store multiple slices associated with each layer, so that I can easily implement a multi-canvas mode for napari.
-	- Should be part of a to-be-defined multi-canvas project.
-	- Solutions for goal (2) should not block this in the future.
+  - Should be part of a to-be-defined multi-canvas project.
+  - Solutions for goal (2) should not block this in the future.
 - Open, save, or process layers asynchronously.
-    - More related to plugin execution.
+  - More related to plugin execution.
 - Lazily load parts of data based on the canvas' current field of view.
-    - An optimization that is dependent on specific data formats.
+  - An optimization that is dependent on specific data formats.
 - Identify and assign dimensions to layers and transforms.
-	- Should be part of a to-be-defined dimensions project.
-	- Solutions for goal (2) should not block this in the future.
+  - Should be part of a to-be-defined dimensions project.
+  - Solutions for goal (2) should not block this in the future.
 - Thick slices of non-visualized dimensions.
-	- Currently being prototyped in [^pull-4334].
-	- Solutions for goal (2) should not block this in the future.
+  - Currently being prototyped in \[^pull-4334\].
+  - Solutions for goal (2) should not block this in the future.
 - Keep the experimental async fork working.
-	- Nice to have, but should not put too much effort into this.
-    - May want to remove it to avoid confusion.
-
+  - Nice to have, but should not put too much effort into this.
+  - May want to remove it to avoid confusion.
 
 ## Related work
 
 As this project focuses on re-designing slicing in napari, this section contains information on how slicing in napari currently works.
-
 
 ### Existing slice logic
 
@@ -183,7 +176,7 @@ which gets the new sliced data in the layer, may post-process it, and finally pa
 
 It's important to understand what state is currently used by and generated by slicing because
 solutions for this project may cause this state to be read and write from multiple threads.
-Rather than exhaustively list all of the slice state of all layer types and their dependencies [^slice-class-diagram],
+Rather than exhaustively list all of the slice state of all layer types and their dependencies \[^slice-class-diagram\],
 we group and highlight some of the more important state.
 
 #### Input state
@@ -205,26 +198,26 @@ Other input state comes from more permanent and public properties of `Layer`, wh
 Finally, there are some layer-type specific properties that are used to customize the visualized slice.
 
 - `_ImageBase`
-    - `rgb: bool` True if the leading dimension contains RGB(A) channels that should be visualized as such.
+  - `rgb: bool` True if the leading dimension contains RGB(A) channels that should be visualized as such.
 - `Points`
-    - `face_color, edge_color: Array[float, (N, 4)]`, the face and edge colors of each point.
-    - `size: Array[float, (N, D)]`, the size of each point.
-    - `edge_width: Array[float, (N,)]`, the width of each point's edge.
-    - `shown: Array[bool, (N,)]`, the visibility of each point.
-    - `out_of_slice_display: bool`, if True some points may be included in more than one slice based on their size.
+  - `face_color, edge_color: Array[float, (N, 4)]`, the face and edge colors of each point.
+  - `size: Array[float, (N, D)]`, the size of each point.
+  - `edge_width: Array[float, (N,)]`, the width of each point's edge.
+  - `shown: Array[bool, (N,)]`, the visibility of each point.
+  - `out_of_slice_display: bool`, if True some points may be included in more than one slice based on their size.
 - `Shapes`
-    - `face_color, edge_color: Array[float, (N, 4)]`, the face and edge colors of each shape.
-    - `edge_width: Array[float, (N,)]`, the width of shape's edges.
-    - `_data_view: ShapeList`, stores all shapes' data.
-		- `_mesh: Mesh`, stores concatenated meshes of all shapes.
-            - `vertices: Array[float, (Q, D)]`, the vertices of all shapes.
+  - `face_color, edge_color: Array[float, (N, 4)]`, the face and edge colors of each shape.
+  - `edge_width: Array[float, (N,)]`, the width of shape's edges.
+  - `_data_view: ShapeList`, stores all shapes' data.
+    - `_mesh: Mesh`, stores concatenated meshes of all shapes.
+      - `vertices: Array[float, (Q, D)]`, the vertices of all shapes.
 - `Vectors`
-    - `edge_color: Array[float, (N,)]`, the color of each vector.
-    - `edge_width: Array[float, (N,)]`, the width of each vector.
-    - `length: numeric`, multiplicative length scaling all vectors.
-    - `out_of_slice_display: bool`, if True some vectors may be included in more than one slice based on their length.
-    - `_mesh_vertices`, output from `generate_vector_meshes`.
-	- `_mesh_triangles`, output from `generate_vector_meshes`.
+  - `edge_color: Array[float, (N,)]`, the color of each vector.
+  - `edge_width: Array[float, (N,)]`, the width of each vector.
+  - `length: numeric`, multiplicative length scaling all vectors.
+  - `out_of_slice_display: bool`, if True some vectors may be included in more than one slice based on their length.
+  - `_mesh_vertices`, output from `generate_vector_meshes`.
+  - `_mesh_triangles`, output from `generate_vector_meshes`.
 
 Many of these are just indexed as part of slicing.
 For example, `Points.face_color` is indexed by the points that are visible in the current slice.
@@ -235,20 +228,20 @@ The output of slicing is typically layer-type specific, stored as state
 on the layer, and mostly consumed by the corresponding vispy layer.
 
 - `_ImageBase`
-    - `_slice: ImageSlice`, contains a loader, and the sliced image and thumbnail
-        - much complexity encapsulated here and other related classes like `ImageSliceData`.
+  - `_slice: ImageSlice`, contains a loader, and the sliced image and thumbnail
+    - much complexity encapsulated here and other related classes like `ImageSliceData`.
 - `Points`
-    - `__indices_view: Array[int, (M,)]`, indices of points (i.e. rows of `data`) that are in the current slice.
-        - many private properties derived from this (e.g. `_indices_view`, `_view_data`).
-    - `_view_size_scale: Union[float, Array[float, (M,)]]`, used with thick slices of points `_view_size` to make out of slice points appear smaller.
+  - `__indices_view: Array[int, (M,)]`, indices of points (i.e. rows of `data`) that are in the current slice.
+    - many private properties derived from this (e.g. `_indices_view`, `_view_data`).
+  - `_view_size_scale: Union[float, Array[float, (M,)]]`, used with thick slices of points `_view_size` to make out of slice points appear smaller.
 - `Shapes`
-    - `_data_view: ShapeList`, stores all shapes' data.
-		- `_mesh: Mesh`, stores concatenated meshes of all shapes.
-			- `displayed_triangles: Array[int, (M, 3)]`, triangles to be drawn.
-			- `displayed_triangles_colors: Array[float, (M, 4)]`, per triangle color.
+  - `_data_view: ShapeList`, stores all shapes' data.
+    - `_mesh: Mesh`, stores concatenated meshes of all shapes.
+      - `displayed_triangles: Array[int, (M, 3)]`, triangles to be drawn.
+      - `displayed_triangles_colors: Array[float, (M, 4)]`, per triangle color.
 - `Vectors`
-    - `_view_indices: Array[int, (-1)]`, indices of vectors that are in the current slice.
-        - lots of private properties derived from this (e.g. `_view_face_color`, `_view_faces`).
+  - `_view_indices: Array[int, (-1)]`, indices of vectors that are in the current slice.
+    - lots of private properties derived from this (e.g. `_view_face_color`, `_view_faces`).
 
 The vispy layers also read other state from their corresponding layer.
 In particular they read `Layer._transforms` to produce a transform that can be used to properly
@@ -340,6 +333,7 @@ class PointsSliceRequest(LayerSliceRequest):
     edge_color: np.ndarray
     edge_width: np.ndarray
 
+
 class PointsSliceResponse(LayerSliceResponse):
     indices: np.ndarray
     size: np.ndarray
@@ -356,7 +350,6 @@ response types gives us more flexibility later in terms of how slicing works.
 For example, we may want to generate point face colors lazily, which could mean
 that `PointsSliceRequest.face_color` would become a callable instead of a
 materialized array as in the response.
-
 
 ### Layer methods
 
@@ -515,16 +508,15 @@ The other reason is because `QtViewer` is a `QObject` that lives in the main
 thread, which makes it easier to ensure that the slice response is handled
 on the main thread.
 That's useful because Qt widgets and vispy nodes can only be safely updated
-on the main thread [^vispy-faq-threads], both of which occur when consuming
+on the main thread \[^vispy-faq-threads\], both of which occur when consuming
 slice output.
-
 
 ## Implementation
 
-A tracking issue [^tracking-issue] serves as a way to communicate high level
+A tracking issue \[^tracking-issue\] serves as a way to communicate high level
 progress and discussion.
 
-A prototype [^prototype-pr] has been created that implements the approach described
+A prototype \[^prototype-pr\] has been created that implements the approach described
 above to show its basic technical feasibility in napari's existing code base.
 It only implements it for some layer types, some slicing operations, and may
 not work when layer data is mutated.
@@ -577,7 +569,6 @@ In order to do this, we plan to encapsulate the input and output state of each s
 private dataclasses. There are no API changes, but this forces any read/write access of
 this state to acquire an associated lock.
 
-
 ## Future work
 
 ### Render each slice as soon as it is ready
@@ -586,9 +577,9 @@ In this proposal, the slicing thread waits for slices of all layers to be ready 
 it emits the `slice_ready` event. There are a few reasons for that.
 
 1. We only use one slicing thread to keep behavior simple and to avoid GIL contention.
-2. It's closer to the existing behavior of napari
-3. Shouldn't introduce any new potential bugs, such as [^issue-2862].
-4. It needs less UX design work to decide what should be shown while we are waiting for slices to be ready.
+1. It's closer to the existing behavior of napari
+1. Shouldn't introduce any new potential bugs, such as \[^issue-2862\].
+1. It needs less UX design work to decide what should be shown while we are waiting for slices to be ready.
 
 In some cases, rendering slices as soon as possible will provide a better user experience,
 especially when some layers are substantially slower than others. Therefore, this should be
@@ -603,7 +594,6 @@ To implement this behavior as a small extension to this proposal, we could do so
 
 This would cause a [more complex call sequence](https://raw.githubusercontent.com/andy-sweet/napari-diagrams/main/napari-slicing-async-calls-asap.drawio.svg)
 and could make cancellation behavior more complex, but may be worth it regardless.
-
 
 ## Alternatives
 
@@ -652,9 +642,9 @@ Instead of making the `ViewerModel` the driver of slicing, we could instead driv
 A rough implementation of this approach could look like the following.
 
 ```python
-
 class QtViewer:
     ...
+
     def __init__(self):
         ...
         self.viewer.dims.current_step.connect(self.slice_layers)
@@ -663,15 +653,20 @@ class QtViewer:
         for layer in self.viewer.layers:
             self.layer_to_visual[layer]._slice(self.viewer.dims)
 
+
 class Image:
     ...
+
     def _make_slice_request(self, dims: Dims) -> ImageSliceRequest:
         ...
+
     def _get_slice(self, request: ImageSliceRequest) -> ImageSliceResponse:
         ...
 
+
 class VispyImageLayer:
     ...
+
     def _slice(self, dims: Dims) -> None:
         request = self.layer._make_slice_request(dims)
         task = self.slice_executor.submit(self.layer._get_slice, request)
@@ -702,97 +697,97 @@ updating all the vispy layers.
 Another disadvantage is that this implies that slice state should not live in the model in the future,
 which might cause issues with things like selection that may depend on that state.
 
-
 ## Discussion
 
 - [Initial announcement on Zulip](https://napari.zulipchat.com/#narrow/stream/296574-working-group-architecture/topic/Async.20slicing.20project).
-    - Consider (re)sampling instead of slicing as the name for the operation discussed here.
+  - Consider (re)sampling instead of slicing as the name for the operation discussed here.
 - [Problems with `NAPARI_ASYNC=1`](https://forum.image.sc/t/even-with-napari-async-1-data-loading-is-blocking-the-ui-thread/68097/4)
-    - The existing experimental async code doesn't handle some seemingly simple usage.
+  - The existing experimental async code doesn't handle some seemingly simple usage.
 - [Remove slice state from layer](https://github.com/napari/napari/issues/4682)
-    - Feature request to remove slice/render state from the layer types.
-    - Motivated by creating multiple slices of the same layers for multiple canvases.
-    - Decision: postpone.
-        - There are too many behaviors that depend on slice state (e.g. `Layer._get_value`) and it's easy enough to set it after an async slicing task is done, so leave it for now.
-        - This work should simplify removing it in the future.
+  - Feature request to remove slice/render state from the layer types.
+  - Motivated by creating multiple slices of the same layers for multiple canvases.
+  - Decision: postpone.
+    - There are too many behaviors that depend on slice state (e.g. `Layer._get_value`) and it's easy enough to set it after an async slicing task is done, so leave it for now.
+    - This work should simplify removing it in the future.
 - [Draft PR on andy-sweet's fork](https://github.com/andy-sweet/napari/pull/16)
-    - Initial feedback before sharing more widely.
+  - Initial feedback before sharing more widely.
 - Define a class that encapsulates the slicing bounding box in world coordinates.
-    - [Define a class that only encapsulates the dims and camera info needed for slicing](https://github.com/napari/napari/pull/4892/files#r935771292)
-    - [Replace `point` and similar with `bbox`](https://github.com/napari/napari/pull/4892/files#r935877117)
-    - The idea here is to collapse some of the existing input slicing state like `point` and `dims_displayed` into one class that describes the bounding box for slicing in world coordinates.
-    - Decision: postpone.
-        - This can be done independently of this work and the order is not important enough to slow this work down.
+  - [Define a class that only encapsulates the dims and camera info needed for slicing](https://github.com/napari/napari/pull/4892/files#r935771292)
+  - [Replace `point` and similar with `bbox`](https://github.com/napari/napari/pull/4892/files#r935877117)
+  - The idea here is to collapse some of the existing input slicing state like `point` and `dims_displayed` into one class that describes the bounding box for slicing in world coordinates.
+  - Decision: postpone.
+    - This can be done independently of this work and the order is not important enough to slow this work down.
 - [Replace layer slice request and response types with a single slice type](https://github.com/napari/napari/pull/4892/files#r935773848)
-    - Motivation is make it easier to add a new layer type by reducing the number of class types needed.
-    - Some disagreement here as one type for two purposes (input vs. output) seems confusing.
-    - Keeping the request and response types separate may also allow us to better target alternatives to vispy.
-    - Decision: keep request and response types separate for now.
-        - Adding a new layer type is not a frequent occurrence.
-        - Having one class may reduce the number of classes, but implementing a new layer type is already quite complex.
+  - Motivation is make it easier to add a new layer type by reducing the number of class types needed.
+  - Some disagreement here as one type for two purposes (input vs. output) seems confusing.
+  - Keeping the request and response types separate may also allow us to better target alternatives to vispy.
+  - Decision: keep request and response types separate for now.
+    - Adding a new layer type is not a frequent occurrence.
+    - Having one class may reduce the number of classes, but implementing a new layer type is already quite complex.
 - [Slicing in a shader](https://github.com/napari/napari/pull/4892/files#r935322222)
-    - How to handle future cases where layer data has been pre-loaded onto the GPU and we want to slice in the shader?
-    - Less about large/slow data, and more about not blocking approaches to handling small/fast data efficiently.
-    - May be particularly useful for multi-canvas.
-    - Decision: postpone.
-        - Keep related types private or vague to not blocking this in the future.
+  - How to handle future cases where layer data has been pre-loaded onto the GPU and we want to slice in the shader?
+  - Less about large/slow data, and more about not blocking approaches to handling small/fast data efficiently.
+  - May be particularly useful for multi-canvas.
+  - Decision: postpone.
+    - Keep related types private or vague to not blocking this in the future.
 - [Support existing usage and plugins that depends on synchronous slicing](https://github.com/napari/napari/pull/4892/files#r934961214)
-    - Main example is [the napari-animation plugin](https://www.napari-hub.org/plugins/napari-animation), but there may be others.
-    - This was explored [^pull-4969] with the following main findings.
-        - Forcing synchronous slicing when combining the prototype and `napari-animation` seems to work for the basic examples.
-        - We only need to ensure synchronous slicing before using `Viewer.screenshot`, as keyframes just capture the value of `current_step` and similar.
-        - `screenshot` is only called a few times in `napari-animation`, so wouldn't require large changes if asynchronous slicing was the default.
-    - Decision: always have some way to force synchronous slicing.
-        - But no need to support synchronous slicing by default, which is harder to implement.
+  - Main example is [the napari-animation plugin](https://www.napari-hub.org/plugins/napari-animation), but there may be others.
+  - This was explored \[^pull-4969\] with the following main findings.
+    - Forcing synchronous slicing when combining the prototype and `napari-animation` seems to work for the basic examples.
+    - We only need to ensure synchronous slicing before using `Viewer.screenshot`, as keyframes just capture the value of `current_step` and similar.
+    - `screenshot` is only called a few times in `napari-animation`, so wouldn't require large changes if asynchronous slicing was the default.
+  - Decision: always have some way to force synchronous slicing.
+    - But no need to support synchronous slicing by default, which is harder to implement.
 - [What should `Viewer.screenshot` do when the canvas is not fully rendered?](https://github.com/napari/napari/pull/5052)
-    - Initial consensus is that it should wait for pending slicing tasks and for the associated pushes to vispy.
-        - There are some ideas of how to implement that, though it is not straightforward.
-    - In the API, may want a keyword argument to control behavior. In the GUI, could have a dialog if there are pending tasks.
+  - Initial consensus is that it should wait for pending slicing tasks and for the associated pushes to vispy.
+    - There are some ideas of how to implement that, though it is not straightforward.
+  - In the API, may want a keyword argument to control behavior. In the GUI, could have a dialog if there are pending tasks.
     = Decision: want to support both, with blocking behavior as default.
-        - No need for a design or prototype before acceptance.
+    - No need for a design or prototype before acceptance.
 - Should `Dims.current_step` (and `corner_pixels`) represent the last slice position request or the last slice response?
-    - With sync slicing, there is no distinction.
-    - With async slicing, `current` is ambiguous.
-    - [Initial small consensus around last request](https://github.com/napari/napari/pull/4892/files#r935336654)
-    - Decision: last request.
-        - The implementation is simpler if this represents the last request.
-        - Can introduce an additional public attribute later if last response is needed.
+  - With sync slicing, there is no distinction.
+  - With async slicing, `current` is ambiguous.
+  - [Initial small consensus around last request](https://github.com/napari/napari/pull/4892/files#r935336654)
+  - Decision: last request.
+    - The implementation is simpler if this represents the last request.
+    - Can introduce an additional public attribute later if last response is needed.
 
 ## References and footnotes
 
 All NAPs should be declared as dedicated to the public domain with the CC0
-license [^cc0], as in `Copyright`, below, with attribution encouraged with
-CC0+BY [^cc0-by].
+license \[^cc0\], as in `Copyright`, below, with attribution encouraged with
+CC0+BY \[^cc0-by\].
 
-[^cc0]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication, <https://creativecommons.org/publicdomain/zero/1.0/>
+\[^cc0\]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication, <https://creativecommons.org/publicdomain/zero/1.0/>
 
-[^cc0-by]: CO0+BY, <https://dancohen.org/2013/11/26/cc0-by/>
+\[^cc0-by\]: CO0+BY, <https://dancohen.org/2013/11/26/cc0-by/>
 
-[^issue-792]: napari issue 792, <https://github.com/napari/napari/issues/792>
+\[^issue-792\]: napari issue 792, <https://github.com/napari/napari/issues/792>
 
-[^issue-1353]: napari issue 1353, <https://github.com/napari/napari/issues/1353>
+\[^issue-1353\]: napari issue 1353, <https://github.com/napari/napari/issues/1353>
 
-[^issue-1574]: napari issue 1574, <https://github.com/napari/napari/issues/1574>
+\[^issue-1574\]: napari issue 1574, <https://github.com/napari/napari/issues/1574>
 
-[^issue-1775]: napari issue 1775, <https://github.com/napari/napari/issues/1775>
+\[^issue-1775\]: napari issue 1775, <https://github.com/napari/napari/issues/1775>
 
-[^issue-2156]: napari issue 2156, <https://github.com/napari/napari/issues/2156>
+\[^issue-2156\]: napari issue 2156, <https://github.com/napari/napari/issues/2156>
 
-[^issue-2862]: napari issue 2862, <https://github.com/napari/napari/issues/2862>
+\[^issue-2862\]: napari issue 2862, <https://github.com/napari/napari/issues/2862>
 
-[^pull-4334]: napari pull request 4334, <https://github.com/napari/napari/pull/4334>
+\[^pull-4334\]: napari pull request 4334, <https://github.com/napari/napari/pull/4334>
 
-[^pull-4969]: napari pull request 4969, <https://github.com/napari/napari/issues/4969>
+\[^pull-4969\]: napari pull request 4969, <https://github.com/napari/napari/issues/4969>
 
-[^vispy-faq-threads]: Vispy FAQs: Is VisPy multi-threaded or thread-safe?, <https://vispy.org/faq.html#is-vispy-multi-threaded-or-thread-safe>
+\[^vispy-faq-threads\]: Vispy FAQs: Is VisPy multi-threaded or thread-safe?, <https://vispy.org/faq.html#is-vispy-multi-threaded-or-thread-safe>
 
-[^slice-class-diagram]: napari slicing class and state dependency diagram, <https://raw.githubusercontent.com/andy-sweet/napari-diagrams/main/napari-slicing-classes.drawio.svg>
+\[^slice-class-diagram\]: napari slicing class and state dependency diagram, <https://raw.githubusercontent.com/andy-sweet/napari-diagrams/main/napari-slicing-classes.drawio.svg>
 
-[^prototype-pr]: A PR that implements a prototype for the approach described here, <https://github.com/andy-sweet/napari/pull/21>
+\[^prototype-pr\]: A PR that implements a prototype for the approach described here, <https://github.com/andy-sweet/napari/pull/21>
 
-[^tracking-issue]: The tracking issue for this work, <https://github.com/napari/napari/issues/4795>
+\[^tracking-issue\]: The tracking issue for this work, <https://github.com/napari/napari/issues/4795>
+
 ## Copyright
 
 This document is dedicated to the public domain with the Creative Commons CC0
-license [^cc0]. Attribution to this source is encouraged where appropriate, as per
-CC0+BY [^cc0-by].
+license \[^cc0\]. Attribution to this source is encouraged where appropriate, as per
+CC0+BY \[^cc0-by\].

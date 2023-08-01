@@ -46,14 +46,14 @@ quite beautiful and has the added bonus of looking a bit like a dividing cell.
 However, it goes much further in the styling.
 
 The proposed logo draws the two "lobes" of the island as two touching circles,
-with the radius of the smaller (northwest) circle being a factor of $\phi$
-smaller than the larger one, where $\phi = \frac{1 + \sqrt{5}}{2}$ denotes the
+with the radius of the smaller (northwest) circle being a factor of $\\phi$
+smaller than the larger one, where $\\phi = \\frac{1 + \\sqrt{5}}{2}$ denotes the
 [golden ratio](https://en.wikipedia.org/wiki/Golden_ratio).
 
 The "neck" of the island is *also* defined by two *external* circles: one
-smaller again by $\phi$ than the smaller circle, and one larger again than the
+smaller again by $\\phi$ than the smaller circle, and one larger again than the
 bigger circle. In this way, the island is defined by four circles of increasing
-radius, with each increase a factor of $\phi$:
+radius, with each increase a factor of $\\phi$:
 
 ![napari-logo-3-with-guides](../images/napari-logo-3-with-guides.png)
 
@@ -94,28 +94,28 @@ The logo proposed above is generated *entirely within napari*. It makes use of:
 - Scaling, translation, and rotation on each layer: the arithmetic for finding
   the exact centers and contact points of all the circles is much easier with
   the origin at the center of the north-west circle, a radius of
-  $1/\phi = \phi - 1$, and the island aligned along the 0th (vertical) axis.
+  $1/\\phi = \\phi - 1$, and the island aligned along the 0th (vertical) axis.
   Similarly, the squircle is easier to draw with the origin at the center. I
   then apply scale, translation and rotation so that the island is at 45° and
-  the logo fills the space in [[0, 1024], [0, 1024]].
+  the logo fills the space in \[\[0, 1024\], \[0, 1024\]\].
 - NumPy for computation of all the lines and shapes.
 
 Additionally, napari was used extensively during the development, to debug
 errors in calculating the contact points and so on. 😅
 
-It's very fun to work with powers of $\phi$: $1/\phi = \phi - 1$, which implies
-$1/\phi^2 = (\phi - 1)/\phi = 1 - 1/\phi = 2 - \phi$, and so on. Similarly,
-$\phi^2 = 1 + \phi$, which again lets you reduce all polynomials of $\phi$ to
+It's very fun to work with powers of $\\phi$: $1/\\phi = \\phi - 1$, which implies
+$1/\\phi^2 = (\\phi - 1)/\\phi = 1 - 1/\\phi = 2 - \\phi$, and so on. Similarly,
+$\\phi^2 = 1 + \\phi$, which again lets you reduce all polynomials of $\\phi$ to
 degree 1.
 
 The original implementation is at https://github.com/jni/new-napari-logo, but
 if this NAP is accepted, it would add the logo-generating script as a gallery
 example.
 
-Another bit of mathematical fun: Veritasium calls $\phi$ "the fiveiest number"
+Another bit of mathematical fun: Veritasium calls $\\phi$ "the fiveiest number"
 (in [this fantastic video](https://youtu.be/48sCx-wBs34)): it is the ratio of
 the diagonal of a regular pentagon to its side, and it can be written as
-$\phi = 0.5 + 0.5 \times 5^{0.5}$! So it is a happy not-quite-coincidence that
+$\\phi = 0.5 + 0.5 \\times 5^{0.5}$! So it is a happy not-quite-coincidence that
 this is NAP-5. 😉
 
 ## Backward Compatibility
@@ -133,6 +133,7 @@ themes to match. Or we could simply pick a more natural color for the lagoon,
 again from the satellite image, and forget about matching them.
 
 I will take the opportunity to express two strong opinions:
+
 - I think some form of "ocean purple" is absolutely necessary for the
   background, as I think it's become part of our identity on account of our
   existing logo.
@@ -181,10 +182,10 @@ This section will be updated with links as we discuss the NAP.
 ## Copyright
 
 This document is dedicated to the public domain with the Creative Commons CC0
-license [^id3]. Attribution to this source is encouraged where appropriate, as per
+license \[^id3\]. Attribution to this source is encouraged where appropriate, as per
 CC0+BY [^id4].
 
-[^id3]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
-    <https://creativecommons.org/publicdomain/zero/1.0/>
+\[^id3\]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
+<https://creativecommons.org/publicdomain/zero/1.0/>
 
-[^id4]: <https://dancohen.org/2013/11/26/cc0-by/>
+[^id4]: https://dancohen.org/2013/11/26/cc0-by/

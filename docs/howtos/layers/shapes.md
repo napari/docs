@@ -1,15 +1,6 @@
----
-jupytext:
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
----
+______________________________________________________________________
+
+## jupytext: text_representation: extension: .md format_name: myst format_version: 0.13 jupytext_version: 1.10.3 kernelspec: display_name: Python 3 language: python name: python3
 
 # Using the shapes layer
 
@@ -155,8 +146,8 @@ or tablet. When using the mouse, the sequence of events to draw a polygon is as
 follows:
 
 1. Click mouse (left-click) to begin drawing.
-2. Move mouse — without holding down the mouse button — to draw the polygon.
-3. Click mouse (left-click) or press `escape` to end drawing—the polygon will auto-complete.
+1. Move mouse — without holding down the mouse button — to draw the polygon.
+1. Click mouse (left-click) or press `escape` to end drawing—the polygon will auto-complete.
 
 The polygon lasso tool can also be used to draw `Polygons` using a tablet. In this case,
 drawing the polygon is started by touching the tablet screen with the tablet stylus and
@@ -171,7 +162,7 @@ The default is 10 and can be any integer higher than 0 and lower than 50. As wit
 tool drawing the shape can also be finished by pressing the `escape` key.
 
 After finishing drawing a polygon using the polygon lasso tool, an implementation of the [Ramer–Douglas–Peucker
-algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm) is applied to reduce the
+algorithm](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm) is applied to reduce the
 number of vertices that make up the shape, while preserving its contours. The aggressiveness with
 which the algorithm reduces the number of vertices of the polygon is determined by an `epsilon` parameter,
 which is a perpendicular distance threshold. Any vertices beyond the threshold will be preserved, so

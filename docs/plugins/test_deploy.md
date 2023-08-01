@@ -1,7 +1,9 @@
 (plugin-test-deploy)=
+
 # Test and Deploy
 
 (plugin-testing-tips)=
+
 ## Tips for testing napari plugins
 
 Testing is a big topic!  If you are completely new to writing tests in python,
@@ -131,14 +133,13 @@ napari hub preview page service. Check out [this guide](https://github.com/chanz
 ## Deployment
 
 When you are ready to share your plugin, [upload the Python package to
-PyPI][pypi-upload] after which it will be installable using `python -m pip install
-<yourpackage>`, or (assuming you added the `Framework :: napari` classifier)
+PyPI][pypi-upload] after which it will be installable using `python -m pip install <yourpackage>`, or (assuming you added the `Framework :: napari` classifier)
 in the builtin plugin installer dialog.
 
 If you used the {ref}`plugin-cookiecutter-template`, you can also
 [setup automated deployments][autodeploy] on github for every tagged commit.
 
-````{admonition} What about conda?
+```{admonition} What about conda?
 While you are free to distribute your plugin on anaconda cloud in addition to
 or instead of PyPI, the built-in napari plugin installer doesn't currently install
 from conda. In this case, you may guide your users to install your package on the
@@ -146,16 +147,12 @@ command line using conda in your readme or documentation.
 
 A future version of napari and the napari stand-alone application may support
 directly installing from conda.
-````
+```
 
 When you are ready for users, announce your plugin on the [Image.sc
 forum](https://forum.image.sc/tag/napari).
 
-
+[autodeploy]: https://github.com/napari/cookiecutter-napari-plugin#set-up-automatic-deployments
 [classifier]: https://pypi.org/classifiers/
 [pypi]: https://pypi.org/
 [pypi-upload]: https://packaging.python.org/tutorials/packaging-projects/#uploading-the-distribution-archives
-[hubguide]: https://github.com/chanzuckerberg/napari-hub/blob/main/docs/customizing-plugin-listing.md
-[hub-guide-custom-viz]: https://github.com/chanzuckerberg/napari-hub/wiki/Customizing-your-plugin's-listing#visibility
-[hub-guide-preview]: https://github.com/chanzuckerberg/napari-hub/blob/main/docs/setting-up-preview.md
-[autodeploy]: https://github.com/napari/cookiecutter-napari-plugin#set-up-automatic-deployments

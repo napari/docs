@@ -1,17 +1,9 @@
----
-jupytext:
-  formats: ipynb,md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.11.5
-kernelspec:
-  display_name: Python 3 (ipykernel)
-  language: python
-  name: python3
----
+______________________________________________________________________
+
+## jupytext: formats: ipynb,md:myst text_representation: extension: .md format_name: myst format_version: 0.13 jupytext_version: 1.11.5 kernelspec: display_name: Python 3 (ipykernel) language: python name: python3
+
 (napari-quick-start)=
+
 # Quick start
 
 +++
@@ -49,6 +41,7 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 ### Installation
 
 - Download the napari {{ napari_version }} bundled app for a simple installation:
+
   - Linux: {{ '[`napari-NAPARI_VER-Linux-x86_64.sh`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.sh)'.replace('NAPARI_VER', napari_version) }}.
   - macOS (Intel): {{ '[`napari-NAPARI_VER-macOS-x86_64.pkg`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.pkg)'.replace('NAPARI_VER', napari_version) }}.
   - macOS (Apple Silicon): {{ '[`napari-NAPARI_VER-macOS-arm64.pkg`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-arm64.pkg)'.replace('NAPARI_VER', napari_version) }}.
@@ -57,18 +50,17 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 
 - For those familiar with Python:
 
-    napari can be installed on most macOS (Intel x86), Linux, and Windows systems with Python {{ python_version_range }} using pip.
+  napari can be installed on most macOS (Intel x86), Linux, and Windows systems with Python {{ python_version_range }} using pip.
 
-    First, create a clean virtual environment:
+  First, create a clean virtual environment:
 
-    {{ conda_create_env }}
+  {{ conda_create_env }}
 
-    Once in napari-env,
+  Once in napari-env,
 
-    ```python
-    python -m pip install 'napari[all]'
-    ```
-
+  ```python
+  python -m pip install 'napari[all]'
+  ```
 
 If you run into any issues, please visit the more detailed [installation guide](./installation), or [report an issue on GitHub](https://github.com/napari/napari/issues/new/choose)!
 
@@ -82,15 +74,16 @@ Here we will be mainly focused on the GUI application.
 
 - From command line:
 
-    Once installed, simply run
+  Once installed, simply run
+
 ```python
 napari
 ```
 
 - If you installed the bundled app:
 
-    Click on the app icon to open it.<br>
-    *Note: macOS users might need to right click on the app icon and select "Open" to bypass the security check. You can also go to System Settings > Privacy & Security and click on "Open Anyway".*
+  Click on the app icon to open it.<br>
+  *Note: macOS users might need to right click on the app icon and select "Open" to bypass the security check. You can also go to System Settings > Privacy & Security and click on "Open Anyway".*
 
 +++
 
@@ -115,7 +108,8 @@ For demo purpose, we will use a sample image that comes with napari.
 
 ```python
 from skimage import data
-viewer.add_image(data.cell(), name='cell')
+
+viewer.add_image(data.cell(), name="cell")
 ```
 
 ```{code-cell} ipython3
@@ -138,7 +132,7 @@ The layer controls panel at the upper left of the viewer allows you to adjust co
 To change the image display through the [API](../../api/index), in IPython console, type
 
 ```python
-viewer.layers['cell'].colormap = "yellow"
+viewer.layers["cell"].colormap = "yellow"
 ```
 
 ```{code-cell} ipython3
@@ -174,7 +168,8 @@ In IPython console, type
 
 ```python
 from skimage.measure import regionprops
-props = regionprops(viewer.layers['Labels'].data)
+
+props = regionprops(viewer.layers["Labels"].data)
 print("the cell area is: ", props[0].area)
 ```
 
@@ -189,6 +184,7 @@ viewer.close_all()
 ```
 
 ### Next steps
+
 - napari provides the flexibility to handle multi-dimensional data. Try opening 3D or higher dimensional images, and switch to 3D view.
 
 ![ndisplay](../../images/ndisplay.png)

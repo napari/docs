@@ -6,7 +6,6 @@ There are a number of good and bad practices that may not be immediately obvious
 when developing a plugin.  This page covers some known practices that could
 affect the ability to install or use your plugin effectively.
 
-
 (best-practices-no-qt-backend)=
 
 ## Don't include `PySide2` or `PyQt5` in your plugin's dependencies.
@@ -14,8 +13,7 @@ affect the ability to install or use your plugin effectively.
 *This is important!*
 
 Napari supports *both* PyQt and PySide backends for Qt.  It is up to the
-end-user to choose which one they want. If they installed napari with `pip
-install napari[all]`, then the `[all]` extra will (currently) install `PyQt5`
+end-user to choose which one they want. If they installed napari with `pip install napari[all]`, then the `[all]` extra will (currently) install `PyQt5`
 for them from pypi.  If they installed via `conda install napari`, then they'll
 have `PyQt5`, but via anaconda cloud instead of pypi. Lastly, they may have
 installed napari with PySide2.
@@ -32,22 +30,22 @@ Here's what can go wrong if you *also* declare one of these backends in the
   [package naming
   decisions](https://github.com/ContinuumIO/anaconda-issues/issues/1554), and
   it's not something napari can fix.
+
 - Alternatively, they may end up with *both* PyQt and PySide in their
   environment, and while that's not always guaranteed to break things, it can
   lead to unexpected and difficult to debug problems.
 
 - **Don't import from PyQt5 or PySide2 in your plugin: use `qtpy`.**
 
-    If you use `from PyQt5 import QtCore` (or similar) in your plugin, but the
-    end-user has chosen to use `PySide2` for their Qt backend — or vice versa —
-    then your plugin will fail to import.  Instead use `from qtpy import
-    QtCore`.  `qtpy` is a [Qt compatibility
-    layer](https://github.com/spyder-ide/qtpy) that will import from whatever
-    backend is installed in the environment.
+  If you use `from PyQt5 import QtCore` (or similar) in your plugin, but the
+  end-user has chosen to use `PySide2` for their Qt backend — or vice versa —
+  then your plugin will fail to import.  Instead use `from qtpy import   QtCore`.  `qtpy` is a [Qt compatibility
+  layer](https://github.com/spyder-ide/qtpy) that will import from whatever
+  backend is installed in the environment.
 
 ## Try not to depend on packages that require C compilation if these packages do not offer wheels
 
-````{tip}
+```{tip}
 This requires some awareness of how your dependencies are built and distributed...
 
 Some python packages write a portion of their code in lower level languages like
@@ -63,8 +61,7 @@ software that is not always installed on every computer. (If you've ever tried
 to `python -m pip install` a package and had it fail with a big wall of red text saying
 something about `gcc`, then you've run into a package that doesn't distribute
 wheels, and you didn't have the software required to compile it).
-````
-
+```
 
 As a plugin developer, if you depend on a package that uses C extensions but
 doesn't distribute a pre-compiled wheel, then it's very likely that your users
@@ -96,7 +93,7 @@ will run into difficulties installing your plugin:
   (for example, [see here in
   pytorch](https://github.com/pytorch/pytorch/blob/master/setup.py#L914))
 
-````{admonition} What about conda?
+```{admonition} What about conda?
 **conda** also distributes & installs pre-compiled packages, though they aren't
 wheels.  While this is definitely a fine way to install binary dependencies in a
 reliable way, the built-in napari plugin installer doesn't currently work with
@@ -104,21 +101,18 @@ conda.  If your dependency is only available on conda, but does not offer
 wheels,you *may* guide your users in using conda to install your package or one
 of your dependencies.  Just know that it may not work with the built-in plugin
 installer.
-````
-
+```
 
 ## Don't import heavy dependencies at the top of your module
 
-````{note}
+```{note}
 This point will be less relevant when we move to the second generation
 [manifest-based plugin
 declaration](https://github.com/napari/napari/issues/3115), but it's still a
 good idea to delay importing your plugin-specific dependencies and modules until
 *after* your hookspec has been called.  This helps napari stay quick and
 responsive at startup.
-````
-
-
+```
 
 Consider the following example plugin:
 
@@ -195,8 +189,6 @@ with open("some_data_in_my_plugin.json") as data_file:
     data = json.load(data_file)
 ```
 
-
-
 ## Write extensive tests for your plugin!
 
 Programmer and author Bruce Eckel famously wrote:
@@ -219,15 +211,15 @@ up to report test coverage, but you can test locally as well, using
 [pytest-cov](https://github.com/pytest-dev/pytest-cov)
 
 1. `python -m pip install pytest-cov`
-2. Run your tests with `pytest --cov=<your_package> --cov-report=html`
-3. Open the resulting report in your browser: `open htmlcov/index.html`
-4. The report will show line-by-line what is being tested, and what is being
+1. Run your tests with `pytest --cov=<your_package> --cov-report=html`
+1. Open the resulting report in your browser: `open htmlcov/index.html`
+1. The report will show line-by-line what is being tested, and what is being
    missed. Continue writing tests until everything is covered! If you have
    lines that you *know* never need to be tested (like debugging code) you can
    [exempt specific
    lines](https://coverage.readthedocs.io/en/6.4.4/excluding.html#excluding-code-from-coverage-py)
    from coverage with the comment `# pragma: no cover`
-5. In the cookiecutter, coverage tests from github actions will be uploaded to
+1. In the cookiecutter, coverage tests from github actions will be uploaded to
    codecov.io
 
 ## Set style for additional windows in your plugin
@@ -240,6 +232,7 @@ already docked in the viewer.
 
 ```python
 from qtpy.QtWidgets import QDialog, QWidget, QSpinBox, QPushButton, QGridLayout, QLabel
+
 
 class MyInputDialog(QDialog):
     def __init__(self, parent: QWidget):
@@ -258,6 +251,7 @@ class MyInputDialog(QDialog):
 
         self.ok_btn.clicked.connect(self.accept)
         self.cancel_btn.clicked.connect(self.reject)
+
 
 class MyWidget(QWidget):
     def __init__(self, viewer: "napari.Viewer"):
@@ -288,12 +282,15 @@ from magicgui import magicgui
 from napari.qt import get_current_stylesheet
 from napari.settings import get_settings
 
+
 def sample_add(a: int, b: int) -> int:
     return a + b
+
 
 @magicgui
 def sample_add(a: int, b: int) -> int:
     return a + b
+
 
 def change_style():
     sample_add.native.setStyleSheet(get_current_stylesheet())
@@ -301,7 +298,6 @@ def change_style():
 
 get_settings().appearance.events.theme.connect(change_style)
 change_style()
-
 ```
 
 ## Do not package your tests as a top-level package
@@ -369,7 +365,6 @@ Note this also applies to other top-level directories, like `test`, `_tests`, `t
 
 You can find more information in the
 [package discovery documentation for `setuptools`](https://setuptools.pypa.io/en/latest/userguide/package_discovery.html).
-
 
 ## License issues when including code from 3rd parties
 

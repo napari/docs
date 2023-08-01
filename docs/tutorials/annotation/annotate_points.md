@@ -9,8 +9,8 @@ In this tutorial, we will cover creating and interacting with a Points layer wit
 At the end of this tutorial, we will have created a GUI for annotating points in videos that we can simply call by:
 
 ```python
-im_path = '<path to directory with data>/*.png'
-point_annotator(im_path, labels=['ear_l', 'ear_r', 'tail'])
+im_path = "<path to directory with data>/*.png"
+point_annotator(im_path, labels=["ear_l", "ear_r", "tail"])
 ```
 
 The resulting viewer looks like this (images from [Mathis et al., 2018](https://www.nature.com/articles/s41593-018-0209-y), downloaded from [here](https://github.com/DeepLabCut/DeepLabCut/tree/f21321ef8060c537f9df0ce9346189bda07701b5/examples/openfield-Pranav-2018-10-30/labeled-data/m4s1)):
@@ -30,16 +30,16 @@ import numpy as np
 
 
 COLOR_CYCLE = [
-    '#1f77b4',
-    '#ff7f0e',
-    '#2ca02c',
-    '#d62728',
-    '#9467bd',
-    '#8c564b',
-    '#e377c2',
-    '#7f7f7f',
-    '#bcbd22',
-    '#17becf'
+    "#1f77b4",
+    "#ff7f0e",
+    "#2ca02c",
+    "#d62728",
+    "#9467bd",
+    "#8c564b",
+    "#e377c2",
+    "#7f7f7f",
+    "#bcbd22",
+    "#17becf",
 ]
 
 
@@ -59,12 +59,12 @@ def create_label_menu(points_layer, labels):
         the magicgui Container with our dropdown menu widget
     """
     # Create the label selection menu
-    label_menu = ComboBox(label='feature_label', choices=labels)
+    label_menu = ComboBox(label="feature_label", choices=labels)
     label_widget = Container(widgets=[label_menu])
 
     def update_label_menu(event):
         """Update the label menu when the point selection changes"""
-        new_label = str(points_layer.current_properties['label'][0])
+        new_label = str(points_layer.current_properties["label"][0])
         if new_label != label_menu.value:
             label_menu.value = new_label
 
@@ -74,7 +74,7 @@ def create_label_menu(points_layer, labels):
         """Update the Points layer when the label menu selection changes"""
         selected_label = event.value
         current_properties = points_layer.current_properties
-        current_properties['label'] = np.asarray([selected_label])
+        current_properties["label"] = np.asarray([selected_label])
         points_layer.current_properties = current_properties
 
     label_menu.changed.connect(label_changed)
@@ -83,8 +83,8 @@ def create_label_menu(points_layer, labels):
 
 
 def point_annotator(
-        im_path: str,
-        labels: List[str],
+    im_path: str,
+    labels: List[str],
 ):
     """Create a GUI for annotating points in a series of images.
 
@@ -99,54 +99,54 @@ def point_annotator(
 
     viewer = napari.view_image(stack)
     points_layer = viewer.add_points(
-        properties={'label': labels},
-        edge_color='label',
+        properties={"label": labels},
+        edge_color="label",
         edge_color_cycle=COLOR_CYCLE,
-        symbol='o',
-        face_color='transparent',
+        symbol="o",
+        face_color="transparent",
         edge_width=8,
         size=12,
-        ndim=3
+        ndim=3,
     )
-    points_layer.edge_color_mode = 'cycle'
+    points_layer.edge_color_mode = "cycle"
 
     # add the label menu widget to the viewer
     label_widget = create_label_menu(points_layer, labels)
     viewer.window.add_dock_widget(label_widget)
 
-    @viewer.bind_key('.')
+    @viewer.bind_key(".")
     def next_label(event=None):
         """Keybinding to advance to the next label with wraparound"""
         current_properties = points_layer.current_properties
-        current_label = current_properties['label'][0]
+        current_label = current_properties["label"][0]
         ind = list(labels).index(current_label)
         new_ind = (ind + 1) % len(labels)
         new_label = labels[new_ind]
-        current_properties['label'] = np.array([new_label])
+        current_properties["label"] = np.array([new_label])
         points_layer.current_properties = current_properties
 
     def next_on_click(layer, event):
         """Mouse click binding to advance the label when a point is added"""
-        if layer.mode == 'add':
+        if layer.mode == "add":
             next_label()
 
             # by default, napari selects the point that was just added
             # disable that behavior, as the highlight gets in the way
             layer.selected_data = {}
 
-    points_layer.mode = 'add'
+    points_layer.mode = "add"
     points_layer.mouse_drag_callbacks.append(next_on_click)
 
-    @viewer.bind_key(',')
+    @viewer.bind_key(",")
     def prev_label(event):
         """Keybinding to decrement to the previous label with wraparound"""
         current_properties = points_layer.current_properties
-        current_label = current_properties['label'][0]
+        current_label = current_properties["label"][0]
         ind = list(labels).index(current_label)
         n_labels = len(labels)
         new_ind = ((ind - 1) + n_labels) % n_labels
         new_label = labels[new_ind]
-        current_properties['label'] = np.array([new_label])
+        current_properties["label"] = np.array([new_label])
         points_layer.current_properties = current_properties
 ```
 
@@ -206,16 +206,16 @@ As discussed above, we will be storing which feature of interest each point corr
 To visualize the feature each point represents, we set the edge color as a color cycle mapped to the `label` property (`edge_color='label'`).
 
 ```python
-properties = {'label': labels}
+properties = {"label": labels}
 points_layer = viewer.add_points(
     properties=properties,
-    edge_color='label',
+    edge_color="label",
     edge_color_cycle=COLOR_CYCLE,
-    symbol='o',
-    face_color='transparent',
+    symbol="o",
+    face_color="transparent",
     edge_width=8,
     size=12,
-    ndim=3
+    ndim=3,
 )
 ```
 
@@ -226,16 +226,16 @@ For example, the [category10 color palette](https://github.com/d3/d3-3.x-api-ref
 
 ```python
 COLOR_CYCLE = [
-    '#1f77b4',
-    '#ff7f0e',
-    '#2ca02c',
-    '#d62728',
-    '#9467bd',
-    '#8c564b',
-    '#e377c2',
-    '#7f7f7f',
-    '#bcbd22',
-    '#17becf'
+    "#1f77b4",
+    "#ff7f0e",
+    "#2ca02c",
+    "#d62728",
+    "#9467bd",
+    "#8c564b",
+    "#e377c2",
+    "#7f7f7f",
+    "#bcbd22",
+    "#17becf",
 ]
 ```
 
@@ -244,7 +244,7 @@ We set the points `ndim` to 3 so that the coordinates for the point annotations 
 Finally, we set the edge color to a color cycle:
 
 ```python
-    points_layer.edge_color_mode = 'cycle'
+points_layer.edge_color_mode = "cycle"
 ```
 
 ## Adding a GUI for selecting points
@@ -279,7 +279,7 @@ To make the a dropdown menu populated with the valid point labels, we simply cre
 
 ```python
 # Create the label selection menu
-label_menu = ComboBox(label='feature_label', choices=labels)
+label_menu = ComboBox(label="feature_label", choices=labels)
 label_widget = Container(widgets=[label_menu])
 ```
 
@@ -293,9 +293,10 @@ We connect the function we created to the event so that `update_label_menu()` is
 ```python
 def update_label_menu(event):
     """Update the label menu when the point selection changes"""
-    new_label = str(points_layer.current_properties['label'][0])
+    new_label = str(points_layer.current_properties["label"][0])
     if new_label != label_menu.value:
         label_menu.value = new_label
+
 
 points_layer.events.current_properties.connect(update_label_menu)
 ```
@@ -309,8 +310,9 @@ def label_changed(event):
     """Update the Points layer when the label menu selection changes"""
     selected_label = event.value
     current_properties = points_layer.current_properties
-    current_properties['label'] = np.asarray([selected_label])
+    current_properties["label"] = np.asarray([selected_label])
     points_layer.current_properties = current_properties
+
 
 label_menu.changed.connect(label_changed)
 ```
@@ -332,13 +334,13 @@ The decorator requires that we pass the key to bind the function to as a string 
 In this case, we are binding `next_label()` to the `.` key.
 
 ```python
-@viewer.bind_key('.')
+@viewer.bind_key(".")
 def next_label(event=None):
     """Keybinding to advance to the next label with wraparound"""
 
     # get the currently selected label
     current_properties = points_layer.current_properties
-    current_label = current_properties['label'][0]
+    current_label = current_properties["label"][0]
 
     # determine the index of that label in the labels list
     ind = list(labels).index(current_label)
@@ -348,23 +350,23 @@ def next_label(event=None):
 
     # get the new label and assign it
     new_label = labels[new_ind]
-    current_properties['label'] = np.array([new_label])
+    current_properties["label"] = np.array([new_label])
     points_layer.current_properties = current_properties
 ```
 
 We can do the same with another function that instead decrements the label with wraparound.
 
 ```python
-@viewer.bind_key(',')
+@viewer.bind_key(",")
 def prev_label(event):
     """Keybinding to decrement to the previous label with wraparound"""
     current_properties = points_layer.current_properties
-    current_label = current_properties['label'][0]
+    current_label = current_properties["label"][0]
     ind = list(labels).index(current_label)
     n_labels = len(labels)
     new_ind = ((ind - 1) + n_labels) % n_labels
     new_label = labels[new_ind]
-    current_properties['label'] = np.array([new_label])
+    current_properties["label"] = np.array([new_label])
     points_layer.current_properties = current_properties
 ```
 
@@ -381,7 +383,7 @@ Finally,
 def next_on_click(layer, event):
     """Mouse click binding to advance the label when a point is added"""
     # only do something if we are adding points
-    if layer.mode == 'add':
+    if layer.mode == "add":
         next_label()
 
         # by default, napari selects the point that was just added
@@ -392,7 +394,7 @@ def next_on_click(layer, event):
 After creating the function, we then add it to the `points_layer` mouse drag callbacks.
 In napari, clicking and dragging events are both handled under the `mouse_drag_callbacks`.
 For more details on how mouse event callbacks work,
-see the examples [[1](https://github.com/napari/napari/blob/main/examples/custom_mouse_functions.py), [2](https://github.com/napari/napari/blob/main/examples/mouse_drag_callback.py)].
+see the examples \[[1](https://github.com/napari/napari/blob/main/examples/custom_mouse_functions.py), [2](https://github.com/napari/napari/blob/main/examples/mouse_drag_callback.py)\].
 
 ```python
 # bind the callback to the mouse drag event
@@ -406,9 +408,9 @@ points_layer.mouse_drag_callbacks.append(next_on_click)
 Now that you've put it all together, you should be ready to test! You can call the function as shown below.
 
 ```python
-im_path = '<path to directory with data>/*.png'
+im_path = "<path to directory with data>/*.png"
 
-point_annotator(im_path, labels=['ear_l', 'ear_r', 'tail'])
+point_annotator(im_path, labels=["ear_l", "ear_r", "tail"])
 ```
 
 ### Saving the annotations
@@ -423,5 +425,5 @@ Alternatively, we can use the `points_layer.save()` method to save the coordinat
 We can enter the command either in the script (e.g., bind a save function to a hot key) or the napari terminal.
 
 ```python
-points_layer.save('path/to/file.csv')
+points_layer.save("path/to/file.csv")
 ```

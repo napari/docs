@@ -6,7 +6,6 @@ It's designed for browsing, annotating, and analyzing large multi-dimensional
 images. It's built on top of Qt (for the GUI), vispy (for performant GPU-based
 rendering), and the scientific Python stack (numpy, scipy).
 
-
 For more information, examples, and documentation, please visit our website:
 https://github.com/napari/napari
 
@@ -37,7 +36,6 @@ Lambert for these features!
 Read on below for the full list of new features, improvements, bug fixes, and
 more! Thanks to our incredible user and contributor community.
 
-
 ## New Features
 
 - Add context menu on layer list, introduce `QtActionContextMenu`. (#2556)
@@ -57,7 +55,6 @@ more! Thanks to our incredible user and contributor community.
 - Arbitrary clipping planes for volumes in the image layer (#3140)
 - Mask image from points layer (#3151)
 - Add .npy reader to builtin reader (#3271)
-
 
 ## Improvements
 
@@ -80,7 +77,7 @@ more! Thanks to our incredible user and contributor community.
 - Emit data event when moving, adding or removing shapes or points (#2992)
 - Add TypedMutableMapping and EventedDict (#2994)
 - Add isosurface rendering to Labels (#3006)
-- Remove mentions of _mode_history (2987) (#3008)
+- Remove mentions of \_mode_history (2987) (#3008)
 - Change opacity slider to float slider (#3016)
 - Refactor the Point, Label and Shape Layer Mode logic. (#3050)
 - Make flash effect feel more instant (#3060)
@@ -121,7 +118,6 @@ more! Thanks to our incredible user and contributor community.
 - Improve behavior when holding "shift" while editing shapes (#3259)
 - Mesh depth (#3265)
 - Make notification text selectable (#3310)
-
 
 ## Bug Fixes
 
@@ -168,7 +164,7 @@ more! Thanks to our incredible user and contributor community.
 - Fix memory leak in napari (#3217)
 - Disable space bar on layer list (#3234)
 - Close napari window on Ctrl+C without geting window focus (#3239)
-- Skip labeled sliders for <5.14 (#3243)
+- Skip labeled sliders for \<5.14 (#3243)
 - Don't pass interpolation when creating a new projection layer (#3247)
 - Prevent greedy dask array calculation when creating an Image layer (#3248)
 - Fix plane normal inconsistency (#3264)
@@ -182,7 +178,7 @@ more! Thanks to our incredible user and contributor community.
 - Fix connect_setattr to handle single arguments better (#3324)
 - Fix objectName being an empty string (#3326)
 - Fix napari.run aborting due to IPython being imported during script (#3328)
-- Fix _old_size attribute error in main window (#3329)
+- Fix \_old_size attribute error in main window (#3329)
 
 ## API Changes
 
@@ -190,13 +186,11 @@ more! Thanks to our incredible user and contributor community.
 - Enforce layer.metadata as dict (#3020)
 - Use enum objects in EventedModel (#3112)
 
-
 ## UI Changes
 
 - Remove keybindings dialog from help menu (#3048)
 - Remove plugin sorter from plugin install dialog (#3069)
 - Update Labels layer keybindings to be more ergonomic (#3072)
-
 
 ## Build Tools, Tests, Documentation, and other Tasks
 
@@ -245,7 +239,6 @@ more! Thanks to our incredible user and contributor community.
 - Pin furo version (#3315)
 - Update the affine parameter description in several classes (#3319)
 
-
 ## 21 authors added to this release (alphabetical)
 
 - [Abigail McGovern](https://github.com/napari/napari/commits?author=AbigailMcGovern) - @AbigailMcGovern
@@ -272,7 +265,6 @@ more! Thanks to our incredible user and contributor community.
 - [Volker Hilsenstein](https://github.com/napari/napari/commits?author=VolkerH) - @VolkerH
 - [Ziyang Liu](https://github.com/napari/napari/commits?author=ziyangczi) - @ziyangczi
 
-
 ## 19 reviewers added to this release (alphabetical)
 
 - [Alister Burt](https://github.com/napari/napari/commits?author=alisterburt) - @alisterburt
@@ -294,4 +286,3 @@ more! Thanks to our incredible user and contributor community.
 - [Pam](https://github.com/napari/napari/commits?author=ppwadhwa) - @ppwadhwa
 - [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - @tlambert03
 - [Ziyang Liu](https://github.com/napari/napari/commits?author=ziyangczi) - @ziyangczi
-

@@ -6,7 +6,6 @@ It's designed for browsing, annotating, and analyzing large multi-dimensional
 images. It's built on top of Qt (for the GUI), vispy (for performant GPU-based
 rendering), and the scientific Python stack (numpy, scipy).
 
-
 For more information, examples, and documentation, please visit our website:
 https://github.com/napari/napari
 
@@ -53,7 +52,6 @@ This uses the API that we intend to spread elsewhere for other style attributes 
 so if you are a heavy user of those types of attributes you should try this out and leave feedback on Zulip
 or create issues on GitHub.
 
-
 ## New Features
 
 - Multi-color text with color encodings (#4464)
@@ -78,7 +76,7 @@ or create issues on GitHub.
 - Use custom color field classes in all models (#4704)
 - napari.viewer.current_viewer fallback ancestor (#4715)
 - Add public API for dims transpose (#4727)
-- Add a public API for the setGeometry method of _qt_window (#4729)
+- Add a public API for the setGeometry method of \_qt_window (#4729)
 - Expose points layer antialiasing control publicly (#4735)
 - Use `npe2 list` to show plugin info (#4739)
 - Allow pandas.Series as properties values (#4755)
@@ -90,7 +88,7 @@ or create issues on GitHub.
 - Restore Labels, Points and Shapes layer mode after hold key (#4814)
 - Confirmation on close, alternative approach (#4820)
 - add path specificity scoring (#4830)
-- [Automatic] Update albertosottile/darkdetect vendored module (#4845)
+- \[Automatic\] Update albertosottile/darkdetect vendored module (#4845)
 - Add plugin reader warning dialog (#4852)
 - Fix `python` name in macOS menu bar (#4989)
 - Explicit convert color to string when compile resources (#4997)
@@ -106,7 +104,7 @@ or create issues on GitHub.
 - Fix: Always save settings after migration (#4490)
 - Make sure reader dialog pops open if File -> Open Sample is compatible with multiple readers (#4500)
 - Do not add duplicate layers (#4544)
-- Disconnect a removed slider's _pull_label callback from the axis label change event  (#4557)
+- Disconnect a removed slider's \_pull_label callback from the axis label change event  (#4557)
 - Clean status message after leave canvas (#4607)
 - Alternate fix for alt-text issues (#4617)
 - Fix numpy version comparison for dev versions of numpy (#4622)
@@ -116,9 +114,9 @@ or create issues on GitHub.
 - Do not use keyword argument for `QListWidgetItem` parent set in constructor (#4661)
 - fix: fix manifest reader extensions, ensure that all builtins go through npe2 (#4668)
 - Fix source of copied layer events by use `layer.as_layer_data_tuple` (#4681)
-- Tracks tail update fix beyond _max_length (#4688)
+- Tracks tail update fix beyond \_max_length (#4688)
 - Keep order of layers when select to save multiple selected layers (#4689)
-- Apply shown mask to points._view_size_scale (#4699)
+- Apply shown mask to points.\_view_size_scale (#4699)
 - Color edit without tooltip fix (#4717)
 - fix presentation and enablement of npe1 plugins (#4721)
 - fix clim init for dask arrays (#4724)
@@ -158,9 +156,9 @@ or create issues on GitHub.
 
 ## API Changes
 
-- Removed unused private Layer._position (#4604)
+- Removed unused private Layer.\_position (#4604)
 - Add public API for dims transpose (#4727)
-- Add a public API for the setGeometry method of _qt_window (#4729)
+- Add a public API for the setGeometry method of \_qt_window (#4729)
 - Expose points layer antialiasing control publicly (#4735)
 
 ## Deprecations
@@ -171,9 +169,9 @@ or create issues on GitHub.
 
 ## Build Tools
 
-- [pre-commit.ci] pre-commit autoupdate (#4506)
+- \[pre-commit.ci\] pre-commit autoupdate (#4506)
 - Limit workflows runs based on file changes (#4555)
-- [Automatic] Update albertosottile/darkdetect vendored module (#4561)
+- \[Automatic\] Update albertosottile/darkdetect vendored module (#4561)
 - Dockerfile: stay on 20.04/LTS for python3.8 (#4572)
 - Block lxml 4.9.0 version (#4616)
 - Remove meshzoo from napari (#4620)
@@ -188,7 +186,7 @@ or create issues on GitHub.
 - ci(dependabot): bump bruceadams/get-release from 1.2.2 to 1.2.3 (#4773)
 - ci(dependabot): bump docker/login-action from 1.9.0 to 2 (#4774)
 - Bump vispy 0.11.0 (#4778)
-- [pre-commit.ci] pre-commit autoupdate (#4779)
+- \[pre-commit.ci\] pre-commit autoupdate (#4779)
 - ci(dependabot): bump toshimaru/auto-author-assign from 1.5.0 to 1.6.1 (#4890)
 - Docker: Update xpra's apt too (#4901)
 
@@ -227,7 +225,7 @@ or create issues on GitHub.
 - Accept NAP-2: Distributing napari with conda-based packaging (#4810)
 - Fixes duplicate label warnings in the documentation (#4823)
 - added description of how to save layers without compression (#4832)
-- Add the ability to return a List[Layer] in magicgui (#4851)
+- Add the ability to return a List\[Layer\] in magicgui (#4851)
 - Fix NAP-3 table of contents (#4872)
 - Feature: Minimum blending (#4875)
 - NAP 4: asynchronous slicing (#4892)
@@ -278,12 +276,12 @@ or create issues on GitHub.
 - Test if events for all properties are defined (#4486)
 - throttle status update (#4488)
 - use inject_napari_dependencies in layer_actions commands (#4489)
-- Add _get_value_3d to surface (#4492)
+- Add \_get_value_3d to surface (#4492)
 - Reduce canvas margin (#4496)
 - Fix trailing comma fixes black formatting (#4498)
 - Update layer list context keys (#4499)
 - Do not allow None when coercing encodings (#4504)
-- [Automatic] Update albertosottile/darkdetect vendored module (#4508)
+- \[Automatic\] Update albertosottile/darkdetect vendored module (#4508)
 - Try to upload pytest json report as artifact. (#4518)
 - Try to speedup tests. (#4521)
 - change default blending mode on image layer to translucent no depth (#4523)
@@ -315,13 +313,13 @@ or create issues on GitHub.
 - Do not run `asv` on push (#4656)
 - ci: fix tox factor names in tests (#4660)
 - test: speed up magicgui forward ref tests (#4662)
-- Remove unused points _color state (#4666)
+- Remove unused points \_color state (#4666)
 - test: Cleanup usage of npe2 plugin manager in tests (#4669)
 - add dependabot for github actions dependencies (#4671)
 - Use `cache: pip` from actions setup-python (#4672)
 - Remove `restore_settings_on_exit` test util (#4673)
 - bump npe2 version, use new features (#4686)
-- [pre-commit.ci] pre-commit autoupdate (#4687)
+- \[pre-commit.ci\] pre-commit autoupdate (#4687)
 - Remove unnecessary uses of make_napari_viewer (replace with ViewerModel) (#4690)
 - Design issue template assignees (#4701)
 - Refactor label painting by moving code from mouse bindings onto layer, adding staged history and paint event (#4702)
@@ -341,7 +339,7 @@ or create issues on GitHub.
 - Allow dunder methods use in `PublicOnlyProxy` (#4792)
 - add update_mesh method (#4793)
 - mock npe1 plugin manager during tests (fix tests with npe1 plugins installed) (#4806)
-- [Automatic] Update albertosottile/darkdetect vendored module (#4808)
+- \[Automatic\] Update albertosottile/darkdetect vendored module (#4808)
 - Improve using Qt flags by direct use enums. (#4817)
 - Move searching parent outside NapariQtNotification constructor (#4841)
 - Enable plugin menu contributions with app-model (#4847)
@@ -360,7 +358,7 @@ or create issues on GitHub.
 - Adjust the slider value to include current_size (#4951)
 - MAINT: re-enable type checking workflow (#4960)
 - MAINT: bump napari-console to 0.0.6. (#4967)
-- [pre-commit.ci] pre-commit autoupdate (#4968)
+- \[pre-commit.ci\] pre-commit autoupdate (#4968)
 - Fix: bump app-model, add test for layer buttons (#4972)
 - Add `FUNDING.yml` file to enable sponsor button and increase discoverability of option to sponsor napari (#4978)
 - Start adding a CODEOWNERS file. (#4993)
@@ -368,13 +366,13 @@ or create issues on GitHub.
 - Set fixpoint before move for shapes (#4999)
 - Fix sys.path issue with subprocess relaunch in macOS (#5007)
 - MAINT: update issue failing template (#5012)
-- [pre-commit.ci] pre-commit autoupdate (#5015)
+- \[pre-commit.ci\] pre-commit autoupdate (#5015)
 - Fix shift selection for points (#5022)
 - Revert "Fix sys.path issue with subprocess relaunch in macOS" (#5027)
 - Use Source object to track if a layer is duplicated (#5028)
 - Revert "Revert "Fix sys.path issue with subprocess relaunch in macOS"" (#5029)
 - update some of the ignored translations (#5032)
-- MAINT: fix a couple of trans._. (#5034)
+- MAINT: fix a couple of trans.\_. (#5034)
 - MAINT: Update Future Warning. (#5037)
 - MAINT: Unnecessary formatting of constant. (#5044)
 - Small shortcuts preference pane wording update after #5018 (#5049)
@@ -384,7 +382,6 @@ or create issues on GitHub.
 - Add new core libraries to napari info (#5077)
 - Update config directory paths for perfmon tools (#5081)
 - Update some strings to be translated, some to be ignored (#5082)
-
 
 ## 48 authors added to this release (alphabetical)
 
@@ -396,11 +393,11 @@ or create issues on GitHub.
 - [cnstt](https://github.com/napari/napari/commits?author=cnstt) - @cnstt
 - [Curtis Rueden](https://github.com/napari/napari/commits?author=ctrueden) - @ctrueden
 - [David Stansby](https://github.com/napari/napari/commits?author=dstansby) - @dstansby
-- [dependabot[bot]](https://github.com/napari/napari/commits?author=dependabot[bot]) - @dependabot[bot]
+- [dependabot\[bot\]](https://github.com/napari/napari/commits?author=dependabot%5Bbot%5D) - @dependabot\[bot\]
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - @DragaDoncila
 - [Eric Perlman](https://github.com/napari/napari/commits?author=perlman) - @perlman
 - [Gabriel Selzer](https://github.com/napari/napari/commits?author=gselzer) - @gselzer
-- [github-actions[bot]](https://github.com/napari/napari/commits?author=github-actions[bot]) - @github-actions[bot]
+- [github-actions\[bot\]](https://github.com/napari/napari/commits?author=github-actions%5Bbot%5D) - @github-actions\[bot\]
 - [Gonzalo Peña-Castellanos](https://github.com/napari/napari/commits?author=goanpeca) - @goanpeca
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
 - [Guillaume Witz](https://github.com/napari/napari/commits?author=guiwitz) - @guiwitz
@@ -427,7 +424,7 @@ or create issues on GitHub.
 - [Pam](https://github.com/napari/napari/commits?author=ppwadhwa) - @ppwadhwa
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Pierre Thibault](https://github.com/napari/napari/commits?author=pierrethibault) - @pierrethibault
-- [pre-commit-ci[bot]](https://github.com/napari/napari/commits?author=pre-commit-ci[bot]) - @pre-commit-ci[bot]
+- [pre-commit-ci\[bot\]](https://github.com/napari/napari/commits?author=pre-commit-ci%5Bbot%5D) - @pre-commit-ci\[bot\]
 - [Robert Haase](https://github.com/napari/napari/commits?author=haesleinhuepf) - @haesleinhuepf
 - [Robin Koch](https://github.com/napari/napari/commits?author=RobAnKo) - @RobAnKo
 - [rwkozar](https://github.com/napari/napari/commits?author=rwkozar) - @rwkozar
@@ -436,7 +433,6 @@ or create issues on GitHub.
 - [Tru Huynh](https://github.com/napari/napari/commits?author=truatpasteurdotfr) - @truatpasteurdotfr
 - [vcwai](https://github.com/napari/napari/commits?author=victorcwai) - @victorcwai
 - [Ziyang Liu](https://github.com/napari/napari/commits?author=potating-potato) - @potating-potato
-
 
 ## 32 reviewers added to this release (alphabetical)
 
@@ -472,4 +468,3 @@ or create issues on GitHub.
 - [Robin Koch](https://github.com/napari/napari/commits?author=RobAnKo) - @RobAnKo
 - [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - @tlambert03
 - [Ziyang Liu](https://github.com/napari/napari/commits?author=potating-potato) - @potating-potato
-

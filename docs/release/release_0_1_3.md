@@ -24,7 +24,7 @@ https://github.com/napari/napari
 - fix clim setter (#411)
 - switch to pyside2 (#412)
 - fix delete markers (#413)
-- [FIX] paint color inidicator update when shuffle color (#416)
+- \[FIX\] paint color inidicator update when shuffle color (#416)
 - QT returns a warning instead of an error (#418)
 - Fix Crash with stacked binary tiffs. (#422)
 - cleanup shape classes (#423)

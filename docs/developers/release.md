@@ -5,6 +5,7 @@ Currently, it only handles distribution, but as the project matures,
 it will include generating release notes, documentation, etc.
 
 # Timeline
+
 New versions of `napari` will be released every two months. The first release candidate will be available one week prior to release for testing purposes. Multiple release candidates may become available during the week prior to release. Upcoming releases can be found in our public calendar.
 
 The latest release candidate can be installed with
@@ -12,9 +13,11 @@ The latest release candidate can be installed with
 `python -m pip install --pre napari`
 
 # Release management
+
 The release will be coordinated by a release manager whose responsibilities include...
 
 ## Two weeks before release (one week before release candidate)
+
 - Look through currently open PRs and get a sense of what would be good to merge before the first release candidate
 - Ensure `conda-recipe/meta.yaml` in `napari/packaging` is up-to-date (e.g. `run` dependencies match `setup.cfg` requirements).
 - Create a zulip thread in the release channel letting people know the release candidate is coming and pointing out PRs that would be nice to merge before release
@@ -22,24 +25,28 @@ The release will be coordinated by a release manager whose responsibilities incl
 At this stage, bug fixes and features that are close to landing should be prioritized. The release manager will follow up with PR authors, reviewing and merging as needed.
 
 ## Nine days before release (two days before release candidate)
+
 - Generate release notes with the script in the release folder
 - Fill in the release highlights and make a PR with the release notes
 
 At this point the release manager should ideally be the only person merging PRs on the repo for the next week.
 
 ## One week before release
+
 - Add any recently merged PRs to release notes
 - Merge release notes
 - Make the release candidate
 - Announce to release stream on zulip that the first release candidate is available for testing
 
 ## The week before release
+
 - Merge any PRs and update release notes accordingly
 - Make new release candidates as necessary and announce them on zulip
 
 At this stage PRs merged should focus mainly on regressions and bug fixes. New features should wait until after release.
 
 ## The day of release
+
 - make sure final rc has been tested
 - ensure all PRs have been added to release notes and then make release and announce on zulip
 
@@ -69,7 +76,7 @@ release though we need to generate the release notes.
 ## Generating release notes
 
 1. Make a list of merges, contributors, and reviewers by running
-   ``python docs/release/generate_release_notes.py -h`` and following that file's usage.
+   `python docs/release/generate_release_notes.py -h` and following that file's usage.
    For each release generate the list to include everything since the last release for which there
    are release notes (which should just be the last release). For example making the release notes
    for the `0.2.1` release can be done as follows:
@@ -78,15 +85,15 @@ release though we need to generate the release notes.
    python docs/release/generate_release_notes.py v0.2.0 main --version 0.2.1 | tee docs/release/release_0_2_1.md
    ```
 
-2. Scan the PR titles for highlights, deprecations, API changes,
+1. Scan the PR titles for highlights, deprecations, API changes,
    and bugfixes, and mention these in the relevant sections of the notes.
    Try to present the information in an expressive way by mentioning
    the affected functions, elaborating on the changes and their
    consequences. If possible, organize semantically close PRs in groups.
 
-3. Make sure the file name is of the form ``doc/release/release_<major>_<minor>_<release>.md``.
+1. Make sure the file name is of the form `doc/release/release_<major>_<minor>_<release>.md`.
 
-4. Make and merge a PR with these release notes before moving onto the next steps.
+1. Make and merge a PR with these release notes before moving onto the next steps.
 
 ## Update translation strings
 
@@ -102,16 +109,16 @@ file `/tools/strings_list.py` to include strings to skip safely from translation
 
 The test checks:
 
-  1. **Untranslated strings**: not using the `trans` methods.
-  2. **Outdated skip strings**: should no longer be included in the `/tools/strings_list.py` file.
-  3. **Translation usage errors**: where translation strings may be missing interpolation variables.
+1. **Untranslated strings**: not using the `trans` methods.
+1. **Outdated skip strings**: should no longer be included in the `/tools/strings_list.py` file.
+1. **Translation usage errors**: where translation strings may be missing interpolation variables.
 
 You can execute tests locally from the repository root, and follow the instructions printed
 on the `stdout` if any test fails.
 
-  ```bash
-  pytest tools/ --tb=short
-  ```
+```bash
+pytest tools/ --tb=short
+```
 
 ## Tagging the new release candidate
 
@@ -203,11 +210,11 @@ when the metadata of an existing package is proven wrong after it has been relea
 
 To amend the metadata, we need to:
 
-* Encode the patch instructions as a PR to
+- Encode the patch instructions as a PR to
   [`conda-forge/conda-forge-repodata-patches-feedstock`](https://github.com/conda-forge/conda-forge-repodata-patches-feedstock):
   - Add the required changes to `recipe/gen_patch_json.py`, under the [`record_name == 'napari'` section](https://github.com/conda-forge/conda-forge-repodata-patches-feedstock/blob/6aa624be7fe4e3627daea095c8d92b7379b3bb66/recipe/gen_patch_json.py#L1562).
   - Use a [timestamp condition](https://github.com/conda-forge/conda-forge-repodata-patches-feedstock/blob/6aa624be7fe4e3627daea095c8d92b7379b3bb66/recipe/gen_patch_json.py#L1564) to ensure only existing releases are patched.
-* If necessary, make sure the metadata is amended in the feedstock too.
+- If necessary, make sure the metadata is amended in the feedstock too.
   Usually this is not needed until a new release is made, but it's important to remember!
 
 Some previous examples include:

@@ -1,4 +1,5 @@
 (layer-data-tuples)=
+
 ## The LayerData tuple
 
 When transfering data to and from plugins, napari does not pass `Layer` objects
@@ -15,12 +16,12 @@ up often in plugins and is explained here.
 A `LayerData` tuple is a tuple of length 1, 2, or 3 whose items, in order, are:
 
 1. The `data` object that would be used for `layer.data` (such as a numpy array
-for the `Image` layer)
-2. *(Optional).* A {class}`dict` of layer attributes, suitable for passing as
-keyword arguments to the corresponding layer constructor (e.g. `{'opacity': 0.7}`)
-3. *(Optional).* A lower case {class}`str` indicating the layer type (e.g.`'image'`,
-`'labels'`, etc...).  If not provided (i.e. if the tuple is only of length 2), the
-layer type is assumed to be `'image`'.
+   for the `Image` layer)
+1. *(Optional).* A {class}`dict` of layer attributes, suitable for passing as
+   keyword arguments to the corresponding layer constructor (e.g. `{'opacity': 0.7}`)
+1. *(Optional).* A lower case {class}`str` indicating the layer type (e.g.`'image'`,
+   `'labels'`, etc...).  If not provided (i.e. if the tuple is only of length 2), the
+   layer type is assumed to be `'image`'.
 
 ### Formal type definition
 
@@ -49,8 +50,13 @@ class ArrayLike(Protocol):
     shape: Tuple[int, ...]
     ndim: int
     dtype: np.dtype
-    def __array__(self) -> np.ndarray: ...
-    def __getitem__(self, key) -> ArrayLike: ...
+
+    def __array__(self) -> np.ndarray:
+        ...
+
+    def __getitem__(self, key) -> ArrayLike:
+        ...
+
 
 # the main point is that we're more concerned with structural
 # typing than literal array types (e.g. numpy, dask, xarray, etc...)
@@ -62,6 +68,7 @@ Assume that `data` is a numpy array:
 
 ```python
 import numpy as np
+
 data = np.random.rand(64, 64)
 ```
 
@@ -71,13 +78,13 @@ All of the following are valid `LayerData` tuples:
 # the first three are equivalent, just an image array with default settings
 (data,)
 (data, {})
-(data, {}, 'image')
+(data, {}, "image")
 
 # provide kwargs for image contructor
-(data, {'name': 'My Image', 'colormap': 'red'})
+(data, {"name": "My Image", "colormap": "red"})
 
 # labels layer instead of image:
-(data.astype(int), {'name': 'My Labels', 'blending': 'additive'}, 'labels')
+(data.astype(int), {"name": "My Labels", "blending": "additive"}, "labels")
 ```
 
 ### Creation from a `Layer` instance.
@@ -128,4 +135,5 @@ To add a `LayerData` tuple to the napari viewer, use :meth:`Layer.create`:
 >>> viewer = napari.current_viewer()
 >>> viewer.add_layer(napari.layers.Layer.create(*image_layer_data))
 ```
+
 The only attribute that can't be passed to `napari.layers.Layer.create` that is otherwise valid for a `LayerData` tuple is 'channel_axis'.

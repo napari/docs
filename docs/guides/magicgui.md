@@ -1,17 +1,7 @@
----
-jupytext:
-  cell_metadata_filter: -all
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.8.2
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
----
+______________________________________________________________________
+
+## jupytext: cell_metadata_filter: -all formats: md:myst text_representation: extension: .md format_name: myst format_version: 0.12 jupytext_version: 1.8.2 kernelspec: display_name: Python 3 language: python name: python3
+
 (magicgui)=
 
 # Using `magicgui` in napari
@@ -48,6 +38,7 @@ def widget_demo(
 
 widget_demo.show()
 ```
+
 *Add caption here*
 
 For more information on the features and usage of `magicgui`, see the [magicgui
@@ -98,6 +89,7 @@ in the viewer.
 ```python
 from napari.layers import Image
 
+
 @magicgui
 def my_widget(image: Image):
     # do something with whatever image layer the user has selected
@@ -120,6 +112,7 @@ def my_widget(image: Image):
 viewer = napari.view_image(np.random.rand(64, 64), name="My Image")
 viewer.window.add_dock_widget(my_widget)
 ```
+
 *Note the widget at the bottom with "My Image" as the currently selected option*
 
 ```{code-cell} python
@@ -141,6 +134,7 @@ user to pick from *all* layers in the layer list, annotate your parameter as
 ```python
 from napari.layers import Layer
 
+
 @magicgui
 def my_widget(layer: Layer):
     # do something with whatever layer the user has selected
@@ -149,6 +143,7 @@ def my_widget(layer: Layer):
 ```
 
 (annotating-as-napari-types-data)=
+
 ### Annotating as `napari.types.*Data`
 
 In the previous example, the object passed to your function will be the actual
@@ -163,11 +158,12 @@ example using {attr}`napari.types.ImageData`
 from napari.types import ImageData
 import numpy as np
 
+
 @magicgui
 def my_widget(array: ImageData):
     # note: it *may* be None! so your function should handle the null case
     if array is not None:
-      assert isinstance(array, np.ndarray)  # it will be!
+        assert isinstance(array, np.ndarray)  # it will be!
 ```
 
 ### Annotating as `napari.Viewer`
@@ -179,9 +175,10 @@ in which the widget is docked, you can annotate one of your parameters as a
 ```python
 from napari import Viewer
 
+
 @magicgui
 def my_widget(viewer: Viewer):
-  ...
+    ...
 ```
 
 ```{caution}
@@ -218,9 +215,10 @@ function must be an actual {class}`~napari.layers.Layer` instance.
 from napari.layers import Image
 import numpy as np
 
+
 @magicgui
-def my_widget(ny: int=64, nx: int=64) -> Image:
-  return Image(np.random.rand(ny, nx), name='my Image')
+def my_widget(ny: int = 64, nx: int = 64) -> Image:
+    return Image(np.random.rand(ny, nx), name="my Image")
 ```
 
 Here's a complete example
@@ -275,6 +273,7 @@ your return type must match your return annotation.
 ```
 
 (returning-napari-types-data)=
+
 ### Returning `napari.types.*Data`
 
 In the previous example, the object returned by the function had to be an actual
@@ -324,11 +323,11 @@ following three forms:
 
 1. `(layer_data,)`
    - a single item tuple containing only layer data (will be interpreted as an image).
-2. `(layer_data, {})`
+1. `(layer_data, {})`
    - a 2-tuple of `layer_data` and a metadata {class}`dict`. the keys in the
      metadata `dict` must be valid keyword arguments to the corresponding
      {class}`napari.layers.Layer` constructor.
-3. `(layer_data, {}, 'layer_type')`
+1. `(layer_data, {}, 'layer_type')`
    - a 3-tuple of data, metadata, and layer type string.`layer_type` should be a
      lowercase string form of one of the layer types (like `'points'`,
      `'shapes'`, etc...).  If omitted, the layer type is assumed to be
@@ -341,13 +340,13 @@ The following are all valid {attr}`napari.types.LayerDataTuple` examples:
 (np.random.rand(64, 64),)
 
 # an image with name and custom blending mode
-(np.random.rand(64, 64), {'name': 'My Image', 'blending': 'additive'})
+(np.random.rand(64, 64), {"name": "My Image", "blending": "additive"})
 
 # an empty points layer
-(None, {}, 'points')
+(None, {}, "points")
 
 # points with properties
-(np.random.rand(20, 2), {'properties': {'values': np.random.rand(20)}}, 'points')
+(np.random.rand(20, 2), {"properties": {"values": np.random.rand(20)}}, "points")
 ```
 
 An example of using a {attr}`~napari.types.LayerDataTuple` return annotation in
@@ -442,7 +441,7 @@ reference](https://peps.python.org/pep-0484/#forward-references):
 
 ```python
 @magicgui
-def my_func(data: 'napari.types.ImageData') -> 'napari.types.ImageData':
+def my_func(data: "napari.types.ImageData") -> "napari.types.ImageData":
     ...
 ```
 
@@ -456,10 +455,11 @@ clause:
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-  import napari
+    import napari
+
 
 @magicgui
-def my_func(data: 'napari.types.ImageData') -> 'napari.types.ImageData':
+def my_func(data: "napari.types.ImageData") -> "napari.types.ImageData":
     ...
 ```
 
@@ -497,11 +497,13 @@ could be provided as a napari plugin as follows:
 from magicgui import magic_factory
 from napari_plugin_engine import napari_hook_implementation
 
-@magic_factory(auto_call=True, threshold={'max': 2 ** 16})
+
+@magic_factory(auto_call=True, threshold={"max": 2**16})
 def threshold(
-    data: 'napari.types.ImageData', threshold: int
-) -> 'napari.types.LabelsData':
+    data: "napari.types.ImageData", threshold: int
+) -> "napari.types.LabelsData":
     return (data > threshold).astype(int)
+
 
 @napari_hook_implementation
 def napari_experimental_provide_dock_widget():
@@ -520,8 +522,9 @@ also be overridden when creating a widget from a factory:
 def my_factory(x: int):
     ...
 
+
 widget1 = my_factory()
-widget2 = my_factory(call_button=False, x={'widget_type': 'Slider'})
+widget2 = my_factory(call_button=False, x={"widget_type": "Slider"})
 ```
 
 :::

@@ -1,4 +1,5 @@
 (napari-governance)=
+
 # Governance model
 
 ## Abstract
@@ -139,9 +140,9 @@ IFP benefits are:
 - Acknowledgement on the napari website, including homepage, and in talks.
 - Ability to acknowledge their contribution to napari on their own websites and in talks.
 - Ability to provide input to the project through their Institutional Partner
-Representative.
+  Representative.
 - Ability to influence the project through the election of the Institutional
-and Funding Partner seat on the SC.
+  and Funding Partner seat on the SC.
 
 For a full list of current IFPs and their Representatives see our [About Us](team) page.
 

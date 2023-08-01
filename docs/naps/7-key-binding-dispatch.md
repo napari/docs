@@ -11,7 +11,7 @@
 
 ## Abstract
 
-With the switching of the internal key binding system to use app-model's representation[^id1], there is discussion as to what exactly constitutes a valid key binding and how conflicts are handled[^id2].
+With the switching of the internal key binding system to use app-model's representation\[^id1\], there is discussion as to what exactly constitutes a valid key binding and how conflicts are handled\[^id2\].
 
 This NAP seeks to clarify and propose a solution for how key bindings will be dispatched according to their priority, enablement, and potential conflicts.
 
@@ -32,6 +32,7 @@ Conditional evaluation allows plugin developers to tie their keybinding to a spe
 **modifier keys** refer to `ctrl`, `shift`, `alt`, and `meta`. `meta` is also known as `cmd`, `win`, or `super` on osx, windows, or linux, respectively
 
 a **base key** is a key that when pressed without a modifier key, produces one of the following [key codes](https://w3c.github.io/uievents-code/#keyboard-101):
+
 - `a-z`, `0-9`
 - `f1-f12`
 - `` ` ``, `-`, `=`, `[`, `]`, `\`, `;`, `'`, `,`, `.`, `/`
@@ -50,7 +51,7 @@ a **key binding** binds a key sequence to a command with conditional activation
 
 ### Key binding validity: convenience vs. complexity
 
-Some users want to use traditional modifier keys as a base key in key binding for convenience purposes [^id2]. However, this can lead to conflicts since many key bindings may include the modifier key in their key sequence and thus cause confusion and cost extra engineering effort.
+Some users want to use traditional modifier keys as a base key in key binding for convenience purposes \[^id2\]. However, this can lead to conflicts since many key bindings may include the modifier key in their key sequence and thus cause confusion and cost extra engineering effort.
 
 The proposed restrictions on what key sequences can be used in a key binding aim to allow for the simplest user need while cutting down on any unnecessary complexities:
 
@@ -58,10 +59,11 @@ The proposed restrictions on what key sequences can be used in a key binding aim
 - key chords cannot contain a base key that is a modifier key (aka a single modifier)
 
 Here are some examples:
+
 - `alt` is **valid** as a base key because it contains no other modifiers and no other parts
 - `alt+meta` is **invalid** because it is a key combination comprised of only modifiers
 - `alt+t` is **valid** as a key combination
-- `alt t` is **invalid** because it is a key chord whose first part is a single modifier 
+- `alt t` is **invalid** because it is a key chord whose first part is a single modifier
 - `ctrl+x alt` is **invalid** because it is a key chord whose second part is a single modifier
 - `ctrl+x alt+v` is **valid** as a key chord
 - `meta meta` is **invalid** because it is a key chord comprised of only single modifier parts
@@ -73,6 +75,7 @@ Even with conditional activation, many key bindings may find that they share the
 ### Key binding properties
 
 All key binding entries contain the following information:
+
 - `command_id` is the unique identifier of the command that will be executed by this key binding
 - `weight` is the main determinant of key binding priority. high value means a higher priority
 - `when` is the context expression that is evaluated to determine whether the rule is active; if not provided, the rule is always considered active
@@ -84,6 +87,7 @@ from dataclasses import dataclass, field
 
 from app_model.expressions import Expr
 
+
 @dataclass(order=True)
 class KeyBindingEntry:
     command_id: str = field(compare=False)
@@ -91,10 +95,10 @@ class KeyBindingEntry:
     when: Optional[Expr] = field(compare=False)
     block_rule: bool = field(init=False)
     negate_rule: bool = field(init=False)
-    
+
     def __post_init__(self):
-        self.block_rule = self.command_id == ''
-        self.negate_rule = self.command_id.startswith('-')
+        self.block_rule = self.command_id == ""
+        self.negate_rule = self.command_id.startswith("-")
 ```
 
 ### Types of key binding rules
@@ -102,6 +106,7 @@ class KeyBindingEntry:
 There are three ways to modify how a key binding interacts with a command: an assign rule, a negate rule, and a block rule. Note that negate and block rules only affect key bindings of their weight and below.
 
 An assign rule tells the dispatcher to execute the given command when the rule is enabled:
+
 ```json
 {
     "key": "ctrl+y",
@@ -110,6 +115,7 @@ An assign rule tells the dispatcher to execute the given command when the rule i
 ```
 
 A negate rule is denoted by prefixing the `command_id` with `-` and effectively cancels out assign rules to the same command for that key sequence. For example, to rebind the example for the `redo` command above from `ctrl+y` to `ctrl+shift+z`, one would need the following rules:
+
 ```json
 [
     {
@@ -124,6 +130,7 @@ A negate rule is denoted by prefixing the `command_id` with `-` and effectively 
 ```
 
 A block rule is denoted by simply leaving the `command_id` as blank and prevents any commands for that key sequence from being executed. This cannot be set via the GUI. The below example includes a block rule that disables the previous two rules bound to `tab`:
+
 ```json
 [
     {
@@ -153,6 +160,7 @@ Key bindings will automatically be assigned weights depending on who set them, p
 ```python
 from enum import IntEnum
 
+
 class KeyBindingWeights(IntEnum):
     CORE = 0
     PLUGIN = 300
@@ -178,6 +186,7 @@ In case (B), the corresponding command will never be triggered so long as it ind
 When checking if an active key binding matches the entered key sequence, the resolver will fetch the pre-sorted list of direct conflicts and check if the last entry is active using its `when` property, moving to the next entry if it is not. When it encounters a blocking rule, it will return no match, and for a negate rule, it will store the affected command in an ignore list and continue to the next entry. If no special rules are present, it will return a match if the command is not in an ignore list, otherwise continuing to the next entry, and so on, until no more entries remain.
 
 In pseudo-code this reads as:
+
 ```python
 def find_active_match(entries: List[KeyBindingEntry]) -> Optional[KeyBindingEntry]:
     ignored_commands = []
@@ -195,6 +204,7 @@ def find_active_match(entries: List[KeyBindingEntry]) -> Optional[KeyBindingEntr
 ### Lookup and partial matches
 
 Key bindings can be stored in a map in integer form, as `KeyMod`, `KeyCode`, `KeyCombo`, and `KeyChord` are all represented as unique `int`s with 16 bits per part:
+
 ```python
 keymap = Dict[int, List[KeyBindingEntry]] = {
     KeyMod.CtrlCmd | KeyCode.KeyZ: ...,
@@ -202,23 +212,27 @@ keymap = Dict[int, List[KeyBindingEntry]] = {
     KeyMod.CtrlCmd | KeyCode.KeyX: ...,
     KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyC): ...,
     KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyV): ...,
-    KeyMod.Shift : ...,
+    KeyMod.Shift: ...,
 }
 ```
 
 Due to the ability of key sequences to be encoded as 32-bit integers, bitwise operations can be performed to determine certain properties of these sequences:
+
 ```python
 def has_shift(key: int) -> bool:
     return bool(key & KeyMod.Shift)
 
+
 def starts_with_ctrl_cmd_x(key: int) -> bool:
     return key & 0x0000FFFF == (KeyMod.CtrlCmd | KeyCode.KeyX)
+
 
 def multi_part(key: int) -> bool:
     return key > 0x0000FFFF
 ```
 
 As such, entries in the keymap can be filtered to find conflicts:
+
 ```python
 > list(filter(has_shift, keymap))
 [<KeyCombo.CtrlCmd|Shift|KeyZ: 3115>, <KeyMod.Shift: 1024>]
@@ -238,25 +252,30 @@ As such, entries in the keymap can be filtered to find conflicts:
 ```
 
 Note that because modifiers are encoded in the `(8, 12]`-bit range, querying for modifiers will only check the first part unless they are shifted by 16:
+
 ```python
 > has_shift(KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyMod.Shift | KeyCode.KeyY))
 False
 ```
 
 In a more generic form:
+
 ```python
 KEY_MOD_MASK = 0x00000F00
 PART_0_MASK = 0x0000FFFF
+
 
 def create_conflict_filter(conflict_key: int) -> Callable[[int], bool]:
     if conflict_key & KEY_MOD_MASK == conflict_key:
         # only comprised of modifier keys in first part
         def inner(key: int) -> bool:
             return key != conflict_key and key & conflict_key
+
     elif conflict_key <= PART_0_MASK:
         # one-part key sequence
         def inner(key: int) -> bool:
             return key > PART_0_MASK and key & PART_0_MASK == conflict_key
+
     else:
         # don't handle anything more complex
         def inner(key: int) -> bool:
@@ -264,13 +283,14 @@ def create_conflict_filter(conflict_key: int) -> Callable[[int], bool]:
 
     return inner
 
+
 def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
     conflict_filter = create_conflict_filter(key)
 
     for _, entries in filter(conflict_filter, keymap.items()):
         if find_active_match(entries):
             return True
-    
+
     return False
 ```
 
@@ -331,7 +351,7 @@ class KeyBindingDispatcher:
             key_seq = mods | key
             if self.prefix:
                 key_seq = KeyChord(self.prefix, key_seq)
-                
+
             if (entries := self.keymap.get(key_seq) and (match := find_active_match(entries)):
                 self.active_combo = mods | key
                 if not self.prefix and has_conflicts(key_seq, self.keymap):
@@ -379,27 +399,34 @@ The entire key binding system is heavily influenced by [VSCode's keyboard shortc
 
 ## Backward Compatibility
 
-A change in the key binding dispatch system would affect anyone using `keymap` or `class_keymap` from the original `KeymapProvider`, as well as `bind_key` [^id3].
+A change in the key binding dispatch system would affect anyone using `keymap` or `class_keymap` from the original `KeymapProvider`, as well as `bind_key` \[^id3\].
 
 While `keymap` and `class_keymap` are unlikely to be commonly used, `bind_key` is, and thus will receive proper deprecation and continue to work by creating an equivalent entry in the new key binding dispatch system.
 
 For example, following is how a user might have defined a key binding for an `Image` layer:
+
 ```python
-@Image.bind_key('Control-C')
+@Image.bind_key("Control-C")
 def foo(layer):
     ...
 ```
 
 An entry would be created equivalent to:
+
 ```python
 def wrapper(layer: Image):
     yield from foo(layer)
 
+
 action = Action(id=foo.__qualname__, title=foo.__name__, callback=wrapper)
-entry = KeyBindingEntry(command_id=foo.__qualname__, weight=KeyBindingWeight.USER, when=parse_expression("active_layer_type == 'image'"))
+entry = KeyBindingEntry(
+    command_id=foo.__qualname__,
+    weight=KeyBindingWeight.USER,
+    when=parse_expression("active_layer_type == 'image'"),
+)
 
 register_action(action)
-register_key_binding('Ctrl+C', entry)
+register_key_binding("Ctrl+C", entry)
 ```
 
 ## Future Work
@@ -410,7 +437,7 @@ Out of scope is work related to the GUI and how it may have to handle the new sy
 
 ## Alternatives
 
-Although a mapping approach is very effective for looking up individual keys, it loses its efficiency when performing a partial search, since its items are traversed like a list to perform that search. 
+Although a mapping approach is very effective for looking up individual keys, it loses its efficiency when performing a partial search, since its items are traversed like a list to perform that search.
 
 This inefficiency can be mitigated by using a data structure where entries are stored similar to a _[trie](https://en.wikipedia.org/wiki/Trie)_ (aka a _prefix tree_). Since modifier keys do not care about what order they are pressed in, we will use a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph) instead of a traditional tree, essentially making this a _prefix [multitree](https://en.wikipedia.org/wiki/Multitree)_.
 
@@ -425,6 +452,7 @@ This effectively breaks the key sequences of the key bindings into their respect
 
 ```python
 from app_model.types import KeyBinding
+
 
 @dataclass
 class Node:
@@ -461,18 +489,18 @@ However, the mapping approach is a lot cleaner code-wise, as it requires no addi
 ## Copyright
 
 This document is dedicated to the public domain with the Creative Commons CC0
-license [^id4]. Attribution to this source is encouraged where appropriate, as per
+license \[^id4\]. Attribution to this source is encouraged where appropriate, as per
 CC0+BY [^id5].
 
 ## References and Footnotes
 
-[^id1]: napari #5103, <https://github.com/napari/napari/pull/5103>
+\[^id1\]: napari #5103, <https://github.com/napari/napari/pull/5103>
 
-[^id2]: napari #5747, <https://github.com/napari/napari/issues/5747>
+\[^id2\]: napari #5747, <https://github.com/napari/napari/issues/5747>
 
-[^id3]: KeymapProvider implementation, <https://github.com/napari/napari/blob/v0.4.17/napari/utils/key_bindings.py#L347C1-L369>
+\[^id3\]: KeymapProvider implementation, <https://github.com/napari/napari/blob/v0.4.17/napari/utils/key_bindings.py#L347C1-L369>
 
-[^id4]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
-    <https://creativecommons.org/publicdomain/zero/1.0/>
+\[^id4\]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
+<https://creativecommons.org/publicdomain/zero/1.0/>
 
-[^id5]: <https://dancohen.org/2013/11/26/cc0-by/>
+[^id5]: https://dancohen.org/2013/11/26/cc0-by/

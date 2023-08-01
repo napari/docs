@@ -55,7 +55,7 @@ https://github.com/napari/napari
 - Updating qt_console with better resource management (#784)
 - Respect vispy max texture limits (#788)
 - Fix (minor) deprecation warnings (#800)
-- Fix FPS spin box on Qt < 5.12 (#803)
+- Fix FPS spin box on Qt \< 5.12 (#803)
 - Bumpy vispy dependency to 0.6.4 (#807)
 - Set threshold for codecov failure (#806)
 - Rename util to utils in MANIFEST.in (#811)

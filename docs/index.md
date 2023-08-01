@@ -1,47 +1,51 @@
----
+______________________________________________________________________
+
 theme:
-  metaDescription: napari is a fast multi-dimensional image viewer for Python. It can help you **explore** any image-like data, be it 2D, 3D, or even higher-dimensional. It can also help you **overlay** downstream or **associated data**, such as point coordinates or segmentations, which you can use to **annotate** and **proofread** your image data.
-  quickLinks:
-    - title: Community
-      content: Meet the team, our mission, and our values
-      url: /community/index.html
+metaDescription: napari is a fast multi-dimensional image viewer for Python. It can help you **explore** any image-like data, be it 2D, 3D, or even higher-dimensional. It can also help you **overlay** downstream or **associated data**, such as point coordinates or segmentations, which you can use to **annotate** and **proofread** your image data.
+quickLinks:
+\- title: Community
+content: Meet the team, our mission, and our values
+url: /community/index.html
 
-    - title: Tutorials
-      content: Step by step guides for common napari workflows
-      url: /tutorials/index.html
+```
+- title: Tutorials
+  content: Step by step guides for common napari workflows
+  url: /tutorials/index.html
 
-    - title: Plugins
-      content: Learn how to create a plugin that works with the napari ecosystem
-      url: /plugins/index.html
+- title: Plugins
+  content: Learn how to create a plugin that works with the napari ecosystem
+  url: /plugins/index.html
 
-    - title: Release notes
-      content: See what’s been updated in the latest releases
-      url: /release/index.html
+- title: Release notes
+  content: See what’s been updated in the latest releases
+  url: /release/index.html
 
-    - title: API reference
-      content: Information on specific functions, classes, and methods
-      url: /api/index.html
+- title: API reference
+  content: Information on specific functions, classes, and methods
+  url: /api/index.html
 
-    - title: Roadmaps
-      content: Find out what we plan to build next and into the near future
-      url: /roadmaps/index.html
+- title: Roadmaps
+  content: Find out what we plan to build next and into the near future
+  url: /roadmaps/index.html
 
-    - title: Developer guides
-      content: Explanations about how napari works behind the screen
-      url: /guides/index.html
+- title: Developer guides
+  content: Explanations about how napari works behind the screen
+  url: /guides/index.html
 
-    - title: Developer resources
-      content: All you need to know to contribute to the napari codebase
-      url: /developers/index.html
+- title: Developer resources
+  content: All you need to know to contribute to the napari codebase
+  url: /developers/index.html
 
-    - title: Source code
-      content: Jump out to GitHub to take a look at the code that runs napari
-      url: https://github.com/napari/napari
+- title: Source code
+  content: Jump out to GitHub to take a look at the code that runs napari
+  url: https://github.com/napari/napari
 
-    - title: napari hub
-      content: Discover, install, and share napari plugins
-      url: https://www.napari-hub.org
----
+- title: napari hub
+  content: Discover, install, and share napari plugins
+  url: https://www.napari-hub.org
+```
+
+______________________________________________________________________
 
 # napari: a fast, interactive viewer for multi-dimensional images in Python
 
@@ -64,6 +68,7 @@ theme:
 
 Napari is a Python library for n-dimensional image visualisation, annotation,
 and analysis. With napari you can:
+
 - **view and explore** 2D, 3D, and higher-dimensional arrays on a canvas;
 - **overlay** derived data such as *points*, *polygons*, *segmentations*, and
   more;

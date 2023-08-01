@@ -8,7 +8,7 @@ strange at times. Often we write code in a very procedural way: "do this ...
 then do that, etc...". With napari and other GUI programs however, usually you
 hook up a bunch of conditions to callback functions (e.g. "If this event
 happens, then call this function") and *then* start the loop and hope you hooked
-everything up correctly!  Indeed, much of the ``napari`` source code is
+everything up correctly!  Indeed, much of the `napari` source code is
 dedicated to creating and handling events: search the codebase for
 [`.emit(`](https://github.com/napari/napari/search?q=%22.emit%28%22&type=code)
 and
@@ -33,16 +33,19 @@ import napari
 
 viewer = napari.Viewer()
 
-@viewer.bind_key('i')
+
+@viewer.bind_key("i")
 def add_layer(viewer):
     viewer.add_image(np.random.random((512, 512)))
 
-@viewer.bind_key('k')
+
+@viewer.bind_key("k")
 def delete_layer(viewer):
     try:
         viewer.layers.pop(0)
     except IndexError:
         pass
+
 
 napari.run()
 ```
@@ -63,19 +66,21 @@ import napari
 viewer = napari.Viewer()
 layer = viewer.add_image(np.random.random((512, 512)))
 
+
 @layer.mouse_drag_callbacks.append
 def update_layer(layer, event):
     layer.data = np.random.random((512, 512))
+
 
 napari.run()
 ```
 
 As of this writing `MouseProvider`s have 4 list of callbacks that can be registered:
 
-   - `mouse_move_callbacks`
-   - `mouse_wheel_callbacks`
-   - `mouse_drag_callbacks`
-   - `mouse_double_click_callbacks`
+- `mouse_move_callbacks`
+- `mouse_wheel_callbacks`
+- `mouse_drag_callbacks`
+- `mouse_double_click_callbacks`
 
 Please look at the documentation of `MouseProvider` for a more in depth
 discussion of when each callback is triggered. In particular single click can be
@@ -96,7 +101,7 @@ provides for you to "connect" to.  Until we have centralized documentation for
 all of the events offered by napari objects, the best way to find these is to
 browse the source code.  Take for instance, the base
 {class}`~napari.layers.Layer` class: you'll find in the `__init__` method a
-``self.events`` section that looks like this:
+`self.events` section that looks like this:
 
 ```python
 self.events = EmitterGroup(
@@ -115,6 +120,7 @@ function that accepts the event object:
 ```python
 def print_layer_name(event):
     print(f"{event.source.name} changed its data!")
+
 
 layer.events.data.connect(print_layer_name)
 ```

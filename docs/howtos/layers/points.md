@@ -1,15 +1,6 @@
----
-jupytext:
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
----
+______________________________________________________________________
+
+## jupytext: text_representation: extension: .md format_name: myst format_version: 0.13 jupytext_version: 1.10.3 kernelspec: display_name: Python 3 language: python name: python3
 
 # Using the points layer
 
@@ -262,8 +253,7 @@ each property are stored in a numpy ndarray with length 3 since there were three
 coordinates provided in `points`. We set the edge color as a function of the
 `good_point` property by providing the keyword argument
 `edge_color='good_point'` to the `viewer.add_points()` method. We set the color
-cycle via the `edge_color_cycle` keyword argument (`edge_color_cycle=['magenta',
-'green']`). The color cycle can be provided as a list of colors (a list of
+cycle via the `edge_color_cycle` keyword argument (`edge_color_cycle=['magenta', 'green']`). The color cycle can be provided as a list of colors (a list of
 strings or a (M x 4) array of M RGBA colors).
 
 ### Setting edge or face color with a colormap

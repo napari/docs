@@ -1,17 +1,9 @@
----
-jupytext:
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
----
+______________________________________________________________________
+
+## jupytext: text_representation: extension: .md format_name: myst format_version: 0.13 jupytext_version: 1.10.3 kernelspec: display_name: Python 3 language: python name: python3
 
 (viewer-tutorial)=
+
 # Viewer tutorial
 
 +++
@@ -60,6 +52,7 @@ import napari
 viewer = napari.Viewer()
 new_layer = viewer.add_image(data.astronaut(), rgb=True)
 ```
+
 {meth}`add_image<napari.components.ViewerModel.add_image>` accepts the same arguments as {func}`imshow<napari.imshow>` but only returns an {class}`Image<napari.layers.Image>` layer instead of both the {class}`Viewer<napari.Viewer>` and {class}`Image<napari.layers.Image>` layer (as you must already have a viewer to use it).
 
 After running either of those two commands, you should be able to see the photograph of the astronaut in the **napari** viewer as shown below:
@@ -76,7 +69,7 @@ nbscreenshot(viewer, alt_text="photograph of an astronaut in napari viewer")
 viewer.close()
 ```
 
- {func}`imshow<napari.imshow>` and the {meth}`add_image<napari.components.ViewerModel.add_image>` methods accept any numpy-array like object as input, including n-dimensional arrays. For more information on adding images to the viewer see the [image layer guide](../../howtos/layers/image).
+{func}`imshow<napari.imshow>` and the {meth}`add_image<napari.components.ViewerModel.add_image>` methods accept any numpy-array like object as input, including n-dimensional arrays. For more information on adding images to the viewer see the [image layer guide](../../howtos/layers/image).
 
 Now we will continue exploring the rest of the viewer.
 
@@ -85,16 +78,17 @@ Now we will continue exploring the rest of the viewer.
 ## Layout of the viewer
 
 The viewer is organized into a few key areas which are explained in the next sections:
-* Main Menu (top bar menu)
-* Layer Controls
-* Layer Buttons
-* Layer List
-* Viewer Buttons
-* Status Bar
-* Canvas
-* Dimension Sliders
-* Scroll Buttons
-* Frame Playback
+
+- Main Menu (top bar menu)
+- Layer Controls
+- Layer Buttons
+- Layer List
+- Viewer Buttons
+- Status Bar
+- Canvas
+- Dimension Sliders
+- Scroll Buttons
+- Frame Playback
 
 The image below has the areas of the viewer labeled:
 
@@ -106,20 +100,19 @@ We'll go through each of these in the next sections.
 
 The main menu consists of the **File**, **View**, **Window**, **Plugins**, and **Help** options.
 
-* **File** has the options to open files, folders, and samples, save layers and screenshots,copy screenshots to clipboard and, in the Windows version, preferences.
+- **File** has the options to open files, folders, and samples, save layers and screenshots,copy screenshots to clipboard and, in the Windows version, preferences.
 
-    All the options on the **File** menu are relatively self-explanatory except **Preferences** on the Windows version of napari. **Preferences** allows you to personalize napari to some degree. To learn more about the **Preferences** menu, there is a tutorial designed for developers [here](https://napari.org/stable/guides/preferences.html).
+  All the options on the **File** menu are relatively self-explanatory except **Preferences** on the Windows version of napari. **Preferences** allows you to personalize napari to some degree. To learn more about the **Preferences** menu, there is a tutorial designed for developers [here](https://napari.org/stable/guides/preferences.html).
 
-    **Note:** In macOS, **Preferences** is under the napari menu.
+  **Note:** In macOS, **Preferences** is under the napari menu.
 
+- **View** allows you to toggle full screen, the menu bar, play, display axes, the scale bar, tooltips, and the activity dock.
 
-* **View** allows you to toggle full screen, the menu bar, play, display axes, the scale bar, tooltips, and the activity dock.
+- **Window** allows you to open the integrated console, display the layer controls and layer list.
 
-* **Window** allows you to open the integrated console, display the layer controls and layer list.
+- **Plugins** allows you to install and manage plugins and displays a list of plugins that are currently installed.
 
-* **Plugins** allows you to install and manage plugins and displays a list of plugins that are currently installed.
-
-* **Help** contains the citation and about information.
+- **Help** contains the citation and about information.
 
 +++
 
@@ -134,7 +127,9 @@ The **canvas** is in the center of the viewer and contains the visual display of
 +++
 
 <!-- I don't know why "(layer_list)=" is here. -->
+
 (layer_list)=
+
 ### Layer list
 
 Layers are one of the basic napari objects. There are different layer types for `Image`, `Points`, `Shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added, they populate the layer list located on the bottom left side of the canvas.
@@ -314,12 +309,13 @@ On the left end of the dimension slider is the **frame playback** button. Right 
 ### Viewer buttons
 
 Below the **layer list** is a row containing these buttons:
-* Console
-* 2D/3D
-* Roll Dimensions
-* Transpose Dimensions
-* Grid display
-* Home
+
+- Console
+- 2D/3D
+- Roll Dimensions
+- Transpose Dimensions
+- Grid display
+- Home
 
 ![image: Viewer buttons](../assets/tutorials/viewer-buttons.png)
 
@@ -345,7 +341,6 @@ The console (when available) appears at the bottom of the viewer as shown below:
 The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data.
 For example, run the following code:
 
-
 ```{code-cell} python
 :tags: [remove-output]
 from skimage import data
@@ -366,6 +361,7 @@ the following, to indicate 3D mode:
 ![image: 3D_button](../assets/tutorials/3D_button.png)
 
 This mode can be entered programmatically using:
+
 ```python
 viewer.dims.ndisplay = 3
 ```
@@ -389,6 +385,7 @@ Shift key while dragging with the mouse. Finally, while in 3D mode you can chang
 3D view by holding Shift, pressing the right mouse button (on macOS holding Control) and
 dragging the mouse or by right-clicking (on macOS holding Control and clicking) on the 2D/3D mode
 button, which will bring up the perspective slider. The camera perspective can also be altered programmatically:
+
 ```python
 viewer.camera.perspective = 45
 ```
@@ -420,29 +417,31 @@ On the left side of the status bar there is a message about the position of the 
 The right side of the status bar contains some helpful tips depending on which layer and tools are currently selected.
 
 ## Right-click menu
- A context-sensitive menu is available when you right-click on any of the layers. The type of layer determines which options are available. Note that if you have multiple layers selected, the menu actions will affect all of the selected layers. The options that are not available for a layer are greyed out. The following options are available depending on which layer type you have selected:
-* **Duplicate Layer** - creates a second copy of the selected layer. Can be used on **Points**, **Shapes**, **Labels**, and **Image** layers. This is useful for testing your analysis on a copy instead of on the original image.
-* **Convert to Labels** - converts an **Image** layer to a **Labels** layer. This is useful for converting a binary image segmentation map to a labels layer with each segmented object denoted by its own integer. Can also be used on a **Shapes** layer.
-* **Convert to Image** - converts a **Labels** layer into an **Image** layer.
-* **Toggle visibility** - hides or shows the selected layer.
-* **Convert datatype** - converts an **Image** or **Labels** layer into int8, int16, int32, int64, uint8, uint16, uint32, or uint64 data types. The initial data type is the data type of the data itself.
-* **Make Projection** - can be used only on a layer with more than 2 dimensions, also known as a *stack*.  It creates a new layer that is a projection of the layer stack with the characteristic the user selects, reducing the number of dimensions by 1. More information about the types of projections is available [here](https://medium.com/@damiandn/an-intoduction-to-biological-image-processing-in-imagej-part-3-stacks-and-stack-projections-942aa789420f). The following projections are available:
-    * **Max** - maximum intensity projection. At each pixel position, we go  through the stacks, find the pixel with the maximum intensity, and that becomes the intensity of that pixel value in the projected image.
-   * **Min** - minimum intensity projection. Similar to the maximum intensity projection, except that the minimum pixel value is used for the projected image instead of the maximum pixel value.
-   * **Std** - the standard deviation projection. At each pixel position, the standard deviation of the pixel intensities through the stack is the assigned value of that pixel position. Positions with large differences in the pixel intensities through the stack appear brighter in this projection.
-   * **Sum** - the sum projection simply adds together all the pixel values in the stack for a given position. In this projection, the image is typically re-scaled to a 16-bit image, as the sum of all the pixel intensity values usually exceeds 255, which would result in a completely white 8-bit image.
-   * **Mean** - the mean projection is the average intensity projection.  It simply averages all the pixel values in the stacks to make the final projected image.
-   * **Median** - the median projection takes the median pixel intensity for the final projected image.
-* **Split RGB** - if the image layer is an RGB image, it will be split into 3 new layers with red, green, and blue values in separate layers.
-* **Split Stack** - if an image layer is a stack (has 3 or more dimensions), it is split into a list of layers along the axis. This option takes a little time to execute. Properties will be changed as follows:
-    * **Colormap:** (magenta, green) for a stack with 2 channels, (CYMRGB) for stacks with more than 2 channels
-    * **Blending:** additive
-    * **Contrast_limits:** min and max values of the layer
-    * All other properties, such as **Scale** and **Translate** will be propagated from the original stack.
-* **Merge to Stack** - combines a set of layers to a single-layer stack. The resulting layer stack will contain the layers with their original ordering in the layer list. Layers must be of the same type (e.g. An **Image** layer can be merged only with other **Image** layers.) and must have the same dimensionality.  (e.g. a 1024 x 1024 layer can only be merged with another 1024 x 1024 layer.)
-* **Link Layers** - links the selected layers.  Once layers are linked, any action performed on one layer will be performed on all linked layers at the same time. The layer control panel will show _only_ when a single layer is selected. Changing properties with that layer's control panel will change properties in all of the linked layers.
-* **Unlink Layers** - appears when layers are linked. It unlinks the layers so that changes to one of the layer's properties no longer result in the same changes to the previously linked layers.
-* **Select Linked Layers** - appears only when layers are linked. Selects all layers linked to a given layer.
+
+A context-sensitive menu is available when you right-click on any of the layers. The type of layer determines which options are available. Note that if you have multiple layers selected, the menu actions will affect all of the selected layers. The options that are not available for a layer are greyed out. The following options are available depending on which layer type you have selected:
+
+- **Duplicate Layer** - creates a second copy of the selected layer. Can be used on **Points**, **Shapes**, **Labels**, and **Image** layers. This is useful for testing your analysis on a copy instead of on the original image.
+- **Convert to Labels** - converts an **Image** layer to a **Labels** layer. This is useful for converting a binary image segmentation map to a labels layer with each segmented object denoted by its own integer. Can also be used on a **Shapes** layer.
+- **Convert to Image** - converts a **Labels** layer into an **Image** layer.
+- **Toggle visibility** - hides or shows the selected layer.
+- **Convert datatype** - converts an **Image** or **Labels** layer into int8, int16, int32, int64, uint8, uint16, uint32, or uint64 data types. The initial data type is the data type of the data itself.
+- **Make Projection** - can be used only on a layer with more than 2 dimensions, also known as a *stack*.  It creates a new layer that is a projection of the layer stack with the characteristic the user selects, reducing the number of dimensions by 1. More information about the types of projections is available [here](https://medium.com/@damiandn/an-intoduction-to-biological-image-processing-in-imagej-part-3-stacks-and-stack-projections-942aa789420f). The following projections are available:
+  - **Max** - maximum intensity projection. At each pixel position, we go  through the stacks, find the pixel with the maximum intensity, and that becomes the intensity of that pixel value in the projected image.
+  - **Min** - minimum intensity projection. Similar to the maximum intensity projection, except that the minimum pixel value is used for the projected image instead of the maximum pixel value.
+  - **Std** - the standard deviation projection. At each pixel position, the standard deviation of the pixel intensities through the stack is the assigned value of that pixel position. Positions with large differences in the pixel intensities through the stack appear brighter in this projection.
+  - **Sum** - the sum projection simply adds together all the pixel values in the stack for a given position. In this projection, the image is typically re-scaled to a 16-bit image, as the sum of all the pixel intensity values usually exceeds 255, which would result in a completely white 8-bit image.
+  - **Mean** - the mean projection is the average intensity projection.  It simply averages all the pixel values in the stacks to make the final projected image.
+  - **Median** - the median projection takes the median pixel intensity for the final projected image.
+- **Split RGB** - if the image layer is an RGB image, it will be split into 3 new layers with red, green, and blue values in separate layers.
+- **Split Stack** - if an image layer is a stack (has 3 or more dimensions), it is split into a list of layers along the axis. This option takes a little time to execute. Properties will be changed as follows:
+  - **Colormap:** (magenta, green) for a stack with 2 channels, (CYMRGB) for stacks with more than 2 channels
+  - **Blending:** additive
+  - **Contrast_limits:** min and max values of the layer
+  - All other properties, such as **Scale** and **Translate** will be propagated from the original stack.
+- **Merge to Stack** - combines a set of layers to a single-layer stack. The resulting layer stack will contain the layers with their original ordering in the layer list. Layers must be of the same type (e.g. An **Image** layer can be merged only with other **Image** layers.) and must have the same dimensionality.  (e.g. a 1024 x 1024 layer can only be merged with another 1024 x 1024 layer.)
+- **Link Layers** - links the selected layers.  Once layers are linked, any action performed on one layer will be performed on all linked layers at the same time. The layer control panel will show _only_ when a single layer is selected. Changing properties with that layer's control panel will change properties in all of the linked layers.
+- **Unlink Layers** - appears when layers are linked. It unlinks the layers so that changes to one of the layer's properties no longer result in the same changes to the previously linked layers.
+- **Select Linked Layers** - appears only when layers are linked. Selects all layers linked to a given layer.
 
 +++
 

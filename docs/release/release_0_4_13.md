@@ -30,13 +30,14 @@ https://github.com/napari/napari
 Complete list of changes below:
 
 ## Highlights
+
 - Spherical Points (#3430)
 - Point selection in 3d (#3508)
 - Surface normals and wireframe (#3689)
 - Add dialog for selecting reader plugin when dragging & dropping a file (#3799)
 
-
 ## New Features
+
 - 3D click + drag interactivity API (#3205)
 - Initial npe2 writer support (#3426)
 - Add glossary (#3569)
@@ -44,8 +45,8 @@ Complete list of changes below:
 - Add `experimental_canvas_size_limits` argument to points (#3734)
 - 3D point selection with drag box (#3840)
 
-
 ## Improvements
+
 - Raise AttributeError when labels.contrast_limits are set to anything other than (0, 1) (#2573)
 - Allow magicgui to return a worker object (#2593)
 - Proposition of save as_dict in get_theme but with change default behaviour in future (#3429)
@@ -57,7 +58,7 @@ Complete list of changes below:
 - Add Context object, and LayerListContextKeys (#3513)
 - Add class method to viewers to simplify closing all of them. (#3516)
 - Ndisplay async (#3517)
-- Minor LayerList refactor to remove unneeded NumPy<=1.17 fallback code (#3522)
+- Minor LayerList refactor to remove unneeded NumPy\<=1.17 fallback code (#3522)
 - Establish LayerDataProtocol and basic Multiscale wrapper (resuscitate #2683) (#3560)
 - Add checked `QpushButton` qss (#3561)
 - Allow disconnect from EventEmiter using object (#3566)
@@ -137,8 +138,8 @@ Complete list of changes below:
 - Better Notification __str__ method (#3933)
 - Fix ndisplay button highlight (#3935)
 
-
 ## Bug Fixes
+
 - Fix removing selected points with derived text (#3505)
 - Fix for wrong bounding box definition (#3511)
 - Fix missing class annotations from stubgen (#3514)
@@ -180,19 +181,18 @@ Complete list of changes below:
 - Switch append to concat (#3963)
 - Update plugin docs index (#3964)
 
-
 ## API Changes
 
-
 ## Deprecations
+
 - Deprecate public `window.qt_viewer` (remove in 0.5.0) (#3748)
 - Deprecate `qt_viewer.screenshot` & `clipboard` (#3765)
 - Restrict PublicOnlyProxy to napari namespace, allow napari-internal private usage (#3777)
 - Change PublicOnlyProxy deprecation expiry to 0.5.0 (#3788)
 - Remove deprecation of sceenshot in qt_viewer (#3937)
 
-
 ## Build Tools and Docs
+
 - Auto generate event reference docs (#2750)
 - Try to run docs under xvfb-run. (#3497)
 - Patch plugin manager in `plugins.io` during test (#3515)
@@ -229,7 +229,7 @@ Complete list of changes below:
 - Update best_practices.md (#3744)
 - Pin scikit image (!=0.19.0) in test suite (#3749)
 - Moved files to agree with ToC reorganization. (#3751)
-- [pre-commit.ci] pre-commit autoupdate (#3756)
+- \[pre-commit.ci\] pre-commit autoupdate (#3756)
 - Fix outdated API in eventloop docs (#3772)
 - Add glossary to copy-docs list (#3791)
 - Update glossary.md links (#3797)
@@ -240,7 +240,7 @@ Complete list of changes below:
 - Readme install update (#3862)
 - Link "development status" button in readme to explanation of "Alpha", "Beta",... (#3885)
 - Use packaging.version, DeprecationWarnings since setuptools 59+  (#3894)
-- [pre-commit.ci] pre-commit autoupdate (#3902)
+- \[pre-commit.ci\] pre-commit autoupdate (#3902)
 - npe2 doc fix: remove outdated text (#3905)
 - Fix docs calendar (#3912)
 - Update plugin docs (#3916)
@@ -253,7 +253,6 @@ Complete list of changes below:
 - Fix path to prep_docs in make_docs workflow (#3950)
 - Add descriptive information to assertion checking if QtViewer is cleaned properly (#3960)
 - Fix preference docs (#3967)
-
 
 ## 28 authors added to this release (alphabetical)
 
@@ -285,7 +284,6 @@ Complete list of changes below:
 - [Robert Haase](https://github.com/napari/napari/commits?author=haesleinhuepf) - @haesleinhuepf
 - [Subhashree Mishra](https://github.com/napari/napari/commits?author=Mishrasubha) - @Mishrasubha
 - [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - @tlambert03
-
 
 ## 30 reviewers added to this release (alphabetical)
 
@@ -319,4 +317,3 @@ Complete list of changes below:
 - [Robert Haase](https://github.com/napari/napari/commits?author=haesleinhuepf) - @haesleinhuepf
 - [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - @tlambert03
 - [Ziyang Liu](https://github.com/napari/napari/commits?author=potating-potato) - @potating-potato
-

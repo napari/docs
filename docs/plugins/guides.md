@@ -6,22 +6,25 @@ an example implementation. For details on the type and meaning of each
 field in a specific contribution, See the
 [contributions reference](./contributions)
 
-
 ```{include} _npe2_readers_guide.md
 ```
-----------------
+
+______________________________________________________________________
 
 ```{include} _npe2_writers_guide.md
 ```
-----------------
+
+______________________________________________________________________
 
 ```{include} _npe2_widgets_guide.md
 ```
-----------------
+
+______________________________________________________________________
 
 ```{include} _npe2_sample_data_guide.md
 ```
-----------------
+
+______________________________________________________________________
 
 ```{include} _layer_data_guide.md
 ```

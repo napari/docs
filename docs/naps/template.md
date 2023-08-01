@@ -80,16 +80,16 @@ discussion:
 ## References and Footnotes
 
 All NAPs should be declared as dedicated to the public domain with the CC0
-license [^id3], as in `Copyright`, below, with attribution encouraged with
+license \[^id3\], as in `Copyright`, below, with attribution encouraged with
 CC0+BY [^id4].
 
-[^id3]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
-    <https://creativecommons.org/publicdomain/zero/1.0/>
-
-[^id4]: <https://dancohen.org/2013/11/26/cc0-by/>
+\[^id3\]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
+<https://creativecommons.org/publicdomain/zero/1.0/>
 
 ## Copyright
 
 This document is dedicated to the public domain with the Creative Commons CC0
-license [^id3]. Attribution to this source is encouraged where appropriate, as per
+license \[^id3\]. Attribution to this source is encouraged where appropriate, as per
 CC0+BY [^id4].
+
+[^id4]: https://dancohen.org/2013/11/26/cc0-by/

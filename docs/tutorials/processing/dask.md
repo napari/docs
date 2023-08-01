@@ -50,7 +50,7 @@ from skimage.io import imread
 from dask import delayed
 
 lazy_imread = delayed(imread)
-reader = lazy_imread('/path/to/file.tif')  # doesn't actually read the file
+reader = lazy_imread("/path/to/file.tif")  # doesn't actually read the file
 array = reader.compute()  # *now* it reads.
 ```
 
@@ -89,7 +89,7 @@ stack.shape  # (nfiles, nz, ny, nx)
 stack
 ```
 
-![HTML representation of a Dask array as seen in Jupyter notebook. The image is split into two main regions: a table showing the bytes, shape, count and data type attributes of the array and of each chunk, and a visual representation of the shape of the chunks that make up the array (a rectangle of 1200x1) and each individual chunk (a 65*256*256 cube).](../assets/tutorials/dask_repr.png)
+![HTML representation of a Dask array as seen in Jupyter notebook. The image is split into two main regions: a table showing the bytes, shape, count and data type attributes of the array and of each chunk, and a visual representation of the shape of the chunks that make up the array (a rectangle of 1200x1) and each individual chunk (a 65256256 cube).](../assets/tutorials/dask_repr.png)
 
 *No data has been read from disk yet!*
 
@@ -103,7 +103,7 @@ import napari
 
 # specify contrast_limits and multiscale=False with big data
 # to avoid unnecessary computations
-napari.view_image(stack, contrast_limits=[0,2000], multiscale=False)
+napari.view_image(stack, contrast_limits=[0, 2000], multiscale=False)
 ```
 
 *Note: providing the* `contrast_limits` *and* `multiscale` *arguments prevents* `napari` *from trying to calculate the data min/max, which can take an extremely long time with big data.
@@ -125,7 +125,7 @@ import napari
 from dask_image.imread import imread
 
 stack = imread("/path/to/experiment/*.tif")
-napari.view_image(stack, contrast_limits=[0,2000], multiscale=False)
+napari.view_image(stack, contrast_limits=[0, 2000], multiscale=False)
 ```
 
 ![napari viewer with image loaded as a dask array showing mCherry-H2B showing chromosome separation during mitosis. Collected on a lattice light sheet microscope.](../assets/tutorials/dask1.webm)
@@ -141,7 +141,8 @@ For example:
 
 ```python
 from dask_image.imread import imread
-stack = imread('/path/to/experiment/*.tif')
+
+stack = imread("/path/to/experiment/*.tif")
 stack.shape  # -> something like (1200, 64, 256, 280)
 stack[0].compute()  # incurs a single file read
 
@@ -171,7 +172,6 @@ channels = [imread(file_pattern.format(i)) for i in range(nchannels)]
 stack = da.stack(channels)
 stack.shape  # (2, 600, 64, 256, 280)
 stack[0, 0].compute()  # incurs a single file read
-
 ```
 
 ## Processing data with `dask.array.map_blocks`
@@ -206,17 +206,20 @@ psf = io.imread("/path/to/psf.tif")
 # prepare some functions that accept a numpy array
 # and return a processed array
 
+
 def last3dims(f):
     # this is just a wrapper because the pycudadecon function
     # expects ndims==3 but our blocks will have ndim==4
     def func(array):
         return f(array[0])[None, ...]
+
     return func
 
 
 def crop(array):
     # simple cropping function
     return array[:, 2:, 10:-20, :500]
+
 
 # https://docs.python.org/3.8/library/functools.html#functools.partial
 deskew = last3dims(partial(pycudadecon.deskew_gpu, angle=31.5))

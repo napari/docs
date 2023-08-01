@@ -1,7 +1,7 @@
----
-title: "{{ env.TITLE }}"
-labels: [bug]
----
+______________________________________________________________________
+
+## title: "{{ env.TITLE }}" labels: \[bug\]
+
 The {{ workflow }} workflow failed on {{ date | date("YYYY-MM-DD HH:mm") }} UTC
 
 The most recent failing test was on {{ env.PLATFORM }} py{{ env.PYTHON }} {{ env.BACKEND }}
