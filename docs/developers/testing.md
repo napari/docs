@@ -67,7 +67,7 @@ To get list of all available environments run:
 tox list
 ```
 
-### Running tests without jumping windows
+### Running tests without pop-up windows
 
 Part of tests are opening and closing windows. This can be annoying if you are doing something when wait on the test end. 
 There are two ways to avoid this:
