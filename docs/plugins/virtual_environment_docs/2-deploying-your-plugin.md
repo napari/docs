@@ -3,15 +3,12 @@
 This guide explains some of the techniques you can use to deploy your plugin. 
 
 ## This guide covers:   
-- [Deploying your plugin](#deploying-your-plugin)
-  - [This guide covers:](#this-guide-covers)
   - [Overview of PyPI and Anaconda](#overview-of-pypi-and-anaconda)
-    - [Building your package](#building-your-package)
+  - [Building your package](#building-your-package)
   - [Deploying plugins to PyPI](#deploying-plugins-to-pypi)
     - [Manually via **twine**.](#manually-via-twine)
     - [Automatically via GitHub actions](#automatically-via-github-actions)
   - [Deploying to Anaconda](#deploying-to-anaconda)
-  - [Other topics in this series:](#other-topics-in-this-series)
 
 
 ## Overview of PyPI and Anaconda
