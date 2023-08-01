@@ -69,10 +69,12 @@ tox list
 
 ### Running tests without pop-up windows
 
-Part of tests are opening and closing windows. This can be annoying if you are doing something when wait on the test end. 
+Some tests create visible napari viewers, which pop up on your monitor then quickly disappear.
+This can be annoying if you are trying to use your computer while the tests are running.
 There are two ways to avoid this:
 
-1. Use the `QT_QPA_PLATFORM=offscreen` environment variable. This instruct QT to use `offscreen` rendering method.
+1. Use the `QT_QPA_PLATFORM=offscreen` environment variable.
+This tells Qt to render windows "offscreen", which is slower but will avoid the pop-ups.
    ```shell
    QT_QPA_PLATFORM=offscreen pytest napari
    ```
@@ -81,7 +83,8 @@ There are two ways to avoid this:
    QT_QPA_PLATFORM=offscreen tox -e py310-linux-pyqt5
    ```
    
-2. Linux only (windows with WSL should work also): use the `xvfb-run` command. This will run the test in a virtual X server. 
+2. If you are using Linux or WSL, you can use the `xvfb-run` command.
+   This will run the tests in a virtual X server. 
    ```sh
    xvfb-run pytest napari
    ```
@@ -90,7 +93,7 @@ There are two ways to avoid this:
    xvfb-run tox -e py310-linux-pyqt5
    ```
    
-where tox environment selector `py310-linux-pyqt5` need to fit your os and python version.
+where the tox environment selector `py310-linux-pyqt5` must match your OS and Python version.
 
 ### Tips for speeding up local testing
 
