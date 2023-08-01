@@ -53,6 +53,45 @@ If you'd like to include them in local tests, set the environment variable "CI":
 CI=1 pytest
 ```
 
+It is also possible to run test using `tox`. This is the same way as it is done in CI.
+The main difference is that tox will create a virtual environment for each test environment, so it will take more time
+but it will be more similar to the CI environment.
+
+```sh
+tox -e py310-linux-pyqt5
+```
+
+To get list of all available environments run:
+
+```sh
+tox list
+```
+
+### Running tests without jumping windows
+
+Part of tests are opening and closing windows. This can be annoying if you are doing something when wait on the test end. 
+There are two ways to avoid this:
+
+1. Use the `QT_QPA_PLATFORM=offscreen` environment variable. This instruct QT to use `offscreen` rendering method.
+   ```shell
+   QT_QPA_PLATFORM=offscreen pytest napari
+   ```
+   or 
+   ```shell
+   QT_QPA_PLATFORM=offscreen tox -e py310-linux-pyqt5
+   ```
+   
+2. Linux only (windows with WSL should work also): use the `xvfb-run` command. This will run the test in a virtual X server. 
+   ```sh
+   xvfb-run pytest napari
+   ```
+   or
+   ```sh
+   xvfb-run tox -e py310-linux-pyqt5
+   ```
+   
+where tox environment selector `py310-linux-pyqt5` need to fit your os and python version.
+
 ### Tips for speeding up local testing
 
 Very often when developing new code, you don't need or want to run the entire test suite (which can take many minutes to finish).  With `pytest`, it's easy to run a subset of your tests:
