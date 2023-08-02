@@ -209,7 +209,7 @@ dedicated to the stability of your plugin. Aim for 100%!
 Of course, simply having 100% coverage doesn't mean your code is bug-free, so
 make sure that you test all of the various ways that your code might be called.
 
-See our [Tips for testing napari plugins](plugin-testing-tips).
+See [Tips for testing napari plugins](plugin-testing-tips).
 
 ### How to check test coverage?
 

@@ -75,32 +75,48 @@ subtrees:
   - file: plugins/index
     subtrees:
     - entries:
-      - file: plugins/find_and_install_plugin
-      - file: plugins/first_plugin
-      - file: plugins/manifest
-      - file: plugins/contributions
-      - file: plugins/guides
-      - file: plugins/test_deploy
-      - file: plugins/best_practices
-      - file: plugins/debug_plugins
-      - file: plugins/npe2_migration_guide
-      - file: plugins/npe1
-      - file: plugins/testing_workshop_docs/index
+      - file: plugins/start_using_plugins/index
         subtrees:
         - entries:
-          - file: plugins/testing_workshop_docs/1-pythons-assert-keyword
-          - file: plugins/testing_workshop_docs/2-pytest-testing-frameworks
-          - file: plugins/testing_workshop_docs/3-readers-and-fixtures
-          - file: plugins/testing_workshop_docs/4-test-coverage
-          - file: plugins/testing_workshop_docs/testing-resources
-      - file: plugins/virtual_environment_docs/index
+          - file: plugins/start_using_plugins/finding_and_installing_plugins
+      - file: plugins/building_a_plugin/index
         subtrees:
         - entries:
-          - file: plugins/virtual_environment_docs/1-virtual-environments
-          - file: plugins/virtual_environment_docs/2-deploying-your-plugin
-          - file: plugins/virtual_environment_docs/3-version-management
-          - file: plugins/virtual_environment_docs/4-developer-tools
-          - file: plugins/virtual_environment_docs/5-survey
+          - file: plugins/building_a_plugin/first_plugin
+          - file: plugins/building_a_plugin/guides
+          - file: plugins/building_a_plugin/debug_plugins
+          - file: plugins/building_a_plugin/best_practices
+          - file: plugins/virtual_environment_docs/index
+            subtrees:
+            - entries:
+              - file: plugins/virtual_environment_docs/1-virtual-environments
+              - file: plugins/virtual_environment_docs/2-deploying-your-plugin
+              - file: plugins/virtual_environment_docs/3-version-management
+              - file: plugins/virtual_environment_docs/4-developer-tools
+              - file: plugins/virtual_environment_docs/5-survey
+      - file: plugins/testing_and_publishing/index
+        subtrees:
+        - entries:
+          - file: plugins/testing_and_publishing/test
+          - file: plugins/testing_and_publishing/deploy
+          - file: plugins/testing_workshop_docs/index
+            subtrees:
+            - entries:
+              - file: plugins/testing_workshop_docs/1-pythons-assert-keyword
+              - file: plugins/testing_workshop_docs/2-pytest-testing-frameworks
+              - file: plugins/testing_workshop_docs/3-readers-and-fixtures
+              - file: plugins/testing_workshop_docs/4-test-coverage
+              - file: plugins/testing_workshop_docs/testing-resources
+      - file: plugins/advanced_topics/index
+        subtrees:
+        - entries:
+          - file: plugins/advanced_topics/npe2_migration_guide
+          - file: plugins/advanced_topics/npe1
+      - file: plugins/technical_references/index
+        subtrees:
+        - entries:
+          - file: plugins/technical_references/manifest
+          - file: plugins/technical_references/contributions
   - file: community/index
     subtrees:
     - titlesonly: True
