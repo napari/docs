@@ -95,10 +95,10 @@ This NAP proposes to add a `conda`-based distribution mechanism for the napari
 application and plugins, supported by five key milestones:
 
 1. Distributing napari and plugins on conda-forge
-1. Building conda-based installers for napari
-1. Adding support for conda packages in the plugin manager
-1. Enabling in-app napari version updates
-1. Deprecating Briefcase-based installers
+2. Building conda-based installers for napari
+3. Adding support for conda packages in the plugin manager
+4. Enabling in-app napari version updates
+5. Deprecating Briefcase-based installers
 
 Throughout the process, we will aim to minimize conda's downsides by providing
 local conda-based installation options and documentation about how to use them.
@@ -250,17 +250,17 @@ PyPI. To make it compatible with conda packaging, three key changes are needed:
    the list of plugins from a repository-agnostic source: the napari hub API. It must be noted that
    napari hub currently uses PyPI as the ground truth for the list of published plugins and the
    available versions.
-1. Once the napari hub API is feeding the list, the plugin manager will also list those available
+2. Once the napari hub API is feeding the list, the plugin manager will also list those available
    on conda-forge. Packages that are only available on PyPI can also be installed as long as:
    - The dependencies of the PyPI package are on conda-forge
    - The PyPI package is pure Python (no compiled libraries)
      In the future, we might explore how to deal with PyPI packages within conda in a safer way, but
      this is an open packaging question that is extremely difficult to tackle robustly.
-1. Instrument the plugin manager backend so it can use `conda` or `mamba` to run the plugin
+3. Instrument the plugin manager backend so it can use `conda` or `mamba` to run the plugin
    installation, update or removal. Some level of customizability is needed to configure extra
    channels (e.g. a laboratory published their conda packages into their own private channel) and
    local sources (e.g. drag&drop a conda tarball).
-1. Add some control to the dependency landscape of the plugin ecosystem using the
+4. Add some control to the dependency landscape of the plugin ecosystem using the
    `napari-pinnings` metapackage mentioned in Milestone 1.
 
 There are some technical limitations we need to work out as well, namely:

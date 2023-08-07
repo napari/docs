@@ -171,7 +171,7 @@ and
      [`QSizePolicy`](https://doc.qt.io/qt-5/qsizepolicy.html#Policy-enum)
      of `Expanding`, `MinimumExpanding`, or `Ignored`
 
-  1. `add_vertical_stretch=False` is provided to `add_dock_widget`,
+  2. `add_vertical_stretch=False` is provided to `add_dock_widget`,
      or in the widget options provided with plugin dock widgets.
 
 ## Deprecations

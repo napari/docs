@@ -85,15 +85,15 @@ release though we need to generate the release notes.
    python docs/release/generate_release_notes.py v0.2.0 main --version 0.2.1 | tee docs/release/release_0_2_1.md
    ```
 
-1. Scan the PR titles for highlights, deprecations, API changes,
+2. Scan the PR titles for highlights, deprecations, API changes,
    and bugfixes, and mention these in the relevant sections of the notes.
    Try to present the information in an expressive way by mentioning
    the affected functions, elaborating on the changes and their
    consequences. If possible, organize semantically close PRs in groups.
 
-1. Make sure the file name is of the form `doc/release/release_<major>_<minor>_<release>.md`.
+3. Make sure the file name is of the form `doc/release/release_<major>_<minor>_<release>.md`.
 
-1. Make and merge a PR with these release notes before moving onto the next steps.
+4. Make and merge a PR with these release notes before moving onto the next steps.
 
 ## Update translation strings
 
@@ -110,8 +110,8 @@ file `/tools/strings_list.py` to include strings to skip safely from translation
 The test checks:
 
 1. **Untranslated strings**: not using the `trans` methods.
-1. **Outdated skip strings**: should no longer be included in the `/tools/strings_list.py` file.
-1. **Translation usage errors**: where translation strings may be missing interpolation variables.
+2. **Outdated skip strings**: should no longer be included in the `/tools/strings_list.py` file.
+3. **Translation usage errors**: where translation strings may be missing interpolation variables.
 
 You can execute tests locally from the repository root, and follow the instructions printed
 on the `stdout` if any test fails.

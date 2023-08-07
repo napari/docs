@@ -3,12 +3,12 @@
 When developing plugins in napari, you may encounter mistakes or bugs in your code. This page covers some ways to debug napari plugins during development, including:
 
 1. Debugging plugin start-up issues.
-1. Seeing plugin errors and warnings.
-1. Debugging plugin functionality.
-1. Reloading code during plugin development.
-1. Isolating issues from napari.
-1. Logging and debug messages.
-1. Debugging segfaults/memory violation errors
+2. Seeing plugin errors and warnings.
+3. Debugging plugin functionality.
+4. Reloading code during plugin development.
+5. Isolating issues from napari.
+6. Logging and debug messages.
+7. Debugging segfaults/memory violation errors
 
 ## Quick start
 
@@ -16,7 +16,7 @@ To quickly get started with debugging your plugin, you can do the following:
 
 1. Install your plugin in [editable mode](https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/#working-in-development-mode) in your virtual environment. For example, you could do this by running `pip install -e .` in the root directory of your plugin's repository.
 
-1. Write a Python script to launch napari with your plugin loaded, like so:
+2. Write a Python script to launch napari with your plugin loaded, like so:
 
    ```python
    # launch_napari.py
@@ -32,11 +32,11 @@ To quickly get started with debugging your plugin, you can do the following:
    run()
    ```
 
-1. Setup the [pdb](https://docs.python.org/3/library/pdb.html) or the debugger in your IDE (such as [VSCode](https://code.visualstudio.com/docs/editor/debugging) or [PyCharm](https://www.jetbrains.com/help/pycharm/debugging-code.html#general-procedure)) to run this script in debug mode with any desired breakpoints set. For example, in VSCode, you can [set a breakpoint](https://code.visualstudio.com/Docs/editor/debugging#_breakpoints) by clicking on the line number in the script.
+3. Setup the [pdb](https://docs.python.org/3/library/pdb.html) or the debugger in your IDE (such as [VSCode](https://code.visualstudio.com/docs/editor/debugging) or [PyCharm](https://www.jetbrains.com/help/pycharm/debugging-code.html#general-procedure)) to run this script in debug mode with any desired breakpoints set. For example, in VSCode, you can [set a breakpoint](https://code.visualstudio.com/Docs/editor/debugging#_breakpoints) by clicking on the line number in the script.
 
-1. Run the created napari launch script in debug mode. For example, in VSCode, you can do this by opening the script in the editor, [selecting your napari virtual environment as the python interpreter](https://code.visualstudio.com/docs/python/environments) and then clicking the `Run and Debug` button in the left hand toolbar, selecting `Python: File` as the run configuration.
+4. Run the created napari launch script in debug mode. For example, in VSCode, you can do this by opening the script in the editor, [selecting your napari virtual environment as the python interpreter](https://code.visualstudio.com/docs/python/environments) and then clicking the `Run and Debug` button in the left hand toolbar, selecting `Python: File` as the run configuration.
 
-1. At a breakpoint or exception (in VSCode, tick the `Raised Exceptions` box in the bottom left under the `Breakpoints` menu to see exceptions) you can then step through the code, inspect variables, and see the state of the napari viewer and your plugin. When you are done done debugging hit the continue button and napari will resume normal execution. See the image below for an example of a napari plugin debugging session in VSCode paused on a breakpoint.
+5. At a breakpoint or exception (in VSCode, tick the `Raised Exceptions` box in the bottom left under the `Breakpoints` menu to see exceptions) you can then step through the code, inspect variables, and see the state of the napari viewer and your plugin. When you are done done debugging hit the continue button and napari will resume normal execution. See the image below for an example of a napari plugin debugging session in VSCode paused on a breakpoint.
 
 ![debugging_in_vscode](../images/vs_code_debug.png)
 
@@ -56,7 +56,7 @@ In general, `napari --info` is a good first step to debugging any environment is
 You should also ensure that:
 
 1. Your plugin package is visible when you run `pip list` or `conda list` (depending on your environment setup).
-1. Your entry point is correctly configured, see the [first steps](first_plugin.md#update-setupcfg) for information.
+2. Your entry point is correctly configured, see the [first steps](first_plugin.md#update-setupcfg) for information.
 
 For example if `pip list` does show the package is installed, and `npe2 validate` reports success, but napari can't see your plugin, your entry point may be ill-configured.
 
@@ -228,8 +228,8 @@ Then, for `python test_print.py` you can use any of your usual debugging tools -
 There are, generally speaking, three main methods for notifying users of problems in napari.
 
 1. Raise an exception to indicate a breaking problem in the code (e.g. unexpected user input `raise ValueError("some error")`).
-1. Indicate that something was handled, but may not be the behaviour the user was expecting using `warnings.warn("some warning")`.
-1. Show an information popup in the napari GUI by using the `napari.utils.notifications.show_info("message")` command.
+2. Indicate that something was handled, but may not be the behaviour the user was expecting using `warnings.warn("some warning")`.
+3. Show an information popup in the napari GUI by using the `napari.utils.notifications.show_info("message")` command.
 
 ### Set up plugin log messages
 

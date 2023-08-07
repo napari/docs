@@ -28,18 +28,18 @@ specific places in the napari codebase where functionality can be extended.
    that we promise to call somewhere in the napari codebase.
    See {ref}`plugins-hook-spec`.
 
-1. **Hook implementations**: To make a plugin, plugin developers then write functions ("_hook
+2. **Hook implementations**: To make a plugin, plugin developers then write functions ("_hook
    implementations_") and mark that function as meeting the requirements of a
    specific _hook specification_ offered by napari.
    See {ref}`plugins-hook-implement`.
 
-1. **Plugin discovery**: Plugins that are installed in the same python
+3. **Plugin discovery**: Plugins that are installed in the same python
    environment as napari can make themselves known to napari. `napari` will then
    scan plugin modules for _hook implementations_ that will be called at the
    appropriate time and place during the execution of `napari`.
    See {ref}`plugin-discovery`.
 
-1. **Plugin sharing**: When you are ready to share your plugin, tag your repo
+4. **Plugin sharing**: When you are ready to share your plugin, tag your repo
    with `napari-plugin`, push a release to pypi, and announce it on Image.sc.
    Your plugin will then be available for users on the
    [napari hub](https://napari-hub.org/). See {ref}`plugin-sharing`.

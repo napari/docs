@@ -161,11 +161,11 @@ one of these menu items.
 
 1. `Visualization` - Items in this submenu allow you to generate visualizations from selected layer or layers.
    They do not change the layer data.
-1. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data.
-1. `Edit` - The items in this submenu change the data of your layer through `Filters` or `Transformations`.
+2. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data.
+3. `Edit` - The items in this submenu change the data of your layer through `Filters` or `Transformations`.
    Additionally `Annotation Tools` provide a location for convenience layer editing tools e.g. `Labels` split/merge actions.
    Items in this submenu **should not** generate new layers, but rather act upon the existing layer data.
-1. `Generate` - Items in this submenu are the main *analysis* actions you can take on your layer.
+4. `Generate` - Items in this submenu are the main *analysis* actions you can take on your layer.
    These items should add new layers to the viewer based on analyses and processing of data in your selected layer(s).
    The five proposed submenus are `Projection`, `Segmentation`, `Classification`, `Registration` and `Tracks`.
 

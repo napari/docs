@@ -365,9 +365,9 @@ We could improve our
 a number of ways:
 
 1. Support setting the atlas's full texture size on the fly.
-1. Support setting the atlas's tile size on the fly.
-1. Support a mix of tiles sizes in one atlas.
-1. Allow an atlas to have more than one backing texture.
+2. Support setting the atlas's tile size on the fly.
+3. Support a mix of tiles sizes in one atlas.
+4. Allow an atlas to have more than one backing texture.
 
 One reason to consider these changes is so we could support "large tiles"
 in certain cases. Often the coarsest level of multi-scale data "in the

@@ -61,7 +61,7 @@ Once the file is saved, you can investigate using free tools. Some options inclu
 
    You can find more documentation about the Stats object in the Python documentation [here](https://docs.python.org/3/library/profile.html#the-stats-class).
 
-1. Snakeviz.
+2. Snakeviz.
 
    Snakeviz is a third party library designed to visualize profiling output interactively.
    You can install it with pip like any other Python library using `python -m pip install snakeviz`.
@@ -76,7 +76,7 @@ Once the file is saved, you can investigate using free tools. Some options inclu
    You can read more about how to interpret this visualization on the
    [snakeviz homepage](https://jiffyclub.github.io/snakeviz/).
 
-1. gprof2dot
+3. gprof2dot
 
    You can visualize the call graph with [`graphviz`](https://www.graphviz.org/),
    a third party graph visualization library.
@@ -100,7 +100,7 @@ Once the file is saved, you can investigate using free tools. Some options inclu
    $ python -m gprof2dot -f pstats  -n 5  result.pstat -o | dot -Tpng -o result.png
    ```
 
-1. Some IDEs have built in profiling visualization tools. For example, PyCharm Professional, which is free for academics and open source maintainers, allows viewing `.pstat` files using Tools > Open CProfile snapshot.
+4. Some IDEs have built in profiling visualization tools. For example, PyCharm Professional, which is free for academics and open source maintainers, allows viewing `.pstat` files using Tools > Open CProfile snapshot.
 
 cProfile also allows profiling only specific parts of the code.
 You can restrict profiling to particular code sections using

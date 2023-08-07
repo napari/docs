@@ -20,7 +20,7 @@ on the dimension slider positions and the current field of view.
 This project has two major goals.
 
 1. Slice layers asynchronously to keep napari responsive while allowing for slow slicing.
-1. Improve the logic of slicing layers to help developers better understand how it works and unlock new feature development.
+2. Improve the logic of slicing layers to help developers better understand how it works and unlock new feature development.
 
 We propose a lock-free asynchronous solution that uses Python's built-in
 `concurrent.futures` module and exploits napari's main event loop.
@@ -44,7 +44,7 @@ by the host operating system.
 There are two main reasons why slicing can be slow.
 
 1. Some layer specific slicing operations perform non-trivial calculations (e.g. points).
-1. The layer data is read lazily (i.e. it is not in RAM) and latency from the source may be non-negligible (e.g. stored remotely, napari-omero plugin).
+2. The layer data is read lazily (i.e. it is not in RAM) and latency from the source may be non-negligible (e.g. stored remotely, napari-omero plugin).
 
 By slicing asynchronously, we can keep napari responsive while allowing for slow
 slicing operations. We could also consider optimizing napari to make (1) less of
@@ -577,9 +577,9 @@ In this proposal, the slicing thread waits for slices of all layers to be ready 
 it emits the `slice_ready` event. There are a few reasons for that.
 
 1. We only use one slicing thread to keep behavior simple and to avoid GIL contention.
-1. It's closer to the existing behavior of napari
-1. Shouldn't introduce any new potential bugs, such as \[^issue-2862\].
-1. It needs less UX design work to decide what should be shown while we are waiting for slices to be ready.
+2. It's closer to the existing behavior of napari
+3. Shouldn't introduce any new potential bugs, such as \[^issue-2862\].
+4. It needs less UX design work to decide what should be shown while we are waiting for slices to be ready.
 
 In some cases, rendering slices as soon as possible will provide a better user experience,
 especially when some layers are substantially slower than others. Therefore, this should be

@@ -34,7 +34,7 @@ Napari plugins are just Python packages. *Minimally*, they must:
 
 1. Include a static [plugin manifest](./manifest) file that details the
    [contributions](./contributions) contained in the plugin.
-1. Declare a `napari.manifest` [entry point][entry_points] that allows
+2. Declare a `napari.manifest` [entry point][entry_points] that allows
    napari to detect the plugin at runtime.
 
 ## 1. Create a new directory
@@ -184,9 +184,9 @@ We will use this file to tell napari:
 1. That our plugin contributes a [**command**](contributions-commands)
    (we give the command an ID of `napari-hello.say_hi`. It must start with our plugin
    name, and be unique).
-1. The location of the function that executes the command (the `python_name`, pointing
+2. The location of the function that executes the command (the `python_name`, pointing
    to the `show_hello_message` function in the `napari_hello` module).
-1. That our plugin contributes a [**widget**](contributions-widgets),
+3. That our plugin contributes a [**widget**](contributions-widgets),
    and that we'd like napari to **autogenerate** the widget from the command signature
    (so we don't need to deal with any GUI code).
 
@@ -221,11 +221,11 @@ Lastly, let's make a few small changes to `setup.cfg`.
    **`install_requires`**. (You should add *all* of your package dependencies
    here.  Assume nothing about your user's environment!  Not even napari.)
 
-1. We need to instruct setuptools to *include* that `napari.yaml` file
+2. We need to instruct setuptools to *include* that `napari.yaml` file
    when it bundles our package for distribution, by adding
    **`include_package_data = True`** to the `[options]` section.
 
-1. In order for napari to find our plugin when it's installed in
+3. In order for napari to find our plugin when it's installed in
    the environment, we need to add a `napari.manifest` entry to our
    **`[options.entry_points]`** that points to the `napari.yaml`
    file we added to the `napari_hello` module.

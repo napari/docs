@@ -263,14 +263,14 @@ can be activated by clicking on the icon resembling a polygon in the layer contr
 panel or by pressing `3`. Once activated, the user actions are as follows:
 
 1. Left-click anywhere on the canvas to start drawing the polygon.
-1. Move the mouse to the location where you want the next vertex to be.
-1. Click again to set the vertex that is tracking the mouse cursor.
-1. After this step a polygon overlay will appear when moving the mouse. Repeat step 2 and 3
+2. Move the mouse to the location where you want the next vertex to be.
+3. Click again to set the vertex that is tracking the mouse cursor.
+4. After this step a polygon overlay will appear when moving the mouse. Repeat step 2 and 3
    until the shape to be segmented is enclosed by the polygon overlay.
-1. To undo the last added vertex right-click.'
-1. To cancel the drawing at any time without making a permanent change on the labels layer press
+5. To undo the last added vertex right-click.'
+6. To cancel the drawing at any time without making a permanent change on the labels layer press
    `escape`. This will delete the polygon overlay
-1. Press `enter` to finish drawing at any time or double click within a radius of 20 screen pixels
+7. Press `enter` to finish drawing at any time or double click within a radius of 20 screen pixels
    of the first vertex. This will add the polygon overlay to the labels layer.
 
 The polygon overlay will have the color of the label. The polygon overlay also has an opacity

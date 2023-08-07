@@ -220,11 +220,11 @@ moving pieces being juggled to make this work. Let's begin by enumerating the st
    version of `conda`) to be present at build time so it can be bundled in the installer. This
    is needed because that `conda-standalone` copy will handle the extraction, linking and
    shortcut creation when the user runs the installer on their machine.
-1. `conda-standalone` is a frozen version of `conda`. Among its dependencies, we can find
+2. `conda-standalone` is a frozen version of `conda`. Among its dependencies, we can find
    `menuinst`, which handles the creation of shortcuts and menu entries.
-1. `menuinst` was only used on Windows before our work, so we basically rewrote it to handle
+3. `menuinst` was only used on Windows before our work, so we basically rewrote it to handle
    cross-platform shortcuts.
-1. `conda` interfaces with `menuinst` to delegate the shortcut creation. Since this was only enabled
+4. `conda` interfaces with `menuinst` to delegate the shortcut creation. Since this was only enabled
    on Windows, we needed to unlock the other platforms and rewrite the parts that assumed Windows
    only behavior. Surprise, this involved custom solver behavior too!
 
@@ -242,10 +242,10 @@ For example, if a patch is introduced in `menuinst`, the following needs to happ
 it to the final napari installer:
 
 1. Write and test the patch. Make sure it passes its own CI.
-1. Make sure `conda` still works with the new changes. It needs to call `menuinst` after all.
-1. Create the `menuinst` package and upload it to Anaconda.org.
-1. Rebuild and upload `conda-standalone` so it picks the new `menuinst` version.
-1. Trigger the napari CI to build the new installer.
+2. Make sure `conda` still works with the new changes. It needs to call `menuinst` after all.
+3. Create the `menuinst` package and upload it to Anaconda.org.
+4. Rebuild and upload `conda-standalone` so it picks the new `menuinst` version.
+5. Trigger the napari CI to build the new installer.
 
 Very fun! So where do all these packages live?
 

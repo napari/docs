@@ -360,7 +360,7 @@ Out[12]: 1
        )
    ```
 
-1. _Internally_ (in napari code), we can use those objects directly to declare
+2. _Internally_ (in napari code), we can use those objects directly to declare
    expressions in an IDE-friendly way.  For example, here we are declaratively
    populating the layer-list context menu; this is a function that will split
    the current stack into multiple layers, but it is only enabled when the
@@ -375,7 +375,7 @@ Out[12]: 1
    }
    ```
 
-1. _Externally_ (in plugin manifests), plugin developers use the string form to
+3. _Externally_ (in plugin manifests), plugin developers use the string form to
    express conditions.  For example, this plugin manifest offers up a command
    (just a callable) that is only enabled when the the active layer is an RGB
    image.
@@ -390,9 +390,9 @@ Out[12]: 1
    When this manifest is parsed, those expressions will be converted into
    napari `Expr` objects internally.
 
-1. During runtime, napari maintains and [updates contexts](#updating-contexts)
+4. During runtime, napari maintains and [updates contexts](#updating-contexts)
 
-1. As these contexts are updated, they emit events that allow menus, keybindings,
+5. As these contexts are updated, they emit events that allow menus, keybindings,
    and other things to update themselves accordingly.  For example, the layer-list
    context menu might update the items in the menu that are visible and/or enabled:
 

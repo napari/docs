@@ -75,7 +75,7 @@ How you add cell tags depends on how you're editing your notebook.
    will be added to the top right of your cell. You can then add any tags you want
    (e.g. `remove-input`) by typing into the text entry box of the toolbar and clicking `Add Tag`.
 
-1. If you're editing a MyST Markdown file directly, you can add tags to your code blocks like so:
+2. If you're editing a MyST Markdown file directly, you can add tags to your code blocks like so:
 
 ````
     ```{code-cell} python3

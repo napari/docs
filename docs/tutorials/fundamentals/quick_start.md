@@ -148,9 +148,9 @@ To measure the area of the cell, we can use a labels layer and manually "paint" 
 The labels layer allows you to record the segmentation result by assigning background = 0, and assigning each object with an integer.
 
 1. Add a new labels layer
-1. Click on "paint"
-1. Circle the cell
-1. Use "fill" bucket to fill it.
+2. Click on "paint"
+3. Circle the cell
+4. Use "fill" bucket to fill it.
 
 ![manual_label](../../images/manual_label.webm)
 

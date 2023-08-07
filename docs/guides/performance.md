@@ -19,7 +19,7 @@ There are two main types of performance:
    - How long operations take when timed with a stopwatch.
    - Most times will vary based on the data being viewed.
 
-1. [Subjective performance](#subjective-performance)
+2. [Subjective performance](#subjective-performance)
 
    - The user’s experience as it relates to performance.
    - Is the user’s experience pleasant or frustrating? Does napari "seem fast"?

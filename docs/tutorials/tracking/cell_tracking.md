@@ -5,7 +5,7 @@ In this application note, we will use napari (requires version 0.4.0 or greater)
 This application note covers two examples:
 
 1. Visualization of a cell tracking challenge dataset
-1. Single cell tracking using btrack and napari
+2. Single cell tracking using btrack and napari
 
 ## 1. Cell tracking challenge data
 

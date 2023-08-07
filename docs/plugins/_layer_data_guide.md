@@ -17,9 +17,9 @@ A `LayerData` tuple is a tuple of length 1, 2, or 3 whose items, in order, are:
 
 1. The `data` object that would be used for `layer.data` (such as a numpy array
    for the `Image` layer)
-1. *(Optional).* A {class}`dict` of layer attributes, suitable for passing as
+2. *(Optional).* A {class}`dict` of layer attributes, suitable for passing as
    keyword arguments to the corresponding layer constructor (e.g. `{'opacity': 0.7}`)
-1. *(Optional).* A lower case {class}`str` indicating the layer type (e.g.`'image'`,
+3. *(Optional).* A lower case {class}`str` indicating the layer type (e.g.`'image'`,
    `'labels'`, etc...).  If not provided (i.e. if the tuple is only of length 2), the
    layer type is assumed to be `'image`'.
 

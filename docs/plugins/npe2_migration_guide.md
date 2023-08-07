@@ -78,7 +78,7 @@ The `npe2 convert` command will:
 
 1. Inspect your plugin for hook implementations, and generate an npe2-compatible
    [manifest file](./manifest), called `napari.yaml`.
-1. **Modify** your `setup.cfg` to use the new `napari.manifest` entry point, and
+2. **Modify** your `setup.cfg` to use the new `napari.manifest` entry point, and
    include the manifest file in your package data.
 
 Use the `npe2 convert` command, passing a path to a plugin

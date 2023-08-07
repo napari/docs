@@ -140,7 +140,7 @@ you create during testing are cleaned up at the end of each test:
        ...
    ```
 
-1. When writing a test that requires a `napari.Viewer` object, we provide a
+2. When writing a test that requires a `napari.Viewer` object, we provide a
    [pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html) called
    `make_napari_viewer` that will take care of creating a viewer and cleaning up
    at the end of the test.  When using this function, it is **not** necessary to

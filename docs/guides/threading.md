@@ -33,8 +33,8 @@ It's a rich, complicated topic, and a full treatment is well beyond the scope
 of this document, but strategies generally fall into one of three camps:
 
 1. Multithreading
-1. Multprocessing
-1. Single-thread concurrency with
+2. Multprocessing
+3. Single-thread concurrency with
    [asyncio](https://docs.python.org/3/library/asyncio.html)
 
 For a good high level overview on concurrency in python, see
@@ -388,22 +388,22 @@ Let's break it down:
    {func}`@thread_worker <napari.qt.threading.thread_worker>` and instantiate
    it to create a `worker`.
 
-1. The most interesting line in this example is where we both
+2. The most interesting line in this example is where we both
    `yield` the current `total` to the main thread (`yield total`), *and*
    receive a new value from the main thread (with `new = yield`).
 
-1. In the main thread, we have connected that `worker.yielded` event
+3. In the main thread, we have connected that `worker.yielded` event
    to a callback that pauses the worker and updates the `result_label`
    widget.
 
-1. The thread will then wait indefinitely for the `resume()` command,
+4. The thread will then wait indefinitely for the `resume()` command,
    which we have connected to the `line_edit.returnPressed` signal.
 
-1. However, before that `resume()` command gets sent, we use
+5. However, before that `resume()` command gets sent, we use
    `worker.send()` to send the current value of the `line_edit` widget
    into the thread for multiplication by the existing total.
 
-1. Lastly, if the thread total ever goes to "0", we stop the thread by
+6. Lastly, if the thread total ever goes to "0", we stop the thread by
    returning the string `"Game Over"`.  In the main thread, the
    `worker.returned` event is connected to a callback that disables the
    `line_edit` widget and shows the string returned from the thread.
@@ -483,7 +483,7 @@ keep in mind the following guidelines:
    {meth}`worker.run() <napari.qt.threading.WorkerBase.run>` →
    {meth}`worker.work() <napari.qt.threading.WorkerBase.work>`.
 
-1. When implementing the {meth}`~napari.qt.threading.WorkerBase.work` method,
+2. When implementing the {meth}`~napari.qt.threading.WorkerBase.work` method,
    it is important that you periodically check `self.abort_requested` in your
    thread loop, and exit the thread accordingly, otherwise `napari` will not
    be able to gracefully exit a long-running thread.
@@ -498,13 +498,13 @@ keep in mind the following guidelines:
                time.sleep(0.5)
    ```
 
-1. It is also important to be mindful of the fact that the
+3. It is also important to be mindful of the fact that the
    {meth}`worker.start() <napari.qt.threading.WorkerBase.start>` method adds
    the worker to a global Pool, such that it can request shutdown when exiting
    napari.  So if you re-implement `start`, please be sure to call
    `super().start()` to keep track of the `worker`.
 
-1. When reimplementing the {meth}`~napari.qt.threading.WorkerBase.run` method,
+4. When reimplementing the {meth}`~napari.qt.threading.WorkerBase.run` method,
    it is your responsibility to emit the `started`, `returned`,
    `finished`, and `errored` signals at the appropriate moments.
 

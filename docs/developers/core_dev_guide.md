@@ -78,13 +78,13 @@ When reviewing, focus on the following:
    Custom functionality is meant to be provided through our plugin ecosystem. If in doubt,
    consult back with our [mission and values](mission-and-values).
 
-1. **Performance and benchmarks:** As `napari` targets scientific applications that often involve
+2. **Performance and benchmarks:** As `napari` targets scientific applications that often involve
    large multidimensional datasets, high performance is a key value of `napari`. While
    every new feature won't scale equally to all sizes of data, keeping in mind performance
    and our [benchmarks](napari-benchmarks) during a review may be important, and you may
    need to ask for benchmarks to be run and reported or new benchmarks to be added.
 
-1. **APIs and stability:** Coding users and plugin developers will make
+3. **APIs and stability:** Coding users and plugin developers will make
    extensive use of our APIs. The foundation of a healthy plugin ecosystem will be
    a fully capable and stable set of APIs, so as `napari` matures it will
    very important to ensure our APIs are stable. For now, while the project is still
@@ -93,19 +93,19 @@ When reviewing, focus on the following:
    trouble in the future. Right now we are still making breaking changes with minor
    version numbers `0.x` and do not have a deprecation policy, but we will work to add one soon.
 
-1. **Documentation and tutorials:** All new methods should have appropriate doc
+4. **Documentation and tutorials:** All new methods should have appropriate doc
    strings following [PEP257](https://peps.python.org/pep-0257/) and the
    [NumPy documentation guide](https://numpy.org/devdocs/dev/howto-docs.html#documentation-style).
    For any major new features, accompanying changes should be made to our
    [tutorials](https://napari.org/tutorials). These should not only
    illustrates the new feature, but explains it. Titles for all documents in napari should follow [sentence case capitalization](https://apastyle.apa.org/style-grammar-guidelines/capitalization/sentence-case), but the name `napari` should always be written in lowercase.
 
-1. **Implementations and algorithms:** You should understand the code being modified
+5. **Implementations and algorithms:** You should understand the code being modified
    or added before approving it.  (See [Merge Only Changes You Understand](#merge-only-changes-you-understand)
    below.) Implementations should do what they claim and be simple, readable, and efficient
    in that order.
 
-1. **Tests:** All contributions *must* be tested, and each added line of code
+6. **Tests:** All contributions *must* be tested, and each added line of code
    should be covered by at least one test. Good tests not only execute the code,
    but explore corner cases.  It can be tempting not to review tests, but please
    do so.

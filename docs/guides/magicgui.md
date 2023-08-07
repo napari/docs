@@ -323,11 +323,11 @@ following three forms:
 
 1. `(layer_data,)`
    - a single item tuple containing only layer data (will be interpreted as an image).
-1. `(layer_data, {})`
+2. `(layer_data, {})`
    - a 2-tuple of `layer_data` and a metadata {class}`dict`. the keys in the
      metadata `dict` must be valid keyword arguments to the corresponding
      {class}`napari.layers.Layer` constructor.
-1. `(layer_data, {}, 'layer_type')`
+3. `(layer_data, {}, 'layer_type')`
    - a 3-tuple of data, metadata, and layer type string.`layer_type` should be a
      lowercase string form of one of the layer types (like `'points'`,
      `'shapes'`, etc...).  If omitted, the layer type is assumed to be

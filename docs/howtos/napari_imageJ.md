@@ -105,13 +105,13 @@ To fix this we can use either of these 3 following methods :
    EventQueue.invokeLater(JavaRunnable(lambda: ij.ui().showDialog("hello")))
    ```
 
-1. Use the SciJava ScriptService:
+2. Use the SciJava ScriptService:
 
    ```python
    ij.script().run(".groovy", "#@ ImageJ ij\nij.ui().showDialog('hello')", True)
    ```
 
-1. Using ImageJ’s [Script Editor](https://imagej.net/scripting/script-editor)
+3. Using ImageJ’s [Script Editor](https://imagej.net/scripting/script-editor)
 
 #### 2. Starting napari + ImageJ from plain Python (without napari's Qt Console)
 

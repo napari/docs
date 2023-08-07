@@ -20,13 +20,13 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
    cd napari
    ```
 
-1. Set the `upstream` remote to the base `napari` repository:
+2. Set the `upstream` remote to the base `napari` repository:
 
    ```sh
    git remote add upstream https://github.com/napari/napari.git
    ```
 
-1. If you haven't already, create a development environment:
+3. If you haven't already, create a development environment:
 
    ::::{tab-set}
 
@@ -55,7 +55,7 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
    development environment.
    ```
 
-1. Install the package in editable mode, along with all of the developer tools.
+4. Install the package in editable mode, along with all of the developer tools.
 
    If you only want to use napari, you can install it on most macOS, Linux and
    Windows systems with Python {{ python_version_range }}
@@ -84,7 +84,7 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
 
    Note that in this last case you will need to install your Qt backend separately.
 
-1. We use [`pre-commit`](https://pre-commit.com) to format code with
+5. We use [`pre-commit`](https://pre-commit.com) to format code with
    [`black`](https://github.com/psf/black) and lint with
    [`ruff`](https://github.com/charliermarsh/ruff) automatically prior to each commit.
    To minimize test errors when submitting pull requests, please install `pre-commit`

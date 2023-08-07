@@ -8,6 +8,7 @@ repos:
     hooks:
     -   id: mdformat
         # Optionally add plugins
+        args: ["--number"]
         additional_dependencies:
         -   mdformat-gfm
         -   mdformat-black

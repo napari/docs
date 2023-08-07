@@ -106,7 +106,7 @@ Application:
    app = QApplication([])  # where [] is a list of args passed to the App
    ```
 
-1. In order to actually show and interact with widgets, one must start the
+2. In order to actually show and interact with widgets, one must start the
    application's event loop:
 
    ```python

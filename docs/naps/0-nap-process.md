@@ -86,7 +86,7 @@ There are three kinds of NAPs:
 
 1. A **Standards Track** NAP describes a new feature or implementation
    for napari.
-1. An **Informational** NAP describes a napari design issue, or provides
+2. An **Informational** NAP describes a napari design issue, or provides
    general guidelines or information to the napari community, but does not
    propose a new feature. Informational NAPs do not necessarily represent a
    napari community consensus or recommendation, so users and
@@ -99,7 +99,7 @@ There are three kinds of NAPs:
    library and many other packages follow this PEP, Jupyter built the
    functionality of pressing Shift-TAB to display just one line of the
    docstring of the item under the cursor.
-1. A **Process** NAP describes a process surrounding napari, or
+3. A **Process** NAP describes a process surrounding napari, or
    proposes a change to (or an event in) a process. Process NAPs are
    like Standards Track NAPs but apply to areas other than the napari
    library itself. They may propose an implementation, but not to

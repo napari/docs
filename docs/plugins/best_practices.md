@@ -211,15 +211,15 @@ up to report test coverage, but you can test locally as well, using
 [pytest-cov](https://github.com/pytest-dev/pytest-cov)
 
 1. `python -m pip install pytest-cov`
-1. Run your tests with `pytest --cov=<your_package> --cov-report=html`
-1. Open the resulting report in your browser: `open htmlcov/index.html`
-1. The report will show line-by-line what is being tested, and what is being
+2. Run your tests with `pytest --cov=<your_package> --cov-report=html`
+3. Open the resulting report in your browser: `open htmlcov/index.html`
+4. The report will show line-by-line what is being tested, and what is being
    missed. Continue writing tests until everything is covered! If you have
    lines that you *know* never need to be tested (like debugging code) you can
    [exempt specific
    lines](https://coverage.readthedocs.io/en/6.4.4/excluding.html#excluding-code-from-coverage-py)
    from coverage with the comment `# pragma: no cover`
-1. In the cookiecutter, coverage tests from github actions will be uploaded to
+5. In the cookiecutter, coverage tests from github actions will be uploaded to
    codecov.io
 
 ## Set style for additional windows in your plugin

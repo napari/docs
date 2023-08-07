@@ -10,11 +10,11 @@ The module can do several things:
 
 1. Time Qt Events
 
-1. Display a dockable **performance** widget.
+2. Display a dockable **performance** widget.
 
-1. Write JSON trace files viewable with `chrome://tracing`.
+3. Write JSON trace files viewable with `chrome://tracing`.
 
-1. Time any function that you specify in the config file.
+4. Time any function that you specify in the config file.
 
 ## Monitoring vs. profiling
 
@@ -45,8 +45,8 @@ creating a napari `Viewer`.
 Setting `NAPARI_PERFMON=1` does three things:
 
 1. Times Qt Events
-1. Shows the dockable **performance** widget.
-1. Reveals the **Debug** menu which you can use to create a trace file.
+2. Shows the dockable **performance** widget.
+3. Reveals the **Debug** menu which you can use to create a trace file.
 
 ## Configuration file format
 

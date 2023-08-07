@@ -103,10 +103,10 @@ jobs:
 This is only a brief guide to deploying to `conda-forge`. More information can be found in the [conda-forge docs](https://conda-forge.org/docs/maintainer/adding_pkgs.html).
 
 1. Fork https://github.com/conda-forge/staged-recipes
-1. Create a new branch
-1. Create a new folder in recipes directory (copy the existing example)
-1. Update the **meta.yaml** file to include your package's build and run requirements
-1. Commit and open a PR to https://github.com/conda-forge/staged-recipes
+2. Create a new branch
+3. Create a new folder in recipes directory (copy the existing example)
+4. Update the **meta.yaml** file to include your package's build and run requirements
+5. Commit and open a PR to https://github.com/conda-forge/staged-recipes
 
 Once your recipe is approved and merged, the rest happens *automagically*, and your package will appear on the anaconda cloud.
 
