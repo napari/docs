@@ -4,7 +4,6 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 
 ## Current Core Developers
 
-- [Ahmet Can Solak](https://github.com/napari/napari/commits?author=AhmetCanSolak) - [@AhmetCanSolak](https://github.com/AhmetCanSolak)
 - [Alister Burt](https://github.com/napari/napari/commits?author=alisterburt) - [@alisterburt](https://github.com/alisterburt)
 - [Andy Sweet](https://github.com/napari/napari/commits?author=andy-sweet) - [@andy-sweet](https://github.com/andy-sweet)
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)*
@@ -30,6 +29,7 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Shannon Axelrod](https://github.com/napari/napari/commits?author=shanaxel42) - [@shanaxel42](https://github.com/shanaxel42)
 - [Justine Larsen](https://github.com/napari/napari/commits?author=justinelarsen) - [@justinelarsen](https://github.com/justinelarsen)
 - [Ziyang Liu](https://github.com/napari/napari/commits?author=potating-potato) - [@potating-potato](https://github.com/potating-potato)
+- [Ahmet Can Solak](https://github.com/napari/napari/commits?author=AhmetCanSolak) - [@AhmetCanSolak](https://github.com/AhmetCanSolak)
 
 ## Project history
 
