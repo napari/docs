@@ -139,6 +139,11 @@ While we collectively "own" any patches (and bugs!) that become part
 of the code base, you are vouching for changes you merge.  Please take
 that responsibility seriously.
 
+## Documentation and website
+
+For details on how the documentation and website are built, see
+[](documentation/docs_deployment).
+
 ## Further resources
 
 As a core member, you should be familiar with community and developer

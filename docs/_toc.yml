@@ -149,6 +149,7 @@ subtrees:
         subtrees:
         - entries:
           - file: developers/documentation/docs_template
+          - file: developers/documentation/docs_deployment
       - file: developers/translations
       - file: developers/core_dev_guide
       - file: developers/release
