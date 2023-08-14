@@ -5,6 +5,8 @@ We welcome your contributions! Please see the provided steps below and never hes
 
 If you are a new user, we recommend checking out the detailed [Github Docs](https://docs.github.com/en).
 
+You can see the general direction for napari development and possible work plans in our current [Roadmap](../roadmaps/index.md).
+
 (dev-installation)=
 ## Setting up a development installation
 
@@ -110,7 +112,7 @@ Now you are all set to start developing with napari.
 
 ## Contributing documentation
 
-If you wish to contribute documentation changes to napari, please read the [guide on contributing documentation](documentation/index.md). 
+If you wish to contribute documentation changes to napari, please read the [guide on contributing documentation](documentation/index.md).
 
 (add-examples)=
 ## Adding examples to the [Gallery](gallery)
