@@ -156,6 +156,7 @@ subtrees:
       - file: developers/profiling
       - file: developers/benchmarks
       - file: developers/packaging
+      - file: developers/maintenance
       - file: release/index
         subtrees:
         - entries:
