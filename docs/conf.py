@@ -22,6 +22,8 @@ from urllib.parse import urlparse, urlunparse
 from jinja2.filters import FILTERS
 from sphinx_gallery import scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
+from sphinx.highlighting import lexers
+from pygments.lexers import TOMLLexer
 
 import napari
 from napari._version import __version_tuple__
@@ -198,6 +200,7 @@ exclude_patterns = [
 ]
 
 napoleon_custom_sections = [('Events', 'params_style')]
+lexers['toml'] = TOMLLexer(startinline=True)
 
 
 def reset_napari(gallery_conf, fname):
