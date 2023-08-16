@@ -53,7 +53,7 @@ through several CI workflows detailed below.
 
 ## Notes
 
-CircleCI is set up in both `napari/napari` and `napari/docs, but doesn't deploy
+CircleCI is set up in both `napari/napari` and `napari/docs`, but doesn't deploy
 documentation. It serves to test the docs build and to provide documentation
 previews for PRs. The relevant configuration files are:
 
