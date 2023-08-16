@@ -15,9 +15,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+
   build-and-deploy:
     name: Build & Deploy
     runs-on: ubuntu-latest
+
     steps:
       - name: Clone docs repo
         uses: actions/checkout@v3
@@ -72,3 +74,43 @@ jobs:
           publish_branch: gh-pages
           destination_dir: dev
           cname: napari.org
+
+      - name: Copy permanent files locally
+        run: |
+          mkdir permanent
+          cp -R docs/docs/_build/developers permanent
+          cp docs/docs/_build/index.html permanent
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: permanent_docs
+          path: permanent
+
+  copy-files:
+
+    needs: build-and-deploy
+    name: Copy permanent files
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        source_files: [index.html, developers]
+
+    steps:
+
+    - name: Download artifact
+      uses: actions/download-artifact@master
+      with:
+        name: permanent_docs
+
+    - name: Copy permanent files to napari.github.io/stable
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_file: ${{ matrix.source_files }}
+        destination_repo: 'napari/napari.github.io'
+        destination_folder: 'stable'
+        destination_branch: 'gh-pages'
+        user_email: 'melissawm@gmail.com'
+        user_name: 'melissawm'
