@@ -30,7 +30,7 @@ Adding the option for monitoring plugin usage allows us to identify the most imp
 
 Also collecting information about data types and their size will provide valuable information about the typical use cases of napari.
 
-Still, a user need to be able to opt out of such monitoring. And adjust the level of detail of the information that is sent to the napari server.
+Still, users need to be able to opt out of such monitoring, and adjust the level of detail of the information that is sent to the napari server.
  
   
  ## Detailed Description
