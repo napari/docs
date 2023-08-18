@@ -15,7 +15,7 @@ jupyter:
 
 (installation)=
 
-# How to install napari on your machine
+# Installing
 
 Welcome to the **napari** installation guide!
 
@@ -35,7 +35,7 @@ interact with the app. It is the best way to install napari and make full use of
 all its features.
 
 It requires:
-- [Python >={{ python_minimum_version }}](https://www.python.org/downloads/)
+- [Python {{ python_version_range }}](https://www.python.org/downloads/)
 - the ability to install python packages via [pip](https://pypi.org/project/pip/) OR [conda-forge](https://conda-forge.org/docs/user/introduction.html)
 
 You may also want:
@@ -85,6 +85,8 @@ python -m pip install "napari[all]" --upgrade
 *(See [Choosing a different Qt backend](#choosing-a-different-qt-backend) below for an explanation of the `[all]`
 notation.)*
 
+*(See [Using constraints file](#using-constraints-files) for help installing older versions of napari)*
+
 ````
 
 
@@ -96,7 +98,7 @@ conda-forge channel. We also recommend this path for users of arm64 macOS machin
 (Apple Silicon, meaning a processor with a name like "M1"). You can install it with:
 
 ```sh
-conda install -c conda-forge napari
+conda install -c conda-forge napari pyqt
 ```
 
 You can then upgrade to a new version of napari using:
@@ -108,7 +110,7 @@ conda update napari
 If you want to install napari with PySide2 as the backend you need to install it using
 
 ```sh
-conda install -c conda-forge "napari=*=*pyside2"
+conda install -c conda-forge napari pyside2
 ```
 ````
 
@@ -117,13 +119,13 @@ In some cases, `conda`'s default solver can struggle to find out which packages 
 installed for napari. If it takes too long or you get the wrong version of napari
 (see below), consider:
 1. Overriding your default channels to use only `conda-forge` by adding
-`--override-channels` and specifying the napari and Python versions explicitly. 
+`--override-channels` and specifying the napari and Python versions explicitly.
 For example, use {{ python_version_code }} to get Python {{ python_version }} and
-{{ napari_conda_version }} to specify the napari version as {{ napari_version }}, 
+{{ napari_conda_version }} to specify the napari version as {{ napari_version }},
 the current release.
 
-2. Switching to the new, faster [`libmamba` solver](https://conda.github.io/conda-libmamba-solver/libmamba-vs-classic/), 
-by updating your `conda` (>22.11), if needed, and then installing and activating 
+2. Switching to the new, faster [`libmamba` solver](https://conda.github.io/conda-libmamba-solver/libmamba-vs-classic/),
+by updating your `conda` (>22.11), if needed, and then installing and activating
 the solver, as follows:
 ```
 conda update -n base conda
@@ -131,7 +133,7 @@ conda install -n base conda-libmamba-solver
 conda config --set solver libmamba
 ```
 3. Alternately, consider installing [`mamba`](https://github.com/mamba-org/mamba)
-in your base environment with `conda install -n base -c conda-forge mamba`. 
+in your base environment with `conda install -n base -c conda-forge mamba`.
 Then you can use `mamba` by replacing `conda` with `mamba` in the installation instructions, for example:
 ```
 mamba install napari
@@ -180,9 +182,9 @@ scientific packages such as Spyder or matplotlib. If neither is available,
 running napari will result in an error message asking you to install one of
 them.
 
-Running `python -m pip install "napari[all]"` will install the default framework, which is currently 
+Running `python -m pip install "napari[all]"` will install the default framework, which is currently
 PyQt5--but this could change in the future. However, if you have a Mac with the newer arm64
-architecture (Apple Silicon), this will not work--see {ref}`note-m1`.
+architecture (Apple Silicon), this will not work--see [note on m1](note-m1).
 
 To install napari with a specific framework, you can use:
 
@@ -193,13 +195,13 @@ python -m pip install "napari[pyqt5]"    # for PyQt5
 python -m pip install "napari[pyside2]"  # for PySide2
 ```
 
+(note-m1)=
 ```{note}
-:name: note-m1
 
 For arm64 macOS machines (Apple Silicon), pre-compiled PyQt5 or PySide2 packages
-([wheels](https://realpython.com/python-wheels/)) are not available on 
-[PyPI](https://pypi.org), the repository used by `pip`, so trying to 
-`pip install napari[all]` or either of the variants above will fail. However, 
+([wheels](https://realpython.com/python-wheels/)) are not available on
+[PyPI](https://pypi.org), the repository used by `pip`, so trying to
+`pip install napari[all]` or either of the variants above will fail. However,
 you can install one of those libraries separately, for example from `conda-forge`,
 and then use `pip install napari`.
 ```
@@ -207,6 +209,25 @@ and then use `pip install napari`.
 ```{note}
 If you switch backends, it's a good idea to `pip uninstall` the one
 you're not using.
+```
+
+## Using constraints files
+
+Since napari 0.4.18, we store constraints files with information about each exact dependency version against which napari was tested.
+This could be useful if you need to install napari as a package from PyPI, and prevents creating environments where napari does not start or work properly.
+
+The constraints files are stored in the napari repository under `resources/constraints/constraints_py3.10.txt`. To find
+constraints for specific releases, go under the link `https://github.com/napari/napari/tree/{tag}/resources/constraints`
+replacing `{tag}` with the desired napari version.
+
+```sh
+pip install napari[backend_selection] -c path/to/constraints/file
+```
+
+For example, if you would like to install napari on python 3.10:
+
+```sh
+pip install napari[all, pyqt] -c constraints_py3.10.txt
 ```
 
 ## Install as a bundled app

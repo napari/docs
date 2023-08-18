@@ -407,6 +407,15 @@ help you edit your document and find the right spot!
 
 ## Building the documentation on Windows
 
+```{note}
+It is very important that you clone the `napari/docs` repository to a path that does not contain spaces.
+For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but \
+`C:\Users\my username\Documents\GitHub\napari-docs` is not.
+If you clone the napari-docs repository to a directory following the default Windows path naming convention, e.g. \
+`C:\Users\my username\Documents\GitHub\napari-docs` (note the space), and run the `make` commands to build the napari docs, it may remove unintended files from your computer as it will essentially run the command `rm -rf C:\Users`.
+This is because the napari documentation is built using `make` which does not work on paths which contain spaces.
+```
+
 The documentation build requires some Linux specific commands, so some extra steps are required to build the documentation on Windows. There are multiple tools for this, but [Git Bash](https://gitforwindows.org/) or [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) are recommended.
 
 ### Git Bash
@@ -452,7 +461,7 @@ We will use Ubuntu for this guide since it is the default WSL distribution, easy
 6. You can test that all of this OpenGL setup is working by running `glxgears` from the Ubuntu terminal. You should see a window with some gears spinning.
 7. `sudo apt install fontconfig`.
 8. `pip install pyqt5-tools`.
-9. Fork the napari docs repository and clone it to the same parent folder as the napari repository (see [](#prerequisites)). Then navigate to the napari docs folder via `cd napari-docs`.
+9. Fork the napari docs repository and clone it to the same parent folder as the napari repository (see [](prerequisites)). Then navigate to the napari docs folder via `cd napari-docs`.
 10. Install `make` with `sudo apt install make`.
 11. Run `make docs` or other `make` commands to build the documentation.
 
