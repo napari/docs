@@ -41,9 +41,10 @@ In the main package, there is a need to add code to ask users if they want to en
 
 Telemetry should contain following ways to disable it:
 
-1. uninstall `napari-telemetry` package
-2. Environment variable `NAPARI_TELEMETRY=0`
-3. Full list of endpoints used for collecting telemetry, that could be filtered on the firewall level.
+1. Disable in settings
+2. uninstall `napari-telemetry` package
+3. Environment variable `NAPARI_TELEMETRY=0`
+4. Full list of endpoints used for collecting telemetry, that could be filtered on the firewall level.
 
 The user should be able to adjust the telemetry level of detail. The following levels are proposed:
 
