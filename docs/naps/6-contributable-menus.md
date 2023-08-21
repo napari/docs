@@ -239,7 +239,7 @@ Layers
 │  ├─ Tracks
 │  ├─ Classification
 Acquisition
-Plugins
+Plugins/<my_plugin>    # only individual plugins submenu contributable
 
 Layers Context  # already open for contribution
 ```
