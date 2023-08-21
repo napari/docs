@@ -116,9 +116,10 @@ This NAP proposes new menu IDs and new top level menus to open for contribution.
 ### What do Menu Contributions do?
 
 `MenuItem` contributions can be thought of as auxiliary contributions that
-provide a dispatch mechanism for other existing contributions. Currently
-these would strictly be `widget` contributions, but this mechanism
-can easily be extended to other commands, which can take as input
+provide a dispatch mechanism for binding an existing contribution to a menu item and
+executing it. Currently these would strictly be `widget` contributions as the other
+contribution types (reader, writer, sample data) have defined menu locations. However,
+this mechanism can easily be extended to other commands, which can take as input
 `napari` objects like specific layers, or the `Viewer`, and produce
 output the `Viewer` uses - currently this would be new layers.
 
@@ -240,7 +241,7 @@ Layers
 Acquisition
 Plugins
 
-Layers context
+Layers Context  # already open for contribution
 ```
 
 As a case study, we take four plugins offering between 9 and 14 widget contributions and arrange their widgets in these menus:
