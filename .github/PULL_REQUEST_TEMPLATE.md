@@ -4,9 +4,10 @@ If this PR addresses an existing issue on the repo,
 please link to that issue here as "Closes #(issue-number)". -->
 
 # Description
-<!-- What does this pull request (PR) do? Is it a new content, improvement, or fix
-or something else? Why is it necessary? If relevant, please add
-a screenshot or a screen capture: "An image is worth a thousand words!" -->
+<!-- What does this pull request (PR) do? Does it add new content, improve/fix existing
+context, or something else? Why is it necessary?
+<!-- If relevant, please include a screenshot or a screen capture in your PR:
+"An image is worth a thousand words!" -->
 <!-- You can use https://www.cockos.com/licecap/ or similar to create animations. -->
 <!-- You can also see a preview of the documentation changes you are submitting by
 clicking on "Details" to the right of the "Check the rendered docs here!" check on your PR.-->
