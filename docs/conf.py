@@ -105,6 +105,7 @@ html_theme_options = {
         "version_match": version_match,
     },
     "navbar_persistent": [],
+    "header_links_before_dropdown": 6,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
