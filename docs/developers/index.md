@@ -12,6 +12,7 @@ You can see the general direction for napari development and possible work plans
 - [Testing](./testing)
 - [Profiling](./profiling)
 - [Benchmarks](./benchmarks)
+- [UI sections](./ui_sections/index)
 
 ## For core developers
 

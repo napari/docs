@@ -66,6 +66,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
+    "sphinxcontrib.mermaid",
 ]
 
 external_toc_path = "_toc.yml"
@@ -75,6 +76,9 @@ tags_create_tags = True
 tags_output_dir = "_tags"
 tags_overview_title = "Tags"
 tags_extension = ["md", "rst"]
+
+mermaid_init_js = "mermaid.initialize({startOnLoad:true, securityLevel:'loose'});"
+mermaid_d3_zoom = True
 
 # -- Options for HTML output -------------------------------------------------
 
