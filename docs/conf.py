@@ -106,6 +106,7 @@ html_theme_options = {
     },
     "navbar_persistent": [],
     "header_links_before_dropdown": 6,
+    "secondary_sidebar_items": ["page-toc"],
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
