@@ -55,7 +55,7 @@ improvement, but working with slow-loading data is still slow. Most large
 image viewers improve on this experience with chunks or tiles. With chunks
 or tiles when the image is panned the existing tiles are translated and
 re-used. Then the viewer only needs to fetch tiles which newly slid onto
-the screen. This style of rendering what our `NAPARI_OCTREE` flag
+the screen. This style of rendering is what the `NAPARI_OCTREE` flag
 enables.
 
 ## NAPARI_OCTREE
