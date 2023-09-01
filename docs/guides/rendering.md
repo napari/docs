@@ -27,8 +27,6 @@ it will call {meth}`~napari.layers.Image.on_chunk_loaded` with
 the loaded data. The next frame {class}`~napari.layers.Image`
 can display the new data.
 
-### Time-series data
-
 Without `NAPARI_ASYNC` napari will block when switching slices. Napari
 will hang until the new slice has loaded. If the slice loads slowly enough
 you might see the "spinning wheel of death" on a Mac indicating the process
