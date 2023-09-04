@@ -109,9 +109,10 @@ should be covered by at least one test. Good tests not only execute the code,
 but explore corner cases.  It can be tempting not to review tests, but please
 do so.
 
-7. **Milestones:** Make sure you add the appropriate milestone to PRs before
-merging. We have a PR check for this, and it's important to do this both in the
-main repo and in the docs repo.
+7. **Labels and Milestones:** Make sure you add the appropriate labels and
+milestone to PRs before merging. This should be done both in the main napari
+repo and in the docs repo. Both repos have a CI check, triggered by the
+`ready_to_merge` label, which will fail if the milestone is not set in the PR.
 
 Other changes may be *nitpicky*: spelling mistakes, formatting,
 etc. Do not insist contributors make these changes, but instead you should offer
