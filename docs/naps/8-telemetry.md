@@ -130,6 +130,14 @@ I do not expect that it is a high risk, but exists. We could address it by code 
 Another option is to scan public plugins and their dependencies. This is simpler but will require establishing additional communication channels to be able to warn users about the potential problem. 
 
 
+## GDPR compatybility
+
+I'm almost sure that we will not collect data that are covered by GDPR. But to get better atmosphere 
+we need to add instruction how user could retrive his unique identifier and setup a process 
+for requests to remove data from the server. It is not high propability of usage as life span of data is short,
+but we need to be prepared for such a situation. I suggest to use e-mail for that.
+
+
   
 ## Backward Compatibility 
   
