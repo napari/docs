@@ -50,7 +50,7 @@ The user should be able to adjust the telemetry level of detail. The following l
 
 1. `none` - no telemetry is collected
 2. `basic` - information about the napari version, python version, OS, and CPU architecture is collected and if it is the first report by the user. There is also a user identifier created based on computer details that will be rerendered each week to prevent tracking the user, but allow to not count a user multiple times. 
-3. `middle` - same as in `basic` but also information about the list of installed plugins and their versions is collected. We take care to not collect data about plugins that are not intended to be public. 
+3. `middle` - same as in `basic` but also information about the list of installed plugins and their versions is collected. We take care to not collect data about plugins that are not intended to be public, so we will not collect information about plugins searchable as napri plugin using plugin dialog or napri-hub. We also will not collect information about plugins that are installed in non stable version.
 4. `full` - same as in `middle` but also collects information about plugin usage by binding to app-model and logging plugin commands used. Also basic information about data like type (`np.ndarray`, `dask.array`, `zarr.Array`, etc.) and its size is collected.
 
 There should be a visible indicator that telemetry is enabled (for example on the status bar). 
