@@ -1,7 +1,8 @@
 # References and relevant issues
 <!-- What relevant resources were used in the creation of this PR?
 If this PR addresses an existing issue on the repo,
-please link to that issue here as "Closes #(issue-number)". -->
+please link to that issue here as "Closes #(issue-number)".
+If this PR adds docs for a napari PR please add a "Depends on <napari PR link>" -->
 
 # Description
 <!-- What does this pull request (PR) do? Does it add new content, improve/fix existing
