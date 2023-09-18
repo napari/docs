@@ -21,8 +21,8 @@ displaying tracks and defining relationships between tracks.
 The tracks layer allows you to display trajectories in `nD+t` while visualizing
 the recent history of the track via a fading tail.
 
-Each track can have annotations associated with it using the `Tracks.properties`
-dictionary. These properties can be used to set the colors of the tracks.
+Each track can have annotations associated with it using the `Tracks.features`
+table. These features can be used to set the colors of the tracks.
 
 For example, when displaying tracks of different classes/types, one could
 automatically set color the individual tracks by their respective class/type.
@@ -197,13 +197,13 @@ graph = {
 For a full example of 3d+t tracks data with a parent graph, please see our
 [`tracks_3d_with_graph.py` example](https://github.com/napari/napari/blob/main/examples/tracks_3d_with_graph.py).
 
-## Using the tracks properties dictionary
+## Using the tracks features table
 
-The `Tracks` layer can contain properties that annotate the vertices of each
-track. `Tracks.properties` stores the properties in a dictionary where each key
-is the name of the property and the values are numpy arrays with a value for
+The `Tracks` layer can contain features that annotate the vertices of each
+track. `Tracks.features` stores the features in a table where each column
+is the name of the feature and the values are rows with a value for
 each vertex in the track (i.e., length `N` for `N` vertices in `Tracks.data`).
-As we will see below, we can use the values in a property to set the display
+As we will see below, we can use the feature values to set the display
 properties of the tracks (e.g., the track color).
 
 ## 3D rendering of tracks
@@ -249,9 +249,9 @@ Additionally, we can adjust the width of the track in the GUI using the "tail le
 
 ![image: tracks tail length](../../images/tracks_tail_length.webm)
 
-## Setting the track color with properties
+## Setting the track color with features
 
-We can color the tracks by mapping colors to the track properties defined in `Tracks.properties`. If we define properties and pass them via the properties keyword argument in the `viewer.add_tracks()` and `napari.view_tracks()` methods, we can then select the property we would like to color the tracks by in the "color by" dropdown menu in the `Tracks` layer controls. We can additionally specify the colormap used to map the property value to color via the "colormap" dropdown menu.
+We can color the tracks by mapping colors to the track features defined in `Tracks.features`. If we define features and pass them via the `features` keyword argument in the `viewer.add_tracks()` and `napari.view_tracks()` methods, we can then select the feature we would like to color the tracks by in the "color by" dropdown menu in the `Tracks` layer controls. We can additionally specify the colormap used to map the feature value to color via the "colormap" dropdown menu.
 
 ```python
 import napari
@@ -277,17 +277,17 @@ tracks_data = np.asarray([
     [3, 4, 636, 1000]
 ])
 track_confidence = np.array(5*[0.9] + 5*[0.3] + 5 * [0.1])
-properties = {
+features = {
     'time': tracks_data[:, 1],
     'confidence': track_confidence
 }
 
 viewer = napari.view_image(hubble_image)
-viewer.add_tracks(tracks_data, properties=properties)
+viewer.add_tracks(tracks_data, features=features)
 napari.run()
 ```
 
-![image: tracks colored by properties](../../images/tracks_color_by.webm)
+![image: tracks colored by features](../../images/tracks_color_by.webm)
 
 ## Putting it all together
 

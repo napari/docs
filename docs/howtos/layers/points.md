@@ -22,15 +22,15 @@ points layer and edit it from the GUI and from the console.
 
 The points layer allows you to display an `NxD` array of `N` points in `D`
 coordinates. You can adjust the size, face color, and edge color of all the
-points independently. You can also adjust the opactiy, edge width, and symbol
+points independently. You can also adjust the opacity, edge width, and symbol
 representing all the points simultaneously.
 
 Each data point can have annotations associated with it using the
-`Points.properties` dictionary. These properties can be used to set the face and
+`Points.features` table. These features can be used to set the face and
 edge colors of the points. For example, when displaying points of different
 classes/types, one could automatically set color the individual points by their
-respective class/type. For more details on point properties, see the "setting
-point edge and face color with properties" below or the [point annotation
+respective class/type. For more details on point features , see the "setting
+point edge and face color with features" below or the [point annotation
 tutorial](../../tutorials/annotation/annotate_points).
 
 ## A simple example
@@ -87,14 +87,15 @@ the same as the ordering of the dimensions for image layers. This array is
 always accessible through the `layer.data` property and will grow or shrink as
 new points are either added or deleted.
 
-## Using the points properties dictionary
+## Using the points features table
 
-The `Points` layer can contain properties that annotate each point.
-`Points.properties` stores the properties in a dictionary where each key is the
-name of the property and the values are numpy arrays with a value for each point
-(i.e., length N for N points in `Points.data`). As we will see below, we can use
-the values in a property to set the display properties of the points (e.g., face
-color or edge color). To see the points properties in action, please see the
+The `Points` layer can contain features that annotate each point.
+`Points.features` stores the features in a table where each column represents
+a feature and each row represents each the feature values for a point.
+Therefore, the table has N rows for N points in `Points.data`.
+As we will see below, we can use feature values to determine the display properties
+of the points (e.g., face color or edge color).
+To see the points features in action, please see the
 [point annotation tutorial](../../tutorials/annotation/annotate_points).
 
 ## Creating a new points layer
@@ -193,7 +194,7 @@ initially set these colors by providing a list of colors to the `edge_color` or
 `face_color` keyword arguments respectively, or you can edit them from the GUI.
 The colors of each of the points are available as lists under the
 `layer.edge_color` and `layer.face_color` properties. Similar to the `size`
-and `current_size` properties these properties are different from the
+and `current_size` properties, these properties are different from the
 `layer.current_edge_color` and `layer.current_face_color` properties that will
 determine the color of the next point to be added or any currently selected
 points.
@@ -202,17 +203,17 @@ To change the point color properties from the GUI you must first select the
 points whose properties you want to change, otherwise you will just be
 initializing the property for the next point you add.
 
-## Setting point edge and face color with properties
+## Setting point edge and face color with features
 
-Point edge and face colors can be set as a function of a property in
-`Points.properties`. There are two ways that the values in properties can be
+Point edge and face colors can be set as a function of a feature in
+`Points.features`. There are two ways that the values in features can be
 mapped to colors: (1) color cycles and (2) colormaps.
 
-Color cycles are sets of colors that are mapped to categorical properties. The
-colors are repeated if the number of unique property values is greater than the
-number of colors in the color cycle.
+Color cycles are sets of colors that are mapped to categorical features.
+The colors are repeated if the number of unique feature values is greater
+than the number of colors in the color cycle.
 
-Colormaps are a continuum of colors that are mapped to a continuous property
+Colormaps are a continuum of colors that are mapped to a continuous feature
 value. The available colormaps are listed below (colormaps are from
 [vispy](https://vispy.org/api/vispy.color.colormap.html#vispy.color.colormap.Colormap)).
 For some guidance on choosing colormaps, see the [matplotlib colormap
@@ -224,21 +225,21 @@ list(napari.utils.colormaps.AVAILABLE_COLORMAPS)
 
 ### Setting edge or face color with a color cycle
 
-Here we will set the edge color of the markers with a color cycle on a property.
+Here we will set the edge color of the markers with a color cycle on a feature.
 To do the same for a face color, substitute `face_color` for `edge_color` in the
 example snippet below.
 
 ```{code-cell} python
 viewer = napari.view_image(data.astronaut(), rgb=True)
 points = np.array([[100, 100], [200, 200], [300, 100]])
-point_properties = {
-    'good_point': np.array([True, True, False]),
-    'confidence': np.array([0.99, 0.8, 0.2]),
+point_features = {
+    'good_point': [True, True, False],
+    'confidence': [0.99, 0.8, 0.2],
 }
 
 points_layer = viewer.add_points(
     points,
-    properties=point_properties,
+    features=point_features,
     edge_color='good_point',
     edge_color_cycle=['magenta', 'green'],
     edge_width=0.5,
@@ -256,11 +257,11 @@ nbscreenshot(viewer, alt_text="3 points overlaid on an astronaut image, where th
 viewer.close()
 ```
 
-In the example above, the properties (`point_properties`) were provided as a
-dictionary with two properties: `good_point` and `confidence`. The values of
-each property are stored in a numpy ndarray with length 3 since there were three
+In the example above, the features (`point_features`) were provided as a
+dictionary with two keys or columns: `good_point` and `confidence`.
+The values of each feature are stored in a list of length 3 since there were three
 coordinates provided in `points`. We set the edge color as a function of the
-`good_point` property by providing the keyword argument
+`good_point` feature by providing the keyword argument
 `edge_color='good_point'` to the `viewer.add_points()` method. We set the color
 cycle via the `edge_color_cycle` keyword argument (`edge_color_cycle=['magenta',
 'green']`). The color cycle can be provided as a list of colors (a list of
@@ -268,21 +269,21 @@ strings or a (M x 4) array of M RGBA colors).
 
 ### Setting edge or face color with a colormap
 
-Here we will set the face color of the markers with a colormap on a property.
+Here we will set the face color of the markers with a colormap on a feature.
 To do the same for an edge color, substitute `face` for `edge` in the
 example snippet below.
 
 ```{code-cell} python
 viewer = napari.view_image(data.astronaut(), rgb=True)
 points = np.array([[100, 100], [200, 200], [300, 100]])
-point_properties = {
-    'good_point': np.array([True, True, False]),
-    'confidence': np.array([0.99, 0.8, 0.2]),
+point_features = {
+    'good_point': [True, True, False],
+    'confidence': [0.99, 0.8, 0.2],
 }
 
 points_layer = viewer.add_points(
     points,
-    properties=point_properties,
+    features=point_features,
     face_color='confidence',
     face_colormap='viridis',
 )
@@ -299,13 +300,12 @@ nbscreenshot(viewer, alt_text="3 points overlaid on an astronaut image, where th
 viewer.close()
 ```
 
-In the example above, the properties (`point_properties`) were provided as a
-dictionary with two properties: `good_point` and `confidence`. The values of
-each property are stored in a numpy ndarray with length 3 since there were three
-coordinates provided in `points`. We set the face color as a function of the
-`confidence` property by providing the keyword argument
-`face_color='confidence'` to the `viewer.add_points()` method. We set the
-colormap to viridis using the `face_colormap` keyword argument
+In the example above, the features (`point_features`) were provided as a
+dictionary with two feature columns: `good_point` and `confidence`.
+The table has three rows since there were three coordinates provided in `points`.
+We set the face color as a function of the `confidence` feature by providing the
+keyword argument `face_color='confidence'` to the `viewer.add_points()` method.
+We set the colormap to viridis using the `face_colormap` keyword argument
 (`face_colormap='viridis'`).
 
 ## Changing the points symbol
@@ -327,7 +327,7 @@ will be updated with the new slice values.
 
 ## Putting it all together
 
-Here you can see an example of adding, selecting, deleting points and change
-their properties:
+Here you can see an example of adding, selecting, deleting points, and changing
+their features:
 
 ![image: editing points](../../images/editing_points.webm)
