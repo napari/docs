@@ -301,7 +301,7 @@ viewer.dims.current_step
 # to change the current position of this example to step 3
 viewer.dims.current_step = (3, 255, 255)
 ```
-Note that in this case two dimensions are displayed and thus the last two elements of the tuple have no effect.
+The length of the `current_step` tuple corresponds to the number of dimensions. Note that in this example, the last two dimensions are displayed (don't have a slider) and thus changing the last two elements of the tuple will have no effect until the axes order is changed.
 
 `viewer.dims.point` contains the position in world coordinates (i.e., including
 scale and translate transformations).
