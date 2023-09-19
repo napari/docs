@@ -259,6 +259,7 @@ viewer.layers.pop(i)
 One of the main strengths of **napari** is that it has been designed from the beginning to handle n-dimensional data. While much consumer photography is 2D and `RGB`, scientific image data can often be volumetric (i.e. 3D), volumetric timeseries (i.e. 4D), or even higher dimensional. **napari** places no limits on the dimensionality of its input data for all its layer types.
 
 Adding data with a dimensionality greater than 2D will cause dimension sliders to appear directly underneath the canvas and above the status bar. As many sliders as needed will appear to ensure the data can be fully browsed. For example, a 3D dataset needs one slider, a 4D dataset needs two sliders, and so on. The widths of the scroll bars of the dimension sliders are directly related to how many slices are in each dimension.
+To the left of each slider will be an integer indicating which dimension is being controlled by that slider. These integers are automatically updated when changing which dimensions are to be displayed.
 
 It is also possible to mix data of different shapes and dimensionality in different layers. If a 2D and 4D dataset are both added to the viewer then the sliders will affect only the 4D dataset, the 2D dataset will remain the
 same. Effectively, the two datasets are broadcast together using [NumPy broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html).
@@ -291,14 +292,16 @@ viewer.add_image(blobs, name='blobs', opacity=0.5, colormap='red')
 nbscreenshot(viewer, alt_text="A 2d view of the moon on top of which is overlaid a 3d volume containing blobs through which you can navigate using the dimension slider.")
 ```
 
-In order to get or update the current position of the slider, use:
+In this example there are three dimensions. In order to get or update the current position of the slider, use:
 
 ```python
-# to get the current position
-viewer.dims.current_step
-# to change the current position
-viewer.dims.current_step = 3
+# to get the current position returned as tuple of length 3
+viewer.dims.current_step 
+
+# to change the current position of this example to step 3
+viewer.dims.current_step = (3, 255, 255)
 ```
+Note that in this case two dimensions are displayed and thus the last two elements of the tuple have no effect.
 
 `viewer.dims.point` contains the position in world coordinates (i.e., including
 scale and translate transformations).
