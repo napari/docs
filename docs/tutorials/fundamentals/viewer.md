@@ -295,15 +295,38 @@ nbscreenshot(viewer, alt_text="A 2d view of the moon on top of which is overlaid
 In this example there are three dimensions. In order to get or update the current position of the slider, use:
 
 ```python
-# to get the current position returned as tuple of length 3
+# To get the current position returned as tuple of length 3
 viewer.dims.current_step 
 
-# to change the current position of this example to step 3
+# To change the current position of this example to step 3
 viewer.dims.current_step = (3, 255, 255)
 ```
 The length of the `current_step` tuple corresponds to the number of dimensions. Note that in this example, the last two dimensions are displayed (don't have a slider) and thus changing the last two elements of the tuple will have no effect until the axes order is changed.
+The dimension order can be changed as follows:
 
-`viewer.dims.point` contains the position in world coordinates (i.e., including
+```python
+# To get the current dimension order as tuple of int
+viewer.dims.order
+
+# To change the current dimension order
+viewer.dims.order = (2, 1, 0)
+```
+In this case the third dimension will be controlled by the slider and the first and second dimension will be visible.
+Note that this has no effect on the order of `viewer.dims.current_step`. The first element still corresponds to the first dimension for example.
+
+The dimensions can also have labels. These can be set in the following manner:
+
+```python
+# To get the dimension labels
+viewer.dims.axis_labels
+
+# To set new axis labels
+viewer.dims.axis_labels = ("label_2", "label_1", "label_0")
+```
+
+Note that these are just examples. The only requirement is that the length of the tuple is the same as the number of dimensions.
+
+Lastly, `viewer.dims.point` contains the position in world coordinates (i.e., including
 scale and translate transformations).
 
 ### Scroll buttons
