@@ -411,12 +411,14 @@ viewer.camera.perspective = 45
 
 The third button rolls the dimensions that are currently displayed in the viewer. For example if you have a `ZYX` volume and are looking at the `YX` slice, this will then show you the `ZY` slice. You can also right-click this button to re-order the dimensions by drag-and-drop.
 
-The dimension order can also be changed programatically as follows:
+The dimension order can also be checked programatically as follows:
 
 ```{code-cell} python
 # To get the current dimension order as tuple of int
 viewer.dims.order
-
+```
+And then, changed programatically as follows:
+```{code-cell} python
 # To change the current dimension order
 viewer.dims.order = (2, 1, 0)
 ```
