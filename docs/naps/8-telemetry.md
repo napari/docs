@@ -66,7 +66,7 @@ I propose to have the following data retention policy:
 ## Privacy assessment
 
 During the preparation of this NAP we assume that none of the collected data will be presented in 
-a form that allows to identify a single user or identify a research area of user. We also select a set of data that will be collected to minimize the possibility of revealing fragile data, but it is impossible to guarantee that it will not be possible to identify a single user (for example by checking installed plugin combinations).
+a form that allows to identify a single user or identify a research area of user. We also select a set of data that will be collected to minimize the possibility of revealing sensitive data, but it is impossible to guarantee that it will not be possible to identify a single user (for example by checking installed plugin combinations).
 
 Because of this, we propose to not publish raw data and only show aggregated results. The aggregation will be performed using scripts. Napari core devs will access raw data only if there are errors in the aggregation process.
 
@@ -98,6 +98,7 @@ The benefit of existing solutions is that most of the work is already done. The 
 
 For now, I suggest creating a simple REST API server for collecting the data. 
 It could be a simple Python FastAPI server that will store data in the SQLite database.
+Connection to server will be encrypted using HTTPS and certificate provided by LetsEncrypt.
 
 Data for aggregation should be extracted from the database using a script running on the same machine.
 
@@ -130,7 +131,7 @@ I do not expect that it is a high risk, but exists. We could address it by code 
 Another option is to scan public plugins and their dependencies. This is simpler but will require establishing additional communication channels to be able to warn users about the potential problem. 
 
 
-## GDPR compatybility
+## GDPR compliance
 
 I'm almost sure that we will not collect data that are covered by GDPR. But to get better atmosphere 
 we need to add instruction how user could retrive his unique identifier and setup a process 
