@@ -167,7 +167,7 @@ Specific UI design and architecture remains to be determined. This will be explo
 Some open questions here are (for example):
 * Should each canvas also have visible dims sliders, or can we keep one set of dims sliders that changes based on the active (selected) canvas?
 * What kind of cross-reference displays or tools should there be?
-    * though-plane slice indicators
+    * through-plane slice indicators
     * three-point slice definition
 * What kinds of camera-linking should be supported?
     * orthogonal
@@ -221,7 +221,7 @@ See other image viewers for examples for multiple canvases (mostly demonstrating
 4. Update `QtViewer` to show multiple canvases simultaneously
     * This is exploratory work at the moment, see [UI Architecture](#UI-Design-and-Architecture) section below
 
-[^async-only]: Depending on the timeline and prototype implemetiaton, it may be acceptable/prefereable for mutli-canvas feature to rely on (currently experimental) async slicing ([see NAP-4](https://napari.org/stable/naps/4-async-slicing.html)).
+[^async-only]: Depending on the timeline and prototype implementation, it may be acceptable/preferable for multi-canvas feature to rely on (currently experimental) async slicing ([see NAP-4](https://napari.org/stable/naps/4-async-slicing.html)).
 
 ## Backward Compatibility
 
