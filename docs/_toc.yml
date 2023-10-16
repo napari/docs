@@ -145,6 +145,7 @@ subtrees:
           - file: naps/5-new-logo
           - file: naps/6-contributable-menus
           - file: naps/7-key-binding-dispatch
+          - file: naps/9-multiple-canvases
       - file: developers/documentation/index
         subtrees:
         - entries:
