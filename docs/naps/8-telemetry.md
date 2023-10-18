@@ -16,7 +16,7 @@
   
  ## Abstract 
   
- This NAP is describes why telemetry is helpful to the napari project and the architecture and solutions selected to maximize the privacy of our users. 
+ This NAP describes how telemetry would be used by the napari project and the architecture and solutions proposed to maximize the privacy of our users. 
  
  ## Motivation and Scope
 
@@ -26,7 +26,7 @@ To have the possibility of sustainable development of the project we will either
 
 Both scenarios require us to provide some information about the estimated number of users to prove to potential funders that their donation/grant will be used in a valuable way. 
 
-Adding the option for monitoring plugin usage allows us to identify the most important plugins and try to establish cooperation with their maintainers to reduce the probability that the plugin will not be ready for a new napari release. Such monitoring could contain not only the list of installed plugins but also which commands and contributions are used most often.
+Adding the option for monitoring plugin usage allows us to identify heavily used plugins and try to establish cooperation with their maintainers to reduce the probability that the plugin will not be ready for a new napari release. Such monitoring could contain not only the list of installed plugins but also which commands and contributions are used most often.
 
 Also collecting information about data types and their size will provide valuable information about the typical use cases of napari.
 
@@ -42,26 +42,26 @@ In the main package, there is a need to add code to ask users if they want to en
 Telemetry should contain following ways to disable it:
 
 1. Disable in settings
-2. uninstall `napari-telemetry` package
+2. Uninstall `napari-telemetry` package
 3. Environment variable `NAPARI_TELEMETRY=0`
 4. Full list of endpoints used for collecting telemetry, that could be filtered on the firewall level.
 
 The user should be able to adjust the telemetry level of detail. The following levels are proposed:
 
 1. `none` - no telemetry is collected
-2. `basic` - information about the napari version, python version, OS, and CPU architecture is collected and if it is the first report by the user. There is also a user identifier created based on computer details that will be rerendered each week to prevent tracking the user, but allow to not count a user multiple times. 
-3. `middle` - same as in `basic` but also information about the list of installed plugins and their versions is collected. We take care to not collect data about plugins that are not intended to be public, so we will not collect information about plugins searchable as napri plugin using plugin dialog or napri-hub. We also will not collect information about plugins that are installed in non stable version.
+2. `basic` - information about the napari version, python version, OS, and CPU architecture is collected and if it is the first report by the user. There is also a user identifier created based on computer details that will be regenerated each week to prevent tracking the user, but allow us to accurately gauge individual user numbers. 
+3. `middle` - same as in `basic` but information about the list of installed plugins and their versions is also collected. We take care to not collect data about plugins that are not intended to be public, so we will only collect information about plugins searchable as using plugin dialog or napari hub. We also will not collect information about plugins that are installed in non stable version.
 4. `full` - same as in `middle` but also collects information about plugin usage by binding to app-model and logging plugin commands used. Also basic information about data like type (`np.ndarray`, `dask.array`, `zarr.Array`, etc.) and its size is collected.
 
 There should be a visible indicator that telemetry is enabled (for example on the status bar). 
 
 The second part of this work should be to setup the server to collect telemetry data. After collecting data, it should provide a basic public dashboard that will allow the community to see aggregated information.
 
-I propose to have the following data retention policy:
+We propose the following data retention policy:
 
 1) Up to 2 weeks for logs.
-2) up 2 months of raw data (1 month of collection, then aggregation and time to validate aggregated data),
-3) infinite of aggregated data.
+2) Up 2 months of raw data (1 month of collection, then aggregation and time to validate aggregated data).
+3) Infinite of aggregated data.
   
 ## Privacy assessment
 
@@ -91,7 +91,7 @@ https://github.com/grafana/grafana
   
 ## Implementation 
 
-The main thing for implementation should be the low cost of maintenance. So the solution should be as simple as possible. We could either use existing solutions on the server side or implement our own.
+The key consideration for implementation should be the low cost of maintenance. So the solution should be as simple as possible. We could either use existing solutions on the server side or implement our own.
 
 The benefit of existing solutions is that most of the work is already done. The downside is that it may require additional cost of maintenance. This cost may be caused by many features that are not needed for napari and could increase the risk of leaking data.  Quick checks of their code revealed they are implemented in techniques that are not familiar to napari core devs. So, if we decide to use them, we should select an SAS solution that will be maintained by the company.
 
@@ -134,8 +134,8 @@ Another option is to scan public plugins and their dependencies. This is simpler
 ## GDPR compliance
 
 I'm almost sure that we will not collect data that are covered by GDPR. But to get better atmosphere 
-we need to add instruction how user could retrive his unique identifier and setup a process 
-for requests to remove data from the server. It is not high propability of usage as life span of data is short,
+we need to add instruction how user could retrieve his unique identifier and setup a process 
+for requests to remove data from the server. It is not high probability of usage as life span of data is short,
 but we need to be prepared for such a situation. I suggest to use e-mail for that.
 
 
@@ -153,7 +153,7 @@ A nice extension may be the ability for the steering council to create a certifi
 
  During the discussion, there is a proposal to use the same approach as used in ImageJ. 
  
- Mean that instead of implementing telemetry on the client side we could implement it on the update server side. The advantage and disadvantage of such a solution is that no user could opt out of telemetry. Also, such a method could potentially provide information about the Python version, napari version and list of installed plugins. All others will require a mechanism from this NAP.
+This would mean instead of implementing telemetry on the client side we could implement it on the update server side. The advantage and disadvantage of such a solution is that no user could opt out of telemetry. Also, such a method could potentially provide information about the Python version, napari version and list of installed plugins. All others will require a mechanism from this NAP.
 
  It will also require updates on the Napari side as currently we only communicate with the update server when a user opens the plugin manager. Also, to have proper information about installed plugins we will need to send information about the list of installed plugins instead of just downloading the information about all plugins from the server. 
 
