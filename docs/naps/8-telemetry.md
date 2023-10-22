@@ -6,7 +6,7 @@
   
  ```{eval-rst} 
  :Author: Grzegorz Bokota 
- :Created: <date created on, in yyyy-mm-dd format> 
+ :Created: 2023-08-11
  :Resolution: <url> (required for Accepted | Rejected | Withdrawn) 
  :Resolved: <date resolved, in yyyy-mm-dd format> 
  :Status: Draft
@@ -31,6 +31,10 @@ Adding the option for monitoring plugin usage allows us to identify heavily used
 Also collecting information about data types and their size will provide valuable information about the typical use cases of napari.
 
 Still, users need to be able to opt out of such monitoring, and adjust the level of detail of the information that is sent to the napari server.
+Each time when we update the collected data, we should inform users about the changes and provide them with the possibility to opt out of telemetry.
+
+Users could also provide a temporary agreement for sending telemetry. 
+Then after a given period of time, the dialog with question will be shown again.
  
   
  ## Detailed Description
@@ -44,7 +48,7 @@ Telemetry should contain following ways to disable it:
 1. Disable in settings
 2. Uninstall `napari-telemetry` package
 3. Environment variable `NAPARI_TELEMETRY=0`
-4. Full list of endpoints used for collecting telemetry, that could be filtered on the firewall level.
+4. System-wide disablement e.g. via firewall filtering for hpc or other environments.
 
 The user should be able to adjust the telemetry level of detail. The following levels are proposed:
 
