@@ -172,20 +172,6 @@ In napari itself, the following changes should be implemented:
 4) code required to init `napari-telemetry` package
 
 
-## Potential problems 
-
-There is a risk
-that someone may try to high-jack the telemetry module name to have code executed at every napari start. 
-
-I do not expect that it is a high risk, but exists.
-We could address it by code signing.
-This will require additional procedures to protect private cryptographic keys.
-
-Another option is to scan public plugins and their dependencies. 
-This is simpler,
-but will require establishing additional communication channels to be able to warn users about the potential problem. 
-
-
 ## GDPR compliance
 
 I'm almost sure that we will not collect data that are covered by GDPR. 
