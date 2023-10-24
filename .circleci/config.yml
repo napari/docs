@@ -47,7 +47,7 @@ jobs:
           name: Install napari-dev
           command: |
             . venv/bin/activate
-            python -m pip install -e napari/".[pyside,dev]" -c "napari/resources/constraints/constraints_py3.10.txt"
+            python -m pip install -e napari/".[pyside,dev]" -c "napari/resources/constraints/constraints_py3.10_docs.txt"
       - run:
           name: Install python dependencies
           command: |
