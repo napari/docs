@@ -172,9 +172,9 @@ the current release {{ napari_version }}, using command: `napari --version` .
 
 ````{note}
 On some platforms, particularly macOS and Windows, there may be a ~30 second 
-delay before the viewer appears on first launch. This is normal and subsequent
+delay before the viewer appears on first launch. This is expected and subsequent
 launches should be quick. However, anti-malware and other security software 
-measures may delay launches even after the first launch.
+measures may further delay launches—even after the first launch.
 ````
 
 ## Choosing a different Qt backend
