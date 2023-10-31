@@ -53,6 +53,8 @@ jobs:
           command: |
             . venv/bin/activate
             python -m pip install -r requirements.txt
+          environment:
+            PIP_CONSTRAINTS: ../resources/constraints/constraints_py3.10_docs.txt
       - run:
           name: Build docs
           command: |
