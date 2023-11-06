@@ -24,7 +24,7 @@ If you are using napari or interested in how napari could be used in your work, 
         center: "title",
         right: "dayGridMonth,listWeek",
       },
-      googleCalendarApiKey: api_key,
+      googleCalendarApiKey: '{API_KEY}',
       events: {
           googleCalendarId: 'c_35r93ec6vtp8smhm7dv5uot0v4@group.calendar.google.com',
       },

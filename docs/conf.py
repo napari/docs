@@ -15,6 +15,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import re
+import os
 from importlib import import_module
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
@@ -267,15 +268,31 @@ sphinx_gallery_conf = {
     'within_subsection_order': ExampleTitleSortKey,
 }
 
+GOOGLE_CALENDAR_API_KEY = os.environ.get('GOOGLE_CALENDAR_API_KEY', '')
+
+
+def add_google_calendar_secrets(app, docname, source):
+    """Add google calendar api key to meeting schedule page.
+
+    The source argument is a list whose single element is the contents of the
+    source file. You can process the contents and replace this item to implement
+    source-level transformations.
+    """
+    if docname == 'community/meeting_schedule':
+        source[0] = source[0].replace('{API_KEY}', GOOGLE_CALENDAR_API_KEY)
+
 
 def setup(app):
-    """Ignore .ipynb files.
+    """Set up docs build.
 
-    Prevents sphinx from complaining about multiple files found for document
-    when generating the gallery.
+    * Ignores .ipynb files to prevent sphinx from complaining about multiple
+      files found for document when generating the gallery
+    * Rewrites github anchors to be comparable
+    * Adds google calendar api key to meetings schedule page
 
     """
     app.registry.source_suffix.pop(".ipynb", None)
+    app.connect('source-read', add_google_calendar_secrets)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
 
 
