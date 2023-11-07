@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   python: circleci/python@1.5.0
 jobs:
-  build-docs: 
+  build-docs:
     docker:
       - image: cimg/python:3.10.2
     steps:
@@ -25,7 +25,7 @@ jobs:
           name: Install napari-dev
           command: |
             . venv/bin/activate
-            python -m pip install -e "napari/[pyside,dev]" 
+            python -m pip install -e "napari/[pyside,dev]"
           environment:
             PIP_CONSTRAINT: napari/resources/constraints/constraints_py3.10_docs.txt
       - run:
@@ -43,6 +43,6 @@ jobs:
           paths:
             - docs/docs/_build/
 workflows:
-  build-docs: 
+  build-docs:
     jobs:
       - build-docs
