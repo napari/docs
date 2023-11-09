@@ -19,8 +19,11 @@ from importlib import import_module
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
-import qtgallery
 from jinja2.filters import FILTERS
+from sphinx_gallery import scrapers
+from sphinx_gallery.sorting import ExampleTitleSortKey
+from sphinx.highlighting import lexers
+from pygments.lexers import TOMLLexer
 
 import napari
 from napari._version import __version_tuple__
@@ -157,22 +160,22 @@ myst_enable_extensions = [
     'tasklist',
 ]
 
-myst_heading_anchors = 3
+myst_heading_anchors = 4
 
 version_string = '.'.join(str(x) for x in __version_tuple__[:3])
-python_version = '3.9'
+python_version = '3.10'
 python_version_range = '3.8–3.10'
-python_minimum_version = '3.8'
 
 myst_substitutions = {
-   "napari_conda_version": f"`napari={version_string}`",
-   "napari_version": version_string,
-   "python_version": python_version,
-   "python_version_range": python_version_range,
-   "python_minimum_version": python_minimum_version,
-   "python_version_code": f"`python={python_version}`",
-   "conda_create_env": f"```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```",
+    "napari_conda_version": f"`napari={version_string}`",
+    "napari_version": version_string,
+    "python_version": python_version,
+    "python_version_range": python_version_range,
+    "python_version_code": f"`python={python_version}`",
+    "conda_create_env": f"```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```",
 }
+
+myst_footnote_transition = False
 
 nb_output_stderr = 'show'
 
@@ -197,21 +200,53 @@ exclude_patterns = [
 ]
 
 napoleon_custom_sections = [('Events', 'params_style')]
+lexers['toml'] = TOMLLexer(startinline=True)
 
 
-def reset_napari_theme(gallery_conf, fname):
+def reset_napari(gallery_conf, fname):
     from napari.settings import get_settings
+    from qtpy.QtWidgets import QApplication
 
     settings = get_settings()
     settings.appearance.theme = 'dark'
-    qtgallery.reset_qapp(gallery_conf, fname)
+
+    # Disabling `QApplication.exec_` means example scripts can call `exec_`
+    # (scripts work when run normally) without blocking example execution by
+    # sphinx-gallery. (from qtgallery)
+    QApplication.exec_ = lambda _: None
 
 
-from sphinx_gallery.sorting import ExampleTitleSortKey
+def napari_scraper(block, block_vars, gallery_conf):
+    """Basic napari window scraper.
+
+    Looks for any QtMainWindow instances and takes a screenshot of them.
+
+    `app.processEvents()` allows Qt events to propagateo and prevents hanging.
+    """
+    imgpath_iter = block_vars['image_path_iterator']
+
+    if app := napari.qt.get_app():
+        app.processEvents()
+    else:
+        return ""
+
+    img_paths = []
+    for win, img_path in zip(
+        reversed(napari._qt.qt_main_window._QtMainWindow._instances),
+        imgpath_iter,
+    ):
+        img_paths.append(img_path)
+        win._window.screenshot(img_path, canvas_only=False)
+
+    napari.Viewer.close_all()
+    app.processEvents()
+
+    return scrapers.figure_rst(img_paths, gallery_conf['src_dir'])
+
 
 sphinx_gallery_conf = {
-    #'examples_dirs': '../../napari/examples',  # path to your example scripts
-                                                # this value is set in the Makefile
+    # path to your example scripts (this value is set in the Makefile)
+    # 'examples_dirs': '../../napari/examples',
     'gallery_dirs': 'gallery',  # path to where to save gallery generated output
     'filename_pattern': '/*.py',
     'ignore_pattern': 'README.rst|/*_.py',
@@ -220,8 +255,8 @@ sphinx_gallery_conf = {
     'download_all_examples': False,
     'min_reported_time': 10,
     'only_warn_on_example_error': True,
-    'image_scrapers': ("matplotlib", qtgallery.qtscraper,),
-    'reset_modules': (reset_napari_theme,),
+    'image_scrapers': ("matplotlib", napari_scraper,),
+    'reset_modules': (reset_napari,),
     'reference_url': {'napari': None},
     'within_subsection_order': ExampleTitleSortKey,
 }
@@ -264,7 +299,7 @@ linkcheck_ignore = [
     'https://napari.zulipchat.com/',
     '../_tags',
     'https://en.wikipedia.org/wiki/Napari#/media/File:Tabuaeran_Kiribati.jpg',
-    ]
+]
 
 
 def rewrite_github_anchor(app, uri: str):

@@ -20,14 +20,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone docs repo
-        uses: actions/checkout@main
+        uses: actions/checkout@v3
         with:
           path: docs  # place in a named directory
 
       - name: Clone main repo
-        uses: actions/checkout@main
+        uses: actions/checkout@v3
         with:
-          path: napari-repo
+          path: napari-repo  # place in a named directory
           ref: main
           repository: napari/napari
           # ensure version metadata is proper
@@ -37,17 +37,18 @@ jobs:
         run: |
           cp -R napari-repo/examples docs
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: "3.10"
 
       - uses: tlambert03/setup-qt-libs@v1
 
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install "napari-repo/[all]"  -c "napari-repo/resources/constraints/constraints_py3.9.txt"
-
+          python -m pip install "napari-repo/[all]"  -c "napari-repo/resources/constraints/constraints_py3.10_docs.txt"
+          python -m pip install -r docs/requirements.txt -c "napari-repo/resources/constraints/constraints_py3.10_docs.txt"
+          
       - name: Testing
         run: |
           python -c 'import napari; print(napari.__version__)'
