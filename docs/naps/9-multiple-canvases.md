@@ -225,7 +225,7 @@ See other image viewers for examples for multiple canvases (mostly demonstrating
 
 ## Backward Compatibility
 
-Maintaining the proxy API on the viewer via the concepts of a main and/or active canvas will make this work mostly backward-compatible, though there will inevitably be some breaking changes. There will like be significant breaking changes to private APIs. For example if plugins are attempting to access slice data directly from a layer instance, it may no longer be as expected. If this is a large burden, it too may be mitigated by delegating from the layer to the slice corresponding to the main or active canvas.
+Maintaining the proxy API on the viewer via the concepts of a main and/or active canvas will make this work mostly backward-compatible, though there will inevitably be some breaking changes. There will likely be significant breaking changes to private APIs. For example if plugins are attempting to access slice data directly from a layer instance, it may no longer be as expected. If this is a large burden, it too may be mitigated by delegating from the layer to the slice corresponding to the main or active canvas.
 
 ## Future Work
 
