@@ -449,6 +449,11 @@ The right side of the status bar contains some helpful tips depending on which l
 
 ## Right-click menu
  A context-sensitive menu is available when you right-click on any of the layers. The type of layer determines which options are available. Note that if you have multiple layers selected, the menu actions will affect all of the selected layers. The options that are not available for a layer are greyed out. The following options are available depending on which layer type you have selected:
+* **Toggle visibility** - invert the visbility state (hides or show) of selected layers: hidden layers will be shown, visibile layers will be hidden.
+* **Show All Selected Layers** - Set all selected layers to visible.
+* **Hide All Selected Layers** - Set all selected layers to hidden.
+* **Show All Unselected Layers** - Set all *unselected* layers to visible.
+* **Hide All Unselected Layers** - Set all *unselected* layers to hidden.
 * **Duplicate Layer** - creates a second copy of the selected layer. Can be used on **Points**, **Shapes**, **Labels**, and **Image** layers. This is useful for testing your analysis on a copy instead of on the original image.
 * **Convert to Labels** - converts an **Image** layer to a **Labels** layer. This is useful for converting a binary image segmentation map to a labels layer with each segmented object denoted by its own integer. Can also be used on a **Shapes** layer.
 * **Convert to Image** - converts a **Labels** layer into an **Image** layer.
