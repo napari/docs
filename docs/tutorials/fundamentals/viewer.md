@@ -418,6 +418,7 @@ being rolled (reordered). This can be particularly useful, for example, with a
 `3D+time` dataset where you may want to fix the time dimension, while being able 
 to roll through the spatial dimensions.
 
+
 The dimension order can also be checked programatically as follows:
 
 ```{code-cell} python
