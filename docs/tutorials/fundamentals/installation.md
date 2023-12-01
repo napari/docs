@@ -25,11 +25,8 @@ This guide will teach you how to do a clean install of **napari** and launch the
 If you want to contribute code back into napari, you should follow the [development installation instructions in the contributing guide](https://napari.org/developers/contributing.html) instead.
 ```
 
-## Prerequisites
+## Install as Python package (recommended)
 
-Prerequisites differ depending on how you want to install napari.
-
-### Prerequisites for installing napari as a Python package
 This installation method allows you to use napari from Python to programmatically
 interact with the app. It is the best way to install napari and make full use of
 all its features.
@@ -41,15 +38,6 @@ It requires:
 You may also want:
 - an environment manager like [conda](https://docs.conda.io/en/latest/miniconda.html) or
 [venv](https://docs.python.org/3/library/venv.html) **(Highly recommended)**
-
-### Prerequisites for installing napari as a bundled app
-This is the easiest way to install napari if you only wish to use it as a standalone GUI app.
-This installation method does not have any prerequisites.
-
-[Click here](#install-as-a-bundled-app) to see instructions
-for installing the bundled app.
-
-## Install as Python package (recommended)
 
 Python package distributions of napari can be installed via `pip`, `conda-forge`, or from source.
 
@@ -153,7 +141,7 @@ python -m pip install "git+https://github.com/napari/napari.git#egg=napari[all]"
 ````
 
 <!-- #region -->
-## Checking it worked
+### Checking it worked
 
 After installation you should be able to launch napari from the command line by
 simply running
@@ -171,13 +159,13 @@ the current release {{ napari_version }}, using command: `napari --version` .
 ![macOS desktop with a napari viewer window without any image opened in the foreground, and a terminal in the background with the appropriate conda environment activated (if applicable) and the command to open napari entered.](../assets/tutorials/launch_cli_empty.png)
 
 ````{note}
-On some platforms, particularly macOS and Windows, there may be a ~30 second 
+On some platforms, particularly macOS and Windows, there may be a ~30 second
 delay before the viewer appears on first launch. This is expected and subsequent
-launches should be quick. However, anti-malware and other security software 
+launches should be quick. However, anti-malware and other security software
 measures may further delay launches—even after the first launch.
 ````
 
-## Choosing a different Qt backend
+### Choosing a different Qt backend
 
 napari needs a library called [Qt](https://www.qt.io/) to run its user interface
 (UI). In Python, there are two alternative libraries to run this, called
@@ -218,7 +206,7 @@ If you switch backends, it's a good idea to `pip uninstall` the one
 you're not using.
 ```
 
-## Using constraints files
+### Using constraints files
 
 Since napari 0.4.18, we store constraints files with information about each exact dependency version against which napari was tested.
 This could be useful if you need to install napari as a package from PyPI, and prevents creating environments where napari does not start or work properly.
@@ -270,10 +258,8 @@ started](./getting_started) tutorial
 - if you are interested in
 contributing to napari please check our [contributing
 guidelines](../../developers/contributing.md)
-- if you are running into issues or bugs, please open a new issue on our [issue
+- if you are running into issues or bugs, please open a [new issue](https://github.com/napari/napari/issues/new/choose) on our [issue
 tracker](https://github.com/napari/napari/issues)
-    - include the output of `napari --info`
-    (or go to `Help>Info` in the viewer and copy paste the information)
 - if you want help using napari, we are a community partner on the [imagesc
 forum](https://forum.image.sc/tags/napari) and all usage support requests should
 be posted on the forum with the tag `napari`. We look forward to interacting
