@@ -48,7 +48,13 @@ subtrees:
               - file: howtos/layers/surface
               - file: howtos/layers/tracks
               - file: howtos/layers/vectors
-          - file: howtos/connecting_events
+          - file: howtos/extending/index
+            subtrees:
+            - titlesonly: True
+              entries:
+              - file: howtos/extending/magicgui
+              - file: howtos/extending/event_loop
+              - file: howtos/extending/connecting_events
           - file: howtos/napari_imageJ
           - file: howtos/docker
           - file: howtos/perfmon
@@ -56,8 +62,6 @@ subtrees:
       - file: guides/index
         subtrees:
         - entries:
-          - file: guides/magicgui
-          - file: guides/event_loop
           - file: guides/napari_models
           - file: guides/threading
           - file: guides/3D_interactivity

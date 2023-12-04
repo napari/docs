@@ -2,22 +2,16 @@
 
 # Hooking up your own events
 
-If you're coming from a background of scripting or working with python in an
-interactive console, thinking in terms of the "event loop" can feel a bit
-strange at times. Often we write code in a very procedural way: "do this ...
-then do that, etc...". With napari and other GUI programs however, usually you
-hook up a bunch of conditions to callback functions (e.g. "If this event
-happens, then call this function") and *then* start the loop and hope you hooked
-everything up correctly!  Indeed, much of the ``napari`` source code is
-dedicated to creating and handling events: search the codebase for
-[`.emit(`](https://github.com/napari/napari/search?q=%22.emit%28%22&type=code)
-and
-[`.connect(`](https://github.com/napari/napari/search?q=%22.connect%28%22&type=code)
-to find examples of creating and handling internal events, respectively.
-
 If you would like to set up a custom event listener then you need to hook into
-the napari event loop. We offer a couple of convenience decorators to easily
-connect functions to key and mouse events.
+the napari [event loop](intro-to-event-loop). We offer a couple of convenience
+decorators to easily connect functions to key and mouse events. You can also
+connect to [native napari events](connect-napari-event).
+
+If the function you wish to connect takes a long time (e.g., is computationally
+expensive) you may want to consider [multithreading](multithreading-in-napari).
+See [Long-running, blocking functions](blocking-functions) for more.
+
+(connect-key-event)=
 
 ## Listening for keypress events
 
@@ -49,6 +43,8 @@ napari.run()
 
 See also this [custom key bindings
 example](https://github.com/napari/napari/blob/main/examples/custom_key_bindings.py).
+
+(connect-mouse-event)=
 
 ## Listening for mouse events
 
@@ -88,6 +84,8 @@ and [mouse drag
 callback](https://github.com/napari/napari/blob/main/examples/mouse_drag_callback.py)
 examples.
 
+(connect-napari-event)=
+
 ## Connection functions to native napari events
 
 If you want something to happen following some event that happens *within*
@@ -118,6 +116,8 @@ def print_layer_name(event):
 
 layer.events.data.connect(print_layer_name)
 ```
+
+(blocking-functions)=
 
 ## Long-running, blocking functions
 

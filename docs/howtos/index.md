@@ -14,8 +14,6 @@ tutorial.
 
 - [Using layers](layers/index): Learn about how to use the layers currently
 supported by napari.
-- [Hooking up your own events](./connecting_events): Learn about the event loop
-and how to use it to interact with napari.
 - [napari + ImageJ how-to guide](./napari_imageJ): Learn about how to use napari
 and ImageJ simultaneously.
 - [napari in Docker](./docker): Learn about using napari in docker.
