@@ -60,6 +60,10 @@ jobs:
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
         with:
           run:  make -C docs docs
+          # setting these empty stops from running the default (tiling) window manager
+          # the window manager is not necessary for docs builds at this time
+          linux-pkgs: ""
+          linux-setup: ""
 
 
       - name: Upload artifact
