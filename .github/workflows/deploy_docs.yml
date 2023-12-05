@@ -63,6 +63,11 @@ jobs:
           # the napari-docs repo is cloned into a docs/ folder, hence the
           # invocation below. Locally, you should simply run make docs
           run: make -C docs docs GALLERY_PATH=../examples/
+          # setting these empty stops from running the default (tiling) window manager
+          # the window manager is not necessary for docs builds at this time
+          linux-pkgs: " "
+          linux-setup: " "
+          linux-teardown: " "
 
       - name: Deploy Docs
         uses: peaceiris/actions-gh-pages@v3
