@@ -2,6 +2,11 @@
 
 # Hooking up your own events
 
+The `napari` graphical user interface (GUI) operates within an **event loop** that
+waits for and responds to user interaction 'events'. If you are unfamiliar with
+event loops, see [napari event loop](intro-to-event-loop) for a more detailed
+introduction.
+
 If you would like to set up a custom event listener then you need to hook into
 the napari [event loop](intro-to-event-loop). We offer a couple of convenience
 decorators to easily connect functions to key and mouse events. You can also
