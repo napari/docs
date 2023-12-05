@@ -14,6 +14,8 @@ tutorial.
 
 - [Using layers](layers/index): Learn about how to use the layers currently
 supported by napari.
+- [Extending napari](extending-napari): Learn how to extend napari by adding widgets
+  and connecting callbacks.
 - [napari + ImageJ how-to guide](./napari_imageJ): Learn about how to use napari
 and ImageJ simultaneously.
 - [napari in Docker](./docker): Learn about using napari in docker.

@@ -18,21 +18,23 @@ kernelspec:
 
 Widgets are small composable graphical elements that can be added to the `napari` user
 interface. The easiest way to add a widget is by using
-[magicgui](https://pyapp-kit.github.io/magicgui/), a python package that assists
+[`magicgui`](https://pyapp-kit.github.io/magicgui/), a python package that assists
 in building widgets. It is a general abstraction layer on GUI toolkit backends (like
 Qt), with an emphasis on mapping python types to widgets. This enables you to easily
 create widgets using annotations.
 If you require more extensibility though, you can create your own widget `class` that
-subclasses `QtWidgets.QWidget`.
+subclasses [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html).
 
 This document will describe each widget creation method, in increasing order of
 extensibility;
 
-1. creating a widget from a function and `magicgui` (simplest but least extensible and
-   flexible)
+1. creating a widget from a function and
+   [`magicgui`](https://pyapp-kit.github.io/magicgui/) (simplest but least extensible
+   and flexible)
 2. create a widget class that subclasses a
    [`magicgui` widget class](https://pyapp-kit.github.io/magicgui/widgets/#the-widget-hierarchy)
-3. create a widget class that subclasses `QtWidgets.QWidget` (most extensible but also
+3. create a widget class that subclasses
+   [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html) (most extensible but also
    the most difficult to implement)
 
 Additionally,
@@ -48,20 +50,21 @@ There are two ways to then add a widget to a `napari` viewer:
   [plugin](plugins-index).
 
 There is an important implementation distinction between the two methods;
-{meth}`napari.qt.Window.add_dock_widget` expects an *instance* of a widget, like a
-{class}`magicgui.widgets.Widget` or a {class}`qtpy.QtWidgets.QWidget`, whereas
-[Widget contributions](widgets-contribution-guide), expects a widget *class*
+{meth}`~napari.qt.Window.add_dock_widget` expects an *instance* of a widget, like a
+{class}`~magicgui.widgets.FunctionGui` or a `qtpy.QtWidgets.QWidget`, whereas
+[widget contributions](widgets-contribution-guide), expects a widget *class*
 (technically, a `callable` that returns a widget instance). When describing
 each of the three widget creation methods below, we will first show how to create a
 widget and add it to the viewer
-with {meth}`napari.qt.Window.add_dock_widget`, then how to adapt the widget
+with {meth}`~napari.qt.Window.add_dock_widget`, then how to adapt the widget
 for a widget contribution.
 
 (magicgui)=
 
 ## `magicgui` decorated functions
 
-`magicgui` makes building widgets to represent function inputs easy via the
+[`magicgui`](https://pyapp-kit.github.io/magicgui/) makes building widgets to represent
+function inputs easy via the
 [`magicgui.magicgui`](https://pyapp-kit.github.io/magicgui/api/magicgui/#magicgui.magicgui)
 decorator:
 
@@ -160,8 +163,8 @@ in the `magicgui` documentation.
 ## Parameter annotations
 
 The following napari types may be used as *parameter* type annotations in
-magicgui functions to get information from the napari viewer into your
-magicgui function.
+`magicgui` functions to get information from the napari viewer into your
+`magicgui` function.
 
 - any napari {class}`~napari.layers.Layer` subclass, such as
   {class}`~napari.layers.Image` or {class}`~napari.layers.Points`
@@ -206,7 +209,7 @@ def my_widget(image: Image):
 viewer = napari.view_image(np.random.rand(64, 64), name="My Image")
 viewer.window.add_dock_widget(my_widget)
 ```
-*Note the widget at the bottom with "My Image" as the currently selected option*
+*Note the widget on the right side with "My Image" as the currently selected option*
 
 ```{code-cell} python
 :tags: [remove-input]
@@ -326,8 +329,9 @@ def my_widget(ny: int=64, nx: int=64) -> Image:
 
 viewer = napari.Viewer()
 viewer.window.add_dock_widget(my_widget, area='right')
-my_widget()  # "call the widget" to call the function.
-             # Normally this would be caused by some user UI interaction
+my_widget()  # "call the widget" to call the function, so it shows in the
+             # screenshot below.
+             # Normally this would be caused by clicking on 'Add Image' button
 ```
 
 *Note the new "My Image" layer in the viewer as a result of having called the widget function.*
@@ -394,8 +398,9 @@ def threshold(image: ImageData, threshold: int = 75) -> LabelsData:
 
 viewer = napari.view_image(np.random.randint(0, 100, (64, 64)))
 viewer.window.add_dock_widget(threshold)
-threshold()  # "call the widget" to call the function.
-             # Normally this would be caused by some user UI interaction
+threshold()  # "call the widget" to call the function, so it shows in the
+             # screenshot below.
+             # Normally this would be caused by clicking on 'Run Threshold' button
 ```
 
 ```{code-cell} python
@@ -459,8 +464,9 @@ def make_points(n_points=40) -> napari.types.LayerDataTuple:
 
 viewer = napari.Viewer()
 viewer.window.add_dock_widget(make_points)
-make_points()  # "call the widget" to call the function.
-               # Normally this would be caused by some user UI interaction
+make_points()  # "call the widget" to call the function, so it shows in the
+               # screenshot below.
+               # Normally this would be caused by clicking on 'Make Points' button
 ```
 
 ```{code-cell} python
@@ -495,7 +501,7 @@ your return type must match your return annotation.
 ## Updating an existing Layer
 
 The default behavior is to add a new layer to the viewer for each
-`LayerDataTuple` returned by a magicgui function. By specifying the value of
+`LayerDataTuple` returned by a `magicgui` function. By specifying the value of
 `name` key in your {attr}`~napari.types.LayerDataTuple` metadata dict to be the name
 of an existing layer, you can update this layer, rather than creating a new layer each
 time the function is called:
@@ -569,8 +575,8 @@ development environment, you will still get all the type inference.
 
 Recall [above](creating-widgets) that plugin
 [widget contributions](widgets-contribution-guide) expects a `callable` that returns
-a widget instance, whereas {meth}`napari.qt.Window.add_dock_widget` expects an
-*instance* of a widget. The {meth}`napari.qt.Window.add_dock_widget` examples
+a widget instance, whereas {meth}`~napari.qt.Window.add_dock_widget` expects an
+*instance* of a widget. The {meth}`~napari.qt.Window.add_dock_widget` examples
 above can be easily adapted to be plugin widgets by using
 the {func}`@magic_factory <magicgui.magic_factory>` decorator instead of the
 {func}`@magicgui <magicgui.magicgui>` decorator.
@@ -592,7 +598,7 @@ def threshold(
 This function can now be added to the plugin manifest as a widget contribution.
 See the [widget contribution guide](widgets-contribution-guide) for details.
 
-Alternatively, you can also directly subclass {class}`magicgui.widgets.FunctionGui`
+Alternatively, you can also directly subclass {class}`~magicgui.widgets.FunctionGui`
 (which is the type that is returned by the {func}`@magicgui <magicgui.magicgui>`
 decorator). This method would give you more control over your widget.
 See [widget classes](widget-classes) below for more.
@@ -621,32 +627,34 @@ widget2 = my_factory(call_button=False, x={'widget_type': 'Slider'})
 ## Widget classes
 
 Generating a widget by creating a widget class allows you to have more control over
-your widget. Your widget class must subclass {class}`magicgui.widgets.Widget` (i.e.,
-a [`magicgui` widget class](https://pyapp-kit.github.io/magicgui/widgets/#the-widget-hierarchy))
-or {class}`QtWidgets.QWidget`. It can then be added to the `napari` viewer
+your widget. Your widget class must subclass {class}`magicgui.widgets.bases.Widget`
+(i.e., a
+[`magicgui` widget class](https://pyapp-kit.github.io/magicgui/widgets/#the-widget-hierarchy))
+or [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html).
+It can then be added to the `napari` viewer
 by instantiating the widget class, then adding this via
-{meth}`napari.qt.Window.add_dock_widget`. You can also create a plugin and add
+{meth}`~napari.qt.Window.add_dock_widget`. You can also create a plugin and add
 your widget class (*not* instantiated widget) as a
 [widget contribution](widgets-contribution-guide).
 
 Below we will detail how to use various parent classes to generate a widget.
 There are several `magicgui` widget classes so we will only document the use of the
-two most useful in the `napari` context; {class}`magicgui.widgets.FunctionGui` and
-{class}`magicgui.widgets.Container`.
+two most useful in the `napari` context; {class}`~magicgui.widgets.FunctionGui` and
+{class}`~magicgui.widgets.Container`.
 We will begin with the simplest but least extensible parent class and end with the
 parent class the most extensible.
 
 ### `magicgui.widgets.FunctionGui`
 
-Creating a widget by subclassing {class}`magicgui.widgets.FunctionGui` is similar in
+Creating a widget by subclassing {class}`~magicgui.widgets.FunctionGui` is similar in
 principal to using the {func}`@magicgui <magicgui.magicgui>` decorator. Decorating
 a function with {func}`@magicgui <magicgui.magicgui>` is equivalent to passing
-the same function to {class}`magicgui.widgets.FunctionGui`'s `function` parameter.
-The remaining {class}`magicgui.widgets.FunctionGui` parameters essentially
+the same function to {class}`~magicgui.widgets.FunctionGui`'s `function` parameter.
+The remaining {class}`~magicgui.widgets.FunctionGui` parameters essentially
 mirror {func}`@magicgui <magicgui.magicgui>`'s parameters.
-Indeed, {class}`magicgui.widgets.FunctionGui` is the type that is returned by
+Indeed, {class}`~magicgui.widgets.FunctionGui` is the type that is returned by
 {func}`@magicgui <magicgui.magicgui>`. Subclassing
-{class}`magicgui.widgets.FunctionGui` however, gives you access to the
+{class}`~magicgui.widgets.FunctionGui` however, gives you access to the
 `native` `QWidget` of your widget, allowing you change its appearance and add
 custom elements.
 
@@ -682,7 +690,7 @@ class definition and add to the plugin manifest.
 
 ### `magicgui.widgets.Container`
 
-The {class}`magicgui.widgets.Container` allows you to build more complex widgets
+The {class}`~magicgui.widgets.Container` allows you to build more complex widgets
 from sub-widgets. This gives you more control over each sub-widget and how callbacks
 are connected to events.
 
@@ -739,7 +747,8 @@ simply provide the class definition and add to the plugin manifest.
 
 ### `QtWidgets.QWidget`
 
-For the most control over your widget, subclass `qtpy.QtWidgets.QWidget`:
+For the most control over your widget, subclass
+[`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html):
 
 ```python
 from qtpy.QtWidgets import QHBoxLayout, QPushButton, QWidget

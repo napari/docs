@@ -1,6 +1,6 @@
 (intro-to-event-loop)=
 
-# `napari` event loop
+# napari event loop
 
 ## Introduction
 
