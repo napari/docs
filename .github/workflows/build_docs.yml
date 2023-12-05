@@ -62,8 +62,9 @@ jobs:
           run:  make -C docs docs
           # setting these empty stops from running the default (tiling) window manager
           # the window manager is not necessary for docs builds at this time
-          linux-pkgs: ""
-          linux-setup: ""
+          linux-pkgs: " "
+          linux-setup: " "
+          linux-teardown: " "
 
 
       - name: Upload artifact
