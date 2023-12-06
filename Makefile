@@ -59,3 +59,9 @@ html-noplot: clean prep-docs
 
 linkcheck-files:
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build ${FILES} -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+
+fallback-videos:
+	for video in $(basename $(wildcard docs/_static/images/*.webm)); do \
+		echo $$video; \
+		ffmpeg -i $$video.webm -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -crf 18 -preset slow -c:a aac -b:a 192k -strict -2 -y $$video.mp4; \
+	done
