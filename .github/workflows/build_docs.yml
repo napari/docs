@@ -53,7 +53,7 @@ jobs:
           python -c 'import napari.layers; print(napari.layers.__doc__)'
 
       - name: Build Docs
-        uses: aganders3/headless-gui@v1
+        uses: aganders3/headless-gui@configurable-xvfb
         env:
           GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
           GOOGLE_CALENDAR_API_KEY: ${{ secrets.GOOGLE_CALENDAR_API_KEY }}
@@ -64,6 +64,7 @@ jobs:
           # the window manager is not necessary for docs builds at this time
           linux-setup: "echo 'skip setup'"
           linux-teardown: "echo 'skip teardown'"
+          xvfb-server-args: "-screen 0 640x480x8"
 
 
       - name: Upload artifact
