@@ -37,9 +37,10 @@ extensibility;
    [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html) (most extensible but also
    the most difficult to implement)
 
-Additionally,
-the [cookiecutter-napari-plugin](https://github.com/napari/cookiecutter-napari-plugin)
-has more robust widget examples.
+For more examples, the [GUI gallery examples](https://napari.org/stable/_tags/gui.html)
+has some widget examples. Additionally,
+[cookiecutter-napari-plugin](https://github.com/napari/cookiecutter-napari-plugin)
+has more robust widget examples that you can adapt to your needs.
 
 There are two ways to then add a widget to a `napari` viewer:
 
