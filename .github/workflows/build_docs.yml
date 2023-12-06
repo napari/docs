@@ -64,7 +64,7 @@ jobs:
           # the window manager is not necessary for docs builds at this time
           linux-setup: "echo 'skip setup'"
           linux-teardown: "echo 'skip teardown'"
-          xvfb-server-args: "-screen 0 640x480x8"
+          xvfb-screen-size: "1280x1024x24"
 
 
       - name: Upload artifact
