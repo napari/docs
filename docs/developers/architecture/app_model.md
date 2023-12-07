@@ -1,3 +1,5 @@
+(app-model)=
+
 # napari's application model
 
 ```{important}
