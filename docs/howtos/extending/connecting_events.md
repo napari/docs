@@ -91,7 +91,7 @@ examples.
 
 (connect-napari-event)=
 
-## Connection functions to native napari events
+## Connecting functions to native napari events
 
 If you want something to happen following some event that happens *within*
 napari, the trick becomes knowing which native signals any given napari object

@@ -51,10 +51,11 @@ There are two ways to then add a widget to a `napari` viewer:
   [plugin](plugins-index).
 
 There is an important implementation distinction between the two methods;
-{meth}`~napari.qt.Window.add_dock_widget` expects an *instance* of a widget, like a
-{class}`~magicgui.widgets.FunctionGui` or a `qtpy.QtWidgets.QWidget`, whereas
-[widget contributions](widgets-contribution-guide), expects a widget *class*
-(technically, a `callable` that returns a widget instance). When describing
+{meth}`~napari.qt.Window.add_dock_widget` expects an *instance* of a widget, like
+an instance of class {class}`~magicgui.widgets.FunctionGui` or
+`qtpy.QtWidgets.QWidget`, whereas
+[widget contributions](widgets-contribution-guide), expect a `callable`
+(like a function or class) that will return a widget instance. When describing
 each of the three widget creation methods below, we will first show how to create a
 widget and add it to the viewer
 with {meth}`~napari.qt.Window.add_dock_widget`, then how to adapt the widget
@@ -163,7 +164,7 @@ in the `magicgui` documentation.
 
 (magicgui-parameter-annotations)=
 
-## Parameter annotations
+### Parameter annotations
 
 The following napari types may be used as *parameter* type annotations in
 `magicgui` functions to get information from the napari viewer into your
@@ -178,7 +179,7 @@ The following napari types may be used as *parameter* type annotations in
 
 The consequence of each type annotation is described below:
 
-### Annotating as a `Layer` subclass
+#### Annotating as a `Layer` subclass
 
 If you annotate one of your function parameters as a
 {class}`~napari.layers.Layer` subclass (such as {class}`~napari.layers.Image` or
@@ -222,7 +223,7 @@ viewer.window._qt_window.resize(750, 550)
 nbscreenshot(viewer, alt_text="A magicgui widget using an image layer parameter annotation")
 ```
 
-### Annotating as `Layer` class
+#### Annotating as `Layer` class
 
 In the previous example, the dropdown menu will *only* show
 {class}`~napari.layers.Image` layers, because the parameter was annotated as an
@@ -241,7 +242,7 @@ def my_widget(layer: Layer):
 ```
 
 (annotating-as-napari-types-data)=
-## Annotating as `napari.types.*Data`
+#### Annotating as `napari.types.*Data`
 
 In the previous example, the object passed to your function will be the actual
 {class}`~napari.layers.Layer` instance, meaning you will need to access any
@@ -264,7 +265,7 @@ def my_widget(array: ImageData):
 
 Like above, it will be rendered as a {class}`~magicgui.widgets.ComboBox`.
 
-### Annotating as `napari.Viewer`
+#### Annotating as `napari.Viewer`
 
 Lastly, if you need to access the actual {class}`~napari.viewer.Viewer` instance
 in which the widget is docked, you can annotate one of your parameters as a
@@ -292,7 +293,7 @@ describing your use case.
 ```
 (magicgui-return-annotations)=
 
-## Return annotations
+### Return annotations
 
 The following napari types may be used as *return* type annotations in `magicgui`
 functions to add layers to napari from your `magicgui` function:
@@ -306,7 +307,7 @@ functions to add layers to napari from your `magicgui` function:
 
 The consequence of each type is described below:
 
-### Returning a `Layer` subclass
+#### Returning a `Layer` subclass
 
 If you use a {class}`~napari.layers.Layer` subclass as a *return* annotation on a
 `magicgui` function, `napari` will interpet it to mean that the layer returned
@@ -353,7 +354,7 @@ function is called.  To update an existing layer, you must use the
 `LayerDataTuple` approach described below
 ```
 
-### Returning `List[napari.layers.Layer]`
+#### Returning `List[napari.layers.Layer]`
 
 You can create multiple layers by returning a list of
 {class}`~napari.layers.Layer`.
@@ -375,7 +376,7 @@ your return type must match your return annotation.
 ```
 
 (returning-napari-types-data)=
-### Returning `napari.types.*Data`
+#### Returning `napari.types.*Data`
 
 In the previous example, the object returned by the function had to be an actual
 {class}`~napari.layers.Layer` instance (in keeping with the return type
@@ -414,7 +415,7 @@ viewer.window._qt_window.resize(750, 550)
 nbscreenshot(viewer, alt_text="A magicgui widget returning a layer attribute")
 ```
 
-### Returning `napari.types.LayerDataTuple`
+#### Returning `napari.types.LayerDataTuple`
 
 The most flexible return type annotation is {attr}`napari.types.LayerDataTuple`:
 it gives you full control over the layer that will be created and added to the
@@ -480,7 +481,7 @@ viewer.window._qt_window.resize(750, 550)
 nbscreenshot(viewer, alt_text="A magicgui widget returning a LayerDataTuple")
 ```
 
-### Returning `List[napari.types.LayerDataTuple]`
+#### Returning `List[napari.types.LayerDataTuple]`
 
 You can also create multiple layers by returning a list of
 {attr}`~napari.types.LayerDataTuple`.
@@ -501,7 +502,7 @@ or `napari.types.LayerDataTuple`.  If you want your code to be properly typed, h
 your return type must match your return annotation.
 ```
 
-## Updating an existing Layer
+### Updating an existing Layer
 
 The default behavior is to add a new layer to the viewer for each
 `LayerDataTuple` returned by a `magicgui` function. By specifying the value of
@@ -536,7 +537,7 @@ viewer.window._qt_window.resize(750, 550)
 nbscreenshot(viewer, alt_text="A magicgui widget updating an existing layer")
 ```
 
-## Avoid imports with forward references
+### Avoid imports with forward references
 
 Sometimes, it is undesirable to import and/or depend on `napari` directly just
 to provide type annotations.  It is possible to avoid importing `napari`
@@ -574,7 +575,7 @@ development environment, you will still get all the type inference.
 
 (magicgui-plugin-widgets)=
 
-## `magicgui` functions widgets as plugin contributions
+## `magicgui` function widgets as plugin contributions
 
 Recall [above](creating-widgets) that plugin
 [widget contributions](widgets-contribution-guide) expects a `callable` that returns
@@ -650,7 +651,7 @@ parent class the most extensible.
 ### `magicgui.widgets.FunctionGui`
 
 Creating a widget by subclassing {class}`~magicgui.widgets.FunctionGui` is similar in
-principal to using the {func}`@magicgui <magicgui.magicgui>` decorator. Decorating
+principle to using the {func}`@magicgui <magicgui.magicgui>` decorator. Decorating
 a function with {func}`@magicgui <magicgui.magicgui>` is equivalent to passing
 the same function to {class}`~magicgui.widgets.FunctionGui`'s `function` parameter.
 The remaining {class}`~magicgui.widgets.FunctionGui` parameters essentially
@@ -695,7 +696,8 @@ class definition and add to the plugin manifest.
 
 The {class}`~magicgui.widgets.Container` allows you to build more complex widgets
 from sub-widgets. This gives you more control over each sub-widget and how callbacks
-are connected to events.
+are connected to events but you can still use the convenient `magicgui` widget
+generation features as shown below.
 
 ```python
 from magicgui.widgets import Container, create_widget
