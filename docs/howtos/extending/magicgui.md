@@ -146,7 +146,7 @@ viewer.window.add_dock_widget(threshold_magic_widget)
 :tags: [remove-input]
 from napari.utils import nbscreenshot
 
-viewer.window._qt_window.resize(750, 550)
+viewer.window._qt_window.resize(900, 700)
 nbscreenshot(viewer, alt_text="A magicgui threshold widget")
 ```
 
