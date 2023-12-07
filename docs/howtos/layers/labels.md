@@ -11,6 +11,8 @@ kernelspec:
   name: python3
 ---
 
+(layers-labels)=
+
 # Using the labels layer
 
 In this document, you will learn about the `napari` `Labels` layer, including
@@ -103,7 +105,7 @@ and [zarr arrays](https://zarr.readthedocs.io/en/stable/api/core.html). A
 Because the labels layer subclasses the image layer it inherits the great
 properties of the image layer, like supporting lazy loading and multiscale
 images for big data layers. For more information about both these concepts see
-the details in the [image layer guide](./image).
+the details in the [image layer guide](image-layer).
 
 ## Creating a new labels layer
 

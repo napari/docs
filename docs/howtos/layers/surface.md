@@ -110,7 +110,7 @@ the vispy colormap object. You can list all the available colormaps using
 It is also possible to create your own colormaps using vispy's
 `vispy.color.Colormap` object, see it's full
 [documentation here](https://vispy.org/api/vispy.color.colormap.html#vispy.color.colormap.Colormap).
-For more detail see the [image layer guide](./image).
+For more detail see the [image layer guide](image-layer).
 
 ## Adjusting contrast limits
 
@@ -118,5 +118,5 @@ The vertex values of the surface layer get mapped through its colormap according
 to values called contrast limits. These are a 2-tuple of values defining how
 what values get applied the minimum and maximum of the colormap and follow the
 same principles as the `contrast_limits` described in the [image layer
-guide](./image). They are also accessible through the same keyword arguments,
+guide](image-layer). They are also accessible through the same keyword arguments,
 properties, and range slider as in the image layer.

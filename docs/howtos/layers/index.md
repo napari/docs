@@ -9,4 +9,4 @@ following how-to guides:
 ```
 
 For a high-level overview of the napari Layers, see
-[Layers at a glance](../../guides/layers).
+[Layers at a glance](layers-glances).

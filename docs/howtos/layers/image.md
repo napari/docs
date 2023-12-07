@@ -11,6 +11,8 @@ kernelspec:
   name: python3
 ---
 
+(image-layer)=
+
 # Using the image layer
 
 In this document, you will learn how to use the `napari` image layer, including

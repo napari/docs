@@ -27,7 +27,7 @@ The separation of the python models from viewer GUI code allows:
   used
 * tests to be easily run headlessly
 * the python models to be run headlessly (see
-  [Running napari headlessly](../howtos/headless) for more)
+  [Running napari headlessly](headless) for more)
 
 ## Python models and events
 

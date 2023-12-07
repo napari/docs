@@ -396,7 +396,7 @@ Out[12]: 1
    context menu might update the items in the menu that are visible and/or enabled:
 
    ```python
-   context_menu.update_from_context(get_context(layer_list))
+   context_menu.update_from_context(get_context(layer-list))
    ```
 
    where `update_from_context` is a function that takes in a `Context` and

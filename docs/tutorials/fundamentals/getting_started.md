@@ -1,8 +1,8 @@
-(getting_started)=
+(launch)=
 # How to launch napari
 
 This tutorial assumes you have already installed napari.
-For help with installation see our [installation tutorial](./installation).
+For help with installation see our [installation tutorial](installation).
 
 This tutorial will teach you all the different ways to launch napari.
 At the end of the tutorial you should be able to launch napari and see the viewer your favorite way.
@@ -155,6 +155,6 @@ and where data changed in the GUI will be accessible in the notebook.
 To learn more about:
 
 * how to use the napari viewer graphical user interface (GUI),
-  checkout the [viewer tutorial](./viewer)
+  checkout the [viewer tutorial](viewer-tutorial)
 * how to use the napari viewer with different types of napari layers, see
-  [layers at a glance](../../guides/layers)
+  [layers at a glance](layers-glance)
