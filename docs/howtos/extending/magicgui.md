@@ -70,6 +70,8 @@ function inputs easy via the
 decorator:
 
 ```{code-cell} python
+:tags: [remove-stderr]
+
 from magicgui import magicgui
 import datetime
 import pathlib
