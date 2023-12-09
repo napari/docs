@@ -55,7 +55,8 @@ It is also currently not possible to save images or other layer types directly f
 but we'll be adding support for this functionality soon as discussed in [#379](https://github.com/napari/napari/issues/379).
 
 If you wish to interact with your open viewer programmatically you can open an IPython
-console via **Window** > **console**.
+console via **Window** > **console** or clicking the 'Show/Hide IPython console' button
+within the [viewer buttons](viewer-layout).
 
 (launch-script)=
 
@@ -116,7 +117,8 @@ An advantage of launching `napari` from a python script
 is that you can preprocess your images and add multiple layers before displaying the viewer.
 
 As above, if you wish to interact with your open viewer programmatically you can open
-an IPython console via **Window** > **console**.
+an IPython console via **Window** > **console** or clicking the 'Show/Hide IPython
+console' button within the [viewer buttons](viewer-layout).
 
 (launch-ipython)=
 
