@@ -146,7 +146,7 @@ viewer.window.add_dock_widget(threshold_magic_widget)
 :tags: [remove-input]
 from napari.utils import nbscreenshot
 
-viewer.window._qt_window.resize(900, 700)
+viewer.window._qt_window.resize(1225, 900)
 nbscreenshot(viewer, alt_text="A magicgui threshold widget")
 ```
 
@@ -219,7 +219,7 @@ viewer.window.add_dock_widget(my_widget)
 :tags: [remove-input]
 from napari.utils import nbscreenshot
 
-viewer.window._qt_window.resize(750, 550)
+viewer.window._qt_window.resize(1225, 900)
 nbscreenshot(viewer, alt_text="A magicgui widget using an image layer parameter annotation")
 ```
 
@@ -344,7 +344,7 @@ my_widget()  # "call the widget" to call the function, so it shows in the
 :tags: [remove-input]
 from napari.utils import nbscreenshot
 
-viewer.window._qt_window.resize(750, 550)
+viewer.window._qt_window.resize(1225, 900)
 nbscreenshot(viewer, alt_text="A magicgui widget using an image layer return annotation")
 ```
 
@@ -411,7 +411,7 @@ threshold()  # "call the widget" to call the function, so it shows in the
 :tags: [remove-input]
 from napari.utils import nbscreenshot
 
-viewer.window._qt_window.resize(750, 550)
+viewer.window._qt_window.resize(1225, 900)
 nbscreenshot(viewer, alt_text="A magicgui widget returning a layer attribute")
 ```
 
@@ -477,7 +477,7 @@ make_points()  # "call the widget" to call the function, so it shows in the
 :tags: [remove-input]
 from napari.utils import nbscreenshot
 
-viewer.window._qt_window.resize(750, 550)
+viewer.window._qt_window.resize(1225, 900)
 nbscreenshot(viewer, alt_text="A magicgui widget returning a LayerDataTuple")
 ```
 
@@ -533,7 +533,7 @@ make_points()
 :tags: [remove-input]
 from napari.utils import nbscreenshot
 
-viewer.window._qt_window.resize(750, 550)
+viewer.window._qt_window.resize(1225, 900)
 nbscreenshot(viewer, alt_text="A magicgui widget updating an existing layer")
 ```
 
