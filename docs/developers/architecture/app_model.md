@@ -1,6 +1,6 @@
 (app-model)=
 
-# napari's application model
+# `napari`'s application model
 
 ```{important}
 **This is not a part of the public napari interface!**
