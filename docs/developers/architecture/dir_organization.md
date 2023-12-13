@@ -3,25 +3,25 @@
 # `napari` directory organization
 
 The majority of the `napari` code lives in
-[`napari/napari`](https://github.com/napari/napari/tree/main/napari). The main
+[`napari/napari/`](https://github.com/napari/napari/tree/main/napari). The main
 folders are:
 
 ```
 napari/napari
-├── _app_model
-├── _qt
-├── _tests
-├── _vendor
-├── _vispy
-├── benchmarks
-├── components
-├── errors
-├── layers
-├── plugins
-├── qt
-├── resources
-├── settings
-└── utils
+├── _app_model/
+├── _qt/
+├── _tests/
+├── _vendor/
+├── _vispy/
+├── benchmarks/
+├── components/
+├── errors/
+├── layers/
+├── plugins/
+├── qt/
+├── resources/
+├── settings/
+└── utils/
 ```
 
 * Folders beginning with `_` represent private code, that is not part of the public
@@ -34,7 +34,7 @@ Notable folders in the root directory `napari/`:
   contains the source [examples gallery](https://napari.org/gallery) files.
   The code in these files are executed and outputs captured when building the gallery.
   See [](docs_contributing_guide) for details on `napari` documentation.
-* [`napari/.github`](https://github.com/napari/napari/tree/main/.github) contains
+* [`napari/.github/`](https://github.com/napari/napari/tree/main/.github) contains
   our GitHub Actions CI workflows. The majority of our CI workflows are run using
   GitHub Actions.
 
