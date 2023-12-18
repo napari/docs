@@ -100,15 +100,15 @@ def point_annotator(
     viewer = napari.view_image(stack)
     points_layer = viewer.add_points(
         properties={'label': labels},
-        edge_color='label',
-        edge_color_cycle=COLOR_CYCLE,
+        border_color='label',
+        border_color_cycle=COLOR_CYCLE,
         symbol='o',
         face_color='transparent',
-        edge_width=8,
+        border_width=8,
         size=12,
         ndim=3
     )
-    points_layer.edge_color_mode = 'cycle'
+    points_layer.border_color_mode = 'cycle'
 
     # add the label menu widget to the viewer
     label_widget = create_label_menu(points_layer, labels)
@@ -203,23 +203,23 @@ The values, 'labels', is the list of the names of the features we will be annota
 
 We add the `Points` layer to the viewer using the `viewer.add_points()` method.
 As discussed above, we will be storing which feature of interest each point corresponds to via the `label` property we defined in the `properties` dictionary.
-To visualize the feature each point represents, we set the edge color as a color cycle mapped to the `label` property (`edge_color='label'`).
+To visualize the feature each point represents, we set the border color as a color cycle mapped to the `label` property (`border_color='label'`).
 
 ```python
 properties = {'label': labels}
 points_layer = viewer.add_points(
     properties=properties,
-    edge_color='label',
-    edge_color_cycle=COLOR_CYCLE,
+    border_color='label',
+    border_color_cycle=COLOR_CYCLE,
     symbol='o',
     face_color='transparent',
-    edge_width=8,
+    border_width=8,
     size=12,
     ndim=3
 )
 ```
 
-Note that we set the `edge_color_cycle` to `COLOR_CYCLE`.
+Note that we set the `border_color_cycle` to `COLOR_CYCLE`.
 You can define your own color cycle as a list of colors.
 The colors can be defined as hex strings, standard color names or RGBA arrays.
 For example, the [category10 color palette](https://github.com/d3/d3-3.x-api-reference/blob/master/Ordinal-Scales.md#category10) would be:
@@ -241,10 +241,10 @@ COLOR_CYCLE = [
 
 We set the points `ndim` to 3 so that the coordinates for the point annotations we add will be 3 dimensional (time + 2D).
 
-Finally, we set the edge color to a color cycle:
+Finally, we set the border color to a color cycle:
 
 ```python
-    points_layer.edge_color_mode = 'cycle'
+    points_layer.border_color_mode = 'cycle'
 ```
 
 ## Adding a GUI for selecting points
