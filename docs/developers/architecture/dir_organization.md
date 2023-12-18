@@ -1,13 +1,13 @@
 (napari-directory-organization)=
 
-# `napari` directory organization
+# napari directory organization
 
-The majority of the `napari` code lives in
-[`napari/napari/`](https://github.com/napari/napari/tree/main/napari). The main
+The majority of the napari code lives in
+[`napari/`](https://github.com/napari/napari/tree/main/napari). The main
 folders are:
 
 ```
-napari/napari
+napari/
 ├── _app_model/
 ├── _qt/
 ├── _tests/
@@ -26,21 +26,29 @@ napari/napari
 
 * Folders beginning with `_` represent private code, that is not part of the public
   API.
+  * Similarly, files beginning with `_` within folders are not considered part
+    of the public API.
 * Information on organization of test files can be found in [](test-organization).
 
-Notable folders in the root directory `napari/`:
+Notable folders in the root directory:
 
-* [`napari/examples/`](https://github.com/napari/napari/tree/main/examples) folder
+* [`examples/`](https://github.com/napari/napari/tree/main/examples) folder
   contains the source [examples gallery](https://napari.org/gallery) files.
   The code in these files are executed and outputs captured when building the gallery.
-  See [](docs_contributing_guide) for details on `napari` documentation.
-* [`napari/.github/`](https://github.com/napari/napari/tree/main/.github) contains
-  our GitHub Actions CI workflows. The majority of our CI workflows are run using
-  GitHub Actions.
+  See [](docs_contributing_guide) for details on napari` documentation.
+* [`.github/`](https://github.com/napari/napari/tree/main/.github) contains
+  our [GitHub Actions](https://docs.github.com/en/actions)
+  [continuous integration (CI)](https://en.wikipedia.org/wiki/Continuous_integration)
+  workflows. The majority of our CI workflows are run using GitHub Actions.
 
 ## Qt separation
 
-We try and confine code that directly imports Qt (currently the only supported GUI
+Qt is a C++ framework to build graphical user interfaces (GUIs) that is available in
+Python from a number of libraries, such as
+[PyQt5](https://www.riverbankcomputing.com/static/Docs/PyQt5/).
+Napari uses Qt to build its GUI, but we want to remain flexible to offer other GUI
+frameworks (such as a web-based GUI) in the future. Therefore,
+we try to confine code that directly imports Qt (currently the only supported GUI
 backend) to the folders `_qt/` and `_vispy/`. Sometimes this means that
 code needs to be split in order to place the Qt part inside `_qt/`. For example,
 some of the `Action` menu items in the **View** menu require Qt. These live in
@@ -55,7 +63,7 @@ is named `_qapp_model` inside `_qt/`).
 * `_app_model/` - the code here relates to [app-model](app-model) and defines
   menu item `Actions`, providers and processors and context keys. Any Qt parts
   live in `napari/_qt/_qapp_model`.
-* `_qt/` - here we define all the visual elements of `napari` including layer controls,
+* `_qt/` - here we define all the visual elements of napari including layer controls,
   menus, vispy canvas and dialogs. Any code that directly imports GUI also lives here.
 * `_vendor/` - code vendored from other projects. This may have been because we only
   wanted to use a small part of a library and did not want to add another dependency.
@@ -69,13 +77,13 @@ is named `_qapp_model` inside `_qt/`).
   for CI workflow details. The benchmarks can also be run locally.
 * `components/` - code that defines all components of the napari viewer, including the
   layerlist, dimensions and camera.
-* `errors/` - custom `napari` errors (that inherit from built-in errors) are defined
+* `errors/` - custom napari errors (that inherit from built-in errors) are defined
   here. Currently we only have reader related custom errors.
 * `layers/` - defines the classes, utilities, keybinding and mouse binding for
   each [layer type](using-layers).
 * `plugins/` - the code here deals with registering, activating and deactivating
   plugins. It also handles ingesting plugin contributions to achieve the desired
-  effect in viewer (e.g., widget contributions should add a widget to the `napari`
+  effect in viewer (e.g., widget contributions should add a widget to the napari
   viewer).
   Code that defines the specification for each plugin contribution, the plugin
   manifest and defines plugin manager (a class that manages the currently installed
