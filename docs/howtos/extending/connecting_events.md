@@ -2,7 +2,7 @@
 
 # Hooking up your own events
 
-The `napari` graphical user interface (GUI) operates within an **event loop** that
+The napari graphical user interface (GUI) operates within an **event loop** that
 waits for and responds to user interaction 'events'. If you are unfamiliar with
 event loops, see [napari event loop](intro-to-event-loop) for a more detailed
 introduction.
@@ -145,5 +145,5 @@ viewer.add_image(image)
 Here we have a long computation (`np.random.rand(512, 1024, 1024).mean(0)`) that
 "blocks" the main thread, meaning *no button press, key press, or any other
 event can be processed until it's done*.  In this scenario, it's best to put
-your long-running function into another thread or process.  `napari` provides a
+your long-running function into another thread or process.  napari provides a
 convenience for that, described in {ref}`multithreading-in-napari`.

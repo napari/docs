@@ -16,11 +16,11 @@ kernelspec:
 
 # Creating widgets
 
-Widgets are small composable graphical elements that can be added to the `napari` user
+Widgets are small composable graphical elements that can be added to the napari user
 interface. The easiest way to add a widget is by using
-[`magicgui`](https://pyapp-kit.github.io/magicgui/), a python package that assists
+[`magicgui`](https://pyapp-kit.github.io/magicgui/), a Python package that assists
 in building widgets. It is a general abstraction layer on GUI toolkit backends (like
-Qt), with an emphasis on mapping python types to widgets. This enables you to easily
+Qt), with an emphasis on mapping Python types to widgets. This enables you to easily
 create widgets using annotations.
 If you require more extensibility though, you can create your own widget `class` that
 subclasses [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html).
@@ -42,11 +42,11 @@ has some widget examples. Additionally,
 [cookiecutter-napari-plugin](https://github.com/napari/cookiecutter-napari-plugin)
 has more robust widget examples that you can adapt to your needs.
 
-There are two ways to then add a widget to a `napari` viewer:
+There are two ways to then add a widget to a napari viewer:
 
-* via {meth}`napari.qt.Window.add_dock_widget` in a python script or interactive
+* via {meth}`napari.qt.Window.add_dock_widget` in a Python script or interactive
   console (see [How to launch napari](getting_started) for details on launching
-  and interacting programmatically with `napari`)
+  and interacting programmatically with napari)
 * adding a [widget contribution](widgets-contribution-guide) in a
   [plugin](plugins-index).
 
@@ -107,13 +107,13 @@ parameters. In the example above, `call_button` specifies the button text and th
 `param_options` `slider_float` and `dropdown` let you customize the widget
 associated with those function parameters.
 
-Third party packages (like `napari` in this case) may provide support for their types
+Third party packages (like napari in this case) may provide support for their types
 using
 [`magicgui.register_type`](https://pyapp-kit.github.io/magicgui/usage/types_widgets.html#register-type).
-Indeed `napari` uses
+Indeed napari uses
 [`magicgui.register_type`](https://pyapp-kit.github.io/magicgui/usage/types_widgets.html#register-type)
 to provide support for napari-specific type annotations. This makes it easy to
-use `magicgui` to build widgets in `napari`. Note all type annotations below *require*
+use `magicgui` to build widgets in napari. Note all type annotations below *require*
 that the resulting widget be added to a napari viewer.
 
 Below we demonstrate how to create a simple threshold widget using `magicgui` and add
@@ -310,7 +310,7 @@ The consequence of each type is described below:
 #### Returning a `Layer` subclass
 
 If you use a {class}`~napari.layers.Layer` subclass as a *return* annotation on a
-`magicgui` function, `napari` will interpet it to mean that the layer returned
+`magicgui` function, napari will interpet it to mean that the layer returned
 from the function should be added to the viewer.  The object returned from the
 function must be an actual {class}`~napari.layers.Layer` instance.
 
@@ -368,7 +368,7 @@ def make_points(...) -> List[napari.layers.Layer]:
 ```
 
 ```{note}
-Note: the `List[]` syntax here is optional from the perspective of `napari`.  You
+Note: the `List[]` syntax here is optional from the perspective of napari.  You
 can return either a single Layer or a list of Layers and they will all be added
 to the viewer as long as you annotate with either `List[napari.layers.Layer]` or
 `napari.layers.Layer`.  If you want your code to be properly typed, however,
@@ -495,7 +495,7 @@ def make_points(...) -> List[napari.types.LayerDataTuple]:
 ```
 
 ```{note}
-Note: the `List[]` syntax here is optional from the perspective of `napari`.  You
+Note: the `List[]` syntax here is optional from the perspective of napari.  You
 can return either a single tuple or a list of tuples and they will all be added
 to the viewer as long as you annotate with either `List[napari.types.LayerDataTuple]`
 or `napari.types.LayerDataTuple`.  If you want your code to be properly typed, however,
@@ -539,8 +539,8 @@ nbscreenshot(viewer, alt_text="A magicgui widget updating an existing layer")
 
 ### Avoid imports with forward references
 
-Sometimes, it is undesirable to import and/or depend on `napari` directly just
-to provide type annotations.  It is possible to avoid importing `napari`
+Sometimes, it is undesirable to import and/or depend on napari directly just
+to provide type annotations.  It is possible to avoid importing napari
 entirely by annotating with the string form of the napari type.  This is called
 a [Forward
 reference](https://peps.python.org/pep-0484/#forward-references):
@@ -568,7 +568,7 @@ def my_func(data: 'napari.types.ImageData') -> 'napari.types.ImageData':
     ...
 ```
 
-This will not require `napari` at runtime, but if it is installed in your
+This will not require napari at runtime, but if it is installed in your
 development environment, you will still get all the type inference.
 
 :::
@@ -635,7 +635,7 @@ your widget. Your widget class must subclass {class}`magicgui.widgets.bases.Widg
 (i.e., a
 [`magicgui` widget class](https://pyapp-kit.github.io/magicgui/widgets/#the-widget-hierarchy))
 or [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html).
-It can then be added to the `napari` viewer
+It can then be added to the napari viewer
 by instantiating the widget class, then adding this via
 {meth}`~napari.qt.Window.add_dock_widget`. You can also create a plugin and add
 your widget class (*not* instantiated widget) as a
@@ -643,7 +643,7 @@ your widget class (*not* instantiated widget) as a
 
 Below we will detail how to use various parent classes to generate a widget.
 There are several `magicgui` widget classes so we will only document the use of the
-two most useful in the `napari` context; {class}`~magicgui.widgets.FunctionGui` and
+two most useful in the napari context; {class}`~magicgui.widgets.FunctionGui` and
 {class}`~magicgui.widgets.Container`.
 We will begin with the simplest but least extensible parent class and end with the
 parent class the most extensible.
