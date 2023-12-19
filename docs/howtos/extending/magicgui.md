@@ -37,8 +37,9 @@ extensibility;
    [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html) (most extensible but also
    the most difficult to implement)
 
-For more examples, the [GUI gallery examples](https://napari.org/stable/_tags/gui.html)
-has some widget examples. Additionally,
+More examples of widget use can be found in the
+['GUI' gallery examples](https://napari.org/stable/_tags/gui.html) (note: not every
+example includes a widget). Additionally,
 [cookiecutter-napari-plugin](https://github.com/napari/cookiecutter-napari-plugin)
 has more robust widget examples that you can adapt to your needs.
 
@@ -47,7 +48,7 @@ There are two ways to then add a widget to a napari viewer:
 * via {meth}`napari.qt.Window.add_dock_widget` in a Python script or interactive
   console (see [How to launch napari](getting_started) for details on launching
   and interacting programmatically with napari)
-* adding a [widget contribution](widgets-contribution-guide) in a
+* by adding a [widget contribution](widgets-contribution-guide) in a
   [plugin](plugins-index).
 
 There is an important implementation distinction between the two methods;
