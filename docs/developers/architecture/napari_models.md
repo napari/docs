@@ -3,7 +3,7 @@
 # napari models and events
 
 This document explains the links between the three main components of napari:
-python models, Qt classes and vispy classes, with code examples. This knowledge
+Python models, Qt classes and vispy classes, with code examples. This knowledge
 is not necessary to use napari and is more aimed at developers interested in
 understanding the inner workings of napari. This document assumes you're
 familiar with basic usage of napari.
