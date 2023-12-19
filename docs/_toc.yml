@@ -63,6 +63,7 @@ subtrees:
         subtrees:
         - entries:
           - file: guides/napari_models
+          - file: guides/event_loop
           - file: guides/threading
           - file: guides/3D_interactivity
           - file: guides/rendering-explanation
