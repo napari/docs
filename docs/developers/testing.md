@@ -39,9 +39,9 @@ We also strive to unit test as much of our model file and utils code independent
 our GUI code. These tests are located in the `napari/layers`, `napari/components`,
 and `napari/utils` folders. Our GUI code is tests in the `napari/_tests`,
 `napari/_qt`, `napari/_vispy` folders. The tests in these three folders are ignored
-when we are testing in a headless environment without a Qt backend (in
-a subset of our
-[continuous integration](https://en.wikipedia.org/wiki/Continuous_integration) workflows).
+when we run them in the subset of our
+[continuous integration](https://en.wikipedia.org/wiki/Continuous_integration)
+workflows that run in a headless environment (without a Qt backend).
 When we are testing "non-GUI" code in a way that requires a GUI backend, they are
 placed here. The `napari/plugins` folder contains a mix of tests.
 
