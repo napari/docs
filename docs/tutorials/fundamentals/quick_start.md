@@ -132,7 +132,7 @@ nbscreenshot(viewer, alt_text="image of a single cell opened in napari viewer")
 ```
 
 ```{note}
-Once you have a napari viewer open, you can also make a new `Image` layer from an image in your Clipboard using the File menu (keybinding {kbd}`Command/Ctrl+N`).
+Once you have a napari viewer open, you can also make a new `Image` layer from an image in your Clipboard using `File -> New Image from Clipboard` menu item (keybinding {kbd}`Command/Ctrl+N`).
 ```
 
 ### Image display adjustment
