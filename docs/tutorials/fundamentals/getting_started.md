@@ -32,7 +32,7 @@ This command will launch an empty viewer:
 ![image: an empty napari viewer](../assets/tutorials/launch_cli_empty.png)
 
 Once you have the viewer open you can add images through the `File -> Open` dropdown menu
-or by dragging and dropping images directly on the viewer.
+or by dragging and dropping images directly on the viewer. Additionally, you can use the `File` menu to make a new `Image` layer from an image in your Clipboard (keybinding {kbd}`Command/Ctrl+N`).
 We currently only support files that can be read with [`skimage.io.imread`](https://scikit-image.org/docs/dev/api/skimage.io.html#skimage.io.imread),
 such as `tif`, `png`, and `jpg`.
 We plan on adding support for more exotic file types shortly - see [issue #379](https://github.com/napari/napari/issues/379) for discussion.
