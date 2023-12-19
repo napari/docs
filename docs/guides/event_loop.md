@@ -105,7 +105,7 @@ while True:  # infinite loop!
 Actions taken by the user add events to the queue and the event loop handles them one
 at a time.
 
-## Qt applications, event loops and widgets
+## Qt applications, event loops, and widgets
 
 Currently, napari uses Qt as its GUI backend, and the main loop handling events
 in napari is the [Qt

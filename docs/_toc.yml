@@ -53,7 +53,6 @@ subtrees:
             - titlesonly: True
               entries:
               - file: howtos/extending/magicgui
-              - file: howtos/extending/event_loop
               - file: howtos/extending/connecting_events
           - file: howtos/napari_imageJ
           - file: howtos/docker
