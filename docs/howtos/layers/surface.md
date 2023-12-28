@@ -28,7 +28,7 @@ using a script, not from the GUI. Please refer to
 layer first, then explore the GUI controls.
 ```
 
-## When to use the surface layer
+## When to use the `surface` layer
 
 The surface layer allows you to display a precomputed surface mesh that is
 defined by an `NxD` array of `N` vertices in `D` coordinates, an `Mx3` integer
@@ -71,6 +71,26 @@ nbscreenshot(viewer, alt_text="A viewer with a surface")
 
 viewer.close()
 ```
+
+## GUI controls for the `surface` layer
+
+Once you have created a `surface` layer programmatically, the following GUI
+controls are available in the viewer:
+
+* Opacity - use this slider control to assign opacity from 0 to 1.00 where 0 is
+  transparent and 1.00 is completely opaque.
+* Contrast Limits - click and slide the dots on either end of the slider bar to
+  adjust upper and lower contrast limits.
+* Auto-contrast - choose once or continuous.
+* Gamma - Click on the oval on the gamma slider bar and adjust it to any value
+  between 0.20 and 2.00. Gamma correction or gamma is a nonlinear operation used
+  to encode and decode luminance or tristimulus values in video or still image
+  systems.
+* Colormap - select a value from the dropdown list.
+* Blending - Choose `opaque`, `translucent`, `translucent no depth`, or
+  `additive` from the dropdown. Refer to the [Blending layers](blending-layers)
+  section of _Layers at a glance_ for an explanation of each type of blending.
+* Shading - Choose `none`, `flat`, or `smooth` from the dropdown.
 
 ## Arguments of `view_surface` and `add_surface`
 
@@ -134,23 +154,3 @@ defining how what values get applied the minimum and maximum of the colormap and
 follow the same principles as the `contrast_limits` described in [](./image).
 They are also accessible through the same keyword arguments, properties, and GUI
 layer controls as in the image layer.
-
-## GUI controls for the `surface` layer
-
-Once you have created a `surface` layer programmatically, the following GUI
-controls are available in the viewer:
-
-* Opacity - use this slider control to assign opacity from 0 to 1.00 where 0 is
-  transparent and 1.00 is completely opaque.
-* Contrast Limits - click and slide the dots on either end of the slider bar to
-  adjust upper and lower contrast limits.
-* Auto-contrast - choose once or continuous.
-* Gamma - Click on the oval on the gamma slider bar and adjust it to any value
-  between 0.20 and 2.00. Gamma correction or gamma is a nonlinear operation used
-  to encode and decode luminance or tristimulus values in video or still image
-  systems.
-* Colormap - select a value from the dropdown list.
-* Blending - Choose `opaque`, `translucent`, `translucent no depth`, or
-  `additive` from the dropdown. Refer to the [Blending layers](blending-layers)
-  section of _Layers at a glance_ for an explanation of each type of blending.
-* Shading - Choose `none`, `flat`, or `smooth` from the dropdown.
