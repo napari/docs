@@ -100,7 +100,7 @@ contributions:
     napari/layers/context:
       - submenu: context_submenu
       - command: napari-demo.submenu_item
-    hello_world:
+    context_submenu:
       - command: napari-demo.menu_item
 
   submenus:
@@ -159,15 +159,21 @@ The `Layers` submenus are organized to give the user an immediate
 feeling of what might happen to their `Layers` as a result of clicking
 one of these menu items.
 
-1. `Visualization` - Items in this submenu allow you to generate visualizations from selected layer or layers.
+1. `Visualize` - Items in this submenu allow you to generate visualizations from selected layer or layers.
 They do not change the layer data.
 2. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data.
 3. `Edit` - The items in this submenu change the data of your layer through `Filters` or `Transformations`. 
 Additionally `Annotation Tools` provide a location for convenience layer editing tools e.g. `Labels` split/merge actions.
 Items in this submenu **should not** generate new layers, but rather act upon the existing layer data.
-3. `Generate` - Items in this submenu are the main *analysis* actions you can take on your layer. 
-These items should add new layers to the viewer based on analyses and processing of data in your selected layer(s). 
-The five proposed submenus are `Projection`, `Segmentation`, `Classification`, `Registration` and `Tracks`.
+
+The remaining submenus under `Layers` deal with generating new layers based on processing of existing layers
+or other information. They define common *analysis* actions users may want to take on their layers.
+
+4. `Registration` - Commands that allow the user to perform image registration on one or more layers
+5. `Projection` - Commands that generate various projections based on one or more layers
+6. `Segmentation` - Commands that generate image segmentations
+7. `Tracks` - Commands that take in an image or segmentation and produce timelapse tracks
+8. `Classification` - ??
 
 Many of the actions in this menu exist in the right click layer context menu. These items
 should be replicated in the `Layers` menu as needed, both to aid discoverability and
@@ -204,6 +210,13 @@ It is likely, therefore, that some plugins will always have bespoke interfaces f
 exporting various file formats. These interfaces will be exposed via the new `File->I/O Utilities`
 menu.
 
+### The `File -> New Layer` Menu
+
+This menu will contain built-in `napari` commands for creating new empty layers (similar to 
+the new layer buttons atop the layerlist), but also allow plugins to declare commands that 
+open new empty layers with specific properties e.g. a `zarr`-backed `Labels` layer, an
+`Image` layer with a specific `dtype`, or a `Points` layer with specific default features.
+
 ### Plugin Submenus
 
 The goal of the newly proposed menus is to provide a natural place where generally applicable
@@ -223,20 +236,20 @@ Plugin developers can organize all contributions under this submenu as they see 
 ```
 File
 ├─ ...
+├─ New Layer
 ├─ IO Utilities
 Layers
-├─ Visualization
+├─ Visualize
+├─ Measure
 ├─ Edit
-│  ├─ Annotation Tools
+│  ├─ Annotate
 │  ├─ Filter
 │  ├─ Transform
-├─ Measure
-├─ Generate
-│  ├─ Registration
-│  ├─ Projection
-│  ├─ Segmentation
-│  ├─ Tracks
-│  ├─ Classification
+├─ Registration
+├─ Projection
+├─ Segmentation
+├─ Tracks           # remove?
+├─ Classification   # remove?
 Acquisition
 ```
 
@@ -254,10 +267,10 @@ File
 │  ├─ Store training dataset (empanada-napari)
 │  ├─ nd2ToTIFF (napari-mm3)
 Layers
-├─ Visualization
+├─ Visualize
 │  ├─ SFilterTrack (napari-stracking)
 ├─ Edit
-│  ├─ Annotation Tools
+│  ├─ Annotate
 │  │  ├─ Merge Labels (empanada-napari)
 │  │  ├─ Delete Labels (empanada-napari)
 │  │  ├─ Split Labels (empanada-napari)
@@ -270,27 +283,26 @@ Layers
 ├─ Measure
 │  ├─ SParticlesProperties (napari-stracking)
 │  ├─ STracksFeatures (napari-stracking)
-├─ Generate
-│  ├─ Registration
-│  ├─ Projection
-│  ├─ Segmentation
-│  │  ├─ 2D Inference (empanada-napari)
-│  │  ├─ 3D Inference (empanada-napari)
-│  │  ├─ make_log_segmentation (napari-clemreg)
-│  │  ├─ make_clean_binary_segmentation (napari-clemreg)
-│  │  ├─ SegmentOtsu (napari-mm3)
-│  │  ├─ SegmentUnet (napari-mm3)
-│  │  ├─ Foci (napari-mm3)
-│  │  ├─ SDetectorDog (napari-stracking)
-│  │  ├─ SDetectorDoh (napari-stracking)
-│  │  ├─ SDetectorLog (napari-stracking)
-│  │  ├─ SDetectorSeg (napari-stracking)
-│  ├─ Tracks
-│  │  ├─ SLinkerShortestPath (napari-stracking)
-│  │  ├─ Tracks (napari-mm3)
-│  ├─ Classification
-│  ├─ make_point_cloud_sampling (napari-clemreg)
-│  ├─ make_point_cloud_registration (napari-clemreg)
+├─ Registration
+├─ Projection
+├─ Segmentation
+│  ├─ 2D Inference (empanada-napari)
+│  ├─ 3D Inference (empanada-napari)
+│  ├─ make_log_segmentation (napari-clemreg)
+│  ├─ make_clean_binary_segmentation (napari-clemreg)
+│  ├─ SegmentOtsu (napari-mm3)
+│  ├─ SegmentUnet (napari-mm3)
+│  ├─ Foci (napari-mm3)
+│  ├─ SDetectorDog (napari-stracking)
+│  ├─ SDetectorDoh (napari-stracking)
+│  ├─ SDetectorLog (napari-stracking)
+│  ├─ SDetectorSeg (napari-stracking)
+├─ Tracks
+│  ├─ SLinkerShortestPath (napari-stracking)
+│  ├─ Tracks (napari-mm3)
+├─ Classification
+├─ make_point_cloud_sampling (napari-clemreg)
+├─ make_point_cloud_registration (napari-clemreg)
 Acquisition
 Plugins
 ├─ empanada-napari
@@ -319,8 +331,8 @@ Plugins
 Where a plugin developer feels that none of the submenus of a given menu are suitable
 for their purpose, they should add their item to the deepest applicable menu. For
 example, a widget that takes a layer and produces a new layer through random perturbations
-would not fit under `Layers -> Generate -> Segmentation` but could fit under 
-`Layers -> Generate`.
+would not fit under `Layers -> Segmentation` but could fit under the top level 
+`Layers` menu.
 
 Where a plugin developer feels no top level menu or submenu is suitable for their purpose,
 they should add their item to their own plugin's submenu under `Plugins -> Your Plugin`,
