@@ -10,6 +10,7 @@ sphinx-gallery
 sphinx_autodoc_typehints==1.12.0
 myst-nb
 #napari-sphinx-theme>=0.3.0
+napari-sphinx-theme @ git+https://github.com/melissawm/napari-sphinx-theme.git@new-theme
 matplotlib
 lxml
 imageio-ffmpeg
