@@ -42,7 +42,7 @@ jobs:
             cd docs
             xvfb-run --auto-servernum make docs
           environment:
-            PIP_CONSTRAINT: ../napari/resources/constraints/constraints_py3.10_docs.txt
+            PIP_CONSTRAINT: "" # ../napari/resources/constraints/constraints_py3.10_docs.txt
       - store_artifacts:
           path: docs/docs/_build/
       - persist_to_workspace:
