@@ -262,6 +262,7 @@ so this should not be considered a concrete proposal for the structure of these 
 ```
 File
 ├─ ...
+├─ New Layer
 ├─ IO Utilities
 │  ├─ Export 2D segmentations (empanada-napari)
 │  ├─ Store training dataset (empanada-napari)
@@ -325,6 +326,23 @@ Plugins
 │  ├─ train_model
 │  ├─ predict_from_model
 ```
+
+### Item Grouping & Ordering
+
+Previously, plugin contributions were limited to the `Plugins` menu and grouped
+under the plugin's name. Now that plugin contributions can be colocated with 
+native napari actions, it's important that users are able to distinguish
+the source of menu items.
+
+To that end, napari items should always be grouped separately to plugin items
+in all menus. Additionally, the plugin's name should also be listed with 
+each plugin contribution. Since plugin names can be quite long, future work should
+consider more concise ways to indicate menu item sources, including using icons.
+
+Outside of a plugin's own submenu, the `order` and `group` keys will be ignored
+for menu contributions. napari will make its own decisions about the grouping
+and ordering of plugin contributions in its native menus.
+
 
 ### Items that Don't Fit?
 
