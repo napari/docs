@@ -327,6 +327,14 @@ Plugins
 │  ├─ predict_from_model
 ```
 
+### Item Descriptions
+
+To allow users to browse menus more effectively without having to click each
+item to figure out what it does, menu contributions should be given a `description`
+field that is available when the user is inspecting the menu. The `description`
+should be required, so that 
+
+
 ### Item Grouping & Ordering
 
 Previously, plugin contributions were limited to the `Plugins` menu and grouped
@@ -482,11 +490,11 @@ in the plugin's submenu at the top level.
 
 ## Future Work
 
-As mentioned above, a key feature to support rapid browsing for actions is the
+**Command paltte:** As mentioned above, a key feature to support rapid browsing for actions is the
 search functionality via the command palette. This is actively being worked
 on and is essential for navigation.
 
-Once more contribution types are exposed for users, it's important that users
+**Context dependent enablement:** Once more contribution types are exposed for users, it's important that users
 are aware why certain actions are disabled when the user doesn't meet the
 requisite context declared in the contribution's `enablement` clause. Since
 the syntax for declaring these contexts is strictly defined, we should be
@@ -497,14 +505,14 @@ the user has only selected an image layer, we could indicate the missing
 context to the user e.g. "Action takes a points and image layer, but no
 points layer is selected". 
 
-A desired attribute of these menu items is that users always know what
+**Making actions predictable:** A desired attribute of these menu items is that users always know what
 will happen when they click a menu item. Does a widget open? Is the layer
 edited? Is a new layer added to the `Viewer`? Once more contribution 
 types are exposed, we should be able to either add this information 
 as metadata in the manifest file, or infer it from return type 
 annotations of contribution commands, and also expose this to the user.
 
-Finally, the number of actions in each menu is heavily dependent on
+**Dynamic menus:** The number of actions in each menu is heavily dependent on
 the plugins installed in the user's environment. Given a complete set of
 contributable menus, we could dynamically inspect how many menu items
 each submenu contains, and group them appropriately for the user while
@@ -515,6 +523,11 @@ submenu. If the user has just one `Watershed` segmentation plugin
 installed, this submenu would not appear. This would require very careful 
 design to ensure the user still knows what to expect when they load up
 the `Viewer`.
+
+**Location preferences:** One option to consider when moving/removing
+menus is allowing plugin developers to declare a preference list of 
+menu locations, such that if one location is no longer available, 
+the menu item is placed in the next location on the preference list.
 
 ## Alternatives
 
