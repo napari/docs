@@ -380,6 +380,21 @@ a Pull Request will be raised opening up this menu for contribution.
 The user proposing the menu is not responsible for opening this Pull
 Request, though they may, if they wish.
 
+### User Configuration
+
+This document has so far discussed menu contributions exclusively from
+the plugin developer's perspective. In general, napari will continue
+to be opinionated about what plugin developers can and cannot change 
+about the napari interface through menu contributions. Our guiding principle
+here is that users should never be surprised by the napari interface as a result
+of standard plugin contributions - menus shouldn't move around, or be hidden, layer
+controls should behave in the same way regardless of what plugins are installed, etc.
+
+However, napari users **should** be able to freely customize their own napari installation
+to a much greater extent. This should include contribution-level enablement control
+for plugins, as well as building their own custom menus, whether this be a brand new top-level
+menu or rearranging things within existing menus.
+
 ## Related Work
 
 <!-- This section should list relevant and/or similar technologies, possibly in
