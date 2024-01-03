@@ -554,6 +554,8 @@ interactions and plugin contributions e.g. multi canvas
 - **Jun 13 2022: npe2 #161** is closed and #160 is reverted, with comment for follow up over in the napari repo.
 - **[Sep 30 2022: napari #5153](https://github.com/napari/napari/pull/5153)** opened with same list as in npe2, minimal discussion and input.
 - **Oct 28 2022: napari #5153** discussion on core devs zulip stream begins. Developers mostly agree on the inidividual menu items but don't like how deep the `Tools` menu already is, and the lack of semantic meaning in its structure. 
+- **[Dec 22 2022: NAP6 PR](https://github.com/napari/docs/pull/77)** is opened and there is much discussion. Implementation is blocked by `app-model` work, so focus turns to that.
+- **[Oct 04 2023: Hackathon](https://hackmd.io/fmKp0If5RkiwWIxYYRdKpg)** is held and Draga demos working branch of menu contributions. Core devs present discuss various outstanding items. This discussion is summarised in the linked notes.
 
 ## References and Footnotes
 
