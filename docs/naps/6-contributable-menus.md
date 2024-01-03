@@ -153,7 +153,7 @@ actions.
 
 ### The `Layers` Menu
 Currently the foremost example of such an object is the napari `Layers`, and this
-top level menu therefore contains five submenus organized by the types of processing
+top level menu therefore contains a number of submenus organized by the types of processing
 the user may wish to perform on the selected `Layer` or `Layers`.
 
 The `Layers` submenus are organized to give the user an immediate
