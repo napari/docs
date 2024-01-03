@@ -51,7 +51,7 @@ widget_demo.show()
 *Add caption here*
 
 For more information on the features and usage of `magicgui`, see the [magicgui
-documentation](https://napari.org/magicgui).  `magicgui` does not require
+documentation](https://pyapp-kit.github.io/magicgui/). `magicgui` does not require
 napari, but napari *does* provide support for using magicgui within napari. The
 purpose of this page is to document some of the conveniences provided by napari
 when using `magicgui` with napari-specific type annotations.
@@ -64,7 +64,7 @@ context-dependent action for the object returned from the function (in the
 absence of a type hint, the type of the default value will be used).  Third
 party packages (like `napari` in this case) may provide support for their types
 using
-[`magicgui.register_type`](https://napari.org/magicgui/usage/types_widgets.html#register-type).
+[`magicgui.register_type`](https://pyapp-kit.github.io/magicgui/usage/types_widgets.html#register-type).
 This is how using the type annotations described below leads to widgets and/or
 "actions" in napari.
 
@@ -269,7 +269,7 @@ def make_points(...) -> List[napari.layers.Layer]:
 ```{note}
 Note: the `List[]` syntax here is optional from the perspective of `napari`.  You
 can return either a single Layer or a list of Layers and they will all be added
-to the viewer as long as you use either `List[napari.layers.Layer]` or 
+to the viewer as long as you use either `List[napari.layers.Layer]` or
 `napari.layers.Layer`.  If you want your code to be properly typed, however,
 your return type must match your return annotation.
 ```
@@ -338,7 +338,7 @@ The following are all valid {attr}`napari.types.LayerDataTuple` examples:
 
 ```python
 # an image array
-(np.random.rand(64, 64),) 
+(np.random.rand(64, 64),)
 
 # an image with name and custom blending mode
 (np.random.rand(64, 64), {'name': 'My Image', 'blending': 'additive'})
@@ -393,7 +393,7 @@ def make_points(...) -> List[napari.types.LayerDataTuple]:
 ```{note}
 Note: the `List[]` syntax here is optional from the perspective of `napari`.  You
 can return either a single tuple or a list of tuples and they will all be added
-to the viewer as long as you use either `List[napari.types.LayerDataTuple]` or 
+to the viewer as long as you use either `List[napari.types.LayerDataTuple]` or
 `napari.types.LayerDataTuple`.  If you want your code to be properly typed, however,
 your return type must match your return annotation.
 ```

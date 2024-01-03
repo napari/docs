@@ -20,11 +20,13 @@ much as we can with unit tests, requiring fewer integration tests, and the least
 of functional tests as depicted in the test pyramid below from
 [softwaretestinghelp.com](https://www.softwaretestinghelp.com/the-difference-between-unit-integration-and-functional-testing/):
 
-![tests](../images/tests.png)
+![Pyramid diagram depicting the relationship between time to write/execute three different types of tests and return on investment for those tests.  The pyramid is split into three sections: the bottom, largest section is Unit testing, the middle section is Integration testing and the top is Functional testing. The size of the section is proportional to the quantity of tests of that type you should write. Moving up the pyramid, tests take longer to write and have a lower return on investment.](../images/tests.png)
 
 Unit tests are at the base of the pyramid because they are the easiest to write and
 the quickest to run. The time and effort to implement and maintain tests increases
 from unit tests to integration and functional tests.
+
+(test-organization)=
 
 ## Test organization
 
@@ -43,7 +45,7 @@ of tests.
 ## Running tests
 
 To run our test suite locally, run `pytest` on the command line.  If, for some reason
-you don't already have the test requirements in your environment, run `pip install -e .[testing]`.
+you don't already have the test requirements in your environment, run `python -m pip install -e .[testing]`.
 
 There are a very small number of tests (<5) that require showing GUI elements, (such
 as testing screenshots). By default, these are only run during continuous integration.
@@ -52,6 +54,48 @@ If you'd like to include them in local tests, set the environment variable "CI":
 ```sh
 CI=1 pytest
 ```
+
+It is also possible to run test using `tox`. This is the same way as it is done in CI.
+The main difference is that tox will create a virtual environment for each test environment, so it will take more time
+but it will be more similar to the CI environment.
+
+```sh
+tox -e py310-linux-pyqt5
+```
+
+To get list of all available environments run:
+
+```sh
+tox list
+```
+
+### Running tests without pop-up windows
+
+Some tests create visible napari viewers, which pop up on your monitor then quickly disappear.
+This can be annoying if you are trying to use your computer while the tests are running.
+There are two ways to avoid this:
+
+1. Use the `QT_QPA_PLATFORM=offscreen` environment variable.
+This tells Qt to render windows "offscreen", which is slower but will avoid the pop-ups.
+   ```shell
+   QT_QPA_PLATFORM=offscreen pytest napari
+   ```
+   or 
+   ```shell
+   QT_QPA_PLATFORM=offscreen tox -e py310-linux-pyqt5
+   ```
+   
+2. If you are using Linux or WSL, you can use the `xvfb-run` command.
+   This will run the tests in a virtual X server. 
+   ```sh
+   xvfb-run pytest napari
+   ```
+   or
+   ```sh
+   xvfb-run tox -e py310-linux-pyqt5
+   ```
+   
+where the tox environment selector `py310-linux-pyqt5` must match your OS and Python version.
 
 ### Tips for speeding up local testing
 
@@ -148,7 +192,7 @@ you create during testing are cleaned up at the end of each test:
    Duplicate cleanup may cause an error.  Use the fixture as follows:
 
     ```python
-    # the make_napari_viewer fixture is defined in napari/conftest.py
+    # the make_napari_viewer fixture is defined in napari/utils/_testsupport.py
     def test_something_with_a_viewer(make_napari_viewer):
         # make_napari_viewer takes any keyword arguments that napari.Viewer() takes
         viewer = make_napari_viewer()
@@ -158,7 +202,7 @@ you create during testing are cleaned up at the end of each test:
     ```
 
 > If you're curious to see the actual `make_napari_viewer` fixture definition, it's
-> in `napari/conftest.py`
+> in `napari/utils/_testsupport.py`
 
 ### Mocking: "Fake it till you make it"
 

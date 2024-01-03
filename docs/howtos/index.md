@@ -1,3 +1,4 @@
+(how-tos)=
 # How-to guides
 
 These guides show you how to complete tasks with napari. They assume you have
@@ -21,3 +22,5 @@ and ImageJ simultaneously.
 - [Performance monitoring](./perfmon): Learn about how to monitor napari
 performance and diagnose potential problems.
 - [napari headless](./headless): Tips on how to run napari headlessly.
+- [Themes](themes): Changing appearance of the `napari` GUI with your own theme
+  and sharing your theme via a plugin.

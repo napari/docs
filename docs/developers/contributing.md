@@ -5,60 +5,172 @@ We welcome your contributions! Please see the provided steps below and never hes
 
 If you are a new user, we recommend checking out the detailed [Github Docs](https://docs.github.com/en).
 
+You can see the general direction for napari development and possible work plans in our current [Roadmap](../roadmaps/index.md).
+
 (dev-installation)=
 ## Setting up a development installation
 
 In order to make changes to `napari`, you will need to [fork](https://docs.github.com/en/get-started/quickstart/contributing-to-projects#forking-a-repository) the
-[repository](https://github.com/napari/napari).
+[repository](https://github.com/napari/napari). If you are not familiar with `git`, we recommend reading up on [this guide](https://docs.github.com/en/get-started/using-git/about-git#basic-git-commands).
 
-If you are not familiar with `git`, we recommend reading up on [this guide](https://docs.github.com/en/get-started/using-git/about-git#basic-git-commands).
+1. Clone the forked repository to your local machine and change directories:
 
-Clone the forked repository to your local machine and change directories:
-```sh
-git clone https://github.com/your-username/napari.git
-cd napari
+    ```sh
+    git clone https://github.com/your-username/napari.git
+    cd napari
+    ```
+
+2. Set the `upstream` remote to the base `napari` repository:
+
+    ```sh
+    git remote add upstream https://github.com/napari/napari.git
+    ```
+
+3. If you haven't already, create a development environment:
+
+    ::::{tab-set}
+
+    :::{tab-item} Using `conda`
+    After [installing `conda`](https://www.anaconda.com/products/distribution), create an environment called `napari-env` with Python {{ python_version }} and activate it.
+
+    {{ conda_create_env }}
+    :::
+
+    :::{tab-item} Using `venv`
+    After installing Python on your machine, create a virtual environment on your terminal and activate it. On Linux and MacOS, you can run
+    ```sh
+    python -m venv <path-to-env>
+    source <path-to-env>/bin/activate
+    ```
+    See the [venv](https://docs.python.org/3/library/venv.html) documentation for instructions on Windows.
+    :::
+
+    ::::
+
+    ```{note}
+    It is highly recommended to create a fresh environment when working with
+    napari, to prevent issues with outdated or conflicting packages in your
+    development environment.
+    ```
+
+4. Install the package in editable mode, along with all of the developer tools.
+
+    If you only want to use napari, you can install it on most macOS, Linux and
+    Windows systems with Python {{ python_version_range }}
+    by following the directions on the
+    [instructions page](../tutorials/fundamentals/installation.md#install-as-python-package-recommended).
+
+    napari supports different Qt backends, and you can choose which one to install and use.
+
+    For example, for PyQt5, the default, you would use the following:
+    ```sh
+    pip install -e ".[pyqt,dev]"  # (quotes only needed for zsh shell)
+    ```
+
+    If you want to use PySide2 instead, you would use:
+    ```sh
+    pip install -e ".[pyside,dev]"  # (quotes only needed for zsh shell)
+    ```
+
+    Finally, if you already have a Qt backend installed or want to use an experimental one like Qt6 use:
+    ```sh
+    pip install -e ".[dev]"  # (quotes only needed for zsh shell)
+    ```
+
+    Note that in this last case you will need to install your Qt backend separately.
+
+5. We use [`pre-commit`](https://pre-commit.com) to format code with
+   [`black`](https://github.com/psf/black) and lint with
+   [`ruff`](https://github.com/charliermarsh/ruff) automatically prior to each commit.
+   To minimize test errors when submitting pull requests, please install `pre-commit`
+   in your environment as follows:
+
+   ```sh
+   pre-commit install
+   ```
+
+   Upon committing, your code will be formatted according to our [`black`
+   configuration](https://github.com/napari/napari/blob/main/pyproject.toml), which includes the settings
+   `skip-string-normalization = true` and `max-line-length = 79`. To learn more,
+   see [`black`'s documentation](https://black.readthedocs.io/en/stable/).
+
+   Code will also be linted to enforce the stylistic and logistical rules specified
+   in our [`flake8` configuration](https://github.com/napari/napari/blob/main/setup.cfg), which currently ignores
+   [E203](https://lintlyci.github.io/Flake8Rules/rules/E203.html),
+   [E501](https://lintlyci.github.io/Flake8Rules/rules/E501.html),
+   [W503](https://lintlyci.github.io/Flake8Rules/rules/W503.html) and
+   [C901](https://lintlyci.github.io/Flake8Rules/rules/C901.html).  For information
+   on any specific flake8 error code, see the [Flake8
+   Rules](https://lintlyci.github.io/Flake8Rules/).  You may also wish to refer to
+   the [PEP 8 style guide](https://peps.python.org/pep-0008/).
+
+   If you wish to tell the linter to ignore a specific line use the `# noqa`
+   comment along with the specific error code (e.g. `import sys  # noqa: E402`) but
+   please do not ignore errors lightly.
+
+Now you are all set to start developing with napari.
+
+## Contributing documentation
+
+If you wish to contribute documentation changes to napari, please read the [guide on contributing documentation](documentation/index.md).
+
+(add-examples)=
+## Adding examples to the [Gallery](gallery)
+
+All of the examples in the [examples Gallery](gallery) are Python scripts that
+live under [the `examples` folder of the napari repository](https://github.com/napari/napari/tree/main/examples).
+Because of how this gallery is built, every such Python script needs a docstring
+containing at least a title (following the `.rst` format of docstrings in
+Python) and one or more _tags_. This ensures the example will be shown in the
+correct place in the table of contents for the gallery (see, for example, the
+[](tagoverview) page.)
+
+Here's an example of what that means. The example file
+[add_image.py](https://github.com/napari/napari/blob/main/examples/add_image.py)
+contains the following:
+
+```python
+"""
+Add image
+=========
+
+Display one image using the :func:`view_image` API.
+
+.. tags:: visualization-basic
+"""
+
+from skimage import data
+import napari
+
+# create the viewer with an image
+viewer = napari.view_image(data.astronaut(), rgb=True)
+
+if __name__ == '__main__':
+    napari.run()
 ```
 
-Set the `upstream` remote to the base `napari` repository:
-```sh
-git remote add upstream https://github.com/napari/napari.git
+The equals signs under "Add image" mark this as the example title. The text
+below is a short description of the example, and the tags are assigned by the
+use of the `.. tags::` directive. In this case, the only tag associated with
+this example is `visualization-basic`. Multiple tags can be separated with a
+comma.
+
+Note that the examples are `.py` source files, and any outputs and images will
+be autogenerated when the documentation site is built.
+
+````{note}
+If you are running any of these examples in an interactive environment (e.g. a Jupyter notebook or
+IPython console), the block
+
+```
+if __name__ == '__main__':
+    napari.run()
 ```
 
-Install the package in editable mode, along with all of the developer tools
-```sh
-pip install -e ".[dev]"  # (quotes only needed for zsh shell)
-```
-
-We use [`pre-commit`](https://pre-commit.com) to sort imports with
-[`isort`](https://github.com/PyCQA/isort), format code with
-[`black`](https://github.com/psf/black), and lint with
-[`flake8`](https://github.com/PyCQA/flake8) automatically prior to each commit.
-To minimize test errors when submitting pull requests, please install `pre-commit`
-in your environment as follows:
-
-```sh
-pre-commit install
-```
-
-Upon committing, your code will be formatted according to our [`black`
-configuration](https://github.com/napari/napari/blob/main/pyproject.toml), which includes the settings
-`skip-string-normalization = true` and `max-line-length = 79`. To learn more,
-see [`black`'s documentation](https://black.readthedocs.io/en/stable/).
-
-Code will also be linted to enforce the stylistic and logistical rules specified
-in our [`flake8` configuration](https://github.com/napari/napari/blob/main/setup.cfg), which currently ignores
-[E203](https://lintlyci.github.io/Flake8Rules/rules/E203.html),
-[E501](https://lintlyci.github.io/Flake8Rules/rules/E501.html),
-[W503](https://lintlyci.github.io/Flake8Rules/rules/W503.html) and
-[C901](https://lintlyci.github.io/Flake8Rules/rules/C901.html).  For information
-on any specific flake8 error code, see the [Flake8
-Rules](https://lintlyci.github.io/Flake8Rules/).  You may also wish to refer to
-the [PEP 8 style guide](https://peps.python.org/pep-0008/).
-
-If you wish to tell the linter to ignore a specific line use the `# noqa`
-comment along with the specific error code (e.g. `import sys  # noqa: E402`) but
-please do not ignore errors lightly.
-
+is not necessary—you can copy-paste the code above it. However, it is required when running examples as scripts, using for example `python add_image.py`.
+Because our example gallery is built from Python scripts, you need to ensure this
+block is present in all contributed examples.
+````
 ## Adding icons
 
 If you want to add a new icon to the app, make the icon in whatever program you
@@ -76,48 +188,13 @@ export NAPARI_REBUILD_RESOURCES=1
 ```
 
 Icons are typically used inside of one of our `stylesheet.qss` files, with the
-`{{ folder }}` variable used to expand the current theme name.
+`{{ id }}` variable used to expand the current theme name.
 
 ```css
 QtDeleteButton {
-   image: url("theme_{{ name }}:/delete.svg");
+   image: url("theme_{{ id }}:/delete.svg");
 }
 ```
-
-### Creating and testing themes
-
-A theme is a set of colors used throughout napari.  See, for example, the
-builtin themes in `napari/utils/theme.py`.  To make a new theme, create a new
-`dict` with the same keys as one of the existing themes, and
-replace the values with your new colors.  For example
-
-```python
-from napari.utils.theme import get_theme, register_theme
-
-
-blue_theme = get_theme('dark')
-blue_theme.update(
-    background='rgb(28, 31, 48)',
-    foreground='rgb(45, 52, 71)',
-    primary='rgb(80, 88, 108)',
-    current='rgb(184, 112, 0)',
-)
-
-register_theme('blue', blue_theme)
-```
-
-
-To test out the theme, use the
-`theme_sample.py` file from the command line as follows:
-
-```sh
-python -m napari._qt.theme_sample
-```
-*note*: you may specify a theme with one additional argument on the command line:
-```sh
-python -m napari._qt.theme_sample dark
-```
-(providing no arguments will show all themes in `theme.py`)
 
 ## Translations
 
@@ -208,18 +285,6 @@ git push -u origin your-branch-name
 
 You can then make a
 [pull-request](https://docs.github.com/en/get-started/quickstart/contributing-to-projects#making-a-pull-request) to `napari`'s `main` branch.
-
-## Building the docs
-
-From the project root:
-```sh
-make docs
-```
-
-The docs will be built at `docs/_build/html`.
-
-Most web browsers will allow you to preview HTML pages.
-Try entering `file:///absolute/path/to/napari/docs/_build/html/index.html` in your address bar.
 
 ## Code of Conduct
 

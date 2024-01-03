@@ -1,29 +1,21 @@
+# References and relevant issues
+<!-- What relevant resources were used in the creation of this PR?
+If this PR addresses an existing issue on the repo,
+please link to that issue here as "Closes #(issue-number)".
+If this PR adds docs for a napari PR please add a "Depends on <napari PR link>" -->
+
 # Description
-<!-- What does this pull request (PR) do? Why is it necessary? -->
-<!-- Tell us about your new feature, improvement, or fix! -->
-<!-- If your change includes user interface changes, please add an image, or an animation "An image is worth a thousand words!" -->
-<!-- You can use https://www.cockos.com/licecap/ or similar to create animations -->
+<!-- What does this pull request (PR) do? Does it add new content, improve/fix existing
+context, improve/fix workflow/documentation build/deployment or something else?
+<!-- If relevant, please include a screenshot or a screen capture in your content
+change: "An image is worth a thousand words!" -->
+<!-- You can use https://www.cockos.com/licecap/ or similar to create animations. -->
+<!-- You can also see a preview of the documentation changes you are submitting by
+clicking on "Details" to the right of the "Check the rendered docs here!" check on your PR.-->
 
-## Type of change
-<!-- Please delete options that are not relevant. -->
-- [ ] Bug-fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
-
-# References
-<!-- What resources, documentation, and guides were used in the creation of this PR? -->
-<!-- If this is a bug-fix or otherwise resolves an issue, reference it here with "closes #(issue)" -->
-
-# How has this been tested?
-<!-- Please describe the tests that you ran to verify your changes. -->
-- [ ] example: the test suite for my feature covers cases x, y, and z
-- [ ] example: all tests pass with my change
-
-## Final checklist:
-- [ ] My PR is the minimum possible work for the desired functionality
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] If I included new strings, I have used `trans.` to make them localizable.
-      For more information see our [translations guide](https://napari.org/docs/dev/guides/translations.html).
+<!-- Final Checklist
+- If images included: I have added [alt text](https://webaim.org/techniques/alttext/)
+If workflow, documentation build or deployment change:
+- My PR is the minimum possible work for the desired functionality
+- I have commented my code, to let others know what it does
+-->

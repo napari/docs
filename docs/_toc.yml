@@ -33,7 +33,6 @@ subtrees:
             subtrees:
             - entries:
               - file: tutorials/tracking/cell_tracking
-      - file: further-resources/napari-workshops
       - file: howtos/index
         subtrees:
         - titlesonly: True
@@ -70,20 +69,54 @@ subtrees:
           - file: guides/app_model
           - file: guides/events_reference
       - file: further-resources/glossary
+      - file: further-resources/napari-workshops
+      - file: further-resources/sample_data
       - file: gallery
   - file: plugins/index
     subtrees:
     - entries:
-      - file: plugins/find_and_install_plugin
-      - file: plugins/first_plugin
-      - file: plugins/manifest
-      - file: plugins/contributions
-      - file: plugins/guides
-      - file: plugins/test_deploy
-      - file: plugins/best_practices
-      - file: plugins/debug_plugins
-      - file: plugins/npe2_migration_guide
-      - file: plugins/npe1
+      - file: plugins/start_using_plugins/index
+        subtrees:
+        - entries:
+          - file: plugins/start_using_plugins/finding_and_installing_plugins
+      - file: plugins/building_a_plugin/index
+        subtrees:
+        - entries:
+          - file: plugins/building_a_plugin/first_plugin
+          - file: plugins/building_a_plugin/guides
+          - file: plugins/building_a_plugin/debug_plugins
+          - file: plugins/building_a_plugin/best_practices
+          - file: plugins/virtual_environment_docs/index
+            subtrees:
+            - entries:
+              - file: plugins/virtual_environment_docs/1-virtual-environments
+              - file: plugins/virtual_environment_docs/2-deploying-your-plugin
+              - file: plugins/virtual_environment_docs/3-version-management
+              - file: plugins/virtual_environment_docs/4-developer-tools
+              - file: plugins/virtual_environment_docs/5-survey
+      - file: plugins/testing_and_publishing/index
+        subtrees:
+        - entries:
+          - file: plugins/testing_and_publishing/test
+          - file: plugins/testing_and_publishing/deploy
+          - file: plugins/testing_workshop_docs/index
+            subtrees:
+            - entries:
+              - file: plugins/testing_workshop_docs/1-pythons-assert-keyword
+              - file: plugins/testing_workshop_docs/2-pytest-testing-frameworks
+              - file: plugins/testing_workshop_docs/3-readers-and-fixtures
+              - file: plugins/testing_workshop_docs/4-test-coverage
+              - file: plugins/testing_workshop_docs/testing-resources
+      - file: plugins/advanced_topics/index
+        subtrees:
+        - entries:
+          - file: plugins/advanced_topics/npe2_migration_guide
+          - file: plugins/advanced_topics/npe1
+      - file: plugins/technical_references/index
+        subtrees:
+        - entries:
+          - file: plugins/technical_references/manifest
+          - file: plugins/technical_references/contributions
   - file: community/index
     subtrees:
     - titlesonly: True
@@ -95,35 +128,47 @@ subtrees:
       - file: community/governance
       - file: community/working_groups
       - file: community/meeting_schedule
-      - file: developers/index
+      - file: community/licensing
+  - file: developers/index
+    subtrees:
+    - entries:
+      - file: developers/contributing
+      - file: developers/architecture/index
         subtrees:
         - entries:
-          - file: developers/contributing
-          - file: naps/index
-            subtrees:
-            - maxdepth: 1
-              entries:
-              - file: naps/0-nap-process
-              - file: naps/1-institutional-funding-partners
-              - file: naps/2-conda-based-packaging
-              - file: naps/3-spaces
-              - file: naps/4-async-slicing
-              - file: naps/5-new-logo
-              - file: naps/6-contributable-menus
-          - file: developers/documentation/index
-            subtrees:
-            - entries:
-              - file: developers/documentation/docs_template
-          - file: developers/translations
-          - file: developers/core_dev_guide
-          - file: developers/release
-          - file: developers/testing
-          - file: developers/profiling
-          - file: developers/benchmarks
-          - file: developers/packaging
+          - file: developers/architecture/dir_organization
+          - file: developers/architecture/napari_models
+          - file: developers/architecture/app_model
+      - file: naps/index
+        subtrees:
+        - maxdepth: 1
+          entries:
+          - file: naps/0-nap-process
+          - file: naps/1-institutional-funding-partners
+          - file: naps/2-conda-based-packaging
+          - file: naps/3-spaces
+          - file: naps/4-async-slicing
+          - file: naps/5-new-logo
+          - file: naps/6-contributable-menus
+          - file: naps/7-key-binding-dispatch
+          - file: naps/8-telemetry
+      - file: developers/documentation/index
+        subtrees:
+        - entries:
+          - file: developers/documentation/docs_template
+          - file: developers/documentation/docs_deployment
+      - file: developers/translations
+      - file: developers/core_dev_guide
+      - file: developers/release
+      - file: developers/testing
+      - file: developers/profiling
+      - file: developers/benchmarks
+      - file: developers/packaging
+      - file: developers/maintenance
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_4_18
           - file: release/release_0_4_17
           - file: release/release_0_4_16
           - file: release/release_0_4_15
@@ -172,7 +217,6 @@ subtrees:
           - file: roadmaps/0_4
           - file: roadmaps/0_3_retrospective
           - file: roadmaps/0_3
-      - file: community/licensing
   - file: api/index
     subtrees:
     - titlesonly: True

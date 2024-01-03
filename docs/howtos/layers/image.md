@@ -85,7 +85,7 @@ napari to seamlessly browse enormous datasets that are loaded in the right way.
 For example, here we are browsing over 100GB of lattice lightsheet data stored
 in a zarr file:
 
-![image: lattice light sheet microscopy](../../images/LLSM.webm)
+![napari viewer with an image layer of lattice lightsheet data opened. It can be browsed using the slider at the bottom of the viewer.](../../images/LLSM.webm)
 
 ## Multiscale images
 
@@ -102,7 +102,7 @@ viewed in 2D or incredibly large 3D images when viewed in 3D. For example this
 easily browsed as at each moment in time we only load the level of the
 multiscale image and the part of the image that needs to be displayed:
 
-![image: pathology](../../images/pathology.webm)
+![napari viewer with a large image layer zoomed all the way in and all the way out in a matter of seconds thanks to multiscale image support.](../../images/pathology.webm)
 
 This example had precomputed multiscale images stored in a zarr file, which is
 best for performance. If, however you don't have a precomputed multiscale image
@@ -144,7 +144,7 @@ viewer = napari.view_image(
 
 ```
 
-![image: multichannel image](../../images/multichannel_cells.png)
+![napari viewer with a multichannel image of cells displayed as two image layers: nuclei and membrane.](../../images/multichannel_cells.png)
 
 ## Viewing RGB vs luminance (grayscale) images
 
@@ -296,10 +296,10 @@ extent of the contrast limits range slider will be set to those values.
 
 ## Saving without image compression
 
-When saving an image layer, lossless zlib compression is applied by default. 
- To save with a different level of compression, consider using 
- [imageio.imwrite](https://imageio.readthedocs.io/en/stable/_autosummary/imageio.v3.imwrite.html).  
-Adjusting compression can be accomplished by including the appropriate kwargs 
-as outlined in the following locations for 
-[tiff](https://imageio.readthedocs.io/en/stable/_autosummary/imageio.plugins.tifffile.html#metadata-for-writing) or 
-[png](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html#png) files. 
+When saving an image layer, lossless zlib compression is applied by default.
+ To save with a different level of compression, consider using
+ [imageio.imwrite](https://imageio.readthedocs.io/en/stable/_autosummary/imageio.v3.imwrite.html).
+Adjusting compression can be accomplished by including the appropriate kwargs
+as outlined in the following locations for
+[tiff](https://imageio.readthedocs.io/en/stable/_autosummary/imageio.plugins.tifffile.html#metadata-for-writing) or
+[png](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html#png) files.
