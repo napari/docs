@@ -78,7 +78,6 @@ If you want to install napari with PySide2 as the backend you need to install it
 ```sh
 conda install -c conda-forge napari pyside2
 ```
-````
 
 ````{note}
 In some cases, `conda`'s default solver can struggle to find out which packages need to be
@@ -111,7 +110,7 @@ mamba install napari
 
 :::::{tab-item} From PyPI using pip
 
-napari can be installed on most macOS (Intel x86), Linux, and Windows systems with Python
+napari can be installed from PyPI on most macOS (Intel x86), Linux, and Windows systems with Python
 {{ python_version_range }} using pip:
 
 ```sh
@@ -128,19 +127,16 @@ notation.)*
 
 *(See [Using constraints file](#using-constraints-files) for help installing older versions of napari)*
 
-````
-
 :::::
 
 :::::{tab-item} From the main branch on Github
 
-To install the latest version with yet to be released features from github via pip, call
+To install the latest version with yet to be released features from Github you can use pip:
 
 ```sh
 python -m pip install "git+https://github.com/napari/napari.git#egg=napari[all]"
 ```
-````
-
+:::::
 ::::::
 
 
