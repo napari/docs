@@ -55,31 +55,9 @@ up a Python {{ python_version }} environment with `conda`:
 
 Choose one of the options below to install napari as a Python package.
 
-````{admonition} **1. From pip**
-:class: dropdown
+::::::{tab-set}
 
-napari can be installed on most macOS (Intel x86), Linux, and Windows systems with Python
-{{ python_version_range }} using pip:
-
-```sh
-python -m pip install "napari[all]"
-```
-You can then upgrade napari to a new version using:
-
-```sh
-python -m pip install "napari[all]" --upgrade
-```
-
-*(See [Choosing a different Qt backend](#choosing-a-different-qt-backend) below for an explanation of the `[all]`
-notation.)*
-
-*(See [Using constraints file](#using-constraints-files) for help installing older versions of napari)*
-
-````
-
-
-````{admonition} **2. From conda-forge**
-:class: dropdown
+:::::{tab-item} From conda-forge using conda
 
 If you prefer to manage packages with conda, napari is available on the
 conda-forge channel. We also recommend this path for users of arm64 macOS machines
@@ -129,9 +107,32 @@ mamba install napari
 
 ````
 
+:::::
 
-````{admonition} **3. From the main branch on Github**
-:class: dropdown
+:::::{tab-item} From PyPI using pip
+
+napari can be installed on most macOS (Intel x86), Linux, and Windows systems with Python
+{{ python_version_range }} using pip:
+
+```sh
+python -m pip install "napari[all]"
+```
+You can then upgrade napari to a new version using:
+
+```sh
+python -m pip install "napari[all]" --upgrade
+```
+
+*(See [Choosing a different Qt backend](#choosing-a-different-qt-backend) below for an explanation of the `[all]`
+notation.)*
+
+*(See [Using constraints file](#using-constraints-files) for help installing older versions of napari)*
+
+````
+
+:::::
+
+:::::{tab-item} From the main branch on Github
 
 To install the latest version with yet to be released features from github via pip, call
 
@@ -139,6 +140,9 @@ To install the latest version with yet to be released features from github via p
 python -m pip install "git+https://github.com/napari/napari.git#egg=napari[all]"
 ```
 ````
+
+::::::
+
 
 <!-- #region -->
 ### Checking it worked
