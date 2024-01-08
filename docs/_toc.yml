@@ -133,6 +133,12 @@ subtrees:
     subtrees:
     - entries:
       - file: developers/contributing
+      - file: developers/architecture/index
+        subtrees:
+        - entries:
+          - file: developers/architecture/dir_organization
+          - file: developers/architecture/napari_models
+          - file: developers/architecture/app_model
       - file: naps/index
         subtrees:
         - maxdepth: 1
