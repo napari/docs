@@ -99,8 +99,7 @@ def point_annotator(
 
     viewer = napari.view_image(stack)
     points_layer = viewer.add_points(
-        features={"label": np.array([], dtype=str)},  # we need to set empty features to set defaults
-        feature_defaults={'label': labels[:1]},  # set the first label as default feature
+        property_choices={"label": labels},
         edge_color='label',
         edge_color_cycle=COLOR_CYCLE,
         symbol='o',
@@ -209,9 +208,8 @@ As discussed above, we will be storing which feature of interest each point corr
 To visualize the feature each point represents, we set the edge color as a color cycle mapped to the `label` property (`edge_color='label'`).
 
 ```python
-properties = {'label': labels}
 points_layer = viewer.add_points(
-    properties=properties,
+    property_choices={'label': labels},
     edge_color='label',
     edge_color_cycle=COLOR_CYCLE,
     symbol='o',
@@ -291,7 +289,7 @@ We then need to connect the dropdown menu (`label_menu`) to the points layer to 
 First, we define a function to update the label dropdown menu GUI when the value of the selected point or next point to be added is changed.
 On the points layer, the property values of the next point to be added are stored in the `current_properties` property.
 The points layer has an event that gets emitted when the `current_properties` property is changed (`points_layer.events.current_properties`).
-We connect the function we created to the event so that `update_label_menu()` is called whenever `Points.current_property` is changed.
+We connect the function we created to the event so that `update_label_menu()` is called whenever `Points.current_properties` is changed.
 
 ```python
 def update_label_menu(event):
