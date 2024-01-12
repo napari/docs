@@ -26,6 +26,8 @@ Unit tests are at the base of the pyramid because they are the easiest to write 
 the quickest to run. The time and effort to implement and maintain tests increases
 from unit tests to integration and functional tests.
 
+(test-organization)=
+
 ## Test organization
 
 All of `napari` tests are located in folders named `_tests`. We keep our unit
@@ -52,6 +54,48 @@ If you'd like to include them in local tests, set the environment variable "CI":
 ```sh
 CI=1 pytest
 ```
+
+It is also possible to run test using `tox`. This is the same way as it is done in CI.
+The main difference is that tox will create a virtual environment for each test environment, so it will take more time
+but it will be more similar to the CI environment.
+
+```sh
+tox -e py310-linux-pyqt5
+```
+
+To get list of all available environments run:
+
+```sh
+tox list
+```
+
+### Running tests without pop-up windows
+
+Some tests create visible napari viewers, which pop up on your monitor then quickly disappear.
+This can be annoying if you are trying to use your computer while the tests are running.
+There are two ways to avoid this:
+
+1. Use the `QT_QPA_PLATFORM=offscreen` environment variable.
+This tells Qt to render windows "offscreen", which is slower but will avoid the pop-ups.
+   ```shell
+   QT_QPA_PLATFORM=offscreen pytest napari
+   ```
+   or 
+   ```shell
+   QT_QPA_PLATFORM=offscreen tox -e py310-linux-pyqt5
+   ```
+   
+2. If you are using Linux or WSL, you can use the `xvfb-run` command.
+   This will run the tests in a virtual X server. 
+   ```sh
+   xvfb-run pytest napari
+   ```
+   or
+   ```sh
+   xvfb-run tox -e py310-linux-pyqt5
+   ```
+   
+where the tox environment selector `py310-linux-pyqt5` must match your OS and Python version.
 
 ### Tips for speeding up local testing
 
@@ -148,7 +192,7 @@ you create during testing are cleaned up at the end of each test:
    Duplicate cleanup may cause an error.  Use the fixture as follows:
 
     ```python
-    # the make_napari_viewer fixture is defined in napari/conftest.py
+    # the make_napari_viewer fixture is defined in napari/utils/_testsupport.py
     def test_something_with_a_viewer(make_napari_viewer):
         # make_napari_viewer takes any keyword arguments that napari.Viewer() takes
         viewer = make_napari_viewer()
@@ -158,7 +202,7 @@ you create during testing are cleaned up at the end of each test:
     ```
 
 > If you're curious to see the actual `make_napari_viewer` fixture definition, it's
-> in `napari/conftest.py`
+> in `napari/utils/_testsupport.py`
 
 ### Mocking: "Fake it till you make it"
 

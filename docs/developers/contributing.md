@@ -5,6 +5,8 @@ We welcome your contributions! Please see the provided steps below and never hes
 
 If you are a new user, we recommend checking out the detailed [Github Docs](https://docs.github.com/en).
 
+You can see the general direction for napari development and possible work plans in our current [Roadmap](../roadmaps/index.md).
+
 (dev-installation)=
 ## Setting up a development installation
 
@@ -110,7 +112,7 @@ Now you are all set to start developing with napari.
 
 ## Contributing documentation
 
-If you wish to contribute documentation changes to napari, please read the [guide on contributing documentation](documentation/index.md). 
+If you wish to contribute documentation changes to napari, please read the [guide on contributing documentation](documentation/index.md).
 
 (add-examples)=
 ## Adding examples to the [Gallery](gallery)
@@ -193,41 +195,6 @@ QtDeleteButton {
    image: url("theme_{{ id }}:/delete.svg");
 }
 ```
-
-### Creating and testing themes
-
-A theme is a set of colors used throughout napari.  See, for example, the
-builtin themes in `napari/utils/theme.py`.  To make a new theme, create a new
-`dict` with the same keys as one of the existing themes, and
-replace the values with your new colors.  For example
-
-```python
-from napari.utils.theme import get_theme, register_theme
-
-
-blue_theme = get_theme('dark')
-blue_theme.update(
-    background='rgb(28, 31, 48)',
-    foreground='rgb(45, 52, 71)',
-    primary='rgb(80, 88, 108)',
-    current='rgb(184, 112, 0)',
-)
-
-register_theme('blue', blue_theme)
-```
-
-
-To test out the theme, use the
-`qt_theme_sample.py` file from the command line as follows:
-
-```sh
-python -m napari._qt.widgets.qt_theme_sample
-```
-*note*: you may specify a theme with one additional argument on the command line:
-```sh
-python -m napari._qt.widgets.qt_theme_sample dark
-```
-(providing no arguments will show all themes in `theme.py`)
 
 ## Translations
 

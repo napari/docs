@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from jinja2 import Template
-from pydantic.main import ModelMetaclass
+from napari._pydantic_compat import ModelMetaclass
 from qtpy.QtCore import QTimer
 from qtpy.QtWidgets import QMessageBox
 
