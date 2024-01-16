@@ -8,6 +8,18 @@ If you are using napari or interested in how napari could be used in your work, 
 
 <div id='timezone'></div>
 
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h3>Event details</h3>
+    </div>
+    <div id="details" class="modal-body">
+    </div>
+  </div>
+</div>
+
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.9/index.global.min.js"></script>
 <script>
@@ -31,10 +43,17 @@ If you are using napari or interested in how napari could be used in your work, 
       eventClick: function (info) {
         info.jsEvent.preventDefault();
         var eventObj = info.event;
-        alert(
-          'Event: ' + eventObj.title + '\n\n'
-          + 'Description: ' + eventObj.extendedProps.description + '\n\n'
-          + 'URL: ' + eventObj.url);
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+        var eventTitle = eventObj.title.charAt(0).toUpperCase() + eventObj.title.slice(1);
+        document.getElementById("details").innerHTML = '<b>' + eventTitle + '</b>' + '<br>' + eventObj.extendedProps.description;
+        //When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
       },
       eventDisplay: 'block',
     });
