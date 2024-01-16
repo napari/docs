@@ -12,7 +12,8 @@ identifying which functions are taking most of the runtime and causing bottlenec
 timing of events or specific functions. It can be useful when profiling identifies a
 common function as taking most of the time in execution, but it's hard to know where
 to optimize because that function gets called from many places.
-[Performance monitoring](perfmon)
+It can also help you understand functions that cost a lot but only at the start vs
+functions that are consistently slow — which is hard to track with profiling.
 
 ![A section of an example call graph showing the functions called in napari's layerlist and some of their profile statistics such as call count and cumulative percentage time spent.](images/execution_graph.png)
 
