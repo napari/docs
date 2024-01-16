@@ -1,9 +1,18 @@
+(profiling)=
+
 # Profiling
 
-In contrast to performance tracing, profiling does not provide information
-about the timing of events, but instead provides combined information about the
-total time of execution of each function. It also produces a call graph that
-simplifies understanding the call relationship between functions.
+Profiling provides information about the
+total time of execution of each function when performing a specific task or workflow.
+It produces a complete call graph that
+simplifies understanding the call relationship between functions. It is useful for
+identifying which functions are taking most of the runtime and causing bottlenecks.
+
+[Performance monitoring](perfmon), unlike profiling provides information about the
+timing of events or specific functions. It can be useful when profiling identifies a
+common function as taking most of the time in execution, but it's hard to know where
+to optimize because that function gets called from many places.
+[Performance monitoring](perfmon)
 
 ![A section of an example call graph showing the functions called in napari's layerlist and some of their profile statistics such as call count and cumulative percentage time spent.](images/execution_graph.png)
 
