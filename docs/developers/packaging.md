@@ -144,10 +144,10 @@ signing_certificate: certificate.pfx  # path to signing certificate
 
 The main OS-agnostic keys are:
 
-* `channels`: where the packages will be downloaded from. 
-  We mainly rely on `conda-forge` for this, where `napari` is published. 
-  In CI, we locally build our own (development) packages for `conda`, without resorting to `conda-forge`. 
-  To make use of those (which are eventually published to the [napari channel][17]), 
+* `channels`: where the packages will be downloaded from.
+  We mainly rely on `conda-forge` for this, where `napari` is published.
+  In CI, we locally build our own (development) packages for `conda`, without resorting to `conda-forge`.
+  To make use of those (which are eventually published to the [napari channel][17]),
   we unpack the GitHub Actions artifact in a specific location that `constructor` recognizes as a _local_ channel once indexed.
 * {{ '`extra_envs> napari-NAPARI_VER`'.replace('NAPARI_VER', napari_version) }}: the environment that will actually contain the napari installation.
   In this key, you will find `specs`, which lists the conda packages to be installed in that environment.
@@ -213,8 +213,8 @@ More details about our packaging infrastructure can be found in the [NAP-2 docum
 
 Generating a `conda`-based installer requires several components in place:
 
--  `constructor` is the command-line tool that _builds_ the installer. 
-  - It depends on `conda` to solve the `specs` request. 
+- `constructor` is the command-line tool that _builds_ the installer.
+  - It depends on `conda` to solve the `specs` request.
   - It also requires a copy of `conda-standalone` (a PyInstaller-frozen version of `conda`) to be
    present at build time so it can be bundled in the installer. This is needed because that
    `conda-standalone` copy will handle the extraction, linking and shortcut creation when the user
@@ -222,8 +222,8 @@ Generating a `conda`-based installer requires several components in place:
 - `menuinst` handles the creation of shortcuts / desktop menu entries across all platforms.
   - `conda` depends on this library to handle shortcuts when packages are installed.
   - `constructor` delegates the shortcut creation to `conda-standalone`'s `menuinst` bundled copy
-    at _installation time_. 
-    - For performance reasons, uninstalling the shortcut is done via a [bundled script][22] 
+    at _installation time_.
+    - For performance reasons, uninstalling the shortcut is done via a [bundled script][22]
       that calls `menuinst` directly.
 
 
