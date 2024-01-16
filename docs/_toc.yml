@@ -136,7 +136,22 @@ subtrees:
   - file: developers/index
     subtrees:
     - entries:
-      - file: developers/contributing
+      - file: developers/contributing/index
+        subtrees:
+        - entries:
+          - file: developers/contributing/dev_install
+          - file: developers/contributing/testing
+          - file: developers/contributing/translations
+          - file: developers/contributing/performance/index
+            subtrees:
+            - entries:
+              - file: developers/profiling
+              - file: developers/benchmarks
+          - file: developers/contributing/documentation/index
+            subtrees:
+            - entries:
+              - file: developers/contributing/documentation/docs_template
+              - file: developers/contributing/documentation/docs_deployment
       - file: developers/architecture/index
         subtrees:
         - entries:
@@ -156,17 +171,8 @@ subtrees:
           - file: naps/6-contributable-menus
           - file: naps/7-key-binding-dispatch
           - file: naps/8-telemetry
-      - file: developers/documentation/index
-        subtrees:
-        - entries:
-          - file: developers/documentation/docs_template
-          - file: developers/documentation/docs_deployment
-      - file: developers/translations
       - file: developers/core_dev_guide
       - file: developers/release
-      - file: developers/testing
-      - file: developers/profiling
-      - file: developers/benchmarks
       - file: developers/packaging
       - file: developers/maintenance
       - file: release/index
