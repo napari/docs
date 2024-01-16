@@ -23,7 +23,7 @@ The global application singleton can be retrieved with `napari._app_model.get_ap
 `app-model` is a Python package that provides a declarative schema for an
 application.  It is an abstraction developed by napari developers, with the
 needs of napari in mind, but it is agnostic to napari itself (i.e. it should be
-reusable by any napari GUI application).
+reusable by any python GUI application).
 
 Currently, the primary purpose of the `app` is to compose the various
 [registries](https://app-model.readthedocs.io/en/latest/registries/) (commands,
