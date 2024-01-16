@@ -9,11 +9,13 @@ simplifies understanding the call relationship between functions. It is useful f
 identifying which functions are taking most of the runtime and causing bottlenecks.
 
 [Performance monitoring](perfmon), unlike profiling provides information about the
-timing of events or specific functions. It can be useful when profiling identifies a
-common function as taking most of the time in execution, but it's hard to know where
-to optimize because that function gets called from many places.
-It can also help you understand functions that cost a lot but only at the start vs
-functions that are consistently slow — which is hard to track with profiling.
+timing of events or specific functions each time it is called. It can be useful when
+profiling identifies a common function to be slow, but
+as this function gets called from many places so it's hard to know where to optimize.
+Performance monitoring is able to tell you at which points during execution it is
+called and how long it took each time. This is also helpful in differentiating
+functions that are only slow in the first call versus functions that are consistently
+slow. See [performance monitoring](perfmon) for more details.
 
 ![A section of an example call graph showing the functions called in napari's layerlist and some of their profile statistics such as call count and cumulative percentage time spent.](images/execution_graph.png)
 

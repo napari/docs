@@ -26,7 +26,9 @@ hard to use the program interactively.
 Performance monitoring does not require running a separate tool to collect
 the timing information, however we do use Chrome to view the trace files.
 With performance monitoring napari can run at close to full speed in many
-cases. This document discusses only napari's performance monitoring
+cases. Performance monitoring is also more flexible as you can run napari and
+interact with the app while checking performance. This document discusses only napari's
+performance monitoring
 features. Profiling napari might be useful as well, especially if you do not know
 the cause of the performance issue. You can find more information in
 [profiling](profiling).
