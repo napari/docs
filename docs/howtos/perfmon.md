@@ -28,7 +28,8 @@ the timing information, however we do use Chrome to view the trace files.
 With performance monitoring napari can run at close to full speed in many
 cases. This document discusses only napari's performance monitoring
 features. Profiling napari might be useful as well, especially if you do not know
-the cause of the performance issue. It is not discussed in [profiling](profiling).
+the cause of the performance issue. You can find more information in
+[profiling](profiling).
 
 ## Enabling perfmon
 
