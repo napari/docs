@@ -9,7 +9,7 @@ napari has a [Code of Conduct](napari-coc) that should be honored by everyone wh
 - [](contact): how to contact us.
 - [](roadmaps): convey the general direction for napari development and possible
   work plans.
-- **Contributor guides**: resources on the contributing:
+- **Contributor guides**: resources on for contributors:
   - [Contributing guide](napari-contributing)
     - [Development installation](dev-installation)
     - [Translations](translations)
@@ -17,7 +17,8 @@ napari has a [Code of Conduct](napari-coc) that should be honored by everyone wh
     - [Performance](performance)
       - [Profiling](profiling)
       - [Benchmarks](napari-benchmarks)
-  - [Contributing documentation](docs_contributing_guide)
+    - [Contributing documentation](docs_contributing_guide)
+  - [](architecture-index)
 
 - **Core developer guides**: resources for core developers, including information for
   onboarding new core developers:
