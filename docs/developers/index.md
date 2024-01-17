@@ -24,6 +24,7 @@ napari has a [Code of Conduct](napari-coc) that should be honored by everyone wh
   - [Core Developer guide](./core_dev_guide)
   - [Release guide](./release)
   - [Maintenance](./maintenance)
+  - [Packaging](napari-packaging)
   - [Deploying documentation](docs-deployment)
 
 (contact)=

@@ -13,7 +13,7 @@ The first step to make changes to napari is to
 set up a [napari development installation](dev-installation).
 
 You can then use git to save your changes and open a
-[pull-request](https://docs.github.com/en/get-started/quickstart/contributing-to-projects#making-a-pull-request)(PR):
+[pull-request](https://docs.github.com/en/get-started/quickstart/contributing-to-projects#making-a-pull-request) (PR) via the following steps:
 
 1. Make and save your changes:
 
@@ -48,15 +48,18 @@ To push the local changes in your new feature branch to your
 git push -u origin your-branch-name
 ```
 
-Note if you have followed the [development installation instructions](dev-installation)`origin` would be the name of the remote of your forked repository. If you are unsure
-of the name of your remotes, you can use the following command to check:
+Note we are pushing to the remote named 'origin' above.Iif you have followed the
+[development installation instructions](dev-installation), 'origin' would be the name
+of the remote of your forked repository. If you are unsure
+of the name of your remotes, you can use the following command to check and
+ensure you are pushing to the correct remote:
 
 ```sh
 git remote -vv
 ```
 
 You can then make a
-[PR](https://docs.github.com/en/get-started/quickstart/contributing-to-projects#making-a-pull-request)to `napari`'s `main` branch.
+[PR](https://docs.github.com/en/get-started/quickstart/contributing-to-projects#making-a-pull-request) to `napari`'s `main` branch.
 
 ## napari contribution guides
 
@@ -110,3 +113,7 @@ also include benchmarks to show the new feature is not too slow but this is less
 [](napari-benchmarks) provides more information on benchmarking. If you find
 poor performance, [profiling](profiling) and [performance monitoring](perfmon) can help
 identify the cause and where to optimize.
+
+### Contributing documentation
+
+See [](docs_contributing_guide) for information on how to contribute documentation.
