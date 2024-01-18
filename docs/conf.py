@@ -151,6 +151,10 @@ intersphinx_mapping = {
         'https://pyapp-kit.github.io/magicgui/',
         'https://pyapp-kit.github.io/magicgui/objects.inv',
     ],
+    'app-model': [
+        'https://app-model--142.org.readthedocs.build/en/142/',
+        'https://app-model--142.org.readthedocs.build/en/142/objects.inv',
+    ],
 }
 
 myst_enable_extensions = [
