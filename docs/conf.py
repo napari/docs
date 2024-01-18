@@ -110,6 +110,7 @@ html_theme_options = {
     "secondary_sidebar_items": ["page-toc"],
     "pygment_light_style": "napari",
     "pygment_dark_style": "napari",
+    "announcement": "https://raw.githubusercontent.com/pydata/pydata-sphinx-theme/main/docs/_templates/custom-template.html",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
