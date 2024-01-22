@@ -23,10 +23,10 @@ napari has a [Code of Conduct](napari-coc) that should be honored by everyone wh
 - **Core developer guides**: resources for core developers, including information for
   onboarding new core developers:
   - [Core Developer guide](./core_dev_guide)
-  - [Release guide](./release)
   - [Maintenance](./maintenance)
-  - [Packaging](napari-packaging)
+  - [Release guide](./release)
   - [Deploying documentation](docs-deployment)
+  - [Packaging](napari-packaging)
 
 (contact)=
 

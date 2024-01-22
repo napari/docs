@@ -152,6 +152,13 @@ subtrees:
             - entries:
               - file: developers/contributing/documentation/docs_template
               - file: developers/contributing/documentation/docs_deployment
+      - file: developers/coredev/index
+        subtrees:
+        - entries:
+          - file: developers/coredev/core_dev_guide
+          - file: developers/coredev/maintenance
+          - file: developers/coredev/release
+          - file: developers/coredev/packaging
       - file: developers/architecture/index
         subtrees:
         - entries:
@@ -171,10 +178,6 @@ subtrees:
           - file: naps/6-contributable-menus
           - file: naps/7-key-binding-dispatch
           - file: naps/8-telemetry
-      - file: developers/core_dev_guide
-      - file: developers/release
-      - file: developers/packaging
-      - file: developers/maintenance
       - file: release/index
         subtrees:
         - entries:
