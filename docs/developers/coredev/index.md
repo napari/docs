@@ -4,5 +4,4 @@
 Guides for core developers.
 
 ```{tableofcontents}
-:maxdepth: 2
 ```
