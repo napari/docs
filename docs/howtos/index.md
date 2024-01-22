@@ -14,11 +14,12 @@ tutorial.
 
 - [Using layers](using-layers): Learn about how to use the layers currently
 supported by napari.
-- [Hooking up your own events](connecting-events): Learn about the event loop
-and how to use it to interact with napari.
+- [Extending napari](extending-napari): Learn how to extend napari by adding widgets
+  and connecting callbacks.
 - [napari + ImageJ how-to guide](napari-imagej): Learn about how to use napari
-and ImageJ simultaneously.
 - [napari in Docker](docker): Learn about using napari in docker.
 - [Performance monitoring](perfmon): Learn about how to monitor napari
 performance and diagnose potential problems.
 - [napari headless](headless): Tips on how to run napari headlessly.
+- [Themes](themes): Changing appearance of the napari GUI with your own theme
+  and sharing your theme via a plugin.
