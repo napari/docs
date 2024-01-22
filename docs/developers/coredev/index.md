@@ -4,4 +4,5 @@
 Guides for core developers.
 
 ```{tableofcontents}
+:depth: 1
 ```
