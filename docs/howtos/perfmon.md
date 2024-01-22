@@ -31,7 +31,7 @@ interact with the app while checking performance. This document discusses only n
 performance monitoring
 features. Profiling napari might be useful as well, especially if you do not know
 the cause of the performance issue. You can find more information in
-[profiling](profiling).
+[our profiling documentation](profiling).
 
 ## Enabling perfmon
 

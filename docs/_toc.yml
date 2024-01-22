@@ -145,8 +145,8 @@ subtrees:
           - file: developers/contributing/performance/index
             subtrees:
             - entries:
-              - file: developers/profiling
-              - file: developers/benchmarks
+              - file: developers/contributing/performance/profiling
+              - file: developers/contributing/performance/benchmarks
           - file: developers/contributing/documentation/index
             subtrees:
             - entries:
