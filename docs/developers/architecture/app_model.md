@@ -26,8 +26,7 @@ The napari global application singleton, `app`, is a subclass of
 and can be retrieved with {func}`napari._app_model.get_app`.
 
 Currently, the primary purpose of the `app` is to compose the following
-[registries](https://app-model--142.org.readthedocs.build/en/142/reference/registries/#app_model.registries)
-into a single name-spaced object:
+{mod}`app_model.registries` into a single name-spaced object:
 
 * {class}`~app_model.registries.CommandsRegistry`: maintains all of the
   [commands](app-model-commands) (the actual callable objects) that have been
@@ -41,9 +40,8 @@ into a single name-spaced object:
 
 The app-model
 ['Getting started'](https://app-model--142.org.readthedocs.build/en/142/getting_started/)
-page provides a good general introduction to the app-model `Application`.
-This documentation will focus on napari specific aspects, linking to the app-model
-documentation where appropriate.
+page provides a good general introduction to the app-model.
+This documentation will focus on napari specific aspects.
 
 (app-model-actions)=
 
@@ -127,7 +125,8 @@ This is because command id's may currently only be registered once, and associat
 In napari non-Qt Actions are defined in
 [`napari/_app_model/actions`](https://github.com/napari/napari/tree/main/napari/_app_model/actions)
 while Qt Actions are defined in
-[`napari/_qt/_qapp_model/qactions`](https://github.com/napari/napari/tree/main/napari/_qt/_qapp_model/qactions). Non-Qt Actions get registered with `app` during
+[`napari/_qt/_qapp_model/qactions`](https://github.com/napari/napari/tree/main/napari/_qt/_qapp_model/qactions).
+Non-Qt Actions get registered with `app` during
 initialization of the napari `app`, in {meth}`NapariApplication.__init__`. Qt Actions
 get registered in {func}`~napari._qt._qapp_model.qactions.init_qactions`, which gets
 called during initialization of `_QtMainWindow`. Note this is relevant when
@@ -250,15 +249,17 @@ format (`MenuId`, [`MenuItem` or `SubmenuItem`]).
 ### Menus in napari
 
 In napari `MenuId` and `MenuGroup` enums are defined in
-[`napari/_app_model/constants/_menus.py`](https://github.com/napari/napari/blob/main/napari/_app_model/constants/_menus.py). Menu bar menus are created via
-{func}`~napari._qt._qapp_model.build_qmodel_menu` which creates
+[`napari/_app_model/constants/_menus.py`](https://github.com/napari/napari/blob/main/napari/_app_model/constants/_menus.py).
+Menu bar menus are created during {class}`~napari.window.Window` initialization via
+{func}`~napari._qt._qapp_model.build_qmodel_menu`. This creates a
 {class}`~app_model.backends.qt.QModelMenu` (a subclass of
-[`QMenu`](https://doc.qt.io/qt-5/qmenu.html)) instances. This is done during
-{class}`~napari.window.Window` initialization. It is the creation of the `QModelMenu`
-that creates `QActions` for the app-model Actions.
+[`QMenu`](https://doc.qt.io/qt-5/qmenu.html)) instance.
+It is the creation of the `QModelMenu` that creates `QActions` for the Actions
+associated with that menu.
 
 {class}`app_model.types.SubmenuItem`s are defined in
-[`napari/_app_model/_submenus.py`](https://github.com/napari/napari/blob/main/napari/_app_model/_submenus.py). These are registered during initialization of the napari `app`, in
+[`napari/_app_model/_submenus.py`](https://github.com/napari/napari/blob/main/napari/_app_model/_submenus.py).
+These are registered during initialization of the napari `app`, in
 {meth}`NapariApplication.__init__`.
 
 (app-model-keybindings)=
@@ -299,24 +300,53 @@ how keybindings are dispatched according to their priority, enablement, and pote
 conflicts.
 
 Currently keybindings are not able to be edited by the user at runtime but this
-is planned. See [issue 6600](https://github.com/napari/napari/issues/6600) for more details.
+is planned. See [issue 6600](https://github.com/napari/napari/issues/6600) for more
+details.
 
-## Dependency Injection
+## Dependency injection and result processing
 
-A key component of the command infrastructure is "dependency injection",
-currently provided by the package
-[`in-n-out`](https://github.com/tlambert03/in-n-out) (which spun out of an
-internal napari module).  `app-model` uses `in-n-out` to inject dependencies into all commands in the `CommandsRegistry`.
+Dependency injection allows to write functions using parameter type annotations,
+and then inject dependencies (arguments) into those functions at call time.
+Very often in a GUI application, you may wish to infer some command arguments from
+the current state of the application. For example, if you have menu item linked
+to a "close window", you likely want to close the *current* window.
+Dependency injection enables this by providing arguments to commands at runtime, based
+on the type annotations in the command function definition. A 'provider', a function
+that can be called to return an instance of a given type, is used to obtain the
+dependency to be injected.
 
-```{tip}
-Dependency injection is just a fancy word for "giving a function or class something it needs to perform its task".
+Result processing allows you to process the return value of the command function at
+execution time, based on command return type annotations.
+For example, you may wish to automatically add layer data output from a command
+to the viewer. It is performed by 'processors', functions that accept an instance of a
+given type and do something with it. Note that any value returned by a processor will
+be ignored, it is the 'processor' function side effects that perform the desired
+action (e.g., adding layer data to the viewer).
+
+Dependency injection and result processing are provided by the package
+[in-n-out](https://ino.readthedocs.io/en/latest/) (which spun out of an
+internal napari module). App-model uses in-n-out to inject dependencies into all
+commands in the {class}`~app_model.registries.CommandsRegistry`.
+See the [in-n-out documentation](https://ino.readthedocs.io/en/latest/getting_started/)
+for details on how providers and processors work.
+
+In napari, providers and processors can be registered in the `app`'s
+{attr}`~app_model.Application.injection_store` attribute, which is an instance of
+[`in_n_out.Store`](https://ino.readthedocs.io/en/latest/reference/#in_n_out.Store).
+This `Store` is just a collection of providers and processors. Providers
+and processors in the `Store` will be automatically be used when executing
+{class}`~app_model.registries.CommandsRegistry` commands.
+
+```{note}
+Injection is implemented in app-model, in the `run_injected` property of
+`_RegisteredCommand`. All commands in the `CommandsRegistry` are represented using
+the `_RegisteredCommand` type.
+
 ```
 
-In practice, dependency injection will be performed *internally* by napari (i.e.
-napari will inject dependencies into some internally or externally provided
-function, plugins/users don't use the `@inject` decorator themselves), and the pattern will look something like this:
+Below we demonstrate an example of provider use in napari.
 
-A user/plugin provides a function
+A user/plugin provides a function, using the `Points` annotation:
 
 ```python
 # some user provided function declares a need
@@ -326,8 +356,9 @@ def process_points(points: 'Points'):
     print(points.name)
 ```
 
-Internally, napari registers a set of "provider" and "processor" functions in
-the `get_app().injection_store`
+Internally, napari registers a provider that returns the first Points layer of the
+current viewer, if there is one present (returning `None` if not). It is
+registered in the `app.injection_store` via `app.injection_store.register_provider`. Processors can be registered in the same way.
 
 ```python
 from napari._app_model import get_app
@@ -356,10 +387,6 @@ providing arguments:
 >>> injected_func = get_app().injection_store.inject(process_points)
 ```
 
-```{tip}
-The primary place that this injection occurs is *in* `app-model`: in the `run_injected` property of all registered commands in the `CommandsRegistry`.
-```
-
 Note: injection doesn't *inherently* mean that it's always safe to call an
 injected function without parameters. In this case, we have no viewer and no
 points:
@@ -371,8 +398,8 @@ TypeError: After injecting dependencies for NO arguments,
 process_points() missing 1 required positional argument: 'points'
 ```
 
-Our provider was context dependent... Once we have an active viewer with a
-points layer, it can provide it:
+Our provider was context dependent. Only when we have an active viewer with a
+points layer, can it be provided:
 
 ```python
 >>> viewer = napari.view_points(name='Some Points')
@@ -386,13 +413,26 @@ be used easily as a command in a menu, or bound to a keybinding.  It is up to
 napari to determine what providers it will make available, and what type hints
 plugins/users may use to request dependencies.
 
+### Providers and processors in napari
+
+Non-Qt providers and processors are defined in
+[`napari/_app_model/injection`](https://github.com/napari/napari/tree/main/napari/_app_model/injection).
+Qt providers and processors are defined in
+[`napari/_qt/_qapp_model/injection`](https://github.com/napari/napari/tree/main/napari/_qt/_qapp_model/injection).
+
+Non-Qt providers and processors are registered in the `app` `Store` during
+initialization of the napari `app`, in {meth}`NapariApplication.__init__`.
+Qt providers and processors are registered in
+{func}`~napari._qt._qapp_model.qactions.init_qactions`, which gets called during
+initialization of `_QtMainWindow`.
+
 ## app-model testing
 
 This section provides a guide to testing app-model aspects of napari. For general
 information on napari testing see [](napari-testing).
 
 
-execute_comman (regardless of enabled state)
+execute_command (regardless of enabled state)
 
 # Migration from action manager
 
