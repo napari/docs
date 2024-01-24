@@ -38,7 +38,7 @@ PyPI][pypi-upload] after which it will be installable using `python -m pip insta
 in the builtin plugin installer dialog.
 
 If you used the {ref}`plugin-cookiecutter-template`, you can also
-[setup automated deployments][autodeploy] on github for every tagged commit.
+[setup automated deployments][autodeploy] on GitHub for every tagged commit.
 
 ````{admonition} What about conda?
 While you are free to distribute your plugin on anaconda cloud in addition to
