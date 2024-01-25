@@ -2,6 +2,10 @@
 
 # napari's application model
 
+```{important}
+**This is not a part of the public napari interface!**
+```
+
 ```{warning}
 **Work in progress!**
 The napari application model is currently being developed. This document is here to
@@ -16,11 +20,11 @@ areas.
 that provides a declarative schema for a GUI-based
 application. It is an abstraction developed by napari developers, with the
 needs of napari in mind, but it is agnostic to napari itself (i.e. it should be
-reusable by any python GUI application).
+reusable by any Python GUI application).
 
 The {class}`~napari._app_model._app.NapariApplication` (`app`)
 is the top level object that stores information about the commands, keybindings
-and menus that make up the appliation.
+and menus that make up the application.
 It is a subclass of {class}`app_model.Application` and is a global application
 singleton. It can be retrieved with {func}`napari._app_model.get_app`.
 
@@ -31,22 +35,22 @@ Currently, the primary purpose of the `app` is to compose the following
   [commands](app-model-commands) (the actual callable objects) that have been
   registered with the application. Accessible via `app.commands`.
 * {class}`~app_model.registries.MenusRegistry`: maintains all of the
-  [menu and submenus](appp-model-menus) that have been registered with the application.
+  [menus and submenus](appp-model-menus) that have been registered with the application.
   Accessible via `app.menus`.
 * {class}`~app_model.registries.KeyBindingsRegistry`: maintains the association
-  between a [KeyBinding](app-model-keybindings) and a command id in the
+  between a [KeyBinding](app-model-keybindings) and a command ID in the
   {class}`~app_model.registries.CommandsRegistry`. Accessible via `app.keybindings`.
 
 The app-model
 ['Getting started'](https://app-model--142.org.readthedocs.build/en/142/getting_started/)
-page provides a good general introduction to the app-model.
+page provides a good general introduction to app-model.
 This documentation will focus on napari specific aspects.
 
 (app-model-actions)=
 
 ## `Action`s
 
-The {class}`app_model.types.Action` class is designed to easily create high level
+The {class}`app_model.types.Action` class is designed to easily create a high level
 'Action' object that is the "complete" representation of a command; a pointer
 to a callable object and optionally placement in menus, keybindings, and additional
 metadata like title, icons, tooltips etc. It subclasses
@@ -61,7 +65,7 @@ Note that while strings could be used for `id`, `title`, `menus.id` and
 `keybindings.primary`, the usage of enums and constants makes refactoring and
 maintenance much easier (and provides autocompletion in an IDE!). However, there is
 currently intention to use plain strings for command `id` and `title` to simplify the
-decalaration of `Action`s.
+`Action` definitions.
 
 ```python
 from app_model.types import Action, KeyMod, KeyCode
@@ -69,7 +73,7 @@ from napari._app_model.constants import CommandId, MenuId, MenuGroup
 from napari._app_model.context import LayerListContextKeys as LLCK
 
 
-# `layers` will be injected layer when this action is invoked
+# `layers` will be injected later when this action is invoked
 def split_rgb_layer(layers: 'LayerList'):
     ...
 
@@ -90,7 +94,7 @@ action = Action(
 ```
 
 `Action`s can be registered via {func}`app_model.Application.register_action`. This
-is essentially a shortcut for registering objects with the following registeries;
+is essentially a shortcut for registering objects with the following registries;
 {class}`~app_model.registries.CommandsRegistry`,
 {class}`~app_model.registries.MenusRegistry` and
 {class}`~app_model.registries.KeyBindingsRegistry`. Note that a command ID may
@@ -146,7 +150,7 @@ Inline (lambda) and nested functions should be avoided for command callbacks to
 prevent memory leakage.
 
 All commands have a string id (e.g. '`napari:layer:duplicate`'). These are
-currently `CommandID` enums but we are currently considering changing to using
+currently `CommandID` enums but we are considering changing to using
 plain strings to simplify decalaration of `Action`s.
 
 {class}`app_model.types.CommandRule` class (of which {class}`app_model.types.Action`
@@ -161,7 +165,7 @@ the command from being executed via other means, e.g., via
 {meth}`app_model.registries.CommandsRegistry.execute_command`. `toggled` determines
 whether the command appears checked/toggled in GUI representations (e.g., menu or
 button). It can also take a {class}`app_model.types.ToggleRule`, which allows
-you to use a callable (instead of a expression) to determine toggle state.
+you to use a callable (instead of an expression) to determine toggle state.
 
 ### Commands should *not* be confused with the public napari API
 
@@ -176,12 +180,13 @@ Commands mostly serve as a way to reference some functionality that needs to be 
 in the GUI.
 
 ```{note}
-Some of these command ID strings MAY be exposed externally in the future. For example, a plugin may wish to refer to a napari command.
+Some of these command ID strings MAY be exposed externally in the future. For example,
+a plugin may wish to refer to a napari command.
 ```
 
 ### Commands in napari
 
-Commands are usually defined with their Action definition or with it's class,
+Commands are usually defined with their Action definition or with its class,
 if it is a class method.
 See [](app-model-actions-napari) for details on where `Action`s are defined in napari.
 
@@ -235,8 +240,8 @@ member of the {class}`~napari._app_model.constants.MenuId` enum. Internally, an 
 of this enum should be used instead of the string literal when referring to a menu.
 
 The `group` and `order` fields let you control how menu items are grouped into sections,
-and they are ordered within each section. See {class}`~app_model.types.MenuItemBase` for
-details on each field.
+and how they are ordered within each section. See {class}`~app_model.types.MenuItemBase`
+for details on each field.
 
 The `when` field lets you control when the menu item is visible. It can take a
 {class}`~app_model.expressions.Expr`, an expression that can be evaluated, with
@@ -311,7 +316,7 @@ Dependency injection allows to write functions using parameter type annotations,
 and then inject dependencies (arguments) into those functions at call time.
 Very often in a GUI application, you may wish to infer some command arguments from
 the current state of the application. For example, if you have menu item linked
-to a "close window", you likely want to close the *current* window.
+to a "close window" action, you likely want to close the *current* window.
 Dependency injection enables this by providing arguments to commands at runtime, based
 on the type annotations in the command function definition. A 'provider', a function
 that can be called to return an instance of a given type, is used to obtain the
@@ -336,7 +341,7 @@ In napari, providers and processors can be registered in the `app`'s
 {attr}`~app_model.Application.injection_store` attribute, which is an instance of
 [`in_n_out.Store`](https://ino.readthedocs.io/en/latest/reference/#in_n_out.Store).
 This `Store` is just a collection of providers and processors. Providers
-and processors in the `Store` will be automatically be used when executing
+and processors in the `Store` will automatically be used when executing
 {class}`~app_model.registries.CommandsRegistry` commands.
 
 ```{note}
@@ -425,11 +430,11 @@ plugins/users may use to request dependencies.
 
 For parameter annotations to be resolved by in-n-out, the object must be in the
 "global" or "local" namespace. The "global" namespace consists of the items
-in the callback functions {py:attr}`funciton.__globals__` attribute.
+in the callback function's {py:attr}`function.__globals__` attribute.
 In in-n-out the "local" namespace consists of objects in the {py:mod}`typing`
 and {py:mod}`types` modules' namespace, and objects in the
 napari {attr}`~app_model.Application.injection_store`'s `namespace` attribute.
-In the napari `app`s `Store`, some basic napari objects are added to `namespace`
+In the napari `app`'s `Store`, some basic napari objects are added to the `namespace`
 attribute:
 
 * all public types from {mod}`napari.components`, {mod}`napari.layers`
@@ -437,7 +442,7 @@ attribute:
 * {class}`~napari._qt.qt_main_window.Window`
 * {class}`~napari._qt.qt_viewer.QtViewer`
 
-This means that when annotating an callback function, you will not need to import
+This means that when annotating a callback function, you will not need to import
 any of the above classes for the annotation to be resolved. For other classes
 you will need to import them at the **module** level. Importing in any of the following
 ways will not work:
@@ -469,21 +474,25 @@ information on napari testing see [](napari-testing).
 
 The {class}`~napari._app_model._app.NapariApplication`, `app`, is a global application
 singleton. This is not ideal because changes made in a previous test will persist and
-can cause conflicts for subsequent tests, when running a suit of tests.
+can cause conflicts for subsequent tests, when running a suite of tests.
 Segmentation faults can also occur as a
 singleton `app` may keep a reference to an object, e.g., a
 {class}`~napari._qt.qt_main_window.Window`, that has
 since been cleaned up at the end of a previous test.
-Thus we mock the `app` and
+Thus, we mock the `app` and
 [autouse](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#autouse-fixtures-fixtures-you-don-t-have-to-request)
-it so a new instance of `app` is returned everytime {func}`napari._app_model.get_app`
-is used inside a test.
+it so a new instance of `app` is returned every time {func}`~napari._app_model.get_app`
+is used inside a test. Note that the autouse fixture
+{function}`~napari.conftest._mock_app` will create a test `app` during setup of
+every test. It is this `app` that will be returned by all
+{func}`~napari._app_model.get_app` calls within the test.
+
 
 The mock `app` registers non-Qt `Action`s, providers and processors. This is
 because it was thought that these would be required for the majority of tests.
 If a plain `app` is required, it can be created by making a new
 {class}`~napari._app_model._app.NapariApplication` instance.
-Qt items are not registered because we did not think it would not be best practice to
+Qt items are not registered because we did not think it would be best practice to
 have Qt objects registered for every test.
 If Qt `Action`s, providers or processors are required, they can be registered by using
 the `make_napari_viewer` fixture, which will run
