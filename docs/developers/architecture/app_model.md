@@ -16,7 +16,7 @@ areas.
 
 ## App-model
 
-[`app-model`](https://app-model--142.org.readthedocs.build/en/142/) is a Python package
+[App-model](https://app-model--142.org.readthedocs.build/en/142/) is a Python package
 that provides a declarative schema for a GUI-based
 application. It is an abstraction developed by napari developers, with the
 needs of napari in mind, but it is agnostic to napari itself (i.e. it should be
@@ -564,3 +564,20 @@ there are a number of motivations for adopting this abstraction.
 
 ## app-model vs action manager implementation differences
 
+App-model and action manager differ in when actions are executed.
+In app-model, actions are defined executed when they
+[get registered](app-model-actions-napari) (on
+{class}`~napari._app_model._app.NapariApplication` and
+{class}`~napari.window.Window` initialization). This is much earlier than with
+action manager, where actions are defined and executed when building the menus.
+
+For example, with action manager, a `PluginsMenu` class instance is created when
+building the menu bar menus. This not only builds the menu but also connects
+plugin 'registered'/'unregistered' events to widget addition/removal functions.
+In app-model plugin actions are executed much earlier, when they are
+registered with `app` during initialization of `_QtMainWindow`. The
+actions registered are automatically updated via connection to plugin
+enablement change and registration. The separation of non-Qt and Qt
+action definition and registration is highlighted as they can be
+executed earlier in napari startup, before we know if we have access to
+Qt.
