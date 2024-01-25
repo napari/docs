@@ -27,11 +27,6 @@ napari has a [Code of Conduct](napari-coc) that should be honored by everyone wh
   - [Release guide](release)
   - [Deploying documentation](docs-deployment)
   - [Packaging](napari-packaging)
-- [Contributing documentation](contributing-docs)
-- [Translations](translations)
-- [Testing](napari-testing)
-- [Profiling](profiling)
-- [Benchmarks](benchmarks)
 
 (contact)=
 
