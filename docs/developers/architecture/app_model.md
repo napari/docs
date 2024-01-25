@@ -299,16 +299,13 @@ which will let you provide keybindings for all three operating systems.
 
 App-model keybindings are currently only being used for menu bar items that
 have migrated to using app-model `Action`s.
-[Pull request 6204](https://github.com/napari/napari/pull/6204) aims to
-migrate layer and viewer actions to app-model (though it is likely this pull request
-will be split into several smaller pull requests for ease of review and better git
-history). This pull request also implements [NAP-7](nap-7), which addresses
-how keybindings are dispatched according to their priority, enablement, and potential
-conflicts.
-
-Currently keybindings are not able to be edited by the user at runtime but this
-is planned. See [issue 6600](https://github.com/napari/napari/issues/6600) for more
-details.
+[Pull request 6204](https://github.com/napari/napari/pull/6204)
+migrates layer and viewer actions to app-model as well as implements [NAP-7](nap-7),
+which addresses how keybindings are dispatched according to their priority, enablement,
+and potential conflicts. It also enables keybindings to be editable by the user
+at runtime (see [issue 6600](https://github.com/napari/napari/issues/6600)
+for more on this). Note that it is likely that this pull request will be split into
+smaller pull requests for ease of review and better git history.
 
 ## Dependency injection and result processing
 
@@ -534,11 +531,11 @@ in the [`Action`](app-model-actions) `enablement` field and
 menus {class}`~app_model.types.MenuRule`'s `when` field (see [](app-model-menus
 for details)).
 
-Currently the app-model {class}`~app_model.Application` does not currently have a
+Currently, the {class}`app_model.Application` class does not have a
 context registry but it may in future
 (more details can be found
 [here](https://github.com/pyapp-kit/app-model/pull/142#issuecomment-1792405334)).
-napari therefore needs to update the context. E.g., menubar items, update, connect
+napari therefore needs to manually update the context. E.g., menubar items, update, connect
 to event.
 
 # Migration from action manager
@@ -557,3 +554,4 @@ there are a number of motivations for adopting this abstraction.
 (app-model-action-manager-differences)=
 
 ## app-model vs action manager implementation differences
+
