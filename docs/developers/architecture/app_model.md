@@ -482,10 +482,8 @@ since been cleaned up at the end of a previous test.
 Thus, we mock the `app` and
 [autouse](https://docs.pytest.org/en/7.1.x/how-to/fixtures.html#autouse-fixtures-fixtures-you-don-t-have-to-request)
 it so a new instance of `app` is returned every time {func}`~napari._app_model.get_app`
-is used inside a test. Note that the autouse fixture
-{function}`~napari.conftest._mock_app` will create a test `app` during setup of
-every test. It is this `app` that will be returned by all
-{func}`~napari._app_model.get_app` calls within the test.
+is used inside a test. This 'test' `app` is available for use throughout the test's
+duration and will get cleaned up at the end.
 
 
 The mock `app` registers non-Qt `Action`s, providers and processors. This is
