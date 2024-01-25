@@ -17,16 +17,21 @@ napari has a [Code of Conduct](napari-coc) that should be honored by everyone wh
     - [Performance](performance)
       - [Profiling](profiling)
       - [Benchmarks](napari-benchmarks)
-    - [Contributing documentation](docs_contributing_guide)
+    - [Contributing documentation](contributing-docs)
   - [](architecture-index)
 
 - **Core developer guides**: resources for core developers, including information for
   onboarding new core developers:
-  - [Core Developer guide](./core_dev_guide)
-  - [Maintenance](./maintenance)
-  - [Release guide](./release)
+  - [Core Developer guide](core-dev-guide)
+  - [Maintenance](maintenance)
+  - [Release guide](release)
   - [Deploying documentation](docs-deployment)
   - [Packaging](napari-packaging)
+- [Contributing documentation](contributing-docs)
+- [Translations](translations)
+- [Testing](napari-testing)
+- [Profiling](profiling)
+- [Benchmarks](benchmarks)
 
 (contact)=
 

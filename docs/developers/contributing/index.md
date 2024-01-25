@@ -116,4 +116,4 @@ identify the cause and where to optimize.
 
 ### Contributing documentation
 
-See [](docs_contributing_guide) for information on how to contribute documentation.
+See [](contributing-docs) for information on how to contribute documentation.

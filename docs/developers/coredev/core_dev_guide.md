@@ -80,7 +80,7 @@ consult back with our [mission and values](mission-and-values).
 2. **Performance and benchmarks:** As `napari` targets scientific applications that often involve
 large multidimensional datasets, high performance is a key value of `napari`. While
 every new feature won't scale equally to all sizes of data, keeping in mind performance
-and our [benchmarks](napari-benchmarks) during a review may be important, and you may
+and our [benchmarks](benchmarks) during a review may be important, and you may
 need to ask for benchmarks to be run and reported or new benchmarks to be added.
 
 3. **APIs and stability:** Coding users and plugin developers will make
@@ -158,7 +158,7 @@ resources such as:
 - Our [code of conduct](napari-coc).
 - Our [governance](napari-governance).
 - Our [mission and values](mission-and-values).
-- Our [benchmarking guide](napari-benchmarks).
+- Our [benchmarking guide](benchmarks).
 - [PEP8](https://peps.python.org/pep-0008/) for Python style.
 - [PEP257](https://peps.python.org/pep-0257/) and the
    [NumPy documentation guide](https://numpy.org/devdocs/dev/howto-docs.html#documentation-style)
