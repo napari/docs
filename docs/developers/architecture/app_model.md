@@ -523,8 +523,15 @@ For details on contexts and expressions see [](context-expressions).
 There are currently two
 {class}`~napari._app_model.context._context_keys.ContextNamespace` classes in
 napari; {class}`~napari._app_model.context.LayerListContextKeys` and
-{class}`~napari._app_model.context.LayerListSelectionContextKeys`. These
-are defined in [`napari/_app_model/context`](), create in ?
+{class}`~napari._app_model.context.LayerListSelectionContextKeys`. These map
+variables to {class}`~napari.components.LayerList` and selection
+{class}`~napari.components.LayerList` values. They are defined in
+[`napari/_app_model/context`](https://github.com/napari/napari/tree/main/napari/_app_model/context).
+An instance of each class is created and saved as an attribute of
+{class}`~napari.components.LayerList`. The
+{meth}`~napari._app_model.context._context_keys.ContextNamespace.update`
+methods of each are then connected to events that change the
+{class}`~napari.components.LayerList` or selected {class}`~napari.components.LayerList`.
 
 Variables in these classes can be used in expressions
 in the [`Action`](app-model-actions) `enablement` field and
@@ -532,11 +539,13 @@ menus {class}`~app_model.types.MenuRule`'s `when` field (see [](app-model-menus
 for details)).
 
 Currently, the {class}`app_model.Application` class does not have a
-context registry but it may in future
-(more details can be found
+context registry but it may in future (more details can be found
 [here](https://github.com/pyapp-kit/app-model/pull/142#issuecomment-1792405334)).
-napari therefore needs to manually update the context. E.g., menubar items, update, connect
-to event.
+napari therefore needs to manually update the context via
+{meth}`~app_model.backends.qt.QMenuItemAction.update_from_context`. For menu bar items,
+we connect {meth}`~app_model.backends.qt.QMenuItemAction.update_from_context` to the
+`aboutToShow` event of each menu bar `QModelMenu` instance,
+in {meth}`napari.window.Window._add_menus`.
 
 # Migration from action manager
 
