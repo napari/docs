@@ -17,7 +17,7 @@ called and how long it took each time. This is also helpful in differentiating
 functions that are only slow in the first call versus functions that are consistently
 slow. See [performance monitoring](perfmon) for more details.
 
-![A section of an example call graph showing the functions called in napari's layerlist and some of their profile statistics such as call count and cumulative percentage time spent.](../images/execution_graph.png)
+![A section of an example call graph showing the functions called in napari's layerlist and some of their profile statistics such as call count and cumulative percentage time spent.](../../images/execution_graph.png)
 
 The basic tool for profile in Python is the built-in module `cProfile`.
 To profile an entire script, use the call:

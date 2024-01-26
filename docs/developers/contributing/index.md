@@ -48,7 +48,7 @@ To push the local changes in your new feature branch to your
 git push -u origin your-branch-name
 ```
 
-Note we are pushing to the remote named 'origin' above.Iif you have followed the
+Note we are pushing to the remote named 'origin' above. If you have followed the
 [development installation instructions](dev-installation), 'origin' would be the name
 of the remote of your forked repository. If you are unsure
 of the name of your remotes, you can use the following command to check and
