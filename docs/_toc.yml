@@ -152,10 +152,9 @@ subtrees:
             - entries:
               - file: developers/contributing/documentation/docs_template
               - file: developers/contributing/documentation/docs_deployment
-      - file: developers/coredev/index
+      - file: developers/coredev/core_dev_guide
         subtrees:
         - entries:
-          - file: developers/coredev/core_dev_guide
           - file: developers/coredev/maintenance
           - file: developers/coredev/release
           - file: developers/coredev/packaging
