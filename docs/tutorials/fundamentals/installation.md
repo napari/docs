@@ -152,12 +152,8 @@ simply running
 napari
 ```
 
-An empty napari viewer should appear as follows.
+An empty napari viewer should appear as follows:
 
-````{note}
-You can check the napari version, to ensure it's what you expect, for example
-the current release {{ napari_version }}, using command: `napari --version` .
-````
 ![macOS desktop with a napari viewer window without any image opened in the foreground, and a terminal in the background with the appropriate conda environment activated (if applicable) and the command to open napari entered.](../assets/tutorials/launch_cli_empty.png)
 
 ````{note}
@@ -166,6 +162,9 @@ delay before the viewer appears on first launch. This is expected and subsequent
 launches should be quick. However, anti-malware and other security software
 measures may further delay launches—even after the first launch.
 ````
+
+You can check the napari version, to ensure it's what you expect, for example
+the current release {{ napari_version }}, using the command: `napari --version` .
 
 ### Choosing a different Qt backend
 
