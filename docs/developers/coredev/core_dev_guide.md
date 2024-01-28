@@ -153,7 +153,7 @@ For details on how the documentation and website are built, see
 
 As a core member, you should be familiar with the following napari guides:
 
-### Project management guides
+### Community guides
 
 - Our [code of conduct](napari-coc).
 - Our [governance](napari-governance).
