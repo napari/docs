@@ -258,7 +258,7 @@ expand the `Assets` section. You can then download the appropriate file for your
 - to start learning how to use napari, checkout our [getting started](launch) tutorial
 - if you are interested in
 contributing to napari please check our [contributing
-guidelines](contributing-code)
+guidelines](napari-contributing)
 - if you are running into issues or bugs, please open a [new issue](https://github.com/napari/napari/issues/new/choose) on our [issue
 tracker](https://github.com/napari/napari/issues)
 - if you want help using napari, we are a community partner on the [imagesc

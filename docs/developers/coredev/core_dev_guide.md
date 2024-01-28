@@ -45,7 +45,7 @@ When merging, use GitHub's
 to ensure a clean git history.
 
 You should also continue to make your own pull requests as before and in accordance
-with the [general contributor guide](contributing-code). These pull requests still
+with the [general contributor guide](napari-contributing). These pull requests still
 require the approval of another core developer before they can be merged.
 
 ## Reviewing
@@ -147,18 +147,28 @@ that responsibility seriously.
 ## Documentation and website
 
 For details on how the documentation and website are built, see
-[](documentation/docs_deployment).
+[](docs-deployment).
 
 ## Further resources
 
-As a core member, you should be familiar with community and developer
-resources such as:
+As a core member, you should be familiar with the following napari guides:
 
-- Our [contributor guide](contributing-code).
+### Community guides
+
 - Our [code of conduct](napari-coc).
 - Our [governance](napari-governance).
 - Our [mission and values](mission-and-values).
+
+### Technical guides
+
+- Our [contributor guide](napari-contributing).
 - Our [benchmarking guide](benchmarks).
+- Our [release guide](release).
+- Our [maintenance guide](maintenance).
+- Our [packaging guide](napari-packaging).
+
+### Style guides
+
 - [PEP8](https://peps.python.org/pep-0008/) for Python style.
 - [PEP257](https://peps.python.org/pep-0257/) and the
    [NumPy documentation guide](https://numpy.org/devdocs/dev/howto-docs.html#documentation-style)
@@ -166,6 +176,9 @@ resources such as:
 - [`pre-commit`](https://pre-commit.com) hooks for autoformatting.
 - [`black`](https://github.com/psf/black) autoformatting.
 - [`flake8`](https://github.com/PyCQA/flake8) linting.
+
+### Social resources
+
 - [#napari on image.sc](https://forum.image.sc/tag/napari).
 - [#napari](https://twitter.com/search?q=%23napari&f=live) and [@napari_imaging](https://twitter.com/napari_imaging) on twitter.
 - [napari zulip](https://napari.zulipchat.com/) community chat channel.
