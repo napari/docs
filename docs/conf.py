@@ -111,7 +111,7 @@ html_theme_options = {
     "pygment_light_style": "napari",
     "pygment_dark_style": "napari",
     # hard coded announcement for banner at the top:
-    "announcement": "This is a community-supported project! There's many ways to contribute, <a href="https://napari.org/dev/developers/index.html">check out our Contributing guide</a>.",
+    "announcement": "This is a community-supported project! There's many ways to contribute, <a href='https://napari.org/dev/developers/index.html'>check out our Contributing guide</a>.",
     # Below uses a linked file, making it possible to edit the announcement without a release/rebuilding docs
     # "announcement": "https://raw.githubusercontent.com/napari/docs/blob/main/docs/_templates/announcement-template.html",
 }
