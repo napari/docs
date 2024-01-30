@@ -110,7 +110,10 @@ html_theme_options = {
     "secondary_sidebar_items": ["page-toc"],
     "pygment_light_style": "napari",
     "pygment_dark_style": "napari",
-    "announcement": "https://raw.githubusercontent.com/psobolewskiPhD/napari-docs/announcement/docs/_templates/custom-template.html",
+    # hard coded announcement for banner at the top:
+    "announcement": "This is a community-supported project! There's many ways to contribute—click Contributing below for info.",
+    # Below uses a linked file, making it possible to edit the announcement without a release/rebuilding docs
+    # "announcement": "https://raw.githubusercontent.com/napari/docs/blob/main/docs/_templates/custom-template.html",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
