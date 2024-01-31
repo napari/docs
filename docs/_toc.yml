@@ -178,19 +178,6 @@ subtrees:
           - file: naps/7-key-binding-dispatch
           - file: naps/8-telemetry
           - file: naps/9-multiple-canvases
-      - file: developers/documentation/index
-        subtrees:
-        - entries:
-          - file: developers/documentation/docs_template
-          - file: developers/documentation/docs_deployment
-      - file: developers/translations
-      - file: developers/core_dev_guide
-      - file: developers/release
-      - file: developers/testing
-      - file: developers/profiling
-      - file: developers/benchmarks
-      - file: developers/packaging
-      - file: developers/maintenance
       - file: release/index
         subtrees:
         - entries:
