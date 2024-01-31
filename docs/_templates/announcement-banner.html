@@ -1,4 +1,4 @@
-{% set header_classes = ["bd-header-announcement", "container-fluid"] %}
+<!-- {% set header_classes = ["bd-header-announcement", "container-fluid"] %}
 {% set is_remote=theme_announcement.startswith("http") %}
 {# If we are remote, add a script to make an HTTP request for the value on page load #}
 {%- if is_remote %}
@@ -20,4 +20,10 @@
 <div class="{{ header_classes | join(' ') }} bd-header-announcement">
     <div class="bd-header-announcement__content">{{ theme_announcement }}</div>
 </div>
-{% endif %}
+{% endif %} -->
+
+<div class="sidebar-message">
+    This is a community-supported project!
+    There's many ways to contribute,
+    <a href="https://napari.org/dev/developers/index.html">check out our Contributing guide.</a>
+</div>

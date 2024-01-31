@@ -108,7 +108,7 @@ html_theme_options = {
     "secondary_sidebar_items": ["page-toc"],
     "pygment_light_style": "napari",
     "pygment_dark_style": "napari",
-    "announcement": "_templates/announcement-banner.html",
+    "announcement": "https://github.com/melissawm/napari-docs/blob/empty-banner/docs/_templates/announcement-banner.html",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
