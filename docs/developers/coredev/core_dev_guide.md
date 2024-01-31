@@ -80,7 +80,7 @@ consult back with our [mission and values](mission-and-values).
 2. **Performance and benchmarks:** As `napari` targets scientific applications that often involve
 large multidimensional datasets, high performance is a key value of `napari`. While
 every new feature won't scale equally to all sizes of data, keeping in mind performance
-and our [benchmarks](napari-benchmarks) during a review may be important, and you may
+and our [benchmarks](benchmarks) during a review may be important, and you may
 need to ask for benchmarks to be run and reported or new benchmarks to be added.
 
 3. **APIs and stability:** Coding users and plugin developers will make
@@ -147,18 +147,28 @@ that responsibility seriously.
 ## Documentation and website
 
 For details on how the documentation and website are built, see
-[](documentation/docs_deployment).
+[](docs-deployment).
 
 ## Further resources
 
-As a core member, you should be familiar with community and developer
-resources such as:
+As a core member, you should be familiar with the following napari guides:
 
-- Our [contributor guide](napari-contributing).
+### Community guides
+
 - Our [code of conduct](napari-coc).
 - Our [governance](napari-governance).
 - Our [mission and values](mission-and-values).
-- Our [benchmarking guide](napari-benchmarks).
+
+### Technical guides
+
+- Our [contributor guide](napari-contributing).
+- Our [benchmarking guide](benchmarks).
+- Our [release guide](release).
+- Our [maintenance guide](maintenance).
+- Our [packaging guide](napari-packaging).
+
+### Style guides
+
 - [PEP8](https://peps.python.org/pep-0008/) for Python style.
 - [PEP257](https://peps.python.org/pep-0257/) and the
    [NumPy documentation guide](https://numpy.org/devdocs/dev/howto-docs.html#documentation-style)
@@ -166,6 +176,9 @@ resources such as:
 - [`pre-commit`](https://pre-commit.com) hooks for autoformatting.
 - [`black`](https://github.com/psf/black) autoformatting.
 - [`flake8`](https://github.com/PyCQA/flake8) linting.
+
+### Social resources
+
 - [#napari on image.sc](https://forum.image.sc/tag/napari).
 - [#napari](https://twitter.com/search?q=%23napari&f=live) and [@napari_imaging](https://twitter.com/napari_imaging) on twitter.
 - [napari zulip](https://napari.zulipchat.com/) community chat channel.

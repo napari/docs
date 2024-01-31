@@ -20,25 +20,34 @@ much as we can with unit tests, requiring fewer integration tests, and the least
 of functional tests as depicted in the test pyramid below from
 [softwaretestinghelp.com](https://www.softwaretestinghelp.com/the-difference-between-unit-integration-and-functional-testing/):
 
-![Pyramid diagram depicting the relationship between time to write/execute three different types of tests and return on investment for those tests.  The pyramid is split into three sections: the bottom, largest section is Unit testing, the middle section is Integration testing and the top is Functional testing. The size of the section is proportional to the quantity of tests of that type you should write. Moving up the pyramid, tests take longer to write and have a lower return on investment.](../images/tests.png)
+![Pyramid diagram depicting the relationship between time to write/execute three different types of tests and return on investment for those tests.  The pyramid is split into three sections: the bottom, largest section is Unit testing, the middle section is Integration testing and the top is Functional testing. The size of the section is proportional to the quantity of tests of that type you should write. Moving up the pyramid, tests take longer to write and have a lower return on investment.](../../images/tests.png)
 
 Unit tests are at the base of the pyramid because they are the easiest to write and
 the quickest to run. The time and effort to implement and maintain tests increases
 from unit tests to integration and functional tests.
 
+(test-organization)=
+
 ## Test organization
 
 All of `napari` tests are located in folders named `_tests`. We keep our unit
 tests located in the individual folders with the modules or functions they are
-testing (e.g. the tests for the `Image` layer are located in a `_tests` folder
-alongside the `image.py` file). Our integration and functional tests are located in
+testing (e.g. the tests for the `Image` layer are located in
+`/napari/layers/image/_tests` alongside the `Image` layer code). Our integration and
+functional tests are located in
 the `napari/_tests` folder at the top of the repository.
 
 We also strive to unit test as much of our model file and utils code independently of
 our GUI code. These tests are located in the `napari/layers`, `napari/components`,
 and `napari/utils` folders. Our GUI code is tests in the `napari/_tests`,
-`napari/_qt`, `napari/_vispy` folders. The `napari/plugins` folder contains a mix
-of tests.
+`napari/_qt`, `napari/_vispy` folders. The tests in these three folders are ignored
+when we run them in the subset of our
+[continuous integration](https://en.wikipedia.org/wiki/Continuous_integration)
+workflows that run in a headless environment (without a Qt backend).
+When we are testing "non-GUI" code in a way that requires a GUI backend, they are
+placed here. The `napari/plugins` folder contains a mix of tests.
+
+Pytest fixtures that are available globally to aid testing live in `napari/conftest.py`.
 
 ## Running tests
 
