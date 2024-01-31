@@ -23,3 +23,8 @@ div.sphx-glr-download a:hover {
   background-image: none;
   background-color: #ffffff !important;
 }
+
+/* Workaround for announcement banner */
+html[data-theme="dark"] {
+  --pst-color-secondary-bg: #e0c7ff;
+}
