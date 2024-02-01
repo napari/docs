@@ -97,6 +97,8 @@ use case is supported before pulling out the rug. 🤝 If you are using the
 `qt_viewer` because we don't have another public API to do what you need,
 please [raise an issue](https://github.com/napari/napari/issues/new) so we can
 make sure your use case is supported before we remove it.
+([#6283](https://github.com/napari/napari/pull/6283))
+
 
 Finally, although we still use pydantic 1.0 objects internally, napari
 installs correctly with both pydantic v1 and pydantic v2. If you wanted to
@@ -120,8 +122,6 @@ meetings](https://napari.org/stable/community/meeting_schedule.html), or [tag
 us on Mastodon](https://fosstodon.org/@napari)!
 
 Read on for the full list of changes that went into this release.
-
-- Postpone qt_viewer deprecation to 0.6.0 ([napari/napari/#6283](https://github.com/napari/napari/pull/6283))
 
 ## New Features
 
@@ -250,8 +250,6 @@ replacements:
 - `seed`: was only used for shifting labels around in [0, 1]. It is
   superseded by `layer.new_colormap()` which was implemented in
   [#6460](https://github.com/napari/napari/pull/6460).
-
-- Postpone qt_viewer deprecation to 0.6.0 ([napari/napari/#6283](https://github.com/napari/napari/pull/6283))
 
 ## Build Tools
 
