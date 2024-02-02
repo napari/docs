@@ -524,8 +524,9 @@ There are currently two
 {class}`~napari._app_model.context._context_keys.ContextNamespace` classes in
 napari; {class}`~napari._app_model.context.LayerListContextKeys` and
 {class}`~napari._app_model.context.LayerListSelectionContextKeys`. These map
-variables to {class}`~napari.components.LayerList` and selection
-{class}`~napari.components.LayerList` values. They are defined in
+variables to various values obtained using {class}`~napari.components.LayerList`
+and selection {class}`~napari.components.LayerList` (e.g., "Number of selected points
+layers"). They are defined in
 [`napari/_app_model/context`](https://github.com/napari/napari/tree/main/napari/_app_model/context).
 An instance of each class is created and saved as an attribute of
 {class}`~napari.components.LayerList`. The
