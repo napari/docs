@@ -1,3 +1,5 @@
+(napari-release)=
+
 # Release guide
 
 This guide documents `napari`'s release process.

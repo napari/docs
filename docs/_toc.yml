@@ -48,17 +48,21 @@ subtrees:
               - file: howtos/layers/surface
               - file: howtos/layers/tracks
               - file: howtos/layers/vectors
-          - file: howtos/connecting_events
+          - file: howtos/extending/index
+            subtrees:
+            - titlesonly: True
+              entries:
+              - file: howtos/extending/magicgui
+              - file: howtos/extending/connecting_events
           - file: howtos/napari_imageJ
           - file: howtos/docker
           - file: howtos/perfmon
           - file: howtos/headless
+          - file: howtos/themes
       - file: guides/index
         subtrees:
         - entries:
-          - file: guides/magicgui
           - file: guides/event_loop
-          - file: guides/napari_models
           - file: guides/threading
           - file: guides/3D_interactivity
           - file: guides/rendering-explanation
@@ -66,7 +70,6 @@ subtrees:
           - file: guides/performance
           - file: guides/preferences
           - file: guides/contexts_expressions
-          - file: guides/app_model
           - file: guides/events_reference
       - file: further-resources/glossary
       - file: further-resources/napari-workshops
@@ -132,7 +135,28 @@ subtrees:
   - file: developers/index
     subtrees:
     - entries:
-      - file: developers/contributing
+      - file: developers/contributing/index
+        subtrees:
+        - entries:
+          - file: developers/contributing/dev_install
+          - file: developers/contributing/testing
+          - file: developers/contributing/translations
+          - file: developers/contributing/performance/index
+            subtrees:
+            - entries:
+              - file: developers/contributing/performance/profiling
+              - file: developers/contributing/performance/benchmarks
+          - file: developers/contributing/documentation/index
+            subtrees:
+            - entries:
+              - file: developers/contributing/documentation/docs_template
+              - file: developers/contributing/documentation/docs_deployment
+      - file: developers/coredev/core_dev_guide
+        subtrees:
+        - entries:
+          - file: developers/coredev/maintenance
+          - file: developers/coredev/release
+          - file: developers/coredev/packaging
       - file: developers/architecture/index
         subtrees:
         - entries:
@@ -152,22 +176,11 @@ subtrees:
           - file: naps/6-contributable-menus
           - file: naps/7-key-binding-dispatch
           - file: naps/8-telemetry
-      - file: developers/documentation/index
-        subtrees:
-        - entries:
-          - file: developers/documentation/docs_template
-          - file: developers/documentation/docs_deployment
-      - file: developers/translations
-      - file: developers/core_dev_guide
-      - file: developers/release
-      - file: developers/testing
-      - file: developers/profiling
-      - file: developers/benchmarks
-      - file: developers/packaging
-      - file: developers/maintenance
+          - file: naps/9-multiple-canvases
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_4_19
           - file: release/release_0_4_18
           - file: release/release_0_4_17
           - file: release/release_0_4_16

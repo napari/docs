@@ -96,7 +96,7 @@ version numbers `0.x` and do not have a deprecation policy, but we will work to 
 strings following [PEP257](https://peps.python.org/pep-0257/) and the
 [NumPy documentation guide](https://numpy.org/devdocs/dev/howto-docs.html#documentation-style).
 For any major new features, accompanying changes should be made to our
-[tutorials](https://napari.org/tutorials). These should not only
+[tutorials](tutorials). These should not only
 illustrates the new feature, but explains it. Titles for all documents in napari should follow [sentence case capitalization](https://apastyle.apa.org/style-grammar-guidelines/capitalization/sentence-case), but the name `napari` should always be written in lowercase.
 
 5. **Implementations and algorithms:** You should understand the code being modified
@@ -147,18 +147,28 @@ that responsibility seriously.
 ## Documentation and website
 
 For details on how the documentation and website are built, see
-[](documentation/docs_deployment).
+[](docs-deployment).
 
 ## Further resources
 
-As a core member, you should be familiar with community and developer
-resources such as:
+As a core member, you should be familiar with the following napari guides:
 
-- Our [contributor guide](napari-contributing).
+### Community guides
+
 - Our [code of conduct](napari-coc).
 - Our [governance](napari-governance).
 - Our [mission and values](mission-and-values).
+
+### Technical guides
+
+- Our [contributor guide](napari-contributing).
 - Our [benchmarking guide](napari-benchmarks).
+- Our [release guide](release).
+- Our [maintenance guide](maintenance).
+- Our [packaging guide](napari-packaging).
+
+### Style guides
+
 - [PEP8](https://peps.python.org/pep-0008/) for Python style.
 - [PEP257](https://peps.python.org/pep-0257/) and the
    [NumPy documentation guide](https://numpy.org/devdocs/dev/howto-docs.html#documentation-style)
@@ -166,6 +176,9 @@ resources such as:
 - [`pre-commit`](https://pre-commit.com) hooks for autoformatting.
 - [`black`](https://github.com/psf/black) autoformatting.
 - [`flake8`](https://github.com/PyCQA/flake8) linting.
+
+### Social resources
+
 - [#napari on image.sc](https://forum.image.sc/tag/napari).
 - [#napari](https://twitter.com/search?q=%23napari&f=live) and [@napari_imaging](https://twitter.com/napari_imaging) on twitter.
 - [napari zulip](https://napari.zulipchat.com/) community chat channel.
