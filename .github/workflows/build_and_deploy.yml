@@ -91,7 +91,7 @@ jobs:
         # if this is a tag, use the tag name as the directory name else dev
         run: |
           if [[ "${{ github.ref }}" == "refs/tags/"* ]]; then
-            echo "branch_name=${{ github.ref/refs\/tags\// }}" >> $GITHUB_ENV 
+            echo "branch_name=${{ github.ref\/refs\/tags\// }}" >> $GITHUB_ENV 
           else
             echo "branch_name=dev" >> $GITHUB_ENV 
           fi
