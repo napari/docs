@@ -56,6 +56,11 @@ class ArrayLike(Protocol):
 # typing than literal array types (e.g. numpy, dask, xarray, etc...)
 ```
 
+Note that when writing your own plugin, such type annotations are nearly always optional, 
+except in rare cases like `magicgui` function widgets.
+Here, for clarity, we've provided aliases that indicate the how values of the type are 
+being used and the level of generality that's possible (e.g., with `ArrayLike`). 
+
 ### Examples
 
 Assume that `data` is a numpy array:
