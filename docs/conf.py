@@ -16,7 +16,9 @@
 
 import re
 import os
+from datetime import datetime
 from importlib import import_module
+from importlib.metadata import distribution
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
@@ -24,6 +26,7 @@ from jinja2.filters import FILTERS
 from sphinx_gallery import scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
 from sphinx.highlighting import lexers
+from packaging.version import parse as parse_version
 from pygments.lexers import TOMLLexer
 
 import napari
@@ -38,7 +41,7 @@ else:
 # -- Project information -----------------------------------------------------
 
 project = 'napari'
-copyright = '2022, The napari team'
+copyright = f'{datetime.now().year}, The napari team'
 author = 'The napari team'
 
 # -- General configuration ---------------------------------------------------
@@ -169,9 +172,25 @@ myst_enable_extensions = [
 
 myst_heading_anchors = 4
 
+
+def get_supported_python_versions(project_name):
+    """
+    Get the supported Python versions for a given project
+    based on the classifiers in its distribution metadata.
+    """
+    dist = distribution(project_name)
+    classifiers = [value for key, value in dist.metadata.items() if key == 'Classifier' and value.startswith('Programming Language :: Python ::')]
+    return [parse_version(c.split(' :: ')[-1]) for c in classifiers if not c.endswith('Only')]
+
+
+napari_supported_python_versions = get_supported_python_versions('napari')
+
+min_python_version = min(napari_supported_python_versions)
+max_python_version = max(napari_supported_python_versions)
+
 version_string = '.'.join(str(x) for x in __version_tuple__[:3])
 python_version = '3.10'
-python_version_range = '3.8–3.10'
+python_version_range = f"{min_python_version}-{max_python_version}"
 
 myst_substitutions = {
     "napari_conda_version": f"`napari={version_string}`",
