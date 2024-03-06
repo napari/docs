@@ -58,7 +58,7 @@ class ArrayLike(Protocol):
 
 Note that when writing your own plugin, such type annotations are nearly always optional, 
 except in rare cases like `magicgui` function widgets.
-Here, for clarity, we've provided aliases that indicate how values of the type are 
+Here, for clarity, we've provided type names which indicate how values of the type are 
 being used and the level of generality that's possible (e.g., with `ArrayLike`). 
 
 ### Examples
