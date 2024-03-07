@@ -8,8 +8,8 @@ up often in plugins and is explained here.
 
 Note that when writing your own plugin, type annotations are optional, 
 except in the case of [`magicgui` function widgets](magicgui).
-Here in this section we sometimes provide a type annotation with a more informative name, 
-indicating its value's _functional role_ in a plugin, in addition its possible types.
+Here we sometimes provide a type annotation with a more informative name, 
+indicating its value's _functional role_ in a plugin, in addition to its possible types.
 
 ### Informal description
 
