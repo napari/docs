@@ -6,6 +6,11 @@ directly. Instead, it passes (mostly) pure-python and array-like types,
 deconstructed into a {class}`tuple` that we refer to as a `LayerData` tuple.  This type shows
 up often in plugins and is explained here.
 
+Note that when writing your own plugin, type annotations are nearly always optional, 
+except in rare cases like [`magicgui` function widgets](magicgui).
+Here in this section, in some examples we provide these annotations with names which indicate 
+their role in a plugin, and the level of generality that's possible (e.g., with `ArrayLike`). 
+
 ### Informal description
 
 ```py
@@ -55,11 +60,6 @@ class ArrayLike(Protocol):
 # the main point is that we're more concerned with structural
 # typing than literal array types (e.g. numpy, dask, xarray, etc...)
 ```
-
-Note that when writing your own plugin, such type annotations are nearly always optional, 
-except in rare cases like `magicgui` function widgets.
-Here, for clarity, we've provided type names which indicate how values of the type are 
-being used and the level of generality that's possible (e.g., with `ArrayLike`). 
 
 ### Examples
 
