@@ -6,8 +6,8 @@ directly. Instead, it passes (mostly) pure-python and array-like types,
 deconstructed into a {class}`tuple` that we refer to as a `LayerData` tuple.  This type shows
 up often in plugins and is explained here.
 
-Note that when writing your own plugin, type annotations are nearly always optional, 
-except in rare cases like [`magicgui` function widgets](magicgui).
+Note that when writing your own plugin, type annotations are optional, 
+except in the case of [`magicgui` function widgets](magicgui).
 Here in this section we sometimes provide a type annotation with a more informative name, 
 indicating its value's _functional role_ in a plugin, in addition its possible types.
 
