@@ -8,7 +8,7 @@ up often in plugins and is explained here.
 
 Note that when writing your own plugin, type annotations are optional, 
 except in the case of [`magicgui` function widgets](magicgui).
-For several types related to `LayerData` tuples, Napari defines an alias 
+For several types related to `LayerData` tuples, Napari defines a type alias 
 which better indicates a value's _functional role_ in a plugin. 
 We describe these below.
 
