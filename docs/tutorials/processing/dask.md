@@ -216,7 +216,7 @@ if __name__ == '__main__':
 
 __And here's the final output!__
 
-![Alt text](https://media.giphy.com/media/LO3gPbCs5AxApjAehW/giphy.gif)
+![napari viewer showing the brain dataset as slices, shown each at a time while a slider moves through the first axis of the data.](https://media.giphy.com/media/LO3gPbCs5AxApjAehW/giphy.gif)
 
 ## Processing data with `dask.array.map_blocks`
 
