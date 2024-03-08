@@ -62,6 +62,12 @@ linkcheck-files:
 
 fallback-videos:
 	for video in $(basename $(wildcard docs/_static/images/*.webm)); do \
-		echo $$video; \
-		ffmpeg -i $$video.webm -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -crf 18 -preset slow -c:a aac -b:a 192k -strict -2 -y $$video.mp4; \
+		if [ -a $$video.mp4 ]; then \
+			echo "skipping $$video.mp4"; \
+			continue; \
+		fi; \
+		ffmpeg -i $$video.webm -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -preset slow -crf 22 -c:a aac -b:a 128k -strict -2 -y $$video.mp4; \
 	done
+
+fallback-videos-clean:
+	rm -f docs/_static/images/*.mp4
