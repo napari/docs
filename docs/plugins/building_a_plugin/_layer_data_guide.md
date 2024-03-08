@@ -39,14 +39,13 @@ LayerData = Union[Tuple[DataType], Tuple[DataType, LayerProps], FullLayerData]
 where ...
 
 ```python
-from typing import Dict, Literal, Protocol, Sequence, Tuple, Union
-import numpy as np
+from typing import Literal, Protocol, Sequence
 
 LayerTypeName = Literal[
     "image", "labels", "points", "shapes", "surface", "tracks", "vectors"
 ]
 LayerProps = Dict
-DataType = Union["ArrayLike", Sequence["ArrayLike"]]
+DataType = Union[ArrayLike, Sequence[ArrayLike]]
 FullLayerData = Tuple[DataType, LayerProps, LayerTypeName]
 LayerData = Union[Tuple[DataType], Tuple[DataType, LayerProps], FullLayerData]
 
@@ -57,7 +56,7 @@ class ArrayLike(Protocol):
     ndim: int
     dtype: np.dtype
     def __array__(self) -> np.ndarray: ...
-    def __getitem__(self, key) -> "ArrayLike": ...
+    def __getitem__(self, key) -> ArrayLike: ...
 
 # the main point is that we're more concerned with structural
 # typing than literal array types (e.g. numpy, dask, xarray, etc...)
