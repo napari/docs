@@ -68,7 +68,7 @@ Pytest fixtures to aid testings live in:
 
 These fixtures from are available globally to all of `napari`.
 Additionally,
-[`napari/conftest.py`](https://github.com/napari/napari/blob/main/napari/conftest.py)
+[`napari/utils/_testsupport.py`](https://github.com/napari/napari/blob/main/napari/utils/_testsupport.py)
 fixtures are also available to all tests in the same environment that `napari`
 is installed in as they are exported.
 
