@@ -252,7 +252,7 @@ When checking that `QWidget` visibility is updated correctly, you may need to us
 This is because visibility can take some time to change.
 
 For example, the following code can be used to check that a widget correctly
-'disappears' after it is 'hidden'.
+appears after it is created.
 
 ```python
 from qtpy.QtWidgets import QWidget
@@ -269,8 +269,9 @@ def test_widget_hidden(make_napari_viewer, qtbot):
     assert widget.isVisible()
 ```
 
-Note that the default timeout for `qtbot.waitUntil` is 5 seconds and we need to make
-the `viewer` visible when creating it.
+Note that we need to make the `viewer` visible when creating it as we are checking
+visibility. Additionally, you can set the timeout for `qtbot.waitUntil` (default is 5
+seconds).
 
 Another function that may be useful for testing `QWidget` visibility is
 [`QWidget.isVisibleTo`](https://doc.qt.io/qt-5/qwidget.html#isVisibleTo), which
