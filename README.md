@@ -17,7 +17,7 @@ Please read our [contributing guide](https://napari.org/dev/developers/contribut
 * __Check the prerequisites__
     1. Create a [development installation](https://napari.org/dev/developers/contributing/dev_install.html#dev-installation) of `napari` on your local machine.
     1. Fork this repository, and then clone your fork to your local machine. 
-NB: the name will be `napari-docs` rather than simply `docs`.
+NB: you may want to name your fork e.g. `napari-docs` rather than just `docs`.
     1. Create a clean Python environment (e.g., with conda), and with your local clone's root folder as the working directory, install the docs requirements with `python -m pip install -r requirements.txt`.
 * __Build__ locally
     * If you're building on Windows, a few extra steps are required; you can follow [this guide](https://napari.org/stable/developers/documentation/index.html#building-the-documentation-on-windows).
