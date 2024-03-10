@@ -10,10 +10,10 @@ You can see details of [the project roadmap here](https://napari.org/roadmaps/in
 ## contributing
 
 Contributions are encouraged! Given that we're in an early stage, you may want to reach out on our [Github Issues](https://github.com/napari/docs/issues) before jumping in.
-Please read our [contributing guide](https://napari.org/dev/developers/contributing/documentation/index.html) for comprehensive information about contributing documentation.
 It's nice to be able preview how your contribution will look on the web, so here we provide a brief summary of what's required for a local setup that will allow you to do so.
+Please read our [contributing guide](https://napari.org/dev/developers/contributing/documentation/index.html) for more comprehensive information about contributing documentation.
 
-### quickstart: local setup to build docs
+### quickstart: local setup
 * __Check the prerequisites__
     1. Create a [development installation](https://napari.org/stable/developers/contributing.html#dev-installation) of `napari` on your local machine.
     1. Fork this repository, and then clone your fork to your local machine. 
