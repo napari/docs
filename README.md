@@ -9,7 +9,32 @@ You can see details of [the project roadmap here](https://napari.org/roadmaps/in
 
 ## contributing
 
-Contributions are encouraged! Please read our [contributing guide](https://napari.org/dev/developers/contributing/documentation/index.html) to get started. Given that we're in an early stage, you may want to reach out on our [Github Issues](https://github.com/napari/docs/issues) before jumping in.
+Contributions are encouraged! Given that we're in an early stage, you may want to reach out on our [Github Issues](https://github.com/napari/docs/issues) before jumping in.
+Please read our [contributing guide](https://napari.org/dev/developers/contributing/documentation/index.html) for comprehensive information about contributing documentation.
+It's nice to be able preview how your contribution will look on the web, so here we provide a brief summary of what's required for a local setup that will allow you to do so.
+
+### quickstart: local setup to build docs
+* __Check the prerequisites__:
+    * Create a [development installation](https://napari.org/stable/developers/contributing.html#dev-installation) of `napari` on your local machine.
+    * Fork this repository, and then clone your fork to your local machine. 
+NB: the name will be `napari-docs` rather than simply `docs`.
+    * Create a clean Python environment (e.g., with conda), and with your local clone's root folder as the working directory, install the docs requirements with `python -m pip install -r requirements.txt`.
+* __Plan your contribution__: If you envision adding a new document, consider [opening an issue](https://github.com/napari/docs/issues/new/choose) to discuss your ideas and to get preliminary feedback about the best type of document for the new content and good placement among existing docs.
+* __Write your docs__
+    * For a tutorial or a how-to, we use [MyST Markdown](https://myst-parser.readthedocs.io/en/latest/) to combine code with text while maintaining source files in a format amenable to version control.
+        * If you're writing from scratch, we recommend using our [template](https://napari.org/stable/developers/documentation/docs_template.html), which you can copy, edit, and rename according to what's in your new document.
+        * If you have an existing notebook to contribute as documentation, you can run `jupytext your-notebook.ipynb --to myst` to convert to MyST, and edit the resulting Markdown file.
+    * If you're using links in your documentation, run `make linkcheck-files` to ensure that all links are functional. This can be done from the main docs folder with no argument (possibly slow!), or passing the `FILES=` argument to specify a specific document to check.
+* __Update TOC__: If you're adding a new document, you need to update the table of contents. This may be as simple as adding a `- file:`entry with a relative path to your new document. Addition of subheadings and new groupings of documents requires a bit more; for full details, see the [TOC update section](https://napari.org/stable/developers/documentation/index.html#update-the-table-of-contents-toc) of the contribution guide.
+* __Build__ locally
+    * If you're building on Windows, a few extra steps are required; you can follow [this guide](https://napari.org/stable/developers/documentation/index.html#building-the-documentation-on-windows).
+    * With all prerequisites met, from the root of your local clone of this repository, run one of these:
+        * `make docs`, if your changes include the example gallery
+        * `make docs-install && make html-noplot`, otherwise
+* __Preview__ locally with one of the following:
+    * Drag-and-drop `docs/_build/index.html` into a browser.
+    * Deploy a local server with `python3 -m http.server --directory docs/_build`
+* __Open a pull request!__ Your contribution will soon help `napari` users around the world.
 
 ## code of conduct
 
