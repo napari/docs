@@ -26,6 +26,9 @@ Please read our [contributing guide](https://napari.org/dev/developers/contribut
         * `make docs-install && make html-noplot`, otherwise
 * __Preview__ locally, either dragging-and-dropping `docs/_build/index.html` into a browser, or deploying a local server with `python3 -m http.server --directory docs/_build`.
 
+These steps should set you up to build and preview your docs contributions on your local machine.
+For more detailed instructions and tips, please visit the relevant sections of our [contribution guide](https://napari.org/dev/developers/contributing/documentation/index.html).
+
 ## code of conduct
 
 `napari` has a [Code of Conduct](https://napari.org/community/code_of_conduct.html) that should be honored by everyone who participates in the `napari` community.
