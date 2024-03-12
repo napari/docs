@@ -64,11 +64,16 @@ Pytest fixtures to aid testing live in:
 
 * [`napari/conftest.py`](https://github.com/napari/napari/blob/main/napari/conftest.py) -
   available globally to all of `napari`.
-* [`napari_builtins/_tests/conftest.py`](https://github.com/napari/napari/blob/main/napari_builtins/_tests/conftest.py) -
-  available within [`napari_builtins/_tests`](https://github.com/napari/napari/tree/main/napari_builtins/_tests)
 * [`napari/utils/_testsupport.py`](https://github.com/napari/napari/blob/main/napari/utils/_testsupport.py) -
   available globally to all of `napari` **and** to all tests in the same environment
   that `napari` is in (as this file is exported).
+
+There are also fixtures for testing the `napari` builtin plugin (provides contributions
+that come builtin with `napari`).
+These live in
+[`napari_builtins/_tests/conftest.py`](https://github.com/napari/napari/blob/main/napari_builtins/_tests/conftest.py)
+and are available within
+[`napari_builtins/_tests`](https://github.com/napari/napari/tree/main/napari_builtins/_tests).
 
 (running-tests)=
 
