@@ -60,17 +60,15 @@ placed here.
 
 The `napari/plugins` folder contains tests related to plugins.
 
-Pytest fixtures to aid testings live in:
+Pytest fixtures to aid testing live in:
 
-* [`napari/conftest.py`](https://github.com/napari/napari/blob/main/napari/conftest.py)
-* [`napari_builtins/_tests/conftest.py`](https://github.com/napari/napari/blob/main/napari_builtins/_tests/conftest.py)
-* [`napari/utils/_testsupport.py`](https://github.com/napari/napari/blob/main/napari/utils/_testsupport.py)
-
-These fixtures from are available globally to all of `napari`.
-Additionally,
-[`napari/utils/_testsupport.py`](https://github.com/napari/napari/blob/main/napari/utils/_testsupport.py)
-fixtures are also available to all tests in the same environment that `napari`
-is installed in as they are exported.
+* [`napari/conftest.py`](https://github.com/napari/napari/blob/main/napari/conftest.py) -
+  available globally to all of `napari`.
+* [`napari_builtins/_tests/conftest.py`](https://github.com/napari/napari/blob/main/napari_builtins/_tests/conftest.py) -
+  available within [`napari_builtins/_tests`](https://github.com/napari/napari/tree/main/napari_builtins/_tests)
+* [`napari/utils/_testsupport.py`](https://github.com/napari/napari/blob/main/napari/utils/_testsupport.py) -
+  available globally to all of `napari` **and** to all tests in the same environment
+  that `napari` is in (as this file is exported).
 
 (running-tests)=
 
@@ -186,7 +184,7 @@ See also [this paper on property-based testing in science](https://conference.sc
 
 There are a couple things to keep in mind when writing a test where a `Qt` event
 loop or a `napari.Viewer` is required.  The important thing is that any widgets
-you create during testing needs to be cleaned up at the end of each test:
+you create during testing need to be cleaned up at the end of each test:
 
 1. If you need a `QApplication` to be running for your test, you can use the
    [`qtbot`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot) fixture from `pytest-qt`
