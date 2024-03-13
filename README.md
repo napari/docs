@@ -9,8 +9,9 @@ You can see details of [the project roadmap here](https://napari.org/roadmaps/in
 
 ## contributing
 
-Contributions are encouraged! Given that we're in an early stage, you may want to reach out on our [Github Issues](https://github.com/napari/docs/issues) before jumping in.
+Contributions are encouraged! If you're new or unsure about anything check out our [issues tracker](https://github.com/napari/docs/issues) or reach out on [zulip](https://napari.zulipchat.com/) before jumping in.
 It's nice to be able preview how your contribution will look on the web, so here we provide a brief summary of what's required for a local setup that will allow you to do so.
+Alternatively, our CI setup provides a preview link that shows your changes.
 Please read our [contributing guide](https://napari.org/dev/developers/contributing/documentation/index.html) for more comprehensive information about contributing documentation.
 
 ### quickstart: local setup
