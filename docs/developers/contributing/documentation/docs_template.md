@@ -45,7 +45,7 @@ You should include pictures/videos, particularly when describing interactions wi
 accompanied by complete and descriptive alt-text. If you're using arrows/circles to highlight portions of the image, make sure
 they contrast well against the background of the image.
 
-`````{note} Adding videos
+`````{important} Adding videos
   If you want to include videos in your documentation, you should use the .webm format and add a screenshot of the video as a fallback for browsers that don't support the video tag. Both files should be added to `docs/_static/images`. When the documentation is built, a .mp4 version of the video will be automatically generated and included in the documentation. You can then use the .webm file in your documentation like so:
 
   ````{code}
