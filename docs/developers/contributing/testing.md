@@ -82,13 +82,15 @@ and are available within
 To run our test suite locally, run `pytest` on the command line.  If, for some reason
 you don't already have the test requirements in your environment, run `python -m pip install -e .[testing]`.
 
-There are some tests that require showing GUI elements, (such
-as testing screenshots). By default, these are only run during continuous integration.
+There are some tests that require showing GUI elements (such
+as testing screenshots) and window focus (such as testing drag and drop behavior). By default, these are only run during continuous integration.
 If you'd like to include them in local tests, set the environment variable "CI":
 
 ```sh
 CI=1 pytest
 ```
+
+ Also, if running the tests on macOS, be sure to give the Terminal app `Accessibility` permissions in `System Settings > Privacy & Security > Accessibility` (needed for some tests that rely on `pyautogui`).
 
 It is also possible to run test using `tox`. This is the same way as it is done in CI.
 The main difference is that tox will create a virtual environment for each test environment, so it will take more time
@@ -241,11 +243,10 @@ you create during testing need to be cleaned up at the end of each test:
 > If you're curious to see the actual `make_napari_viewer` fixture definition, it's
 > in [`napari/utils/_testsupport.py`](https://github.com/napari/napari/blob/main/napari/utils/_testsupport.py).
 
-#### Skipping tests that show GUI elements
+#### Skipping tests that show GUI elements or need window focus
 
-Tests that require showing GUI elements should be marked with `skip_local_popups`.
-This is so they can be excluded and run only during continuous integration (see
-[](running-tests) for details).
+Tests that require showing GUI elements should be marked with `skip_local_popups`. If a test requires window focus, it should be marked with `skip_local_focus`. 
+This is so they can be excluded and run only during continuous integration (see [](running-tests) for details).
 
 #### Testing `QWidget` visibility
 
