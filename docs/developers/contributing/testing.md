@@ -84,13 +84,14 @@ you don't already have the test requirements in your environment, run `python -m
 
 There are some tests that require showing GUI elements (such
 as testing screenshots) and window focus (such as testing drag and drop behavior). By default, these are only run during continuous integration.
-If you'd like to include them in local tests, set the environment variable "CI":
+If you'd like to enable them in local tests, you can set the environment variables: `NAPARI_POPUP_TESTS=1` or `NAPARI_FOCUS_TESTS=1` or set the environment variable `CI=1`:
 
 ```sh
 CI=1 pytest
 ```
 
- Also, if running the tests on macOS, be sure to give the Terminal app `Accessibility` permissions in `System Settings > Privacy & Security > Accessibility` (needed for some tests that rely on `pyautogui`).
+Note: setting `CI=1` will also disable certain tests that take too long, etc. on CI.
+Also, if running the GUI tests that use `pyautogui` on macOS, be sure to give the Terminal app `Accessibility` permissions in `System Settings > Privacy & Security > Accessibility` so `pyautogui` can control the mouse, keyboard, etc.
 
 It is also possible to run test using `tox`. This is the same way as it is done in CI.
 The main difference is that tox will create a virtual environment for each test environment, so it will take more time
