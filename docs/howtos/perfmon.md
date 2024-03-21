@@ -1,4 +1,4 @@
-(perfmon)=
+(napari-perfmon)=
 
 # Performance monitoring
 
@@ -18,7 +18,7 @@ The module can do several things:
 
 ## Monitoring vs. profiling
 
-Profiling is similar to performance monitoring. However profiling usually
+[Profiling](profiling) is similar to performance monitoring. However profiling usually
 involves running an external tool to acquire timing data on every function
 in the program. Sometimes this will cause the program to run so slowly it's
 hard to use the program interactively.
@@ -26,15 +26,17 @@ hard to use the program interactively.
 Performance monitoring does not require running a separate tool to collect
 the timing information, however we do use Chrome to view the trace files.
 With performance monitoring napari can run at close to full speed in many
-cases. This document discusses only napari's performance monitoring
-features. Profiling napari might be useful as well, but it is not discussed
-here.
-
+cases. Performance monitoring is also more flexible as you can run napari and
+interact with the app while checking performance. This document discusses only napari's
+performance monitoring
+features. Profiling napari might be useful as well, especially if you do not know
+the cause of the performance issue. You can find more information in
+[our profiling documentation](profiling).
 
 ## Enabling perfmon
 
 There are two ways to enable performance monitoring. Set the environment
-variable `NAPARI_PERFMON=1` or set `NAPARI_PERFMON` to the path of 
+variable `NAPARI_PERFMON=1` or set `NAPARI_PERFMON` to the path of
 a JSON configuration file, for example `NAPARI_PERFMON=/tmp/perfmon.json`.
 
 ```{note}
@@ -191,7 +193,7 @@ find out they actually run fast, so you can remove them.
 
 To add the {meth}`Labels.paint<napari.layers.Labels.paint>` method to
 the trace, create a new list of callables named `labels` and put the
-{meth}`Labels.paint<napari.layers.Labels.paint>` method into 
+{meth}`Labels.paint<napari.layers.Labels.paint>` method into
 that list.
 
 ```json

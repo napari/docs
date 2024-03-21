@@ -9,7 +9,26 @@ You can see details of [the project roadmap here](https://napari.org/roadmaps/in
 
 ## contributing
 
-Contributions are encouraged! Please read our [contributing guide](https://napari.org/developers/contributing.html) to get started. Given that we're in an early stage, you may want to reach out on our [Github Issues](https://github.com/napari/napari/issues) before jumping in.
+Contributions are encouraged! If you're new or unsure about anything check out our [issues tracker](https://github.com/napari/docs/issues) or reach out on [zulip](https://napari.zulipchat.com/) before jumping in.
+It's nice to be able preview how your contribution will look on the web, so here we provide a brief summary of what's required for a local setup that will allow you to do so.
+Alternatively, our CI setup provides a preview link that shows your changes.
+Please read our [contributing guide](https://napari.org/dev/developers/contributing/documentation/index.html) for more comprehensive information about contributing documentation.
+
+### quickstart: local setup
+* __Check the prerequisites__
+    1. Create a clean Python environment (e.g., with conda).
+    1. In that environment, create a [development installation](https://napari.org/dev/developers/contributing/dev_install.html#dev-installation) of `napari` on your local machine, first forking and cloning the main `napari` project if you've not previously done so.
+    1. Fork this repository, and then clone your fork to your local machine. NB: you may want to name your fork e.g. `napari-docs` rather than just `docs`.
+    1. With your local clone's root folder as the working directory, and with the environment created in the first step activated, install the docs requirements with `python -m pip install -r requirements.txt`.
+* __Build__ locally
+    * If you're building on Windows, a few extra steps are required; you can follow [this guide](https://napari.org/stable/developers/documentation/index.html#building-the-documentation-on-windows).
+    * From the root of your local clone of this repository, run one of these:
+        * `make docs`, if your changes include the example gallery
+        * `make docs-install && make html-noplot`, otherwise
+* __Preview__ locally, either dragging-and-dropping `docs/_build/index.html` into a browser, or deploying a local server with `python3 -m http.server --directory docs/_build`.
+
+These steps should set you up to build and preview your docs contributions on your local machine.
+For more detailed instructions and tips, please visit the relevant sections of our [contribution guide](https://napari.org/dev/developers/contributing/documentation/index.html).
 
 ## code of conduct
 
@@ -37,4 +56,7 @@ the bug report template. If you think something isn't working, don't hesitate to
 
 ## institutional and funding partners
 
-![Chan Zuckerberg Initiative logo](https://chanzuckerberg.com/wp-content/themes/czi/img/logo.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://chanzuckerberg.com/wp-content/themes/czi/img/logo-white.svg">
+  <img alt="CZI logo" src="https://chanzuckerberg.com/wp-content/themes/czi/img/logo.svg">
+</picture>
