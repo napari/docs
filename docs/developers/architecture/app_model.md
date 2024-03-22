@@ -16,7 +16,7 @@ areas.
 
 ## App-model
 
-[App-model](https://app-model--142.org.readthedocs.build/en/142/) is a Python package
+[`app-model`](https://app-model.readthedocs.io/en/latest/) is a Python package
 that provides a declarative schema for a GUI-based
 application. It is an abstraction developed by napari developers, with the
 needs of napari in mind, but it is agnostic to napari itself (i.e. it should be
@@ -41,8 +41,8 @@ Currently, the primary purpose of the `app` is to compose the following
   between a [KeyBinding](app-model-keybindings) and a command ID in the
   {class}`~app_model.registries.CommandsRegistry`. Accessible via `app.keybindings`.
 
-The app-model
-['Getting started'](https://app-model--142.org.readthedocs.build/en/142/getting_started/)
+The `app-model`
+['Getting started'](https://app-model.readthedocs.io/en/latest/getting_started/)
 page provides a good general introduction to app-model.
 This documentation will focus on napari specific aspects.
 
@@ -51,7 +51,7 @@ This documentation will focus on napari specific aspects.
 ## `Action`s
 
 The {class}`app_model.types.Action` class is designed to easily create a high level
-'Action' object that is the "complete" representation of a command; a pointer
+'Action' object that is the "complete" representation of a command: a pointer
 to a callable object and optionally placement in menus, keybindings, and additional
 metadata like title, icons, tooltips etc. It subclasses
 {class}`app_model.types.CommandRule` and takes {class}`app_model.types.MenuRule` and
@@ -125,7 +125,7 @@ This is because command id's may currently only be registered once, and associat
 
 ### `Action`s in napari
 
-In napari non-Qt `Action`s are defined in
+In napari, non-Qt `Action`s are defined in
 [`napari/_app_model/actions`](https://github.com/napari/napari/tree/main/napari/_app_model/actions)
 while Qt `Action`s are defined in
 [`napari/_qt/_qapp_model/qactions`](https://github.com/napari/napari/tree/main/napari/_qt/_qapp_model/qactions).
@@ -146,8 +146,10 @@ Commands represent callable objects that "do something" in napari, and usually
 have a corresponding representation somewhere in the GUI (such as a button, a
 menu item, or a keybinding).
 
+```{important}
 Inline (lambda) and nested functions should be avoided for command callbacks to
 prevent memory leakage.
+```
 
 All commands have a string id (e.g. '`napari:layer:duplicate`'). These are
 currently `CommandID` enums but we are considering changing to using
@@ -536,8 +538,8 @@ methods of each are then connected to events that change the
 
 Variables in these classes can be used in expressions
 in the [`Action`](app-model-actions) `enablement` field and
-menus {class}`~app_model.types.MenuRule`'s `when` field (see [](app-model-menus
-for details)).
+menus {class}`~app_model.types.MenuRule`'s `when` field (see [](app-model-menus)
+for details).
 
 Currently, the {class}`app_model.Application` class does not have a
 context registry but it may in future (more details can be found
