@@ -5,7 +5,9 @@
 .. autoclass:: {{ objname }}
    :members:
    :show-inheritance:
-   :inherited-members:
+   {% if objname != "progress" %}
+      :inherited-members:
+   {% endif %}
 
    {% block methods %}
 

@@ -58,11 +58,11 @@ subtrees:
           - file: howtos/docker
           - file: howtos/perfmon
           - file: howtos/headless
+          - file: howtos/themes
       - file: guides/index
         subtrees:
         - entries:
           - file: guides/event_loop
-          - file: guides/napari_models
           - file: guides/threading
           - file: guides/3D_interactivity
           - file: guides/rendering-explanation
@@ -70,7 +70,6 @@ subtrees:
           - file: guides/performance
           - file: guides/preferences
           - file: guides/contexts_expressions
-          - file: guides/app_model
           - file: guides/events_reference
       - file: further-resources/glossary
       - file: further-resources/napari-workshops

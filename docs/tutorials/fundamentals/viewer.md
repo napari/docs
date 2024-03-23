@@ -18,7 +18,7 @@ kernelspec:
 
 Welcome to the tutorial on the **napari** viewer!
 
-This tutorial assumes you have already installed **napari** and know how to launch the viewer. For help with installation see our [installation](installation) tutorial. For help launching the viewer see our [getting started](launch) tutorial.
+This tutorial assumes you have already installed **napari** and know how to launch the viewer. For help with installation see our [installation](napari-installation) tutorial. For help launching the viewer see our [getting started](launch) tutorial.
 
 This tutorial will teach you about the **napari** viewer, including how to use its graphical user interface (GUI) and how the data within it is organized. At the end of the tutorial, you should understand both the layout of the viewer on the screen and the data inside of it.
 
@@ -108,7 +108,7 @@ We'll go through each of these in the next sections.
 
 The main menu consists of the **File**, **View**, **Window**, **Plugins**, and **Help** options.
 
-* **File** has the options to open files, folders, and samples, save layers and screenshots,copy screenshots to clipboard and, in the Windows version, preferences.
+* **File** has the options to open files, folders, and samples, save layers and screenshots, copy screenshots to clipboard and, in the Windows version, preferences. Additionally, you can make a new `Image` layer from an image (or URL to an image) copied to your Clipboard (keybinding {kbd}`Command/Ctrl+N`).
 
     All the options on the **File** menu are relatively self-explanatory except **Preferences** on the Windows version of napari. **Preferences** allows you to personalize napari to some degree. To learn more about the **Preferences** menu, there is a tutorial designed for developers [here](https://napari.org/stable/guides/preferences.html).
 
@@ -140,7 +140,7 @@ The **canvas** is in the center of the viewer and contains the visual display of
 
 Layers are one of the basic napari objects. There are different layer types for `Image`, `Points`, `Shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added, they populate the layer list located on the bottom left side of the canvas.
 
-The layer list contains one widget for each of the layers that have been added to the viewer and includes a `thumbnail` that shows a miniaturized version of the currently viewed data, a `name` that is an editable text box, a `visibility` button (eye icon) that can be toggled on or off to show or hide the layer, and an `icon` for the layer type. Note that you can Option/Alt-click on the `visibility` button to show *just* that one layer, hiding all others. If you then Option/Alt-click on the `visibility` button of a layer a second time, the visibility state of all layers will be restored.
+The layer list contains one widget for each of the layers that have been added to the viewer and includes a `thumbnail` that shows a miniaturized version of the currently viewed data, a `name` that is an editable text box, a `visibility` button (eye icon) that can be toggled on or off to show or hide the layer, and an `icon` for the layer type. Note that you can Option/Alt-click on the `visibility` button to show *just* that one layer, hiding all others. If you then Option/Alt-click on the `visibility` button of a layer a second time, the visibility state of all layers will be restored. Alternately, you can cycle through layers in the layer list, showing only one at a time, by using {kbd}`Shift`+{kbd}`Option/Alt` and the {kbd}`Up` or {kbd}`Down` keys.
 
 Adding the following three image layers using the code below adds three-layer widgets to the layer list as follows:
 
