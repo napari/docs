@@ -56,6 +56,12 @@ jobs:
           python -c 'import napari; print(napari.__version__)'
           python -c 'import napari.layers; print(napari.layers.__doc__)'
 
+      - name: Create fallback videos
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          cd docs
+          make fallback-videos
+
       - name: Build Docs
         uses: aganders3/headless-gui@v2
         env:
