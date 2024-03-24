@@ -22,7 +22,7 @@ napari is a fast, interactive, multi-dimensional image viewer, with [a vibrant p
 
 napari is an open source project on [GitHub](https://github.com/napari/napari) to facilitate transparency, reuse, and extensibility.
 
-At its core, it provides critical viewer features out-of-the-box, such as support for [large multi-dimensional data](dask); [“layers”](layers-glance) to simultaneously visualize images, models, and analysis results; and easy manual, interactive annotation in 3D.
+At its core, it provides critical viewer features out-of-the-box, such as support for [large multi-dimensional data](dask-napari); [“layers”](layers-glance) to simultaneously visualize images, models, and analysis results; and easy manual, interactive annotation in 3D.
 
 This tutorial uses napari 0.4.14. <br>
 
@@ -70,7 +70,7 @@ You will also see some examples of plugins. The core napari viewer focuses on do
     ```
 
 
-If you run into any issues, please visit the more detailed [installation guide](installation), or [report an issue on GitHub](https://github.com/napari/napari/issues/new/choose)!
+If you run into any issues, please visit the more detailed [installation guide](napari-installation), or [report an issue on GitHub](https://github.com/napari/napari/issues/new/choose)!
 
 +++
 
@@ -131,6 +131,10 @@ viewer.add_image(data.cell(), name='cell')
 nbscreenshot(viewer, alt_text="image of a single cell opened in napari viewer")
 ```
 
+```{note}
+Once you have a napari viewer open, you can also make a new `Image` layer from an image (or URL to an image) copied to your Clipboard using `File -> New Image from Clipboard` menu item (keybinding {kbd}`Command/Ctrl+N`).
+```
+
 ### Image display adjustment
 
 The layer controls panel at the upper left of the viewer allows you to adjust contrast, colormap, and other layer properties. These settings affect the visualization, but do not affect the underlying data.
@@ -158,7 +162,18 @@ The labels layer allows you to record the segmentation result by assigning backg
 1. Circle the cell
 1. Use "fill" bucket to fill it.
 
-![manual_label](../../images/manual_label.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/manual_label.webm" type="video/webm" />
+    <source src="../../_static/images/manual_label.mp4" type="video/mp4" />
+    <img src="../../_static/images/manual_label.png"
+      title="Your browser does not support the video tag"
+      alt="Manually labeling a region of interest in napari"
+    >
+  </video>
+</figure>
+```
 
 Several plugins can perform automatic segmentation that takes image layers as input and generates labels layers as output.
 
