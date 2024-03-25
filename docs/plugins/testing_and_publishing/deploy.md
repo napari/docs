@@ -26,7 +26,7 @@ Wiki](https://github.com/chanzuckerberg/napari-hub/wiki).
 
 If you want your plugin to be available on PyPI, but not visible on the napari
 hub, add a `visibility` flag to your plugin manifest. For more details, see the 
-manifest reference and napari hub [customization
+[manifest reference](plugin-manifest) and napari hub [customization
 guide][hub-guide-custom-viz].
 ```
 
