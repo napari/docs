@@ -27,10 +27,10 @@ prep-docs:
 	python $(docs_dir)/_scripts/prep_docs.py
 
 docs-build: prep-docs
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 docs-xvfb: prep-docs
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 docs: clean docs-install docs-build
 
@@ -59,3 +59,15 @@ html-noplot: clean prep-docs
 
 linkcheck-files:
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build ${FILES} -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+
+fallback-videos:
+	for video in $(basename $(wildcard docs/_static/images/*.webm)); do \
+		if [ -a $$video.mp4 ]; then \
+			echo "skipping $$video.mp4"; \
+			continue; \
+		fi; \
+		ffmpeg -i $$video.webm -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -preset slow -crf 22 -c:a aac -b:a 128k -strict -2 -y $$video.mp4; \
+	done
+
+fallback-videos-clean:
+	rm -f docs/_static/images/*.mp4

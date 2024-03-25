@@ -1,4 +1,4 @@
-(napari-workshops)=
+(workshops)=
 # napari workshops
 
 There have been many workshops and tutorials given about napari.
@@ -14,14 +14,18 @@ as a starting point.
 
 If you have organized a napari workshop and would like to see it featured here
 in this page, you can
-[send a Pull Request to the napari/docs repository](../developers/documentation/index.md)
+[send a Pull Request](contributing-docs-step-one) to the
+[napari/docs repository](https://github.com/napari/docs)
 or contact the core developers on [zulip chat](https://napari.zulipchat.com/login/).
 ```
 
 ## Workshops
 
 *Workshops are listed from newest to oldest.*
-* September 2023, [plugin design](https://chanzuckerberg.github.io/napari-plugin-accel-workshops/workshops/design23.html) and [software development workshop](https://chanzuckerberg.github.io/napari-plugin-accel-workshops/workshops/softwaredev.html) for [napari plugin grantees](https://chanzuckerberg.com/rfa/napari-plugin-grants/).
+* September 2023
+  * [Plugin design](https://chanzuckerberg.github.io/napari-plugin-accel-workshops/workshops/design23.html) and [software development workshop](https://chanzuckerberg.github.io/napari-plugin-accel-workshops/workshops/softwaredev.html) for [napari plugin grantees](https://chanzuckerberg.com/rfa/napari-plugin-grants/).
+  * [Bioimage Analysis with Python and Napari (video lecture)](https://www.youtube.com/watch?v=QDS5t7oZH-c) at the [EMBO Practical Course for Advanced Methods in Bioimage Analysis](https://www.embl.org/about/info/course-and-conference-office/events/bia23-01/)  
+  
 * November 2022, napari foundation grant onboarding
   * [Getting started with napari plugin development slide deck](https://docs.google.com/presentation/d/15lrFRLPm9bfmU4hgcVwoduIJr5bqhoHo7ZeWLO6H_Us/edit?usp=sharing)
   * [Watch it here](https://drive.google.com/file/d/1IYDV-GTGEYh5j_tvBaWYEZ_tQXTqmJkr/view?usp=share_link)

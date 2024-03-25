@@ -1,8 +1,10 @@
- # Getting started
+(getting-started)=
+
+# Getting started
 
 The following documents will give you an overview of how to install and use
-napari. For more detailed use-cases, check out the [napari tutorials](./index)
-or [How-to guides](../howtos/index).
+napari. For more detailed use-cases, check out the [napari tutorials](tutorials)
+or [How-to guides](how-tos).
 
 ::::{grid}
 :::{grid-item-card} Quick start
@@ -15,14 +17,14 @@ A quick glance of what napari does aimed at first-timers.
 
 ::::{grid}
 :::{grid-item-card} How to install napari
-:link: installation
+:link: napari-installation
 :link-type: ref
 
 How to do a clean install of napari and launch the viewer.
 :::
 
 :::{grid-item-card} How to launch napari
-:link: getting_started
+:link: launch
 :link-type: ref
 
 This tutorial will teach you all the different ways to launch napari.
