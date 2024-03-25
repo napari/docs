@@ -153,22 +153,28 @@ actions.
 
 ### The `Layers` Menu
 Currently the foremost example of such an object is the napari `Layers`, and this
-top level menu therefore contains five submenus organized by the types of processing
+top level menu therefore contains a number of submenus organized by the types of processing
 the user may wish to perform on the selected `Layer` or `Layers`.
 
 The `Layers` submenus are organized to give the user an immediate
 feeling of what might happen to their `Layers` as a result of clicking
 one of these menu items.
 
-1. `Visualization` - Items in this submenu allow you to generate visualizations from selected layer or layers.
+1. `Visualize` - Items in this submenu allow you to generate visualizations from selected layer or layers.
 They do not change the layer data.
 2. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data.
-3. `Edit` - The items in this submenu change the data of your layer through `Filters` or `Transformations`.
+3. `Edit` - The items in this submenu change the data of your layer through `Filters` or `Transformations`. 
 Additionally `Annotation Tools` provide a location for convenience layer editing tools e.g. `Labels` split/merge actions.
 Items in this submenu **should not** generate new layers, but rather act upon the existing layer data.
-3. `Generate` - Items in this submenu are the main *analysis* actions you can take on your layer.
-These items should add new layers to the viewer based on analyses and processing of data in your selected layer(s).
-The five proposed submenus are `Projection`, `Segmentation`, `Classification`, `Registration` and `Tracks`.
+
+The remaining submenus under `Layers` deal with generating new layers based on processing of existing layers
+or other information. They define common *analysis* actions users may want to take on their layers.
+
+4. `Registration` - Commands that allow the user to perform image registration on one or more layers
+5. `Projection` - Commands that generate various projections based on one or more layers
+6. `Segmentation` - Commands that generate image segmentations
+7. `Tracks` - Commands that take in an image or segmentation and produce timelapse tracks
+8. `Classification` - ??
 
 Many of the actions in this menu exist in the right click layer context menu. These items
 should be replicated in the `Layers` menu as needed, both to aid discoverability and
@@ -205,6 +211,13 @@ It is likely, therefore, that some plugins will always have bespoke interfaces f
 exporting various file formats. These interfaces will be exposed via the new `File->I/O Utilities`
 menu.
 
+### The `File -> New Layer` Menu
+
+This menu will contain built-in `napari` commands for creating new empty layers (similar to 
+the new layer buttons atop the layerlist), but also allow plugins to declare commands that 
+open new empty layers with specific properties e.g. a `zarr`-backed `Labels` layer, an
+`Image` layer with a specific `dtype`, or a `Points` layer with specific default features.
+
 ### Plugin Submenus
 
 The goal of the newly proposed menus is to provide a natural place where generally applicable
@@ -224,44 +237,42 @@ Plugin developers can organize all contributions under this submenu as they see 
 ```
 File
 ├─ ...
+├─ New Layer
 ├─ IO Utilities
 Layers
-├─ Visualization
+├─ Visualize
+├─ Measure
 ├─ Edit
-│  ├─ Annotation Tools
+│  ├─ Annotate
 │  ├─ Filter
 │  ├─ Transform
-├─ Measure
-├─ Generate
-│  ├─ Registration
-│  ├─ Projection
-│  ├─ Segmentation
-│  ├─ Tracks
-│  ├─ Classification
+├─ Registration
+├─ Projection
+├─ Segmentation
+├─ Tracks           # remove?
+├─ Classification   # remove?
 Acquisition
-Plugins/<my_plugin>    # only individual plugins submenu contributable
-
-Layers Context  # already open for contribution
 ```
 
-As a case study, we take four plugins offering between 9 and 14 widget contributions and arrange their widgets in these menus:
+As a case study, we take four plugins offering between 9 and 14 widget contributions and arrange their widgets in these menus: 
 `empanada-napari`, `napari-stracking`, `napari-mm3` and `napari-clemreg`. Where a plugin's widgets don't
 naturally fit into one of the proposed menus, they are left in the plugin's own submenu.
-Note that we have arranged these widgets purely based on title and cursory inspection of the documentation,
+Note that we have arranged these widgets purely based on title and cursory inspection of the documentation, 
 so this should not be considered a concrete proposal for the structure of these plugins.
 
 ```
 File
 ├─ ...
+├─ New Layer
 ├─ IO Utilities
 │  ├─ Export 2D segmentations (empanada-napari)
 │  ├─ Store training dataset (empanada-napari)
 │  ├─ nd2ToTIFF (napari-mm3)
 Layers
-├─ Visualization
+├─ Visualize
 │  ├─ SFilterTrack (napari-stracking)
 ├─ Edit
-│  ├─ Annotation Tools
+│  ├─ Annotate
 │  │  ├─ Merge Labels (empanada-napari)
 │  │  ├─ Delete Labels (empanada-napari)
 │  │  ├─ Split Labels (empanada-napari)
@@ -274,27 +285,26 @@ Layers
 ├─ Measure
 │  ├─ SParticlesProperties (napari-stracking)
 │  ├─ STracksFeatures (napari-stracking)
-├─ Generate
-│  ├─ Registration
-│  ├─ Projection
-│  ├─ Segmentation
-│  │  ├─ 2D Inference (empanada-napari)
-│  │  ├─ 3D Inference (empanada-napari)
-│  │  ├─ make_log_segmentation (napari-clemreg)
-│  │  ├─ make_clean_binary_segmentation (napari-clemreg)
-│  │  ├─ SegmentOtsu (napari-mm3)
-│  │  ├─ SegmentUnet (napari-mm3)
-│  │  ├─ Foci (napari-mm3)
-│  │  ├─ SDetectorDog (napari-stracking)
-│  │  ├─ SDetectorDoh (napari-stracking)
-│  │  ├─ SDetectorLog (napari-stracking)
-│  │  ├─ SDetectorSeg (napari-stracking)
-│  ├─ Tracks
-│  │  ├─ SLinkerShortestPath (napari-stracking)
-│  │  ├─ Tracks (napari-mm3)
-│  ├─ Classification
-│  ├─ make_point_cloud_sampling (napari-clemreg)
-│  ├─ make_point_cloud_registration (napari-clemreg)
+├─ Registration
+├─ Projection
+├─ Segmentation
+│  ├─ 2D Inference (empanada-napari)
+│  ├─ 3D Inference (empanada-napari)
+│  ├─ make_log_segmentation (napari-clemreg)
+│  ├─ make_clean_binary_segmentation (napari-clemreg)
+│  ├─ SegmentOtsu (napari-mm3)
+│  ├─ SegmentUnet (napari-mm3)
+│  ├─ Foci (napari-mm3)
+│  ├─ SDetectorDog (napari-stracking)
+│  ├─ SDetectorDoh (napari-stracking)
+│  ├─ SDetectorLog (napari-stracking)
+│  ├─ SDetectorSeg (napari-stracking)
+├─ Tracks
+│  ├─ SLinkerShortestPath (napari-stracking)
+│  ├─ Tracks (napari-mm3)
+├─ Classification
+├─ make_point_cloud_sampling (napari-clemreg)
+├─ make_point_cloud_registration (napari-clemreg)
 Acquisition
 Plugins
 ├─ empanada-napari
@@ -318,13 +328,38 @@ Plugins
 │  ├─ predict_from_model
 ```
 
+### Item Descriptions
+
+To allow users to browse menus more effectively without having to click each
+item to figure out what it does, menu contributions should be given a `description`
+field that is available when the user is inspecting the menu. The `description`
+should be required, so that 
+
+
+### Item Grouping & Ordering
+
+Previously, plugin contributions were limited to the `Plugins` menu and grouped
+under the plugin's name. Now that plugin contributions can be colocated with 
+native napari actions, it's important that users are able to distinguish
+the source of menu items.
+
+To that end, napari items should always be grouped separately to plugin items
+in all menus. Additionally, the plugin's name should also be listed with 
+each plugin contribution. Since plugin names can be quite long, future work should
+consider more concise ways to indicate menu item sources, including using icons.
+
+Outside of a plugin's own submenu, the `order` and `group` keys will be ignored
+for menu contributions. napari will make its own decisions about the grouping
+and ordering of plugin contributions in its native menus.
+
+
 ### Items that Don't Fit?
 
 Where a plugin developer feels that none of the submenus of a given menu are suitable
 for their purpose, they should add their item to the deepest applicable menu. For
 example, a widget that takes a layer and produces a new layer through random perturbations
-would not fit under `Layers -> Generate -> Segmentation` but could fit under
-`Layers -> Generate`.
+would not fit under `Layers -> Segmentation` but could fit under the top level 
+`Layers` menu.
 
 Where a plugin developer feels no top level menu or submenu is suitable for their purpose,
 they should add their item to their own plugin's submenu under `Plugins -> Your Plugin`,
@@ -344,15 +379,15 @@ As the number of plugins, types of contributions and `Viewer` interactions grows
 it is important that the set of contributable menus is periodically assessed
 to add new submenus as required.
 
-Every 6 months to 1 year, the core developers will perform an analysis on
-the total set of menu item and widget contributions of all plugins, and
-derive new groupings to ensure that the length of each submenu remains
-managable.
+Every 6 months to 1 year, the core developers will perform an analysis on 
+the total set of menu item and widget contributions of all plugins, and 
+derive new groupings to ensure that the length of each submenu remains 
+managable. 
 
-For example, consider the `Layers -> Generate -> Segmentation` menu. If
+For example, consider the `Layers -> Segmentation` menu. If 
 analysis of the plugin ecosystem reveals 40 different contributions
 for Watershed Segmentation, a new `Watershed` submenu would be added
-under `Layers -> Generate -> Segmentation -> Watershed`.
+under `Layers -> Segmentation -> Watershed`.
 
 #### User Request
 
@@ -371,6 +406,21 @@ Once core developer consensus on adding the menu item is achieved,
 a Pull Request will be raised opening up this menu for contribution.
 The user proposing the menu is not responsible for opening this Pull
 Request, though they may, if they wish.
+
+### User Configuration
+
+This document has so far discussed menu contributions exclusively from
+the plugin developer's perspective. In general, napari will continue
+to be opinionated about what plugin developers can and cannot change 
+about the napari interface through menu contributions. Our guiding principle
+here is that users should never be surprised by the napari interface as a result
+of standard plugin contributions - menus shouldn't move around, or be hidden, layer
+controls should behave in the same way regardless of what plugins are installed, etc.
+
+However, napari users **should** be able to freely customize their own napari installation
+to a much greater extent. This should include contribution-level enablement control
+for plugins, as well as building their own custom menus, whether this be a brand new top-level
+menu or rearranging things within existing menus.
 
 ## Related Work
 
@@ -423,9 +473,9 @@ can simply maintain logic for migrating old IDs to new ones.
 If a contributable `napari` submenu is removed, this should be highlighted
 first by a deprecation warning. Once the submenu is deprecated, contributions
 that refer to this submenu should instead be placed in the higher level
-menu. For example, if `Layers -> Generate -> Segmentation` is removed,
+menu. For example, if `Layers -> Segmentation` is removed,
 existing contributions referring to this ID will be placed under
-`Layers -> Generate`.
+`Layers`.
 
 If a contributable `napari` top level menu is removed, this should be highlighted
 first by a deprecation warning. Before the submenu is deprecated, core developers
@@ -441,39 +491,44 @@ in the plugin's submenu at the top level.
 
 ## Future Work
 
-As mentioned above, a key feature to support rapid browsing for actions is the
+**Command paltte:** As mentioned above, a key feature to support rapid browsing for actions is the
 search functionality via the command palette. This is actively being worked
 on and is essential for navigation.
 
-Once more contribution types are exposed for users, it's important that users
+**Context dependent enablement:** Once more contribution types are exposed for users, it's important that users
 are aware why certain actions are disabled when the user doesn't meet the
 requisite context declared in the contribution's `enablement` clause. Since
 the syntax for declaring these contexts is strictly defined, we should be
 able to surface information to suers about what is required for the action
 to be enabled and functional. For example, an action could declare itself
-enabled only when a points layer *and* an image layer are selected. If
+enabled only when a points layer *and* an image layer are selected. If 
 the user has only selected an image layer, we could indicate the missing
 context to the user e.g. "Action takes a points and image layer, but no
-points layer is selected".
+points layer is selected". 
 
-A desired attribute of these menu items is that users always know what
+**Making actions predictable:** A desired attribute of these menu items is that users always know what
 will happen when they click a menu item. Does a widget open? Is the layer
-edited? Is a new layer added to the `Viewer`? Once more contribution
-types are exposed, we should be able to either add this information
-as metadata in the manifest file, or infer it from return type
+edited? Is a new layer added to the `Viewer`? Once more contribution 
+types are exposed, we should be able to either add this information 
+as metadata in the manifest file, or infer it from return type 
 annotations of contribution commands, and also expose this to the user.
 
-Finally, the number of actions in each menu is heavily dependent on
+**Dynamic menus:** The number of actions in each menu is heavily dependent on
 the plugins installed in the user's environment. Given a complete set of
 contributable menus, we could dynamically inspect how many menu items
 each submenu contains, and group them appropriately for the user while
 limiting unnecessary depth. For example, if the user's environment has
 six plugins installed that each provide a `Watershed` segmentation,
 we could display a `Layers -> Generate -> Segmentation -> Watershed`
-submenu. If the user has just one `Watershed` segmentation plugin
-installed, this submenu would not appear. This would require very careful
+submenu. If the user has just one `Watershed` segmentation plugin 
+installed, this submenu would not appear. This would require very careful 
 design to ensure the user still knows what to expect when they load up
 the `Viewer`.
+
+**Location preferences:** One option to consider when moving/removing
+menus is allowing plugin developers to declare a preference list of 
+menu locations, such that if one location is no longer available, 
+the menu item is placed in the next location on the preference list.
 
 ## Alternatives
 
@@ -499,7 +554,9 @@ interactions and plugin contributions e.g. multi canvas
 - **Jun 2 2022: npe2 #161** After further discussion (on zulip and in PR), this schema is identified as potentialy too limiting and there is mention that #160 may need to be reverted. A NAP is once again suggested as this is an influential decision with lots of opinions.
 - **Jun 13 2022: npe2 #161** is closed and #160 is reverted, with comment for follow up over in the napari repo.
 - **[Sep 30 2022: napari #5153](https://github.com/napari/napari/pull/5153)** opened with same list as in npe2, minimal discussion and input.
-- **Oct 28 2022: napari #5153** discussion on core devs zulip stream begins. Developers mostly agree on the inidividual menu items but don't like how deep the `Tools` menu already is, and the lack of semantic meaning in its structure.
+- **Oct 28 2022: napari #5153** discussion on core devs zulip stream begins. Developers mostly agree on the inidividual menu items but don't like how deep the `Tools` menu already is, and the lack of semantic meaning in its structure. 
+- **[Dec 22 2022: NAP6 PR](https://github.com/napari/docs/pull/77)** is opened and there is much discussion. Implementation is blocked by `app-model` work, so focus turns to that.
+- **[Oct 04 2023: Hackathon](https://hackmd.io/fmKp0If5RkiwWIxYYRdKpg)** is held and Draga demos working branch of menu contributions. Core devs present discuss various outstanding items. This discussion is summarised in the linked notes.
 
 ## References and Footnotes
 
