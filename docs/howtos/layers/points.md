@@ -150,7 +150,7 @@ layer:
   need to have any points selected for it to have an effect. In fact, you cannot
   change the symbol for a single point on a layer and leave the rest the same.
 
-* Face and Border colors
+* Face and border colors
 
   To change the point color properties from the GUI first select the points
   whose properties you want to change, otherwise you will just be initializing
