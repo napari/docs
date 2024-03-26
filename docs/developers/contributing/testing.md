@@ -231,12 +231,13 @@ def test_something_else(qtbot):
 
 We provide a
 [pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html) called
-`make_napari_viewer` for tests that require the {class}`~napari.Viewer`:
+`make_napari_viewer` for tests that require the {class}`~napari.Viewer`. This
+fixture is available globally and to all tests in the same environment that `napari`
+is in (see [](test-organization) for details). To use, simply include
+`make_napari_viewer` as a test function parameter, as shown below:
 
 ```{eval-rst}
-.. automodule:: napari.utils._testsupport
-
-    .. autofunction:: .make_napari_viewer()
+.. autofunction:: napari.utils._testsupport.make_napari_viewer()
 ```
 
 #### Skipping tests that show GUI elements or need window focus
