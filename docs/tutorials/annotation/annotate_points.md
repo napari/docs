@@ -2,6 +2,15 @@
 
 # Annotating videos with napari
 
+```{Admonition} DEPRECATED ATTRIBUTES
+:class: warning
+As of napari 0.5.0, `edge_*` attributes are being renamed to 
+`border_*` attributes. We have yet to update the images and/or videos in 
+this tutorial. Please sure `border` in place of `edge` for all `Points` attributes moving forward.
+
+The code in this tutorial uses the latest API. Only images and videos may be out of date
+```
+
 **Note**: this tutorial has been updated and is now compatible with napari > 0.4.5 and magicgui > 0.2.5. For details, see [this pull request](https://github.com/napari/napari.github.io/pull/114).
 
 In this tutorial, we will use napari (requires version 0.3.2 or greater) to make a simple GUI application for annotating points in videos.
