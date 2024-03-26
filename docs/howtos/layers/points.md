@@ -41,7 +41,7 @@ Each data point can have annotations associated with it using the
 border colors of the points. For example, when displaying points of different
 classes/types, one could automatically set color the individual points by their
 respective class/type. For more details on point properties, see
-[](#setting-point-edge-and-face-color-with-properties) or
+[](#setting-point-border-and-face-color-with-properties) or
 [point annotation tutorial](../../tutorials/annotation/annotate_points).
 
 ## Creating and editing the `points` layer using the GUI
@@ -218,7 +218,7 @@ Each data point can have annotations associated with it using the
 border colors of the points. For example, when displaying points of different
 classes/types, one could automatically set the color of the individual points by
 their respective class/type. For more details on point properties, see
-[](#setting-point-edge-and-face-color-with-properties) below or the
+[](#setting-point-border-and-face-color-with-properties) below or the
 [Point annotation tutorial](../../tutorials/annotation/annotate_points).
 
 In this example, we will overlay some points on the image of an astronaut:
