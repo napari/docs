@@ -60,7 +60,7 @@ layer:
     * Blending
     * Symbol
     * Face color
-    * Edge color
+    * Border color
     * Display text
     * Out of slice
 * Other tools
@@ -150,12 +150,12 @@ layer:
   need to have any points selected for it to have an effect. In fact, you cannot
   change the symbol for a single point on a layer and leave the rest the same.
 
-* Face and edge colors
+* Face and Border colors
 
   To change the point color properties from the GUI first select the points
   whose properties you want to change, otherwise you will just be initializing
   the property for the next point to add. Select the point you want to change,
-  then click the thumbnail next to `face color:` or `edge color:` to select or
+  then click the thumbnail next to `face color:` or `border color:` to select or
   create a color from the pallette.
 
 * Display text
@@ -215,7 +215,7 @@ on an existing image.
 
 Each data point can have annotations associated with it using the
 `Points.properties` dictionary. These properties can be used to set the face and
-edge colors of the points. For example, when displaying points of different
+border colors of the points. For example, when displaying points of different
 classes/types, one could automatically set the color of the individual points by
 their respective class/type. For more details on point properties, see
 [](#setting-point-edge-and-face-color-with-properties) below or the
@@ -327,7 +327,7 @@ The value of the size of the next point to be added can be found in the
 `layer.current_size` property. Note this property is different from `layer.size`
 which contains the current sizes of all the points.
 
-### Changing points edge and face color
+### Changing points border and face color
 
 Individual points can each have different border and face colors. You can
 initially set these colors by providing a list of colors to the `border_color` or
@@ -338,9 +338,9 @@ properties are different from the `layer.current_border_color` and
 `layer.current_face_color` properties that will determine the color of the next
 point to be added or any currently selected points.
 
-### Setting point edge and face color with properties
+### Setting point border and face color with properties
 
-Point edge and face colors can be set as a function of a property in
+Point border and face colors can be set as a function of a property in
 `Points.properties`. There are two ways the values in `Points.properties` can be
 mapped to colors: (1) color cycles and (2) colormaps.
 
@@ -395,7 +395,7 @@ viewer.close()
 In the example above, the `point_properties` were provided as a dictionary with
 two properties: `good_point` and `confidence`. The values of each property are
 stored in a NumPy ndarray with length 3 since there were 3 coordinates provided
-in `points`. We set the edge color as a function of the `good_point` property by
+in `points`. We set the border color as a function of the `good_point` property by
 providing the keyword argument `border_color='good_point'` to the
 `viewer.add_points()` method. The color cycle is set via the `border_color_cycle`
 keyword argument, `border_color_cycle=['magenta', 'green']`. The color cycle can
@@ -405,7 +405,7 @@ RGBA colors).
 ### Setting border or face color with a colormap
 
 In the example snippet below, we set the face color of the markers with a
-colormap on a property. To do the same for an edge color, substitute `face` for
+colormap on a property. To do the same for a border color, substitute `face` for
 `border`.
 
 ```{code-cell} python
