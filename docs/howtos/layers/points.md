@@ -17,9 +17,9 @@ kernelspec:
 :class: warning
 As of napari 0.5.0, `edge_*` attributes are being renamed to 
 `border_*` attributes. We have yet to update the images and/or videos in 
-this tutorial. Please sure `border` in place of `edge` for all `Points` attributes moving forward.
+this tutorial. Please use `border` in place of `edge` for all `Points` attributes moving forward.
 
-The code in this tutorial uses the latest API. Only images and videos may be out of date
+The code in this tutorial uses the latest API. Only images and videos may be out of date.
 ```
 
 In this document, you will learn about the `napari` `Points` layer, including
