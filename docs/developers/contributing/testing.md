@@ -230,7 +230,8 @@ def test_something_else(qtbot):
 #### `make_napari_viewer`
 
 ```{eval-rst}
-.. autofunction:: napari.utils._testsupport.make_napari_viewer
+.. currentmodule:: napari.utils._testsupport
+.. autofunction:: make_napari_viewer()
 ```
 
 > If you're curious to see the actual `make_napari_viewer` fixture definition, it's
