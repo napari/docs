@@ -234,7 +234,9 @@ We provide a
 `make_napari_viewer` for tests that require the {class}`~napari.Viewer`:
 
 ```{eval-rst}
-.. autofunction:: napari.utils._testsupport.make_napari_viewer()
+.. automodule:: napari.utils._testsupport
+
+    .. autofunction:: make_napari_viewer()
 ```
 
 #### Skipping tests that show GUI elements or need window focus
