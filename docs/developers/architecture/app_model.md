@@ -326,7 +326,7 @@ dependency to be injected.
 Result processing allows you to process the return value of the command function at
 execution time, based on command return type annotations.
 For example, you may wish to automatically add layer data output from a command
-to the viewer. It is performed by 'processors', functions that accept an instance of a
+to the viewer. It is performed by `processors`, functions that accept an instance of a
 given type and do something with it. Note that any value returned by a processor will
 be ignored, it is the 'processor' function side effects that perform the desired
 action (e.g., adding layer data to the viewer).
