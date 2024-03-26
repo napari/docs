@@ -229,7 +229,9 @@ def test_something_else(qtbot):
 
 #### `make_napari_viewer`
 
-.. autofunction:: napari.utils._testsupport.make_napari_viewer
+```{eval-rst}
+.. autofunction:: make_napari_viewer
+```
 
 > If you're curious to see the actual `make_napari_viewer` fixture definition, it's
 > in [`napari/utils/_testsupport.py`](https://github.com/napari/napari/blob/main/napari/utils/_testsupport.py).
