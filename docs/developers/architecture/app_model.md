@@ -3,7 +3,9 @@
 # napari's application model
 
 ```{important}
-**This is not a part of the public napari interface!**
+**This is currently not a part of the public napari interface but we are considering
+ways to expose execution of actions registered with `app`. This documentation will
+be updated accordingly.**
 ```
 
 ```{warning}
@@ -572,20 +574,18 @@ there are a number of motivations for adopting this abstraction.
 
 ## app-model vs action manager implementation differences
 
-App-model and action manager differ in when actions are executed.
-In app-model, actions are defined executed when they
-[get registered](app-model-actions-napari) (on
+App-model and action manager differ in when actions are registered.
+In app-model, actions are [registered](app-model-actions-napari) (on
 {class}`~napari._app_model._app.NapariApplication` and
 {class}`~napari.window.Window` initialization). This is much earlier than with
-action manager, where actions are defined and executed when building the menus.
+action manager, where actions are registered when building the menus.
 
 For example, with action manager, a `PluginsMenu` class instance is created when
-building the menu bar menus. This not only builds the menu but also connects
-plugin 'registered'/'unregistered' events to widget addition/removal functions.
-In app-model plugin actions are executed much earlier, when they are
-registered with `app` during initialization of `_QtMainWindow`. The
-actions registered are automatically updated via connection to plugin
-enablement change and registration. The separation of non-Qt and Qt
-action definition and registration is highlighted as they can be
-executed earlier in napari startup, before we know if we have access to
-Qt.
+building the menu bar. Plugins menu actions are thus registered at a time when
+we know we have access to Qt.
+In app-model, plugins menu actions are registered during
+{func}`~napari.plugins._initialize_plugins`, which is run on initialization of
+{class}`~napari.viewer.Viewer`. This is much earlier in napari startup and is before
+we know if we have access to Qt. Thus, we register with
+{func}`~napari.plugins._npe2._safe_register_qt_actions`, which first checks if
+Qt is available.
