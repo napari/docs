@@ -236,7 +236,7 @@ We provide a
 ```{eval-rst}
 .. automodule:: napari.utils._testsupport
 
-    .. autofunction:: make_napari_viewer()
+    .. autofunction:: .make_napari_viewer()
 ```
 
 #### Skipping tests that show GUI elements or need window focus
