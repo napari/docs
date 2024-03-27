@@ -201,15 +201,17 @@ recommend that you use the following fixtures when needing a widget or
 If you need a `QApplication` to be running for your test, you can use the
 [`qtbot`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot) fixture from `pytest-qt`
 
-> note: fixtures in pytest can be a little mysterious, since it's not always
-> clear where they are coming from.  In this case, using a pytest-qt fixture
-> looks like this:
+```{admonition}
+Fixtures in pytest can be a little mysterious, since it's not always
+clear where they are coming from.  In this case, using `qtbot` is a fixture from
+`pytest-qt`, a napari testing dependency, and can be used like this:
 
 ```python
 # just by putting `qtbot` in the list of arguments
 # pytest-qt will start up an event loop for you
 def test_something(qtbot):
     ...
+```
 ```
 
 `qtbot` provides a convenient
@@ -233,8 +235,9 @@ We provide a
 [pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html) called
 `make_napari_viewer` for tests that require the {class}`~napari.Viewer`. This
 fixture is available globally and to all tests in the same environment that `napari`
-is in (see [](test-organization) for details). To use, simply include
-`make_napari_viewer` as a test function parameter, as shown below:
+is in (see [](test-organization) for details). Thus, there is no need to import it,
+you simply include `make_napari_viewer` as a test function parameter, as shown in the
+**Examples** section below:
 
 ```{eval-rst}
 .. autofunction:: napari.utils._testsupport.make_napari_viewer()
