@@ -3,7 +3,7 @@
 
 This section is about general testing of `napari`.  For information on testing plugins,
 see [Plugin testing guidelines](plugin-test). For information about testing
-[app-model](app-model) aspects of `napari`, see.
+[app-model](app-model) aspects of `napari`, see [](app-model-testing).
 
 ## Overview
 
