@@ -213,7 +213,7 @@ looks like this:
 def test_something(qtbot):
     ...
 ```
-<br/><br/>
+<br/>
 ````
 
 `qtbot` provides a convenient
