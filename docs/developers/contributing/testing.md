@@ -207,12 +207,12 @@ Fixtures in pytest can be a little mysterious, since it's not always
 clear where they are coming from.  In this case using the `pytest-qt` `qtbot`fixture
 looks like this:
 
-    ```python
-    # just by putting `qtbot` in the list of arguments
-    # pytest-qt will start up an event loop for you
-    def test_something(qtbot):
-        ...
-    ```
+```python
+# just by putting `qtbot` in the list of arguments
+# pytest-qt will start up an event loop for you
+def test_something(qtbot):
+    ...
+```
 ````
 
 `qtbot` provides a convenient
