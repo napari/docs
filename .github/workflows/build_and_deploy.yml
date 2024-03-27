@@ -107,7 +107,7 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           external_repository: napari/napari.github.io
-          publish_dir: docs/docs/_build/html
+          publish_dir: ./docs
           publish_branch: gh-pages
           destination_dir: ${{ env.branch_name }}
           cname: napari.org
