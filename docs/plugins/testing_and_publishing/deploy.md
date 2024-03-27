@@ -14,7 +14,7 @@ description for your plugin, see the following documentation in the [napari hub
 wiki](https://github.com/chanzuckerberg/napari-hub/wiki/Plugin-Developer's-Guide-to-the-napari-hub):
 
 - [Customizing your plugin’s
-  listing][hubguide]
+  listing](https://github.com/chanzuckerberg/napari-hub/wiki/Customizing-your-plugin's-listing)
 - [Writing the perfect description for your
   plugin](https://github.com/chanzuckerberg/napari-hub/wiki/Writing-the-Perfect-Description-for-your-Plugin)
 
