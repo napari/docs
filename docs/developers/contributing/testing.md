@@ -199,19 +199,20 @@ recommend that you use the following fixtures when needing a widget or
 #### qtbot
 
 If you need a `QApplication` to be running for your test, you can use the
-[`qtbot`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot) fixture from `pytest-qt`
+[`qtbot`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot)
+fixture from `pytest-qt`, a napari testing dependency.
 
-```{admonition}
+```{note}
 Fixtures in pytest can be a little mysterious, since it's not always
-clear where they are coming from.  In this case, using `qtbot` is a fixture from
-`pytest-qt`, a napari testing dependency, and can be used like this:
+clear where they are coming from.  In this case using the `pytest-qt` `qtbot`fixture
+looks like this:
 
-```python
-# just by putting `qtbot` in the list of arguments
-# pytest-qt will start up an event loop for you
-def test_something(qtbot):
-    ...
-```
+    ```python
+    # just by putting `qtbot` in the list of arguments
+    # pytest-qt will start up an event loop for you
+    def test_something(qtbot):
+        ...
+    ```
 ```
 
 `qtbot` provides a convenient
