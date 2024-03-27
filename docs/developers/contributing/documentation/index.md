@@ -447,6 +447,7 @@ If you are using an IDE, it is likely that it will not use Git Bash by default. 
 ```json
 "terminal.integrated.defaultProfile.windows": "Git Bash"
 ```
+
 ````
 
 ### Windows Subsystem for Linux (WSL)
