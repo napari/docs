@@ -1,6 +1,10 @@
 (napari-testing)=
 # Testing
 
+This section is about general testing of `napari`.  For information on testing plugins,
+see [Plugin testing guidelines](plugin-test). For information about testing
+[app-model](app-model) aspects of `napari`, see.
+
 ## Overview
 
 We use unit tests, integration tests, and functional tests to ensure that
