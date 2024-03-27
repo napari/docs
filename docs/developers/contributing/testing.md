@@ -202,7 +202,7 @@ If you need a `QApplication` to be running for your test, you can use the
 [`qtbot`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot)
 fixture from `pytest-qt`, a napari testing dependency.
 
-```{note}
+````{note}
 Fixtures in pytest can be a little mysterious, since it's not always
 clear where they are coming from.  In this case using the `pytest-qt` `qtbot`fixture
 looks like this:
@@ -213,7 +213,7 @@ looks like this:
     def test_something(qtbot):
         ...
     ```
-```
+````
 
 `qtbot` provides a convenient
 [`addWidget`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot.addWidget)
