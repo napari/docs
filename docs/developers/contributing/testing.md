@@ -1,12 +1,14 @@
 (napari-testing)=
 # Testing
 
+```{note}
 This section is about general testing of `napari`. Other testing related information
 can be found in:
 
 * [Plugin testing guidelines](plugin-test) - information on testing plugins.
 * [](app-model-testing)- information about testing [app-model](app-model) aspects
   of `napari`.
+```
 
 ## Overview
 
