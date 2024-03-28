@@ -466,6 +466,8 @@ Qt providers and processors are registered in
 initialization of `_QtMainWindow`. This is the same as
 [registration of `Action`s](app-model-actions-napari).
 
+(app-model-testing)=
+
 ## app-model testing
 
 This section provides a guide to testing app-model aspects of napari. For general
