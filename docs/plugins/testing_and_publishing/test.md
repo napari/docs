@@ -4,7 +4,7 @@
 (plugin-testing-tips)=
 ## Tips for testing napari plugins
 
-Testing is a big topic!  If you are completely new to writing tests in python,
+Testing is a big topic!  If you are completely new to writing tests in Python,
 consider reading this post on [Getting Started With Testing in
 Python](https://realpython.com/python-testing/)
 
