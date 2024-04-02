@@ -15,14 +15,22 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import re
+import os
+from datetime import datetime
 from importlib import import_module
+from importlib.metadata import distribution
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
-import qtgallery
 from jinja2.filters import FILTERS
+from sphinx_gallery import scrapers
+from sphinx_gallery.sorting import ExampleTitleSortKey
+from sphinx.highlighting import lexers
+from packaging.version import parse as parse_version
+from pygments.lexers import TOMLLexer
 
 import napari
+from napari._version import __version_tuple__
 
 release = napari.__version__
 if "dev" in release:
@@ -33,7 +41,7 @@ else:
 # -- Project information -----------------------------------------------------
 
 project = 'napari'
-copyright = '2022, The napari team'
+copyright = f'{datetime.now().year}, The napari team'
 author = 'The napari team'
 
 # -- General configuration ---------------------------------------------------
@@ -56,12 +64,12 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "sphinx_external_toc",
-    "sphinx_tabs.tabs",
+    "sphinx_design",
     'myst_nb',
     #    "sphinx_comments",
-    "sphinx_panels",
     "sphinx.ext.viewcode",
-    "sphinx-favicon",
+    "sphinx_favicon",
+    "sphinx_copybutton",
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
 ]
@@ -79,10 +87,10 @@ tags_extension = ["md", "rst"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'napari'
+html_theme = 'napari_sphinx_theme'
 
 # Define the json_url for our version switcher.
-json_url = "https://napari.org/version_switcher.json"
+json_url = "https://napari.org/dev/_static/version_switcher.json"
 
 if version == "dev":
     version_match = "latest"
@@ -94,12 +102,18 @@ html_theme_options = {
         {"name": "napari hub", "url": "https://napari-hub.org"}
     ],
     "github_url": "https://github.com/napari/napari",
-    "navbar_start": ["navbar-project"],
+    "navbar_start": ["navbar-logo", "navbar-project"],
     "navbar_end": ["version-switcher", "navbar-icon-links"],
     "switcher": {
-        "json_url": "https://napari.org/version_switcher.json",
+        "json_url": json_url,
         "version_match": version_match,
     },
+    "navbar_persistent": [],
+    "header_links_before_dropdown": 6,
+    "secondary_sidebar_items": ["page-toc"],
+    "pygment_light_style": "napari",
+    "pygment_dark_style": "napari",
+    "announcement": "https://napari.org/dev/_static/announcement.html",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -147,6 +161,10 @@ intersphinx_mapping = {
         'https://pyapp-kit.github.io/magicgui/',
         'https://pyapp-kit.github.io/magicgui/objects.inv',
     ],
+    'app-model': [
+        'https://app-model--142.org.readthedocs.build/en/142/',
+        'https://app-model--142.org.readthedocs.build/en/142/objects.inv',
+    ],
 }
 
 myst_enable_extensions = [
@@ -156,7 +174,38 @@ myst_enable_extensions = [
     'tasklist',
 ]
 
-myst_heading_anchors = 3
+myst_heading_anchors = 4
+
+
+def get_supported_python_versions(project_name):
+    """
+    Get the supported Python versions for a given project
+    based on the classifiers in its distribution metadata.
+    """
+    dist = distribution(project_name)
+    classifiers = [value for key, value in dist.metadata.items() if key == 'Classifier' and value.startswith('Programming Language :: Python ::')]
+    return [parse_version(c.split(' :: ')[-1]) for c in classifiers if not c.endswith('Only')]
+
+
+napari_supported_python_versions = get_supported_python_versions('napari')
+
+min_python_version = min(napari_supported_python_versions)
+max_python_version = max(napari_supported_python_versions)
+
+version_string = '.'.join(str(x) for x in __version_tuple__[:3])
+python_version = '3.10'
+python_version_range = f"{min_python_version}-{max_python_version}"
+
+myst_substitutions = {
+    "napari_conda_version": f"`napari={version_string}`",
+    "napari_version": version_string,
+    "python_version": python_version,
+    "python_version_range": python_version_range,
+    "python_version_code": f"`python={python_version}`",
+    "conda_create_env": f"```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```",
+}
+
+myst_footnote_transition = False
 
 nb_output_stderr = 'show'
 
@@ -177,45 +226,97 @@ exclude_patterns = [
     '.jupyter_cache',
     'jupyter_execute',
     'plugins/_*.md',
+    'gallery/index.rst',
 ]
 
 napoleon_custom_sections = [('Events', 'params_style')]
+lexers['toml'] = TOMLLexer(startinline=True)
 
 
-def reset_napari_theme(gallery_conf, fname):
+def reset_napari(gallery_conf, fname):
     from napari.settings import get_settings
+    from qtpy.QtWidgets import QApplication
 
     settings = get_settings()
     settings.appearance.theme = 'dark'
-    qtgallery.reset_qapp(gallery_conf, fname)
+
+    # Disabling `QApplication.exec_` means example scripts can call `exec_`
+    # (scripts work when run normally) without blocking example execution by
+    # sphinx-gallery. (from qtgallery)
+    QApplication.exec_ = lambda _: None
+
+
+def napari_scraper(block, block_vars, gallery_conf):
+    """Basic napari window scraper.
+
+    Looks for any QtMainWindow instances and takes a screenshot of them.
+
+    `app.processEvents()` allows Qt events to propagateo and prevents hanging.
+    """
+    imgpath_iter = block_vars['image_path_iterator']
+
+    if app := napari.qt.get_app():
+        app.processEvents()
+    else:
+        return ""
+
+    img_paths = []
+    for win, img_path in zip(
+        reversed(napari._qt.qt_main_window._QtMainWindow._instances),
+        imgpath_iter,
+    ):
+        img_paths.append(img_path)
+        win._window.screenshot(img_path, canvas_only=False)
+
+    napari.Viewer.close_all()
+    app.processEvents()
+
+    return scrapers.figure_rst(img_paths, gallery_conf['src_dir'])
 
 
 sphinx_gallery_conf = {
-    'examples_dirs': '../examples',  # path to your example scripts
+    # path to your example scripts (this value is set in the Makefile)
+    # 'examples_dirs': '../../napari/examples',
     'gallery_dirs': 'gallery',  # path to where to save gallery generated output
     'filename_pattern': '/*.py',
     'ignore_pattern': 'README.rst|/*_.py',
-    'default_thumb_file': Path(__file__).parent
-    /'images'
-    / 'logo.png',
-    'plot_gallery': True,
+    'default_thumb_file': Path(__file__).parent / 'images' / 'logo.png',
+    'plot_gallery': "'True'",  # https://github.com/sphinx-gallery/sphinx-gallery/pull/304/files
     'download_all_examples': False,
     'min_reported_time': 10,
-    'only_warn_on_example_error': True,
-    'image_scrapers': (qtgallery.qtscraper,),
-    'reset_modules': (reset_napari_theme,),
+    'only_warn_on_example_error': False,
+    'abort_on_example_error': True,
+    'image_scrapers': ("matplotlib", napari_scraper,),
+    'reset_modules': (reset_napari,),
     'reference_url': {'napari': None},
+    'within_subsection_order': ExampleTitleSortKey,
 }
+
+GOOGLE_CALENDAR_API_KEY = os.environ.get('GOOGLE_CALENDAR_API_KEY', '')
+
+
+def add_google_calendar_secrets(app, docname, source):
+    """Add google calendar api key to meeting schedule page.
+
+    The source argument is a list whose single element is the contents of the
+    source file. You can process the contents and replace this item to implement
+    source-level transformations.
+    """
+    if docname == 'community/meeting_schedule':
+        source[0] = source[0].replace('{API_KEY}', GOOGLE_CALENDAR_API_KEY)
 
 
 def setup(app):
-    """Ignore .ipynb files.
+    """Set up docs build.
 
-    Prevents sphinx from complaining about multiple files found for document
-    when generating the gallery.
+    * Ignores .ipynb files to prevent sphinx from complaining about multiple
+      files found for document when generating the gallery
+    * Rewrites github anchors to be comparable
+    * Adds google calendar api key to meetings schedule page
 
     """
     app.registry.source_suffix.pop(".ipynb", None)
+    app.connect('source-read', add_google_calendar_secrets)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
 
 
@@ -241,7 +342,11 @@ autosummary_ignore_module_all = False
 
 linkcheck_anchors_ignore = [r'^!', r'L\d+-L\d+', r'r\d+', r'issuecomment-\d+']
 
-linkcheck_ignore = ['https://napari.zulipchat.com/']
+linkcheck_ignore = [
+    'https://napari.zulipchat.com/',
+    '../_tags',
+    'https://en.wikipedia.org/wiki/Napari#/media/File:Tabuaeran_Kiribati.jpg',
+]
 
 
 def rewrite_github_anchor(app, uri: str):
