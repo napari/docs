@@ -792,7 +792,7 @@ simply provide the class definition and add to the plugin manifest.
 
 You might want to add a layer selection as [shown above](#parameter-annotations) into your highly customizable `QtWidgets.QWidget` that is always synchronized with the available {attr}`napari.types.ImageData` layers in your viewer. For this you can use the {func}`create_widget <magicgui.widgets.create_widget>` function as described in the following example.
 
-To synchronize the information between the napari viewer (i.e. the available layers) the function `reset_choices` of the dropdown widget needs to be manually called whenever the main widget is shown. In the following example, this is done by defining two class methods `showEvent` and `reset_choices`.
+To synchronize the information between the napari viewer (i.e. the available layers) the function `reset_choices` of the dropdown widget needs to be manually called whenever the main widget is reset. Napari calls the method `reset_choices` of all widgets whenever some information in the viewer changes. Hence, we define that method and call `self.layer_select.reset_choices(event)` within it. Furthermore, we call this function whenever the `showEvent` method of the widget is called.
 
 ```python
 from magicgui.widgets import create_widget
@@ -814,7 +814,7 @@ class ExampleLayerListWidget(QWidget):
         self.layout().addWidget(self.layer_select.native)
 
     # the following two methods are essential for refreshing the widget
-    def reset_choices(self, event=None):
+    def reset_choices(self, event=None) -> None:
         # this call updates the possible layers that can be selected
         self.layer_select.reset_choices(event)
 
