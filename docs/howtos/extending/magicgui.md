@@ -178,6 +178,10 @@ The following napari types may be used as *parameter* type annotations in
   {attr}`napari.types.ImageData` or  {attr}`napari.types.LabelsData`
 - {class}`napari.Viewer`
 
+```{note}
+If you're interested in getting synchronized information from the napari viewer into widgets without `@magicgui`, see the [`create_widget` example](#magicgui-widgets-create_widget) below.
+```
+
 The consequence of each type annotation is described below:
 
 #### Annotating as a `Layer` subclass
@@ -784,10 +788,11 @@ viewer.window.add_dock_widget(my_widg)
 As above to turn this into a [plugin widget contribution](widgets-contribution-guide),
 simply provide the class definition and add to the plugin manifest.
 
-#### Adding a synchronized layer selection with `magicgui.widgets.create_widget`
+#### `magicgui.widgets.create_widget`
 
-You might want to add a layer selection as [shown above](#parameter-annotations) into your highly customizable `QtWidgets.QWidget` that is always synchronized with the available {attr}`napari.types.ImageData` layers in your viewer. For this you can use the {func}`create_widget <magicgui.widgets.create_widget>` function as described in the following example:
+You might want to add a layer selection as [shown above](#parameter-annotations) into your highly customizable `QtWidgets.QWidget` that is always synchronized with the available {attr}`napari.types.ImageData` layers in your viewer. For this you can use the {func}`create_widget <magicgui.widgets.create_widget>` function as described in the following example.
 
+To synchronize the information between the napari viewer (i.e. the available layers) the function `reset_choices` of the dropdown widget needs to be manually called whenever the main widget is shown. In the following example, this is done by defining two class methods `showEvent` and `reset_choices`.
 
 ```python
 from magicgui.widgets import create_widget
