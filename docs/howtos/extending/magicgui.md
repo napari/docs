@@ -796,7 +796,7 @@ To synchronize the information between the napari viewer (i.e. the available lay
 
 ```python
 from magicgui.widgets import create_widget
-from qtpy.QtWidgets import QWidget
+from qtpy.QtWidgets import QWidget, QHBoxLayout
 
 from napari.types import ImageData
 
@@ -807,6 +807,8 @@ class ExampleLayerListWidget(QWidget):
         self.viewer = viewer
 
         # create new widget with create_widget and type annotation
+
+        self.setLayout(QHBoxLayout())
         self.layer_select = create_widget(annotation=ImageData)
         # add it to the layout
         self.layout().addWidget(self.layer_select.native)
