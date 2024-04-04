@@ -54,7 +54,7 @@ There are two ways to then add a widget to a napari viewer:
 There is an important implementation distinction between the two methods;
 {meth}`~napari.qt.Window.add_dock_widget` expects an *instance* of a widget, like
 an instance of class {class}`~magicgui.widgets.FunctionGui` or
-`qtpy.QtWidgets.QWidget`, whereas
+[`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html), whereas
 [widget contributions](widgets-contribution-guide), expect a `callable`
 (like a function or class) that will return a widget instance. When describing
 each of the three widget creation methods below, we will first show how to create a
