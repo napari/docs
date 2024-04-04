@@ -43,7 +43,11 @@ example includes a widget). Additionally,
 [cookiecutter-napari-plugin](https://github.com/napari/cookiecutter-napari-plugin)
 has more robust widget examples that you can adapt to your needs.
 
-There are two ways to then add a widget to a napari viewer:
+(adding_widgets)=
+
+## Adding widgets to napari viewer
+
+There are two ways to add a widget to a napari viewer:
 
 * via {meth}`napari.qt.Window.add_dock_widget` in a Python script or interactive
   console (see [How to launch napari](getting_started) for details on launching
@@ -61,6 +65,8 @@ each of the three widget creation methods below, we will first show how to creat
 widget and add it to the viewer
 with {meth}`~napari.qt.Window.add_dock_widget`, then how to adapt the widget
 for a widget contribution.
+
+
 
 (magicgui)=
 
