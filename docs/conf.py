@@ -172,6 +172,7 @@ myst_enable_extensions = [
     'dollarmath',
     'substitution',
     'tasklist',
+    'attrs_inline',
 ]
 
 myst_heading_anchors = 4

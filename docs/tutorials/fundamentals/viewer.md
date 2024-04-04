@@ -427,7 +427,7 @@ will then show you the `ZY` slice. You can also right-click this button to pop-u
 a widget that allows you to re-order the dimensions by drag-and-drop or lock a 
 dimension, by clicking on the padlock icon:
 
-![image: roll dimensions widget with padlock icons](../assets/tutorials/dims_roll_lock_widget.png)
+![image: roll dimensions widget with padlock icons](../assets/tutorials/dims_roll_lock_widget.png){ w=200px }
 
 Locking prevents a dimension from being rolled (reordered). This can be particularly 
 useful, for example, with a `3D+time` dataset where you may want to fix the time dimension, 
