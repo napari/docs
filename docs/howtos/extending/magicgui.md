@@ -110,9 +110,9 @@ associated with those function parameters.
 
 Third party packages (like napari in this case) may provide support for their types
 using
-[`magicgui.register_type`](https://pyapp-kit.github.io/magicgui/usage/types_widgets.html#register-type).
+[`magicgui.register_type`](https://pyapp-kit.github.io/magicgui/api/type_map/#magicgui.type_map.register_type).
 Indeed napari uses
-[`magicgui.register_type`](https://pyapp-kit.github.io/magicgui/usage/types_widgets.html#register-type)
+[`magicgui.register_type`](https://pyapp-kit.github.io/magicgui/api/type_map/#magicgui.type_map.register_type)
 to provide support for napari-specific type annotations. This makes it easy to
 use `magicgui` to build widgets in napari. Note all type annotations below *require*
 that the resulting widget be added to a napari viewer.
