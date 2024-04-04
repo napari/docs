@@ -792,9 +792,10 @@ simply provide the class definition and add to the plugin manifest.
 
 You might want to add a layer selection as [shown above](#parameter-annotations) into your highly customizable `QtWidgets.QWidget` that is always synchronized with the available {attr}`napari.types.ImageData` layers in your viewer. For this you can use the {func}`create_widget <magicgui.widgets.create_widget>` function as described in the following example.
 
-To synchronize the information between the napari viewer (i.e. the available layers) the function `reset_choices` of the dropdown widget needs to be manually called whenever the main widget is reset. Napari calls the method `reset_choices` of all widgets whenever some information in the viewer changes. Hence, we define that method and call `self.layer_select.reset_choices(event)` within it. Furthermore, we call this function whenever the `showEvent` method of the widget is called.
+To synchronize the information between the napari viewer (i.e. the available layers) the function `reset_choices` of the dropdown widget needs to be connected to the `inserted`, `removed` and `reordered` events of the `viewer.layers` as is done in the `__init__` function below:
 
 ```python
+import napari
 from magicgui.widgets import create_widget
 from qtpy.QtWidgets import QWidget, QHBoxLayout
 
@@ -807,18 +808,20 @@ class ExampleLayerListWidget(QWidget):
         self.viewer = viewer
 
         # create new widget with create_widget and type annotation
+        self.layer_select = create_widget(annotation=ImageData)
+        layers_events = self.viewer.layers.events
+        layers_events.inserted.connect(self.layer_select.reset_choices)
+        layers_events.removed.connect(self.layer_select.reset_choices)
+        layers_events.reordered.connect(self.layer_select.reset_choices)
 
         self.setLayout(QHBoxLayout())
-        self.layer_select = create_widget(annotation=ImageData)
         # add it to the layout
         self.layout().addWidget(self.layer_select.native)
 
-    # the following two methods are essential for refreshing the widget
-    def reset_choices(self, event=None) -> None:
-        # this call updates the possible layers that can be selected
-        self.layer_select.reset_choices(event)
-
-    def showEvent(self, event) -> None:
-        self.reset_choices()
-        return super().showEvent(event)
+# Create a `viewer`
+viewer = napari.Viewer()
+# Instantiate your widget
+my_widg = ExampleLayerListWidget(viewer)
+# Add widget to `viewer`
+viewer.window.add_dock_widget(my_widg)
 ```
