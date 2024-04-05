@@ -91,7 +91,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          path: html
+          name: html
 
       - name: get directory name
         # if this is a tag, use the tag name as the directory name else dev
