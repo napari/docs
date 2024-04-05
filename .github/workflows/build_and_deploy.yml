@@ -91,6 +91,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: html
+          path: html
       - name: show files
         run: ls -lR
 
@@ -109,7 +110,7 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           external_repository: napari/napari.github.io
-          publish_dir: html/
+          publish_dir: ./html
           publish_branch: gh-pages
           destination_dir: ${{ env.branch_name }}
           cname: napari.org
