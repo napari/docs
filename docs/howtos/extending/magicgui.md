@@ -179,7 +179,11 @@ The following napari types may be used as *parameter* type annotations in
 - {class}`napari.Viewer`
 
 ```{note}
-If you're interested in getting synchronized information from the napari viewer into widgets without `@magicgui`, see the [`create_widget` example](#magicgui-widgets-create_widget) below.
+If you want to get the dropdown list widgets resulting from the layer
+annotations (e.g., {class}`~napari.layers.Layer`,
+{class}`~napari.layers.Image`, {attr}`napari.types.ImageData`)
+without using the `@magicgui` decorator, 
+see the [`QWidget` example](#qtwidgets-qwidget) below.
 ```
 
 The consequence of each type annotation is described below:
@@ -758,46 +762,23 @@ simply provide the class definition and add to the plugin manifest.
 ### `QtWidgets.QWidget`
 
 For the most control over your widget, subclass
-[`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html):
+[`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html).
+In the following example, we create a button and a dropdown list.
+The available choices for the dropdown list are the
+current layers in the viewer. For this, we use
+{func}`create_widget <magicgui.widgets.create_widget>` with the annotation
+{attr}`napari.types.ImageData`.
+In opposition to
+using `@magicgui` as [shown above](#parameter-annotations), we now need to
+manually connect the `reset_choices` of the list with the
+`viewer.layers.events` so that the available choices are synchronized
+with the current layers of the viewer:
 
 ```python
-from qtpy.QtWidgets import QHBoxLayout, QPushButton, QWidget
-
-class ExampleQWidget(QWidget):
-    def __init__(self, viewer: "napari.viewer.Viewer"):
-        super().__init__()
-        self.viewer = viewer
-
-        btn = QPushButton("Click me!")
-        btn.clicked.connect(self._on_click)
-
-        self.setLayout(QHBoxLayout())
-        self.layout().addWidget(btn)
-
-    def _on_click(self):
-        print("napari has", len(self.viewer.layers), "layers")
-
-# Create a `viewer`
-viewer = napari.Viewer()
-# Instantiate your widget
-my_widg = ExampleQWidget()
-# Add widget to `viewer`
-viewer.window.add_dock_widget(my_widg)
-```
-
-As above to turn this into a [plugin widget contribution](widgets-contribution-guide),
-simply provide the class definition and add to the plugin manifest.
-
-#### `magicgui.widgets.create_widget`
-
-You might want to add a layer selection as [shown above](#parameter-annotations) into your highly customizable `QtWidgets.QWidget` that is always synchronized with the available {attr}`napari.types.ImageData` layers in your viewer. For this you can use the {func}`create_widget <magicgui.widgets.create_widget>` function as described in the following example.
-
-To synchronize the information between the napari viewer (i.e. the available layers) the function `reset_choices` of the dropdown widget needs to be connected to the `inserted`, `removed` and `reordered` events of the `viewer.layers` as is done in the `__init__` function below:
-
-```python
+import numpy
 import napari
 from magicgui.widgets import create_widget
-from qtpy.QtWidgets import QWidget, QHBoxLayout
+from qtpy.QtWidgets import QHBoxLayout, QPushButton, QWidget
 
 from napari.types import ImageData
 
@@ -807,8 +788,14 @@ class ExampleLayerListWidget(QWidget):
         super().__init__()
         self.viewer = viewer
 
+        # Create a button
+        btn = QPushButton("Click me!")
+        # Connect the click event to a function
+        btn.clicked.connect(self._on_click)
+
         # create new widget with create_widget and type annotation
         self.layer_select = create_widget(annotation=ImageData)
+        # The widget has to be connected to viewer.layers.events
         layers_events = self.viewer.layers.events
         layers_events.inserted.connect(self.layer_select.reset_choices)
         layers_events.removed.connect(self.layer_select.reset_choices)
@@ -817,11 +804,24 @@ class ExampleLayerListWidget(QWidget):
         self.setLayout(QHBoxLayout())
         # add it to the layout
         self.layout().addWidget(self.layer_select.native)
+        self.layout().addWidget(btn)
+
+    def _on_click(self):
+        print(
+            "Selected layer has shape: ",
+            self.layer_select.value.shape,
+        )
+
 
 # Create a `viewer`
 viewer = napari.Viewer()
+viewer.add_image(numpy.random.rand(20, 20), name="Layer 1")
+viewer.add_image(numpy.random.rand(40, 40), name="Layer 2")
 # Instantiate your widget
 my_widg = ExampleLayerListWidget(viewer)
 # Add widget to `viewer`
 viewer.window.add_dock_widget(my_widg)
 ```
+
+As above to turn this into a [plugin widget contribution](widgets-contribution-guide),
+simply provide the class definition and add to the plugin manifest.
