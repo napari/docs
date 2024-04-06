@@ -108,7 +108,7 @@ associated with those function parameters.
 
 Third party packages (like napari in this case) may provide support for their types
 using {func}`magicgui.type_map.register_type`. Indeed napari uses
-{func}`magicgui.type_map.register_type` to provide support for napari-specific type
+{func}`~magicgui.type_map.register_type` to provide support for napari-specific type
 annotations. This makes it easy to use `magicgui` to build widgets in napari. Note all
 type annotations below *require* that the resulting widget be added to a napari viewer.
 
