@@ -11,3 +11,4 @@ code base. For advanced napari usage documentation, see [](explanations).
   connected to Qt classes and Vispy classes.
 - [](app-model): Explains the napari application model, a declarative schema for
   keeping track of commands, menus and keybindings of the napari GUI.
+- []()
