@@ -42,7 +42,7 @@ or [editing an existing file](https://docs.github.com/en/repositories/working-wi
 on the [napari-docs](https://github.com/napari/docs) GitHub repository.
 It's best if you first [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the [napari-docs](https://github.com/napari/docs) repository to your own GitHub account, create a [feature branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch), upload/create/edit files through the GitHub web interface, and then [open a pull request from your fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) back to [napari-docs](https://github.com/napari/docs).
 
-You will also be able to [preview the documentation](doc_preview_ci) as it would appear on [napari.org](https://napari.org/dev) by
+You will also be able to [preview the documentation](doc_view_ci) as it would appear on [napari.org](https://napari.org/dev) by
 using the `Check the rendered docs here!` action at the bottom of your PR which will go to a preview site on [CircleCI](https://circleci.com/).
 A member of the maintenance
 team will help with updating the [napari.org](https://napari.org/dev) table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](update-toc)) and making sure your documentation has built correctly.
@@ -254,9 +254,9 @@ appear on [napari.org](https://napari.org):
 
 * [building locally](build_docs_locally) - this requires more setup but will allow you
   to more quickly check if your changes render correctly.
-* [view documentation in a GitHub pull request](doc_preview_ci) - this requires no
+* [view documentation in a GitHub pull request](doc_view_ci) - this requires no
   setup but you will have to push each change as a commit to your pull request and wait
-  for the GitHub Actions workflow to finish building the documentation.
+  for the continuous integration workflow to finish building the documentation.
 
 ```{tip}
 To see the markdown document structure and content change in real-time without building, you can use a MyST markdown preview tool like [VScode](https://code.visualstudio.com/) with the [MyST extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight) or [MyST live preview](https://myst-parser.readthedocs.io/en/latest/live-preview.html#). This can also help you to spot any markdown formatting errors that may have occurred. However, this MyST markdown preview will have some differences to the final built html documentation due to autogeneration, so it is still important to build and preview the documentation before submitting your pull request.
@@ -357,17 +357,36 @@ This will prevent all but the first napari window from being shown during the do
 build.
 ````
 
-(doc_preview_ci)=
-### 3.2. Use the CI artifacts
+(doc_view_ci)=
+### 3.2. Use workflow GitHub Pull Request
 
-Alternatively, when you submit your pull request, the `napari` docs repository
-continuous integration includes a GitHub action that builds the documentation
-and allow you to preview them on [CircleCI](https://circleci.com/).
+When you submit a pull request to the [napari/docs](https://github.com/napari/docs)
+repository, its continuous integration will build the documentation. You can then
+view it in one of two ways:
+
+* preview them in [CircleCI](https://circleci.com/) via just one click - this is
+  the easiest method but in rare cases it may not match the documentation that
+  is actually deployed to [napari.org](https://napari.org).
+* download the built documentation artifact and view it locally - this is more
+  complicated, but the built docs will always match what is deployed to
+  [napari.org](https://napari.org).
+
+When you submit a pull request to the [napari/napari](https://github.com/napari/napari)
+repository, its continuous integration will only build the docs in CircleCI. Thus
+you will only be able to [preview the documentation on CircleCI](docs_preview_circleci).
+
+(docs_preview_circleci)=
+
+#### Preview on CircleCI
 
 Simply click on **Details** next to the `Check the rendered docs here!` at the bottom
 of your pull request:
 
 ![CircleCI check is highlighted](images/circleci-link.png)
+
+#### Download documentation artifact
+
+
 
 ## 4. Submit your pull request
 
