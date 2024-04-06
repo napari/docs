@@ -358,14 +358,14 @@ build.
 ````
 
 (doc_view_ci)=
-### 3.2. Use workflow GitHub Pull Request
+### 3.2. View in GitHub Pull Request
 
 When you submit a pull request to the [napari/docs](https://github.com/napari/docs)
-repository, its continuous integration will build the documentation. You can then
-view it in one of two ways:
+repository, its continuous integration will build the documentation (you will need
+to [](docs_submit_pull_request) first). You can then view it in one of two ways:
 
-* preview them in [CircleCI](https://circleci.com/) via just one click - this is
-  the easiest method but in rare cases it may not match the documentation that
+* preview on your browser via [CircleCI](https://circleci.com/) in just one click -
+  this is the easiest method but in rare cases it may not match the documentation that
   is actually deployed to [napari.org](https://napari.org).
 * download the built documentation artifact and view it locally - this is more
   complicated, but the built docs will always match what is deployed to
@@ -386,7 +386,29 @@ of your pull request:
 
 #### Download documentation artifact
 
+1. Click on **Details** next to
+   `Build & Deploy PR Docs / Build & Upload Artifact (pull_request)`:
 
+![The "Build & Deploy PR Docs / Build & Upload Artifact" check is highlighted](images/doc-ci-1.png)
+
+2. Click on **Summary** on the top left corner:
+
+![Summary link in the "Build & Deploy PR Docs / Build & Uplod Artifact" GitHub Action page](images/doc-ci-2.png)
+
+3. Scroll down to **Artifacts** and click on **html** to download the built documentation:
+
+!["html" link in the Artifacts section of the "Build & Deploy PR Docs / Build & Uplod Artifact" GitHub Action page is highlighted](images/doc-ci-3.png)
+
+4. Extract the compressed archive and open the `html/index.html` file on your preferred browser.
+   You can also use Python's `http.server` module to open a local server on
+   [http://localhost:8000](http://localhost:8000):
+
+```shell
+$ cd ~/Downloads/html  # `cd` to the path where you extracted the 'html' artifact
+$ python3 -m http.server
+```
+
+(docs_submit_pull_request)=
 
 ## 4. Submit your pull request
 
