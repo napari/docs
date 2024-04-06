@@ -107,10 +107,10 @@ parameters. In the example above, `call_button` specifies the button text and th
 associated with those function parameters.
 
 Third party packages (like napari in this case) may provide support for their types
-using {func}`magicgui.register_type`. Indeed napari uses {func}`magicgui.register_type`
-to provide support for napari-specific type annotations. This makes it easy to
-use `magicgui` to build widgets in napari. Note all type annotations below *require*
-that the resulting widget be added to a napari viewer.
+using {func}`magicgui.type_map.register_type`. Indeed napari uses
+{func}`magicgui.type_map.register_type` to provide support for napari-specific type
+annotations. This makes it easy to use `magicgui` to build widgets in napari. Note all
+type annotations below *require* that the resulting widget be added to a napari viewer.
 
 Below we demonstrate how to create a simple threshold widget using `magicgui` and add
 it to the viewer. Note the `auto_call` parameter tells `magicgui` to call the function
