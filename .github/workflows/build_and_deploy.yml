@@ -2,7 +2,7 @@
 # https://github.com/napari/napari/blob/main/.github/workflows/build_docs.yml
 # and https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml
 
-name: Build PR Docs
+name: Build & Deploy PR Docs
 
 on:
   push:
@@ -27,11 +27,13 @@ jobs:
       - name: Clone docs repo
         uses: actions/checkout@v4
         with:
+          # place in '/home/runner/work/docs/docs/docs'
           path: docs  # place in a named directory
 
       - name: Clone main repo
         uses: actions/checkout@v4
         with:
+          # place in '/home/runner/work/docs/docs/napari'
           path: napari  # place in a named directory
           repository: napari/napari
           # ensure version metadata is proper
@@ -71,6 +73,8 @@ jobs:
           GOOGLE_CALENDAR_API_KEY: ${{ secrets.GOOGLE_CALENDAR_API_KEY }}
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
         with:
+          # Runs in '/home/runner/work/docs/docs/docs'
+          # Built HTML pages in '/home/runner/work/docs/docs/docs/docs/_build/html'
           run:  make -C docs docs
           # skipping setup stops the action from running the default (tiling) window manager
           # the window manager is not necessary for docs builds at this time and it was causing
@@ -101,9 +105,9 @@ jobs:
         # if this is a tag, use the tag name as the directory name else dev
         run: |
           if [[ "${{ github.ref }}" == "refs/tags/"* ]]; then
-            echo "branch_name=${{ github.ref_name }}" >> $GITHUB_ENV 
+            echo "branch_name=${{ github.ref_name }}" >> $GITHUB_ENV
           else
-            echo "branch_name=dev" >> $GITHUB_ENV 
+            echo "branch_name=dev" >> $GITHUB_ENV
           fi
 
       - name: Deploy Docs
