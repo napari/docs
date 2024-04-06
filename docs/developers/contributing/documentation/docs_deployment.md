@@ -29,13 +29,12 @@ through several CI workflows detailed below.
           `napari.org` website.)
 
 2. [`napari/docs`](https://github.com/napari/docs)
-    - **Workflow file:** [`build_docs.yml`](https://github.com/napari/docs/blob/main/.github/workflows/build_docs.yml)
+    - **Workflow file:** [`build_and_deploy.yml`](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml)
         - **job:** `build-and-upload`
         - Pulls in sources from `napari/napari` and builds docs locally. Uploads
           artifacts to this repo (`napari/docs`).
         - This is triggered on every Pull Request and shows up as a "Build PR
           Docs" check on the PR.
-    - **Workflow file:** [`deploy_docs.yml`](https://github.com/napari/docs/blob/main/.github/workflows/deploy_docs.yml)
         - **job:** `build-and-deploy`
         - Builds docs locally and deploys resulting artifacts to GitHub pages at
           the `gh-pages` branch of [napari/napari.github.io](https://github.com/napari/napari.github.io/tree/gh-pages).
@@ -45,7 +44,7 @@ through several CI workflows detailed below.
           (and consequently triggers a new deployment of the `napari.org`
           website.)
 
-    Note that these file are not identical to the `napari/napari` versions.
+    Note that these files are not identical to the `napari/napari` version.
 
 3. [`napari/napari.github.io`](https://github.com/napari/napari.github.io)
     - Contains built documentation files (.html) for all versions in the
