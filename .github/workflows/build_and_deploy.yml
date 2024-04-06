@@ -92,16 +92,14 @@ jobs:
     name: Download & Deploy Artifact
     needs: build-and-upload
     runs-on: ubuntu-latest
+    # Working directory: '/home/runner/work/docs/docs'
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: html
+          # Downloads to '/home/runner/work/docs/docs/html'
           path: html
-      - name: show files
-        run: |
-          pwd
-          ls -lR
 
       - name: get directory name
         # if this is a tag, use the tag name as the directory name else dev
