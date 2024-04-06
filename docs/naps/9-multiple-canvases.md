@@ -75,7 +75,7 @@ Providing native support in napari would allow developers to more easily create 
     * There will be no possibility of a viewer with no canvases.
 * Users shall be able to add, remove, and (maybe[^maybe-rearrange]) rearrange canvases.
 
-[^maybe-rearrange]: Exact UI/UX may is yet to be decided, see [UI Architecture](#UI-Design-and-Architecture) for some discussion.
+[^maybe-rearrange]: Exact UI/UX may is yet to be decided, see [UI Architecture](nap_9_design_and_architecture) for some discussion.
 
 ### Design Considerations & Decisions
 Part of this design document is intended to capture the desired behavior and prevent scope creep. At the extreme “multiple canvases” can be achieved with “multiple viewers”. Therefore we need to draw a line somewhere to differentiate a “canvas” from a “viewer”. [^napari-lite]
@@ -164,8 +164,10 @@ Slice state for each layer is currently stored on the Layer model. Again, see [N
 > Also - the various `_<Layer>SliceResponse` classes introduced by async slicing may already fill much of this role. Another option to consider here is to codify a protocol ([`typing.Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)) for these classes. Even this protocol may not be necessary - early prototypes use these classes as-is with minimal modifications.
 > [name=Ashley A]
 
+(nap_9_design_and_architecture)
+
 ### UI Design and Architecture
-Specific UI design and architecture remains to be determined. This will be explored as part of step 4 in the [Implementation Plan](#Implementation). UI design needs additional refinement and exploration, and this is expected to continue after basic/core implementation propsed in this NAP is complete. UI changes may also be described in a separate NAP along with a discussion of convenience functions and affordances for common operations. Some placeholder or experimental code will be used in the meantime as a prototype implementation.
+Specific UI design and architecture remains to be determined. This will be explored as part of step 4 in the [Implementation Plan](nap_9_implementation). UI design needs additional refinement and exploration, and this is expected to continue after basic/core implementation propsed in this NAP is complete. UI changes may also be described in a separate NAP along with a discussion of convenience functions and affordances for common operations. Some placeholder or experimental code will be used in the meantime as a prototype implementation.
 
 Some open questions here are (for example):
 * Should each canvas also have visible dims sliders, or can we keep one set of dims sliders that changes based on the active (selected) canvas?
@@ -194,6 +196,8 @@ See other image viewers for examples for multiple canvases (mostly demonstrating
 * [OHIF/Cornerstone.js](https://www.cornerstonejs.org/live-examples/crosshairs)
 * [neuroglancer](https://neuroglancer-demo.appspot.com/#!%7B%22dimensions%22:%7B%22x%22:%5B8e-9%2C%22m%22%5D%2C%22y%22:%5B8e-9%2C%22m%22%5D%2C%22z%22:%5B8e-9%2C%22m%22%5D%7D%2C%22position%22:%5B2914.500732421875%2C3088.243408203125%2C4045%5D%2C%22crossSectionScale%22:3.762185354999915%2C%22projectionOrientation%22:%5B0.31435418128967285%2C0.8142172694206238%2C0.4843378961086273%2C-0.06040274351835251%5D%2C%22projectionScale%22:4593.980956070107%2C%22layers%22:%5B%7B%22type%22:%22image%22%2C%22source%22:%22precomputed://gs://neuroglancer-public-data/flyem_fib-25/image%22%2C%22tab%22:%22source%22%2C%22name%22:%22image%22%7D%2C%7B%22type%22:%22segmentation%22%2C%22source%22:%22precomputed://gs://neuroglancer-public-data/flyem_fib-25/ground_truth%22%2C%22tab%22:%22source%22%2C%22segments%22:%5B%2221894%22%2C%2222060%22%2C%22158571%22%2C%2224436%22%2C%222515%22%5D%2C%22name%22:%22ground-truth%22%7D%5D%2C%22showSlices%22:false%2C%22layout%22:%224panel%22%7D)
 
+(nap_9_implementation)
+
 ## Implementation
 
 1. Introduce minimally disruptive `_canvases` attribute on the ViewerModel
@@ -221,7 +225,7 @@ See other image viewers for examples for multiple canvases (mostly demonstrating
     * Update main widget as `ViewerModel` “active” canvas changes, storing additional canvases and swapping them out as necessary
 
 4. Update `QtViewer` to show multiple canvases simultaneously
-    * This is exploratory work at the moment, see [UI Architecture](#UI-Design-and-Architecture) section below
+    * This is exploratory work at the moment, see [UI Architecture](nap_9_design_and_architectures) section below
 
 [^async-only]: Depending on the timeline and prototype implementation, it may be acceptable/preferable for multi-canvas feature to rely on (currently experimental) async slicing ([see NAP-4](https://napari.org/stable/naps/4-async-slicing.html)).
 

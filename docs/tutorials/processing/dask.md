@@ -111,6 +111,8 @@ napari.view_image(stack, contrast_limits=[0,2000], multiscale=False)
 *Note: providing the* `contrast_limits` *and* `multiscale` *arguments prevents* `napari` *from trying to calculate the data min/max, which can take an extremely long time with big data.
 See [napari issue #736](https://github.com/napari/napari/issues/736) for further discussion.*
 
+(dask_image)=
+
 ## Make your life easier with `dask-image`
 
 This pattern for creating a `dask.array` from image data
@@ -205,7 +207,7 @@ directory. The dataset is 3.69 GB unzipped.
 ```
 
 While we could use plain `dask` through `delayed`, as we have shown above, we
-will [make our lives easier](make-your-life-easier-with-dask-image) here and use
+will [make our lives easier](dask_images) here and use
 `dask-image`.
 
 Using [dask_image.imread](https://image.dask.org/en/latest/dask_image.imread.html#module-dask_image.imread),
@@ -326,4 +328,3 @@ ready to show you the result on demand!
 - [Documentation on dask.delayed](https://docs.dask.org/en/latest/delayed.html)
 - [Dask working notes on dask-image](https://blog.dask.org/2019/06/20/load-image-data)
 - [Dask working notes on image processing with `dask.array.map_blocks`](https://blog.dask.org/2019/08/09/image-itk)
-- [](brain_dataset_tutorial.md)
