@@ -2,9 +2,9 @@
 # https://github.com/napari/napari/blob/main/.github/workflows/build_docs.yml
 # and https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml
 #
-# This workflow is triggered by
+# Note this workflow is also triggered by
 # https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml when a
-# merge to `main` occurs in napari/napari
+# merge to `main` occurs in `napari/napari`
 
 name: Build & Deploy PR Docs
 
