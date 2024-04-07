@@ -19,7 +19,7 @@ through several CI workflows detailed below.
           artifacts to this repository (`napari/napari`).
         - This is triggered on any commit tagged 'v*'.
     - **Workflow file:** [`deploy_docs.yml`](https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml)
-        - **job:** `deploy`
+        - **job:** `build-napari-docs`
         - Triggers [`build_and_deploy.yml`](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml)
           workflow at the [napari/docs](https://github.com/napari/docs) repo.
           Waits for results and reports it.
@@ -34,7 +34,7 @@ through several CI workflows detailed below.
           artifact named 'html' to this repository (`napari/docs`).
         - This is triggered on every Pull Request and shows up as a "Build & Deploy PR
           Docs / Build & Uplod Artifact" check on the PR.
-        - **job:** `build-and-deploy`
+        - **job:** `deploy`
         - Downloads the artifact from the `build-and-upload` job and deploys the html
           to GitHub pages at the `gh-pages` branch of
           [napari/napari.github.io](https://github.com/napari/napari.github.io/tree/gh-pages).
