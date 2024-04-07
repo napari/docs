@@ -1,6 +1,10 @@
 # As much as possible, this file should be kept in sync with
 # https://github.com/napari/napari/blob/main/.github/workflows/build_docs.yml
 # and https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml
+#
+# This workflow is triggered by
+# https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml when a
+# merge to `main` occurs in napari/napari
 
 name: Build & Deploy PR Docs
 

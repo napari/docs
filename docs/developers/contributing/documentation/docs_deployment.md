@@ -20,7 +20,7 @@ through several CI workflows detailed below.
         - This is triggered on every Pull Request and shows up as a "Build PR
           Docs" check on the PR.
     - **Workflow file:** [`deploy_docs.yml`](https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml)
-        - **job:** `build-and-deploy`
+        - **job:** `deploy`
         - Triggers [`deploy_docs.yml`](https://github.com/napari/docs/blob/main/.github/workflows/deploy_docs.yml)
           workflow at the [napari/docs](https://github.com/napari/docs) repo.
           Waits for results and reports it.
@@ -31,13 +31,14 @@ through several CI workflows detailed below.
 2. [`napari/docs`](https://github.com/napari/docs)
     - **Workflow file:** [`build_and_deploy.yml`](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml)
         - **job:** `build-and-upload`
-        - Pulls in sources from `napari/napari` and builds docs locally. Uploads
-          artifacts to this repo (`napari/docs`).
-        - This is triggered on every Pull Request and shows up as a "Build PR
-          Docs" check on the PR.
+        - Pulls in sources from `napari/napari`, builds docs, then uploads as an
+          artifact named 'html'.
+        - This is triggered on every Pull Request and shows up as a "Build & Deploy PR
+          Docs / Build & Uplod Artifact" check on the PR.
         - **job:** `build-and-deploy`
-        - Builds docs locally and deploys resulting artifacts to GitHub pages at
-          the `gh-pages` branch of [napari/napari.github.io](https://github.com/napari/napari.github.io/tree/gh-pages).
+        - Downloads the artifact from the `build-and-upload` job and deploys the html
+          to GitHub pages at the `gh-pages` branch of
+          [napari/napari.github.io](https://github.com/napari/napari.github.io/tree/gh-pages).
         - Always deploys to the `dev/` folder on `napari.github.io` (version
           "latest" on the website).
         - This is triggered on any commit to the `main` branch on `napari/docs`
