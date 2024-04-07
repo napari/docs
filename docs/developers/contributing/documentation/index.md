@@ -360,9 +360,12 @@ build.
 (doc_view_ci)=
 ### 3.2. View in GitHub Pull Request
 
-When you submit a pull request to the [napari/docs](https://github.com/napari/docs)
-repository, its continuous integration will build the documentation (you will need
-to [](docs_submit_pull_request) first). You can then view it in one of two ways:
+Alternatively, when you submit your pull request, the
+[napari/docs](https://github.com/napari/docs) repository
+continuous integration includes a GitHub action that builds the documentation
+and saves the artifact for you to preview or download.
+Note you will need to [](docs_submit_pull_request) first.
+You can then view it in one of two ways:
 
 * preview on your browser via [CircleCI](https://circleci.com/) in just one click -
   this is the easiest method but in rare cases it may not match the documentation that
@@ -373,9 +376,7 @@ to [](docs_submit_pull_request) first). You can then view it in one of two ways:
 
 When you submit a pull request to the [napari/napari](https://github.com/napari/napari)
 repository, its continuous integration will only build the docs in CircleCI. Thus
-you will only be able to [preview the documentation on CircleCI](docs_preview_circleci).
-
-(docs_preview_circleci)=
+you will only be able to preview the documentation on CircleCI.
 
 #### Preview on CircleCI
 
