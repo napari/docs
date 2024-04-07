@@ -16,12 +16,11 @@ through several CI workflows detailed below.
     - **Workflow file:** [`build_docs.yml`](https://github.com/napari/napari/blob/main/.github/workflows/build_docs.yml)
         - **job:** `build-and-upload`
         - Pulls in sources from `napari/docs` and builds docs locally. Uploads
-          artifacts to this repo (`napari/napari`).
-        - This is triggered on every Pull Request and shows up as a "Build PR
-          Docs" check on the PR.
+          artifacts to this repository (`napari/napari`).
+        - This is triggered on any commit tagged 'v*'.
     - **Workflow file:** [`deploy_docs.yml`](https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml)
         - **job:** `deploy`
-        - Triggers [`deploy_docs.yml`](https://github.com/napari/docs/blob/main/.github/workflows/deploy_docs.yml)
+        - Triggers [`build_and_deploy.yml`](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml)
           workflow at the [napari/docs](https://github.com/napari/docs) repo.
           Waits for results and reports it.
         - This is triggered on any commit to the `main` branch on
@@ -32,7 +31,7 @@ through several CI workflows detailed below.
     - **Workflow file:** [`build_and_deploy.yml`](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml)
         - **job:** `build-and-upload`
         - Pulls in sources from `napari/napari`, builds docs, then uploads as an
-          artifact named 'html'.
+          artifact named 'html' to this repository (`napari/docs`).
         - This is triggered on every Pull Request and shows up as a "Build & Deploy PR
           Docs / Build & Uplod Artifact" check on the PR.
         - **job:** `build-and-deploy`
