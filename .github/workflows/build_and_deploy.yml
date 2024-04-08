@@ -3,7 +3,7 @@
 #
 # Note this workflow is also triggered by
 # https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml when a
-# merge to `main` occurs in `napari/napari`
+# commit to `main` occurs in `napari/napari`
 
 name: Build & Deploy PR Docs
 
