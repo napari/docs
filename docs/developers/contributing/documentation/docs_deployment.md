@@ -17,7 +17,9 @@ through several CI workflows detailed below.
         - **job:** `build-and-upload`
         - Pulls in sources from `napari/docs` and builds docs locally. Uploads
           artifacts to this repository (`napari/napari`).
-        - This is triggered on any commit tagged 'v*'.
+        - This is triggered on any push to a branch named 'docs*' or tag named 'v*',
+          to `napari/napari`. The artifact can be used to check the documentation
+          but is not used for docs deployment.
     - **Workflow file:** [`deploy_docs.yml`](https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml)
         - **job:** `build-napari-docs`
         - Triggers [`build_and_deploy.yml`](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml)
@@ -25,7 +27,8 @@ through several CI workflows detailed below.
           Waits for results and reports it.
         - This is triggered on any commit to the `main` branch on
           `napari/napari` (and consequently triggers a new deployment of the
-          `napari.org` website.)
+          `napari.org` website). When the commit is tagged, the `build_and_deploy.yml`
+          workflow will deploy to the version folder e.g., `0.4.19/`.
 
 2. [`napari/docs`](https://github.com/napari/docs)
     - **Workflow file:** [`build_and_deploy.yml`](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml)
