@@ -39,13 +39,14 @@ These functions retrieve the closest parent `Viewer` of the native
 {class}`~napari.layers.Layer` or tuple of format ('layer name', `<LayerType>Data`).
 This callable is set to the `choices` attribute of the
 {class}`~magicgui.widgets.bases.CategoricalWidget` in its
-{meth}`~magicgui.widgets.bases.CategoricalWidget.reset_choices` method.
+{meth}`~magicgui.widgets.bases.CategoricalWidget.reset_choices` method and thus
+gets called via {class}`~magicgui.widgets.bases.CategoricalWidget`'s `choices` setter.
 `napari` {meth}`~napari.qt.Window.add_dock_widget` checks if the dock widget has
 a `reset_choices` attribute and if so, connects it to layer events.
 Note that `magicgui` {class}`~magicgui.widgets.bases.ContainerWidget`'s will call
 `reset_choices` on all subwidgets. This means that when the dock widget is a
-{class}`~magicgui.widgets.bases.ContainerWidget`, any
-{class}`~magicgui.widgets.bases.CategoricalWidget` subwidgets are updated
+{class}`~magicgui.widgets.bases.ContainerWidget`, any subwidgets (e.g.,
+{class}`~magicgui.widgets.bases.CategoricalWidget`s) are updated
 whenever layers change.
 **Note that {meth}`~napari.qt.Window.add_dock_widget` will
 connect any existing `reset_choices` widget attribute to layer events for all widgets,
