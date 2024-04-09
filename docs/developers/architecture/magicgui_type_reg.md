@@ -9,9 +9,9 @@ for a given function parameter. It allows third party packages
 {func}`~magicgui.type_map.register_type`. `napari` registers
 a number of types, additionally specifying, where appropriate:
 
-* widget type for a parameter type
+* widget type for the parameter type
 * function for updating inputs for the widget
-* return callbacks, for return types
+* return callback, for return types
 
 This enables `magicgui` widgets to be easily created via type hints.
 
@@ -26,19 +26,18 @@ For information about using `magicgui` (for users and plugin developers) see
 ## Registration details
 
 `napari` types are either registered via the
-{func}`@register_type <magicgui.type_map.register_type>` decorator when the are
-defined or in
+{func}`@register_type <magicgui.type_map.register_type>` decorator when they are defined or in
 [`napari/types.py`](https://github.com/napari/napari/blob/main/napari/types.py).
 For the full list of types registered, see [](magicgui-parameter-annotations).
 
 All 'layer' types provide a `choices` callable when registering.
-This means that these types will create an input
-{class}`~magicgui.widgets.bases.CategoricalWidget`, which will be updated via the
-`choices` callable. The callable is either `get_layers_data` or `get_layers`.
+This means that annotating with these types will result in an input
+{class}`~magicgui.widgets.bases.CategoricalWidget`, which will get updated via the
+`choices` callable. This callable is either `get_layers_data` or `get_layers`.
 These functions retrieve the closest parent `Viewer` of the native
 {class}`~magicgui.widgets.bases.CategoricalWidget` widget and returns a list of
 {class}`~napari.layers.Layer` or tuple of format ('layer name', `<LayerType>Data`).
-This callable is set to `self.choices` of the
+This callable is set to the `choices` attribute of the
 {class}`~magicgui.widgets.bases.CategoricalWidget` in its
 {meth}`~magicgui.widgets.bases.CategoricalWidget.reset_choices` method.
 `napari` {meth}`~napari.qt.Window.add_dock_widget` checks if the dock widget has
@@ -48,8 +47,8 @@ Note that `magicgui` {class}`~magicgui.widgets.bases.ContainerWidget`'s will cal
 {class}`~magicgui.widgets.bases.ContainerWidget`, any
 {class}`~magicgui.widgets.bases.CategoricalWidget` subwidgets are updated
 whenever layers change.
-**Indeed, {meth}`~napari.qt.Window.add_dock_widget` will
-connect any existing `reset_choices` attribute to layer events for all widgets,
+**Note that {meth}`~napari.qt.Window.add_dock_widget` will
+connect any existing `reset_choices` widget attribute to layer events for all widgets,
 not just `magicgui` widgets.**
 
 The 'layer' types also specify a `return_callback` function that adds the layer
