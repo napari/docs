@@ -163,6 +163,7 @@ subtrees:
           - file: developers/architecture/dir_organization
           - file: developers/architecture/napari_models
           - file: developers/architecture/app_model
+          - file: developers/architecture/magicgui_type_reg
       - file: naps/index
         subtrees:
         - maxdepth: 1
