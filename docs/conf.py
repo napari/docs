@@ -162,8 +162,8 @@ intersphinx_mapping = {
         'https://pyapp-kit.github.io/magicgui/objects.inv',
     ],
     'app-model': [
-        'https://app-model--142.org.readthedocs.build/en/142/',
-        'https://app-model--142.org.readthedocs.build/en/142/objects.inv',
+        'http://app-model.readthedocs.io/en/latest/',
+        'http://app-model.readthedocs.io/en/latest/objects.inv',
     ],
 }
 
