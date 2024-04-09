@@ -28,7 +28,7 @@ through several CI workflows detailed below.
         - This is triggered on any commit to the `main` branch on
           `napari/napari` (and consequently triggers a new deployment of the
           `napari.org` website). When the commit is tagged, the `build_and_deploy.yml`
-          workflow will deploy to the version folder e.g., `0.4.19/`.
+          workflow will deploy to the version folder e.g., `{{ napari_version }}`.
 
 2. [`napari/docs`](https://github.com/napari/docs)
     - **Workflow file:** [`build_and_deploy.yml`](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml)
