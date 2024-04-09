@@ -64,7 +64,7 @@ the widget type for this annotation.
 
 ```{important}
 `magicgui` type registration allows `napari` to specify useful defaults for creating
-widgets for specific types. It does not provide the the type object.
+widgets for specific types. It does not provide the type object.
 This is done via dependency injection by "providers" (see
 [](app_model_dep_inj_result) for details).
 ```
