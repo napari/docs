@@ -168,6 +168,16 @@ class MyWidget(QWidget):
 (again, the second gen napari plugin engine will help improve this situation,
 but it's still a good idea!)
 
+(best_practice_napari_type)=
+
+## Don't require `napari` if not necessary
+
+It's good practice to not depend on `napari` if not strictly necessary.
+If you only use `napari` for type annotations, we recommend that you use strings
+instead of importing the types. For example, you can see in the
+[widget contribution guide](widgets-contribution-guide) that napari type annotations
+are strings and not imported.
+
 ## Don't leave resources open
 
 It's always good practice to clean up resources like open file handles and
