@@ -62,8 +62,8 @@ hidden {class}`~magicgui.widgets.EmptyWidget`). The user will need to specify
 the widget type for this annotation.
 
 ```{important}
-`magicgui` type registration allows `napari` to specify useful defaults for creating
-widgets for specific types. It does not provide the type object.
+`magicgui` type registration allows `napari` to specify useful defaults when creating
+widgets for specific types. It does **not** provide the type object.
 This is done via dependency injection by "providers" (see
 [](app_model_dep_inj_result) for details).
 ```
