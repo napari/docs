@@ -795,7 +795,7 @@ class ExampleLayerListWidget(QWidget):
 
         # create new widget with create_widget and type annotation
         self.layer_select = create_widget(annotation=ImageData)
-        # The widget has to be connected to viewer.layers.events
+        # The `layer_select` widgets `reset_choices` method has to be connected to viewer.layers.events
         layers_events = self.viewer.layers.events
         layers_events.inserted.connect(self.layer_select.reset_choices)
         layers_events.removed.connect(self.layer_select.reset_choices)
