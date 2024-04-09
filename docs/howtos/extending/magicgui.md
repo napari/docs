@@ -179,11 +179,11 @@ The following napari types may be used as *parameter* type annotations in
 - {class}`napari.Viewer`
 
 ```{note}
-If you want to get the dropdown list widgets resulting from the layer
-annotations (e.g., {class}`~napari.layers.Layer`,
-{class}`~napari.layers.Image`, {attr}`napari.types.ImageData`)
-without using the `@magicgui` decorator, 
-see the [`QWidget` example](#qtwidgets-qwidget) below.
+When creating a widget that is not a 
+{class}`~magicgui.widgets.bases.ContainerWidget` subclass,
+adding a layer input widget requires more than just
+parameter annotation.
+See the [`QWidget` example](#qtwidgets-qwidget) below.
 ```
 
 The consequence of each type annotation is described below:
