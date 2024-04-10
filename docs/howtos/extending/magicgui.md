@@ -768,8 +768,8 @@ The available choices for the dropdown list are the
 current layers in the viewer. For this, we use
 {func}`create_widget <magicgui.widgets.create_widget>` with the annotation
 {attr}`napari.types.ImageData`.
-In opposition to
-using `@magicgui` as [shown above](#parameter-annotations), we now need to
+Because the layer selection widget will be housed by a native `QWidget`
+and not by a `magicgui` subclass as [shown above](#parameter-annotations), we now need to
 manually connect the `reset_choices` of the list with the
 `viewer.layers.events` so that the available choices are synchronized
 with the current layers of the viewer:
