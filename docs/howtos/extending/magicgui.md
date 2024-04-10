@@ -770,7 +770,7 @@ current layers in the viewer. For this, we use
 {attr}`napari.types.ImageData`.
 Because the layer selection widget will be housed by a native `QWidget`
 and not by a `magicgui` subclass as [shown above](#parameter-annotations), we now need to
-manually connect the `reset_choices` of the list with the
+manually connect the `reset_choices` of the created widget with the
 `viewer.layers.events` so that the available choices are synchronized
 with the current layers of the viewer:
 
