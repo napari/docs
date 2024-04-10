@@ -39,7 +39,7 @@ Then click the _Generate new token_ button in the upper right corner.
 
 Fill the form:
 
-1. Set expiration to custom and then select the proper date
+1. Set expiration to custom and then select one year after the current date.
 2. Select **napari** to be the resource owner
 3. Select _Only selected repositories_ and then select **napari/napari** repository
 
