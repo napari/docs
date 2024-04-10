@@ -43,6 +43,8 @@ Fill the form:
    the token is. The name will not be used by any workflows or in any other
    step.
 1. Set expiration to custom and then select one year after the current date.
+1. Optionally set a description. Again this is only for your own memory. A link
+   to this page might be appropriate.
 2. Select **napari** to be the resource owner
 3. Select _Only selected repositories_ and then select **napari/napari** repository
 
