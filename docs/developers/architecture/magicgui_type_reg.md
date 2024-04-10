@@ -26,13 +26,15 @@ For information about using `magicgui` (for users and plugin developers) see
 ## Registration details
 
 `napari` types are either registered via the
-{func}`@register_type <magicgui.type_map.register_type>` decorator when they are defined or in
+{func}`@register_type <magicgui.type_map.register_type>` decorator when they are
+defined or in
 [`napari/types.py`](https://github.com/napari/napari/blob/main/napari/types.py).
 For the full list of types registered, see [](magicgui-parameter-annotations).
 
-All 'layer' types provide a `choices` callable when registering.
-This means that annotating with these types creates an
-{class}`~magicgui.widgets.bases.CategoricalWidget`, which will get updated via the
+All 'layer' types provide a `choices` callable when they are registered with
+`magicgui`. This means that annotating with these types creates an
+{class}`~magicgui.widgets.bases.CategoricalWidget`, which will have a dropdown
+selection will get updated via the
 `choices` callable. This callable is either `get_layers_data` or `get_layers`.
 These functions retrieve the closest parent `Viewer` of the native
 {class}`~magicgui.widgets.bases.CategoricalWidget` widget and returns a list of
@@ -57,13 +59,13 @@ to the closest parent `Viewer` of the native widget when a 'layer' type is a ret
 annotation.
 
 {class}`~napari.viewer.Viewer` differs from the Layer types. `napari` simply specifies
-that the {class}`~napari.viewer.Viewer` be bound to a widget (technically a
-hidden {class}`~magicgui.widgets.EmptyWidget`). The user will need to specify
-the widget type for this annotation.
+that the closest parent {class}`~napari.viewer.Viewer` (technically a public proxy of
+the {class}`~napari.viewer.Viewer` that prevents private attribute access) be bound to
+the widget (technically it's bound to a hidden child
+{class}`~magicgui.widgets.EmptyWidget`). This allows the {class}`~napari.viewer.Viewer`
+to be used in the `magicgui` widget.
 
-```{important}
-`magicgui` type registration allows `napari` to specify useful defaults when creating
-widgets for specific types. It does **not** provide the type object.
-This is done via dependency injection by "providers" (see
-[](app_model_dep_inj_result) for details).
+```{note}
+When widget is not a `magicgui` widget, the {class}`~napari.viewer.Viewer` is provided
+via a wrapper `napari` adds around widget contributions.
 ```
