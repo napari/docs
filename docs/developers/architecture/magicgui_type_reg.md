@@ -13,7 +13,7 @@ a number of types, additionally specifying, where appropriate:
 * function for updating inputs for the widget
 * return callback, for return types
 
-This enables `magicgui` widgets to be easily created via type hints.
+This enables `magicgui` widgets to be easily created via type annotations.
 
 ```{note}
 This page provides implementation details on `napari`-specific type registration
@@ -31,7 +31,7 @@ For information about using `magicgui` (for users and plugin developers) see
 For the full list of types registered, see [](magicgui-parameter-annotations).
 
 All 'layer' types provide a `choices` callable when registering.
-This means that annotating with these types will result in an input
+This means that annotating with these types creates an
 {class}`~magicgui.widgets.bases.CategoricalWidget`, which will get updated via the
 `choices` callable. This callable is either `get_layers_data` or `get_layers`.
 These functions retrieve the closest parent `Viewer` of the native
