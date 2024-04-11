@@ -344,14 +344,18 @@ viewer.window.add_dock_widget(my_widg)
 As above, to turn this into a [plugin widget contribution](widgets-contribution-guide),
 simply provide the class definition and add to the plugin manifest.
 
+For even more control over your widget, you can subclass
+[`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html).
+See [](#subclassing-qtwidgets-qwidget) for details.
+
 (magicgui-parameter-annotations)=
 
 ### Parameter annotations
 
 The following `napari` types may be used as *parameter* type annotations in
 `magicgui` functions or in the `annotation` argument of
-{func}`magicgui.widgets.create_widget` to get information from the napari viewer into
-your `magicgui` function.
+{func}`magicgui.widgets.create_widget`. This enables you to get information from the
+napari viewer into your widget.
 
 - any napari {class}`~napari.layers.Layer` subclass, such as
   {class}`~napari.layers.Image` or {class}`~napari.layers.Points`
@@ -373,12 +377,15 @@ See the [`QWidget` example](#subclassing-qtwidgets-qwidget) for details.
 
 #### Annotating as a `Layer` subclass
 
-If you annotate one of your function parameters as a
+Annotating a function parameter or setting `annotation` in `create_widget` to be a
 {class}`~napari.layers.Layer` subclass (such as {class}`~napari.layers.Image` or
 {class}`~napari.layers.Points`), it will be rendered as a
 {class}`~magicgui.widgets.ComboBox` widget (i.e. "dropdown menu"), where the
 options in the dropdown box are the layers of the corresponding type currently
 in the viewer.
+
+Using `Image` annotation in a {func}`@magic_factory <magicgui.magic_factory>`
+decorated function:
 
 ```python
 from napari.layers import Image
@@ -388,6 +395,21 @@ def my_widget(image: Image):
     # do something with whatever image layer the user has selected
     # note: it *may* be None! so your function should handle the null case
     ...
+```
+
+Using `Image`  annotation in `create_widget`:
+
+```python
+from magicgui.widgets import Container, create_widget
+
+class ImageWidget(Container):
+    def __init__(self, viewer: "napari.viewer.Viewer"):
+        super().__init__()
+        self._viewer = viewer
+        # use create_widget to generate widgets from type annotations
+        self._image_layer_combo = create_widget(
+            label="Image", annotation="napari.layers.Image"
+        )
 ```
 
 Here's a complete example:
@@ -423,6 +445,9 @@ In the previous example, the dropdown menu will *only* show
 user to pick from *all* layers in the layer list, annotate your parameter as
 {class}`~napari.layers.Layer`
 
+Using `Layer` annotation in a {func}`@magic_factory <magicgui.magic_factory>`
+decorated function:
+
 ```python
 from napari.layers import Layer
 
@@ -433,16 +458,35 @@ def my_widget(layer: Layer):
     ...
 ```
 
+Using `Layer`  annotation in `create_widget`:
+
+
+```python
+from magicgui.widgets import Container, create_widget
+
+class LayerWidget(Container):
+    def __init__(self, viewer: "napari.viewer.Viewer"):
+        super().__init__()
+        self._viewer = viewer
+        # use create_widget to generate widgets from type annotations
+        self._image_layer_combo = create_widget(
+            label="Layer", annotation="napari.layers.Layer"
+        )
+```
+
 (annotating-as-napari-types-data)=
 #### Annotating as `napari.types.*Data`
 
-In the previous example, the object passed to your function will be the actual
+In the previous example, the object passed to your function/widget will be
+the actual
 {class}`~napari.layers.Layer` instance, meaning you will need to access any
-attributes (like `layer.data`) on your own.  If your function is designed to
-accept a numpy array, you can use any of the special `<LayerType>Data` types
+attributes (like `layer.data`) on your own.  If your function/widget is designed
+to accept a numpy array, you can use any of the special `<LayerType>Data` types
 from {mod}`napari.types` to indicate that you only want the data attribute from
-the layer (where `<LayerType>` is one of the available layer types).  Here's an
-example using {attr}`napari.types.ImageData`:
+the layer (where `<LayerType>` is one of the available layer types).
+
+Using `ImageData` annotation in a {func}`@magic_factory <magicgui.magic_factory>`
+decorated function:
 
 ```python
 from napari.types import ImageData
@@ -453,6 +497,21 @@ def my_widget(array: ImageData):
     # note: it *may* be None! so your function should handle the null case
     if array is not None:
       assert isinstance(array, np.ndarray)  # it will be!
+```
+
+Using `ImageData`  annotation in `create_widget`:
+
+```python
+from magicgui.widgets import Container, create_widget
+
+class LayerWidget(Container):
+    def __init__(self, viewer: "napari.viewer.Viewer"):
+        super().__init__()
+        self._viewer = viewer
+        # use create_widget to generate widgets from type annotations
+        self._image_layer_combo = create_widget(
+            label="Layer", annotation="napari.types.ImageData"
+        )
 ```
 
 Like above, it will be rendered as a {class}`~magicgui.widgets.ComboBox`.
