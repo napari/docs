@@ -311,9 +311,11 @@ def add_google_calendar_secrets(app, docname, source):
 class FilterSphinxWarnings(logging.Filter):
     """Filter 'duplicate object description' warnings.
 
-    These warnings are a result of autosummary limitations and are not useful -
-    they don't result in any missing documentation or rendering issues, so we
-    can safely ignore them.
+    These warnings are a result of autosummary limitations when we have
+    Attributes and Properties in a class sharing the same name.
+
+    The warnings are not useful - they don't result in any missing documentation
+    or rendering issues, so we can safely ignore them.
 
     """
     def __init__(self, app):
