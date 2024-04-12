@@ -5,8 +5,7 @@
 .. autoclass:: {{ objname }}
    :members:
    :show-inheritance:
-   {# These classes inherit docstrings from the raw qt source, which
-   generates rst syntax errors when building the docs #}
+   {#- These classes inherit docstrings from the raw qt source, which generates rst syntax errors when building the docs #}
    {% if objname not in ["progress", "cancelable_progress"] -%}
    :inherited-members:
    {%- endif %}
