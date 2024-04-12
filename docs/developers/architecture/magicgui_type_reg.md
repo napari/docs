@@ -31,14 +31,18 @@ defined or in
 [`napari/types.py`](https://github.com/napari/napari/blob/main/napari/types.py).
 For the full list of types registered, see [](magicgui-parameter-annotations).
 
-All 'layer' types provide a `choices` callable when they are registered with
-`magicgui`. This means that annotating with these types creates an
+### Layer types
+
+The 'layer' types registered are {class}`~napari.layers.Layer` and its subclasses, and
+`<LayerType>Data` types.
+All these types provide a `choices` callable when they are registered with
+`magicgui`. This means that annotating with these types creates a
 {class}`~magicgui.widgets.bases.CategoricalWidget`, which will have a dropdown
-selection will get updated via the
+selection whose options will be updated via the
 `choices` callable. This callable is either `get_layers_data` or `get_layers`.
 These functions retrieve the closest parent `Viewer` of the native
 {class}`~magicgui.widgets.bases.CategoricalWidget` widget and returns a list of
-{class}`~napari.layers.Layer` or tuple of format ('layer name', `<LayerType>Data`).
+{class}`~napari.layers.Layer` or tuple of format `('layer name', <LayerType>Data)`.
 This callable is set to the `choices` attribute of the
 {class}`~magicgui.widgets.bases.CategoricalWidget` in its
 {meth}`~magicgui.widgets.bases.CategoricalWidget.reset_choices` method and thus
@@ -58,7 +62,9 @@ The 'layer' types also specify a `return_callback` function that adds the layer
 to the closest parent `Viewer` of the native widget when a 'layer' type is a return
 annotation.
 
-{class}`~napari.viewer.Viewer` differs from the Layer types. `napari` simply specifies
+### `Viewer` type
+
+{class}`~napari.viewer.Viewer` differs from the layer types. `napari` simply specifies
 that the closest parent {class}`~napari.viewer.Viewer` (technically a public proxy of
 the {class}`~napari.viewer.Viewer` that prevents private attribute access) be bound to
 the widget (technically it's bound to a hidden child
