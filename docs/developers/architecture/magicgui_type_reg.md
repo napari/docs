@@ -39,7 +39,9 @@ All these types provide a `choices` callable when they are registered with
 `magicgui`. This means that annotating with these types creates a
 {class}`~magicgui.widgets.bases.CategoricalWidget`, which will have a dropdown
 selection whose options will be updated via the
-`choices` callable. This callable is either `get_layers_data` or `get_layers`.
+`choices` callable.
+
+This callable is either `get_layers_data` or `get_layers`.
 These functions retrieve the closest parent `Viewer` of the native
 {class}`~magicgui.widgets.bases.CategoricalWidget` widget and returns a list of
 {class}`~napari.layers.Layer` or tuple of format `('layer name', <LayerType>Data)`.
@@ -49,6 +51,7 @@ This callable is set to the `choices` attribute of the
 gets called via {class}`~magicgui.widgets.bases.CategoricalWidget`'s `choices` setter.
 `napari` {meth}`~napari.qt.Window.add_dock_widget` checks if the dock widget has
 a `reset_choices` attribute and if so, connects it to layer events.
+
 Note that `magicgui` {class}`~magicgui.widgets.bases.ContainerWidget`'s will call
 `reset_choices` on all subwidgets. This means that when the dock widget is a
 {class}`~magicgui.widgets.bases.ContainerWidget`, any subwidgets (e.g.,
