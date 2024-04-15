@@ -153,9 +153,13 @@ Inline (lambda) and nested functions should be avoided for command callbacks to
 prevent memory leakage.
 ```
 
-All commands have a string id (e.g. '`napari:layer:duplicate`'). These are
-currently `CommandID` enums but we are considering changing to using
-plain strings to simplify decalaration of `Action`s.
+All commands have a string id (e.g. '`napari.window.file.open_files_dialog`').
+Some naming conventions:
+
+* use `.` to separate words
+* start with `napari` for builtin commands or the plugin name for plugin commands
+* `napari.window` prefix indicates the `napari` command is part of a GUI menu
+* the final word should be the name of the function callback
 
 {class}`app_model.types.CommandRule` class (of which {class}`app_model.types.Action`
 is a subclass) includes many fields to detail various aspects of commands.
