@@ -375,6 +375,8 @@ synchronize with layer changes.
 See the [`QWidget` example](#subclassing-qtwidgets-qwidget) for details.
 ```
 
+The consequence of each type annotation is described below:
+
 #### Annotating as a `Layer` subclass
 
 Annotating a function parameter or setting `annotation` in `create_widget` to be a
@@ -788,29 +790,63 @@ nbscreenshot(viewer, alt_text="A magicgui widget updating an existing layer")
 ## Subclassing `QtWidgets.QWidget`
 
 For the most control over your widget, subclass
-[`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html):
+[`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html).
+In the following example, we create a button and a dropdown list.
+The available choices for the dropdown list are the
+current layers in the viewer. For this, we use
+{func}`create_widget <magicgui.widgets.create_widget>` with the annotation
+{attr}`napari.types.ImageData`.
+Because the layer selection widget will be housed by a native `QWidget`
+and not by a `magicgui` subclass as [shown above](#parameter-annotations), we now need to
+manually connect the `reset_choices` of the created widget with the
+`viewer.layers.events` so that the available choices are synchronized
+with the current layers of the viewer:
 
 ```python
+import numpy
+import napari
+from magicgui.widgets import create_widget
 from qtpy.QtWidgets import QHBoxLayout, QPushButton, QWidget
 
-class ExampleQWidget(QWidget):
+from napari.types import ImageData
+
+
+class ExampleLayerListWidget(QWidget):
     def __init__(self, viewer: "napari.viewer.Viewer"):
         super().__init__()
         self.viewer = viewer
 
+        # Create a button
         btn = QPushButton("Click me!")
+        # Connect the click event to a function
         btn.clicked.connect(self._on_click)
 
+        # create new widget with create_widget and type annotation
+        self.layer_select = create_widget(annotation=ImageData)
+        # The `layer_select` widgets `reset_choices` method has to be connected to viewer.layers.events
+        layers_events = self.viewer.layers.events
+        layers_events.inserted.connect(self.layer_select.reset_choices)
+        layers_events.removed.connect(self.layer_select.reset_choices)
+        layers_events.reordered.connect(self.layer_select.reset_choices)
+
         self.setLayout(QHBoxLayout())
+        # add it to the layout
+        self.layout().addWidget(self.layer_select.native)
         self.layout().addWidget(btn)
 
     def _on_click(self):
-        print("napari has", len(self.viewer.layers), "layers")
+        print(
+            "Selected layer has shape: ",
+            self.layer_select.value.shape,
+        )
+
 
 # Create a `viewer`
 viewer = napari.Viewer()
+viewer.add_image(numpy.random.rand(20, 20), name="Layer 1")
+viewer.add_image(numpy.random.rand(40, 40), name="Layer 2")
 # Instantiate your widget
-my_widg = ExampleQWidget()
+my_widg = ExampleLayerListWidget(viewer)
 # Add widget to `viewer`
 viewer.window.add_dock_widget(my_widg)
 ```
