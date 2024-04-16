@@ -26,15 +26,19 @@ This document will describe each widget creation method, in increasing order of
 extensibility;
 
 1. [{func}`@magicgui <magicgui.magicgui>` decorator](magicgui_decorator) - create a
-   widget from a function and [`magicgui`](https://pyapp-kit.github.io/magicgui/)
-   (simplest but least extensible and flexible)
-2. []() -
-   create a widget class that subclasses a
-   [`magicgui` widget class](https://pyapp-kit.github.io/magicgui/widgets/#the-widget-hierarchy)
-3. []() -
-   create a widget class that subclasses
-   [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html) (most extensible but
-   also the most difficult to implement)
+   widget from a function and [`magicgui`](https://pyapp-kit.github.io/magicgui/).
+   This is the simplest but least extensible option. It would suit one
+   wishing to build a widget to simply run a function, with input widgets to select
+   function parameters.
+2. [](#magicgui-class-widgets) - subclass a
+   [`magicgui` widget class](https://pyapp-kit.github.io/magicgui/widgets/#the-widget-hierarchy).
+   This option allows you to easily satisfy function parameters while providing you
+   with the ability to customize your widget. For example, you can connect event
+   callbacks and perform processing.
+3. [](#qwidget-class-widgets) - subclass
+   [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html). This is the most
+   extensible but also the most difficult to implement. It will allow you to
+   use conditional selection options and customize result display.
 
 More examples of widget use can be found in the
 ['GUI' gallery examples](https://napari.org/stable/_tags/gui.html) (note: not every
@@ -65,7 +69,6 @@ widget and add it to the viewer
 with {meth}`~napari.qt.Window.add_dock_widget`, then how to adapt the widget
 for a widget contribution.
 
-(magicgui)=
 ## `magicgui`
 
 [`magicgui`](https://pyapp-kit.github.io/magicgui/) is a Python package that assists
@@ -79,13 +82,17 @@ absence of a type hint, the type of the default value will be used).
 You can also customize your widget using {func}`magicgui.magicgui` parameters.
 
 Third party packages (like napari in this case) may provide support for their types
-using {func}`magicgui.type_map.register_type`. Indeed napari uses
-{func}`~magicgui.type_map.register_type` to provide support for napari-specific type
+using {func}`magicgui.type_map.register_type`. Indeed `napari` uses
+{func}`~magicgui.type_map.register_type` to provide support for `napari`-specific type
 annotations. This makes it easy to use `magicgui` to build widgets in `napari`.
+
+See [](magicgui-parameter-annotations) for details on how to use `napari` types
+to get information from the napari viewer into your widget. See
+[](magicgui-return-annotations) for information how to use `napari` types to add
+output layers to the napari viewer.
+
 Note all type annotations *require* that the resulting widget be added to a
-napari viewer. See [](magicgui-parameter-annotations) and
-[](magicgui-return-annotations) for information how to use specific `napari` types
-to create widgets.
+napari viewer.
 
 Below we describe how to use `magicgui` to create widgets, first via the
 {func}`@magicgui <magicgui.magicgui>` decorator, then by subclassing a `magicgui`
@@ -219,8 +226,6 @@ widget2 = my_factory(call_button=False, x={'widget_type': 'Slider'})
 
 :::
 
-(widget-classes)=
-
 ## `magicgui` class widgets
 
 You can also create a widget by subclassing a
@@ -236,7 +241,7 @@ while {class}`~magicgui.widgets.Container` is more complex but more extensible.
 
 If you need more control over your widget, you can subclass
 [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html).
-See [](#subclassing-qtwidgets-qwidget) for details.
+See [](#qwidget-class-widgets) for details.
 
 ### `magicgui.widgets.FunctionGui`
 
@@ -346,7 +351,7 @@ simply provide the class definition and add to the plugin manifest.
 
 For even more control over your widget, you can subclass
 [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html).
-See [](#subclassing-qtwidgets-qwidget) for details.
+See [](#qwidget-class-widgets) for details.
 
 (magicgui-parameter-annotations)=
 
@@ -372,7 +377,7 @@ You can use {func}`~magicgui.widgets.create_widget` in a
 'layer' types you will need to manually connect the `reset_choices` of the resulting
 {class}`~magicgui.widgets.ComboBox` (i.e., "dropdown menu") to layer events for it to
 synchronize with layer changes.
-See the [`QWidget` example](#subclassing-qtwidgets-qwidget) for details.
+See the [`QWidget` example](#qwidget-class-widgets) for details.
 ```
 
 The consequence of each type annotation is described below:
@@ -787,7 +792,7 @@ viewer.window._qt_window.resize(1225, 900)
 nbscreenshot(viewer, alt_text="A magicgui widget updating an existing layer")
 ```
 
-## Subclassing `QtWidgets.QWidget`
+## `QWidget` class widgets
 
 For the most control over your widget, subclass
 [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html).
@@ -796,8 +801,9 @@ The available choices for the dropdown list are the
 current layers in the viewer. For this, we use
 {func}`create_widget <magicgui.widgets.create_widget>` with the annotation
 {attr}`napari.types.ImageData`.
+
 Because the layer selection widget will be housed by a native `QWidget`
-and not by a `magicgui` subclass as [shown above](#parameter-annotations), we now need to
+and not by a `magicgui` subclass as [shown above](#magicgui), we now need to
 manually connect the `reset_choices` of the created widget with the
 `viewer.layers.events` so that the available choices are synchronized
 with the current layers of the viewer:
