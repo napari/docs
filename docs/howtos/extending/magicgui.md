@@ -167,7 +167,7 @@ to get information from the napari viewer into your widget. See
 [](magicgui-return-annotations) for information how to use `napari` types to add
 output to the napari viewer.
 
-Note all type annotations *require* that the resulting widget be added to a
+For type annotations to work as described, the resulting widget needs to be added to a
 napari viewer.
 
 To use these `magicgui` function widgets as plugin widget contributions,
@@ -190,7 +190,6 @@ could be provided as a napari plugin as follows:
 
 ```python
 from magicgui import magic_factory
-from napari_plugin_engine import napari_hook_implementation
 
 @magic_factory(auto_call=True, threshold={'max': 2 ** 16})
 def threshold(
@@ -227,7 +226,7 @@ widget2 = my_factory(call_button=False, x={'widget_type': 'Slider'})
 The following `napari` types may be used as *parameter* type annotations in
 `magicgui` functions or in the `annotation` argument of
 {func}`magicgui.widgets.create_widget`. {func}`~magicgui.widgets.create_widget`
-can be used when adding an input widget to your widget class(TODO).
+can be used when adding an input widget to your [widget class](#widget-classes).
 
 This enables you to get information from the napari viewer into your widget.
 
@@ -253,7 +252,7 @@ The consequence of each type annotation is described below:
 
 Annotating a function parameter or setting `annotation` in `create_widget` to be a
 {class}`~napari.layers.Layer` subclass (such as {class}`~napari.layers.Image` or
-{class}`~napari.layers.Points`), it will be rendered as a
+{class}`~napari.layers.Points`), will result in a
 {class}`~magicgui.widgets.ComboBox` widget (i.e. "dropdown menu"), where the
 options in the dropdown box are the layers of the corresponding type currently
 in the viewer.
@@ -636,7 +635,7 @@ your widget. Your widget class must subclass {class}`magicgui.widgets.bases.Widg
 [`magicgui` widget class](https://pyapp-kit.github.io/magicgui/widgets/#the-widget-hierarchy))
 or [`QtWidgets.QWidget`](https://doc.qt.io/qt-5/qwidget.html).
 It can then be added to the napari viewer
-by instantiating the widget class, then adding this via
+by instantiating the widget class, then adding it to the viewer via
 {meth}`~napari.qt.Window.add_dock_widget`. You can also create a plugin and add
 your widget class (*not* instantiated widget) as a
 [widget contribution](widgets-contribution-guide).
@@ -646,7 +645,9 @@ There are several `magicgui` widget classes so we will only document the use of 
 two most useful in the napari context; {class}`~magicgui.widgets.FunctionGui`
 and {class}`~magicgui.widgets.Container` (more complex).
 
-### `magicgui.widgets.FunctionGui`
+### `magicui` class widgets
+
+#### `magicgui.widgets.FunctionGui`
 
 {class}`~magicgui.widgets.FunctionGui` is the type that is returned by the
 {func}`@magicgui <magicgui.magicgui>` decorator. Creating a widget by directly
@@ -694,7 +695,7 @@ To use {class}`~magicgui.widgets.FunctionGui` widget as a
 [plugin widget contribution](widgets-contribution-guide), simply provide the
 class definition and add to the plugin manifest.
 
-### `magicgui.widgets.Container`
+#### `magicgui.widgets.Container`
 
 The {class}`~magicgui.widgets.Container` allows you to build more complex widgets
 from sub-widgets. This gives you more control over each sub-widget and how callbacks
@@ -769,7 +770,7 @@ current layers in the viewer. For this, we use
 
 Because the layer selection widget will be housed by a native `QWidget`
 and not by a `magicgui` subclass (as with {func}`@magicgui <magicgui.magicgui>`
-decoratored functions and `magicgui` subclassees), we now need to
+decoratored functions and `magicgui` subclasses), we now need to
 manually connect the `reset_choices` of the created widget with the
 `viewer.layers.events` so that the available choices are synchronized
 with the current layers of the viewer:
