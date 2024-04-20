@@ -40,9 +40,14 @@ You may also want:
 [venv](https://docs.python.org/3/library/venv.html) **(Highly recommended)**
 
 ```{note}
-New to Python or not familiar with virtual environments? You can use our
-[Bundled App](install-as-a-bundled-app) to get started or first look at some
-[resources we recommend](additional-resources).
+New to Python or uncertain about conda, pip and virtual environments? You can use our
+[Bundled App](#install-as-a-bundled-app) to get started or first look at some
+resources we recommend:
+
+- [Scientific Python: Getting started with Python for science](https://lectures.scientific-python.org/intro/index.html)
+- [Talley Lambert's Python environments workshop](https://hackmd.io/@talley/SJB_lObBi)
+- [Carpentries GIT workshop](https://swcarpentry.github.io/git-novice) (for those interested in contributing)
+
 ```
 
 Python package distributions of napari can be installed via `pip`, `conda-forge`, or from source.
@@ -268,9 +273,3 @@ tracker](https://github.com/napari/napari/issues)
 forum](https://forum.image.sc/tags/napari) and all usage support requests should
 be posted on the forum with the tag `napari`. We look forward to interacting
 with you there!
-
-## Additional resources
-
-- [Scientific Python: Getting started with Python for science](https://lectures.scientific-python.org/intro/index.html)
-- [Talley Lambert's Python environments workshop](https://hackmd.io/@talley/SJB_lObBi)
-- [Carpentries GIT workshop](https://swcarpentry.github.io/git-novice) (for those interested in contributing)
