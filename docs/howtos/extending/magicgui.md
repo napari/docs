@@ -645,7 +645,7 @@ There are several `magicgui` widget classes so we will only document the use of 
 two most useful in the napari context; {class}`~magicgui.widgets.FunctionGui`
 and {class}`~magicgui.widgets.Container` (more complex).
 
-### `magicui` class widgets
+### `magicgui` class widgets
 
 #### `magicgui.widgets.FunctionGui`
 
