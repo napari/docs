@@ -21,11 +21,13 @@ from importlib import import_module
 from importlib.metadata import distribution
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
+import logging
 
 from jinja2.filters import FILTERS
 from sphinx_gallery import scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
 from sphinx.highlighting import lexers
+from sphinx.util import logging as sphinx_logging
 from packaging.version import parse as parse_version
 from pygments.lexers import TOMLLexer
 
@@ -227,6 +229,7 @@ exclude_patterns = [
     '.jupyter_cache',
     'jupyter_execute',
     'plugins/_*.md',
+    'plugins/building_a_plugin/_layer_data_guide.md',
     'gallery/index.rst',
 ]
 
@@ -306,6 +309,40 @@ def add_google_calendar_secrets(app, docname, source):
     if docname == 'community/meeting_schedule':
         source[0] = source[0].replace('{API_KEY}', GOOGLE_CALENDAR_API_KEY)
 
+class FilterSphinxWarnings(logging.Filter):
+    """Filter 'duplicate object description' warnings.
+
+    These warnings are a result of autosummary limitations when we have
+    Attributes and Properties in a class sharing the same name.
+
+    The warnings are not useful - they don't result in any missing documentation
+    or rendering issues, so we can safely ignore them.
+
+    """
+    def __init__(self, app):
+        self.app = app
+        super().__init__()
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        msg = record.getMessage()
+
+        filter_out = (
+            "duplicate object description",
+        )
+
+        if msg.strip().startswith(filter_out):
+            return False
+        return True
+
+def qt_docstrings(app, what, name, obj, options, lines):
+    """Only show first line of Qt threading docstrings.
+
+    Avoids syntax errors since the Qt threading docstrings are written in
+    Markdown, and injected into rst docstring automatically.
+    """
+    if "WorkerBase" in name:
+        if len(lines) > 0:
+            del lines[1:]
 
 def setup(app):
     """Set up docs build.
@@ -314,11 +351,21 @@ def setup(app):
       files found for document when generating the gallery
     * Rewrites github anchors to be comparable
     * Adds google calendar api key to meetings schedule page
+    * Filters out 'duplicate object description' Sphinx warnings
+    * Cleans out Qt threading docstrings
 
     """
     app.registry.source_suffix.pop(".ipynb", None)
     app.connect('source-read', add_google_calendar_secrets)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
+    app.connect('autodoc-process-docstring', qt_docstrings)
+    logger = logging.getLogger("sphinx")
+
+    warning_handler, *_ = [
+        h for h in logger.handlers
+        if isinstance(h, sphinx_logging.WarningStreamHandler)
+    ]
+    warning_handler.filters.insert(0, FilterSphinxWarnings(app))
 
 
 def get_attributes(item, obj, modulename):

@@ -37,7 +37,7 @@ Currently, the primary purpose of the `app` is to compose the following
   [commands](app-model-commands) (the actual callable objects) that have been
   registered with the application. Accessible via `app.commands`.
 * {class}`~app_model.registries.MenusRegistry`: maintains all of the
-  [menus and submenus](appp-model-menus) that have been registered with the application.
+  [menus and submenus](app-model-menus) that have been registered with the application.
   Accessible via `app.menus`.
 * {class}`~app_model.registries.KeyBindingsRegistry`: maintains the association
   between a [KeyBinding](app-model-keybindings) and a command ID in the
@@ -311,6 +311,8 @@ at runtime (see [issue 6600](https://github.com/napari/napari/issues/6600)
 for more on this). Note that it is likely that this pull request will be split into
 smaller pull requests for ease of review and better git history.
 
+(app_model_dep_inj_result)=
+
 ## Dependency injection and result processing
 
 Dependency injection allows to write functions using parameter type annotations,
@@ -468,7 +470,7 @@ initialization of `_QtMainWindow`. This is the same as
 
 (app-model-testing)=
 
-## app-model testing
+## `app-model` testing
 
 This section provides a guide to testing app-model aspects of napari. For general
 information on napari testing see [](napari-testing).
@@ -482,16 +484,17 @@ Segmentation faults can also occur as a
 singleton `app` may keep a reference to an object, e.g., a
 {class}`~napari._qt.qt_main_window.Window`, that has
 since been cleaned up at the end of a previous test.
-Thus, we mock the `app` in a `_mock_app` fixture and
-[autouse](https://docs.pytest.org/en/latest/how-to/fixtures.html#autouse-fixtures-fixtures-you-don-t-have-to-request)
-it so a new instance of `app` is returned every time {func}`~napari._app_model.get_app`
+Thus, we mock the `app` in a `_mock_app` fixture, and
+explicitly use it in {ref}`make_napari_viewer` as well as in all tests that
+use the `get_app` function. This way, a new instance of `app` is returned 
+every time {func}`~napari._app_model.get_app`
 is used inside a test. This 'test' `app` is available for use throughout the test's
 duration and will get cleaned up at the end.
 
 ```{note}
-Since the `_mock_app` fixture is autouse, a
-:class:`~napari._app_model._app.NapariApplication` is instantiated during setup
-of every test.
+Since the `_mock_app` fixture is used in `make_napari_viewer`, plugins and other
+external users that write tests using `make_napari_viewer` will also have the benefit
+of a new app for each test.
 ```
 
 The mock `app` registers non-Qt `Action`s, providers and processors. This is
