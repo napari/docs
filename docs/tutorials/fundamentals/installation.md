@@ -104,6 +104,7 @@ the current release.
 by updating your `conda` (`libmamba` is the default solver from conda 23.10 onwards):
 ```
 conda update -n base conda
+```
 ````
 
 :::::
