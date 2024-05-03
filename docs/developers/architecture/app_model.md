@@ -465,18 +465,17 @@ ways will not work:
 
 ### Providers and processors in napari
 
-Non-Qt providers and processors are defined in
-[`napari/_app_model/injection`](https://github.com/napari/napari/tree/main/napari/_app_model/injection).
-Qt providers and processors are defined in
+Currently there are only GUI related providers and processors.
+They are defined in
 [`napari/_qt/_qapp_model/injection`](https://github.com/napari/napari/tree/main/napari/_qt/_qapp_model/injection).
+They are registered in {func}`~napari._qt._qapp_model.qactions.init_qactions`,
+which gets called during initialization of `_QtMainWindow`. This is the same as
+[registration of `Action`s](app-model-actions-napari).
 
-Non-Qt providers and processors are registered in the `app` `Store` during
+In future we intend to have non-GUI providers that will supply layer objects.
+They would be registered in the `app` `Store` during
 initialization of the napari `app`, in `NapariApplication`'s
 {meth}`~napari._app_model._app.NapariApplication.__init__`.
-Qt providers and processors are registered in
-{func}`~napari._qt._qapp_model.qactions.init_qactions`, which gets called during
-initialization of `_QtMainWindow`. This is the same as
-[registration of `Action`s](app-model-actions-napari).
 
 (app-model-testing)=
 
