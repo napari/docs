@@ -131,10 +131,14 @@ In napari, menu bar actions are defined in
 [`napari/_qt/_qapp_model/qactions`](https://github.com/napari/napari/tree/main/napari/_qt/_qapp_model/qactions),
 with one file per menu.
 While not all menu bar actions strictly require Qt, they are defined for the purpose
-of living in a menu and are thus considered 'Qt' actions.
-This also ensures that there is only one file defining.
+of living in a menu and are thus considered 'GUI' actions.
+This also ensures that there is only one file defining both actions and their
+submenus.
+Note if we move to supporting more GUI backends, we may want to move these out of
+`_qt/` to a shared `gui/` folder, depending on implementation.
 
-The layer context menu actions do not require a GUI and thus live in
+The layer context menu actions do not require a GUI (they only require the `layerlist`)
+and thus live in
 [`napari/_app_model/actions`](https://github.com/napari/napari/tree/main/napari/_app_model/actions).
 
 Non-Qt `Action`s get registered with `app` during
