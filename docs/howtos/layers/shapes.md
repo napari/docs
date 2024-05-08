@@ -171,7 +171,7 @@ are used. i.e. You can't remove a vertex before you have created a shape.
   than one shape, select one, hold down the shift key and select the rest.
 
 * **Pan/zoom**
-  ![image: Select shapes](../../images/pan-zoom-tool.png)
+  ![image: Pan/zoom](../../images/pan-zoom-tool.png)
 
   Use this tool to pan around the image or zoom in. Pan and zoom functionality
   is disabled when using the adding and editing tools. Temporarily re-enable pan
