@@ -32,19 +32,28 @@ introduction, check out the
 ## Layer mode
 
 All our layers support a `mode` property that changes the way you interact
-with the layer from the viewer. These modes are accesible via the layer controls widget top buttons and via shortcuts (pressing a number from `1` to the number of modes available for the layer). Depending on the layer type, more modes could be available. Currently, there are two base modes: Pan and zoom (`pan_zoom`) and Transform (`transform`):
+with the layer from the viewer. These modes are accesible via the layer controls
+widget top buttons and via shortcuts (pressing a number from `1` to the number of
+modes available for the layer). Depending on the layer type, more modes could be
+available. Currently, there are two base modes: Pan and zoom (`pan_zoom`)
+and Transform (`transform`):
 
 * Pan and zoom
 ![image: Pan/zoom](../images/pan-zoom-tool.png)
 
-The `pan_zoom` mode allows you to pan around and zoom in/out the layer. It's the default mode selected.
+The `pan_zoom` mode allows you to pan around and zoom in/out the layer. It's
+the default mode selected.
 
 * Transform
 ![image: Transform](../images/transform-tool.png)
 
-The `transform` mode allows you to translate, rotate, and scale the layer graphically. To reset the transformation, you can Option/Alt-click the transform button over the layer controls (a confirmation dialog will open to confirm the reset).
+The `transform` mode allows you to translate, rotate, and scale the layer
+graphically. To reset the transformation, you can Option/Alt-click the transform
+button over the layer controls (a confirmation dialog will open to confirm
+the reset).
 
-For a more detailed description of layer modes available check each [layer how-to guide](using-layers).
+For a more detailed description of layer modes available check each
+[layer how-to guide](using-layers).
 
 ## Layer visibility
 

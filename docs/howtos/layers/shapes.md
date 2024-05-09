@@ -118,6 +118,7 @@ are used. i.e. You can't remove a vertex before you have created a shape.
     * Select vertices
     * Select shapes
     * Pan/zoom
+    * Transform
     * Move to back
     * Move to front
     * Add ellipses
@@ -177,6 +178,13 @@ are used. i.e. You can't remove a vertex before you have created a shape.
   is disabled when using the adding and editing tools. Temporarily re-enable pan
   and zoom by pressing and holding the spacebar. This feature can be useful if
   you want to move around the shapes layer as you edit it.
+
+* **Transform**
+  ![image: Transform](../../images/transform-tool.png)
+
+  Use this tool to rotate, scale, or translate the layer. To reset the transformation,
+  you can Option/Alt-click the transform button (a confirmation dialog will open to
+  confirm the reset).
 
 * **Move to back**
   ![image: Move to back](../../images/shape-move-to-back.png)

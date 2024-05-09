@@ -46,6 +46,7 @@ layer:
     * fill bucket
     * color picker
     * pan/zoom mode
+    * transform mode
 * Controls
     * label
     * opacity
@@ -255,6 +256,14 @@ mode is represented by the magnifying glass in the `layer controls` panel. While
 pan and zoom is selected, editing the layer is not possible. Once you click on
 one of the editing tools, pan and zoom is turned off. Return to pan and zoom
 mode by pressing the `6` key when the `labels layer` is selected.
+
+### Transform mode
+
+This mode is represented by ![image: Transform](../../images/transform-tool.png) in the
+`layer controls` panel. It enables you to rotate, scale, or translate the layer.
+To reset the transformation, you can Option/Alt-click the transform button (a
+confirmation dialog will open to confirm the reset). Enable this mode by pressing
+the `7` key when the `labels layer` is selected.
 
 ### Creating a new `labels layer`
 
