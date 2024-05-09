@@ -35,8 +35,7 @@ All our layers support a `mode` property that changes the way you interact
 with the layer from the viewer. These modes are accesible via the layer controls
 widget top buttons and via shortcuts (pressing a number from `1` to the number of
 modes available for the layer). Depending on the layer type, more modes could be
-available. Currently, there are two base modes: Pan and zoom (`pan_zoom`)
-and Transform (`transform`):
+available. Currently, there are two base modes:
 
 * Pan and zoom
 ![image: Pan/zoom](../images/pan-zoom-tool.png)
