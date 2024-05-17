@@ -62,6 +62,31 @@ theme:
 </figure>
 ```
 
+::::{card-carousel} 1
+
+  :::{card}
+  :class-card: inf-card
+  :shadow: none
+  :img-background: ./_static/images/LLSM.png
+
+  :::
+
+  :::{card}
+  :class-card: inf-card
+  :shadow: none
+  :img-background: ./images/3D_paths.png
+
+  :::
+
+  :::{card}
+  :class-card: inf-card
+  :shadow: none
+  :img-background: ./images/add_vectors_image.png
+
+  :::
+
+::::
+
 Napari is a Python library for n-dimensional image visualisation, annotation,
 and analysis. With napari you can:
 - **view and explore** 2D, 3D, and higher-dimensional arrays on a canvas;

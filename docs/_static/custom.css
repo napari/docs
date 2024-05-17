@@ -23,3 +23,66 @@ div.sphx-glr-download a:hover {
   background-image: none;
   background-color: #ffffff !important;
 }
+
+/* Carousel animation */
+
+.inf-card {
+  border: none !important;
+  animation: sd-slide-carousel-out 12s infinite;
+}
+
+.inf-card:nth-child(1) {
+  animation-name: sd-slide-carousel-out, sd-slide-carousel-in;
+  animation-iteration-count: infinite, infinite;
+  animation-duration: 12s, 12s;
+  animation-delay: 0s, 8s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes sd-slide-carousel-out {
+  0% {
+    visibility: hidden;
+    transform: translateX(0%)
+  }
+
+  33.33% {
+    visibility: visible;
+    transform: translateX(-100%);
+  }
+
+  66.66% {
+    transform: translateX(-200%);
+  }
+
+  99.99% {
+    visibility: hidden;
+    transform: translateX(-300%);
+  }
+}
+
+@keyframes sd-slide-carousel-in {
+  0% {
+    visibility: hidden;
+    transform: translateX(100%)
+  }
+
+  33.33% {
+    visibility: visible;
+    transform: translateX(0%);
+  }
+
+  66.66% {
+    transform: translateX(-100%);
+  }
+
+  99.99% {
+    transform: translateX(-200%);
+  }
+}
+
+.sd-cards-carousel>.inf-card {
+  margin-right: 0px;
+  overflow: hidden;
+  position: relative;
+  width: 100%
+}
