@@ -22,6 +22,7 @@ clean:
 
 docs-install:
 	python -m pip install -qr $(current_dir)requirements.txt
+	python -m pip freeze
 
 prep-docs:
 	python $(docs_dir)/_scripts/prep_docs.py
