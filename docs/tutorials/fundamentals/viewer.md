@@ -131,7 +131,18 @@ The **canvas** is in the center of the viewer and contains the visual display of
 
 +++
 
-![image: pan and zoom with napari](../assets/tutorials/viewer_pan_zoom.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/viewer_pan_zoom.webm" type="video/webm" />
+    <source src="../../_static/images/viewer_pan_zoom.mp4" type="video/mp4" />
+    <img src="../../_static/images/viewer_pan_zoom.png"
+      title="Your browser does not support the video tag"
+      alt="Demo of pan and zoom functionality in napari."
+    >
+  </video>
+</figure>
+```
 
 +++
 
@@ -410,7 +421,18 @@ viewer.camera.perspective = 45
 
 #### Roll dimensions
 
-The third button rolls the dimensions that are currently displayed in the viewer. For example if you have a `ZYX` volume and are looking at the `YX` slice, this will then show you the `ZY` slice. You can also right-click this button to re-order the dimensions by drag-and-drop.
+The third button rolls the dimensions that are currently displayed in the viewer. 
+For example if you have a `ZYX` volume and are looking at the `YX` slice, this 
+will then show you the `ZY` slice. You can also right-click this button to pop-up 
+a widget that allows you to re-order the dimensions by drag-and-drop or lock a 
+dimension, by clicking on the padlock icon:
+
+![image: roll dimensions widget with padlock icons](../assets/tutorials/dims_roll_lock_widget.png){ w=200px }
+
+Locking prevents a dimension from being rolled (reordered). This can be particularly 
+useful, for example, with a `3D+time` dataset where you may want to fix the time dimension, 
+while being able to roll through the spatial dimensions.
+
 
 The dimension order can also be checked programatically as follows:
 
@@ -456,8 +478,8 @@ The right side of the status bar contains some helpful tips depending on which l
 * **Show All Unselected Layers** - Set all *unselected* layers to visible.
 * **Hide All Unselected Layers** - Set all *unselected* layers to hidden.
 * **Duplicate Layer** - creates a second copy of the selected layer. Can be used on **Points**, **Shapes**, **Labels**, and **Image** layers. This is useful for testing your analysis on a copy instead of on the original image.
-* **Convert to Labels** - converts an **Image** layer to a **Labels** layer. This is useful for converting a binary image segmentation map to a labels layer with each segmented object denoted by its own integer. Can also be used on a **Shapes** layer.
-* **Convert to Image** - converts a **Labels** layer into an **Image** layer.
+* **Convert to Labels** - converts an **Image** layer to a **Labels** layer (if the data is already of type `int` it is not copied or altered, only the representation is changed, making this fully reversible). This is useful for converting a binary image segmentation map to a labels layer with each segmented object denoted by its own integer. Can also be used on a **Shapes** layer, in this case a new **Labels** layer will be created.
+* **Convert to Image** - converts a **Labels** layer into an **Image** layer (the data is not copied or altered, only the representation is changed, making this fully reversible).
 * **Convert datatype** - converts a **Labels** layer into int8, int16, int32, int64, uint8, uint16, uint32, or uint64 data types. The initial data type is the data type of the data itself.
 * **Make Projection** - can be used only on a layer with more than 2 dimensions, also known as a *stack*.  It creates a new layer that is a projection of the layer stack with the characteristic the user selects, reducing the number of dimensions by 1. More information about the types of projections is available [here](https://medium.com/@damiandn/an-intoduction-to-biological-image-processing-in-imagej-part-3-stacks-and-stack-projections-942aa789420f). The following projections are available:
     * **Max** - maximum intensity projection. At each pixel position, we go  through the stacks, find the pixel with the maximum intensity, and that becomes the intensity of that pixel value in the projected image.
