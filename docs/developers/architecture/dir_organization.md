@@ -33,9 +33,9 @@ napari/
 Notable folders in the root directory:
 
 * [`examples/`](https://github.com/napari/napari/tree/main/examples) folder
-  contains the source [examples gallery](https://napari.org/gallery) files.
+  contains the source [examples gallery](gallery) files.
   The code in these files are executed and outputs captured when building the gallery.
-  See [](docs_contributing_guide) for details on napari` documentation.
+  See [](contributing-docs) for details on napari` documentation.
 * [`.github/`](https://github.com/napari/napari/tree/main/.github) contains
   our [GitHub Actions](https://docs.github.com/en/actions)
   [continuous integration (CI)](https://en.wikipedia.org/wiki/Continuous_integration)
