@@ -241,6 +241,34 @@ their presence in other menus. If the plugin defines its own submenus, these wil
 followed by a separator, then any commands with no dedicated menu entry for the plugin's own 
 submenu. These will be alphabetically ordered.
 
+To declare a new submenu for itself, a plugin can add a submenu entry whose id is prefixed
+with the plugin's own name. For example, the following manifest declares one command for the 
+`napari/layers/segment` submenu, and one for its own `specific-analysis` submenu.
+
+```yaml
+name: napari-demo
+display_name: Demo plugin
+
+contributions:
+  commands:
+    - id: napari-demo.segment_well
+      title: A command for good segmentation
+      python_name: napari_demo:segment
+    - id: napari-demo.specific_command
+      title: A specific command for this plugin
+      python_name: napari_demo:specific_command
+
+  menus:
+    napari/layers/segment:
+      - command: napari-demo.segment_well
+    napari-demo/specific_submenu:
+      - command: napari-demo.specific_command
+
+  submenus:
+    - id: napari-demo/specific_submenu
+      label: A submenu for specific analyses
+```
+
 ### Complete Set of Proposed Contributable `napari` Menus
 
 ```
@@ -353,14 +381,16 @@ native napari actions, it's important that users are able to distinguish
 the source of menu items.
 
 To that end, napari items should always be grouped separately to plugin items
-in all menus. Additionally, the plugin's name should also be listed with 
+in all menus, and listed first. Additionally, the plugin's name should also be listed with 
 each plugin contribution. Since plugin names can be quite long, future work should
 consider more concise ways to indicate menu item sources, including using icons.
 If using an icon, the plugin's display name should be available on hover.
 
-Outside of a plugin's own submenu, the `order` and `group` keys will be ignored
-for menu contributions. napari will make its own decisions about the grouping
-and ordering of plugin contributions in its native menus.
+Otherwise, plugin commands will be grouped according to the given `order` and 
+`group` parameters if there are any, or otherwise at the bottom of the given menu,
+below a separator, in alphabetical order. Where a group only contains a single item
+after all plugin and napari actions have been registered, a separator will not be added. Otherwise,
+groups will be separated by a separator. 
 
 
 ### Items that Don't Fit?
