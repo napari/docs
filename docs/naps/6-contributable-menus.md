@@ -539,7 +539,7 @@ on and is essential for navigation.
 are aware why certain actions are disabled when the user doesn't meet the
 requisite context declared in the contribution's `enablement` clause. Since
 the syntax for declaring these contexts is strictly defined, we should be
-able to surface information to suers about what is required for the action
+able to surface information to users about what is required for the action
 to be enabled and functional. For example, an action could declare itself
 enabled only when a points layer *and* an image layer are selected. If 
 the user has only selected an image layer, we could indicate the missing
