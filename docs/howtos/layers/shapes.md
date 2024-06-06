@@ -174,8 +174,8 @@ are used. i.e. You can't remove a vertex before you have created a shape.
 * **Pan/zoom**
   ![image: Pan/zoom](../../images/pan-zoom-tool.png)
 
-  Use this tool to pan around the layer or zoom in. Pan and zoom functionality
-  is disabled when using the adding and editing tools. To activate the tool,
+  Use this tool to pan around the layer or zoom in. Pan functionality
+  is disabled when using the adding and editing tools; however, zoom using the mouse-wheel will typically continue to work. To activate the tool,
   you can press `6`. Temporarily re-enable pan and zoom by pressing and holding
   the spacebar. This feature can be useful if you want to move around the shapes
   layer as you edit it.
@@ -183,7 +183,7 @@ are used. i.e. You can't remove a vertex before you have created a shape.
 * **Transform**
   ![image: Transform](../../images/transform-tool.png)
 
-  Use this tool to rotate, scale, or translate the layer. To activate the tool,
+  Use this tool to rotate, scale, or translate the layer. Note: at present this feature is limited to 2D viewer display mode. To activate the tool,
   you can press `7`. To reset the transformation, you can Option/Alt-click the
   transform button (a confirmation dialog will open to confirm the reset).
 

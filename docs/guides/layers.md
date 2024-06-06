@@ -39,13 +39,14 @@ widget top buttons and via keyboard shortcuts (these shortcuts will vary dependi
 ![image: Pan/zoom](../images/pan-zoom-tool.png)
 
 The `pan_zoom` mode allows you to pan around and zoom in/out the layer. It's
-the default mode selected.
+the default mode selected. Note: zooming with the mouse-wheel should essentially always work!
 
 * Transform
 ![image: Transform](../images/transform-tool.png)
 
 The `transform` mode allows you to translate, rotate, and scale the layer
-graphically. To reset the transformation, you can Option/Alt-click the transform
+graphically. Note: While you can transform 3D layers, at present this mode is only usable in 2D viewer display mode.
+To reset the transformation, you can Option/Alt-click the transform
 button over the layer controls (a confirmation dialog will open to confirm
 the reset).
 

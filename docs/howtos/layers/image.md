@@ -50,7 +50,8 @@ sample image of your choice.
   to use this mode.
 
 * `Transform` ![image: Transform](../../images/transform-tool.png) enables you to
-  rotate, scale, or translate the layer. To reset the transformation,
+  rotate, scale, or translate the layer. Note: at present this feature is limited to 2D viewer display mode.
+  To reset the transformation,
   you can Option/Alt-click the transform button (a confirmation dialog will open to
   confirm the reset). Press the `2` key when the layer is selected to use this mode.
 

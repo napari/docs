@@ -261,6 +261,7 @@ mode by pressing the `6` key when the `labels layer` is selected.
 
 This mode is represented by ![image: Transform](../../images/transform-tool.png) in the
 `layer controls` panel. It enables you to rotate, scale, or translate the layer.
+Note: at present this feature is limited to 2D viewer display mode.
 To reset the transformation, you can Option/Alt-click the transform button (a
 confirmation dialog will open to confirm the reset). Enable this mode by pressing
 the `7` key when the `labels layer` is selected.
