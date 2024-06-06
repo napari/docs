@@ -100,9 +100,7 @@ else:
     version_match = release
 
 html_theme_options = {
-    "external_links": [
-        {"name": "napari hub", "url": "https://napari-hub.org"}
-    ],
+    "external_links": [{"name": "napari hub", "url": "https://napari-hub.org"}],
     "github_url": "https://github.com/napari/napari",
     "navbar_start": ["navbar-logo", "navbar-project"],
     "navbar_end": ["version-switcher", "navbar-icon-links"],
@@ -116,6 +114,12 @@ html_theme_options = {
     "pygment_light_style": "napari",
     "pygment_dark_style": "napari",
     "announcement": "https://napari.org/dev/_static/announcement.html",
+    "back_to_top_button": False,
+}
+
+html_context = {
+   # use Light theme only, don't auto switch (default)
+   "default_mode": "light"
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
