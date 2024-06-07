@@ -162,13 +162,14 @@ one of these menu items.
 
 1. `Visualize` - Items in this submenu allow you to change visualization parameters from selected layer or layers.
 They do not change the layer data, but will change how it's displayed. An example would be a widget that allows you
-to select which subset of points is visible based on feature properties.
+to select which subset of points is visible based on feature properties, or one that automatically sets the contrast limits
+based on properties of the data.
 2. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data. An example
 would be a widget that plots the change in the intensity of a clicked pixel over time.
 3. `Edit` - The items in this submenu allow you to change the data of your layer through `Filter` actions e.g. a gaussian 
 filter or `Transform` actions e.g. an affine transform. Additionally `Annotate` provides a location for convenient layer 
 editing tools e.g. `Labels` split/merge actions. Items in this submenu **should not** generate new layers, but rather act upon 
-the existing layer data.
+the existing layer data and metadata.
 
 The remaining submenus under `Layers` deal with generating new layers based on processing of existing layers
 or other information. They define common *analysis* actions users may want to take on their layers.
