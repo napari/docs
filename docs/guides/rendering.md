@@ -19,6 +19,7 @@ At a high level, rendering in napari is simple.
 
 But as the details of this document reveal, rendering in napari is, in fact,
 very complicated.
+
 Consider some of the more important reasons for this.
 
 - Multiple layers can have different extents with different transforms.
@@ -35,7 +36,7 @@ problems that we are actively trying to fix and improve.
 The region visible in napari's canvas is almost entirely determined by the state
 in the `Viewer.dims`.
 
-Specifically, `Dims.point` describes the coordinates of the slicing (hyper)plane
+Specifically, `Dims.point` describes the coordinates of the slicing plane
 in the world coordinate system shared across all layers.
 
 TODO: briefly mention thick slicing, but simplify here.
