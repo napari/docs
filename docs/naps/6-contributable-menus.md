@@ -217,7 +217,7 @@ menu.
 ### The `File -> New Layer` Menu
 
 This menu will contain built-in `napari` commands for creating new empty layers (similar to 
-the new layer buttons atop the layerlist), but also allow plugins to declare commands that 
+the 'new layer' buttons atop the layerlist), but also allow plugins to declare commands that 
 open new empty layers with specific properties e.g. a `zarr`-backed `Labels` layer, an
 `Image` layer with a specific `dtype`, or a `Points` layer with specific default features.
 
