@@ -187,7 +187,7 @@ by `napari` itself.
 
 ### The `Acquire` Menu
 
-In addition to the `Layers` menu, we add `Acquire` as a top level menu.
+In addition to the `Layers` menu, we would add `Acquire` as a top level menu.
 
 `Acquire` will contain widgets and utilities for interfacing with microscopes and
 other types of cameras.
