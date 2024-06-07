@@ -116,16 +116,23 @@ This NAP proposes new menu IDs and new top level menus to open for contribution.
 ### What do Menu Contributions do?
 
 `MenuItem` contributions can be thought of as auxiliary contributions that
-provide a dispatch mechanism for binding an existing contribution to a menu item and
-executing it. Currently these would strictly be `widget` contributions as the other
-contribution types (reader, writer, sample data) have defined menu locations. However,
-this mechanism can easily be extended to other commands, which can take as input
+allow you to place an existing contribution into one of napari's menus.
+
+Currently only `widget` contributions and pure commands could be placed in menus, as the other
+contribution types (reader, writer, sample data) already have defined locations
+and dispatch mechanisms.
+
+When `widget` contributions are placed in a menu, clicking on that menu item
+will simply open the associated `widget`. However, pure commands can take as input
 `napari` objects like specific layers, or the `Viewer`, and produce
-output the `Viewer` uses - currently this would be new layers.
+output the `Viewer` uses - currently this would be new layers. For example,
+you could have a command that creates a new layer with specific features,
+or one that edits the rendering properties of an existing layer.
 
 Moving forward, new contribution types could be defined that allow
 plugin developers to run context aware commands that interact with
-different `Viewer` components without the need for a `widget`.
+different `Viewer` components without the need for a `widget`, and with
+more specific effects than current pure commands.
 
 For example, `LayerEditor` contributions could take the currently
 active/selected `Layers` and edit the underlying data, while `LayerGenerator`
@@ -140,6 +147,8 @@ We therefore propose a menu structure that would be easily
 extensible with these new contribution types and provide intuitive
 locations for both plugin developers to add their functionality,
 and users to find it.
+
+
 
 ## Detailed Description
 
