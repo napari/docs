@@ -419,12 +419,12 @@ As the number of plugins, types of contributions and `Viewer` interactions grows
 it is important that the set of contributable menus is periodically assessed
 to add new submenus as required.
 
-Every 6 months to 1 year, the core developers will perform an analysis on 
-the total set of menu item and widget contributions of all plugins, and 
-derive new groupings to ensure that the length of each submenu remains 
-managable. 
+Every 6 months to 1 year, the core developers will perform an analysis on
+the total set of menu item and widget contributions of all plugins, and
+derive new groupings to ensure that the length of each submenu remains
+managable.
 
-For example, consider the `Layers -> Segment` menu. If 
+For example, consider the `Layers -> Segment` menu. If
 analysis of the plugin ecosystem reveals 40 different contributions
 for Watershed Segmentation, a new `Watershed` submenu would be added
 under `Layers -> Segment -> Watershed`.
@@ -541,16 +541,16 @@ requisite context declared in the contribution's `enablement` clause. Since
 the syntax for declaring these contexts is strictly defined, we should be
 able to surface information to users about what is required for the action
 to be enabled and functional. For example, an action could declare itself
-enabled only when a points layer *and* an image layer are selected. If 
+enabled only when a points layer *and* an image layer are selected. If
 the user has only selected an image layer, we could indicate the missing
 context to the user e.g. "Action takes a points and image layer, but no
-points layer is selected". 
+points layer is selected".
 
 **Making actions predictable:** A desired attribute of these menu items is that users always know what
 will happen when they click a menu item. Does a widget open? Is the layer
-edited? Is a new layer added to the `Viewer`? Once more contribution 
-types are exposed, we should be able to either add this information 
-as metadata in the manifest file, or infer it from return type 
+edited? Is a new layer added to the `Viewer`? Once more contribution
+types are exposed, we should be able to either add this information
+as metadata in the manifest file, or infer it from return type
 annotations of contribution commands, and also expose this to the user.
 
 **Dynamic menus:** The number of actions in each menu is heavily dependent on
@@ -560,8 +560,8 @@ each submenu contains, and group them appropriately for the user while
 limiting unnecessary depth. For example, if the user's environment has
 six plugins installed that each provide a `Watershed` segmentation,
 we could display a `Layers -> Segment -> Watershed`
-submenu. If the user has just one `Watershed` segmentation plugin 
-installed, this submenu would not appear. This would require very careful 
+submenu. If the user has just one `Watershed` segmentation plugin
+installed, this submenu would not appear. This would require very careful
 design to ensure the user still knows what to expect when they load up
 the `Viewer`.
 
