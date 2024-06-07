@@ -195,14 +195,16 @@ to ensure users are not met with empty menus on initially opening `napari`. It's
 also possible that exceedingly common operations e.g. thresholds, are provided in the future
 by `napari` itself.
 
-### The `Acquire` Menu
+### New `File` Submenus
 
-In addition to the `Layers` menu, we would add `Acquire` as a top level menu.
+These submenus will be placed in the `File` top-level menu.
+
+#### `Acquire`
 
 `Acquire` will contain widgets and utilities for interfacing with microscopes and
 other types of cameras.
 
-### The I/O Utilities Menu
+#### `I/O Utilities`
 
 A cursory analysis of widget names revealed a minimum of 17 plugins provide
 widgets dedicated to importing and exporting of data, features, models and/or
@@ -224,7 +226,7 @@ It is likely, therefore, that some plugins will always have bespoke interfaces f
 exporting various file formats. These interfaces will be exposed via the new `File->I/O Utilities`
 menu.
 
-### The `File -> New Layer` Menu
+#### `New Layer`
 
 This menu will contain built-in `napari` commands for creating new empty layers (similar to 
 the 'new layer' buttons atop the layerlist), but also allow plugins to declare commands that 
@@ -286,6 +288,7 @@ File
 ├─ ...
 ├─ New Layer
 ├─ IO Utilities
+├─ Acquire
 Layers
 ├─ Visualize
 ├─ Measure
@@ -298,7 +301,6 @@ Layers
 ├─ Segment
 ├─ Track
 ├─ Classify
-Acquire
 ```
 
 As a case study, we take four plugins offering between 9 and 14 widget contributions and arrange their widgets in these menus: 
@@ -316,6 +318,7 @@ File
 │  ├─ Export 2D segmentations (empanada-napari)
 │  ├─ Store training dataset (empanada-napari)
 │  ├─ nd2ToTIFF (napari-mm3)
+├─ Acquire
 Layers
 ├─ Visualize
 │  ├─ SFilterTrack (napari-stracking)
@@ -353,7 +356,6 @@ Layers
 │  ├─ Tracks (napari-mm3)
 ├─ Classify
 ├─ make_point_cloud_sampling (napari-clemreg)
-Acquire
 Plugins
 ├─ empanada-napari
 │  ├─ Models
