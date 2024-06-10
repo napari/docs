@@ -168,6 +168,36 @@ class MyWidget(QWidget):
 (again, the second gen napari plugin engine will help improve this situation,
 but it's still a good idea!)
 
+(best_practice_napari_type)=
+
+## Don't require `napari` if not necessary
+
+It's good practice to not depend on `napari` if not strictly necessary.
+If you only use `napari` for type annotations, we recommend that you use strings
+instead of importing the types. This is called a
+[Forward reference](https://peps.python.org/pep-0484/#forward-references).
+For example, you can see in the
+[widget contribution guide](widgets-contribution-guide) that napari type annotations
+are strings and not imported.
+
+If you'd like to maintain IDE type support and autocompletion, you can
+still do so by hiding the napari imports inside of a {attr}`typing.TYPE_CHECKING`
+clause:
+
+```python
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+  import napari
+
+@magicgui
+def my_func(data: 'napari.types.ImageData') -> 'napari.types.ImageData':
+    ...
+```
+
+This will not require napari at runtime, but if it is installed in your
+development environment, you will still get all the type inference.
+
 ## Don't leave resources open
 
 It's always good practice to clean up resources like open file handles and
@@ -210,6 +240,8 @@ Of course, simply having 100% coverage doesn't mean your code is bug-free, so
 make sure that you test all of the various ways that your code might be called.
 
 See [Tips for testing napari plugins](plugin-testing-tips).
+
+(best-practices-test-coverage)=
 
 ### How to check test coverage?
 

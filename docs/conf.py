@@ -15,14 +15,20 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import re
+import os
+from datetime import datetime
 from importlib import import_module
+from importlib.metadata import distribution
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
+import logging
 
 from jinja2.filters import FILTERS
 from sphinx_gallery import scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
 from sphinx.highlighting import lexers
+from sphinx.util import logging as sphinx_logging
+from packaging.version import parse as parse_version
 from pygments.lexers import TOMLLexer
 
 import napari
@@ -37,7 +43,7 @@ else:
 # -- Project information -----------------------------------------------------
 
 project = 'napari'
-copyright = '2022, The napari team'
+copyright = f'{datetime.now().year}, The napari team'
 author = 'The napari team'
 
 # -- General configuration ---------------------------------------------------
@@ -83,7 +89,7 @@ tags_extension = ["md", "rst"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'napari'
+html_theme = 'napari_sphinx_theme'
 
 # Define the json_url for our version switcher.
 json_url = "https://napari.org/dev/_static/version_switcher.json"
@@ -94,16 +100,26 @@ else:
     version_match = release
 
 html_theme_options = {
-    "external_links": [
-        {"name": "napari hub", "url": "https://napari-hub.org"}
-    ],
+    "external_links": [{"name": "napari hub", "url": "https://napari-hub.org"}],
     "github_url": "https://github.com/napari/napari",
-    "navbar_start": ["navbar-project"],
+    "navbar_start": ["navbar-logo", "navbar-project"],
     "navbar_end": ["version-switcher", "navbar-icon-links"],
     "switcher": {
         "json_url": json_url,
         "version_match": version_match,
     },
+    "navbar_persistent": [],
+    "header_links_before_dropdown": 6,
+    "secondary_sidebar_items": ["page-toc"],
+    "pygment_light_style": "napari",
+    "pygment_dark_style": "napari",
+    "announcement": "https://napari.org/dev/_static/announcement.html",
+    "back_to_top_button": False,
+}
+
+html_context = {
+   # use Light theme only, don't auto switch (default)
+   "default_mode": "light"
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -151,6 +167,10 @@ intersphinx_mapping = {
         'https://pyapp-kit.github.io/magicgui/',
         'https://pyapp-kit.github.io/magicgui/objects.inv',
     ],
+    'app-model': [
+        'http://app-model.readthedocs.io/en/latest/',
+        'http://app-model.readthedocs.io/en/latest/objects.inv',
+    ],
 }
 
 myst_enable_extensions = [
@@ -158,13 +178,30 @@ myst_enable_extensions = [
     'dollarmath',
     'substitution',
     'tasklist',
+    'attrs_inline',
 ]
 
-myst_heading_anchors = 3
+myst_heading_anchors = 4
+
+
+def get_supported_python_versions(project_name):
+    """
+    Get the supported Python versions for a given project
+    based on the classifiers in its distribution metadata.
+    """
+    dist = distribution(project_name)
+    classifiers = [value for key, value in dist.metadata.items() if key == 'Classifier' and value.startswith('Programming Language :: Python ::')]
+    return [parse_version(c.split(' :: ')[-1]) for c in classifiers if not c.endswith('Only')]
+
+
+napari_supported_python_versions = get_supported_python_versions('napari')
+
+min_python_version = min(napari_supported_python_versions)
+max_python_version = max(napari_supported_python_versions)
 
 version_string = '.'.join(str(x) for x in __version_tuple__[:3])
-python_version = '3.9'
-python_version_range = '3.8–3.10'
+python_version = '3.10'
+python_version_range = f"{min_python_version}-{max_python_version}"
 
 myst_substitutions = {
     "napari_conda_version": f"`napari={version_string}`",
@@ -196,6 +233,7 @@ exclude_patterns = [
     '.jupyter_cache',
     'jupyter_execute',
     'plugins/_*.md',
+    'plugins/building_a_plugin/_layer_data_guide.md',
     'gallery/index.rst',
 ]
 
@@ -254,23 +292,84 @@ sphinx_gallery_conf = {
     'plot_gallery': "'True'",  # https://github.com/sphinx-gallery/sphinx-gallery/pull/304/files
     'download_all_examples': False,
     'min_reported_time': 10,
-    'only_warn_on_example_error': True,
+    'only_warn_on_example_error': False,
+    'abort_on_example_error': True,
     'image_scrapers': ("matplotlib", napari_scraper,),
     'reset_modules': (reset_napari,),
     'reference_url': {'napari': None},
     'within_subsection_order': ExampleTitleSortKey,
 }
 
+GOOGLE_CALENDAR_API_KEY = os.environ.get('GOOGLE_CALENDAR_API_KEY', '')
+
+
+def add_google_calendar_secrets(app, docname, source):
+    """Add google calendar api key to meeting schedule page.
+
+    The source argument is a list whose single element is the contents of the
+    source file. You can process the contents and replace this item to implement
+    source-level transformations.
+    """
+    if docname == 'community/meeting_schedule':
+        source[0] = source[0].replace('{API_KEY}', GOOGLE_CALENDAR_API_KEY)
+
+class FilterSphinxWarnings(logging.Filter):
+    """Filter 'duplicate object description' warnings.
+
+    These warnings are a result of autosummary limitations when we have
+    Attributes and Properties in a class sharing the same name.
+
+    The warnings are not useful - they don't result in any missing documentation
+    or rendering issues, so we can safely ignore them.
+
+    """
+    def __init__(self, app):
+        self.app = app
+        super().__init__()
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        msg = record.getMessage()
+
+        filter_out = (
+            "duplicate object description",
+        )
+
+        if msg.strip().startswith(filter_out):
+            return False
+        return True
+
+def qt_docstrings(app, what, name, obj, options, lines):
+    """Only show first line of Qt threading docstrings.
+
+    Avoids syntax errors since the Qt threading docstrings are written in
+    Markdown, and injected into rst docstring automatically.
+    """
+    if "WorkerBase" in name:
+        if len(lines) > 0:
+            del lines[1:]
 
 def setup(app):
-    """Ignore .ipynb files.
+    """Set up docs build.
 
-    Prevents sphinx from complaining about multiple files found for document
-    when generating the gallery.
+    * Ignores .ipynb files to prevent sphinx from complaining about multiple
+      files found for document when generating the gallery
+    * Rewrites github anchors to be comparable
+    * Adds google calendar api key to meetings schedule page
+    * Filters out 'duplicate object description' Sphinx warnings
+    * Cleans out Qt threading docstrings
 
     """
     app.registry.source_suffix.pop(".ipynb", None)
+    app.connect('source-read', add_google_calendar_secrets)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
+    app.connect('autodoc-process-docstring', qt_docstrings)
+    logger = logging.getLogger("sphinx")
+
+    warning_handler, *_ = [
+        h for h in logger.handlers
+        if isinstance(h, sphinx_logging.WarningStreamHandler)
+    ]
+    warning_handler.filters.insert(0, FilterSphinxWarnings(app))
 
 
 def get_attributes(item, obj, modulename):
