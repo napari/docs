@@ -94,7 +94,6 @@ def create_label_menu(points_layer, labels):
 
     def label_changed(new_label):
         """Update the Points layer when the label menu selection changes"""
-        selected_label = event.value
         feature_defaults = points_layer.feature_defaults
         feature_defaults['label'] = new_label
         points_layer.feature_defaults = feature_defaults
@@ -374,8 +373,7 @@ def next_label(event=None):
     new_ind = (ind + 1) % len(labels)
 
     # get the new label and assign it
-    new_label = labels[new_ind]
-    feature_defaults['label'] = np.array([new_label])
+    feature_defaults['label'] = labels[new_ind]
     points_layer.feature_defaults = feature_defaults
     points_layer.refresh_colors()
 ```
@@ -391,8 +389,7 @@ def prev_label(event):
     ind = list(labels).index(current_label)
     n_labels = len(labels)
     new_ind = ((ind - 1) + n_labels) % n_labels
-    new_label = labels[new_ind]
-    feature_defaults['label'] = np.array([new_label])
+    feature_defaults['label'] = labels[new_ind]
     points_layer.feature_defaults = feature_defaults
     points_layer.refresh_colors()
 ```

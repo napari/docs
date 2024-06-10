@@ -250,7 +250,7 @@ graph = {
 For a full example of 3d+t tracks data with a parent graph, please see
 [](../../gallery/tracks_3d_with_graph).
 
-## Using the tracks features table
+## Using the `tracks` features table
 
 The `Tracks` layer can contain features that annotate the vertices of each
 track. `Tracks.features` stores the features in a table where each column

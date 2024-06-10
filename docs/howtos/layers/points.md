@@ -278,6 +278,7 @@ of the points (e.g., face color or border color).
 To see the points features in action, please see the
 [Point annotation tutorial](annotating-points).
 
+
 ### Non-editable mode
 
 To disable editing the points layer, set the `editable` property of the layer to
@@ -392,15 +393,15 @@ nbscreenshot(viewer, alt_text="3 points overlaid on an astronaut image, where th
 viewer.close()
 ```
 
-In the example above, the features (`point_features`) were provided as a
+In the example above, the `point_features` were provided as a
 dictionary with two keys or columns: `good_point` and `confidence`.
 The values of each feature are stored in a list of length 3 since there were three
 coordinates provided in `points`. We set the border color as a function of the
 `good_point` feature by providing the keyword argument
-`border_color='good_point'` to the `viewer.add_points()` method. We set the color
-cycle via the `border_color_cycle` keyword argument (`border_color_cycle=['magenta',
-'green']`). The color cycle can be provided as a list of colors (a list of
-strings or a (M x 4) array of M RGBA colors).
+`border_color='good_point'` to the `viewer.add_points()` method.
+The color cycle is set via the `border_color_cycle` keyword argument,
+`border_color_cycle=['magenta', 'green']`. The color cycle can be provided as a
+list of colors (a list of strings or a (M x 4) array of M RGBA colors).
 
 ### Setting border or face color with a colormap
 
