@@ -274,7 +274,7 @@ The `Points` layer can contain features that annotate each point.
 a feature and each row represents each the feature values for a point.
 Therefore, the table has N rows for N points in `Points.data`.
 As we will see below, we can use feature values to determine the display properties
-of the points (e.g., face color or edge color).
+of the points (e.g., face color or border color).
 To see the points features in action, please see the
 [Point annotation tutorial](annotating-points).
 
@@ -340,7 +340,7 @@ point to be added or any currently selected points.
 
 ### Setting point border and face color with features
 
-Point edge and face colors can be set as a function of a feature in
+Point border and face colors can be set as a function of a feature in
 `Points.features`. There are two ways that these feature values can be
 mapped to colors: (1) color cycles and (2) colormaps.
 
@@ -360,8 +360,8 @@ list(napari.utils.colormaps.AVAILABLE_COLORMAPS)
 
 ### Setting border or face color with a color cycle
 
-Here we will set the edge color of the markers with a color cycle on a feature.
-To do the same for a face color, substitute `face_color` for `edge_color` in the
+Here we will set the border color of the markers with a color cycle on a feature.
+To do the same for a face color, substitute `face_color` for `border_color` in the
 example snippet below.
 
 ```{code-cell} python
@@ -375,9 +375,9 @@ point_features = {
 points_layer = viewer.add_points(
     points,
     features=point_features,
-    edge_color='good_point',
-    edge_color_cycle=['magenta', 'green'],
-    edge_width=0.5,
+    border_color='good_point',
+    border_color_cycle=['magenta', 'green'],
+    border_width=0.5,
 )
 ```
 
@@ -395,10 +395,10 @@ viewer.close()
 In the example above, the features (`point_features`) were provided as a
 dictionary with two keys or columns: `good_point` and `confidence`.
 The values of each feature are stored in a list of length 3 since there were three
-coordinates provided in `points`. We set the edge color as a function of the
+coordinates provided in `points`. We set the border color as a function of the
 `good_point` feature by providing the keyword argument
-`edge_color='good_point'` to the `viewer.add_points()` method. We set the color
-cycle via the `edge_color_cycle` keyword argument (`edge_color_cycle=['magenta',
+`border_color='good_point'` to the `viewer.add_points()` method. We set the color
+cycle via the `border_color_cycle` keyword argument (`border_color_cycle=['magenta',
 'green']`). The color cycle can be provided as a list of colors (a list of
 strings or a (M x 4) array of M RGBA colors).
 

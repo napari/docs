@@ -230,15 +230,15 @@ The values, 'labels', is the list of the names of the features we will be annota
 
 We add the `Points` layer to the viewer using the `viewer.add_points()` method.
 As discussed above, we will be storing which feature of interest each point corresponds to via the `label` feature we defined in the `features` table.
-To visualize the feature each point represents, we set the edge color as a color cycle mapped to the `label` feature (`border_color='label'`).
+To visualize the feature each point represents, we set the border color as a color cycle mapped to the `label` feature (`border_color='label'`).
 
 ```python
 features = {'label': labels}
 points_layer = viewer.add_points(
     ndim=3,
     features=features,
-    edge_color='label',
-    edge_color_cycle=COLOR_CYCLE,
+    border_color='label',
+    border_color_cycle=COLOR_CYCLE,
     symbol='o',
     face_color='transparent',
     border_width=0.5,  # fraction of point size
