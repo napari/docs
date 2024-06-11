@@ -100,7 +100,7 @@ def circularity(perimeter, area):
 image = data.coins()[50:-50, 50:-50]
 label_image = segment(image)
 
-# create the features table 
+# create the features dictionary
 feature = regionprops_table(
     label_image, properties=('label', 'bbox', 'perimeter', 'area')
 )
@@ -193,7 +193,7 @@ napari.run()
 Next, we use [`regionprops_table`](https://scikit-image.org/docs/dev/api/skimage.measure.html#regionprops-table) from skimage to quantify some parameters of each detection object (e.g., area and perimeter).
 
 ```python
-# create the features table
+# create the features dictionary
 features = regionprops_table(
     label_image, properties=('label', 'bbox', 'perimeter', 'area')
 )
