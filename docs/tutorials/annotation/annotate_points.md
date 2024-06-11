@@ -48,7 +48,7 @@ from typing import List
 from dask_image.imread import imread
 from magicgui.widgets import ComboBox, Container
 import napari
-import numpy as np
+import pandas as pd
 
 COLOR_CYCLE = [
     '#1f77b4',
@@ -92,11 +92,12 @@ def create_label_menu(points_layer, labels):
 
     points_layer.events.feature_defaults.connect(update_label_menu)
 
-    def label_changed(new_label):
+    def label_changed(selected_label):
         """Update the Points layer when the label menu selection changes"""
         feature_defaults = points_layer.feature_defaults
-        feature_defaults['label'] = new_label
+        feature_defaults['label'] = selected_label
         points_layer.feature_defaults = feature_defaults
+        points_layer.refresh_colors()
 
     label_menu.changed.connect(label_changed)
 
@@ -121,7 +122,7 @@ def point_annotator(
     viewer = napari.view_image(stack)
     points_layer = viewer.add_points(
         ndim=3,
-        features={'label': labels},
+        features=pd.DataFrame({'label': pd.Categorical([], categories=labels)}),
         border_color='label',
         border_color_cycle=COLOR_CYCLE,
         symbol='o',
@@ -139,8 +140,8 @@ def point_annotator(
     def next_label(event=None):
         """Keybinding to advance to the next label with wraparound"""
         feature_defaults = points_layer.feature_defaults
-        current_label = feature_defaults['label'][0]
-        ind = list(labels).index(current_label)
+        default_label = feature_defaults['label'][0]
+        ind = list(labels).index(default_label)
         new_ind = (ind + 1) % len(labels)
         new_label = labels[new_ind]
         feature_defaults['label'] = new_label
@@ -164,12 +165,11 @@ def point_annotator(
     def prev_label(event):
         """Keybinding to decrement to the previous label with wraparound"""
         feature_defaults = points_layer.feature_defaults
-        current_label = feature_defaults['label'][0]
-        ind = list(labels).index(current_label)
+        default_label = feature_defaults['label'][0]
+        ind = list(labels).index(default_label)
         n_labels = len(labels)
         new_ind = ((ind - 1) + n_labels) % n_labels
-        new_label = labels[new_ind]
-        feature_defaults['label'] = new_label
+        feature_defaults['label'] = labels[new_ind]
         points_layer.feature_defaults = feature_defaults
         points_layer.refresh_colors()
 
@@ -223,7 +223,7 @@ Each feature will be given a different label so that we can track them across fr
 To achieve this, we will store the label in the `Points.features` table in the 'label' column.
 We will instantiate the `Points` layer without any points.
 However, we will initialize `Points.features` with the feature values we will be using to annotate the images.
-To do so, we will define a feature table with a column named `label` and values `labels`.
+To do so, we will define a feature table with a categorical column named `label` with category values from `labels`.
 The key, 'label', is the name of the feature we are storing.
 The values, 'labels', is the list of the names of the features we will be annotating (defined above in the "point_annotator()" section).
 
@@ -232,16 +232,15 @@ As discussed above, we will be storing which feature of interest each point corr
 To visualize the feature each point represents, we set the border color as a color cycle mapped to the `label` feature (`border_color='label'`).
 
 ```python
-features = {'label': labels}
 points_layer = viewer.add_points(
-    ndim=3,
-    features=features,
-    border_color='label',
-    border_color_cycle=COLOR_CYCLE,
-    symbol='o',
-    face_color='transparent',
-    border_width=0.5,  # fraction of point size
-    size=12,
+     ndim=3,
+     features=pd.DataFrame({'label': pd.Categorical([], categories=labels)}),
+     border_color='label',
+     border_color_cycle=COLOR_CYCLE,
+     symbol='o',
+     face_color='transparent',
+     border_width=0.5,  # fraction of point size
+     size=12,
 )
 ```
 
@@ -331,10 +330,10 @@ Similar to the points layer, the magicgui object has an event that gets emitted 
 To ensure the points layer is updated whenever the GUI selection is changed, we connect `label_changed()` to the `label_menu.changed` event.
 
 ```python
-def label_changed(new_label):
+def label_changed(selected_label):
     """Update the Points layer when the label menu selection changes"""
-    feature_defaults= points_layer.feature_defaults
-    feature_defaults['label'] = new_label
+    feature_defaults = points_layer.feature_defaults
+    feature_defaults['label'] = selected_label
     points_layer.feature_defaults = feature_defaults
     points_layer.refresh_colors()
 
@@ -361,19 +360,12 @@ In this case, we are binding `next_label()` to the `.` key.
 @viewer.bind_key('.')
 def next_label(event=None):
     """Keybinding to advance to the next label with wraparound"""
-
-    # get the currently selected label
     feature_defaults = points_layer.feature_defaults
-    current_label = feature_defaults['label'][0]
-
-    # determine the index of that label in the labels list
-    ind = list(labels).index(current_label)
-
-    # increment the label with wraparound
+    default_label = feature_defaults['label'][0]
+    ind = list(labels).index(default_label)
     new_ind = (ind + 1) % len(labels)
-
-    # get the new label and assign it
-    feature_defaults['label'] = labels[new_ind]
+    new_label = labels[new_ind]
+    feature_defaults['label'] = new_label
     points_layer.feature_defaults = feature_defaults
     points_layer.refresh_colors()
 ```
@@ -384,9 +376,9 @@ We can do the same with another function that instead decrements the label with 
 @viewer.bind_key(',')
 def prev_label(event):
     """Keybinding to decrement to the previous label with wraparound"""
-    feature_defaults= points_layer.feature_defaults
-    current_label = feature_defaults['label'][0]
-    ind = list(labels).index(current_label)
+    feature_defaults = points_layer.feature_defaults
+    default_label = feature_defaults['label'][0]
+    ind = list(labels).index(default_label)
     n_labels = len(labels)
     new_ind = ((ind - 1) + n_labels) % n_labels
     feature_defaults['label'] = labels[new_ind]
