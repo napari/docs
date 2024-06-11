@@ -233,14 +233,14 @@ To visualize the feature each point represents, we set the border color as a col
 
 ```python
 points_layer = viewer.add_points(
-     ndim=3,
-     features=pd.DataFrame({'label': pd.Categorical([], categories=labels)}),
-     border_color='label',
-     border_color_cycle=COLOR_CYCLE,
-     symbol='o',
-     face_color='transparent',
-     border_width=0.5,  # fraction of point size
-     size=12,
+    ndim=3,
+    features=pd.DataFrame({'label': pd.Categorical([], categories=labels)}),
+    border_color='label',
+    border_color_cycle=COLOR_CYCLE,
+    symbol='o',
+    face_color='transparent',
+    border_width=0.5,  # fraction of point size
+    size=12,
 )
 ```
 
