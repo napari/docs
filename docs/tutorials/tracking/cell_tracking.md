@@ -64,9 +64,9 @@ def regionprops_plus_time(idx):
     data_df : pd.DataFrame
        The dataframe of track data for one time step (specified by idx).
     """
-    features = regionprops_table(stack[idx, ...], properties=('label', 'centroid'))
-    features['frame'] = np.full(features['label'].shape, idx)
-    return pd.DataFrame(features)
+    props = regionprops_table(stack[idx, ...], properties=('label', 'centroid'))
+    props['frame'] = np.full(props['label'].shape, idx)
+    return pd.DataFrame(props)
 
 data_df_raw = pd.concat(
     [regionprops_plus_time(idx) for idx in range(NUM_IMAGES)]
