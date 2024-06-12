@@ -44,10 +44,10 @@ This document describes the simple rendering paths with pointers to the more pow
 We will use scikit-image's 3D cells data as a running example throughout this documentation.
 
 ```{code-cell} python
-from skimage import data
 import napari
 
-viewer, image_layer = napari.imshow(data.cells3d())
+viewer = napari.Viewer()
+viewer.open_sample('napari', 'cells3d')
 ```
 
 ```{code-cell} python
@@ -103,7 +103,10 @@ The current slice plane can be changed using the sliders or using the API direct
 
 ```{code-cell} python
 viewer.dims.point = (0, 0, 0)
+```
 
+```{code-cell} python
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="3D cell nuclei and membranes rendered as 2D slices in the napari viewer")
 ```
 
@@ -140,7 +143,10 @@ For example, we can use the mean data over the slicing region for one of the lay
 
 ```{code-cell} python
 viewer.layers[0].projection_mode = 'mean'
+```
 
+```{code-cell} python
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="3D cell nuclei and membranes rendered as 2D slices in the napari viewer")
 ```
 
@@ -176,12 +182,16 @@ In this case, the world's dimensions 1 and 2 map to the 2D layer's dimension 0 a
 Using our example, we can see this in practice by replacing the membrane layer with its 2D mean projection over its first dimension
 
 ```{code-cell} python
-viewer.layers[0] = Image(np.mean(viewer.layers[0].data, axis=0), colormap=viewer.layers[0].colormap)
-viewer.layers[0]._world_to_layer_dims(world_dims=np.asarray(viewer.dims.order), ndim_world=3)
-viewer.layers[1]._world_to_layer_dims(world_dims=np.asarray(viewer.dims.order), ndim_world=3)
+from napari.layers import Image
+
+mean_data = np.mean(viewer.layers[0].data, axis=0)
+viewer.layers[0] = Image(mean_data, colormap=viewer.layers[0].colormap)
+world_dims = np.asarray(viewer.dims.order)
+viewer.layers[0]._world_to_layer_dims(world_dims=world_dims, ndim_world=3)
+viewer.layers[1]._world_to_layer_dims(world_dims=world_dims, ndim_world=3)
 ```
 
-where `Layer._world_layer_dims` is a private method that is called as a part of slicing.
+where `Layer._world_to_layer_dims` is a private method that is called as a part of slicing.
 
 For simple cases like the above, this right-alignment approach tends to work well.
 
@@ -205,8 +215,9 @@ to data coordinates.
 Using our example, we can see this in practice by transforming the coordinates associated with the current slice plane
 
 ```{code-cell} python
-viewer.layers[0].world_to_data(viewer.dims.point)
-viewer.layers[1].world_to_data(viewer.dims.point)
+point = viewer.dims.point
+viewer.layers[0].world_to_data(point)
+viewer.layers[1].world_to_data(point)
 ```
 
 These data coordinates are still continuous values that may not perfectly align with data array indices and may even fall outside of the valid range of the layer's data array.
@@ -231,8 +242,6 @@ This flexibility allows you refer to image data that does not fit in memory or s
 
 However, it also means that simply reading image data may be slow because the data must be read from disk, downloaded across a network, or calculated from a compute graph.
 This means array accesses can take an arbitrary long time to complete.
-
-(multi-scale-image-data)=
 
 ### Loading multi-scale image data
 
@@ -305,11 +314,13 @@ These efforts across all layers are generally tracked by [issue #5942](https://g
 Currently, the most focus is on the image layer in [issue #5561](https://github.com/napari/napari/issues/5561),
 with lots of progress towards that in [PR #6043](https://github.com/napari/napari/pull/6043).
 
+## Drawing
+
+After the current view of a layer's data has been sliced into RAM, the data is pushed to VRAM with any associated transforms and parameters.
+
+TODO
+
 ```{code-cell} python
 :tags: [remove-cell]
 viewer.close()
 ```
-
-## Drawing
-
-TODO
