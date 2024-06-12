@@ -23,7 +23,7 @@ Or someone that wants to contribute to and help improve the clarity or performan
 
 At a high level, rendering in napari is simple.
 
-1. Dimensions: {attr}`ViewerModel.dims<napari.components.ViewerModel.dims>` defines which 2D or 3D region is currently being viewed.
+1. Viewing: {attr}`ViewerModel.dims<napari.components.ViewerModel.dims>` defines which 2D or 3D region is currently being viewed.
 2. Slicing: [`Layer._slice_dims`](https://github.com/napari/napari/blob/b3a8dd22895c913d8183735f52b9d1d71c963d7f/napari/layers/base/base.py#L1184) loads the corresponding 2D or 3D region of the layer's ND data into RAM.
 3. Drawing: [`VispyBaseLayer._on_data_change`](https://github.com/napari/napari/blob/b3a8dd22895c913d8183735f52b9d1d71c963d7f/napari/_vispy/layers/base.py#L126) pushes the 2D or 3D sliced data from RAM to VRAM to be drawn on screen.
 
@@ -41,7 +41,7 @@ As a result, rendering in napari is the source of many bugs and performance prob
 
 This document describes the simple rendering paths with pointers to the more powerful, unusual, and complicated ones.
 
-We will use scikit-image's 3D cells data as a demonstrative example throughout this documentation.
+We will use scikit-image's 3D cells data as a running example throughout this documentation.
 
 ```{code-cell} python
 from skimage import data
@@ -217,37 +217,43 @@ When a layer's transform state includes non-trivial rotations, slicing is limite
 That's because the slicing operation is no longer selecting an axis-aligned region of the layer's data.
 While there are some ideas to improve this (see [#3783](https://github.com/napari/napari/issues/3783)), there are no active efforts in development.
 
+### Loading layer data
+
+Once we have the slice indices into a layer's data, we need to load the corresponding region of data into RAM.
+
 ### Loading array-like image data
 
-napari renders data out of an array-like interface.
-The data can be owned by any object that supports `NumPy`'s slicing syntax.
-One common such object is a [Dask](https://www.dask.org/) array.
-The fact that napari can render out of any array-like data is flexible and powerful,
-but it means that simple array accesses can result in the execution of arbitrary code.
-For example, an array access might result disk IO or network IO, or even a complex machine learning computation.
+{class}`Image<napari.layers.Image>` layer data does not have a single specific type (e.g. numpy's `ndarray`).
+Instead it must only have the attributes and methods defined in [`LayerDataProtocol`](https://github.com/napari/napari/blob/eab7661459e70479c7c7d587a36463f3b099b64a/napari/layers/_data_protocols.py#L51).
+
+Numpy's `ndarray` is compatible with this protocol, but so are array types from other packages like [Dask](https://docs.dask.org/en/latest/array.html), [Zarr](https://zarr.readthedocs.io/en/stable/_autoapi/zarr.core.Array.html), and more.
+This flexibility allows you refer to image data that does not fit in memory or still needs to be lazily computed, without complicating napari's core implementation at all.
+
+However, it also means that simply reading image data may be slow because the data must be read from disk, downloaded across a network, or calculated from a compute graph.
 This means array accesses can take an arbitrary long time to complete.
+
+(multi-scale-image-data)=
 
 ### Loading multi-scale image data
 
-With today's {class}`~napari.layers.Image` class there are no tiles or chunks.
-Instead, whenever the camera is panned or zoomed napari fetches all the data needed to draw the entire current canvas.
-This actually works amazingly well with local data.
-Fetching the whole canvas of data each time can be quite fast.
+`Image` layers also support multi-scale image data, where multiple resolutions of the same image content are stored.
+Similarly to regular image data, this is supported by defining a [`MultiScaleData`](https://github.com/napari/napari/blob/eab7661459e70479c7c7d587a36463f3b099b64a/napari/layers/_multiscale_data.py#L13) protocol.
+As this protocol is mostly just `Sequence[LayerDataProtocol]`, this comes with the same flexibility and arbitrary load times.
 
-With remote or other high latency data, however, this method can be very slow.
-Even if you pan only a tiny amount, napari has to fetch the whole canvas worth of data, and you cannot interrupt the load to further adjust the camera.
+However, rendering multi-scale image data differs from regular image data because we must choose which scale or data level to load.
+In order to do this, [`compute_multiscale_level`](https://github.com/napari/napari/blob/40ac1fb242d905d503aed8200099efd02ebceb95/napari/layers/utils/layer_utils.py#L532)
+uses the canvas' field of view and the canvas' size in screen pixels to find the finest resolution data level that ensures that there is at least one layer data pixel per screen pixel.
+As a part of these calculates, {attr}`Layer.corner_pixels<napari.layers.Layer.corner_pixels` is updated to store the top-left and bottom-right corner of the canvas' field of view in the data coordinates of the currently rendered level.
 
-With `NAPARI_ASYNC` overall performance is the same,
-but the advantage is you can interrupt the load by moving the camera at any time.
-This is a nice improvement, but working with slow-loading data is still slow.
-Most large image viewers improve on this experience with chunks or tiles.
-With chunks or tiles when the image is panned the existing tiles are translated and re-used.
-Then the viewer only needs to fetch tiles which newly slid onto the screen.
-This style of rendering is what the `NAPARI_OCTREE` flag enables.
+This means that whenever the canvas' camera is panned or zoomed, napari fetches all the data needed to draw the current field of view.
+While this can work well with local data, it will be slow with remote or other high latency data.
 
 ### Loading non-image data
 
-TODO
+Other layer types, like {class}`Points<napari.layers.Points>` and {class}`Shapes<napari.layers.Shapes>`, have layer specific data structures.
+Therefore, they also have layer specific slicing logic and associated data reads.
+They also do not currently support data protocols, which makes them less flexible, but more predictable.
+This may change in the future.
 
 ### Asynchronous slicing
 
@@ -271,7 +277,7 @@ These implementations are unfinished and not well maintained, so may not work at
 
 #### Present
 
-In napari v0.5, these implementations were removed in favor of the approach described in [NAP-4 — Asynchronous slicing](https://napari.org/dev/naps/4-async-slicing.html).
+In napari v0.5, these implementations were removed in favor of the approach described in [NAP-4 — Asynchronous slicing](https://napari.org/dev/naps/4-async-slicing.html) for the reasons given in that document.
 
 This effort is tracked by [issue #4795](https://github.com/napari/napari/issues/4795).
 It is partially complete as an experimental setting that should at least work for image-like layers.
@@ -298,7 +304,6 @@ which often results in a much better user experience when fetching the data is s
 These efforts across all layers are generally tracked by [issue #5942](https://github.com/napari/napari/issues/5942).
 Currently, the most focus is on the image layer in [issue #5561](https://github.com/napari/napari/issues/5561),
 with lots of progress towards that in [PR #6043](https://github.com/napari/napari/pull/6043).
-
 
 ```{code-cell} python
 :tags: [remove-cell]
