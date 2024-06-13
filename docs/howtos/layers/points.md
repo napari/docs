@@ -267,11 +267,13 @@ the same as the ordering of the dimensions for image layers. This array is
 always accessible through the `layer.data` property and will grow or shrink as
 new points are either added or deleted.
 
+(points-features-table)=
+
 ### Using the points features table
 
 The `Points` layer can contain features that annotate each point.
-`Points.features` stores the features in a table where each column represents
-a feature and each row represents a point.
+`Points.features` stores the features in a table or data frame where each column
+represents a feature and each row represents a point.
 Therefore, the table has N rows for the N points in `Points.data`.
 This table can be provided as a dictionary that maps from feature names to
 the columns of feature values.
@@ -416,8 +418,9 @@ nbscreenshot(viewer, alt_text="3 points overlaid on an astronaut image, where th
 viewer.close()
 ```
 
-In the example above, the `point_features` were provided as a
-dictionary with two keys or columns: `good_point` and `confidence`.
+In the example above, the `point_features` table was provided as a
+dictionary with two keys or features: `good_point` and `confidence`
+as described in [](points-features-table).
 The values of each feature are stored in a list of length 3 since there were three
 coordinates provided in `points`. We set the border color as a function of the
 `good_point` feature by providing the keyword argument
