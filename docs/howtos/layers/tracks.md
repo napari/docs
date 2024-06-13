@@ -118,8 +118,7 @@ napari.run()
 * Show ID - check this box to display a previously assigned `track_id` label for
   each track. Assigning values to `track_id` is explained in
   [Tracks data](#tracks-data) below.
-* Graph - check this box to display a previously created graph as explained in
-  [](#arguments-of-view_tracks-and-add_tracks).
+* Graph - check this box to display a previously created graph.
 
 ## Tracks data
 
