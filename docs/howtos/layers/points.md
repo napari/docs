@@ -462,9 +462,11 @@ nbscreenshot(viewer, alt_text="3 points overlaid on an astronaut image, where th
 viewer.close()
 ```
 
-In the example above, the `point_features` were provided as a
-dictionary with two feature columns: `good_point` and `confidence`.
-The table has three rows since there were three coordinates provided in `points`.
+In the example above, the `point_features` table was provided as a
+dictionary with two keys or features: `good_point` and `confidence`
+as described in [](points-features-table).
+The values of each feature are stored in a list of length 3 since there were three
+coordinates provided in `points`.
 We set the face color as a function of the `confidence` feature by providing the
 keyword argument `face_color='confidence'` to the `viewer.add_points()` method.
 We set the colormap to viridis using the `face_colormap` keyword argument
