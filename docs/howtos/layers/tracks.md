@@ -40,8 +40,8 @@ class/type.
 
 ## A simple example
 
-You can create a new viewer and add a set of tracks in one go using :func:`napari.view_tracks<napari.view_layers.view_tracks>`,
-or if you already have an existing viewer, you can add tracks to it using :func:`viewer.add_tracks<napari.Viewer.add_tracks>`.
+You can create a new viewer and add a set of tracks in one go using {func}`napari.view_tracks`,
+or if you already have an existing viewer, you can add tracks to it using {meth}`viewer.add_tracks<napari.Viewer.add_tracks>`.
 The API of both methods is the same.
 
 In this example, we will overlay some tracks on an image from the Hubble space

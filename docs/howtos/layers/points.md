@@ -278,7 +278,7 @@ Therefore, the table has N rows for the N points in `Points.data`.
 This table can be provided as a dictionary that maps from feature names to
 the columns of feature values.
 For example, the following dictionary can be used as the value for the `features`
-parameter in `Viewer.add_points<napari.Viewer.add_points>`
+parameter in {meth}`Viewer.add_points<napari.Viewer.add_points>`
 
 ```python
 features = {
