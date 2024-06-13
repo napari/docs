@@ -271,8 +271,31 @@ new points are either added or deleted.
 
 The `Points` layer can contain features that annotate each point.
 `Points.features` stores the features in a table where each column represents
-a feature and each row represents each the feature values for a point.
-Therefore, the table has N rows for N points in `Points.data`.
+a feature and each row represents a point.
+Therefore, the table has N rows for the N points in `Points.data`.
+This table can be provided as a dictionary that maps from feature names to
+the columns of feature values.
+For example, the following dictionary can be used as the value for the `features`
+parameter in `Viewer.add_points<napari.Viewer.add_points>`
+
+```python
+features = {
+    'good_point': [True, True, False],
+    'confidence': [0.99, 0.8, 0.2],
+}
+```
+
+and corresponds to the following features table
+
+| point index | good_point | confidence |
+| ----------- | ---------- | ---------- |
+| 0           | True       | 0.99       |
+| 1           | True       | 0.8        |
+| 2           | False      | 0.2        |
+
+where the point index is the index for a point in both `data` and its corresponding
+row in the `features` table.
+
 As we will see below, we can use feature values to determine the display properties
 of the points (e.g., face color or border color).
 To see the points features in action, please see the
