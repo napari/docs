@@ -328,7 +328,21 @@ with lots of progress towards that in [PR #6043](https://github.com/napari/napar
 
 After the current view of a layer's data has been sliced into RAM, the data is pushed to VRAM with any associated transforms and parameters.
 
-TODO
+Each napari layer type has a corresponding vispy layer type.
+For example, the [`VispyImageLayer`](https://github.com/napari/napari/blob/5e8dc098cb213c5f963524e619f223ad4fe90be8/napari/_vispy/layers/base.py#L21)
+corresponds to the {class}`Image<napari.layers.Image>` layer.
+Each instance of a layer also has a corresponding instance of its vispy layer.
+These correspondences can be found [`VispyCanvas.layer_to_visual`](https://github.com/napari/napari/blob/5e8dc098cb213c5f963524e619f223ad4fe90be8/napari/_vispy/canvas.py#L69).
+
+The vispy layer instance has a reference to its corresponding layer.
+Updates to the layer's state and its current slice trigger the vispy layer are handled using [napari's event system](connect-napari-event).
+Of particular interest here is the [`Layer.events.set_data` event](layer-events), which is connected to the abstract method
+[`VispyBaseLayer._on_data_change`](https://github.com/napari/napari/blob/5e8dc098cb213c5f963524e619f223ad4fe90be8/napari/_vispy/layers/base.py#L74).
+This event is triggered when slicing is finished and the latest slice state can be read.
+
+Each vispy layer type is responsible for implementing the `_on_data_change` method.
+This implementation of this method should read the updated state from the layer, then update the vispy layer appropriately.
+In turn, vispy handles make the appropriate updates to VRAM and executes any programs needed to update the display on napari's canvas.
 
 ```{code-cell} python
 :tags: [remove-cell]
