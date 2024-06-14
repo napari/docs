@@ -539,7 +539,7 @@ the {class}`~app_model.backends.qt.QModelMenu`'s
 {meth}`~app_model.backends.qt.QModelMenu.findAction` method. `QAction`s of submenu
 of a {class}`~app_model.backends.qt.QModelMenu` currently cannot be found via
 {meth}`~app_model.backends.qt.QModelMenu.findAction`. The utility function
-{func}`~napari._qt._qapp_model._tests.utils.get_submenu_action` can be used instead.
+`napari._qt._qapp_model._tests.utils.get_submenu_action` can be used instead.
 
 ## Contexts
 
