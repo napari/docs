@@ -39,7 +39,7 @@ Consider some of the more important reasons for this.
 
 As a result, rendering in napari is the source of many bugs and performance problems that we are actively trying to fix and improve.
 
-This document describes the simple rendering paths with pointers to the more powerful, unusual, and complicated ones.
+This document describes napari's simple rendering paths with pointers to the more powerful, unusual, and complicated ones.
 
 We will use scikit-image's 3D cells data as a running example throughout this documentation.
 
@@ -123,27 +123,30 @@ are offsets around {attr}`Dims.point<napari.components.Dims.point>` that define 
 By default, these thick slicing attributes are all zero
 
 ```{code-cell} python
-viewer.dims.margin_left
-viewer.dims.margin_right
-viewer.dims.thickness
+print(f'{viewer.dims.margin_left=}')
+print(f'{viewer.dims.margin_right=}')
+print(f'{viewer.dims.thickness=}')
 ```
 
 The margins can be changed individually to define an asymmetric window around `point`,
 but it is more common to change {attr}`Dims.thickness<napari.components.Dims.thickness>` which defines a symmetric window instead
 
 ```{code-cell} python
-viewer.dims.point = (32, 0, 0)
+viewer.dims.point = (29, 0, 0)
 viewer.dims.thickness = (16, 0, 0)
-viewer.dims.margin_left
-viewer.dims.margin_right
+print(f'{viewer.dims.margin_left=}')
+print(f'{viewer.dims.margin_right=}')
 ```
 
 In order for these parameters to have an effect on slicing a layer, that layer must support thick slicing and must define an interesting `projection_mode`.
 For example, we can use the mean data over the slicing region for one of the layers
 
 ```{code-cell} python
-viewer.layers[0].projection_mode = 'mean'
+viewer.layers[1].projection_mode = 'mean'
 ```
+
+which takes an arithmetic mean across the slices in the window defined by the margins.
+This effectively smooths the rendered slice across that window, which is particularly helpful when each individual slice is noisy.
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -182,13 +185,18 @@ In this case, the world's dimensions 1 and 2 map to the 2D layer's dimension 0 a
 Using our example, we can see this in practice by replacing the membrane layer with its 2D mean projection over its first dimension
 
 ```{code-cell} python
+import numpy as np
 from napari.layers import Image
 
 mean_data = np.mean(viewer.layers[0].data, axis=0)
 viewer.layers[0] = Image(mean_data, colormap=viewer.layers[0].colormap)
 world_dims = np.asarray(viewer.dims.order)
-viewer.layers[0]._world_to_layer_dims(world_dims=world_dims, ndim_world=3)
-viewer.layers[1]._world_to_layer_dims(world_dims=world_dims, ndim_world=3)
+layer0_dims = viewer.layers[0]._world_to_layer_dims(
+  world_dims=world_dims, ndim_world=3)
+layer1_dims = viewer.layers[1]._world_to_layer_dims(
+  world_dims=world_dims, ndim_world=3)
+print(f'{layer0_dims=}')
+print(f'{layer1_dims=}')
 ```
 
 where `Layer._world_to_layer_dims` is a private method that is called as a part of slicing.
@@ -216,8 +224,10 @@ Using our example, we can see this in practice by transforming the coordinates a
 
 ```{code-cell} python
 point = viewer.dims.point
-viewer.layers[0].world_to_data(point)
-viewer.layers[1].world_to_data(point)
+layer0_point = viewer.layers[0].world_to_data(point)
+layer1_point = viewer.layers[1].world_to_data(point)
+print(f'{layer0_point=}')
+print(f'{layer1_point=}')
 ```
 
 These data coordinates are still continuous values that may not perfectly align with data array indices and may even fall outside of the valid range of the layer's data array.
@@ -252,7 +262,7 @@ As this protocol is mostly just `Sequence[LayerDataProtocol]`, this comes with t
 However, rendering multi-scale image data differs from regular image data because we must choose which scale or data level to load.
 In order to do this, [`compute_multiscale_level`](https://github.com/napari/napari/blob/40ac1fb242d905d503aed8200099efd02ebceb95/napari/layers/utils/layer_utils.py#L532)
 uses the canvas' field of view and the canvas' size in screen pixels to find the finest resolution data level that ensures that there is at least one layer data pixel per screen pixel.
-As a part of these calculates, {attr}`Layer.corner_pixels<napari.layers.Layer.corner_pixels` is updated to store the top-left and bottom-right corner of the canvas' field of view in the data coordinates of the currently rendered level.
+As a part of these calculates, {attr}`Layer.corner_pixels<napari.layers.Layer.corner_pixels>` is updated to store the top-left and bottom-right corner of the canvas' field of view in the data coordinates of the currently rendered level.
 
 This means that whenever the canvas' camera is panned or zoomed, napari fetches all the data needed to draw the current field of view.
 While this can work well with local data, it will be slow with remote or other high latency data.
@@ -286,7 +296,7 @@ These implementations are unfinished and not well maintained, so may not work at
 
 #### Present
 
-In napari v0.5, these implementations were removed in favor of the approach described in [NAP-4 — Asynchronous slicing](https://napari.org/dev/naps/4-async-slicing.html) for the reasons given in that document.
+In napari v0.5, the prior implementations were removed in favor of the approach described in [NAP-4 — Asynchronous slicing](https://napari.org/dev/naps/4-async-slicing.html) for the reasons given in that document.
 
 This effort is tracked by [issue #4795](https://github.com/napari/napari/issues/4795).
 It is partially complete as an experimental setting that should at least work for image-like layers.
