@@ -175,17 +175,20 @@ They do not change the layer data, but will change how it's displayed. An exampl
 to select which subset of points is visible based on feature properties, or one that automatically sets the contrast limits
 based on properties of the data.
 2. `Annotate` - This submenu provides a location for convenient layer editing tools e.g. `Labels` split/merge actions.
-3. `Transform` - Items in this submenu will edit your layer's metadata and affect the way its data is displayed e.g.
+3. `Data` - This submenu provides utilities for converting your underlying data to a new format e.g. zarr to numpy array,
+or for changing its data type.
+4. `Layer Type` - This submenu provides utilities for converting layers into layers of different types e.g. image to labels.
+5. `Transform` - Items in this submenu will edit your layer's metadata and affect the way its data is displayed e.g.
 an affine transform.
-4. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data. An example
+6. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data. An example
 would be a widget that plots the change in the intensity of a clicked pixel over time.
-5. `Filter` - The items in this submenu allow you to apply filters to your actions e.g. a gaussian filter or a denoising
+7. `Filter` - The items in this submenu allow you to apply filters to your actions e.g. a gaussian filter or a denoising
 filter.
-6. `Register` - Commands that allow the user to perform image registration on one or more layers
-7. `Project` - Commands that generate various projections based on one or more layers
-8. `Segment` - Commands that generate instance segmentations e.g. watershed, SLIC, threshold
-9. `Track` - Commands that take in an image or segmentation and produce timelapse tracks
-10. `Classify` - Commands that predict classes/categories for pixels, objects, points, etc.
+8. `Register` - Commands that allow the user to perform image registration on one or more layers
+9. `Project` - Commands that generate various projections based on one or more layers
+10. `Segment` - Commands that generate instance segmentations e.g. watershed, SLIC, threshold
+11. `Track` - Commands that take in an image or segmentation and produce timelapse tracks
+12. `Classify` - Commands that predict classes/categories for pixels, objects, points, etc.
 
 Many of the actions in this menu exist in the right click layer context menu. These items
 should be replicated in the `Layers` menu as needed, both to aid discoverability and
@@ -293,6 +296,8 @@ File
 Layers
 ├─ Visualize
 ├─ Annotate
+├─ Data
+├─ Layer Type
 ├─ Transform
 ├─ Measure
 ├─ Filter
@@ -329,6 +334,8 @@ Layers
 │  ├─ Jump to label (empanada-napari)
 │  ├─ Find next available label (empanada-napari)
 │  ├─ Pick training patches (empanada-napari)
+├─ Data
+├─ Layer Type
 ├─ Transform
 │  ├─ make_image_warping (napari-clemreg)
 ├─ Measure
