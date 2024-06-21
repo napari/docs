@@ -18,8 +18,8 @@ Since the initial release of `npe2` infrastructure has been in place for
 plugin developers to declare **menu contributions**. These contributions
 add new items to menus in napari that have been deemed **contributable**.
 
-Until now, only the layer context menu (available through right clicking on
-a layer in the layer list) has been contributable, but much discussion
+The machinery for allowing plugins to contribute to menus has been largely
+in place for a while, but much discussion
 has occurred on the list of menus we wish to open up for contribution and
 the guiding principles behind the organization of this list.
 
@@ -167,27 +167,25 @@ the user may wish to perform on the selected `Layer` or `Layers`.
 
 The `Layers` submenus are organized to give the user an immediate
 feeling of what might happen to their `Layers` as a result of clicking
-one of these menu items.
+one of these menu items. Note that the top level menu `Layers` itself is
+not contributable. Only its submenus are.
 
 1. `Visualize` - Items in this submenu allow you to change visualization parameters from selected layer or layers.
 They do not change the layer data, but will change how it's displayed. An example would be a widget that allows you
 to select which subset of points is visible based on feature properties, or one that automatically sets the contrast limits
 based on properties of the data.
-2. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data. An example
+2. `Annotate` - This submenu provides a location for convenient layer editing tools e.g. `Labels` split/merge actions.
+3. `Transform` - Items in this submenu will edit your layer's metadata and affect the way its data is displayed e.g.
+an affine transform.
+4. `Filter` - The items in this submenu allow you to apply filters to your actions e.g. a gaussian filter or a denoising
+filter.
+5. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data. An example
 would be a widget that plots the change in the intensity of a clicked pixel over time.
-3. `Edit` - The items in this submenu allow you to change the data of your layer through `Filter` actions e.g. a gaussian 
-filter or `Transform` actions e.g. an affine transform. Additionally `Annotate` provides a location for convenient layer 
-editing tools e.g. `Labels` split/merge actions. Items in this submenu **should not** generate new layers, but rather act upon 
-the existing layer data and metadata.
-
-The remaining submenus under `Layers` deal with generating new layers based on processing of existing layers
-or other information. They define common *analysis* actions users may want to take on their layers.
-
-4. `Register` - Commands that allow the user to perform image registration on one or more layers
-5. `Project` - Commands that generate various projections based on one or more layers
-6. `Segment` - Commands that generate instance segmentations e.g. watershed, SLIC, threshold
-7. `Track` - Commands that take in an image or segmentation and produce timelapse tracks
-8. `Classify` - Commands that predict classes/categories for pixels, objects, points, etc.
+6. `Register` - Commands that allow the user to perform image registration on one or more layers
+7. `Project` - Commands that generate various projections based on one or more layers
+8. `Segment` - Commands that generate instance segmentations e.g. watershed, SLIC, threshold
+9. `Track` - Commands that take in an image or segmentation and produce timelapse tracks
+10. `Classify` - Commands that predict classes/categories for pixels, objects, points, etc.
 
 Many of the actions in this menu exist in the right click layer context menu. These items
 should be replicated in the `Layers` menu as needed, both to aid discoverability and
@@ -283,6 +281,9 @@ contributions:
 
 ### Complete Set of Proposed Contributable `napari` Menus
 
+The full list of contributable menus is below. Note that the top level menu `Layers` itself is
+not contributable. Only its submenus are.
+
 ```
 File
 ├─ ...
@@ -291,11 +292,10 @@ File
 ├─ Acquire
 Layers
 ├─ Visualize
+├─ Annotate
+├─ Transform
+├─ Filter
 ├─ Measure
-├─ Edit
-│  ├─ Annotate
-│  ├─ Filter
-│  ├─ Transform
 ├─ Register
 ├─ Project
 ├─ Segment
@@ -322,17 +322,16 @@ File
 Layers
 ├─ Visualize
 │  ├─ SFilterTrack (napari-stracking)
-├─ Edit
-│  ├─ Annotate
-│  │  ├─ Merge Labels (empanada-napari)
-│  │  ├─ Delete Labels (empanada-napari)
-│  │  ├─ Split Labels (empanada-napari)
-│  │  ├─ Jump to label (empanada-napari)
-│  │  ├─ Find next available label (empanada-napari)
-│  │  ├─ Pick training patches (empanada-napari)
-│  ├─ Filter
-│  ├─ Transform
-│  │  ├─ make_image_warping (napari-clemreg)
+├─ Annotate
+│  ├─ Merge Labels (empanada-napari)
+│  ├─ Delete Labels (empanada-napari)
+│  ├─ Split Labels (empanada-napari)
+│  ├─ Jump to label (empanada-napari)
+│  ├─ Find next available label (empanada-napari)
+│  ├─ Pick training patches (empanada-napari)
+├─ Transform
+│  ├─ make_image_warping (napari-clemreg)
+├─ Filter
 ├─ Measure
 │  ├─ SParticlesProperties (napari-stracking)
 │  ├─ STracksFeatures (napari-stracking)
@@ -408,11 +407,7 @@ groups will be separated by a separator.
 ### Items that Don't Fit?
 
 Where a plugin developer feels that none of the submenus of a given menu are suitable
-for their purpose, they should add their item to the deepest applicable menu. For
-example, a widget that takes a layer and produces a new layer through random perturbations
-would not fit under `Layers -> Segment` but could fit under the top level 
-`Layers` menu.
-
+for their purpose, they should add their item to the deepest applicable menu.
 Where a plugin developer feels no top level menu or submenu is suitable for their purpose,
 they should add their item to their own plugin's submenu under `Plugins -> Your Plugin`,
 and consider requesting a new contributable menu via the process described below.
