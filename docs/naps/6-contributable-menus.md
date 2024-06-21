@@ -502,11 +502,13 @@ single pull request if it makes sense to implement it in discrete phases).
 If a new NAP document is created, it should be added to the documentation Table
 of Contents as an item on `napari/docs/_toc.yml`. -->
 
-- Add list of menus to `napari/constants/_menus.py`, warning for invalid IDs and new top level menus as per [#5153](https://github.com/napari/napari/pull/5153/files/e55ed333866384d85a780b8c2ab1591fab460300#diff-4ab84b59ab3d5cadbcf97fb21bd6547982d5b444251fd627a0b50deb51bec83b)
-- Implement menu contribution interface that allows plugins to refer to their own plugin submenu
-- Add functionality for opening widgets from a menu item
-- Expose menu contribution reference in `npe2`
-- Write menu contribution guide in `npe2`
+Issue number [#7012](https://github.com/napari/napari/issues/7012) tracks the 
+current progress towards NAP-6 implementation,
+and PR number [#7011](https://github.com/napari/napari/pull/7011) implements 
+the proposed contributable menus with some
+limitations as described in the tracking issue.
+When this NAP is finalized, the tracking issue contents should be copied to this
+section.
 
 ## Backward Compatibility
 
