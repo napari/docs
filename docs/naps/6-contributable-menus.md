@@ -177,10 +177,10 @@ based on properties of the data.
 2. `Annotate` - This submenu provides a location for convenient layer editing tools e.g. `Labels` split/merge actions.
 3. `Transform` - Items in this submenu will edit your layer's metadata and affect the way its data is displayed e.g.
 an affine transform.
-4. `Filter` - The items in this submenu allow you to apply filters to your actions e.g. a gaussian filter or a denoising
-filter.
-5. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data. An example
+4. `Measure` - Items in this submenu provide utilities for summarising information about your layer's data. An example
 would be a widget that plots the change in the intensity of a clicked pixel over time.
+5. `Filter` - The items in this submenu allow you to apply filters to your actions e.g. a gaussian filter or a denoising
+filter.
 6. `Register` - Commands that allow the user to perform image registration on one or more layers
 7. `Project` - Commands that generate various projections based on one or more layers
 8. `Segment` - Commands that generate instance segmentations e.g. watershed, SLIC, threshold
@@ -294,8 +294,8 @@ Layers
 ├─ Visualize
 ├─ Annotate
 ├─ Transform
-├─ Filter
 ├─ Measure
+├─ Filter
 ├─ Register
 ├─ Project
 ├─ Segment
@@ -331,10 +331,10 @@ Layers
 │  ├─ Pick training patches (empanada-napari)
 ├─ Transform
 │  ├─ make_image_warping (napari-clemreg)
-├─ Filter
 ├─ Measure
 │  ├─ SParticlesProperties (napari-stracking)
 │  ├─ STracksFeatures (napari-stracking)
+├─ Filter
 ├─ Register
 │  ├─ make_point_cloud_registration (napari-clemreg)
 ├─ Project
