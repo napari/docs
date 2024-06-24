@@ -342,7 +342,7 @@ This event is triggered when slicing is finished and the latest slice state can 
 
 Each vispy layer type is responsible for implementing the `_on_data_change` method.
 The implementation of this method should read the updated state from the layer, then update the vispy layer appropriately.
-In turn, vispy handles make the appropriate updates to VRAM and executes any programs needed to update the display on napari's canvas.
+In turn, vispy makes the appropriate updates to VRAM and executes any programs needed to update the display on napari's canvas.
 
 ```{code-cell} python
 :tags: [remove-cell]
