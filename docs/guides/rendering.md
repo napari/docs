@@ -16,7 +16,7 @@ kernelspec:
 # Rendering
 
 This document explains how napari produces a 2- or 3-dimensional render in the canvas from layers' n-dimensional array-like data.
-The intended audience is someone who wants to understand napari's rendering pipeline to help optimize its performance for their usage.
+The intended audience is someone who wants to understand napari's rendering pipeline to help optimize its performance for their usage,
 Or someone that wants to contribute to and help improve the clarity or performance of napari's rendering pipeline itself.
 
 ## Overview
@@ -209,7 +209,7 @@ causes the mapping to change (see [issue #3882](https://github.com/napari/napari
 
 We would love to fix these problems.
 There are few related issues and conversations, but maybe the best way to track our progress is to follow [issue #5949](https://github.com/napari/napari/issues/5949)
-which aims enrich napari's handling of dimensions in general.
+which aims to enrich napari's handling of dimensions in general.
 
 ### Mapping from layer world to data coordinates
 
@@ -262,7 +262,7 @@ As this protocol is mostly just `Sequence[LayerDataProtocol]`, this comes with t
 However, rendering multi-scale image data differs from regular image data because we must choose which scale or data level to load.
 In order to do this, [`compute_multiscale_level`](https://github.com/napari/napari/blob/40ac1fb242d905d503aed8200099efd02ebceb95/napari/layers/utils/layer_utils.py#L532)
 uses the canvas' field of view and the canvas' size in screen pixels to find the finest resolution data level that ensures that there is at least one layer data pixel per screen pixel.
-As a part of these calculates, {attr}`Layer.corner_pixels<napari.layers.Layer.corner_pixels>` is updated to store the top-left and bottom-right corner of the canvas' field of view in the data coordinates of the currently rendered level.
+As a part of these calculations, {attr}`Layer.corner_pixels<napari.layers.Layer.corner_pixels>` is updated to store the top-left and bottom-right corner of the canvas' field of view in the data coordinates of the currently rendered level.
 
 This means that whenever the canvas' camera is panned or zoomed, napari fetches all the data needed to draw the current field of view.
 While this can work well with local data, it will be slow with remote or other high latency data.
@@ -316,7 +316,7 @@ But eventually we hope to mostly remove those complications and make both synchr
 The current experimental asynchronous slicing approach is limited.
 While it prevents napari from blocking the main thread, fetching and rendering the data in view can still be slow.
 
-Most large image viewers improve on this experience with by progressively fetching and rendering chunks or tiles of data.
+Most large image viewers improve on this experience by progressively fetching and rendering chunks or tiles of data.
 This allows some data to be presented quickly rather than waiting for everything in view,
 which often results in a much better user experience when fetching the data is slow.
 
@@ -332,7 +332,7 @@ Each napari layer type has a corresponding vispy layer type.
 For example, the [`VispyImageLayer`](https://github.com/napari/napari/blob/5e8dc098cb213c5f963524e619f223ad4fe90be8/napari/_vispy/layers/base.py#L21)
 corresponds to the {class}`Image<napari.layers.Image>` layer.
 Each instance of a layer also has a corresponding instance of its vispy layer.
-These correspondences can be found [`VispyCanvas.layer_to_visual`](https://github.com/napari/napari/blob/5e8dc098cb213c5f963524e619f223ad4fe90be8/napari/_vispy/canvas.py#L69).
+These correspondences can be found in [`VispyCanvas.layer_to_visual`](https://github.com/napari/napari/blob/5e8dc098cb213c5f963524e619f223ad4fe90be8/napari/_vispy/canvas.py#L69).
 
 The vispy layer instance has a reference to its corresponding layer.
 Updates to the layer's state and its current slice trigger the vispy layer are handled using [napari's event system](connect-napari-event).
@@ -341,7 +341,7 @@ Of particular interest here is the [`Layer.events.set_data` event](layer-events)
 This event is triggered when slicing is finished and the latest slice state can be read.
 
 Each vispy layer type is responsible for implementing the `_on_data_change` method.
-This implementation of this method should read the updated state from the layer, then update the vispy layer appropriately.
+The implementation of this method should read the updated state from the layer, then update the vispy layer appropriately.
 In turn, vispy handles make the appropriate updates to VRAM and executes any programs needed to update the display on napari's canvas.
 
 ```{code-cell} python
