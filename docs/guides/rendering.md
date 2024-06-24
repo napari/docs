@@ -17,7 +17,7 @@ kernelspec:
 
 This document explains how napari produces a 2- or 3-dimensional render in the canvas from layers' n-dimensional array-like data.
 The intended audience is someone who wants to understand napari's rendering pipeline to help optimize its performance for their usage,
-Or someone that wants to contribute to and help improve the clarity or performance of napari's rendering pipeline itself.
+or someone who wants to contribute to and help improve the clarity or performance of napari's rendering pipeline itself.
 
 ## Overview
 
