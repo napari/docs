@@ -34,7 +34,7 @@ Consider some of the more important reasons for this.
 - Multiple layers can have different extents with different transforms.
 - Different layer types (e.g. Images vs. Points) handle slicing differently.
 - Layer data can be large or slow to load into RAM.
-- Sliced data in VRAM may exceed the maximum texture size.
+- Sliced layer data may exceed the maximum texture size supported by the GPU.
 - There are experimental settings that enable asynchronous slicing.
 
 As a result, rendering in napari is the source of many bugs and performance problems that we are actively trying to fix and improve.
@@ -255,7 +255,7 @@ This means array accesses can take an arbitrary long time to complete.
 
 ### Loading multi-scale image data
 
-`Image` layers also support multi-scale image data, where multiple resolutions of the same image content are stored.
+`Image` and `Labels` layers also support multi-scale image data, where multiple resolutions of the same image content are stored.
 Similarly to regular image data, this is supported by defining a [`MultiScaleData`](https://github.com/napari/napari/blob/eab7661459e70479c7c7d587a36463f3b099b64a/napari/layers/_multiscale_data.py#L13) protocol.
 As this protocol is mostly just `Sequence[LayerDataProtocol]`, this comes with the same flexibility and arbitrary load times.
 
@@ -331,11 +331,11 @@ After the current view of a layer's data has been sliced into RAM, the data is p
 Each napari layer type has a corresponding vispy layer type.
 For example, the [`VispyImageLayer`](https://github.com/napari/napari/blob/5e8dc098cb213c5f963524e619f223ad4fe90be8/napari/_vispy/layers/base.py#L21)
 corresponds to the {class}`Image<napari.layers.Image>` layer.
-Each instance of a layer also has a corresponding instance of its vispy layer.
+For each instance of a layer, there is a corresponding instance of its type's vispy layer.
 These correspondences can be found in [`VispyCanvas.layer_to_visual`](https://github.com/napari/napari/blob/5e8dc098cb213c5f963524e619f223ad4fe90be8/napari/_vispy/canvas.py#L69).
 
 The vispy layer instance has a reference to its corresponding layer.
-Updates to the layer's state and its current slice trigger the vispy layer are handled using [napari's event system](connect-napari-event).
+Updates to the layer's state and its current slice are handled using [napari's event system](connect-napari-event).
 Of particular interest here is the [`Layer.events.set_data` event](layer-events), which is connected to the abstract method
 [`VispyBaseLayer._on_data_change`](https://github.com/napari/napari/blob/5e8dc098cb213c5f963524e619f223ad4fe90be8/napari/_vispy/layers/base.py#L74).
 This event is triggered when slicing is finished and the latest slice state can be read.
