@@ -477,6 +477,25 @@ They would be registered in the `app` `Store` during
 initialization of the napari `app`, in `NapariApplication`'s
 {meth}`~napari._app_model._app.NapariApplication.__init__`.
 
+## `app-model` initialization order
+
+On `napari` start up, `app-model` initialization occurs in the following order:
+
+1. Initialize {class}`~napari.viewer.Viewer`, which calls
+   {func}`~napari.plugins._initialize_plugins`, which registers discovered plugins
+   and all their actions (non-Qt first, followed immedidately by Qt actions).
+   This also results in the first call to {func}`~napari._app_model.get_app`.
+
+   i. Instantiation of the `app-model` app results in registration of all non-GUI
+      internal `napari` actions (and associated submenus). Note that the
+      {func}`~napari._app_model.get_app` call creates the `app` only when *first*
+      called. It simply returns the existing app on all subsequent calls.
+
+2. {class}`~napari._qt.qt_main_window.Window` instantiation, followed by
+   instantiation of `_QtMainWindow`, during which we call
+   {func}`~napari._qt._qapp_model.qactions.init_qactions`. This registers all
+   `napari` Qt actions (and associated submenus), providers and processors.
+
 (app-model-testing)=
 
 ## `app-model` testing
