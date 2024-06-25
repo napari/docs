@@ -482,6 +482,11 @@ Providers and processors allow us to mirror behaviour enabled by
 allow generalization of `magicgui` parameter annotation behaviour to all
 actions, while processors does this for return annotation behaviour.
 
+The intended users of providers/processors are end-users, plugins as well as `napari`
+internally.
+For a detailed discussion on this framework see
+[issue 4532](https://github.com/napari/napari/issues/4532).
+
 (app-model-testing)=
 
 ## `app-model` testing
