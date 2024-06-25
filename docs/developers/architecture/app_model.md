@@ -477,6 +477,11 @@ They would be registered in the `app` `Store` during
 initialization of the napari `app`, in `NapariApplication`'s
 {meth}`~napari._app_model._app.NapariApplication.__init__`.
 
+Providers and processors allow us to mirror behaviour enabled by
+[`magicgui` type registration](magicgui_type_registration) for widgets. Providers
+allow generalization of `magicgui` parameter annotation behaviour to all
+actions, while processors does this for return annotation behaviour.
+
 (app-model-testing)=
 
 ## `app-model` testing
