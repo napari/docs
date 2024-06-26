@@ -218,6 +218,7 @@ from PyQt5 import QtWidgets
 from PyQt6 import QtWidgets
 from PySide2 import QtWidgets
 from PySide6 import QtWidgets
+```
 
 Such import may raise an error like:
 
