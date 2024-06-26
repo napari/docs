@@ -74,7 +74,7 @@ Please see below for the full list of changes since 0.4.19.
 - implement copying spatial information via clipboard ([napari/napari#6864](https://github.com/napari/napari/pull/6864))
 - Add `axis_labels` and `units` to layers and transforms  ([napari/napari#6979](https://github.com/napari/napari/pull/6979))
 - Alpha implementation of NAP-6 ([napari/napari#7011](https://github.com/napari/napari/pull/7011))
-- Screenshot without margins ([napari/napari#6730](https://github.com/napari/napari/pull/6730))
+- Better export of figure-quality renderings from the canvas ([napari/napari#6730](https://github.com/napari/napari/pull/6730))
 
 ## Improvements
 
