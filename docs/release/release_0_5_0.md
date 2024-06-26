@@ -41,8 +41,13 @@ painting labels ([#5806](https://github.com/napari/napari/pull/5806)),
 pinch-to-zoom ([#5859](https://github.com/napari/napari/pull/5859)), better
 ways to show/hide individual layers when exploring your data
 ([#5574](https://github.com/napari/napari/pull/5574))
-([#5618](https://github.com/napari/napari/pull/5618)), and more:
+([#5618](https://github.com/napari/napari/pull/5618)), creating a layer from
+an image or URL in your clipboard
+([#6532](https://github.com/napari/napari/pull/6532)), copy/pasting spatial
+metadata (scale, translate, etc) between layers
+([#6864](https://github.com/napari/napari/pull/6864)) and more:
 Over 20 new features in all and over 100 bug fixes and improvements!
+
 Please see below for the full list of changes since 0.4.19.
 
 ## New Features
