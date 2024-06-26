@@ -480,10 +480,10 @@ initialization of the napari `app`, in `NapariApplication`'s
 Providers and processors allow us to mirror behaviour enabled by
 [`magicgui` type registration](magicgui_type_registration) for widgets. Providers
 allow generalization of `magicgui` parameter annotation behaviour to all
-actions, while processors does this for return annotation behaviour.
+actions, while processors do this for return annotation behaviour.
 
 The intended users of providers/processors are end-users, plugins as well as `napari`
-internally.
+internally, however it is currently only used internally.
 For a detailed discussion on this framework see
 [issue 4532](https://github.com/napari/napari/issues/4532).
 
