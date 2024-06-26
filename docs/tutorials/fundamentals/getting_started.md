@@ -178,7 +178,7 @@ To learn more about:
 
 ### napari does not launch with `No Qt bindings could be found`
 
-If you try to start napari and see error message containing following (or similar) text:
+If you try to start napari and see an error message containing following (or similar) text:
 
 ```
 ImportError: No Qt bindings could be found
@@ -190,35 +190,34 @@ First you need to validate if you have Qt bindings installed. You can do this by
 pip list
 ```
 
-And check if in output list you have `PyQt5`, `PySide2`, `PyQt6` or `PySide6` package installed.
+And check if `PyQt5`, `PySide2`, `PyQt6` or `PySide6` are mentioned in the output as installed.
 
-If there is no such entry please install one of it following instruction
+If there is no such entry, please install one of them following the instructions
 in [Choosing a different Qt backend](choosing-qt-backend)
 
-If some backend is installed but napari still does not start please try to start it from command line:
+If some backend is installed but napari still does not start, please try to start it from command line:
 
 ```bash
 LD_LIBRARY_PATH="" napari
 ```
 
-If this comment starts napari it means that on your machine, 
-the LD_LIBRARY_PATH environment variable is set to a directories that contains 
+If napari is successfully launched after this command, it means that on your machine
+the LD_LIBRARY_PATH environment variable is set to a directory that contains 
 a Qt dynamic dependency that is incompatible with the one that napari uses. 
-As linkers first search in LD_LIBRARY_PATH directories, it may cause napari to crash. 
+As linkers first search in LD_LIBRARY_PATH directories, this may cause napari to crash. 
 
 
-If you want to debug this issue for your specific use case you 
-should start from manual importing qt package in python.
+If you want to debug this issue for your specific use case, you 
+should start with manually importing the `qt` package in Python.
 This will provide you with more information about problem. 
 
-Such import may look like this:
+Such import may look like **one** of the following lines:
 
 ```python
 from PyQt5 import QtWidgets
 from PyQt6 import QtWidgets
 from PySide2 import QtWidgets
 from PySide6 import QtWidgets
-```
 
 Such import may raise an error like:
 
