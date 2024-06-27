@@ -1,0 +1,16 @@
+name: Remove html In PR description
+on:
+  # see https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request_target
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+permissions:
+  pull-requests: write
+
+jobs:
+  remove_comment:
+    name: Remove html comments.
+    uses: napari/napari/.github/workflows/edit_pr_description.yml@main

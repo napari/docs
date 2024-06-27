@@ -18,7 +18,7 @@ kernelspec:
 
 Welcome to the tutorial on the **napari** viewer!
 
-This tutorial assumes you have already installed **napari** and know how to launch the viewer. For help with installation see our [installation](./installation) tutorial. For help launching the viewer see our [getting started](./getting_started) tutorial.
+This tutorial assumes you have already installed **napari** and know how to launch the viewer. For help with installation see our [installation](napari-installation) tutorial. For help launching the viewer see our [getting started](launch) tutorial.
 
 This tutorial will teach you about the **napari** viewer, including how to use its graphical user interface (GUI) and how the data within it is organized. At the end of the tutorial, you should understand both the layout of the viewer on the screen and the data inside of it.
 
@@ -26,7 +26,7 @@ This tutorial will teach you about the **napari** viewer, including how to use i
 
 ## Launching the viewer
 
-As discussed in the [getting started](./getting_started) tutorial, the napari viewer can be launched from the command-line, a python script, an IPython console, or a Jupyter notebook. All four methods launch the same viewer, and anything related to interacting with the viewer on the screen applies equally to all of them. We will use the syntax for running the code inside a jupyter notebook with each code block below pasted into its own cell, but if you'd like to use a python script instead, simply copy and paste the code blocks into scripts with [`napari.run()`](https://napari.org/stable/api/napari.html#napari.run) as the final line (this starts an event loop which will
+As discussed in the [getting started](launch) tutorial, the napari viewer can be launched from the command-line, a python script, an IPython console, or a Jupyter notebook. All four methods launch the same viewer, and anything related to interacting with the viewer on the screen applies equally to all of them. We will use the syntax for running the code inside a jupyter notebook with each code block below pasted into its own cell, but if you'd like to use a python script instead, simply copy and paste the code blocks into scripts with [`napari.run()`](https://napari.org/stable/api/napari.html#napari.run) as the final line (this starts an event loop which will
 open an interactive viewer) and run them.
 
 **Note:** There is also an IPython console available in napari, when napari is launched from the terminal, from a Python script, or when you use the napari bundled app. You can open it with the IPython console button (far left viewer button) or with the menu option **Window** > **console**. You can use this console to programmatically interact with an open viewer using the API methods illustrated in this tutorial.
@@ -76,7 +76,7 @@ nbscreenshot(viewer, alt_text="photograph of an astronaut in napari viewer")
 viewer.close()
 ```
 
- {func}`imshow<napari.imshow>` and the {meth}`add_image<napari.components.ViewerModel.add_image>` methods accept any numpy-array like object as input, including n-dimensional arrays. For more information on adding images to the viewer see the [image layer guide](../../howtos/layers/image).
+ {func}`imshow<napari.imshow>` and the {meth}`add_image<napari.components.ViewerModel.add_image>` methods accept any numpy-array like object as input, including n-dimensional arrays. For more information on adding images to the viewer see the [image layer guide](image-layer).
 
 Now we will continue exploring the rest of the viewer.
 
@@ -108,7 +108,7 @@ We'll go through each of these in the next sections.
 
 The main menu consists of the **File**, **View**, **Window**, **Plugins**, and **Help** options.
 
-* **File** has the options to open files, folders, and samples, save layers and screenshots,copy screenshots to clipboard and, in the Windows version, preferences.
+* **File** has the options to open files, folders, and samples, save layers and screenshots, copy screenshots to clipboard and, in the Windows version, preferences. Additionally, you can make a new `Image` layer from an image (or URL to an image) copied to your Clipboard (keybinding {kbd}`Command/Ctrl+N`).
 
     All the options on the **File** menu are relatively self-explanatory except **Preferences** on the Windows version of napari. **Preferences** allows you to personalize napari to some degree. To learn more about the **Preferences** menu, there is a tutorial designed for developers [here](https://napari.org/stable/guides/preferences.html).
 
@@ -131,17 +131,27 @@ The **canvas** is in the center of the viewer and contains the visual display of
 
 +++
 
-![image: pan and zoom with napari](../assets/tutorials/viewer_pan_zoom.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/viewer_pan_zoom.webm" type="video/webm" />
+    <source src="../../_static/images/viewer_pan_zoom.mp4" type="video/mp4" />
+    <img src="../../_static/images/viewer_pan_zoom.png"
+      title="Your browser does not support the video tag"
+      alt="Demo of pan and zoom functionality in napari."
+    >
+  </video>
+</figure>
+```
 
 +++
 
-<!-- I don't know why "(layer_list)=" is here. -->
-(layer_list)=
+(layer-list)=
 ### Layer list
 
 Layers are one of the basic napari objects. There are different layer types for `Image`, `Points`, `Shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added, they populate the layer list located on the bottom left side of the canvas.
 
-The layer list contains one widget for each of the layers that have been added to the viewer and includes a `thumbnail` that shows a miniaturized version of the currently viewed data, a `name` that is an editable text box, a `visibility` button (eye icon) that can be toggled on or off to show or hide the layer, and an `icon` for the layer type. Note that you can Option/Alt-click on the `visibility` button to show *just* that one layer, hiding all others. If you then Option/Alt-click on the `visibility` button of a layer a second time, the visibility state of all layers will be restored.
+The layer list contains one widget for each of the layers that have been added to the viewer and includes a `thumbnail` that shows a miniaturized version of the currently viewed data, a `name` that is an editable text box, a `visibility` button (eye icon) that can be toggled on or off to show or hide the layer, and an `icon` for the layer type. Note that you can Option/Alt-click on the `visibility` button to show *just* that one layer, hiding all others. If you then Option/Alt-click on the `visibility` button of a layer a second time, the visibility state of all layers will be restored. Alternately, you can cycle through layers in the layer list, showing only one at a time, by using {kbd}`Shift`+{kbd}`Option/Alt` and the {kbd}`Up` or {kbd}`Down` keys.
 
 Adding the following three image layers using the code below adds three-layer widgets to the layer list as follows:
 
@@ -270,7 +280,7 @@ You can also set the axis labels programatically as follows:
 ```{code-cell} python
 # To set new axis labels
 viewer.dims.axis_labels = ("label_1", "label_2")
-``` 
+```
 
 It is also possible to mix data of different shapes and dimensionality in different layers. If a 2D and 4D dataset are both added to the viewer then the sliders will affect only the 4D dataset, the 2D dataset will remain the
 same. Effectively, the two datasets are broadcast together using [NumPy broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html).
@@ -307,7 +317,7 @@ In this example there are three dimensions. In order to get or update the curren
 
 ```{code-cell} python
 # To get the current position returned as tuple of length 3
-viewer.dims.current_step 
+viewer.dims.current_step
 ```
 And to change the current position of the sliders use:
 ```{code-cell} python
@@ -411,15 +421,25 @@ viewer.camera.perspective = 45
 
 #### Roll dimensions
 
-The third button rolls the dimensions that are currently displayed in the viewer. For example if you have a `ZYX` volume and are looking at the `YX` slice, this will then show you the `ZY` slice. You can also right-click this button to re-order the dimensions by drag-and-drop.
+The third button rolls the dimensions that are currently displayed in the viewer.
+For example if you have a `ZYX` volume and are looking at the `YX` slice, this
+will then show you the `ZY` slice. You can also right-click this button to pop-up
+a widget that allows you to re-order the dimensions by drag-and-drop or lock a
+dimension, by clicking on the padlock icon:
 
-The dimension order can also be checked programatically as follows:
+![image: roll dimensions widget with padlock icons](../assets/tutorials/dims_roll_lock_widget.png){ w=200px }
+
+Locking prevents a dimension from being rolled (reordered). This can be particularly
+useful, for example, with a `3D+time` dataset where you may want to fix the time dimension,
+while being able to roll through the spatial dimensions.
+
+The dimension order can also be checked programmatically as follows:
 
 ```{code-cell} python
 # To get the current dimension order as tuple of int
 viewer.dims.order
 ```
-And then, changed programatically as follows:
+And then, changed programmatically as follows:
 ```{code-cell} python
 # To change the current dimension order
 viewer.dims.order = (2, 1, 0)
@@ -433,7 +453,7 @@ The fourth button transposes the displayed dimensions.
 
 #### Grid button
 
-Then there is a grid button that toggles grid mode. When clicked it displays each layer of the image in its own tile. You can right-click this button to adjust the way the tiles are presented, such as the grid dimensions, the order of the layers in the tiles, and whether layers are overlayed in the tiles.
+Then there is a grid button that toggles grid mode. When clicked it displays each layer of the image in its own tile. You can right-click this button to adjust the way the tiles are presented, such as the grid dimensions, the order of the layers in the tiles, and whether layers are overlaid in the tiles.
 
 #### Home button
 
@@ -451,14 +471,14 @@ The right side of the status bar contains some helpful tips depending on which l
 
 ## Right-click menu
  A context-sensitive menu is available when you right-click on any of the layers. The type of layer determines which options are available. Note that if you have multiple layers selected, the menu actions will affect all of the selected layers. The options that are not available for a layer are greyed out. The following options are available depending on which layer type you have selected:
-* **Toggle visibility** - invert the visbility state (hides or show) of selected layers: hidden layers will be shown, visibile layers will be hidden.
+* **Toggle visibility** - invert the visibility state (hides or show) of selected layers: hidden layers will be shown, visible layers will be hidden.
 * **Show All Selected Layers** - Set all selected layers to visible.
 * **Hide All Selected Layers** - Set all selected layers to hidden.
 * **Show All Unselected Layers** - Set all *unselected* layers to visible.
 * **Hide All Unselected Layers** - Set all *unselected* layers to hidden.
 * **Duplicate Layer** - creates a second copy of the selected layer. Can be used on **Points**, **Shapes**, **Labels**, and **Image** layers. This is useful for testing your analysis on a copy instead of on the original image.
-* **Convert to Labels** - converts an **Image** layer to a **Labels** layer. This is useful for converting a binary image segmentation map to a labels layer with each segmented object denoted by its own integer. Can also be used on a **Shapes** layer.
-* **Convert to Image** - converts a **Labels** layer into an **Image** layer.
+* **Convert to Labels** - converts an **Image** layer to a **Labels** layer (if the data is already of type `int` it is not copied or altered, only the representation is changed, making this fully reversible). This is useful for converting a binary image segmentation map to a labels layer with each segmented object denoted by its own integer. Can also be used on a **Shapes** layer, in this case a new **Labels** layer will be created.
+* **Convert to Image** - converts a **Labels** layer into an **Image** layer (the data is not copied or altered, only the representation is changed, making this fully reversible).
 * **Convert datatype** - converts a **Labels** layer into int8, int16, int32, int64, uint8, uint16, uint32, or uint64 data types. The initial data type is the data type of the data itself.
 * **Make Projection** - can be used only on a layer with more than 2 dimensions, also known as a *stack*.  It creates a new layer that is a projection of the layer stack with the characteristic the user selects, reducing the number of dimensions by 1. More information about the types of projections is available [here](https://medium.com/@damiandn/an-intoduction-to-biological-image-processing-in-imagej-part-3-stacks-and-stack-projections-942aa789420f). The following projections are available:
     * **Max** - maximum intensity projection. At each pixel position, we go  through the stacks, find the pixel with the maximum intensity, and that becomes the intensity of that pixel value in the projected image.
@@ -510,7 +530,7 @@ viewer.theme = 'dark'
 
 You can also change the theme using the "Toggle theme" keyboard shortcut, by default `Command/Control+Shift+T`. Note that changing the theme using this shortcut will only change the *current* viewer theme. If you wish to make the change permanent for all viewers, make sure to also change your settings in the **Appearance** tab of the **Preferences** menu.
 
-Adding your own custom theme isn't too hard but it requires creating your own color `palette` and rebuilding the icons. It's also possible for [plugins to contribute a theme](contributions-themes). If people want more themes, we're happy to add them or you can look at our [contributing guidelines](../../developers/contributing) for more information about building the icons and add one yourself!
+Adding your own custom theme isn't too hard but it requires creating your own color `palette` and rebuilding the icons. It's also possible for [plugins to contribute a theme](contributions-themes). If people want more themes, we're happy to add them or you can look at our [contributing guidelines](napari-contributing) for more information about building the icons and add one yourself!
 
 +++
 
@@ -568,7 +588,7 @@ The ability to add custom keybindings dramatically increases what is possible wi
 
 ## Next steps
 
-This tutorial has given you an overview of the functionality available on the **napari** viewer, including the {class}`LayerList` and some of the different layer types. To learn more about the different layer types **napari** supports, check out [our guides on using layers](../../howtos/layers/index).
+This tutorial has given you an overview of the functionality available on the **napari** viewer, including the {class}`LayerList` and some of the different layer types. To learn more about the different layer types **napari** supports, check out [our guides on using layers](using-layers).
 
 For a more detailed introduction to layer manipulation see
-[Layers at a glance](../../guides/layers).
+[Layers at a glance](layers-glance).

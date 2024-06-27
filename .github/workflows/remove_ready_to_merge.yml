@@ -1,0 +1,15 @@
+name: Remove "ready to merge" label
+
+on:
+  pull_request_target:
+    types: [closed]
+  workflow_call:
+
+
+permissions:
+  pull-requests: write
+
+jobs:
+  remove_label:
+    name: Remove ready to merge label
+    uses: napari/napari/.github/workflows/remove_ready_to_merge.yml@main
