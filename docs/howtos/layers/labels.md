@@ -110,9 +110,9 @@ layer:
 * **Polygon**
 
   Another tool that can be used to quickly add or edit image segmentations is
-  the `polygon` tool. It combines functionality of the `paintbrush` and
-  `fill bucket` tools by allowing for readily drawing enclosed instance
-  segmentations. The `polygon` tool can be activated by clicking on the icon
+  the `polygon` tool.  It combines functionality of the `paintbrush` and `fill bucket`
+  tools by allowing for readily drawing enclosed instance segmentations.
+  The `polygon` tool can be activated by clicking on the icon
   resembling a polygon in the layer control panel or by pressing `3`. Once
   activated, the user actions are as follows:
 
@@ -125,9 +125,10 @@ layer:
   5. To undo the last added vertex, use a right-click.
   6. To cancel the drawing at any time without making a permanent change on the
      labels layer, press `Esc`. This will delete the polygon overlay.
-  7. Press `Enter` to finish drawing at any time or double click within a radius
-     of 20 screen pixels of the first vertex. This will add the polygon overlay
-     to the labels layer.
+  7. To finish drawing and complete the shape, use double click for the last vertex
+     or press "Enter". This will add the polygon overlay to the labels layer.
+     Note that in Settings > Experimental you can enable and set the minimum distance
+     to the origin vertex required for double click to complete the shape. 
 
   The polygon overlay will have the color of the label. The polygon overlay also
   has an opacity that can be adjusted the value of the `opacity` slider in the
