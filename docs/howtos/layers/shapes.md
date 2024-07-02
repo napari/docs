@@ -214,8 +214,8 @@ are used. i.e. You can't remove a vertex before you have created a shape.
 
   The `Add polygon` tool can be selected from the layer controls panel or by
   pressing the `p` key when the shapes layer is selected. When adding a polygon,
-  each click will add a vertex at the clicked location. Hit the `Esc` key to
-  stop creating the polygon. This adds a final vertex at the current mouse
+  each click will add a vertex at the clicked location. To finish,
+  double click or press the `Esc` key: this adds a final vertex at the current mouse
   position and completes the polygon. You can then add another polygon.
 
 * **Add polygons lasso**
