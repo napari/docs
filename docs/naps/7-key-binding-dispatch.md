@@ -72,17 +72,8 @@ on release.
 Ultimately we felt this compromise would provide user enough user flexibility while
 cutting down on any unnecessary complexities.
 
-Potential implementation strategies to prevent confusion with [](#indirect-conflicts):
-
-* Delay - wait for potential subsequent key presses before executing the action.
-    - We decided to implement this, with the delay defaulting to 200ms but user
-      configurable.
-* On release only - only allow the key to be bindable to 'on-release'
-    - Decided against as this would not allow both 'on-press' and 'on-release' actions.
-* Execute longest key sequence only - for indirectly conflicting key sequences
-  (e.g., `ctrl` and `ctrl+x`), we only ever execute the longer key sequence.
-    - Decided against this for when a single modifier indirect conflict cases but we
-      do implement this when indirect con. See [](#indirect-conflicts) for details.
+Detail on how potential conflicts are dealt with can be found in
+[](#indirect-conflicts).
 
 ## Detailed Description
 
