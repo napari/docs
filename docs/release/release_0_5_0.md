@@ -52,7 +52,11 @@ between layers ([#6864](https://github.com/napari/napari/pull/6864)).
 
 You'll also note a new little button on layer controls, including images:
 
-![transform layer icon](../images/transform-icon.svg)
+```{image} ../images/transform-icon.svg
+:alt: transform layer icon
+:width: 150px
+:align: center
+```
 
 This little button allows you to resize and rotate layers, enabling manual
 alignment ([#6794](https://github.com/napari/napari/pull/6794))!
