@@ -398,6 +398,7 @@ improvements. Please see below for the full list of changes since 0.4.19.
 - Fix rendering explanation broken links ([docs#437](https://github.com/napari/docs/pull/437))
 - Fix rendering example code ([docs#441](https://github.com/napari/docs/pull/441))
 - [bugfix] Update contributing/index.md fix blog note ([docs#443](https://github.com/napari/docs/pull/443))
+- Update napari 0.5.0 release notes ([docs#444](https://github.com/napari/docs/pull/444))
 
 ## Other Pull Requests
 
