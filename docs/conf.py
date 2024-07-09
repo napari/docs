@@ -103,6 +103,7 @@ html_theme_options = {
     "external_links": [
         {"name": "napari hub", "url": "https://napari-hub.org"},
         {"name": "Island Dispatch", "url": "https://napari.org/island-dispatch"},
+        {"name": "Community chat", "url": "https://napari.zulipchat.com"},
         {"name": "workshop template", "url": "https://napari.org/napari-workshop-template"},
         ],
     "github_url": "https://github.com/napari/napari",
