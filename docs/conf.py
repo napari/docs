@@ -95,7 +95,7 @@ html_theme = 'napari_sphinx_theme'
 json_url = "https://napari.org/dev/_static/version_switcher.json"
 
 if version == "dev":
-    version_match = "latest"
+    version_match = "dev"
 else:
     version_match = release
 
