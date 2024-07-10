@@ -4,6 +4,7 @@
 
 ```{eval-rst}
 :Author: "Kira Evans <mailto:contact@kne42.me>"
+:Author: "Lucy Liu <mailto:lucyleeow@protonmail.com>"
 :Created: 2023-07-03
 :Status: Draft
 :Type: Standards Track
@@ -40,7 +41,8 @@ a **base key** is a key that when pressed without a modifier key, produces one o
 - `pausebreak`, `capslock`, `insert`, `numlock`, `printscreen`
 - `numpad0-numpad9`, `numpad_decimal`, `numpad_multiply`, `numpad_divide`, `numpad_add`, `numpad_subtract`
 
-a **key combination** is combination of one or more keys; a single modifier, a single base key or a base key pressed with one or more modifier keys, e.g. `ctrl+c` or `ctrl+shift+z`
+a **key combination** is combination of one or more keys; a single modifier (e.g.,
+`ctrl`), a single base key (e.g., `c`) or a base key pressed with one or more modifier keys, e.g. `ctrl+c` or `ctrl+shift+z`
 
 a **key chord** consists of two parts, of which each can be either a base key or a key combination, e.g, `ctrl+x v`
 
@@ -57,7 +59,7 @@ We propose that:
 - key combinations can either contain one modifier key (e.g., `alt`) or any number of
   modifier keys plus a base key (e.g., `alt+shift+v`).
   Multiple modifier keys (e.g., `alt+shift`) are not allowed.
-- a key chord part cannot be an invalid key combinations nor a single modifier.
+- a key chord part cannot be an invalid key combination nor a single modifier.
     - `alt t` is **invalid** because the first part is a single modifier (even though
       it is a valid key combination)
     - `ctrl+x alt` is **invalid** because the second part is a single modifier
@@ -69,7 +71,7 @@ of a single modifier key used in isolation.
 We decided to allow this as the use cases were compelling,
 for example binding `shift` to make a labels layer invisible during press and visible
 on release.
-Ultimately we felt this compromise would provide user enough user flexibility while
+Ultimately we felt this compromise would provide enough user flexibility while
 cutting down on any unnecessary complexities.
 
 Detail on how potential conflicts are dealt with can be found in
