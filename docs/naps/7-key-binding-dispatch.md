@@ -198,8 +198,6 @@ There are three potential strategies to deal with this:
 * On release only - only allow the key to be bindable to 'on-release'
     - Decided against as this would not allow both 'on-press' and 'on-release' actions.
 
-In case (A), the corresponding command will not be triggered immediately, but will be delayed by user-defined miliseconds (e.g. 200ms), after which the press logic for the command will execute. If another key binding is triggered, this action will be canceled. If the base key is released early, the press logic will execute immediately and the delayed action will be canceled, along with the release logic being executed immediately afterwards.
-
 ### Finding a match
 
 When checking if an active key binding matches the entered key sequence, the resolver will fetch the pre-sorted list of direct conflicts and check if the last entry is active using its `when` property, moving to the next entry if it is not. When it encounters a blocking rule, it will return no match, and for a negate rule, it will store the affected command in an ignore list and continue to the next entry. If no special rules are present, it will return a match if the command is not in an ignore list, otherwise continuing to the next entry, and so on, until no more entries remain.
