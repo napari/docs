@@ -56,8 +56,8 @@ Some users want to use traditional modifier keys as a 'base key' in key binding 
 
 We propose that:
 
-- key combinations can either contain one modifier key (e.g., `alt`) or any number of
-  modifier keys plus a base key (e.g., `alt+shift+v`).
+- key combinations can be any number of modifier keys plus a base key (e.g.,
+  `alt+shift+v`). For users only, one modifier key (e.g., `alt`) is also allowed.
   Multiple modifier keys (e.g., `alt+shift`) are not allowed.
 - a key chord part cannot be an invalid key combination nor a single modifier.
     - `alt t` is **invalid** because the first part is a single modifier (even though
@@ -67,10 +67,12 @@ We propose that:
     - `meta meta` is **invalid** because both parts are single modifiers
 
 The proposal restricts modifier keys being used without a base key, except in the case
-of a single modifier key used in isolation.
+of a single modifier key used in isolation, which is allowed for users.
 We decided to allow this as the use cases were compelling,
 for example binding `shift` to make a labels layer invisible during press and visible
 on release.
+Napari and plugins will not be able to use single modifier keybindings but we are
+open to reconsideration of this for plugins, given demand.
 Ultimately we felt this compromise would provide enough user flexibility while
 cutting down on any unnecessary complexities.
 
