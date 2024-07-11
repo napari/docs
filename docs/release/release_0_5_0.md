@@ -414,6 +414,7 @@ improvements. Please see below for the full list of changes since 0.4.19.
 - Update contributing documentation guide ([docs#447](https://github.com/napari/docs/pull/447))
 - Add Zulip link to More menu on navbar ([docs#449](https://github.com/napari/docs/pull/449))
 - Add Lucy Liu to core devs team ([docs#450](https://github.com/napari/docs/pull/450))
+- Final update to 0.5.0 release notes ([docs#451](https://github.com/napari/docs/pull/451))
 
 ## Other Pull Requests
 
