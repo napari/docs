@@ -95,12 +95,17 @@ html_theme = 'napari_sphinx_theme'
 json_url = "https://napari.org/dev/_static/version_switcher.json"
 
 if version == "dev":
-    version_match = "latest"
+    version_match = "dev"
 else:
     version_match = release
 
 html_theme_options = {
-    "external_links": [{"name": "napari hub", "url": "https://napari-hub.org"}],
+    "external_links": [
+        {"name": "napari hub", "url": "https://napari-hub.org"},
+        {"name": "Island Dispatch", "url": "https://napari.org/island-dispatch"},
+        {"name": "Community chat", "url": "https://napari.zulipchat.com"},
+        {"name": "workshop template", "url": "https://napari.org/napari-workshop-template"},
+        ],
     "github_url": "https://github.com/napari/napari",
     "navbar_start": ["navbar-logo", "navbar-project"],
     "navbar_end": ["version-switcher", "navbar-icon-links"],
