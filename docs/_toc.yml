@@ -65,7 +65,6 @@ subtrees:
           - file: guides/event_loop
           - file: guides/threading
           - file: guides/3D_interactivity
-          - file: guides/rendering-explanation
           - file: guides/rendering
           - file: guides/performance
           - file: guides/preferences
@@ -181,6 +180,7 @@ subtrees:
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_5_0
           - file: release/release_0_4_19
           - file: release/release_0_4_18
           - file: release/release_0_4_17
