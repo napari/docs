@@ -105,7 +105,7 @@ html_theme_options = {
         {"name": "Island Dispatch", "url": "https://napari.org/island-dispatch"},
         {"name": "Community chat", "url": "https://napari.zulipchat.com"},
         {"name": "workshop template", "url": "https://napari.org/napari-workshop-template"},
-        ],
+    ],
     "github_url": "https://github.com/napari/napari",
     "navbar_start": ["navbar-logo", "navbar-project"],
     "navbar_end": ["version-switcher", "navbar-icon-links"],
@@ -120,6 +120,12 @@ html_theme_options = {
     "pygment_dark_style": "napari",
     "announcement": "https://napari.org/dev/_static/announcement.html",
     "back_to_top_button": False,
+    "analytics": {
+        # The domain you'd like to use for this analytics instance
+        "plausible_analytics_domain": "napari.org",
+        # The analytics script that is served by Plausible
+        "plausible_analytics_url": "https://plausible.io/js/plausible.js",
+    },
 }
 
 html_context = {
