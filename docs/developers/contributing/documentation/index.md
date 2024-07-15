@@ -293,17 +293,17 @@ you can speed up this build by running `make html-noplot` instead. This will ski
 gallery build, which involves launching up napari and rendering all the examples.
 
 ```bash
-make docs-install
+make docs-install  # only needed the first time
 make html-noplot
 ```
 
-The rendered HTML will be placed in `docs/_build`. Find `index.html` in this
+The rendered HTML will be placed in `docs/_build/html`. Find `index.html` in this
 folder and drag it into a browser to preview the website with your new document.
 You can also run this Python one-liner to deploy a quick local server on
 [http://localhost:8000](http://localhost:8000):
 
 ```shell
-$ python3 -m http.server --directory docs/_build
+$ python3 -m http.server --directory docs/_build/html
 ```
 
 ````{note}
