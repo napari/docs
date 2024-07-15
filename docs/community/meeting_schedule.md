@@ -51,7 +51,8 @@ If you are using napari or interested in how napari could be used in your work, 
         var modal = document.getElementById("eventDetailBackground");
         modal.style.display = "block";
         var eventTitle = eventObj.title.charAt(0).toUpperCase() + eventObj.title.slice(1);
-        document.getElementById("details").innerHTML = '<b>' + eventTitle + '</b>' + '<br>' + eventObj.extendedProps.description;
+        var eventLocation = eventObj.extendedProps.location;
+        document.getElementById("details").innerHTML = '<b>' + eventTitle + '</b>' + '<br>' + eventObj.extendedProps.description + '<br>' + '<b>Location: </b>' + '<a href='+eventLocation+'>'+eventLocation+'</a>';
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
           modal.style.display = "none";
