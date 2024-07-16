@@ -41,9 +41,10 @@ Check {doc}`release` for more details about the conda-forge release process and 
 We provide three different outputs in the conda package recipe:
 
 - `napari-base`: This is the package that ships the actual source and data. The runtime
-  requirements only include the basic functionality. This package is only recommended as a
-  dependency for plugins and other projects. End users should not need this, since it mostly
-  correspond to the "library layer" of `napari`
+  requirements only include the basic functionality. This package is recommended as a
+  dependency for plugins and other projects. Most end users will prefer the `napari`
+  package, below, but this one may be useful for those wanting a more minimal
+  environment.
 - `napari`: This output is what most users want. It depends on `napari-base`, and adds optional yet
   recommended dependencies for (performant) GUI usage, like the plugin manager or numba. Note that
   the Qt backend is _not_ included.
