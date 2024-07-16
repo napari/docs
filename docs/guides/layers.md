@@ -28,6 +28,31 @@ currently supported by napari, check out the
 introduction, check out the
 [Layer list section in the napari viewer tutorial](layer-list).
 
+(layer_mode)=
+## Layer mode
+
+All our layers support a `mode` property that changes the way you interact
+with the layer from the viewer. These modes are accessible via the layer controls
+widget top buttons and via keyboard shortcuts (these shortcuts will vary depending on the layer type). Currently, there are two base modes:
+
+* Pan and zoom
+![image: Pan/zoom](../images/pan-zoom-tool.png)
+
+The `pan_zoom` mode allows you to pan around and zoom in/out the layer. It's
+the default mode selected. Note: zooming with the mouse-wheel should essentially always work!
+
+* Transform
+![image: Transform](../images/transform-tool.png)
+
+The `transform` mode allows you to translate, rotate, and scale the layer
+graphically. Note: While you can transform 3D layers, at present this mode is only usable in 2D viewer display mode.
+To reset the transformation, you can Option/Alt-click the transform
+button over the layer controls (a confirmation dialog will open to confirm
+the reset).
+
+For a more detailed description of layer modes available check each
+[layer how-to guide](using-layers).
+
 ## Layer visibility
 
 All our layers support a visibility toggle that allows you to set the `visible`
@@ -91,7 +116,18 @@ or 3 less than the total number of dimensions of the layer, allowing you to
 browse volumetric timeseries data and other high dimensional data. See for
 example these cells undergoing mitosis in this volumetric timeseries:
 
-![napari viewer with an image of a cell undergoing mitosis. The scroll bar below the canvas controls the timeseries, allowing different stages of mitosis to be visible.](./images/mitosis.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../_static/images/mitosis.webm" type="video/webm" />
+    <source src="../_static/images/mitosis.mp4" type="video/mp4" />
+    <img src="../_static/images/mitosis.png"
+      title="Your browser does not support the video tag"
+      alt="napari viewer with an image of a cell undergoing mitosis. The scroll bar below the canvas controls the timeseries, allowing different stages of mitosis to be visible."
+    >
+  </video>
+</figure>
+```
 
 ```{note}
 Switching to 3D mode for a very large data set could trigger computation that
@@ -147,8 +183,18 @@ napari.view_image(retina, name='retina', scale=[1,10,1,1])
 viewer.layers['retina'].scale = [1,10,1,1]
 ```
 
-![napari viewer with an image where all layers are scaled equally; when rotated, the image appears flat. By using console below the canvas and applying a scale factor to one of the dimensions, the image's volume becomes apparent.](images/scaling.webm)
-
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../_static/images/scaling.webm" type="video/webm" />
+    <source src="../_static/images/scaling.mp4" type="video/mp4" />
+    <img src="../_static/images/scaling.png"
+      title="Your browser does not support the video tag"
+      alt="napari viewer with an image where all layers are scaled equally; when rotated, the image appears flat. By using console below the canvas and applying a scale factor to one of the dimensions, the image's volume becomes apparent."
+    >
+  </video>
+</figure>
+```
 
 ## Translating layers
 

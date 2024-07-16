@@ -44,7 +44,18 @@ All shapes are edited in the same way:
    `shift` key down and when finished release the mouse button first! Here is a
    shape being resized:
 
-   ![image: shape resizing](../../images/shape_resizing.webm)
+   ```{raw} html
+   <figure>
+     <video width="100%" controls autoplay loop muted playsinline>
+       <source src="../../_static/images/shape_resizing.webm" type="video/webm" />
+       <source src="../../_static/images/shape_resizing.mp4" type="video/mp4" />
+       <img src="../../_static/images/shape_resizing.png"
+         title="Your browser does not support the video tag"
+         alt="Resizing a shape"
+       >
+     </video>
+   </figure>
+   ```
 
 4. Change the face or edge color by clicking on the thumbnail to the right of
    `face color:` or `edge color:` and choosing or creating a color from the
@@ -72,7 +83,18 @@ new slice values.
 
 ### Adding (inserting), editing, and deleting (removing) individual vertices
 
-![animation of napari viewer with a shapes layer bounded by vertices over an initial static image. The shapes are selected and the vertices moved by the mouse pointer, resulting in new shapes.](../../images/shape_vertex_editing.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/shape_vertex_editing.webm" type="video/webm" />
+    <source src="../../_static/images/shape_vertex_editing.mp4" type="video/mp4" />
+    <img src="../../_static/images/shape_vertex_editing.png"
+      title="Your browser does not support the video tag"
+      alt="animation of napari viewer with a shapes layer bounded by vertices over an initial static image. The shapes are selected and the vertices moved by the mouse pointer, resulting in new shapes."
+    >
+  </video>
+</figure>
+```
 
 ### Creating a new `shapes` layer
 
@@ -96,6 +118,7 @@ are used. i.e. You can't remove a vertex before you have created a shape.
     * Select vertices
     * Select shapes
     * Pan/zoom
+    * Transform
     * Move to back
     * Move to front
     * Add ellipses
@@ -149,12 +172,20 @@ are used. i.e. You can't remove a vertex before you have created a shape.
   than one shape, select one, hold down the shift key and select the rest.
 
 * **Pan/zoom**
-  ![image: Select shapes](../../images/pan-zoom-tool.png)
+  ![image: Pan/zoom](../../images/pan-zoom-tool.png)
 
-  Use this tool to pan around the image or zoom in. Pan and zoom functionality
-  is disabled when using the adding and editing tools. Temporarily re-enable pan
-  and zoom by pressing and holding the spacebar. This feature can be useful if
-  you want to move around the shapes layer as you edit it.
+  Use this tool to pan around the layer or zoom in. Pan functionality
+  is disabled when using the adding and editing tools; however, zoom using the mouse-wheel will typically continue to work. To activate the tool,
+  you can press `6`. Temporarily re-enable pan and zoom by pressing and holding
+  the spacebar. This feature can be useful if you want to move around the shapes
+  layer as you edit it.
+
+* **Transform**
+  ![image: Transform](../../images/transform-tool.png)
+
+  Use this tool to rotate, scale, or translate the layer. Note: at present this feature is limited to 2D viewer display mode. To activate the tool,
+  you can press `7`. To reset the transformation, you can Option/Alt-click the
+  transform button (a confirmation dialog will open to confirm the reset).
 
 * **Move to back**
   ![image: Move to back](../../images/shape-move-to-back.png)
@@ -192,8 +223,8 @@ are used. i.e. You can't remove a vertex before you have created a shape.
 
   The `Add polygon` tool can be selected from the layer controls panel or by
   pressing the `p` key when the shapes layer is selected. When adding a polygon,
-  each click will add a vertex at the clicked location. Hit the `Esc` key to
-  stop creating the polygon. This adds a final vertex at the current mouse
+  each click will add a vertex at the clicked location. To finish,
+  double click or press the `Esc` key: this adds a final vertex at the current mouse
   position and completes the polygon. You can then add another polygon.
 
 * **Add polygons lasso**
@@ -545,7 +576,18 @@ dimensions of the layer, allowing you to browse volumetric timeseries data and
 other high dimensional data. See [](../../gallery/nD_shapes) to see shapes in
 both 2D and 3D:
 
-![A stack of colorful polygon shapes over an image layer. The view alternates between 2D and 3D views of the data.](../../images/nD_shapes.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/nD_shapes.webm" type="video/webm" />
+    <source src="../../_static/images/nD_shapes.mp4" type="video/mp4" />
+    <img src="../../_static/images/nD_shapes.png"
+      title="Your browser does not support the video tag"
+      alt="A stack of colorful polygon shapes over an image layer. The view alternates between 2D and 3D views of the data."
+    >
+  </video>
+</figure>
+```
 
 Also note that for a multidimensional shape to be displayed on a given view
 slice, all of its non-displayed coordinates must match the coordinates of that
@@ -602,4 +644,15 @@ opacity of individual shapes you need to adjust the alpha value in the
 Here you can see an example of adding, selecting, and editing shapes and
 changing their properties:
 
-![image: editing shapes](../../images/editing_shapes.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/editing_shapes.webm" type="video/webm" />
+    <source src="../../_static/images/editing_shapes.mp4" type="video/mp4" />
+    <img src="../../_static/images/editing_shapes.png"
+      title="Your browser does not support the video tag"
+      alt="Editing shapes properties in napari."
+    >
+  </video>
+</figure>
+```

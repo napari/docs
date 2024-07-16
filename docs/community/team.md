@@ -13,6 +13,7 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Kira Evans](https://github.com/napari/napari/commits?author=kne42) - [@kne42](https://github.com/kne42)
 - [Kyle Harrington](https://github.com/napari/napari/commits?author=kephale) - [@kephale](https://github.com/kephale)*
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - [@brisvag](https://github.com/brisvag)
+- [Lucy Liu](https://github.com/napari/napari/commits?author=lucyleeow) - [@lucyleeow](https://github.com/lucyleeow)
 - [Melissa Weber Mendonça](https://github.com/napari/napari/commits?author=melissawm) - [@melissawm](https://github.com/melissawm)
 - [Wouter-Michiel Vierdag](https://github.com/napari/napari/commits?author=melonora) - [@melonora](https://github.com/melonora)
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - [@psobolewskiPhD](https://github.com/psobolewskiPhD)
@@ -59,6 +60,6 @@ Read more about napari’s [mission and values](https://napari.org/community/mis
     - The CZI Imaging Tech Team, through an effort led by Justin Kiggins, has created [napari-hub.org](https://www.napari-hub.org/), a site to make discovering and sharing napari plugins easier.
     - CZI has launched a [grant program](https://chanzuckerberg.com/rfa/napari-plugin-grants/) to help accelerate the napari plugin developer community.
 
-The current representative of the Insitutional and Funding Partner Advisory Council on the napari steering council is Nicholas Sofroniew.
+The current representative of the Insitutional and Funding Partner Advisory Council on the napari steering council is Kyle I. S. Harrington.
 
 If you or your organization are interested in also supporting the napari project and becoming an Institutional and Funding Partner, please email the napari steering council at `napari-steering-council@googlegroups.com`.

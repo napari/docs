@@ -25,18 +25,37 @@ For more information about layers, refer to [Layers at a glance](../../guides/la
 
 The GUI contains following tools in the `layer controls` panel for the `image`
 layer:
-* Opacity
-* Contrast Limits
-* Auto-contrast
-* Gamma
-* Colormap
-* Blending
-* Interpolation
+
+* Buttons
+    * Pan/zoom
+    * Transform
+* Controls
+    * Opacity
+    * Contrast Limits
+    * Auto-contrast
+    * Gamma
+    * Colormap
+    * Blending
+    * Interpolation
 
 Before we can use any of the GUI `layer controls`, we must load an image.
 1. Start napari.
 2. Click `File` > `Open Sample` > `napari builtins` > `Cells (3D+2Ch)` or any
 sample image of your choice.
+
+### Buttons
+
+* `Pan/zoom` ![image: Pan/zoom tool](../../images/pan-zoom-tool.png) is the default mode
+  of the layer and supports panning and zooming. Press the `1` key when the layer is selected
+  to use this mode.
+
+* `Transform` ![image: Transform](../../images/transform-tool.png) enables you to
+  rotate, scale, or translate the layer. Note: at present this feature is limited to 2D viewer display mode.
+  To reset the transformation,
+  you can Option/Alt-click the transform button (a confirmation dialog will open to
+  confirm the reset). Press the `2` key when the layer is selected to use this mode.
+
+### Controls
 
 The GUI controls may be adjusted as follows:
 
@@ -145,7 +164,18 @@ napari to seamlessly browse enormous datasets that are loaded in the right way.
 For example, here we are browsing over 100GB of lattice lightsheet data stored
 in a `zarr` file:
 
-![napari viewer with an image layer of lattice lightsheet data opened. It can be browsed using the slider at the bottom of the viewer.](../../images/LLSM.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/LLSM.webm" type="video/webm" />
+    <source src="../../_static/images/LLSM.mp4" type="video/mp4" />
+    <img src="../../_static/images/LLSM.png"
+      title="Your browser does not support the video tag"
+      alt="napari viewer with an image layer of lattice lightsheet data opened. It can be browsed using the slider at the bottom of the viewer."
+    >
+  </video>
+</figure>
+```
 
 ## Multiscale images
 
@@ -162,7 +192,18 @@ viewed in 2D or incredibly large 3D images when viewed in 3D. For example this
 easily browsed as at each moment in time we only load the level of the
 multiscale image and the part of the image that needs to be displayed:
 
-![napari viewer with a large image layer zoomed all the way in and all the way out in a matter of seconds thanks to multiscale image support.](../../images/pathology.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/pathology.webm" type="video/webm" />
+    <source src="../../_static/images/pathology.mp4" type="video/mp4" />
+    <img src="../../_static/images/pathology.png"
+      title="Your browser does not support the video tag"
+      alt="napari viewer with a large image layer zoomed all the way in and all the way out in a matter of seconds thanks to multiscale image support."
+    >
+  </video>
+</figure>
+```
 
 This example had precomputed multiscale images stored in a `zarr` file, which is
 best for performance. If you don't have a precomputed multiscale image but try

@@ -17,8 +17,6 @@ jupyter:
 
 # How to install napari
 
-Welcome to the **napari** installation guide!
-
 This guide will teach you how to do a clean install of **napari** and launch the viewer.
 
 ```{note}
@@ -40,6 +38,17 @@ It requires:
 You may also want:
 - an environment manager like [conda](https://docs.conda.io/en/latest/miniconda.html) or
 [venv](https://docs.python.org/3/library/venv.html) **(Highly recommended)**
+
+```{note}
+New to Python or uncertain about conda, pip and virtual environments? You can use our
+[Bundled App](#install-as-a-bundled-app) to get started or first look at some
+resources we recommend:
+
+- [Scientific Python: Getting started with Python for science](https://lectures.scientific-python.org/intro/index.html)
+- [Talley Lambert's Python environments workshop](https://hackmd.io/@talley/SJB_lObBi)
+- [Carpentries GIT workshop](https://swcarpentry.github.io/git-novice) (for those interested in contributing)
+
+```
 
 Python package distributions of napari can be installed via `pip`, `conda-forge`, or from source.
 
@@ -92,20 +101,10 @@ For example, use {{ python_version_code }} to get Python {{ python_version }} an
 the current release.
 
 2. Switching to the new, faster [`libmamba` solver](https://conda.github.io/conda-libmamba-solver/libmamba-vs-classic/),
-by updating your `conda` (>22.11), if needed, and then installing and activating
-the solver, as follows:
+by updating your `conda` (`libmamba` is the default solver from conda 23.10 onwards):
 ```
 conda update -n base conda
-conda install -n base conda-libmamba-solver
-conda config --set solver libmamba
 ```
-3. Alternately, consider installing [`mamba`](https://github.com/mamba-org/mamba)
-in your base environment with `conda install -n base -c conda-forge mamba`.
-Then you can use `mamba` by replacing `conda` with `mamba` in the installation instructions, for example:
-```
-mamba install napari
-```
-
 ````
 
 :::::
@@ -168,6 +167,8 @@ the current release {{ napari_version }}, using the command: `napari --version` 
 
 ### Choosing a different Qt backend
 
+(choosing-qt-backend)=
+
 napari needs a library called [Qt](https://www.qt.io/) to run its user interface
 (UI). In Python, there are two alternative libraries to run this, called
 [PyQt5](https://www.riverbankcomputing.com/software/pyqt/download5) and
@@ -194,11 +195,11 @@ python -m pip install "napari[pyside2]"  # for PySide2
 (note-m1)=
 ```{note}
 
-For arm64 macOS machines (Apple Silicon), pre-compiled PyQt5 or PySide2 packages
+For arm64 macOS machines (Apple Silicon), pre-compiled PySide2 packages
 ([wheels](https://realpython.com/python-wheels/)) are not available on
 [PyPI](https://pypi.org), the repository used by `pip`, so trying to
-`pip install napari[all]` or either of the variants above will fail. However,
-you can install one of those libraries separately, for example from `conda-forge`,
+`pip install napari[pyside2]` or similar variant above will fail. However,
+you can install `pyside2` separately, for example from `conda-forge`,
 and then use `pip install napari`.
 ```
 
@@ -229,7 +230,7 @@ pip install napari[all, pyqt] -c constraints_py3.10.txt
 ## Install as a bundled app
 
 napari can also be installed as a bundled app on each of the major platforms,
-MacOS, Windows, and Linux with a simple one-click download and installation
+macOS, Windows, and Linux with a simple one-click download and installation
 process. You might want to install napari as a bundled app if you are unfamiliar
 with installing Python packages or if you were unable to get the installation
 process described above working. The bundled app version of napari is the same

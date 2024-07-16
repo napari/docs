@@ -46,6 +46,7 @@ layer:
     * fill bucket
     * color picker
     * pan/zoom mode
+    * transform mode
 * Controls
     * label
     * opacity
@@ -110,9 +111,9 @@ layer:
 * **Polygon**
 
   Another tool that can be used to quickly add or edit image segmentations is
-  the `polygon` tool. It combines functionality of the `paintbrush` and
-  `fill bucket` tools by allowing for readily drawing enclosed instance
-  segmentations. The `polygon` tool can be activated by clicking on the icon
+  the `polygon` tool.  It combines functionality of the `paintbrush` and `fill bucket`
+  tools by allowing for readily drawing enclosed instance segmentations.
+  The `polygon` tool can be activated by clicking on the icon
   resembling a polygon in the layer control panel or by pressing `3`. Once
   activated, the user actions are as follows:
 
@@ -125,9 +126,10 @@ layer:
   5. To undo the last added vertex, use a right-click.
   6. To cancel the drawing at any time without making a permanent change on the
      labels layer, press `Esc`. This will delete the polygon overlay.
-  7. Press `Enter` to finish drawing at any time or double click within a radius
-     of 20 screen pixels of the first vertex. This will add the polygon overlay
-     to the labels layer.
+  7. To finish drawing and complete the shape, use double click for the last vertex
+     or press "Enter". This will add the polygon overlay to the labels layer.
+     Note that in Settings > Experimental you can enable and set the minimum distance
+     to the origin vertex required for double click to complete the shape. 
 
   The polygon overlay will have the color of the label. The polygon overlay also
   has an opacity that can be adjusted the value of the `opacity` slider in the
@@ -151,7 +153,8 @@ layer:
   label, or you want to replace only one label with a different one, or maybe
   you have painted around the edge of a region and you want to quickly fill in
   its inside. To do this you can select the `fill bucket` tool by clicking on
-  its icon in the `layer controls` panel, and then click on a target region of interest in the layer. The fill bucket will fill using the currently selected
+  its icon in the `layer controls` panel, and then click on a target region of
+  interest in the layer. The fill bucket will fill using the currently selected
   label. If nothing is selected the entire layer will be filled with that label.
 
   By default, the `fill bucket` will change only contiguous or connected pixels
@@ -255,6 +258,15 @@ pan and zoom is selected, editing the layer is not possible. Once you click on
 one of the editing tools, pan and zoom is turned off. Return to pan and zoom
 mode by pressing the `6` key when the `labels layer` is selected.
 
+### Transform mode
+
+This mode is represented by ![image: Transform](../../images/transform-tool.png) in the
+`layer controls` panel. It enables you to rotate, scale, or translate the layer.
+Note: at present this feature is limited to 2D viewer display mode.
+To reset the transformation, you can Option/Alt-click the transform button (a
+confirmation dialog will open to confirm the reset). Enable this mode by pressing
+the `7` key when the `labels layer` is selected.
+
 ### Creating a new `labels layer`
 
 Create a brand-new empty `labels layer` by clicking the `New labels layer`
@@ -301,7 +313,19 @@ and `fill bucket` tools. Below we show how to use these tools by performing
 common editing tasks on connected components (keep the `contiguous` box checked).
 
 * Creating or drawing a connected component
-  ![Using the paintbrush and fill bucket tools to draw a connected component](../../images/draw_component.webm)
+
+  ```{raw} html
+  <figure>
+    <video width="100%" controls autoplay loop muted playsinline>
+      <source src="../../_static/images/draw_component.webm" type="video/webm" />
+      <source src="../../_static/images/draw_component.mp4" type="video/mp4" />
+      <img src="../../_static/images/draw_component.png"
+        title="Your browser does not support the video tag"
+        alt="Using the paintbrush and fill bucket tools to draw a connected component."
+      >
+    </video>
+  </figure>
+  ```
 
   * Press `m` to select a label color that has not been used.
   * Select the `paintbrush` tool and draw a closed contour around the object.
@@ -309,18 +333,55 @@ common editing tasks on connected components (keep the `contiguous` box checked)
     label to all pixels of the object.
 
 * Deleting a connected component
-  ![Deleting selected labels](../../images/delete_label.webm)
+
+  ```{raw} html
+  <figure>
+    <video width="100%" controls autoplay loop muted playsinline>
+      <source src="../../_static/images/delete_label.webm" type="video/webm" />
+      <source src="../../_static/images/delete_label.mp4" type="video/mp4" />
+      <img src="../../_static/images/delete_label.png"
+        title="Your browser does not support the video tag"
+        alt="Deleting selected labels."
+      >
+    </video>
+  </figure>
+  ```
+
   Select the background label with the `color picker` or press `x`, then use the 
   `fill bucket` to set all pixels of the
   connected component to background.
 
 * Merging connected components
-  ![Selecting a label and merging with a connecting label](../../images/merge_labels.webm)
+
+  ```{raw} html
+  <figure>
+    <video width="100%" controls autoplay loop muted playsinline>
+      <source src="../../_static/images/merge_labels.webm" type="video/webm" />
+      <source src="../../_static/images/merge_labels.mp4" type="video/mp4" />
+      <img src="../../_static/images/merge_labels.png"
+        title="Your browser does not support the video tag"
+        alt="Selecting a label and merging with a connecting label."
+      >
+    </video>
+  </figure>
+  ```
+
   * Select the label of one of the components with the `color picker` tool.
   * Select the `fill bucket` and fill the components to be merged.
 
 * Splitting a connected component
-  ![Using the paintbrush tool to split a label into two](../../images/split_label.webm)
+  ```{raw} html
+  <figure>
+    <video width="100%" controls autoplay loop muted playsinline>
+      <source src="../../_static/images/split_label.webm" type="video/webm" />
+      <source src="../../_static/images/split_label.mp4" type="video/mp4" />
+      <img src="../../_static/images/split_label.png"
+        title="Your browser does not support the video tag"
+        alt="Using the paintbrush tool to split a label into two."
+      >
+    </video>
+  </figure>
+  ```
   Splitting a connected component will introduce an additional object.
   * Select the background label with the `color picker` or press `x`.
   * Use the `paintbrush` tool to draw a dividing line where you want to split
