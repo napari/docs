@@ -45,7 +45,7 @@ This installation method does not have any prerequisites.
 
 ### How to install the macOS bundle
 
-Once you have downloaded the appropriate macOS package file, you will have a file with a name like `napari-0.4.15-macOS-x86_64.pkg`. Double click this file to open the installer.
+Once you have downloaded the appropriate macOS package file, you will have a file with a name like `napari-0.5.0-macOS-x86_64.pkg`. Double click this file to open the installer.
 
 ![Cropped screenshot of macOS desktop UI showing the icon of the PKG installer file, and an arrow pointing to the Welcome page in the opened PKG installer.](../assets/tutorials/installation/bundle_04.png)
 
@@ -65,7 +65,7 @@ However, if you would like to change the default location for the installation, 
 
 You can also optionally click on 'Customize' to disable or enable some aspects of the installation process.
 
-The installation progress can be monitored on the following window.
+The installation progress can be monitored on the following window. Some notifications will appear in the top right corner of your display with further details.
 
 ![Cropped screenshot of the Installation page of the PKG installer. This page displays a progress bar at a 10%. In the top right corner, an example of a system notification with the text 'Installing packages. This might take a few minutes' is shown](../assets/tutorials/installation/bundle_10.png)
 
@@ -91,7 +91,7 @@ Next check out our [tutorial on the viewer](viewer.md) or explore any of the pag
 
 ### How to Install the Windows bundle
 
-Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.4.15-Windows-x86_64.exe`. Double click this file to open the napari Setup.
+Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.5.0-Windows-x86_64.exe`. Double click this file to open the napari Setup.
 
 ![Montage of the napari EXE installer icon with an arrow pointing to the Welcome page of the napari EXE installer on Windows.](../assets/tutorials/installation/bundle_17.png)
 
@@ -123,7 +123,7 @@ Next check out our [tutorial on the viewer](viewer.md) or explore any of the pag
 
 ### How to Install the Linux bundle
 
-Once you have downloaded the Linux SH file, you will have a file with a name like `napari-0.4.15-Linux-x86_64.sh`. You can double-click this file to open the installer in a terminal, or, alternatively, open a terminal yourself and run the command `bash napari-*-Linux-x86_64.sh`.
+Once you have downloaded the Linux SH file, you will have a file with a name like `napari-0.5.0-Linux-x86_64.sh`. Open a new terminal window, navigate to the downloads folder (usually `cd ~/Downloads`) and run the command `bash napari-*-Linux-x86_64.sh`.
 
 ![Montage of the SH installer icon on Ubuntu, with an arrow pointing to an open terminal instance with a pre-typed command that reads 'bash napari-0.4.14.dev73-Linux-x86_64.sh'.](../assets/tutorials/installation/bundle_28.png)
 
