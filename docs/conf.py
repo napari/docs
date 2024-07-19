@@ -126,6 +126,8 @@ html_theme_options = {
         # The analytics script that is served by Plausible
         "plausible_analytics_url": "https://plausible.io/js/plausible.js",
     },
+    "footer_start": ["napari-footer-links"],
+    "footer_end": ["napari-copyright"],
 }
 
 html_context = {
