@@ -106,11 +106,18 @@ jobs:
 
       - name: get directory name
         # if this is a tag, use the tag name as the directory name else dev
+        env:
+          REF: ${{ github.ref }}
         run: |
-          if [[ "${{ github.ref }}" == "refs/tags/"* ]]; then
-            echo "branch_name=${{ github.ref_name }}" >> $GITHUB_ENV
+          TAG="${GITHUB_REF/refs\/tags\/v/}"
+          VER="${TAG/a*/}"  # remove alpha identifier
+          VER="${VER/b*/}"  # remove beta identifier
+          VER="${VER/rc*/}"  # remove rc identifier
+
+          if [[ "$REF" == "refs/tags/v"* ]]; then
+            echo "branch_name=$VER" >> "$GITHUB_ENV"
           else
-            echo "branch_name=dev" >> $GITHUB_ENV
+            echo "branch_name=dev" >> "$GITHUB_ENV"
           fi
 
       - name: Deploy Docs
