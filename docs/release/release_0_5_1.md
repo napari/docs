@@ -60,7 +60,8 @@ ago!
 - Add location field to community calendar ([docs#455](https://github.com/napari/docs/pull/455))
 - Fix footer items ([docs#456](https://github.com/napari/docs/pull/456))
 - Add docs about the new `napari-base` structure ([docs#457](https://github.com/napari/docs/pull/457))
-- Add draft 0.5.1 release notes ([docs#464](https://github.com/napari/docs/pull/464)
+- Add draft 0.5.1 release notes ([docs#464](https://github.com/napari/docs/pull/464))
+- Update draft warning on 0.5.1 release notes ([docs#465](https://github.com/napari/docs/pull/465))
 
 ## Other Pull Requests
 
@@ -70,6 +71,8 @@ ago!
 - Use `viewer.layers` instead of  `_layers.model().sourceModel()._root` for dummy context creation ([#7109](https://github.com/napari/napari/pull/7109))
 - Limit setuptools vesion for minimum requirements test ([#7110](https://github.com/napari/napari/pull/7110))
 - [Maint] Update dockerfile for xpra source change ([#7115](https://github.com/napari/napari/pull/7115))
+- Fix pinning packages workflow by remove special pinning from macOS and add special for Windows ([#7119](https://github.com/napari/napari/pull/7119))
+- Trigger docs deployment on tagged commit ([#7122](https://github.com/napari/napari/pull/7122))
 - Update version switcher to include 0.5.0 ([docs#452](https://github.com/napari/docs/pull/452))
 - deploy docs on manual trigger ([docs#462](https://github.com/napari/docs/pull/462))
 - Add actionlint to prevent GHA workflow errors ([docs#463](https://github.com/napari/docs/pull/463))
