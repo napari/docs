@@ -60,6 +60,7 @@ ago!
 - Add location field to community calendar ([docs#455](https://github.com/napari/docs/pull/455))
 - Fix footer items ([docs#456](https://github.com/napari/docs/pull/456))
 - Add docs about the new `napari-base` structure ([docs#457](https://github.com/napari/docs/pull/457))
+- Add draft 0.5.1 release notes ([docs#464](https://github.com/napari/docs/pull/464)
 
 ## Other Pull Requests
 
