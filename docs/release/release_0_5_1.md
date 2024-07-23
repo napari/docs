@@ -34,17 +34,11 @@ Read on for the full list of changes since the last version from just two weeks
 ago!
 
 
-## New Features
-
-
 ## Improvements
 
 - [enh] add an `add_plane` convenience method to ClippingPlaneList ([#6921](https://github.com/napari/napari/pull/6921))
 - Cleanup _image_key_bindings ([#7116](https://github.com/napari/napari/pull/7116))
 - Add napari-plugin-manager to optional info list ([#7117](https://github.com/napari/napari/pull/7117))
-
-## Performance
-
 
 ## Bug Fixes
 
@@ -54,15 +48,6 @@ ago!
 - Account for displayed dimensions in multiscale translate adjustment ([#7103](https://github.com/napari/napari/pull/7103))
 - fix call of np.clip in _update_thumbnail ([#7104](https://github.com/napari/napari/pull/7104))
 - Always add `Empty` context key, even if `action` is already registered ([#7106](https://github.com/napari/napari/pull/7106))
-
-## API Changes
-
-
-## Deprecations
-
-
-## Build Tools
-
 
 ## Documentation
 
