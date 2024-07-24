@@ -237,12 +237,6 @@ process described above working. The bundled app version of napari is the same
 version that you can get through the above described processes, and can still be
 extended with napari plugins installed directly via the app.
 
-```{important}
-Note that the bundled app is still
-in active development, and may not be very stable. We strongly recommend
-[installing as a Python package instead](install-python-package).
-```
-
 To access the cross platform bundles you can visit our [release
 page](https://github.com/napari/napari/releases) and scroll to the release you
 are interested in. For example, the bundles for napari {{ napari_version }} can be
@@ -250,6 +244,7 @@ accessed {{ '[here](https://github.com/napari/napari/releases/tag/vNAPARI_VER)'.
 To get to the download link, just scroll all the way to bottom of the page and
 expand the `Assets` section. You can then download the appropriate file for your platform.
 
+Check {doc}`installation_bundle_conda` for more detailed instructions.
 
 <!-- #endregion -->
 
