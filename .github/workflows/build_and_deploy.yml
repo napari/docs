@@ -113,6 +113,7 @@ jobs:
           VER="${TAG/a*/}"  # remove alpha identifier
           VER="${VER/b*/}"  # remove beta identifier
           VER="${VER/rc*/}"  # remove rc identifier
+          VER="${VER/post*}"  # remove post identifier
 
           if [[ "$REF" == "refs/tags/v"* ]]; then
             echo "branch_name=$VER" >> "$GITHUB_ENV"
