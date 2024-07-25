@@ -23,7 +23,7 @@ with viewing multiscale 3D time series
 layers to labels layers ([#7095](https://github.com/napari/napari/pull/7095)).
 
 It also fixes a bug with NumPy 2 support
-([#7104](https://github.com/napari/napari/pull/7104) and our storing of layer
+([#7104](https://github.com/napari/napari/pull/7104)) and our storing of layer
 axis info when using the `channel_axis` keyword argument for images
 ([#7089](https://github.com/napari/napari/pull/7089)).
 
