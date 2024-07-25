@@ -63,6 +63,7 @@ ago!
 - Add docs about the new `napari-base` structure ([docs#457](https://github.com/napari/docs/pull/457))
 - Add draft 0.5.1 release notes ([docs#464](https://github.com/napari/docs/pull/464))
 - Update draft warning on 0.5.1 release notes ([docs#465](https://github.com/napari/docs/pull/465))
+- Update release notes for 0.5.1 with new PRs ([docs#466](https://github.com/napari/docs/pull/466))
 
 ## Other Pull Requests
 
