@@ -46,6 +46,7 @@ ago!
 - fix call of np.clip in _update_thumbnail ([#7104](https://github.com/napari/napari/pull/7104))
 - Always add `Empty` context key, even if `action` is already registered ([#7106](https://github.com/napari/napari/pull/7106))
 - fix condition of adding asterix, when save reader of path ([#7112](https://github.com/napari/napari/pull/7112))
+- Normalize path when searching for a plugin to open file ([#7127](https://github.com/napari/napari/pull/7127))
 
 ## Documentation
 
