@@ -180,8 +180,7 @@ running napari will result in an error message asking you to install one of
 them.
 
 Running `python -m pip install "napari[all]"` will install the default framework, which is currently
-PyQt5--but this could change in the future. However, if you have a Mac with the newer arm64
-architecture (Apple Silicon), this will not work--see [note on m1](note-m1).
+PyQt5--but this could change in the future. 
 
 To install napari with a specific framework, you can use:
 
@@ -191,6 +190,9 @@ python -m pip install "napari[pyqt5]"    # for PyQt5
 # OR
 python -m pip install "napari[pyside2]"  # for PySide2
 ```
+
+However, if you have a Mac with the newer arm64
+architecture (Apple Silicon), the installing pyside2 backend using `pip` is not supported. See [note on m1](note-m1).
 
 (note-m1)=
 ```{note}
