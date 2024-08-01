@@ -192,8 +192,12 @@ python -m pip install "napari[pyside2]"  # for PySide2
 ```
 
 
-However, if you have a Mac with the newer arm64
-architecture (Apple Silicon), the installing pyside2 backend using `pip` is not supported. See [note on m1](note-m1).
+Please note that, if you have a Mac with the newer arm64
+architecture ([Apple Silicon](https://support.apple.com/en-us/116943)), then installing the PySide2 backend using `pip` is not supported because pre-compiled PySide2 packages
+([wheels](https://realpython.com/python-wheels/)) are not available on
+[PyPI](https://pypi.org), the repository used by `pip`. However,
+you can install `pyside2` separately, for example from `conda-forge`,
+and then use `pip install napari`.
 
 ```{note}
 If you switch backends, it's a good idea to `pip uninstall` the one
