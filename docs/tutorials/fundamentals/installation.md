@@ -72,7 +72,7 @@ Choose one of the options below to install napari as a Python package.
 
 If you prefer to manage packages with conda, napari is available on the
 conda-forge channel. We also recommend this path for users of arm64 macOS machines
-(Apple Silicon, meaning a processor with a name like "M1"). You can install it with:
+([Apple Silicon](https://support.apple.com/en-us/116943), meaning a processor with a name like "M1"). You can install it with:
 
 ```sh
 conda install -c conda-forge napari pyqt
@@ -111,7 +111,7 @@ conda update -n base conda
 
 :::::{tab-item} From PyPI using pip
 
-napari can be installed from PyPI on most macOS (Intel x86), Linux, and Windows systems with Python
+napari can be installed from PyPI on most macOS, Linux, and Windows systems with Python
 {{ python_version_range }} using pip:
 
 ```sh
