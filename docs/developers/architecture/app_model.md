@@ -28,7 +28,7 @@ The {class}`~napari._app_model._app.NapariApplication` (`app`)
 is the top level object that stores information about the commands, keybindings
 and menus that make up the application.
 It is a subclass of {class}`app_model.Application` and is a global application
-singleton. It can be retrieved with {func}`napari._app_model.get_app`.
+singleton. It can be retrieved with `napari._app_model.get_app`.
 
 Currently, the primary purpose of the `app` is to compose the following
 {mod}`app_model.registries` into a single name-spaced object:
@@ -37,7 +37,7 @@ Currently, the primary purpose of the `app` is to compose the following
   [commands](app-model-commands) (the actual callable objects) that have been
   registered with the application. Accessible via `app.commands`.
 * {class}`~app_model.registries.MenusRegistry`: maintains all of the
-  [menus and submenus](appp-model-menus) that have been registered with the application.
+  [menus and submenus](app-model-menus) that have been registered with the application.
   Accessible via `app.menus`.
 * {class}`~app_model.registries.KeyBindingsRegistry`: maintains the association
   between a [KeyBinding](app-model-keybindings) and a command ID in the
@@ -59,7 +59,7 @@ metadata like title, icons, tooltips etc. It subclasses
 {class}`app_model.types.CommandRule` and takes {class}`app_model.types.MenuRule` and
 {class}`app_model.types.KeyBindingRule` arguments.
 
-The following code demonstrates the definition of a {class}`app_model.types.Action`
+The following code demonstrates the definition of a {class}`~app_model.types.Action`
 comprised of a "Split RGB" command, which is to be added to a specific section (group)
 of the "layerlist context" menu, with a `Cmd+Alt+T` keybinding.
 
@@ -127,15 +127,25 @@ This is because command id's may currently only be registered once, and associat
 
 ### `Action`s in napari
 
-In napari, non-Qt `Action`s are defined in
-[`napari/_app_model/actions`](https://github.com/napari/napari/tree/main/napari/_app_model/actions)
-while Qt `Action`s are defined in
-[`napari/_qt/_qapp_model/qactions`](https://github.com/napari/napari/tree/main/napari/_qt/_qapp_model/qactions).
+In napari, menu bar actions are defined in
+[`napari/_qt/_qapp_model/qactions`](https://github.com/napari/napari/tree/main/napari/_qt/_qapp_model/qactions),
+with one file per menu.
+While not all menu bar actions strictly require Qt, they are defined for the purpose
+of living in a menu and are thus considered 'GUI' actions.
+This also ensures that there is only one file defining both actions and their
+submenus.
+Note if we move to supporting more GUI backends, we may want to move these out of
+`_qt/` to a shared `gui/` folder, depending on implementation.
+
+The layer context menu actions do not require a GUI (they only require the `layerlist`)
+and thus live in
+[`napari/_app_model/actions`](https://github.com/napari/napari/tree/main/napari/_app_model/actions).
+
 Non-Qt `Action`s get registered with `app` during
 initialization of the napari `app`, in `NapariApplication`'s
 {meth}`~napari._app_model._app.NapariApplication.__init__`. Qt `Action`s
 get registered in
-{func}`~napari._qt._qapp_model.qactions.init_qactions`, which gets
+`napari._qt._qapp_model.qactions.init_qactions`, which gets
 called during initialization of `_QtMainWindow`. Note this is relevant when
 considering the differences between app-model and action manager implementation,
 see [](app-model-action-manager-differences) for more.
@@ -163,7 +173,7 @@ the following naming conventions:
 * the `napari.window` prefix indicates the `napari` command is part of a GUI menu
 * the final word should be the name of the function callback
 
-{class}`app_model.types.CommandRule` class (of which {class}`app_model.types.Action`
+{class}`app_model.types.CommandRule` class (of which {class}`~app_model.types.Action`
 is a subclass) includes many fields to detail various aspects of commands.
 See {class}`app_model.types.CommandRule` for details on every field.
 Notable {class}`~app_model.types.CommandRule` fields
@@ -267,10 +277,12 @@ format (`MenuId`, [`MenuItem` or `SubmenuItem`]).
 In napari `MenuId` and `MenuGroup` enums are defined in
 [`napari/_app_model/constants/_menus.py`](https://github.com/napari/napari/blob/main/napari/_app_model/constants/_menus.py).
 Menu bar menus are created during {class}`~napari.window.Window` initialization via
-{func}`~napari._qt._qapp_model.build_qmodel_menu`. This creates a
+`napari._qt._qapp_model.build_qmodel_menu`. This creates a
 {class}`~app_model.backends.qt.QModelMenu` (a subclass of
 [`QMenu`](https://doc.qt.io/qt-5/qmenu.html)) instance.
-It is the creation of the `QModelMenu` that creates `QAction` for the `Action`
+It is the creation of the {class}`~app_model.backends.qt.QModelMenu`
+that creates `QAction` for the
+{class}`~app_model.types.Action`
 associated with that menu.
 
 {class}`~app_model.types.SubmenuItem`s are defined in
@@ -316,6 +328,8 @@ and potential conflicts. It also enables keybindings to be editable by the user
 at runtime (see [issue 6600](https://github.com/napari/napari/issues/6600)
 for more on this). Note that it is likely that this pull request will be split into
 smaller pull requests for ease of review and better git history.
+
+(app_model_dep_inj_result)=
 
 ## Dependency injection and result processing
 
@@ -459,22 +473,50 @@ ways will not work:
 
 ### Providers and processors in napari
 
-Non-Qt providers and processors are defined in
-[`napari/_app_model/injection`](https://github.com/napari/napari/tree/main/napari/_app_model/injection).
-Qt providers and processors are defined in
+Currently there are only GUI related providers and processors.
+They are defined in
 [`napari/_qt/_qapp_model/injection`](https://github.com/napari/napari/tree/main/napari/_qt/_qapp_model/injection).
-
-Non-Qt providers and processors are registered in the `app` `Store` during
-initialization of the napari `app`, in `NapariApplication`'s
-{meth}`~napari._app_model._app.NapariApplication.__init__`.
-Qt providers and processors are registered in
-{func}`~napari._qt._qapp_model.qactions.init_qactions`, which gets called during
-initialization of `_QtMainWindow`. This is the same as
+They are registered in `napari._qt._qapp_model.qactions.init_qactions`,
+which gets called during initialization of `_QtMainWindow`. This is the same as
 [registration of `Action`s](app-model-actions-napari).
+
+In future we intend to have non-GUI providers that will supply layer objects.
+They would be registered in the `app` `Store` during
+initialization of the napari `app`, in `NapariApplication`'s
+`napari._app_model._app.NapariApplication.__init__`.
+
+Providers and processors allow us to mirror behaviour enabled by
+[`magicgui` type registration](magicgui_type_registration) for widgets. Providers
+allow generalization of `magicgui` parameter annotation behaviour to all
+actions, while processors do this for return annotation behaviour.
+
+The intended users of providers/processors are end-users, plugins as well as `napari`
+internally, however it is currently only used internally.
+For a detailed discussion on this framework see
+[issue 4532](https://github.com/napari/napari/issues/4532).
+
+## `app-model` initialization order
+
+On `napari` start up, `app-model` initialization occurs in the following order:
+
+1. Initialize {class}`~napari.viewer.Viewer`, which calls
+   `napari.plugins._initialize_plugins`, which registers discovered plugins
+   and all their actions (non-Qt first, followed immedidately by Qt actions).
+   This also results in the first call to `napari._app_model.get_app`.
+
+   i. Instantiation of the `app-model` app results in registration of all non-GUI
+      internal `napari` actions (and associated submenus). Note that the
+      `napari._app_model.get_app` call creates the `app` only when *first*
+      called. It simply returns the existing app on all subsequent calls.
+
+2. {class}`~napari._qt.qt_main_window.Window` instantiation, followed by
+   instantiation of `_QtMainWindow`, during which we call
+   `napari._qt._qapp_model.qactions.init_qactions`. This registers all
+   `napari` Qt actions (and associated submenus), providers and processors.
 
 (app-model-testing)=
 
-## app-model testing
+## `app-model` testing
 
 This section provides a guide to testing app-model aspects of napari. For general
 information on napari testing see [](napari-testing).
@@ -488,16 +530,17 @@ Segmentation faults can also occur as a
 singleton `app` may keep a reference to an object, e.g., a
 {class}`~napari._qt.qt_main_window.Window`, that has
 since been cleaned up at the end of a previous test.
-Thus, we mock the `app` in a `_mock_app` fixture and
-[autouse](https://docs.pytest.org/en/latest/how-to/fixtures.html#autouse-fixtures-fixtures-you-don-t-have-to-request)
-it so a new instance of `app` is returned every time {func}`~napari._app_model.get_app`
+Thus, we mock the `app` in a `_mock_app` fixture, and
+explicitly use it in {ref}`make_napari_viewer` as well as in all tests that
+use the `get_app` function. This way, a new instance of `app` is returned
+every time `napari._app_model.get_app`
 is used inside a test. This 'test' `app` is available for use throughout the test's
 duration and will get cleaned up at the end.
 
 ```{note}
-Since the `_mock_app` fixture is autouse, a
-:class:`~napari._app_model._app.NapariApplication` is instantiated during setup
-of every test.
+Since the `_mock_app` fixture is used in `make_napari_viewer`, plugins and other
+external users that write tests using `make_napari_viewer` will also have the benefit
+of a new app for each test.
 ```
 
 The mock `app` registers non-Qt `Action`s, providers and processors. This is
@@ -508,8 +551,8 @@ Qt items are not registered because we did not think it would be best practice t
 have Qt objects registered for every test.
 If Qt `Action`s, providers or processors are required, they can be registered by using
 the `make_napari_viewer` fixture, which will run
-{func}`~napari._qt._qapp_model.qactions.init_qactions`,
-{func}`~napari.plugins._initialize_plugins` as well as create a
+`napari._qt._qapp_model.qactions.init_qactions`,
+`napari.plugins._initialize_plugins` as well as create a
 {class}`~napari.viewer.Viewer`. Alternatively, manually run the required function,
 ensuring you run `cache_clear` first, to bypass the
 {py:func}`functools.lru_cache` on these functions.
@@ -530,7 +573,10 @@ The {class}`~app_model.backends.qt.QModelMenu` of menu bar items are saved as
 {class}`~napari._qt.qt_main_window.Window` attributes. These are useful as the
 `QAction`s of the commands in these menus can be found via
 the {class}`~app_model.backends.qt.QModelMenu`'s
-{meth}`~app_model.backends.qt.QModelMenu.findAction` method.
+{meth}`~app_model.backends.qt.QModelMenu.findAction` method. `QAction`s of submenu
+of a {class}`~app_model.backends.qt.QModelMenu` currently cannot be found via
+{meth}`~app_model.backends.qt.QModelMenu.findAction`. The utility function
+`napari._qt._qapp_model._tests.utils.get_submenu_action` can be used instead.
 
 ## Contexts
 
@@ -592,8 +638,8 @@ For example, with action manager, a `PluginsMenu` class instance is created when
 building the menu bar. Plugins menu actions are thus registered at a time when
 we know we have access to Qt.
 In app-model, plugins menu actions are registered during
-{func}`~napari.plugins._initialize_plugins`, which is run on initialization of
-{class}`~napari.viewer.Viewer`. This is much earlier in napari startup and is before
+`napari.plugins._initialize_plugins`, which is run on initialization of
+{class}`napari.viewer.Viewer`. This is much earlier in napari startup and is before
 we know if we have access to Qt. Thus, we register with
-{func}`~napari.plugins._npe2._safe_register_qt_actions`, which first checks if
+`napari.plugins._npe2._safe_register_qt_actions`, which first checks if
 Qt is available.

@@ -26,7 +26,7 @@ This is all automated by the `conda-forge` infrastructure (see [previous example
 We only need to check that the metadata in the recipe has been adjusted for the new release.
 Pay special attention to the runtime dependencies and version strings!
 
-> We keep a copy of the feedstock's recipe in the `napari/packaging` repo, which is updated manually whenever a change to `setup.cfg` is detected.
+> We keep a copy of the feedstock's recipe in the `napari/packaging` repo, which is updated manually whenever a change to `pyproject.toml` is detected.
 > Check the file `conda-recipe/meta.yaml` and make sure its `outputs` contents are synced to the `napari-feedstock` copy.
 
 Once the conda-forge CI is passing and the PR is approved and merged, the final packages will be built on the default branch and uploaded to the `conda-forge` channel.
@@ -35,6 +35,22 @@ Due to the staging steps and CDN synchronization delays, the conda packages can 
 ```{note}
 Check {doc}`release` for more details about the conda-forge release process and maintenance tasks.
 ```
+
+#### conda packaging split
+
+We provide three different outputs in the conda package recipe:
+
+- `napari-base`: This is the package that ships the actual source and data. The runtime
+  requirements only include the basic functionality. This package is recommended as a
+  dependency for plugins and other projects. Most end users will prefer the `napari`
+  package, below, but this one may be useful for those wanting a more minimal
+  environment.
+- `napari`: This output is what most users want. It depends on `napari-base`, and adds optional yet
+  recommended dependencies for (performant) GUI usage, like the plugin manager or numba. Note that
+  the Qt backend is _not_ included.
+- `napari-menu`: Depends on `napari`, and ships the menuinst JSON file, in case you want a desktop
+  shortcut to start the application easily. This is included as part of the bundled installers for
+  convenience.
 
 ### conda packages in the `napari` channel
 

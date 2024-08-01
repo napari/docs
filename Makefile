@@ -22,12 +22,13 @@ clean:
 
 docs-install:
 	python -m pip install -qr $(current_dir)requirements.txt
+	python -m pip freeze
 
 prep-docs:
 	python $(docs_dir)/_scripts/prep_docs.py
 
 docs-build: prep-docs
-	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build  -WT --keep-going -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 docs-xvfb: prep-docs
 	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -M html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
@@ -43,7 +44,7 @@ html-live: prep-docs
 	sphinx-autobuild \
 		-b html \
 		docs/ \
-		docs/_build \
+		docs/_build/html \
 		-D plot_gallery=0 \
 		-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
 		--ignore $(docs_dir)"/_tags/*" \
@@ -55,10 +56,10 @@ html-live: prep-docs
 		$(SPHINXOPTS)
 
 html-noplot: clean prep-docs
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -D plot_gallery=0 -M html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 linkcheck-files:
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build ${FILES} -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build/html ${FILES} -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 fallback-videos:
 	for video in $(basename $(wildcard docs/_static/images/*.webm)); do \
