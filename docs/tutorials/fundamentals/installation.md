@@ -192,17 +192,6 @@ python -m pip install "napari[pyqt5]"    # for PyQt5
 python -m pip install "napari[pyside2]"  # for PySide2
 ```
 
-(note-m1)=
-```{note}
-
-For arm64 macOS machines (Apple Silicon), pre-compiled PySide2 packages
-([wheels](https://realpython.com/python-wheels/)) are not available on
-[PyPI](https://pypi.org), the repository used by `pip`, so trying to
-`pip install napari[pyside2]` or similar variant above will fail. However,
-you can install `pyside2` separately, for example from `conda-forge`,
-and then use `pip install napari`.
-```
-
 ```{note}
 If you switch backends, it's a good idea to `pip uninstall` the one
 you're not using.
