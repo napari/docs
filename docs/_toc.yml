@@ -11,6 +11,7 @@ subtrees:
           entries:
           - file: tutorials/fundamentals/quick_start
           - file: tutorials/fundamentals/installation
+          - file: tutorials/fundamentals/installation_bundle_conda
           - file: tutorials/fundamentals/getting_started
           - file: tutorials/fundamentals/viewer
           - file: guides/layers
@@ -180,6 +181,7 @@ subtrees:
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_5_1
           - file: release/release_0_5_0
           - file: release/release_0_4_19
           - file: release/release_0_4_18

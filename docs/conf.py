@@ -126,6 +126,8 @@ html_theme_options = {
         # The analytics script that is served by Plausible
         "plausible_analytics_url": "https://plausible.io/js/plausible.js",
     },
+    "footer_start": ["napari-footer-links"],
+    "footer_end": ["napari-copyright"],
 }
 
 html_context = {
@@ -229,7 +231,7 @@ nb_output_stderr = 'show'
 
 panels_add_bootstrap_css = False
 pygments_style = 'solarized-dark'
-suppress_warnings = ['myst.header', 'etoc.toctree']
+suppress_warnings = ['myst.header', 'etoc.toctree', 'config.cache']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -324,6 +326,7 @@ def add_google_calendar_secrets(app, docname, source):
     if docname == 'community/meeting_schedule':
         source[0] = source[0].replace('{API_KEY}', GOOGLE_CALENDAR_API_KEY)
 
+
 class FilterSphinxWarnings(logging.Filter):
     """Filter 'duplicate object description' warnings.
 
@@ -349,15 +352,18 @@ class FilterSphinxWarnings(logging.Filter):
             return False
         return True
 
+
 def qt_docstrings(app, what, name, obj, options, lines):
     """Only show first line of Qt threading docstrings.
 
     Avoids syntax errors since the Qt threading docstrings are written in
     Markdown, and injected into rst docstring automatically.
     """
-    if "WorkerBase" in name:
+    ignore_list = ["WorkerBase", "FunctionWorker", "GeneratorWorker"]
+    if any([f in name for f in ignore_list]):
         if len(lines) > 0:
             del lines[1:]
+
 
 def setup(app):
     """Set up docs build.
