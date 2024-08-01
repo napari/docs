@@ -5,10 +5,15 @@
 		"url": "https://napari.org/dev/"
 	},
 	{
-		"name": "stable (0.5.0)",
-		"version": "0.5.0",
+		"name": "stable (0.5.1)",
+		"version": "0.5.1",
 		"preferred": true,
 		"url": "https://napari.org/stable/"
+	},
+	{
+		"name": "0.5.0",
+		"version": "0.5.0",
+		"url": "https://napari.org/0.5.0/"
 	},
 	{
 		"name": "0.4.19",
