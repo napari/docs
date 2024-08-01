@@ -104,7 +104,7 @@ asv run -E existing -b ViewImageSuite
 
 ## Debugging a benchmark
 
-To simplify run a benchmark in a debugger, you can use the command:
+To run a benchmark in a debugger, you can use the command:
 
 ```bash
 python -m pdb napari/benchmarks/benchmark_file.py BenchmarkClass.benchmark_method
