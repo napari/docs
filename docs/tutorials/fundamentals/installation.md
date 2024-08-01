@@ -72,7 +72,7 @@ Choose one of the options below to install napari as a Python package.
 
 If you prefer to manage packages with conda, napari is available on the
 conda-forge channel. We also recommend this path for users of arm64 macOS machines
-(Apple Silicon, meaning a processor with a name like "M1"). You can install it with:
+([Apple Silicon](https://support.apple.com/en-us/116943), meaning a processor with a name like "M1"). You can install it with:
 
 ```sh
 conda install -c conda-forge napari pyqt
@@ -111,7 +111,7 @@ conda update -n base conda
 
 :::::{tab-item} From PyPI using pip
 
-napari can be installed from PyPI on most macOS (Intel x86), Linux, and Windows systems with Python
+napari can be installed from PyPI on most macOS, Linux, and Windows systems with Python
 {{ python_version_range }} using pip:
 
 ```sh
@@ -191,19 +191,9 @@ python -m pip install "napari[pyqt5]"    # for PyQt5
 python -m pip install "napari[pyside2]"  # for PySide2
 ```
 
+
 However, if you have a Mac with the newer arm64
 architecture (Apple Silicon), the installing pyside2 backend using `pip` is not supported. See [note on m1](note-m1).
-
-(note-m1)=
-```{note}
-
-For arm64 macOS machines (Apple Silicon), pre-compiled PySide2 packages
-([wheels](https://realpython.com/python-wheels/)) are not available on
-[PyPI](https://pypi.org), the repository used by `pip`, so trying to
-`pip install napari[pyside2]` or similar variant above will fail. However,
-you can install `pyside2` separately, for example from `conda-forge`,
-and then use `pip install napari`.
-```
 
 ```{note}
 If you switch backends, it's a good idea to `pip uninstall` the one
