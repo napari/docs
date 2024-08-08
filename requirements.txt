@@ -1,4 +1,4 @@
-sphinx<8
+sphinx<8  # break build docs because of warnings 
 sphinx-autobuild
 sphinx-tabs
 sphinx-tags
