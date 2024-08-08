@@ -1,3 +1,4 @@
+sphinx<8
 sphinx-autobuild
 sphinx-tabs
 sphinx-tags
