@@ -128,6 +128,7 @@ notation.)*
 
 *(See [Using constraints file](#using-constraints-files) for help installing older versions of napari)*
 
+*(See [Problem with `numpy<2` on macOS arm](#problem-with-numpy<2-on-macos-arm) for a known issue with `numpy` on macOS arm64 machines)*
 :::::
 
 :::::{tab-item} From the main branch on Github
@@ -222,6 +223,23 @@ For example, if you would like to install napari on python 3.10:
 ```sh
 pip install napari[all, pyqt] -c constraints_py3.10.txt
 ```
+
+### Problem with `numpy<2` on macOS arm
+
+We have detected that on macOS arm64 machines (Apple Silicon) there is a problem
+with the `numpy<2` dependency.
+If you have `numpy<2` installed from pypi it may happens that try of usage
+of some plugins will end with application crash with message like:
+```
+Job 1, 'python examples/surface_multi_t…' terminated by signal SIGBUS (Misaligned address error)
+```
+
+If you encounter this problem, there are few ways to solve it:
+
+1. Upgrade `numpy` to version at least 2.0.0
+2. Install `numpy` from conda-forge (so you need to setup your environment with conda)
+3. Install `numpy` from source (you can do it by running `pip install numpy --no-binary numpy`). This will require to have installed compilers on your machine. 
+
 
 ## Install as a bundled app
 
