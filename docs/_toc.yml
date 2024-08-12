@@ -181,6 +181,7 @@ subtrees:
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_5_2
           - file: release/release_0_5_1
           - file: release/release_0_5_0
           - file: release/release_0_4_19
