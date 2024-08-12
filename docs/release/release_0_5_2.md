@@ -1,17 +1,26 @@
 # napari 0.5.2
 
-We're happy to announce the release of napari 0.5.2!
-napari is a fast, interactive, multi-dimensional image viewer for Python.
-It's designed for browsing, annotating, and analyzing large multi-dimensional
-images. It's built on top of Qt (for the GUI), vispy (for performant GPU-based
-rendering), and the scientific Python stack (numpy, scipy).
+⚠️ *Note: these release notes are still in draft while 0.5.2 is in release
+candidate testing.* ⚠️
 
-For more information, examples, and documentation, please visit our website,
-https://napari.org.
+*Monday, Aug 12, 2024*
+
+We’re happy to announce the release of napari 0.5.2!
+
+napari is a fast, interactive, multi-dimensional image viewer for Python. It’s designed for exploring, annotating, and analyzing multi-dimensional images. It’s built on Qt (for the GUI), VisPy (for performant GPU-based rendering), and the scientific Python stack (NumPy, SciPy, and friends).
+
+For more information, examples, and documentation, please visit our website: https://napari.org/
 
 ## Highlights
 
-- Add option for smoother labels rendering in 3D ([#7100](https://github.com/napari/napari/pull/7100))
+This is primarily a bug-fix release, but we snuck a couple of new features in
+there, including smoother, prettier, better rendering of Labels volumes in 3D
+([#7100](https://github.com/napari/napari/pull/7100)) and the ability to
+display scale bar at a fixed length in world coordinates, rather than having it
+resize dynamically to take up a small part of the screen
+([#7167](https://github.com/napari/napari/pull/7100)).
+
+See below for the full list of changes!
 
 ## New Features
 
