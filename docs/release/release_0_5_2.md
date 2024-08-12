@@ -53,6 +53,7 @@ See below for the full list of changes!
 - Update installation notes about macOS arm processors and Qt5 backends  ([docs#471](https://github.com/napari/docs/pull/471))
 - Fix docs CI ([docs#472](https://github.com/napari/docs/pull/472))
 - Add October and July workshops from 2023 ([docs#473](https://github.com/napari/docs/pull/473))
+- Add 0.5.2 release notes ([docs#476](https://github.com/napari/docs/pull/476))
 
 ## Other Pull Requests
 
