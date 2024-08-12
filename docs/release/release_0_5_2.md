@@ -33,9 +33,6 @@ See below for the full list of changes!
 - Change shortcuts `_mark_conflicts` logic to always compare between strings representations of shortcuts ([#7124](https://github.com/napari/napari/pull/7124))
 - Allow easy call single benchmark ([#7145](https://github.com/napari/napari/pull/7145))
 
-## Performance
-
-
 ## Bug Fixes
 
 - [bugfix] update Point size slider on selection (current_size event) ([#7137](https://github.com/napari/napari/pull/7137))
@@ -45,15 +42,6 @@ See below for the full list of changes!
 - Emit highlight event only if selection changed ([#7162](https://github.com/napari/napari/pull/7162))
 - [Bugfix] Only import darkdetect when needed ([#7163](https://github.com/napari/napari/pull/7163))
 - FIX `QtViewer._open_files_dialog` handing of `stack` ([#7172](https://github.com/napari/napari/pull/7172))
-
-## API Changes
-
-
-## Deprecations
-
-
-## Build Tools
-
 
 ## Documentation
 
@@ -90,7 +78,6 @@ See below for the full list of changes!
 - MNT Parametrize `test_open_files_dialog` to check for `stack` `True` and `False` ([#7176](https://github.com/napari/napari/pull/7176))
 - Update `babel`, `hypothesis`, `lxml`, `numpydoc`, `tifffile` ([#7179](https://github.com/napari/napari/pull/7179))
 - Remove `post` identifier when determine deploy directory ([docs#467](https://github.com/napari/docs/pull/467))
-
 
 ## 12 authors added to this release (alphabetical)
 
