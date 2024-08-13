@@ -51,6 +51,7 @@ See below for the full list of changes!
 - Fix docs CI ([docs#472](https://github.com/napari/docs/pull/472))
 - Add October and July workshops from 2023 ([docs#473](https://github.com/napari/docs/pull/473))
 - Add 0.5.2 release notes ([docs#476](https://github.com/napari/docs/pull/476))
+- Remove warning and update date on 0.5.2 release notes ([docs#478](https://github.com/napari/docs/pull/478))
 
 ## Other Pull Requests
 
