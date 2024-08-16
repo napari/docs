@@ -117,10 +117,11 @@ on the `stdout` if any test fails.
 
 ## Update constraints files
 
-`napari` uses a set of constraints files to make sure all dependencies are compatible with each other.
-These files need to be updated regularly, especially before a release. You can find these files at
+`napari` uses a set of constraints files to prevent test failures due to dependency updates. This also allows for reproducible builds (see [](dev-installation)).
+These constraints files need to be updated at least weekly on Monday, and may also be triggered manually by a maintainer. You can find these files at
 [resources/constraints](https://github.com/napari/napari/tree/main/resources/constraints).
 
+To get updated constraints for a PR, use `@napari-bot update constraints` in a PR comment, then follow the instruction added by the bot to the conversation.
 
 ````{admonition} Example
 To update the docs constraints file, assuming you have the `napari/napari` repo and `napari/docs` repo cloned next to each other, you can install [uv](https://astral.sh/blog/uv) and run the following command from the root of the `napari` repo:
