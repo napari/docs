@@ -207,7 +207,8 @@ recommend that you use the following fixtures when needing a widget or
 
 #### qtbot
 
-If you need a `QApplication` to be running for your test, you can use the
+If you need a `QApplication` to be running for your test (e.g., if you need to
+instantiate a Qt object), we recommend that you use the
 [`qtbot`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot)
 fixture from `pytest-qt`, a napari testing dependency.
 
@@ -236,7 +237,7 @@ signals, etc...).  See the [`qtbot` docs](https://pytest-qt.readthedocs.io/en/la
 # the qtbot provides convenience methods like addWidget
 def test_something_else(qtbot):
     widget = QWidget()
-    qtbot.addWidget(widget)  # tell qtbot to clean this widget later
+    qtbot.addWidget(widget)  # qtbot ensures widget gets closed at the end of test
     ...
 ```
 
