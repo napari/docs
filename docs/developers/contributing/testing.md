@@ -207,12 +207,13 @@ recommend that you use the following fixtures when needing a widget or
 
 #### qapp and qtbot
 
-If you need a `QApplication` to be running for your test you can use the
+If you need to use any Qt related code in your test, you need to ensure that
+a `QApplication` is created. To to this we suggest you use the
 [`qapp`](https://pytest-qt.readthedocs.io/en/latest/reference.html#module-pytestqt.plugin)
 fixture from [`pytest-qt`](https://pytest-qt.readthedocs.io/en/latest/index.html),
 a napari testing dependency.
 
-If you need to instantiate a Qt object (e.g., a widget) for your test, we recommend
+If you need to instantiate a Qt GUI object (e.g., a widget) for your test, we recommend
 that you use the
 [`qtbot`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot)
 fixture. `qtbot`, which itself depends on `qapp` , allows you to test user input
@@ -239,11 +240,11 @@ def test_something():
 ````
 
 `qtbot` also provides a convenient
-[`addWidget`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot.addWidget)
-method that will ensure that the widget gets closed at the end of the test.
-This prevents leakage between tests.
-The
-[`waitUntil`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot.waitUntil) method is also useful to wait for a desired condition. The example below
+[`add_widget`/`addWidget`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot.addWidget)
+method that will ensure that the widget gets closed and properly cleaned at the end
+of the test. This can prevents segfaults when running several tests. The
+[`wait_until`/`waitUntil`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot.waitUntil)
+method is also useful to wait for a desired condition. The example below
 adds a `QtDims` widget, plays the `Dims` and checks that the `QtDim` widget
 is playing before we make any assertions.
 
