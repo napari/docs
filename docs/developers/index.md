@@ -19,7 +19,6 @@ napari has a [Code of Conduct](napari-coc) that should be honored by everyone wh
       - [Benchmarks](napari-benchmarks)
     - [Contributing documentation](contributing-docs)
   - [](architecture-index)
-  - [UI sections](./ui_sections/index)
 
 - **Core developer guides**: resources for core developers, including information for
   onboarding new core developers:

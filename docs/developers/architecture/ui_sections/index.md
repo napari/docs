@@ -1,3 +1,5 @@
+(ui-sections)=
+
 # UI sections
 
 Here you can find some diagrams and information related with the different
