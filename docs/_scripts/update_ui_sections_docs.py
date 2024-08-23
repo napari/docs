@@ -20,7 +20,7 @@ import seedir as sd
 # ---- General constants
 # Docs paths
 DOCS = Path(__file__).parent.parent
-UI_SECTIONS_DOCS_ROOT_PATH = DOCS / "developers" / "ui_sections"
+UI_SECTIONS_DOCS_ROOT_PATH = DOCS / "developers" / "architecture" / "ui_sections"
 
 # Napari and Napari UI sections modules paths
 NAPARI_ROOT_DIRECTORY_PATH = Path(qt_layer_list.__file__).parent.parent.parent
@@ -647,7 +647,6 @@ def main():
         "napari._qt._qapp_model._menus",
         "napari._qt._qapp_model.qactions",
         "napari._qt._qapp_model.qactions._view",
-        "napari._qt.dialogs",
         "napari._qt.menus._util",
         "napari._qt.utils",
         "napari._qt.widgets",
