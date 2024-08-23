@@ -178,10 +178,6 @@ subtrees:
           - file: naps/7-key-binding-dispatch
           - file: naps/8-telemetry
           - file: naps/9-multiple-canvases
-      - file: developers/documentation/index
-        subtrees:
-        - entries:
-          - file: developers/documentation/docs_template
       - file: developers/ui_sections/index
         subtrees:
         - entries:
