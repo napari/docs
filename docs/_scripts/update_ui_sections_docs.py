@@ -6,7 +6,7 @@ from pathlib import Path
 from napari._qt.containers import qt_layer_list
 from napari._qt.layer_controls import qt_layer_controls_container
 from napari._qt.widgets import qt_viewer_status_bar
-from napari._qt import menus
+from napari._qt._qapp_model import qactions
 from napari._qt import qt_viewer
 from napari._qt import dialogs
 from napari_console import qt_console
@@ -27,7 +27,7 @@ NAPARI_ROOT_DIRECTORY_PATH = Path(qt_layer_list.__file__).parent.parent.parent
 LAYER_LIST_MODULE_PATH = Path(qt_layer_list.__file__)
 LAYER_CONTROLS_MODULE_PATH = Path(qt_layer_controls_container.__file__)
 APPLICATION_STATUS_BAR_MODULE_PATH = Path(qt_viewer_status_bar.__file__)
-APPLICATION_MENUS_MODULE_PATH = Path(menus.__file__)
+APPLICATION_MENUS_MODULE_PATH = Path(qactions.__file__)
 VIEWER_MODULE_PATH = Path(qt_viewer.__file__)
 DIALOGS_MODULE_PATH = Path(dialogs.__file__)
 CONSOLE_MODULE_PATH = Path(qt_console.__file__)
@@ -558,7 +558,6 @@ def main():
         "*perf*",
         "*_qt.qt_event*",
         "--exclude-exact",
-        "napari._qt._qapp_model",
         "napari._qt.dialogs",
         "napari._qt.dialogs.qt_notification",
         "napari._qt.dialogs.confirm_close_dialog",
