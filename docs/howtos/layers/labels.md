@@ -76,7 +76,7 @@ layer:
 
   Use this tool to manually erase a label on the `labels layer`. Other layers
   will not be affected. The label eraser tool looks like this:
-  ![image: eraser tool](../../images/labels-layer-eraser.png)
+  ![image: eraser tool](../../images/layers-labels-eraser.png)
 
 * **Paintbrush**
 
@@ -476,7 +476,7 @@ and [zarr arrays](https://zarr.readthedocs.io/en/stable/api/core.html). A
 Because the `labels` layer subclasses the `image` layer, it inherits the great
 properties of the `image` layer, like supporting lazy loading and multiscale
 images for big data layers. For more information about both these concepts see
-the details in the [image layer guide](image-layer).
+the details in the [image layer guide](layers-image).
 
 ## Creating a new labels layer
 
