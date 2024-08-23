@@ -188,14 +188,6 @@ subtrees:
           - file: developers/ui_sections/viewer_ui
           - file: developers/ui_sections/console_ui
           - file: developers/ui_sections/dialogs_ui
-      - file: developers/translations
-      - file: developers/core_dev_guide
-      - file: developers/release
-      - file: developers/testing
-      - file: developers/profiling
-      - file: developers/benchmarks
-      - file: developers/packaging
-      - file: developers/maintenance
       - file: release/index
         subtrees:
         - entries:
