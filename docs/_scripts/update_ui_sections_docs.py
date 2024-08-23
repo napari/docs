@@ -29,8 +29,8 @@ LAYER_CONTROLS_MODULE_PATH = Path(qt_layer_controls_container.__file__)
 APPLICATION_STATUS_BAR_MODULE_PATH = Path(qt_viewer_status_bar.__file__)
 APPLICATION_MENUS_MODULE_PATH = Path(qactions.__file__)
 VIEWER_MODULE_PATH = Path(qt_viewer.__file__)
-DIALOGS_MODULE_PATH = Path(dialogs.__file__)
-CONSOLE_MODULE_PATH = Path(qt_console.__file__)
+DIALOGS_MODULE_PATH = Path(dialogs.__file__).parent
+CONSOLE_MODULE_PATH = Path(qt_console.__file__).parent
 
 
 # ---- Utility functions
@@ -635,6 +635,7 @@ def main():
         "--rankdir",
         "RL",
         "--exclude",
+        "*_tests*"
         "*experimental*",
         "*perf*",
         "*_qt.containers*",
@@ -661,7 +662,7 @@ def main():
         "napari._qt",
         "--reverse",
         "--max-bacon",
-        "5",
+        "4",
         "--show-deps",
         "--no-output",
     ]
@@ -698,6 +699,7 @@ def main():
         "napari.qt.threading",
         "--only",
         "napari",
+        "napari._qt"
         "napari_console",
         "napari_plugin_engine",
         "--reverse",
