@@ -389,7 +389,7 @@ non-compliant licensing schemes or bad packaging practices.
 
 * [ ] Add documentation about conda-forge in the release guide
 * [ ] Add documentation about conda-forge in the plugin developer guide
-* [ ] Ensure the cookiecutter template has some notion of conda packaging
+* [ ] Ensure the napari plugin template has some notion of conda packaging
 * [ ] Decide which packages need to be governed by the _napari pinnings_ metapackage
 
 ### Milestone 2: Building conda-based installers for napari
@@ -451,7 +451,7 @@ extended with different PRs:
 Some more work is needed to offer full support to the plugin ecosystem, as detailed below.
 #### Tasks
 
-* [X] Make the `Installer` class  [^napari-installer-classs] conda/mamba-aware
+* [X] Make the `Installer` class  [^napari-installer-class] conda/mamba-aware
 * [X] Populate the plugin listing with data obtained from the napari hub API [^napari-hub-api]
 * [ ] Detect which plugins can be installed directly from conda-forge and which ones need a
       combination of `conda` channels and PyPI sources
@@ -616,8 +616,6 @@ CC0+BY [^cc0by].
 [^napari-packaging-docs]: <https://napari.org/stable/developers/packaging.html>
 
 [^napari-hub-api]: https://api.napari-hub.org/plugins
-
-[^vscode-extensions-ui]: https://code.visualstudio.com/docs/editor/extension-marketplace
 
 [^in-app-update-pr]: https://github.com/napari/napari/pull/4422
 

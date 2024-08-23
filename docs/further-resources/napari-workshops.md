@@ -1,4 +1,4 @@
-(napari-workshops)=
+(workshops)=
 # napari workshops
 
 There have been many workshops and tutorials given about napari.
@@ -14,13 +14,27 @@ as a starting point.
 
 If you have organized a napari workshop and would like to see it featured here
 in this page, you can
-[send a Pull Request to the napari/docs repository](../developers/documentation/index.md)
+[send a Pull Request](contributing-docs-step-one) to the
+[napari/docs repository](https://github.com/napari/docs)
 or contact the core developers on [zulip chat](https://napari.zulipchat.com/login/).
 ```
 
 ## Workshops
 
 *Workshops are listed from newest to oldest.*
+* October 2023, Halfway to I2K
+  * [An updated general napari
+    workshop](https://kephale.github.io/napari-workshop-halfway-to-i2k/home.html). Note
+    that this workshop has the first workshop version of how to make your
+    interactive segmentation tool in napari.
+
+* September 2023
+  * [Plugin design](https://chanzuckerberg.github.io/napari-plugin-accel-workshops/workshops/design23.html) and [software development workshop](https://chanzuckerberg.github.io/napari-plugin-accel-workshops/workshops/softwaredev.html) for [napari plugin grantees](https://chanzuckerberg.com/rfa/napari-plugin-grants/).
+  * [Bioimage Analysis with Python and Napari (video lecture)](https://www.youtube.com/watch?v=QDS5t7oZH-c) at the [EMBO Practical Course for Advanced Methods in Bioimage Analysis](https://www.embl.org/about/info/course-and-conference-office/events/bia23-01/)  
+  
+* July 2023, Microscopy and Microanalysis 2023
+  * [napari for electron microscopy](https://kephale.github.io/napari-workshop-mandm-2023/home.html)
+
 * November 2022, napari foundation grant onboarding
   * [Getting started with napari plugin development slide deck](https://docs.google.com/presentation/d/15lrFRLPm9bfmU4hgcVwoduIJr5bqhoHo7ZeWLO6H_Us/edit?usp=sharing)
   * [Watch it here](https://drive.google.com/file/d/1IYDV-GTGEYh5j_tvBaWYEZ_tQXTqmJkr/view?usp=share_link)

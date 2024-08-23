@@ -4,8 +4,8 @@
 In this tutorial, we'll step through the fundamental concepts for building a
 **bare minimum** "hello napari" plugin from scratch.
 
-At the end, we'll point you to a "cookiecutter" template
-repository that helps automate the creation of new plugins, and adds a number
+At the end, we'll point you to a [napari plugin template
+repository][napari_plugin_template] that helps automate the creation of new plugins, and adds a number
 of conveniences for testing, maintaining, and deploying your plugin.
 
 ````{admonition} new plugin format!
@@ -26,7 +26,7 @@ Even though plugins don't necessarily need to list `napari` as a direct dependen
 [should not depend on a specific Qt backend](best-practices-no-qt-backend),
 you will need a working installation of napari in your active Python
 environment to use and test your plugin.
-See the [installation guide](installation) if this is your first time
+See the [installation guide](napari-installation) if this is your first time
 installing napari.
 
 
@@ -34,8 +34,8 @@ installing napari.
 
 Napari plugins are just Python packages. *Minimally*, they must:
 
-1. Include a static [plugin manifest](../technical_references/manifest) file that details the
-   [contributions](../technical_references/contributions) contained in the plugin.
+1. Include a static [plugin manifest](plugin-manifest) file that details the
+   [contributions](contributions-ref) contained in the plugin.
 2. Declare a `napari.manifest` [entry point][entry_points] that allows
    napari to detect the plugin at runtime.
 
@@ -178,7 +178,7 @@ autogeneration capabilities to turn this function into a widget)*
 ### Add a `napari.yaml` manifest
 
 
-If you haven't already, create an empty [plugin manifest](../technical_references/manifest) file at `napari_hello/napari.yaml`
+If you haven't already, create an empty [plugin manifest](plugin-manifest) file at `napari_hello/napari.yaml`
 We will use this file to tell napari:
 
 1. That our plugin contributes a [**command**](contributions-commands)
@@ -275,10 +275,10 @@ Once napari starts, select `napari-hello: Hello World` from the
 
 % ![hello-example](../images/hello.png)
 
-## Get going quickly with cookiecutter
+## Get going quickly with the napari plugin template
 
 Now that you've learned all of the critical steps for creating a plugin,
-you can use our [cookiecutter template repository][cookiecutter]
+you can use our [napari plugin template repository][napari_plugin_template]
 to get up and running quickly with each new plugin.
 This will ask you a few questions about your new plugin, and
 autogenerate a package structure much like the one above. It additionally
@@ -286,22 +286,23 @@ includes conveniences like testing, continuous integration, version
 management, and deployment hooks.
 
 ```sh
-python -m pip install cookiecutter
-cookiecutter https://github.com/napari/cookiecutter-napari-plugin
+python -m pip install copier jinja2-time
+python -m pip install npe2
+copier copy --trust https://github.com/napari/napari-plugin-template new-plugin-name
 ```
 
 ## Next Steps
 
 Plugins can do a lot more than just say hi!  You can see the complete list
 of available contributions and their fields in the
-[Contributions Reference](../technical_references/contributions), and learn more about each
-specific contribution type in the [Guides](../building_a_plugin/guides).
+[Contributions Reference](contributions-ref), and learn more about each
+specific contribution type in the [Guides](plugin-contribution-guides).
 
-Review the [Best Practices](../building_a_plugin/best_practices) when developing plugins and,
-when you're ready to share your plugin, see [Testing and Publishing](../testing_and_publishing/index).
+Review the [Best Practices](best-practices) when developing plugins and,
+when you're ready to share your plugin, see [Testing and Publishing](plugin-test-deploy).
 
 [miniconda]: https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html
 [python_env]: https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html#managing-python
 [editable_mode]: https://pip.pypa.io/en/stable/cli/pip_install/#editable-installs
-[cookiecutter]: https://github.com/napari/cookiecutter-napari-plugin
+[napari_plugin_template]: https://github.com/napari/napari-plugin-template
 [entry_points]: https://packaging.python.org/en/latest/specifications/entry-points/

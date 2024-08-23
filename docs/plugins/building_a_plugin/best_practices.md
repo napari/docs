@@ -168,6 +168,36 @@ class MyWidget(QWidget):
 (again, the second gen napari plugin engine will help improve this situation,
 but it's still a good idea!)
 
+(best_practice_napari_type)=
+
+## Don't require `napari` if not necessary
+
+It's good practice to not depend on `napari` if not strictly necessary.
+If you only use `napari` for type annotations, we recommend that you use strings
+instead of importing the types. This is called a
+[Forward reference](https://peps.python.org/pep-0484/#forward-references).
+For example, you can see in the
+[widget contribution guide](widgets-contribution-guide) that napari type annotations
+are strings and not imported.
+
+If you'd like to maintain IDE type support and autocompletion, you can
+still do so by hiding the napari imports inside of a {attr}`typing.TYPE_CHECKING`
+clause:
+
+```python
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+  import napari
+
+@magicgui
+def my_func(data: 'napari.types.ImageData') -> 'napari.types.ImageData':
+    ...
+```
+
+This will not require napari at runtime, but if it is installed in your
+development environment, you will still get all the type inference.
+
 ## Don't leave resources open
 
 It's always good practice to clean up resources like open file handles and
@@ -211,10 +241,12 @@ make sure that you test all of the various ways that your code might be called.
 
 See [Tips for testing napari plugins](plugin-testing-tips).
 
+(best-practices-test-coverage)=
+
 ### How to check test coverage?
 
-The [cookiecutter
-template](https://github.com/napari/cookiecutter-napari-plugin) is already set
+The [napari plugin
+template](https://github.com/napari/napari-plugin-template) is already set
 up to report test coverage, but you can test locally as well, using
 [pytest-cov](https://github.com/pytest-dev/pytest-cov)
 
@@ -227,8 +259,7 @@ up to report test coverage, but you can test locally as well, using
    [exempt specific
    lines](https://coverage.readthedocs.io/en/6.4.4/excluding.html#excluding-code-from-coverage-py)
    from coverage with the comment `# pragma: no cover`
-5. In the cookiecutter, coverage tests from github actions will be uploaded to
-   codecov.io
+5. In the napari plugin template, coverage tests from github actions will be uploaded to codecov.io
 
 ## Set style for additional windows in your plugin
 
@@ -306,11 +337,11 @@ change_style()
 
 ## Do not package your tests as a top-level package
 
-If you are using the [napari plugin cookiecutter template](https://github.com/napari/cookiecutter-napari-plugin),
+If you are using the [napari plugin template](https://github.com/napari/napari-plugin-template),
 your tests are already packaged in the correct way. No further action required!
 
 ```bash
-# project structure suggested by the cookiecutter template
+# project structure suggested by the napari plugin template
 src/
   my_package/
     _tests/
@@ -342,7 +373,7 @@ Most of the time, this is not wanted; e.g. do you want to do `import tests`? Pro
 Additionally, this unwanted behavior might cause installation issues with other projects.
 
 Ideally, you could change your project structure to follow the recommended skeleton followed in
-the cookiecutter template. Howevever, if that's unfeasible, you can fix this in the project metadata files.
+the napari plugin template. Howevever, if that's unfeasible, you can fix this in the project metadata files.
 
 You need to explicitly _exclude_ the top-level `tests` directory from the packaged contents:
 

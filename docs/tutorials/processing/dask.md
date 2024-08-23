@@ -1,3 +1,5 @@
+(dask-napari)=
+
 # Using Dask and napari to process & view large datasets
 
 Often in microscopy, multidimensional data is acquired and written to disk in many small files,
@@ -128,7 +130,18 @@ stack = imread("/path/to/experiment/*.tif")
 napari.view_image(stack, contrast_limits=[0,2000], multiscale=False)
 ```
 
-![napari viewer with image loaded as a dask array showing mCherry-H2B showing chromosome separation during mitosis. Collected on a lattice light sheet microscope.](../assets/tutorials/dask1.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/dask1.webm" type="video/webm" />
+    <source src="../../_static/images/dask1.mp4" type="video/mp4" />
+    <img src="../../_static/images/dask1.png"
+      title="Your browser does not support the video tag"
+      alt="napari viewer with image loaded as a dask array showing mCherry-H2B showing chromosome separation during mitosis. Collected on a lattice light sheet microscope."
+    >
+  </video>
+</figure>
+```
 
 ### **Side note regarding higher-dimensional datasets**
 
@@ -171,8 +184,50 @@ channels = [imread(file_pattern.format(i)) for i in range(nchannels)]
 stack = da.stack(channels)
 stack.shape  # (2, 600, 64, 256, 280)
 stack[0, 0].compute()  # incurs a single file read
-
 ```
+
+## A real example: high-resolution human brain imaging dataset
+
+In this example, we are going to view and process a high-resolution human brain
+imaging dataset. The dataset was obtained from [Dr. Brian Edlow's Lab](https://www.comarecoverylab.org/)
+for NeuroImaging of Coma and Consciousness, which is dedicated to promoting
+recovery of consciousness in people with severe brain injuries. This dataset is
+a 100 micron resolution magnetic resonance imaging (MRI) scan of an ex vivo
+human brain specimen. The brain specimen was donated by a [58-year-old woman](https://www.youtube.com/watch?v=Q-9jzBkoNuI) who had no history of neurological disease and died of non-neurological causes.
+This dataset was originally described in [Edlow, B.L., Mareyam, A., Horn, A. _et al._ 7 Tesla MRI of the ex vivo human brain at 100 micron resolution. Sci Data 6, 244 (2019)](https://doi.org/10.1038/s41597-019-0254-8).
+
+```{admonition} Getting the data
+
+You can download the dataset from [here](https://datadryad.org/stash/dataset/doi:10.5061/dryad.119f80q).
+In this example we use the [FLASH25_100um_TIFF_Axial data](https://datadryad.org/stash/downloads/file_stream/182482). This link will download a ~2 Gb `.zip` file  and after extracting the compressed data set,
+the `.tiff` images can be found in the `SYNTHESIZED_TIFF_Images_Raw/Synthesized_FLASH25_100um_TIFF_Axial_Images/`
+directory. The dataset is 3.69 GB unzipped.
+```
+
+While we could use plain `dask` through `delayed`, as we have shown above, we
+will [make our lives easier](#make-your-life-easier-with-dask-image) here and use
+`dask-image`.
+
+Using [dask_image.imread](https://image.dask.org/en/latest/dask_image.imread.html#module-dask_image.imread),
+loading the entire dataset to view in napari is straightforward.
+
+``` python
+import napari
+from dask_image.imread import imread
+
+# Load images
+images = imread(
+    'SYNTHESIZED_TIFF_Images_Raw/Synthesized_FLASH25_100um_TIFF_Axial_Images/Synthesized_FLASH25_Axial_*.tiff'
+    )
+napari.view_image(images)
+
+if __name__ == '__main__':
+    napari.run()
+```
+
+__And here's the final output!__
+
+![napari viewer showing the brain dataset as slices, shown each at a time while a slider moves through the first axis of the data.](https://media.giphy.com/media/LO3gPbCs5AxApjAehW/giphy.gif)
 
 ## Processing data with `dask.array.map_blocks`
 
@@ -248,7 +303,18 @@ but it's surprisingly usable,
 and allows you to preview the result of a relatively complex processing pipeline *on-the-fly*,
 for arbitrary timepoints/channels, while storing *only* the raw data on disk.
 
-![napari viewer showing the same dataset as the previous video, demonstrating on-the-fly processing of a dask array with sliding through dimensions still performing reasonably well considering the amount of processing going on as you slice.](../assets/tutorials/dask2.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/dask2.webm" type="video/webm" />
+    <source src="../../_static/images/dask2.mp4" type="video/mp4" />
+    <img src="../../_static/images/dask2.png"
+      title="Your browser does not support the video tag"
+      alt="napari viewer showing the same dataset as the previous video, demonstrating on-the-fly processing of a dask array with sliding through dimensions still performing reasonably well considering the amount of processing going on as you slice."
+    >
+  </video>
+</figure>
+```
 
 This workflow is very much patterned after [another great post by John Kirkham, Matthew Rocklin, and Matthew McCormick](https://blog.dask.org/2019/08/09/image-itk)
 that describes a similar image processing pipeline using [ITK](https://itk.org/).

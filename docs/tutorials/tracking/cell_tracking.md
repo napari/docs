@@ -1,6 +1,6 @@
 # Single cell tracking with napari
 
-In this application note, we will use napari (requires version 0.4.0 or greater) to visualize single cell tracking data using the `Tracks` layer. For an overview of the `Tracks` layer, please see the [tracks layer guide](../../howtos/layers/tracks).
+In this application note, we will use napari (requires version 0.4.0 or greater) to visualize single cell tracking data using the `Tracks` layer. For an overview of the `Tracks` layer, please see the [tracks layer guide](layers-tracks).
 
 This application note covers two examples:
 1. Visualization of a cell tracking challenge dataset
@@ -48,7 +48,7 @@ def load_image(idx: int):
 stack = np.asarray([load_image(i) for i in range(NUM_IMAGES)])
 ```
 
-For each image in the time-lapse sequence, we will now extract the unique track label (`track_id`), centroid and timestamp in order to create the track data we will pass to the `Tracks` layer. For more information on the format of the track data, please see the "tracks data" section of the [tracks layer guide](../../howtos/layers/tracks).
+For each image in the time-lapse sequence, we will now extract the unique track label (`track_id`), centroid and timestamp in order to create the track data we will pass to the `Tracks` layer. For more information on the format of the track data, please see the "tracks data" section of the [tracks layer guide](layers-tracks).
 
 ```python
 def regionprops_plus_time(idx):
@@ -92,7 +92,7 @@ napari.run()
 ### Calculating the graph using the lineage information
 
 The `Tracks` layer can also be used to visualize a track 'graph' using the additional keyword argument `graph`. The `graph`  represents associations between tracks, by defining the
-mapping between a `track_id` and the parents of the track. This graph can be useful in single cell tracking to understand the lineage of cells over multiple cell division events. For more information on the format of the track `graph`, please see the "tracks graph" section of the [tracks layer guide](../../howtos/layers/tracks).
+mapping between a `track_id` and the parents of the track. This graph can be useful in single cell tracking to understand the lineage of cells over multiple cell division events. For more information on the format of the track `graph`, please see the "tracks graph" section of the [tracks layer guide](layers-tracks).
 
 In the cell tracking challenge dataset, cell lineage information is stored in a text file `man_track.txt` in the following format:
 
@@ -145,9 +145,9 @@ def root(node: int):
 roots = {k: root(k) for k in full_graph.keys()}
 ```
 
-The `Tracks` layer enables the vertices of the tracks to be colored by user specified properties. Here, we will create a property which represents the `root_id` of each tree, so that cells with a common ancestor are colored the same:
+The `Tracks` layer enables the vertices of the tracks to be colored by user specified features. Here, we will create a feature which represents the `root_id` of each tree, so that cells with a common ancestor are colored the same:
 ```python
-properties = {'root_id': [roots[idx] for idx in data[:, 0]]}
+features = {'root_id': [roots[idx] for idx in data[:, 0]]}
 ```
 
 ### Visualizing the tracks with napari
@@ -172,11 +172,22 @@ We can now visualize the full, linked tracks in napari!
 ```python
 viewer = napari.Viewer()
 viewer.add_image(timelapse, scale=SCALE, name='Fluo-N3DH-CE')
-viewer.add_tracks(data, properties=properties, graph=graph, scale=SCALE, name='tracks')
+viewer.add_tracks(data, features=features, graph=graph, scale=SCALE, name='tracks')
 napari.run()
 ```
 
-![napari viewer with fluorescence imaging cells image layer and tracks layer loaded. The dimension slider under the canvas is at 0.](../assets/tutorials/tracks_isbi.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/tracks_isbi.webm" type="video/webm" />
+    <source src="../../_static/images/tracks_isbi.mp4" type="video/mp4" />
+    <img src="../../_static/images/tracks_isbi.png"
+      title="Your browser does not support the video tag"
+      alt="napari viewer with fluorescence imaging cells image layer and tracks layer loaded. The dimension slider under the canvas is at 0."
+    >
+  </video>
+</figure>
+```
 
 ---
 
@@ -212,18 +223,18 @@ with btrack.BayesianTracker() as tracker:
     tracker.optimize()
 
     # get the tracks in a format for napari visualization
-    data, properties, graph = tracker.to_napari(ndim=2)
+    data, features, graph = tracker.to_napari(ndim=2)
 ```
 
 We set the configuration of the tracker using a configuration file using the `.configure_from_file()` method. An example configuration file can be found [here](https://github.com/quantumjot/BayesianTracker/blob/main/models/cell_config.json).
 
 Next, the objects are linked into tracks using the `.track_interactive()` method. The `step_size` argument specifies how many steps are taken before reporting the tracking statistics. The `.optimize()` method then performs a global optimization on the dataset and creates lineage trees automatically.
 
-Finally, the `.to_napari()` method returns the track vertices, track properties and graph in a format that can be directly visualized using the napari `Tracks` layer:
+Finally, the `.to_napari()` method returns the track vertices, track features and graph in a format that can be directly visualized using the napari `Tracks` layer:
 
 ```python
 viewer = napari.Viewer()
-viewer.add_tracks(data, properties=properties, graph=graph)
+viewer.add_tracks(data, features=features, graph=graph)
 napari.run()
 ```
 

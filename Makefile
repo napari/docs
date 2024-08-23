@@ -22,15 +22,16 @@ clean:
 
 docs-install:
 	python -m pip install -qr $(current_dir)requirements.txt
+	python -m pip freeze
 
 prep-docs:
 	python $(docs_dir)/_scripts/prep_docs.py
 
 docs-build: prep-docs
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build  -WT --keep-going -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 docs-xvfb: prep-docs
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -M html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 docs: clean docs-install docs-build
 
@@ -43,7 +44,7 @@ html-live: prep-docs
 	sphinx-autobuild \
 		-b html \
 		docs/ \
-		docs/_build \
+		docs/_build/html \
 		-D plot_gallery=0 \
 		-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
 		--ignore $(docs_dir)"/_tags/*" \
@@ -55,7 +56,19 @@ html-live: prep-docs
 		$(SPHINXOPTS)
 
 html-noplot: clean prep-docs
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -D plot_gallery=0 -b html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 linkcheck-files:
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build ${FILES} -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build/html ${FILES} -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+
+fallback-videos:
+	for video in $(basename $(wildcard docs/_static/images/*.webm)); do \
+		if [ -a $$video.mp4 ]; then \
+			echo "skipping $$video.mp4"; \
+			continue; \
+		fi; \
+		ffmpeg -i $$video.webm -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -preset slow -crf 22 -c:a aac -b:a 128k -strict -2 -y $$video.mp4; \
+	done
+
+fallback-videos-clean:
+	rm -f docs/_static/images/*.mp4

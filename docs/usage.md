@@ -1,3 +1,5 @@
+(usage)=
+
 # Usage
 
 napari leverages the power of Python to enable fast and interactive browsing,
@@ -12,7 +14,7 @@ If you are new to napari, check out the **napari quickstart tutorial**.
 :::
 
 :::{grid-item-card} Tutorials
-:link: napari-tutorials
+:link: tutorials
 :link-type: ref
 
 The tutorials are meant to help you understand how to use
@@ -53,7 +55,7 @@ Examples of napari usage, to be downloaded as Python scripts or Jupyter notebook
 :::
 
 :::{grid-item-card} napari workshops
-:link: napari-workshops
+:link: workshops
 :link-type: ref
 
 A list of information and materials for workshops given about napari.
