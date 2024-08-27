@@ -242,6 +242,15 @@ def generate_mermaid_diagram(
         mermaid_diagram_content += "\tend\n"
         mermaid_diagram_content += f"\tclass module.{subgraph_key} subgraphs\n"
 
+    if external_nodes:
+        mermaid_diagram_content += (
+            "\tsubgraph module.external[external]\n"
+        )
+        for external_node in external_nodes:
+            mermaid_diagram_content += f"\t\t {external_node}\n"
+        mermaid_diagram_content += "\tend\n"
+        mermaid_diagram_content += "\tclass module.external subgraphs\n"
+
     if subgraphs:
         mermaid_diagram_content += (
             "\tclassDef subgraphs fill:white,strock:black,color:black;"
@@ -612,34 +621,42 @@ def main():
     dialogs_pydeps_args = [
         f"{DIALOGS_MODULE_PATH}",
         "--exclude",
-        "*_tests*"
+        "*test*",
+        "*containers*",
         "*experimental*",
+        "*layer_controls*",
         "*perf*",
-        "*_qt.containers*",
-        "*_qt.menus.debug*",
-        "*_qt.menus.window_menu*",
-        "*_qt.layer_controls*",
-        "*_qt.qt_event*",
+        "*thread*",
+        "*qactions._window",
+        "*qactions._layerlist_context",
+        "*qactions._layers_actions",
+        "*qactions._view",
+        "*qactions._toggle_action",
+        "*splash*",
+        "*theme*",
+        "*keyboard*",
+        "*popup*",
+        "*event*",
+        "*dock_widget*",
+        "*welcome*",
+        "*viewer_buttons",
+        "*mode_buttons",
+        "*dict_table",
+        "*slider_compat",
+        "*size_preview",
+        "*darkdetect*",
+        "*resources*",
         "--exclude-exact",
-        "napari._qt._qapp_model",
-        "napari._qt._qapp_model._menus",
-        "napari._qt._qapp_model.qactions",
-        "napari._qt._qapp_model.qactions._view",
-        "napari._qt.menus._util",
-        "napari._qt.utils",
+        "napari._qt.dialogs",
+        "napari._vendor",
+        "napari._qt",
         "napari._qt.widgets",
-        "napari._qt.widgets.qt_dims",
-        "napari._qt.widgets.qt_dims_sorter",
-        "napari._qt.widgets.qt_splash_screen",
-        "napari._qt.widgets.qt_spinbox",
-        "napari._qt.widgets.qt_viewer_buttons",
-        "napari._qt.widgets.qt_viewer_dock_widget",
-        "napari._qt.widgets.qt_welcome",
+        "napari._qt._qapp_model",
+        "napari._qt._qapp_model.injection",
+        "napari._qt._qplugins",
         "--only",
         "napari._qt",
-        "--reverse",
-        "--max-bacon",
-        "4",
+        "napari._vendor",
         "--show-deps",
         "--no-output",
     ]
