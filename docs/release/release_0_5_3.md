@@ -50,6 +50,7 @@ changes!
 
 - Fix missing extent cache invalidation ([#7015](https://github.com/napari/napari/pull/7015))
 - Calculate status in a separate thread ([#7146](https://github.com/napari/napari/pull/7146))
+- If a shape is convex, use faster fan triangulation ([#7214](https://github.com/napari/napari/pull/7214))
 - Speed up highlighting in the Shapes layer ([#7223](https://github.com/napari/napari/pull/7223))
 
 ## Bug Fixes
