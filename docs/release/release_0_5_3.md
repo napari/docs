@@ -39,10 +39,6 @@ have a couple of *excellent* user-facing improvements:
 Thanks as always to all our contributors, and read on for the full list of
 changes!
 
-
-## New Features
-
-
 ## Improvements
 
 - [enh] Add a keybinding for rotating layer and alt-click on Transpose button ([#7052](https://github.com/napari/napari/pull/7052))
@@ -68,15 +64,6 @@ changes!
 - Bugfix: Revert "Emit highlight event only if selection changed (#7162)" ([#7201](https://github.com/napari/napari/pull/7201))
 - Use new DOI for surface example ([#7222](https://github.com/napari/napari/pull/7222))
 
-## API Changes
-
-
-## Deprecations
-
-
-## Build Tools
-
-
 ## Documentation
 
 - Use new DOI for surface example ([#7222](https://github.com/napari/napari/pull/7222))
@@ -97,7 +84,6 @@ changes!
 - [pre-commit.ci] pre-commit autoupdate ([#7216](https://github.com/napari/napari/pull/7216))
 - Fix example by connect missing event ([#7218](https://github.com/napari/napari/pull/7218))
 - Improve deploy workflow by use deploy directory from workflow dispatch input  ([docs#477](https://github.com/napari/docs/pull/477))
-
 
 ## 9 authors added to this release (alphabetical)
 
