@@ -43,10 +43,8 @@ changes!
 
 - [enh] Add a keybinding for rotating layer and alt-click on Transpose button ([#7052](https://github.com/napari/napari/pull/7052))
 - enable 3D picking with perspective camera ([#7090](https://github.com/napari/napari/pull/7090))
-- Calculate status in a separate thread ([#7146](https://github.com/napari/napari/pull/7146))
 - [UX/UI] Update layer controls tooltips ([#7153](https://github.com/napari/napari/pull/7153))
 - Update labels_with_features example for #7025 ([#7199](https://github.com/napari/napari/pull/7199))
-- Speed up highlighting in the Shapes layer ([#7223](https://github.com/napari/napari/pull/7223))
 
 ## Performance
 
