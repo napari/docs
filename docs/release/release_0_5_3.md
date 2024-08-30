@@ -62,6 +62,7 @@ changes!
 - Add `napari.benchmarks.util` to sdist and wheel to fix balls example data ([#7186](https://github.com/napari/napari/pull/7186))
 - Bugfix: Revert "Emit highlight event only if selection changed (#7162)" ([#7201](https://github.com/napari/napari/pull/7201))
 - Use new DOI for surface example ([#7222](https://github.com/napari/napari/pull/7222))
+-  Fix convex polygon detection ([#7228](https://github.com/napari/napari/pull/7228))
 
 ## Documentation
 
