@@ -1,6 +1,6 @@
 # napari 0.5.3
 
-*Thursday, Aug 29, 2024*
+*Friday, Aug 30, 2024*
 
 We’re happy to announce the release of napari 0.5.3!
 
