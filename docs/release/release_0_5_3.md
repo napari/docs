@@ -68,6 +68,7 @@ changes!
 
 - Use new DOI for surface example ([#7222](https://github.com/napari/napari/pull/7222))
 - Add 0.5.3 release notes ([docs#485](https://github.com/napari/docs/pull/485))
+- Update 0.5.3 release notes with new bugfix ([docs#487](https://github.com/napari/docs/pull/487))
 - Add short guide on updating constraints files ([docs#460](https://github.com/napari/docs/pull/460))
 - Add 0.5.2 to the version switcher ([docs#479](https://github.com/napari/docs/pull/479))
 - Minor improvement to `qtbot` testing section ([docs#481](https://github.com/napari/docs/pull/481))
