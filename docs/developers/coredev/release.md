@@ -2,52 +2,50 @@
 
 # Release guide
 
-This guide documents `napari`'s release process.
-Currently, it only handles distribution, but as the project matures,
-it will include generating release notes, documentation, etc.
+This guide documents `napari`'s release process. Most required tools mentioned here are in https://github.com/napari/napari-release-tools
 
 # Timeline
-New versions of `napari` will be released every two months. The first release candidate will be available one week prior to release for testing purposes. Multiple release candidates may become available during the week prior to release. Upcoming releases can be found in our public calendar.
+New versions of `napari` will be released approximately every two months. The first release candidate will be available one week prior to release for testing purposes. Multiple release candidates may become available during the week prior to release.
 
 The latest release candidate can be installed with
 
 `python -m pip install --pre napari`
 
 # Release management
-The release will be coordinated by a release manager whose responsibilities include...
+The release will be coordinated by a release manager whose responsibilities include the following:
 
 ## Two weeks before release (one week before release candidate)
-- Look through currently open PRs and get a sense of what would be good to merge before the first release candidate
-- Ensure `conda-recipe/meta.yaml` in `napari/packaging` is up-to-date (e.g. `run` dependencies match `setup.cfg` requirements).
-- Create a zulip thread in the release channel letting people know the release candidate is coming and pointing out PRs that would be nice to merge before release
+- Look through currently open PRs and get a sense of what would be good to merge before the first release candidate. Set milestones appropriately;
+- Ensure `conda-recipe/meta.yaml` in `napari/packaging` is up-to-date (e.g. `run` dependencies match `setup.cfg` requirements);
+- Create a zulip thread in [the release channel](https://napari.zulipchat.com/#narrow/stream/215289-release) letting people know the release candidate is coming and pointing out PRs that would be nice to merge before release.
 
 At this stage, bug fixes and features that are close to landing should be prioritized. The release manager will follow up with PR authors, reviewing and merging as needed.
 
 ## Nine days before release (two days before release candidate)
-- Generate release notes with the script in the release folder
-- Fill in the release highlights and make a PR with the release notes
+- Generate release notes with the [`generate_release_notes.py` script from napari/napari-release-tools](https://github.com/napari/napari-release-tools/blob/main/generate_release_notes.py);
+- Fill in the release highlights and make a PR with the release notes, making sure to add the new document to the [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml).
 
 At this point the release manager should ideally be the only person merging PRs on the repo for the next week.
 
 ## One week before release
-- Add any recently merged PRs to release notes
-- Merge release notes
-- Make the release candidate
-- Announce to release stream on zulip that the first release candidate is available for testing
+- Add any recently merged PRs to release notes;
+- Merge release notes;
+- Make the release candidate;
+- Announce to release stream on zulip that the first release candidate is available for testing.
 
 ## The week before release
-- Merge any PRs and update release notes accordingly
-- Make new release candidates as necessary and announce them on zulip
+- Merge any PRs and update release notes accordingly;
+- Make new release candidates as necessary and announce them on zulip.
 
 At this stage PRs merged should focus mainly on regressions and bug fixes. New features should wait until after release.
 
 ## The day of release
-- make sure final rc has been tested
-- ensure all PRs have been added to release notes and then make release and announce on zulip
+- Make sure final rc has been tested;
+- Ensure all PRs have been added to release notes and then make release and announce on zulip.
 
 # Release process
 
-Additional `release` dependencies (`python -m pip install -e .[release]`) are required to complete the release process.
+Additional `release` dependencies (`python -m pip install -e .[release]`, from the `napari/napari` root folder) are required to complete the release process.
 
 > [`MANIFEST.in`](https://github.com/napari/napari/blob/main/MANIFEST.in) determines which non-Python files are included.
 > Make sure to check that all necessary ones are listed before beginning the release process.
@@ -70,15 +68,19 @@ release though we need to generate the release notes.
 
 ## Generating release notes
 
-1. Make a list of merges, contributors, and reviewers by running
-   ``python docs/release/generate_release_notes.py -h`` and following that file's usage.
+1. Grab the `generate_release_notes.py` script from the
+   [napari/napari-release-tools](https://github.com/napari/napari-release-tools)
+   repo. Make a list of merges, contributors, and reviewers by running
+   ``python generate_release_notes.py -h`` and following that file's usage.
    For each release generate the list to include everything since the last release for which there
-   are release notes (which should just be the last release). For example making the release notes
-   for the `0.2.1` release can be done as follows:
+   are release notes (which should just be the last release). To substitute GitHub handles for author names, use the `--correction-file` option.
+
+   For example, to create release notes for the `0.5.4` release, use:
 
    ```bash
-   python docs/release/generate_release_notes.py v0.2.0 main --version 0.2.1 | tee docs/release/release_0_2_1.md
+   python generate_release_notes.py 0.5.4 --target-directory=/path/to/docs/release/ --correction-file /path/to/name_corrections.yaml
    ```
+   See [name_corrections.yaml](https://github.com/napari/napari-release-tools/blob/main/name_corrections.yaml).
 
 2. Scan the PR titles for highlights, deprecations, API changes,
    and bugfixes, and mention these in the relevant sections of the notes.
