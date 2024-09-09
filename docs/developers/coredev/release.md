@@ -97,8 +97,6 @@ release though we need to generate the release notes.
 
 4. Make and merge a PR with these release notes before moving onto the next steps.
 
-
-
 ## Update constraints files
 
 `napari` uses a set of constraints files to prevent test failures due to dependency updates. This also allows for reproducible builds (see [](dev-installation)).
@@ -229,3 +227,23 @@ For more details, follow the instructions for
 ["Mark packages as broken on conda-forge"](https://github.com/conda-forge/admin-requests#mark-packages-as-broken-on-conda-forge).
 
 Please make sure a correct build for the problematic release is available before (or shortly after) the `admin-requests` PR is merged!
+
+## Post release: update the documentation
+
+The [napari docs](https://napari.org) are versioned, meaning that each release has its own documentation, selected throught the version switcher dropdown. Once you tag a new version in the `napari/napari` repo, the [`build_and_deploy.yml` workflow](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml) will automatically create a new folder for this version number in the `gh-pages` branch of the `napari/napari.github.io` repo.
+
+Next, you need to do the following:
+
+1. In the `napari/napari.github.io` repo, update the `stable` symlink in the `gh-pages` branch to point to the new version. This can be done by running the following commands in the `napari/napari.github.io` repo:
+
+```bash
+git checkout gh-pages
+rm stable
+ln -s X.Y.Z stable
+git add stable
+git commit -m "Update stable symlink to X.Y.Z"
+git push
+```
+
+2. In the `napari/docs` repo, update the [`docs/_static/version_switcher.json` file](https://github.com/napari/docs/blob/main/docs/_static/version_switcher.json) so that `stable` points to the right version. The active version switcher is read from the file in the `dev` folder, so this can be done as the last step in the process.
+

@@ -10,7 +10,6 @@ Because of the security GitHub policy, the commits and pull requests created by 
 will not trigger another action's runs. The possible workaround for this is to close and then reopen the pull request.
 But this requires additional actions by core devs.
 
-
 To get automatically running workflows, we need to create a personal access token (PAT) and add it to the repository secrets.
 For security reasons, it is recommended to create a [fine-grained token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-fine-grained-personal-access-token). It allows us to provide only the required permissions.
 
