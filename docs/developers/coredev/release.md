@@ -5,7 +5,10 @@
 This guide documents `napari`'s release process. Most required tools mentioned here are in https://github.com/napari/napari-release-tools
 
 # Timeline
-New versions of `napari` will be released approximately every two months. The first release candidate will be available one week prior to release for testing purposes. Multiple release candidates may become available during the week prior to release.
+
+Currently, we are releasing a new napari version every 2-3 weeks. Release candidates are made available as a reasonableness check for 1-24h before the full release is published: since the release cadence is so high, any new bugs can be quickly rectified, and more quickly identified by making a full release.
+
+When major API changes and deprecations happen, we will provide longer release candidate cycles to ensure proper testing by the community.
 
 The latest release candidate can be installed with
 
@@ -22,8 +25,10 @@ The release will be coordinated by a release manager whose responsibilities incl
 At this stage, bug fixes and features that are close to landing should be prioritized. The release manager will follow up with PR authors, reviewing and merging as needed.
 
 ## Nine days before release (two days before release candidate)
+
+- Add a header and highlights section to the [`additional notes`](https://github.com/napari/napari-release-tools/tree/main/additional_notes) folder for the given release. Use the [highlight label](https://github.com/napari/napari/pulls?q=sort%3Aupdated-desc+is%3Apr+is%3Aopen+label%3Ahighlight) for the relevant milestone to note which PRs to comment on.
 - Generate release notes with the [`generate_release_notes.py` script from napari/napari-release-tools](https://github.com/napari/napari-release-tools/blob/main/generate_release_notes.py);
-- Fill in the release highlights and make a PR with the release notes, making sure to add the new document to the [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml).
+- make a PR with the release notes, making sure to add the new document to the [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml). See an example of such a PR: https://github.com/napari/docs/pull/485
 
 At this point the release manager should ideally be the only person merging PRs on the repo for the next week.
 
@@ -92,30 +97,7 @@ release though we need to generate the release notes.
 
 4. Make and merge a PR with these release notes before moving onto the next steps.
 
-## Update translation strings
 
-As new code is included in the codebase, some of the strings that need to be translated might
-not yet be using the `trans` methods. To help keep the codebase up to date in terms
-of translations we added a test script that
-[runs daily on CI](https://github.com/napari/napari/actions/workflows/test_translations.yml)
-and can be also run locally to ensure that a release includes the most up to date translatable
-strings.
-
-The test script is available on the `/tools/test_strings.py` file and it relies on an additional
-file `/tools/strings_list.py` to include strings to skip safely from translation.
-
-The test checks:
-
-  1. **Untranslated strings**: not using the `trans` methods.
-  2. **Outdated skip strings**: should no longer be included in the `/tools/strings_list.py` file.
-  3. **Translation usage errors**: where translation strings may be missing interpolation variables.
-
-You can execute tests locally from the repository root, and follow the instructions printed
-on the `stdout` if any test fails.
-
-  ```bash
-  pytest tools/ --tb=short
-  ```
 
 ## Update constraints files
 
