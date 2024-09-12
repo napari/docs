@@ -175,6 +175,7 @@ git push upstream --tags
 The packages on `conda-forge` are not controlled directly by our repositories.
 Instead, they are governed by the `conda-forge/napari-feedstock` repository.
 The essential actions are automated, but there are a few maintenance notes we need to have in mind.
+For a more complete description of the napari packaging infrastructure, see {ref}`napari-packaging`.
 
 ### New releases
 
@@ -186,15 +187,16 @@ Before merging, please pay special attention to these aspects:
 
 - Version string has been correctly updated. The build number should have been reset to `0` now.
 - The CI passes correctly. Do check the logs, especially the test section (search for `TEST START`).
-- The `run` dependencies match the runtime requirements of the PyPI release (listed in `setup.cfg`).
+- The `run` dependencies in `recipes/meta.yaml` match the runtime requirements of the PyPI release (listed in `pyproject.toml`).
   Watch for modified version constraints, as well as added or removed packages.
   Note that the `conda-forge` packages include some more dependencies for convenience,
-  so you might need to check the `extras` sections in `setup.cfg`.
+  so you might need to check the `optional` sections in `pyproject.toml`.
 
 ```{note}
 See these PRs for examples on previous conda-forge releases:
 - [napari v0.4.16](https://github.com/conda-forge/napari-feedstock/pull/41)
 - [napari v0.4.17](https://github.com/conda-forge/napari-feedstock/pull/42)
+- [napari v0.5.3](https://github.com/conda-forge/napari-feedstock/pull/68)
 ```
 
 ### Patch dependencies of previous releases
