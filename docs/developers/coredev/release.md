@@ -170,6 +170,8 @@ git tag vX.Y.Z main
 git push upstream --tags
 ```
 
+Once the new tag is pushed, the [`make_release.yml` workflow](https://github.com/napari/napari/blob/main/.github/workflows/make_release.yml) will be triggered, using the [PyPI Publish action](https://github.com/pypa/gh-action-pypi-publish) to publish the new napari version to PyPI using [Trusted Publishers](https://docs.pypi.org/trusted-publishers/).
+
 ## conda-forge packages
 
 The packages on `conda-forge` are not controlled directly by our repositories.
