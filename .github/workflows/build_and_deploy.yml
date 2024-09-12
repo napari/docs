@@ -69,6 +69,8 @@ jobs:
           python -c 'import napari.layers; print(napari.layers.__doc__)'
 
       - name: Create fallback videos
+        # Only needed for deployment, so should **NOT** be in
+        # napari/napari/.github/workflows/build_docs.yml
         run: |
           sudo apt-get update && sudo apt-get install -y ffmpeg
           cd docs
@@ -109,13 +111,53 @@ jobs:
           # Downloads to '/home/runner/work/docs/docs/html'
           path: html
 
-      - name: Deploy Docs
+      - name: Deploy Dev Docs
         if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (startsWith(github.ref, 'refs/tags/v') || startsWith(github.ref, 'refs/heads/main'))
         uses: peaceiris/actions-gh-pages@v3
         with:
+          # Note that GITHUB_TOKEN has no permission to access to external repositories.
+          # When you use deploy_key, set your private key to the repository which
+          # includes this action as a secret, and set your public key to your external repository.
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           external_repository: napari/napari.github.io
           publish_dir: ./html
           publish_branch: gh-pages
           destination_dir: ${{ github.event.inputs.target_directory || 'dev' }}
           cname: napari.org
+          keep_files: true
+
+      # Because we are using two deploy actions, we need to reset the ssh-agent
+      # to avoid the following error:
+      # unix_listener: cannot bind to path /tmp/ssh-auth.sock: Address already in use
+      # See https://github.com/peaceiris/actions-gh-pages/issues/909
+      - name: Reset ssh agent
+        run: killall ssh-agent
+
+      # Because the actions-gh-pages triggers a pages deployment, it can be some
+      # time before the repo is updated. We need to wait for the deployment to
+      # complete before we can create a second deployment, or we will have a git
+      # conflict. The 5m sleep is completely arbitrary.
+      - name: Wait for first deployment
+        run: sleep 5m
+
+      - name: Deploy Release Docs
+        if: (github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: napari/napari.github.io
+          publish_dir: ./html
+          publish_branch: gh-pages
+          destination_dir: ${{ github.event.inputs.target_directory || github.event.release.tag_name }}
+          cname: napari.org
+          keep_files: true
+
+      - name: Set up stable symlink
+        if: (github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
+        uses: convictional/trigger-workflow-and-wait@v1.6.5
+        with:
+          owner: napari
+          repo: napari.github.io
+          github_token: ${{ secrets.WORKFLOW_PAT }}
+          workflow_file_name: symlink-stable.yml
+          client_payload: '{"target_directory": "${{ github.event.inputs.target_directory || github.event.release.tag_name }}"}'
