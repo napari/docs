@@ -15,38 +15,35 @@ The latest release candidate can be installed with
 `python -m pip install --pre napari`
 
 # Release management
-The release will be coordinated by a release manager whose responsibilities include the following:
+The release will be coordinated by a release manager whose responsibilities include the following.
 
-## Two weeks before release (one week before release candidate)
+## One week before release
 - Look through currently open PRs and get a sense of what would be good to merge before the first release candidate. Set milestones appropriately;
-- Ensure `conda-recipe/meta.yaml` in `napari/packaging` is up-to-date (e.g. `run` dependencies match `setup.cfg` requirements);
+- Ensure `conda-recipe/meta.yaml` in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements);
 - Create a zulip thread in [the release channel](https://napari.zulipchat.com/#narrow/stream/215289-release) letting people know the release candidate is coming and pointing out PRs that would be nice to merge before release.
 
-At this stage, bug fixes and features that are close to landing should be prioritized. The release manager will follow up with PR authors, reviewing and merging as needed.
+At this stage, bug fixes and features that are close to landing should be prioritized. The release manager will follow up with PR authors, reviewing and merging as needed. New features should wait until after release.
 
-## Nine days before release (two days before release candidate)
+## 1-2 days before release
 
 - Add a header and highlights section to the [`additional notes`](https://github.com/napari/napari-release-tools/tree/main/additional_notes) folder for the given release. Use the [highlight label](https://github.com/napari/napari/pulls?q=sort%3Aupdated-desc+is%3Apr+is%3Aopen+label%3Ahighlight) for the relevant milestone to note which PRs to comment on.
 - Generate release notes with the [`generate_release_notes.py` script from napari/napari-release-tools](https://github.com/napari/napari-release-tools/blob/main/generate_release_notes.py);
-- make a PR with the release notes, making sure to add the new document to the [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml). See an example of such a PR: https://github.com/napari/docs/pull/485
+- make a PR with the release notes, making sure to add the new document to the [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml). See an example of such a PR: [https://github.com/napari/docs/pull/485](https://github.com/napari/docs/pull/485)
 
-At this point the release manager should ideally be the only person merging PRs on the repo for the next week.
+At this point the release manager should ideally be the only person merging PRs on the repo for the next few days before the release.
 
-## One week before release
-- Add any recently merged PRs to release notes;
+## 1-0 days before release
+
+- Merge any remaining PRs and update release notes accordingly;
 - Merge release notes;
-- Make the release candidate;
+- Make the release candidate and announce on zulip;
 - Announce to release stream on zulip that the first release candidate is available for testing.
-
-## The week before release
-- Merge any PRs and update release notes accordingly;
-- Make new release candidates as necessary and announce them on zulip.
-
-At this stage PRs merged should focus mainly on regressions and bug fixes. New features should wait until after release.
 
 ## The day of release
 - Make sure final rc has been tested;
-- Ensure all PRs have been added to release notes and then make release and announce on zulip.
+- Ensure all PRs have been added to release notes;
+- Make sure docs are correctly deployed;
+- Make release and announce on zulip.
 
 # Release process
 
