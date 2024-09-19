@@ -186,7 +186,7 @@ Before merging, please pay special attention to these aspects:
 
 - Version string has been correctly updated. The build number should have been reset to `0` now.
 - The CI passes correctly. Do check the logs, especially the test section (search for `TEST START`).
-- The `run` dependencies in `recipes/meta.yaml` match the runtime requirements of the PyPI release (listed in `pyproject.toml`).
+- The `run` dependencies in `recipe/meta.yaml` match the runtime requirements of the PyPI release (listed in `pyproject.toml`).
   Watch for modified version constraints, as well as added or removed packages.
   Note that the `conda-forge` packages include some more dependencies for convenience,
   so you might need to check the `optional` sections in `pyproject.toml`.
