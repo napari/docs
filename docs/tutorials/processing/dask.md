@@ -194,7 +194,7 @@ for NeuroImaging of Coma and Consciousness, which is dedicated to promoting
 recovery of consciousness in people with severe brain injuries. This dataset is
 a 100 micron resolution magnetic resonance imaging (MRI) scan of an ex vivo
 human brain specimen. The brain specimen was donated by a [58-year-old woman](https://www.youtube.com/watch?v=Q-9jzBkoNuI) who had no history of neurological disease and died of non-neurological causes.
-This dataset was originally described in [Edlow, B.L., Mareyam, A., Horn, A. _et al._ 7 Tesla MRI of the ex vivo human brain at 100 micron resolution. Sci Data 6, 244 (2019)](https://www.nature.com/articles/s41597-019-0254-8).
+This dataset was originally described in [Edlow, B.L., Mareyam, A., Horn, A. _et al._ 7 Tesla MRI of the ex vivo human brain at 100 micron resolution. Sci Data 6, 244 (2019)](https://doi.org/10.1038/s41597-019-0254-8).
 
 ```{admonition} Getting the data
 

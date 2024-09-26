@@ -76,7 +76,7 @@ layer:
 
   Use this tool to manually erase a label on the `labels layer`. Other layers
   will not be affected. The label eraser tool looks like this:
-  ![image: eraser tool](../../images/layers-labels-eraser.png)
+  ![image: eraser tool](../../images/labels-layer-eraser.png)
 
 * **Paintbrush**
 
