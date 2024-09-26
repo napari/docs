@@ -75,6 +75,7 @@ Read on for all the changes in this version!
 - Update version switcher to add 0.5.3 ([docs#488](https://github.com/napari/docs/pull/488))
 - Move release notes to be under Usage ([docs#489](https://github.com/napari/docs/pull/489))
 - Update release guide ([docs#491](https://github.com/napari/docs/pull/491))
+- Add 0.5.4 release notes ([docs#496](https://github.com/napari/docs/pull/496))
 
 ## Other Pull Requests
 
