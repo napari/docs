@@ -131,6 +131,7 @@ jobs:
       # unix_listener: cannot bind to path /tmp/ssh-auth.sock: Address already in use
       # See https://github.com/peaceiris/actions-gh-pages/issues/909
       - name: Reset ssh agent
+        if: (github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
         run: killall ssh-agent
 
       # Because the actions-gh-pages triggers a pages deployment, it can be some
@@ -138,6 +139,7 @@ jobs:
       # complete before we can create a second deployment, or we will have a git
       # conflict. The 5m sleep is completely arbitrary.
       - name: Wait for first deployment
+        if: (github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
         run: sleep 5m
 
       - name: Deploy Release Docs
