@@ -54,6 +54,7 @@ Read on for all the changes in this version!
 ## Performance
 
 - Speed up `get_status` for Shapes layer by using bounding boxes ([#7144](https://github.com/napari/napari/pull/7144))
+- Speedup `_is_convex` by avoid calling `np.roll` ([#7256](https://github.com/napari/napari/pull/7256))
 
 ## Bug Fixes
 
