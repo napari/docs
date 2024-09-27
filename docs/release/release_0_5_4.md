@@ -2,15 +2,11 @@
 
 *Friday, Sep 27, 2024*
 
-We're happy to announce the release of napari 0.5.4!
+We’re happy to announce the release of napari 0.5.4!
 
-napari is a fast, interactive, multi-dimensional image viewer for Python. It’s
-designed for exploring, annotating, and analyzing multi-dimensional images.
-It’s built on Qt (for the GUI), VisPy (for performant GPU-based rendering), and
-the scientific Python stack (NumPy, SciPy, and friends).
+napari is a fast, interactive, multi-dimensional image viewer for Python. It’s designed for exploring, annotating, and analyzing multi-dimensional images. It’s built on Qt (for the GUI), VisPy (for performant GPU-based rendering), and the scientific Python stack (NumPy, SciPy, and friends).
 
-For more information, examples, and documentation, please visit our website:
-https://napari.org/
+For more information, examples, and documentation, please visit our website: https://napari.org/
 
 ## Highlights
 
@@ -36,6 +32,7 @@ under the opacity control, so that all per-layer controls are next to each
 other in the UI ([#7202](https://github.com/napari/napari/pull/7202))
 
 Read on for all the changes in this version!
+
 
 ## New Features
 
@@ -73,10 +70,13 @@ Read on for all the changes in this version!
 - Doc/metadata: add jni's ORCID to the CITATION.cff file ([#7275](https://github.com/napari/napari/pull/7275))
 - Style fix: use recommended capitalization for "GitHub" in README ([#7284](https://github.com/napari/napari/pull/7284))
 - Add psygnal and pydantic to napari --info ([#7285](https://github.com/napari/napari/pull/7285))
+- Move images to _static folder ([docs#483](https://github.com/napari/docs/pull/483))
 - Update version switcher to add 0.5.3 ([docs#488](https://github.com/napari/docs/pull/488))
 - Move release notes to be under Usage ([docs#489](https://github.com/napari/docs/pull/489))
 - Update release guide ([docs#491](https://github.com/napari/docs/pull/491))
+- Use `get_qapp` or `get_app_model` instead of `get_app` ([docs#495](https://github.com/napari/docs/pull/495))
 - Add 0.5.4 release notes ([docs#496](https://github.com/napari/docs/pull/496))
+- Add note about questions in landing page ([docs#498](https://github.com/napari/docs/pull/498))
 
 ## Other Pull Requests
 
@@ -107,7 +107,7 @@ Read on for all the changes in this version!
 (+) denotes first-time contributors 🥳
 
 - [BeanLi](https://github.com/napari/napari/commits?author=beanli161514) - @beanli161514
-- [Daniel Althviz Moré](https://github.com/napari/napari/commits?author=dalthviz) - @dalthviz
+- [Daniel Althviz Moré](https://github.com/napari/napari/commits?author=dalthviz) ([docs](https://github.com/napari/docs/commits?author=dalthviz))  - @dalthviz
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - @DragaDoncila
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
 - [Ikko Eltociear Ashimine](https://github.com/napari/napari/commits?author=eltociear) - @eltociear +
@@ -125,7 +125,7 @@ Read on for all the changes in this version!
 
 - [andrew sweet](https://github.com/napari/docs/commits?author=andy-sweet) - @andy-sweet
 - [Ashley Anderson](https://github.com/napari/docs/commits?author=aganders3) - @aganders3
-- [Daniel Althviz Moré](https://github.com/napari/napari/commits?author=dalthviz) - @dalthviz
+- [Daniel Althviz Moré](https://github.com/napari/napari/commits?author=dalthviz) ([docs](https://github.com/napari/docs/commits?author=dalthviz))  - @dalthviz
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - @DragaDoncila
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
 - [jaime rodriguez-guerra](https://github.com/napari/docs/commits?author=jaimergp) - @jaimergp
