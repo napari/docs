@@ -143,7 +143,7 @@ html_context = {
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-html_logo = "images/logo.png"
+html_logo = "_static/images/logo.png"
 html_sourcelink_suffix = ''
 html_title = 'napari'
 
@@ -280,7 +280,7 @@ def napari_scraper(block, block_vars, gallery_conf):
     """
     imgpath_iter = block_vars['image_path_iterator']
 
-    if app := napari.qt.get_app():
+    if app := napari.qt.get_qapp():
         app.processEvents()
     else:
         return ""
@@ -305,7 +305,7 @@ sphinx_gallery_conf = {
     'gallery_dirs': 'gallery',  # path to where to save gallery generated output
     'filename_pattern': '/*.py',
     'ignore_pattern': 'README.rst|/*_.py',
-    'default_thumb_file': Path(__file__).parent / 'images' / 'logo.png',
+    'default_thumb_file': Path(__file__).parent / '_static' / 'images' / 'logo.png',
     'plot_gallery': "'True'",  # https://github.com/sphinx-gallery/sphinx-gallery/pull/304/files
     'download_all_examples': False,
     'min_reported_time': 10,
