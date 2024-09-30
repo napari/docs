@@ -79,6 +79,7 @@ Read on for all the changes in this version!
 - Use `get_qapp` or `get_app_model` instead of `get_app` ([docs#495](https://github.com/napari/docs/pull/495))
 - Add 0.5.4 release notes ([docs#496](https://github.com/napari/docs/pull/496))
 - Add note about questions in landing page ([docs#498](https://github.com/napari/docs/pull/498))
+- Add further fixes to release notes ([docs#499](Add further fixes to release notes))
 
 ## Other Pull Requests
 
