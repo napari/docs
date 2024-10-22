@@ -131,7 +131,7 @@ jobs:
       # unix_listener: cannot bind to path /tmp/ssh-auth.sock: Address already in use
       # See https://github.com/peaceiris/actions-gh-pages/issues/909
       - name: Reset ssh agent
-        if: (github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
+        if: ((github.event_name == 'release' && !contains(github.event.release.tag_name, 'rc')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
         run: killall ssh-agent
 
       # Because the actions-gh-pages triggers a pages deployment, it can be some
@@ -139,11 +139,11 @@ jobs:
       # complete before we can create a second deployment, or we will have a git
       # conflict. The 5m sleep is completely arbitrary.
       - name: Wait for first deployment
-        if: (github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
+        if: ((github.event_name == 'release' && !contains(github.event.release.tag_name, 'rc')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
         run: sleep 5m
 
       - name: Deploy Release Docs
-        if: (github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
+        if: ((github.event_name == 'release' && !contains(github.event.release.tag_name, 'rc')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -155,7 +155,7 @@ jobs:
           keep_files: true
 
       - name: Set up stable symlink
-        if: (github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
+        if: ((github.event_name == 'release' && !contains(github.event.release.tag_name, 'rc')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
         uses: convictional/trigger-workflow-and-wait@v1.6.5
         with:
           owner: napari
