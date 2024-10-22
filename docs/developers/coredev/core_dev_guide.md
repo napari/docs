@@ -175,7 +175,7 @@ As a core member, you should be familiar with the following napari guides:
    for docstring conventions.
 - [`pre-commit`](https://pre-commit.com) hooks for autoformatting.
 - [`black`](https://github.com/psf/black) autoformatting.
-- [`flake8`](https://github.com/PyCQA/flake8) linting.
+- [`ruff`](https://github.com/astral-sh/ruff) linting.
 
 ### Social resources
 

@@ -88,13 +88,9 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
    see [`black`'s documentation](https://black.readthedocs.io/en/stable/).
 
    Code will also be linted to enforce the stylistic and logistical rules specified
-   in our [`flake8` configuration](https://github.com/napari/napari/blob/main/setup.cfg), which currently ignores
-   [E203](https://lintlyci.github.io/Flake8Rules/rules/E203.html),
-   [E501](https://lintlyci.github.io/Flake8Rules/rules/E501.html),
-   [W503](https://lintlyci.github.io/Flake8Rules/rules/W503.html) and
-   [C901](https://lintlyci.github.io/Flake8Rules/rules/C901.html).  For information
-   on any specific flake8 error code, see the [Flake8
-   Rules](https://lintlyci.github.io/Flake8Rules/).  You may also wish to refer to
+   in our [`ruff` configuration](https://github.com/napari/napari/blob/b9dc8dca1e1afa7567586e7ffa7a36cc7cd9fb6f/pyproject.toml#L219).  For information
+   on any specific `ruff` error code, see the [Ruff
+   Rules](https://docs.astral.sh/ruff/rules/).  You may also wish to refer to
    the [PEP 8 style guide](https://peps.python.org/pep-0008/).
 
    If you wish to tell the linter to ignore a specific line use the `# noqa`
