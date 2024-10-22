@@ -76,6 +76,16 @@ jobs:
           cd docs
           make fallback-videos
 
+      - name: Update version switcher (on new release)
+        if: ((github.event_name == 'release' && !contains(github.event.release.tag_name, 'rc')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_directory != 'dev'))
+        run: |
+          cd docs
+          python docs/_scripts/update_switcher.py ${{ github.event.inputs.target_directory || github.event.release.tag_name }}
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/_static/version_switcher.json
+          git commit -m "Update version switcher for release" --allow-empty
+
       - name: Build Docs
         uses: aganders3/headless-gui@v2
         env:
