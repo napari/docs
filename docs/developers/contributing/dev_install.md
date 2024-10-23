@@ -88,10 +88,11 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
    see [`black`'s documentation](https://black.readthedocs.io/en/stable/).
 
    Code will also be linted to enforce the stylistic and logistical rules specified
-   in our [`ruff` configuration](https://github.com/napari/napari/blob/b9dc8dca1e1afa7567586e7ffa7a36cc7cd9fb6f/pyproject.toml#L219).  For information
-   on any specific `ruff` error code, see the [Ruff
-   Rules](https://docs.astral.sh/ruff/rules/).  You may also wish to refer to
-   the [PEP 8 style guide](https://peps.python.org/pep-0008/).
+   in the `[tool.ruff]` section of
+   [our `pyproject.toml` file](https://github.com/napari/napari/blob/main/pyproject.toml). 
+   For information on any specific `ruff` error code, see the
+   [Ruff Rules](https://docs.astral.sh/ruff/rules/).  You may also wish to refer
+   to the [PEP 8 style guide](https://peps.python.org/pep-0008/).
 
    If you wish to tell the linter to ignore a specific line use the `# noqa`
    comment along with the specific error code (e.g. `import sys  # noqa: E402`) but
