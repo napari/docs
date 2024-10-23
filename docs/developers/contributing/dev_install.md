@@ -73,7 +73,7 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
     Note that in this last case you will need to install your Qt backend separately.
 
 5. We use [`pre-commit`](https://pre-commit.com) to format code with
-   [`black`](https://github.com/psf/black) and lint with
+   [`ruff-format`](https://docs.astral.sh/ruff/formatter/) and lint with
    [`ruff`](https://github.com/astral-sh/ruff) automatically prior to each commit.
    To minimize test errors when submitting pull requests, please install `pre-commit`
    in your environment as follows:
@@ -82,10 +82,8 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
    pre-commit install
    ```
 
-   Upon committing, your code will be formatted according to our [`black`
-   configuration](https://github.com/napari/napari/blob/main/pyproject.toml), which includes the settings
-   `skip-string-normalization = true` and `max-line-length = 79`. To learn more,
-   see [`black`'s documentation](https://black.readthedocs.io/en/stable/).
+   Upon committing, your code will be formatted according to our [`ruff-format`
+   configuration](https://github.com/napari/napari/blob/main/pyproject.toml).
 
    Code will also be linted to enforce the stylistic and logistical rules specified
    in the `[tool.ruff]` section of
