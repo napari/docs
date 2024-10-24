@@ -414,12 +414,23 @@ FILTERS["get_attributes"] = get_attributes
 autosummary_ignore_module_all = False
 
 linkcheck_anchors_ignore = [r'^!', r'L\d+-L\d+', r'r\d+', r'issuecomment-\d+']
-
 linkcheck_ignore = [
-    'https://napari.zulipchat.com/',
-    '../_tags',
-    'https://en.wikipedia.org/wiki/Napari#/media/File:Tabuaeran_Kiribati.jpg',
+    "https://napari.zulipchat.com/",
+    "../_tags",
+    "https://en.wikipedia.org/wiki/Napari#/media/File:Tabuaeran_Kiribati.jpg",
+    "http://localhost:8000",
+    "https://datadryad.org/stash/downloads/file_stream/182482",
+    "https://github.com/napari/docs/issues/new/choose",
+    "https://github.com/napari/napari/issues/new/choose",
+    "https://github.com/napari/napari/issues/new",
+    "https://napari-hub.org",
+    "https://github.com/napari/napari/releases/latest",
+    "https://onlinelibrary.wiley.com/doi/10.1002/col.20327",
 ]
+linkcheck_allowed_redirects = {
+    r"https://youtu\.be/.*": r"https://www\.youtube\.com/.*",
+    r"https://github\.com/napari/napari/releases/download/.*": r"https://objects\.githubusercontent\.com/.*",
+}
 
 
 def rewrite_github_anchor(app, uri: str):
