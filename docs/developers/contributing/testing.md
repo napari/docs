@@ -287,7 +287,8 @@ def test_something(qt_viewer, viewer_model):
     assert viewer.layers[0].name == 'Image'
 ```
 
-The `qt_viewer` fixture takes care of proper teardown of all qt widgets related to the viewer.
+The `qt_viewer` fixture takes care of proper teardown of all qt widgets related to the viewer,
+including hiding and clearing any references to viewer instances.
 If you need to adjust the QtViewer for a given [test file](https://docs.pytest.org/en/stable/how-to/fixtures.html#override-a-fixture-on-a-test-module-level) you can use the `qt_viewer_` fixture.
 
 ```python
