@@ -130,6 +130,11 @@ html_theme_options = {
     "footer_end": ["napari-copyright"],
 }
 
+html_sidebars = {
+    "**": ["search-field.html", "sidebar-nav-bs"],
+    "index": ["search-field.html" , "calendar-template"],
+}
+
 html_context = {
    # use Light theme only, don't auto switch (default)
    "default_mode": "light"
