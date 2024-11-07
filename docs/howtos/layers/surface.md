@@ -11,6 +11,7 @@ kernelspec:
   name: python3
 ---
 
+(layers-surface)=
 # Using the `surface` layer
 
 In this document, you will learn about the `napari` `surface` layer, including
@@ -78,10 +79,10 @@ Once you have created a `surface` layer programmatically, the following GUI
 controls are available in the viewer:
 
 * **Buttons**
-  * Pan/zoom - ![image: Pan/zoom tool](../../images/pan-zoom-tool.png) is the default
+  * Pan/zoom - ![image: Pan/zoom tool](../../_static/images/pan-zoom-tool.png) is the default
     mode of the layer and supports panning and zooming. Press the `1` key when the
     layer is selected to use this mode.
-  * Transform - ![image: Transform](../../images/transform-tool.png) enables you to
+  * Transform - ![image: Transform](../../_static/images/transform-tool.png) enables you to
     rotate, scale, or translate the layer. Note: at present this feature is limited to 2D viewer display mode. To reset the transformation, you can
     Option/Alt-click the transform button (a confirmation dialog will open to
     confirm the reset). Press the `2` key when the layer is selected to use this mode.
@@ -125,8 +126,8 @@ list of values to associate with each vertex to use alongside a colormap. This
 
 All layers can be rendered in both 2D and 3D. One of the viewer buttons at the
 bottom of the left panel can toggle between these 2 modes.
-When in 2D, the button looks like this: ![image: 2D/3D button](../../images/3D-button.png), ready to switch to 3D mode.
-When in 3D, the button looks like this: ![image: 2D/3D button](../../images/2D-button.png), ready to switch to 2D mode.
+When in 2D, the button looks like this: ![image: 2D/3D button](../../_static/images/3D-button.png), ready to switch to 3D mode.
+When in 3D, the button looks like this: ![image: 2D/3D button](../../_static/images/2D-button.png), ready to switch to 2D mode.
 
 The number of dimensions sliders will be 2 or 3 less than the total number of
 dimensions of the layer, allowing you to browse volumetric timeseries data and
@@ -164,7 +165,7 @@ object. You can list all the available colormaps using `layer.colormaps`.
 It is also possible to create your own colormaps using vispy's
 `vispy.color.Colormap` object, see it's full
 [documentation here](https://vispy.org/api/vispy.color.colormap.html#vispy.color.colormap.Colormap).
-For more detail see the [image layer guide](image-layer).
+For more detail see the [image layer guide](layers-image).
 
 ## Adjusting contrast limits
 
@@ -172,5 +173,5 @@ The vertex values of the `surface` layer get mapped through its colormap accordi
 to values called `contrast limits`. These are a 2-tuple of values defining how
 what values get applied the minimum and maximum of the colormap and follow the
 same principles as the `contrast_limits` described in the
-[image layer guide](image-layer). They are also accessible through the same keyword
+[image layer guide](layers-image). They are also accessible through the same keyword
 arguments, properties, and GUI layer controls as in the image layer.

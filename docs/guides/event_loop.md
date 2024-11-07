@@ -19,9 +19,9 @@ connect events to "callback" functions, which essentially specifies; "If this ev
 happens, then call this function". Next you start the event loop and hope you
 connected everything correctly!  Indeed, much of the napari source code is
 dedicated to creating and handling events: search the codebase for
-[`.emit(`](https://github.com/napari/napari/search?q=%22.emit%28%22&type=code)
+[`.emit(`](https://github.com/search?q=repo%3Anapari%2Fnapari+%22.emit%28%22&type=code)
 and
-[`.connect(`](https://github.com/napari/napari/search?q=%22.connect%28%22&type=code)
+[`.connect(`](https://github.com/search?q=repo%3Anapari%2Fnapari+%22.connect%28%22&type=code)
 to find examples of creating and handling internal events, respectively.
 
 It is not necessary to have a deep understanding of event loops to use
@@ -139,7 +139,7 @@ If you would like to create your own widgets in napari see {ref}`creating-widget
 ### napari's `QApplication`
 
 In napari, the initial step of creating the `QApplication` is handled by
-{func}`napari.qt.get_app`.  (Note however, that napari will do this for you
+{func}`napari.qt.get_qapp`.  (Note however, that napari will do this for you
 automatically behind the scenes when you create a viewer with
 {class}`napari.Viewer()`)
 

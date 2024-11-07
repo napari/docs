@@ -2,7 +2,7 @@
 
 In this tutorial, we will use napari to view and annotate a segmentation with bounding boxes and text labels. Here we perform a segmentation by setting an intensity threshold with Otsu's method, but this same approach could also be used to visualize the results of other image processing algorithms such as [object detection with neural networks](https://www.tensorflow.org/lite/examples/object_detection/overview).
 
-![napari viewer showing eight roughly circular shapes. The shapes are classified according to circularity and have bounding boxes automatically generated around them showing a circularity parameter and an integer for a label.](../assets/tutorials/annotated_bbox.png)
+![napari viewer showing eight roughly circular shapes. The shapes are classified according to circularity and have bounding boxes automatically generated around them showing a circularity parameter and an integer for a label.](../../_static/images/annotated_bbox.png)
 
 The completed code is shown below and also can be found in the napari examples directory ([`annotate_segmentation_with_text.py`](https://github.com/napari/napari/blob/main/examples/annotate_segmentation_with_text.py)).
 
@@ -139,7 +139,7 @@ napari.run()
 ```
 
 ## Segmentation
-We start by defining a function to perform segmentation of an image based on intensity. Based on the [skimage segmentation example](https://scikit-image.org/docs/stable/auto_examples/applications/plot_thresholding.html), we determine the threshold intensity that separates the foreground and background pixels using [Otsu's method](https://en.wikipedia.org/wiki/Otsu%27s_method). We then perform some cleanup and generate a label image where each discrete region is given a unique integer index.
+We start by defining a function to perform segmentation of an image based on intensity. Based on the [skimage segmentation example](https://scikit-image.org/docs/stable/auto_examples/applications/plot_thresholding_guide.html), we determine the threshold intensity that separates the foreground and background pixels using [Otsu's method](https://en.wikipedia.org/wiki/Otsu%27s_method). We then perform some cleanup and generate a label image where each discrete region is given a unique integer index.
 
 ```python
 def segment(image):
@@ -186,11 +186,11 @@ label_layer = viewer.add_labels(label_image, name='segmentation')
 napari.run()
 ```
 
-![napari viewer showing eight roughly circular shapes, each colored differently. In the left sidebar, the segmentation layer is highlighted.](../assets/tutorials/segmentation_labels.png)
+![napari viewer showing eight roughly circular shapes, each colored differently. In the left sidebar, the segmentation layer is highlighted.](../../_static/images/segmentation_labels.png)
 
 ## Analyzing the segmentation
 
-Next, we use [`regionprops_table`](https://scikit-image.org/docs/dev/api/skimage.measure.html#regionprops-table) from skimage to quantify some parameters of each detection object (e.g., area and perimeter).
+Next, we use [`regionprops_table`](https://scikit-image.org/docs/dev/api/skimage.measure.html#skimage.measure.regionprops_table) from skimage to quantify some parameters of each detection object (e.g., area and perimeter).
 
 ```python
 # create the features dictionary
@@ -315,7 +315,7 @@ Next, we will use the Shapes layer to overlay the bounding boxes for each detect
     )
 ```
 
-![napari viewer showing eight roughly circular shapes, each colored differently. Each shape has a bounding box automatically generated around it.](../assets/tutorials/segmentation_bbox.png)
+![napari viewer showing eight roughly circular shapes, each colored differently. Each shape has a bounding box automatically generated around it.](../../_static/images/segmentation_bbox.png)
 
 The first positional argument (`bbox_rects`) contains the bounding boxes we created above. We specified that the face of each bounding box has no color (`face_color='transparent'`) and the edges of the bounding box are green (`edge_color='green'`). Finally, the name of the layer displayed in the layer list in the napari GUI is `bounding box` (`name='bounding box'`).
 
@@ -405,4 +405,4 @@ napari.run()
 ## Summary
 In this tutorial, we have used napari to view and annotate segmentation results.
 
-![napari viewer showing eight roughly circular shapes. The shapes are classified according to circularity and have bounding boxes automatically generated around them showing a circularity parameter and an integer for a label.](../assets/tutorials/annotated_bbox.png)
+![napari viewer showing eight roughly circular shapes. The shapes are classified according to circularity and have bounding boxes automatically generated around them showing a circularity parameter and an integer for a label.](../../_static/images/annotated_bbox.png)

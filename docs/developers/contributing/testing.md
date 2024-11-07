@@ -29,7 +29,7 @@ much as we can with unit tests, requiring fewer integration tests, and the least
 of functional tests as depicted in the test pyramid below from
 [softwaretestinghelp.com](https://www.softwaretestinghelp.com/the-difference-between-unit-integration-and-functional-testing/):
 
-![Pyramid diagram depicting the relationship between time to write/execute three different types of tests and return on investment for those tests.  The pyramid is split into three sections: the bottom, largest section is Unit testing, the middle section is Integration testing and the top is Functional testing. The size of the section is proportional to the quantity of tests of that type you should write. Moving up the pyramid, tests take longer to write and have a lower return on investment.](../../images/tests.png)
+![Pyramid diagram depicting the relationship between time to write/execute three different types of tests and return on investment for those tests.  The pyramid is split into three sections: the bottom, largest section is Unit testing, the middle section is Integration testing and the top is Functional testing. The size of the section is proportional to the quantity of tests of that type you should write. Moving up the pyramid, tests take longer to write and have a lower return on investment.](../../_static/images/tests.png)
 
 Unit tests are at the base of the pyramid because they are the easiest to write and
 the quickest to run. The time and effort to implement and maintain tests increases
@@ -205,48 +205,118 @@ you create during testing need to be cleaned up at the end of each test. We thus
 recommend that you use the following fixtures when needing a widget or
 {class}`~napari.Viewer` in a test.
 
-#### qtbot
+#### qapp and qtbot
 
-If you need a `QApplication` to be running for your test, you can use the
+If you need to use any Qt related code in your test, you need to ensure that
+a `QApplication` is created. To to this we suggest you use the
+[`qapp`](https://pytest-qt.readthedocs.io/en/latest/reference.html#module-pytestqt.plugin)
+fixture from [`pytest-qt`](https://pytest-qt.readthedocs.io/en/latest/index.html),
+a napari testing dependency.
+
+If you need to instantiate a Qt GUI object (e.g., a widget) for your test, we recommend
+that you use the
 [`qtbot`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot)
-fixture from `pytest-qt`, a napari testing dependency.
+fixture. `qtbot`, which itself depends on `qapp` , allows you to test user input
+(e.g., mouse clicks) by sending events to Qt objects.
 
 ````{note}
 Fixtures in pytest can be a little mysterious, since it's not always
-clear where they are coming from.  In this case using the `pytest-qt` `qtbot`fixture
-looks like this:
+clear where they are coming from.  The `pytest-qt` `qapp` and `qtbot` fixtures
+can be used in two ways; by adding them to the list of arguments of your test function:
 
 ```python
-# just by putting `qtbot` in the list of arguments
-# pytest-qt will start up an event loop for you
 def test_something(qtbot):
+    ...
+```
+or by using pytest's `usefixtures`, which avoids adding an unused argument to your
+test function:
+
+```python
+@pytest.mark.usefixtures('qtbot')
+def test_something():
     ...
 ```
 <br/>
 ````
 
-`qtbot` provides a convenient
-[`addWidget`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot.addWidget)
-method that will ensure that the widget gets closed at the end of the test.
-It *also* provides a whole bunch of other
-convenient methods for interacting with your GUI tests (clicking, waiting
-signals, etc...).  See the [`qtbot` docs](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot) for details.
+`qtbot` also provides a convenient
+[`add_widget`/`addWidget`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot.addWidget)
+method that will ensure that the widget gets closed and properly cleaned at the end
+of the test. This can prevents segfaults when running several tests. The
+[`wait_until`/`waitUntil`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot.waitUntil)
+method is also useful to wait for a desired condition. The example below
+adds a `QtDims` widget, plays the `Dims` and checks that the `QtDim` widget
+is playing before we make any assertions.
 
 ```python
-# the qtbot provides convenience methods like addWidget
 def test_something_else(qtbot):
-    widget = QWidget()
-    qtbot.addWidget(widget)  # tell qtbot to clean this widget later
+    dims = Dims(ndim=3, ndisplay=2, range=((0, 10, 1), (0, 20, 1), (0, 30, 1)))
+    view = QtDims(dims)
+    qtbot.addWidget(view)
+    # Loop to prevent finishing before the assertions in this test.
+    view.play(loop_mode='loop')
+    qtbot.waitUntil(lambda: view.is_playing)
     ...
 ```
+
+(qt_viewer)=
+#### `qt_viewer` and `viewer_model`
+
+Since `napari==0.5.4` we have implemented the `qt_viewer` [pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html) which can be used for tests that are only using the `ViewerModel` api or are only checking rendering of the viewer. 
+For the current moment, it is only for internal use and is not exported to the global scope, 
+as it is defined in `conftest.py` file. 
+
+The `qt_viewer` fixture returns the instance of the {class}`~napari.qt.QtViewer` class.
+This class does not provide the same api as the {class}`~napari.ViewerModel` class, 
+but has an associated {class}`~napari.ViewerModel` instance, which can be accessed by the `viewer` attribute.
+Alternatively, you could use the `viewer_model` fixture, which returns this instance of {class}`~napari.ViewerModel` class.
+
+```python
+def test_something(qt_viewer):
+    qt_viewer.viewer.add_image(np.random.random((10, 10)))
+    assert len(viewer.layers) == 1
+    assert viewer.layers[0].name == 'Image'
+```
+
+or 
+
+```python
+def test_something(qt_viewer, viewer_model):
+    viewer_model.add_image(np.random.random((10, 10)))
+    assert len(viewer.layers) == 1
+    assert viewer.layers[0].name == 'Image'
+```
+
+The `qt_viewer` fixture takes care of proper teardown of all qt widgets related to the viewer.
+If you need to adjust the QtViewer for a given [test file](https://docs.pytest.org/en/stable/how-to/fixtures.html#override-a-fixture-on-a-test-module-level) you can use the `qt_viewer_` fixture.
+
+```python
+@pytest.fixture
+def qt_viewer(qt_viewer_):
+    # in this file we need to have added data and 3d view for all tests in file
+    qt_viewer_.viewer.add_image(np.random.random((5, 10, 10)))
+    qt_viewer_.viewer.dims.ndisplay = 3
+    return qt_viewer_
+```
+
+or 
+
+```python
+@pytest.fixture
+def qt_viewer(qt_viewer_):
+    # Make bigger viewer for all tests in file
+    qt_viewer_.setGeometry(0, 0, 1000, 1000)
+    return qt_viewer_
+```
+
 
 (make_napari_viewer)=
 #### `make_napari_viewer`
 
-We provide a
-[pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html) called
-`make_napari_viewer` for tests that require the {class}`~napari.Viewer`. This
-fixture is available globally and to all tests in the same environment that `napari`
+For more complex test cases where we need to fully test application behaviour 
+(for example, using the `viewer.window` API) we can use `make_napari_viewer` [pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html).
+However, the creating and teardown of the whole viewer is more fragile and slower than using just the `qt_viewer` fixture.
+This fixture is available globally and to all tests in the same environment that `napari`
 is in (see [](test-organization) for details). Thus, there is no need to import it,
 you simply include `make_napari_viewer` as a test function parameter, as shown in the
 **Examples** section below:
@@ -304,7 +374,7 @@ you patch or replace parts of the code being tested with "fake" behavior or
 return values, so that you can test how a given function would perform *if* it
 were to receive some value from the upstream code.  For a few examples of using
 mocks when testing napari, search the codebase for
-[`unittest.mock`](https://github.com/napari/napari/search?q=%22unittest.mock%22&type=Code)
+[`unittest.mock`](https://github.com/search?q=repo%3Anapari%2Fnapari+%22unittest.mock%22&type=Code)
 
 ## Known issues
 
