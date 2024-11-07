@@ -46,8 +46,6 @@ jobs:
       - name: Run link checker
         uses: aganders3/headless-gui@v2
         env:
-          GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
-          GOOGLE_CALENDAR_API_KEY: ${{ secrets.GOOGLE_CALENDAR_API_KEY }}
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
         with:
           # Runs in '/home/runner/work/docs/docs/docs'
