@@ -23,7 +23,7 @@ These _check_ your code.
 
 ### Formatting tools
 These _auto-modify_ your code.
-* [black](https://github.com/psf/black)
+* [ruff-formatter](https://docs.astral.sh/ruff/formatter/)
   Forces code to follow specific style, indentations, etc...
 
 ### Pre-commit tools
