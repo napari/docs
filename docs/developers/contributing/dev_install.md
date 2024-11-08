@@ -73,7 +73,7 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
     Note that in this last case you will need to install your Qt backend separately.
 
 5. We use [`pre-commit`](https://pre-commit.com) to format code with
-   [`black`](https://github.com/psf/black) and lint with
+   [`ruff-format`](https://docs.astral.sh/ruff/formatter/) and lint with
    [`ruff`](https://github.com/astral-sh/ruff) automatically prior to each commit.
    To minimize test errors when submitting pull requests, please install `pre-commit`
    in your environment as follows:
@@ -82,20 +82,15 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
    pre-commit install
    ```
 
-   Upon committing, your code will be formatted according to our [`black`
-   configuration](https://github.com/napari/napari/blob/main/pyproject.toml), which includes the settings
-   `skip-string-normalization = true` and `max-line-length = 79`. To learn more,
-   see [`black`'s documentation](https://black.readthedocs.io/en/stable/).
+   Upon committing, your code will be formatted according to our [`ruff-format`
+   configuration](https://github.com/napari/napari/blob/main/pyproject.toml).
 
    Code will also be linted to enforce the stylistic and logistical rules specified
-   in our [`flake8` configuration](https://github.com/napari/napari/blob/main/pyproject.toml), which currently ignores
-   [E203](https://lintlyci.github.io/Flake8Rules/rules/E203.html),
-   [E501](https://lintlyci.github.io/Flake8Rules/rules/E501.html),
-   [W503](https://lintlyci.github.io/Flake8Rules/rules/W503.html) and
-   [C901](https://lintlyci.github.io/Flake8Rules/rules/C901.html).  For information
-   on any specific flake8 error code, see the [Flake8
-   Rules](https://lintlyci.github.io/Flake8Rules/).  You may also wish to refer to
-   the [PEP 8 style guide](https://peps.python.org/pep-0008/).
+   in the `[tool.ruff]` section of
+   [our `pyproject.toml` file](https://github.com/napari/napari/blob/main/pyproject.toml). 
+   For information on any specific `ruff` error code, see the
+   [Ruff Rules](https://docs.astral.sh/ruff/rules/).  You may also wish to refer
+   to the [PEP 8 style guide](https://peps.python.org/pep-0008/).
 
    If you wish to tell the linter to ignore a specific line use the `# noqa`
    comment along with the specific error code (e.g. `import sys  # noqa: E402`) but

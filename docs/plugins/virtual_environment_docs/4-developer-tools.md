@@ -15,7 +15,7 @@ Many are very helpful, but they do take a little time to learn. The more time yo
 
 ### Linting tools
 These _check_ your code.
-* [flake8](https://flake8.pycqa.org/) - checks various code style conventions, unused variables, line spacings, etc…
+* [ruff](https://github.com/astral-sh/ruff) - checks various code style conventions, unused variables, line spacings, etc…
 * [mypy](https://github.com/python/mypy)
     - Static type checker: enforces proper usage of types.
     - Super useful once you get the hang of it, but definitely an intermediate-advanced tool.
@@ -23,14 +23,8 @@ These _check_ your code.
 
 ### Formatting tools
 These _auto-modify_ your code.
-* [black](https://github.com/psf/black)
+* [ruff-formatter](https://docs.astral.sh/ruff/formatter/)
   Forces code to follow specific style, indentations, etc...
-* [autoflake](https://github.com/PyCQA/autoflake)
-  Auto-fixes some flake8 failures.
-* [isort](https://github.com/PyCQA/isort)
-  Auto-sorts and formats your imports.
-* [setup-cfg-fmt](https://github.com/asottile/setup-cfg-fmt)
-  Sorts and enforces conventions in setup.cfg.
 
 ### Pre-commit tools
 * [pre-commit](https://pre-commit.com/), runs all your checks each time you run git commit, preventing bad code from ever getting checked in.
