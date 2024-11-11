@@ -201,6 +201,7 @@ myst_enable_extensions = [
     'substitution',
     'tasklist',
     'attrs_inline',
+    'linkify',
 ]
 
 myst_heading_anchors = 4

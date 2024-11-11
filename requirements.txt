@@ -14,3 +14,4 @@ matplotlib
 lxml_html_clean
 imageio-ffmpeg
 pytest
+linkify-it-py
