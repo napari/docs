@@ -118,6 +118,13 @@ also include benchmarks to show the new feature is not too slow but this is less
 poor performance, [profiling](profiling) and [performance monitoring](napari-perfmon) can help
 identify the cause and where to optimize.
 
+### API Changes
+
+If you are changing and existing API or adding a new one, make sure you update
+the corresponding docstring to contain the `.. versionadded::` or
+`.. versionchanged::` directive. For more information see the
+[Sphinx documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#describing-changes-between-versions).
+
 ### Contributing documentation
 
 See [](contributing-docs) for information on how to contribute documentation.
