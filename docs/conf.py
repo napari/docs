@@ -189,6 +189,10 @@ intersphinx_mapping = {
         'http://app-model.readthedocs.io/en/latest/',
         'http://app-model.readthedocs.io/en/latest/objects.inv',
     ],
+    'vispy': [
+        'https://vispy.org/',
+        'https://vispy.org/objects.inv',
+    ],
 }
 
 myst_enable_extensions = [
