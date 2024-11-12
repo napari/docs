@@ -120,7 +120,7 @@ identify the cause and where to optimize.
 
 ### API Changes
 
-If you are changing and existing API or adding a new one, make sure you update
+If you are changing an existing API or adding a new one, make sure you update
 the corresponding docstring to contain the `.. versionadded::` or
 `.. versionchanged::` directive. For more information see the
 [Sphinx documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#describing-changes-between-versions).
