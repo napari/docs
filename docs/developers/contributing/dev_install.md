@@ -68,14 +68,19 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
     pip install -e ".[pyside,dev]"  # (quotes only needed for zsh shell)
     ```
 
+    For PyOt6, use:
+    ```sh
+    pip install -e ".[pyqt6,dev]"  # (quotes only needed for zsh shell)
+    ```
+    
     If you wish to install the developer tools only, use the following. Choose
     this option if you wish to install your Qt backend separately, such as if you already have
-    a Qt backend installed or if you use an experimental backend like Qt6:
+    a Qt backend installed or if you use an experimental backend like PySide6:
     ```sh
     pip install -e ".[dev]"  # (quotes only needed for zsh shell)
     ```
 
-5. We use [`pre-commit`](https://pre-commit.com) to format code with
+6. We use [`pre-commit`](https://pre-commit.com) to format code with
    [`ruff-format`](https://docs.astral.sh/ruff/formatter/) and lint with
    [`ruff`](https://github.com/astral-sh/ruff) automatically prior to each commit.
    To minimize test errors when submitting pull requests, please install `pre-commit`
