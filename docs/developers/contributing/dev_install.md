@@ -80,7 +80,7 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
     pip install -e ".[dev]"  # (quotes only needed for zsh shell)
     ```
 
-6. We use [`pre-commit`](https://pre-commit.com) to format code with
+5. We use [`pre-commit`](https://pre-commit.com) to format code with
    [`ruff-format`](https://docs.astral.sh/ruff/formatter/) and lint with
    [`ruff`](https://github.com/astral-sh/ruff) automatically prior to each commit.
    To minimize test errors when submitting pull requests, please install `pre-commit`
