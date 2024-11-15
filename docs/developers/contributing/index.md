@@ -84,6 +84,12 @@ keeping napari maintainable as it grows.
 We have dedicated documentation on [testing](napari-testing) that we recommend you
 read as you're working on your first contribution.
 
+### Automation and CI
+
+We use GitHub Actions to automate our continuous integration and project workflows.
+The [`CONTRIBUTING.md` doc in the `.github` directory](https://github.com/napari/napari/blob/main/.github/CONTRIBUTING.md)
+highlights basics about the GitHub Actions used in the project.
+
 ### Adding icons
 
 If you want to add a new icon to the app, make the icon in whatever program you
