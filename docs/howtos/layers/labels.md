@@ -171,8 +171,8 @@ layer:
   on that layer will be colored by the new label.
 
   If you have a multidimensional `labels layer` the `fill bucket` will edit data
-  only in the visible slice by default. However, if you enable the 
-  `n_edit_dimensions` property, then `fill bucket` will extend out into 
+  only in the visible slice by default. However, if you set the 
+  `n_edit_dimensions` property to `3`, then `fill bucket` will extend out into 
   neighbouring slices, either to all pixels with that label in the layer, or only
   connected pixels depending on if the `contiguous` property is disabled or not.
 
