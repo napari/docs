@@ -290,8 +290,8 @@ A particular label can be chosen in one of three ways:
 * Using the label control inside the `layer controls` panel and typing in the
   numeric value of the desired label;
 
-* Using the + or - buttons to get to the desired label color or **press the
-  default keybinding `m` to set a new label;
+* Using the + or - buttons to get to the desired label color (or press the 
+  default keybinding `m` to set a new label);
 
 * Selecting the `color picker` tool and then clicking on a pixel with the
   desired label color in the image.
