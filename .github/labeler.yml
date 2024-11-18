@@ -3,5 +3,6 @@ documentation:
   - 'docs/**/*'
   - 'docs/*'
 
-task:
+maintenance:
+  - '.circleci/*'
   - '.github/**/*'
