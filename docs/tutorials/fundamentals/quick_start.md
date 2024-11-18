@@ -24,7 +24,7 @@ napari is an open source project on [GitHub](https://github.com/napari/napari) t
 
 At its core, it provides critical viewer features out-of-the-box, such as support for [large multi-dimensional data](dask-napari); [“layers”](layers-glance) to simultaneously visualize images, models, and analysis results; and easy manual, interactive annotation in 3D.
 
-This tutorial uses napari 0.4.14. <br>
+This tutorial uses napari 0.5. <br>
 
 +++
 
