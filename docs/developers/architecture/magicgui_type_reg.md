@@ -81,6 +81,6 @@ via a wrapper `napari` adds around widget contributions.
 
 # Generalization of `magicgui` type annotation
 
-`napari` generalizes `magicgui` type annotation behaviour beyond widgets, to all
-actions via `app-model` providers and processors. See [](app_model_dep_inj_result)
-for details.
+`napari` generalizes `magicgui` type annotation behaviour beyond `magicgui` widgets,
+to all actions via `app-model` providers and processors. See
+[](app_model_dep_inj_result) for details.

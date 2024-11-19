@@ -346,7 +346,7 @@ dependency to be injected.
 Result processing allows you to process the return value of the command function at
 execution time, based on command return type annotations.
 For example, you may wish to automatically add layer data output from a command
-to the viewer. It is performed by `processors`, functions that accept an instance of a
+to the viewer. It is performed by processors, functions that accept an instance of a
 given type and do something with it. Note that any value returned by a processor will
 be ignored, it is the 'processor' function side effects that perform the desired
 action (e.g., adding layer data to the viewer).
@@ -392,7 +392,8 @@ instead of command execution time.
 
 Internally, napari registers a provider that returns the first Points layer of the
 current viewer, if one present (returning `None` if not). It is
-registered in the `app.injection_store` via `app.injection_store.register_provider`. Processors can be registered in the same way.
+registered in the `app.injection_store` via `app.injection_store.register_provider`.
+Processors can be registered in the same way.
 
 ```python
 from napari._app_model import get_app_model
@@ -458,7 +459,7 @@ napari {attr}`~app_model.Application.injection_store`'s `namespace` attribute.
 In the napari `app`'s `Store`, some basic napari objects are added to the `namespace`
 attribute:
 
-* all public types from {mod}`napari.components`, {mod}`napari.layers`
+* all public types from the modules {mod}`napari.components`, {mod}`napari.layers`
   and {mod}`napari.viewer`
 * {class}`~napari._qt.qt_main_window.Window`
 * {class}`~napari._qt.qt_viewer.QtViewer`
