@@ -125,7 +125,7 @@ contributions:
 
 This NAP proposes new menu IDs and new top level menus to open for contribution.
 
-![Right click layer context menu with new menu item and submenu contributed by a plugin](./_static/layer-context-menu.png)
+![napari with layers menu highlighted including menu items and a submenu contributed by a plugin](./_static/nap6-menu-example.png)
 
 
 ### What do Menu Contributions do?
