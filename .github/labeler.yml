@@ -1,8 +1,8 @@
 # See: .github/workflows/labeler.yml and https://github.com/marketplace/actions/labeler
 documentation:
-  - 'docs/**/*'
-  - 'docs/*'
+- changed-files:
+  - any-glob-to-any-file: 'docs/*'
 
 maintenance:
-  - '.circleci/*'
-  - '.github/**/*'
+- changed-files:
+  - any-glob-to-any-file: ['.circleci/*', '.github/**/*']
