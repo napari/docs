@@ -1,7 +1,7 @@
 # See: .github/workflows/labeler.yml and https://github.com/marketplace/actions/labeler
 documentation:
 - changed-files:
-  - any-glob-to-any-file: 'docs/*'
+  - any-glob-to-any-file: 'docs/**'
 
 maintenance:
 - changed-files:
