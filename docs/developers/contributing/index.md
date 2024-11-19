@@ -123,7 +123,9 @@ identify the cause and where to optimize.
 If you are changing an existing API or adding a new one, make sure you update
 the corresponding docstring to contain the `.. versionadded::` or
 `.. versionchanged::` directive. For more information see the
-[Sphinx documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#describing-changes-between-versions).
+[Sphinx documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#describing-changes-between-versions). 
+Please also consider documenting any major features/changes in our
+[tutorials](tutorials) and other [usage documentation](usage).
 
 ### Contributing documentation
 
