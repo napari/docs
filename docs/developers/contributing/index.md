@@ -90,6 +90,8 @@ We use GitHub Actions to automate our continuous integration and project workflo
 The [`CONTRIBUTING.md` doc in the `.github` directory](https://github.com/napari/napari/blob/main/.github/CONTRIBUTING.md)
 highlights basics about the GitHub Actions used in the project.
 
+We also automate [deployment of our documentation and website](https://napari.org/stable/developers/contributing/documentation/docs_deployment.html).
+
 ### Adding icons
 
 If you want to add a new icon to the app, make the icon in whatever program you
