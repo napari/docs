@@ -94,7 +94,7 @@ layer:
   scroll through the available colors. 
   
   ```{tip}
-  If you press the `m` key, you will get the a new, unused label -- one larger than the current
+  If you press the `m` key, you will get a new, unused label -- one larger than the current
   largest label.
   ```
   
@@ -109,7 +109,7 @@ layer:
 
   If you have a multidimensional `labels layer` then your `paintbrush` will edit
   data only in the visible slice by default. If you switch `n edit dim` from `2` to `3`
-  or set the `n_edit_dimensions` property to `3`, then then your paintbrush and eraser
+  or set the `n_edit_dimensions` property to `3`, then your paintbrush and eraser
   will extend out into neighbouring slices according to its size.
 
   To quickly select the paintbrush, press the `2` key when the `labels layer` is
