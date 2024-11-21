@@ -95,9 +95,13 @@ version numbers `0.x` and do not have a deprecation policy, but we will work to 
 4. **Documentation and tutorials:** All new methods should have appropriate doc
 strings following [PEP257](https://peps.python.org/pep-0257/) and the
 [NumPy documentation guide](https://numpy.org/devdocs/dev/howto-docs.html#documentation-style).
-For any major new features, accompanying changes should be made to our
-[tutorials](tutorials). These should not only
-illustrates the new feature, but explains it. Titles for all documents in napari should follow [sentence case capitalization](https://apastyle.apa.org/style-grammar-guidelines/capitalization/sentence-case), but the name `napari` should always be written in lowercase.
+For API changes, make sure to check that a `.. versionadded::` or
+`.. versionchanged::` directive has been added to the appropriate docstring. For
+any major new features, accompanying changes should be made to our
+[tutorials](tutorials). These should not only illustrate the new feature, but
+explain it. Titles for all documents in napari should follow
+[sentence case capitalization](https://apastyle.apa.org/style-grammar-guidelines/capitalization/sentence-case),
+but the name `napari` should always be written in lowercase.
 
 5. **Implementations and algorithms:** You should understand the code being modified
 or added before approving it.  (See [Merge Only Changes You Understand](#merge-only-changes-you-understand)
