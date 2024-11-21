@@ -44,28 +44,38 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
     development environment.
     ```
 
-4. Install the package in editable mode, along with all of the developer tools.
+4. Install the package in editable mode, along with all of the developer tools (`dev`)
+   and optionally a Qt backend (`pyqt`, `pyside`).
 
     ```{note}
-    If you only want to use napari, you can install it on most macOS, Linux and
+    If you only want to use napari and do not wish to develop napari itself,
+    you can install napari on most macOS, Linux and
     Windows systems with Python {{ python_version_range }}
-    by following the directions on the
+    by following the steps on the
     [instructions page](install-python-package).
     ```
 
-    napari supports different Qt backends, and you can choose which one to install and use.
+    napari supports different Qt backends and Qt versions. In this step, choose one of the following
+    commands to install the developer tools and your preferred Qt backend.
 
-    For example, for PyQt5, the default, you would use the following:
+    For PyQt5, the default Qt backend, use:
     ```sh
     pip install -e ".[pyqt,dev]"  # (quotes only needed for zsh shell)
     ```
 
-    If you want to use PySide2 instead, you would use:
+    To use PySide2 instead of the PyQt5, use:
     ```sh
     pip install -e ".[pyside,dev]"  # (quotes only needed for zsh shell)
     ```
 
-    Finally, if you already have a Qt backend installed or want to use an experimental one like Qt6 use:
+    For PyOt6, use:
+    ```sh
+    pip install -e ".[pyqt6,dev]"  # (quotes only needed for zsh shell)
+    ```
+    
+    If you wish to install the developer tools only, use the following. Choose
+    this option if you wish to install your Qt backend separately, such as if you already have
+    a Qt backend installed or if you use an experimental backend like PySide6:
     ```sh
     pip install -e ".[dev]"  # (quotes only needed for zsh shell)
     ```
