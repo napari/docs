@@ -91,9 +91,8 @@ In addition to the menu items themselves, `Submenu` contributions can also be de
 which add a new submenu to a contributable menu which can be populated with new
 `MenuItem` contributions.
 
-Currently, the only `napari` menu to which items can be contributed in this way is the
-layer context menu, accessible by right clicking on a layer in the `LayerList` as shown
-in the screenshot below. The new menu items and submenu are produced by the following code snippet:
+The following example `napari.yaml` file demonstrates menu contributions as
+proposed in this NAP:
 
 ```yaml
 name: napari-demo
@@ -101,28 +100,32 @@ display_name: Demo plugin
 
 contributions:
   commands:
-    - id: napari-demo.menu_item
-      title: A new menu item
-      python_name: napari_demo:menu_item
-    - id: napari-demo.submenu_item
-      title: A new item in a submenu
-      python_name: napari_demo:submenu_item
+    - id: napari-demo.all_thresholds
+      title: Try All Thresholds
+      python_name: napari_demo:all_thresholds
+    - id: napari-demo.threshold_otsu
+      title: Otsu Threshold
+      python_name: napari_demo:threshold_otsu
+    - id: napari-demo.threshold_li
+      title: Li Threshold
+      python_name: napari_demo:threshold_li
 
   menus:
-    napari/layers/context:
-      - submenu: context_submenu
-      - command: napari-demo.menu_item
-    context_submenu:
-      - command: napari-demo.submenu_item
+    napari/layers/segment:
+      - submenu: threshold
+      - command: napari-demo.all_thresholds
+    threshold:
+      - command: napari-demo.threshold_otsu
+      - command: napari-demo.threshold_li
 
   submenus:
-    - id: context_submenu
-      label: A new submenu
+    - id: threshold
+      label: Thresholding
 ```
 
 This NAP proposes new menu IDs and new top level menus to open for contribution.
 
-![Right click layer context menu with new menu item and submenu contributed by a plugin](./_static/layer-context-menu.png)
+![napari with layers menu highlighted including menu items and a submenu contributed by a plugin](./_static/nap6-menu-example.png)
 
 
 ### What do Menu Contributions do?
