@@ -164,7 +164,7 @@ The labels layer allows you to record the segmentation result by assigning backg
 
 ```{tip}
 To switch to a new, unique label -- one larger than the current largest label -- press
-the default keybinding `m`.
+the default keybinding {kbd}`m`.
 ```
 
 ```{raw} html

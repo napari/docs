@@ -94,7 +94,7 @@ layer:
   scroll through the available colors. 
   
   ```{tip}
-  If you press the `m` key, you will get a new, unused label -- one larger than the current
+  If you press the {kbd}`m` key, you will get a new, unused label -- one larger than the current
   largest label.
   ```
   
@@ -176,7 +176,7 @@ layer:
   neighbouring slices, either to all pixels with that label in the layer, or only
   connected pixels depending on if the `contiguous` property is disabled or not.
 
-  To quickly select the fill bucket, press the `4` key when the `labels layer`
+  To quickly select the fill bucket, press the {kbd}`4` key when the `labels layer`
   is selected.
 
 * **Color picker**
@@ -248,7 +248,7 @@ layer:
   existing labels will be preserved during painting. 
 
   ```{tip}
-  You can toggle this mode using the default keybinding `b`.
+  You can toggle this mode using the default keybinding {kbd}`b`.
   ```
 
 * Show selected
@@ -291,7 +291,7 @@ A particular label can be chosen in one of three ways:
   numeric value of the desired label;
 
 * Using the + or - buttons to get to the desired label color (or press the 
-  default keybinding `m` to set a new label);
+  default keybinding {kbd}`m` to set a new label);
 
 * Selecting the `color picker` tool and then clicking on a pixel with the
   desired label color in the image.
@@ -308,7 +308,7 @@ While painting with a label, you can swap between the current (selected) label
 and the transparent background label (`0`) by pressing `x`.
 
 You can set the selected label to a new label -- one larger than the current
-largest label -- by pressing `m`. This selection will guarantee that you are 
+largest label -- by pressing {kbd}`m`. This selection will guarantee that you are 
 using a label that hasn't been used before.
 
 You can also increment or decrement the currently selected label by pressing the
