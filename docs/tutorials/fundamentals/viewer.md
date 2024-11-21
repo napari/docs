@@ -115,7 +115,9 @@ The main menu consists of the **File**, **View**, **Layers**, **Plugins**, **Win
     **Note:** In macOS, **Preferences** is under the napari menu.
 
 * **View** allows you to toggle full screen, the menu bar, play, display axes, the scale bar, tooltips, and the activity dock.
-* **Layers** is a placeholder menu, to be used by plugins to add their own menu items with actions related to layers.
+* **Layers** contains actions and commands designed to act on existing layers, or generate new ones. The menu is mostly
+  designed for use by plugins, but will also be populated with builtin actions. Currently this menu is **in development**,
+  so items may change from version to version. For more information on this menu and its usage, see [NAP-6](nap-6-contributable-menus).
 * **Plugins** allows you to install and manage plugins and displays a list of plugins that are currently installed.
 * **Window** allows you to open the integrated console, display the layer controls and layer list.
 * **Help** contains the citation and about information.
