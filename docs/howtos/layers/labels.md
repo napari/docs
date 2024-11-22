@@ -91,19 +91,26 @@ layer:
 
   Click the `paintbrush` icon and select a color from the `label` option by
   clicking on the + or - on the label bar in the layer controls panel. This will
-  scroll through the available colors. Whatever color you pick will be the
-  *edge color* of the label. Draw the edge of the label using the `paintbrush`.
-  If you draw a continuous edge, you can fill it in using the `paint bucket` or
-  `fill bucket` tool. It can be the same color as the edge or a different color.
+  scroll through the available colors. 
+  
+  ```{tip}
+  If you press the {kbd}`m` key, you will get a new, unused label -- one larger than the current
+  largest label.
+  ```
+  
+  Whatever color you pick will be the *edge color* of the label. 
+  Draw the edge of the label using the `paintbrush`. If you draw a continuous edge, 
+  you can fill it in using the `paint bucket` or `fill bucket` tool. 
+  It can be the same color as the edge or a different color.
 
   Adjust the size of your `paintbrush` using the `brush size` slider or using
   the default keybindings: `[` and `]`. The brush size can be as small as a
   single pixel for incredibly detailed painting.
 
   If you have a multidimensional `labels layer` then your `paintbrush` will edit
-  data only in the visible slice by default. If you enable the `n_dimensional`
-  property and paintbrush then your paintbrush will extend out into neighbouring
-  slices according to its size.
+  data only in the visible slice by default. If you switch `n edit dim` from `2` to `3`
+  or set the `n_edit_dimensions` property to `3`, then your paintbrush and eraser
+  will extend out into neighbouring slices according to its size.
 
   To quickly select the paintbrush, press the `2` key when the `labels layer` is
   selected.
@@ -164,12 +171,12 @@ layer:
   on that layer will be colored by the new label.
 
   If you have a multidimensional `labels layer` the `fill bucket` will edit data
-  only in the visible slice by default. Enable the `n_dimensional` property and
-  `paintbrush` so the `fill bucket` will extend out into neighbouring slices,
-  either to all pixels with that label in the layer, or only connected pixels
-  depending on if the contiguous property is disabled or not.
+  only in the visible slice by default. However, if you set the 
+  `n_edit_dimensions` property to `3`, then `fill bucket` will extend out into 
+  neighbouring slices, either to all pixels with that label in the layer, or only
+  connected pixels depending on if the `contiguous` property is disabled or not.
 
-  To quickly select the fill bucket, press the `4` key when the `labels layer`
+  To quickly select the fill bucket, press the {kbd}`4` key when the `labels layer`
   is selected.
 
 * **Color picker**
@@ -240,7 +247,9 @@ layer:
   defaults to false to allow painting on existing labels. When set to true,
   existing labels will be preserved during painting. 
 
-  **You can toggle this mode using the default keybinding `p`.** DOESN'T WORK
+  ```{tip}
+  You can toggle this mode using the default keybinding {kbd}`b`.
+  ```
 
 * Show selected
 
@@ -281,8 +290,8 @@ A particular label can be chosen in one of three ways:
 * Using the label control inside the `layer controls` panel and typing in the
   numeric value of the desired label;
 
-* Using the + or - buttons to get to the desired label color or **press the
-  default keybinding `m` to set a new label;** DOESN'T WORK
+* Using the + or - buttons to get to the desired label color (or press the 
+  default keybinding {kbd}`m` to set a new label);
 
 * Selecting the `color picker` tool and then clicking on a pixel with the
   desired label color in the image.
@@ -299,9 +308,8 @@ While painting with a label, you can swap between the current (selected) label
 and the transparent background label (`0`) by pressing `x`.
 
 You can set the selected label to a new label -- one larger than the current
-largest label -- by pressing `m` with either the `paintbrush` or `fill bucket`
-tools selected. This selection will guarantee that you are using a label that
-hasn't been used before.
+largest label -- by pressing {kbd}`m`. This selection will guarantee that you are 
+using a label that hasn't been used before.
 
 You can also increment or decrement the currently selected label by pressing the
 `=` or `-` keys, respectively.

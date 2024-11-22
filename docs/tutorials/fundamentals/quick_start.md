@@ -162,6 +162,11 @@ The labels layer allows you to record the segmentation result by assigning backg
 1. Circle the cell
 1. Use "fill" bucket to fill it.
 
+```{tip}
+To switch to a new, unique label -- one larger than the current largest label -- press
+the default keybinding {kbd}`m`.
+```
+
 ```{raw} html
 <figure>
   <video width="100%" controls autoplay loop muted playsinline>
