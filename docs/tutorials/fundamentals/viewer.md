@@ -336,7 +336,7 @@ On the left and right ends of the dimension sliders are scroll buttons that take
 
 On the left end of the dimension slider is the **frame playback** button. Right clicking on this button brings up a control panel that allows you to enter the **number of frames per second**; the **play direction**, either forward or backward; and the **play mode**, once, loop, or back and forth. Left clicking this button will play the image back according to these parameters.
 
-### Viewer buttons
+## Viewer buttons
 
 Below the **layer list** is a row containing these buttons:
 * Console
@@ -350,7 +350,7 @@ Below the **layer list** is a row containing these buttons:
 
 Each one is explained below.
 
-#### Console button
+### Console button
 
 The first button on the left end of the row is the `Console` button. It shows or hides the console and allows you to interact with the python kernel. Inside the console, for example, you can access the {class}`Viewer<napari.Viewer>` instance using the `viewer` argument.
 
@@ -365,7 +365,7 @@ The console (when available) appears at the bottom of the viewer as shown below:
 
 +++
 
-#### Toggle 2D/3D button
+### Toggle 2D/3D button
 
 The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data.
 For example, run the following code:
@@ -422,7 +422,7 @@ The camera perspective can also be altered programmatically:
 viewer.camera.perspective = 45
 ```
 
-#### Roll dimensions
+### Roll dimensions
 
 The third button rolls the dimensions that are currently displayed in the viewer.
 For example if you have a `ZYX` volume and are looking at the `YX` slice, this
@@ -450,21 +450,21 @@ viewer.dims.order = (2, 1, 0)
 In this case the third dimension will be controlled by the slider and the first and second dimension will be visible.
 Note that this has no effect on the order of `viewer.dims.current_step`. The first element still corresponds to the first dimension for example. These are just examples; the only requirement is that the length of the tuple is the same as the number of dimensions.
 
-#### Transpose dimensions
+### Transpose dimensions
 
 The fourth button transposes the displayed dimensions.
 
-#### Grid button
+### Grid button
 
 The next button, the grid button, toggles grid mode. When clicked, it displays each layer of the image in its own tile. You can right-click this button to adjust the way the tiles are presented, such as the grid dimensions, the order of the layers in the tiles, and whether layers are overlaid in the tiles.
 
-#### Home button
+### Home button
 
 Finally, there is the `home` button. It resets the camera to its initial values.
 
 +++
 
-### Status bar
+## Status bar
 
 At the very bottom of the GUI there is a status bar that contains useful updates and tips.
 
