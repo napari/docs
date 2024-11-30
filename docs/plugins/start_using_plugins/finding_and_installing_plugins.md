@@ -1,14 +1,17 @@
 (find-and-install-plugins)=
 # Finding and installing plugins
 
-napari plugins are Python packages distributed on the Python Package Index
-(PyPI), and annotated with the tag [`Framework ::
-napari`](https://pypi.org/search/?q=&o=&c=Framework+%3A%3A+napari).  The
-[napari hub](https://napari-hub.org) uses this data, together with additional
-metadata, to produce a more user friendly way to find napari plugins.
+Information about available plugins can be found in the following places:
+- napari plugins are Python packages distributed on the Python Package Index
+  (PyPI), and annotated with the
+  tag [`Framework :: napari`](https://pypi.org/search/?q=&o=&c=Framework+%3A%3A+napari) 
+- The conda-forge may be searched for napari plugins from
+  their [package search page](https://conda-forge.org/packages/).
+- The [napari hub](https://napari-hub.org) uses this data, together with additional
+  metadata, to produce a more user friendly way to find napari plugins.
 
-Similarly, plugins annotated on PyPI with `Framework :: napari` are listed in
-the `Plugins > Install/Uninstall Plugins` menu within napari.
+Similarly, the napari application lists plugins, annotated on PyPI with `Framework :: napari`,
+in the `Plugins > Install/Uninstall Plugins` menu.
 
 ## Installing plugins with napari
 
@@ -17,7 +20,7 @@ directly from within napari:
 Firstly, from the “Plugins” menu, select “Install/Uninstall Plugins...”.
 Then, in the plugin installer menu that opens, you can either:
 
-![napari viewer's Plugins menu with Install/Uninstall Plugins as the first item.](/images/plugin-menu.png)
+![napari viewer's Plugins menu with Install/Uninstall Plugins as the first item.](../../_static/images/plugin-menu.png)
 
 1. Install plugins from the list: you can scroll through the list of “Available Plugins”, or
    filter plugins using the text box at the top of the dialog. From the list,
@@ -33,7 +36,7 @@ Then, in the plugin installer menu that opens, you can either:
     the “Install” button next to the input bar. This method allows for more flexibility
     in the plugins you can install, but it is also a bit more advanced.
 
-   ![napari viewer's Plugin dialog. At the bottom of the dialog, there is a place to install by name, URL, or dropping in a file.](/images/plugin-install-dialog.png)
+   ![napari viewer's Plugin dialog. At the bottom of the dialog, there is a place to install by name, URL, or dropping in a file.](../../_static/images/plugin-install-dialog.png)
 
    ```{admonition} Example
    If you want to install `napari-svg` directly from the development branch on the [github repository](https://github.com/napari/napari-svg), enter `git+https://github.com/napari/napari-svg.git` in the text field.

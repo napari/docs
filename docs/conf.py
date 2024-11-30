@@ -15,14 +15,20 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import re
+import os
+from datetime import datetime
 from importlib import import_module
+from importlib.metadata import distribution
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
+import logging
 
 from jinja2.filters import FILTERS
 from sphinx_gallery import scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
 from sphinx.highlighting import lexers
+from sphinx.util import logging as sphinx_logging
+from packaging.version import parse as parse_version
 from pygments.lexers import TOMLLexer
 
 import napari
@@ -37,7 +43,7 @@ else:
 # -- Project information -----------------------------------------------------
 
 project = 'napari'
-copyright = '2022, The napari team'
+copyright = f'{datetime.now().year}, The napari team'
 author = 'The napari team'
 
 # -- General configuration ---------------------------------------------------
@@ -83,34 +89,62 @@ tags_extension = ["md", "rst"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'napari'
+html_theme = 'napari_sphinx_theme'
 
 # Define the json_url for our version switcher.
 json_url = "https://napari.org/dev/_static/version_switcher.json"
 
 if version == "dev":
-    version_match = "latest"
+    version_match = "dev"
 else:
     version_match = release
 
 html_theme_options = {
     "external_links": [
-        {"name": "napari hub", "url": "https://napari-hub.org"}
+        {"name": "napari hub", "url": "https://napari-hub.org"},
+        {"name": "Island Dispatch", "url": "https://napari.org/island-dispatch"},
+        {"name": "Community chat", "url": "https://napari.zulipchat.com"},
+        {"name": "workshop template", "url": "https://napari.org/napari-workshop-template"},
     ],
     "github_url": "https://github.com/napari/napari",
-    "navbar_start": ["navbar-project"],
+    "navbar_start": ["navbar-logo", "navbar-project"],
     "navbar_end": ["version-switcher", "navbar-icon-links"],
     "switcher": {
         "json_url": json_url,
         "version_match": version_match,
     },
+    "navbar_persistent": [],
+    "header_links_before_dropdown": 6,
+    "secondary_sidebar_items": ["page-toc"],
+    "pygment_light_style": "napari",
+    "pygment_dark_style": "napari",
+    "announcement": "https://napari.org/dev/_static/announcement.html",
+    "back_to_top_button": False,
+    "analytics": {
+        # The domain you'd like to use for this analytics instance
+        "plausible_analytics_domain": "napari.org",
+        # The analytics script that is served by Plausible
+        "plausible_analytics_url": "https://plausible.io/js/plausible.js",
+    },
+    "footer_start": ["napari-footer-links"],
+    "footer_end": ["napari-copyright"],
+}
+
+html_sidebars = {
+    "**": ["search-field.html", "sidebar-nav-bs"],
+    "index": ["search-field.html" , "calendar-template"],
+}
+
+html_context = {
+   # use Light theme only, don't auto switch (default)
+   "default_mode": "light"
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-html_logo = "images/logo.png"
+html_logo = "_static/images/logo.png"
 html_sourcelink_suffix = ''
 html_title = 'napari'
 
@@ -151,6 +185,10 @@ intersphinx_mapping = {
         'https://pyapp-kit.github.io/magicgui/',
         'https://pyapp-kit.github.io/magicgui/objects.inv',
     ],
+    'app-model': [
+        'http://app-model.readthedocs.io/en/latest/',
+        'http://app-model.readthedocs.io/en/latest/objects.inv',
+    ],
 }
 
 myst_enable_extensions = [
@@ -158,13 +196,30 @@ myst_enable_extensions = [
     'dollarmath',
     'substitution',
     'tasklist',
+    'attrs_inline',
 ]
 
 myst_heading_anchors = 4
 
+
+def get_supported_python_versions(project_name):
+    """
+    Get the supported Python versions for a given project
+    based on the classifiers in its distribution metadata.
+    """
+    dist = distribution(project_name)
+    classifiers = [value for key, value in dist.metadata.items() if key == 'Classifier' and value.startswith('Programming Language :: Python ::')]
+    return [parse_version(c.split(' :: ')[-1]) for c in classifiers if not c.endswith('Only')]
+
+
+napari_supported_python_versions = get_supported_python_versions('napari')
+
+min_python_version = min(napari_supported_python_versions)
+max_python_version = max(napari_supported_python_versions)
+
 version_string = '.'.join(str(x) for x in __version_tuple__[:3])
 python_version = '3.10'
-python_version_range = '3.8–3.10'
+python_version_range = f"{min_python_version}-{max_python_version}"
 
 myst_substitutions = {
     "napari_conda_version": f"`napari={version_string}`",
@@ -181,7 +236,7 @@ nb_output_stderr = 'show'
 
 panels_add_bootstrap_css = False
 pygments_style = 'solarized-dark'
-suppress_warnings = ['myst.header', 'etoc.toctree']
+suppress_warnings = ['myst.header', 'etoc.toctree', 'config.cache']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -196,6 +251,7 @@ exclude_patterns = [
     '.jupyter_cache',
     'jupyter_execute',
     'plugins/_*.md',
+    'plugins/building_a_plugin/_layer_data_guide.md',
     'gallery/index.rst',
 ]
 
@@ -225,7 +281,7 @@ def napari_scraper(block, block_vars, gallery_conf):
     """
     imgpath_iter = block_vars['image_path_iterator']
 
-    if app := napari.qt.get_app():
+    if app := napari.qt.get_qapp():
         app.processEvents()
     else:
         return ""
@@ -243,6 +299,29 @@ def napari_scraper(block, block_vars, gallery_conf):
 
     return scrapers.figure_rst(img_paths, gallery_conf['src_dir'])
 
+from sphinx_gallery import gen_rst
+
+gen_rst.EXAMPLE_HEADER = """
+.. DO NOT EDIT.
+.. THIS FILE WAS AUTOMATICALLY GENERATED BY SPHINX-GALLERY.
+.. TO MAKE CHANGES, EDIT THE SOURCE PYTHON FILE:
+.. "{0}"
+.. LINE NUMBERS ARE GIVEN BELOW.
+
+.. only:: html
+
+    .. note::
+        :class: sphx-glr-download-link-note
+
+        :ref:`Go to the end <sphx_glr_download_{1}>`
+        to download the full example as a Python script or as a
+        Jupyter notebook.{2}
+
+.. rst-class:: sphx-glr-example-title
+
+.. _sphx_glr_{1}:
+
+"""
 
 sphinx_gallery_conf = {
     # path to your example scripts (this value is set in the Makefile)
@@ -250,7 +329,7 @@ sphinx_gallery_conf = {
     'gallery_dirs': 'gallery',  # path to where to save gallery generated output
     'filename_pattern': '/*.py',
     'ignore_pattern': 'README.rst|/*_.py',
-    'default_thumb_file': Path(__file__).parent / 'images' / 'logo.png',
+    'default_thumb_file': Path(__file__).parent / '_static' / 'images' / 'logo.png',
     'plot_gallery': "'True'",  # https://github.com/sphinx-gallery/sphinx-gallery/pull/304/files
     'download_all_examples': False,
     'min_reported_time': 10,
@@ -262,16 +341,80 @@ sphinx_gallery_conf = {
     'within_subsection_order': ExampleTitleSortKey,
 }
 
+GOOGLE_CALENDAR_API_KEY = os.environ.get('GOOGLE_CALENDAR_API_KEY', '')
+
+
+def add_google_calendar_secrets(app, docname, source):
+    """Add google calendar api key to meeting schedule page.
+
+    The source argument is a list whose single element is the contents of the
+    source file. You can process the contents and replace this item to implement
+    source-level transformations.
+    """
+    if docname == 'community/meeting_schedule':
+        source[0] = source[0].replace('{API_KEY}', GOOGLE_CALENDAR_API_KEY)
+
+
+class FilterSphinxWarnings(logging.Filter):
+    """Filter 'duplicate object description' warnings.
+
+    These warnings are a result of autosummary limitations when we have
+    Attributes and Properties in a class sharing the same name.
+
+    The warnings are not useful - they don't result in any missing documentation
+    or rendering issues, so we can safely ignore them.
+
+    """
+    def __init__(self, app):
+        self.app = app
+        super().__init__()
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        msg = record.getMessage()
+
+        filter_out = (
+            "duplicate object description",
+        )
+
+        if msg.strip().startswith(filter_out):
+            return False
+        return True
+
+
+def qt_docstrings(app, what, name, obj, options, lines):
+    """Only show first line of Qt threading docstrings.
+
+    Avoids syntax errors since the Qt threading docstrings are written in
+    Markdown, and injected into rst docstring automatically.
+    """
+    ignore_list = ["WorkerBase", "FunctionWorker", "GeneratorWorker"]
+    if any([f in name for f in ignore_list]):
+        if len(lines) > 0:
+            del lines[1:]
+
 
 def setup(app):
-    """Ignore .ipynb files.
+    """Set up docs build.
 
-    Prevents sphinx from complaining about multiple files found for document
-    when generating the gallery.
+    * Ignores .ipynb files to prevent sphinx from complaining about multiple
+      files found for document when generating the gallery
+    * Rewrites github anchors to be comparable
+    * Adds google calendar api key to meetings schedule page
+    * Filters out 'duplicate object description' Sphinx warnings
+    * Cleans out Qt threading docstrings
 
     """
     app.registry.source_suffix.pop(".ipynb", None)
+    app.connect('source-read', add_google_calendar_secrets)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
+    app.connect('autodoc-process-docstring', qt_docstrings)
+    logger = logging.getLogger("sphinx")
+
+    warning_handler, *_ = [
+        h for h in logger.handlers
+        if isinstance(h, sphinx_logging.WarningStreamHandler)
+    ]
+    warning_handler.filters.insert(0, FilterSphinxWarnings(app))
 
 
 def get_attributes(item, obj, modulename):
@@ -295,12 +438,23 @@ FILTERS["get_attributes"] = get_attributes
 autosummary_ignore_module_all = False
 
 linkcheck_anchors_ignore = [r'^!', r'L\d+-L\d+', r'r\d+', r'issuecomment-\d+']
-
 linkcheck_ignore = [
-    'https://napari.zulipchat.com/',
-    '../_tags',
-    'https://en.wikipedia.org/wiki/Napari#/media/File:Tabuaeran_Kiribati.jpg',
+    "https://napari.zulipchat.com/",
+    "../_tags",
+    "https://en.wikipedia.org/wiki/Napari#/media/File:Tabuaeran_Kiribati.jpg",
+    "http://localhost:8000",
+    "https://datadryad.org/stash/downloads/file_stream/182482",
+    "https://github.com/napari/docs/issues/new/choose",
+    "https://github.com/napari/napari/issues/new/choose",
+    "https://github.com/napari/napari/issues/new",
+    "https://napari-hub.org",
+    "https://github.com/napari/napari/releases/latest",
+    "https://onlinelibrary.wiley.com/doi/10.1002/col.20327",
 ]
+linkcheck_allowed_redirects = {
+    r"https://youtu\.be/.*": r"https://www\.youtube\.com/.*",
+    r"https://github\.com/napari/napari/releases/download/.*": r"https://objects\.githubusercontent\.com/.*",
+}
 
 
 def rewrite_github_anchor(app, uri: str):

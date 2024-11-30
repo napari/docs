@@ -21,7 +21,7 @@ changes to napari's API. The napari documentation is now entirely contained,
 built, and deployed from the napari repository (#4047, #4147, #4154, #4176,
 #4183). This and ongoing work will make it easier for the community to
 contribute documentation to the project and help others use napari. We have a
-new [documentation contributing guide](docs_contributing_guide) to help
+new [documentation contributing guide](contributing-docs) to help
 community members contribute documentation pages.
 
 Our volume display layers (`Image` and `Labels`) have gained a new slicing
@@ -37,7 +37,7 @@ If users install this third-party package, they will be presented with a
 dialog asking whether to opt-in to report errors to select napari core
 developers, which will help us prioritise and fix bugs that we might otherwise
 miss. See the project's
-[README](https://github.com/tlambert03/napari-error-reporter/#readme) for
+[README](https://github.com/tlambert03/napari-error-reporter/) for
 details.
 
 Finally, we have made some updates to how our application works. We now provide

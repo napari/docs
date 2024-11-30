@@ -82,14 +82,14 @@ See some of the things napari can do.
 :::
 
 :::{grid-item-card} Installation
-:link: installation
+:link: napari-installation
 :link-type: ref
 
 How to install napari.
 :::
 
 :::{grid-item-card} Getting started
-:link: getting_started
+:link: launch
 :link-type: ref
 
 Get started with napari.
@@ -103,7 +103,7 @@ Get started with napari.
 :link: community
 :link-type: ref
 
-Forums, web chat, video chat, and more! Join us!
+Forums, web chat, video chat, where to ask questions and more! Join us!
 :::
 
 :::{grid-item-card} Governance
@@ -121,3 +121,4 @@ napari is extensible! Find plugins, or develop your own!
 :::
 
 ::::
+

@@ -20,7 +20,7 @@ We picked out a few highlights, but keep reading below for the full list of chan
 We added a new blending mode, `minimum`, in #4875, along with some inverted colormaps by @cleterrier.
 The new mode and colormaps enable visualizing data as color intensities on a white background.
 This is particularly nice when using the Light theme.
-For more inspiration see [#invertedLUT on Twitter](https://twitter.com/hashtag/invertedLUT)
+For more inspiration see [#invertedLUT on Twitter](https://x.com/hashtag/invertedLUT)
 and the built-in napari example [examples/minimum_blending.py](https://github.com/napari/napari/blob/main/examples/minimum_blending.py).
 
 ### Option to edit second shortcut in preferences
@@ -352,7 +352,7 @@ or create issues on GitHub.
 - remove a few more qtbot.wait calls in tests (#4888)
 - use npe2api in plugin install dialog (#4893)
 - Add perfmon directory for shared configs and tools (#4898)
-- Conda: fix MacOS signing (#4904)
+- Conda: fix macOS signing (#4904)
 - Improve error message for a failed write (#4913)
 - Minor type fix (add Optional) (#4916)
 - add user keymap (#4946)
@@ -472,4 +472,3 @@ or create issues on GitHub.
 - [Robin Koch](https://github.com/napari/napari/commits?author=RobAnKo) - @RobAnKo
 - [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - @tlambert03
 - [Ziyang Liu](https://github.com/napari/napari/commits?author=potating-potato) - @potating-potato
-

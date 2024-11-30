@@ -176,7 +176,7 @@ specification in the same module or class, without needing a separate entry poin
 
 Packages and modules installed in the same environment as `napari` may make
 themselves "discoverable" to napari using package metadata, as outlined in the
-[Python Packaging Authority guide](https://packaging.python.org/guides/creating-and-discovering-plugins/#using-package-metadata).
+[Python Packaging Authority guide](https://packaging.python.org/en/latest/guides/creating-and-discovering-plugins/#using-package-metadata).
 
 By providing an `entry_points` argument with the key `napari.plugin` to
 `setup()` in `setup.py`, plugins can register themselves for discovery.
@@ -213,25 +213,26 @@ See [testing and deploying](plugin-test-deploy) your plugin.  (This hasn't chang
 significantly with the secod generation (`npe2`) plugin engine).
 
 
-(plugin-cookiecutter-template)=
+(napari-plugin-template)=
 
-## Cookiecutter template
+## napari plugin template
 
 To quickly generate a new napari plugin project, you may wish to use the
-[cookiecutter-napari-plugin](https://github.com/napari/cookiecutter-napari-plugin) template. This uses
-the [cookiecutter](https://github.com/cookiecutter/cookiecutter) command line
+[napari-plugin-template](https://github.com/napari/napari-plugin-template). This uses
+the [copier](https://copier.readthedocs.io/en/stable/) command line
 utility, which will ask you a few questions about your project and get you
 started with a ready-to-go package layout where you can begin implementing your
 plugin.
 
-Install cookiecutter and use the template as follows:
+Install copier and use the template as follows:
 
 ```sh
-python -m pip install cookiecutter
-cookiecutter https://github.com/napari/cookiecutter-napari-plugin
+python -m pip install copier jinja2-time
+python -m pip install npe2
+copier copy --trust https://github.com/napari/napari-plugin-template new-plugin-name
 ```
 
-See the [readme](https://github.com/napari/cookiecutter-napari-plugin) for details
+See the [readme](https://github.com/napari/napari-plugin-template) for details
 
 
 ----------------------------

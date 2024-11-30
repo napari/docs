@@ -11,6 +11,7 @@ subtrees:
           entries:
           - file: tutorials/fundamentals/quick_start
           - file: tutorials/fundamentals/installation
+          - file: tutorials/fundamentals/installation_bundle_conda
           - file: tutorials/fundamentals/getting_started
           - file: tutorials/fundamentals/viewer
           - file: guides/layers
@@ -48,30 +49,84 @@ subtrees:
               - file: howtos/layers/surface
               - file: howtos/layers/tracks
               - file: howtos/layers/vectors
-          - file: howtos/connecting_events
+          - file: howtos/extending/index
+            subtrees:
+            - titlesonly: True
+              entries:
+              - file: howtos/extending/magicgui
+              - file: howtos/extending/connecting_events
           - file: howtos/napari_imageJ
           - file: howtos/docker
           - file: howtos/perfmon
           - file: howtos/headless
+          - file: howtos/themes
       - file: guides/index
         subtrees:
         - entries:
-          - file: guides/magicgui
           - file: guides/event_loop
-          - file: guides/napari_models
           - file: guides/threading
           - file: guides/3D_interactivity
-          - file: guides/rendering-explanation
           - file: guides/rendering
           - file: guides/performance
           - file: guides/preferences
           - file: guides/contexts_expressions
-          - file: guides/app_model
           - file: guides/events_reference
       - file: further-resources/glossary
       - file: further-resources/napari-workshops
       - file: further-resources/sample_data
       - file: gallery
+      - file: release/index
+        subtrees:
+        - entries:
+          - file: release/release_0_5_4
+          - file: release/release_0_5_3
+          - file: release/release_0_5_2
+          - file: release/release_0_5_1
+          - file: release/release_0_5_0
+          - file: release/release_0_4_19
+          - file: release/release_0_4_18
+          - file: release/release_0_4_17
+          - file: release/release_0_4_16
+          - file: release/release_0_4_15
+          - file: release/release_0_4_14
+          - file: release/release_0_4_13
+          - file: release/release_0_4_12
+          - file: release/release_0_4_11
+          - file: release/release_0_4_10
+          - file: release/release_0_4_9
+          - file: release/release_0_4_8
+          - file: release/release_0_4_7
+          - file: release/release_0_4_6
+          - file: release/release_0_4_5
+          - file: release/release_0_4_4
+          - file: release/release_0_4_3
+          - file: release/release_0_4_2
+          - file: release/release_0_4_1
+          - file: release/release_0_4_0
+          - file: release/release_0_3_8
+          - file: release/release_0_3_7
+          - file: release/release_0_3_6
+          - file: release/release_0_3_5
+          - file: release/release_0_3_4
+          - file: release/release_0_3_3
+          - file: release/release_0_3_2
+          - file: release/release_0_3_1
+          - file: release/release_0_3_0
+          - file: release/release_0_2_12
+          - file: release/release_0_2_11
+          - file: release/release_0_2_10
+          - file: release/release_0_2_9
+          - file: release/release_0_2_8
+          - file: release/release_0_2_7
+          - file: release/release_0_2_6
+          - file: release/release_0_2_5
+          - file: release/release_0_2_4
+          - file: release/release_0_2_3
+          - file: release/release_0_2_1
+          - file: release/release_0_2_0
+          - file: release/release_0_1_5
+          - file: release/release_0_1_3
+          - file: release/release_0_1_0
   - file: plugins/index
     subtrees:
     - entries:
@@ -132,13 +187,35 @@ subtrees:
   - file: developers/index
     subtrees:
     - entries:
-      - file: developers/contributing
+      - file: developers/contributing/index
+        subtrees:
+        - entries:
+          - file: developers/contributing/dev_install
+          - file: developers/contributing/testing
+          - file: developers/contributing/translations
+          - file: developers/contributing/performance/index
+            subtrees:
+            - entries:
+              - file: developers/contributing/performance/profiling
+              - file: developers/contributing/performance/benchmarks
+          - file: developers/contributing/documentation/index
+            subtrees:
+            - entries:
+              - file: developers/contributing/documentation/docs_template
+              - file: developers/contributing/documentation/docs_deployment
+      - file: developers/coredev/core_dev_guide
+        subtrees:
+        - entries:
+          - file: developers/coredev/maintenance
+          - file: developers/coredev/release
+          - file: developers/coredev/packaging
       - file: developers/architecture/index
         subtrees:
         - entries:
           - file: developers/architecture/dir_organization
           - file: developers/architecture/napari_models
           - file: developers/architecture/app_model
+          - file: developers/architecture/magicgui_type_reg
       - file: naps/index
         subtrees:
         - maxdepth: 1
@@ -152,65 +229,7 @@ subtrees:
           - file: naps/6-contributable-menus
           - file: naps/7-key-binding-dispatch
           - file: naps/8-telemetry
-      - file: developers/documentation/index
-        subtrees:
-        - entries:
-          - file: developers/documentation/docs_template
-          - file: developers/documentation/docs_deployment
-      - file: developers/translations
-      - file: developers/core_dev_guide
-      - file: developers/release
-      - file: developers/testing
-      - file: developers/profiling
-      - file: developers/benchmarks
-      - file: developers/packaging
-      - file: developers/maintenance
-      - file: release/index
-        subtrees:
-        - entries:
-          - file: release/release_0_4_18
-          - file: release/release_0_4_17
-          - file: release/release_0_4_16
-          - file: release/release_0_4_15
-          - file: release/release_0_4_14
-          - file: release/release_0_4_13
-          - file: release/release_0_4_12
-          - file: release/release_0_4_11
-          - file: release/release_0_4_10
-          - file: release/release_0_4_9
-          - file: release/release_0_4_8
-          - file: release/release_0_4_7
-          - file: release/release_0_4_6
-          - file: release/release_0_4_5
-          - file: release/release_0_4_4
-          - file: release/release_0_4_3
-          - file: release/release_0_4_2
-          - file: release/release_0_4_1
-          - file: release/release_0_4_0
-          - file: release/release_0_3_8
-          - file: release/release_0_3_7
-          - file: release/release_0_3_6
-          - file: release/release_0_3_5
-          - file: release/release_0_3_4
-          - file: release/release_0_3_3
-          - file: release/release_0_3_2
-          - file: release/release_0_3_1
-          - file: release/release_0_3_0
-          - file: release/release_0_2_12
-          - file: release/release_0_2_11
-          - file: release/release_0_2_10
-          - file: release/release_0_2_9
-          - file: release/release_0_2_8
-          - file: release/release_0_2_7
-          - file: release/release_0_2_6
-          - file: release/release_0_2_5
-          - file: release/release_0_2_4
-          - file: release/release_0_2_3
-          - file: release/release_0_2_1
-          - file: release/release_0_2_0
-          - file: release/release_0_1_5
-          - file: release/release_0_1_3
-          - file: release/release_0_1_0
+          - file: naps/9-multiple-canvases
       - file: roadmaps/index
         subtrees:
         - entries:

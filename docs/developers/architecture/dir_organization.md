@@ -33,9 +33,9 @@ napari/
 Notable folders in the root directory:
 
 * [`examples/`](https://github.com/napari/napari/tree/main/examples) folder
-  contains the source [examples gallery](https://napari.org/gallery) files.
+  contains the source [examples gallery](gallery) files.
   The code in these files are executed and outputs captured when building the gallery.
-  See [](docs_contributing_guide) for details on napari` documentation.
+  See [](contributing-docs) for details on napari` documentation.
 * [`.github/`](https://github.com/napari/napari/tree/main/.github) contains
   our [GitHub Actions](https://docs.github.com/en/actions)
   [continuous integration (CI)](https://en.wikipedia.org/wiki/Continuous_integration)
@@ -73,7 +73,7 @@ is named `_qapp_model` inside `_qt/`).
   canvas (the canvas is a vispy object onto which you can draw 'visuals').
 * `benchmarks/` - benchmarking code, mostly for checking the performance of layers.
   It is is executed in CI and is run every Sunday. See
-  [`.github/workflows/benchmarks.yml`](https://github.com/napari/napari/tree/main/.github/workflows/benchmarks.yml)
+  [`.github/workflows/benchmarks.yml`](https://github.com/napari/napari/blob/main/.github/workflows/benchmarks.yml)
   for CI workflow details. The benchmarks can also be run locally.
 * `components/` - code that defines all components of the napari viewer, including the
   layerlist, dimensions and camera.

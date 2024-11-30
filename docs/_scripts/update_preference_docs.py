@@ -6,7 +6,7 @@ from qtpy.QtCore import QTimer
 from qtpy.QtWidgets import QMessageBox
 
 from napari._qt.dialogs.preferences_dialog import PreferencesDialog
-from napari._qt.qt_event_loop import get_app
+from napari._qt.qt_event_loop import get_qapp
 from napari._qt.qt_resources import get_stylesheet
 from napari.settings import NapariSettings
 
@@ -99,7 +99,7 @@ def generate_images():
     section of the docs.
     """
 
-    app = get_app()
+    app = get_qapp()
     pref = PreferencesDialog()
     pref.setStyleSheet(get_stylesheet("dark"))
     pref.show()
