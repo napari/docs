@@ -108,7 +108,7 @@ We'll go through each of these in the next sections.
 
 The main menu consists of the **File**, **View**, **Layers**, **Plugins**, **Window** and **Help** options.
 
-* **File** has the options to open files, folders, and samples, save layers and screenshots, copy screenshots to clipboard and, in the Windows and Linux versions, preferences. Additionally, you can make a new `Image` layer from an image (or URL to an image) copied to your Clipboard (keybinding {kbd}`Command/Ctrl+N`).
+* **File** has the options to open files, folders, and samples, save layers and screenshots, copy screenshots to clipboard and, in the Windows and Linux versions, preferences. Additionally, you can make a new `Image` layer from an image (or URL to an image) copied to your Clipboard (keybinding {kbd}`Command/Ctrl+N`). The `New Layer` submenu allows you to create new, blank, `Labels`, `Points` or `Shapes` layers, identical to those created by the buttons above the layer list. Plugins can also contribute custom new layer creators to this menu.
 
     All the options on the **File** menu are relatively self-explanatory except **Preferences** on the Windows and Linux versions of napari. **Preferences** allows you to personalize napari to some degree. To learn more about the **Preferences** menu, see our [Preferences guide for developers](napari-preferences).
 
@@ -119,7 +119,7 @@ The main menu consists of the **File**, **View**, **Layers**, **Plugins**, **Win
   designed for use by plugins, but will also be populated with builtin actions. Currently this menu is **in development**,
   so items may change from version to version. For more information on this menu and its usage, see [NAP-6](nap-6-contributable-menus).
 * **Plugins** allows you to install and manage plugins and displays a list of plugins that are currently installed.
-* **Window** allows you to open the integrated console, display the layer controls and layer list.
+* **Window** allows you to open the integrated console, and hide or display the layer controls and layer list.
 * **Help** contains the citation and about information.
 
 +++
