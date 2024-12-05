@@ -28,7 +28,7 @@ To fix this, either rename the file or remove all previous napari versions in yo
 
 ### My image renders as all black/all white
 
-This can happen when the contrast limits are not set correctly. You can reset the contrast limits by right-clicking "contras limits", then clicking the "Reset" button in the dialog shown.
+This can happen when the contrast limits are not set correctly. You can reset the contrast limits by right-clicking "contrast limits", then clicking the "Reset" button in the dialog shown.
 
 ### napari + numba combination doesn't work on admin installs of Windows
 
