@@ -4,7 +4,6 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 
 ## Current Core Developers
 
-- [Andy Sweet](https://github.com/napari/napari/commits?author=andy-sweet) - [@andy-sweet](https://github.com/andy-sweet)
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)*
 - [Genevieve Buckley](https://github.com/napari/napari/commits?author=GenevieveBuckley) - [@GenevieveBuckley](https://github.com/GenevieveBuckley)
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - [@Czaki](https://github.com/Czaki)
@@ -23,6 +22,7 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 
 - [Ahmet Can Solak](https://github.com/napari/napari/commits?author=AhmetCanSolak) - [@AhmetCanSolak](https://github.com/AhmetCanSolak)
 - [Alister Burt](https://github.com/napari/napari/commits?author=alisterburt) - [@alisterburt](https://github.com/alisterburt)
+- [Andy Sweet](https://github.com/napari/napari/commits?author=andy-sweet) - [@andy-sweet](https://github.com/andy-sweet)
 - [Justine Larsen](https://github.com/napari/napari/commits?author=justinelarsen) - [@justinelarsen](https://github.com/justinelarsen)
 - [Loic Royer](https://github.com/napari/napari/commits?author=royerloic) - [@royerloic](https://github.com/royerloic)^
 - [Nicholas Sofroniew](https://github.com/napari/napari/commits?author=sofroniewn) - [@sofroniewn](https://github.com/sofroniewn)^
