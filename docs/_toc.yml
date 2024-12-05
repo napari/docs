@@ -74,6 +74,7 @@ subtrees:
       - file: further-resources/glossary
       - file: further-resources/napari-workshops
       - file: further-resources/sample_data
+      - file: troubleshooting
       - file: gallery
       - file: release/index
         subtrees:
