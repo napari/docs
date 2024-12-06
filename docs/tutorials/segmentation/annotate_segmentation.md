@@ -199,7 +199,7 @@ features = regionprops_table(
 )
 ```
 
-Conveniently, `regionprops_table()` returns a dictionary that can be used as input for a napari layer's features table, so we will be able to use it directly. If we inspect the values of features, we see each key is the name of the feature and the values are arrays with an element containing the feature value for each shape. Note that the bounding boxes have been output as `bbox-0`,  `bbox-1`, `bbox-1`, `bbox-2`, `bbox-3` which correspond with the min_row, min_column, max_row, and max_column of each bounding box, respectively.
+Conveniently, `regionprops_table()` returns a dictionary that can be used as input for a napari layer's features table, so we will be able to use it directly. If we inspect the values of features, we see each key is the name of the feature and the values are arrays with an element containing the feature value for each shape. Note that the bounding boxes have been output as `bbox-0`,  `bbox-1`, `bbox-1`, `bbox-2`, `bbox-3` which correspond with the `min_row`, `min_column`, `max_row`, and `max_column` of each bounding box, respectively.
 
 ```python
 {

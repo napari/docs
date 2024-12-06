@@ -354,7 +354,7 @@ For convenience, we can also define functions to increment and decrement the cur
 
 First, we define a function to increment to the next label and decorate it with the viewer key binding decorator.
 The decorator requires that we pass the key to bind the function to as a string and the decorated function should take an event as an input argument.
-In this case, we are binding `next_label()` to the `.` key.
+In this case, we are binding `next_label()` to the {kbd}`.` key.
 
 ```python
 @viewer.bind_key('.')
@@ -392,7 +392,7 @@ Like keybindings, we can also bind functions to mouse events such as clicking or
 Here, we create a function that will increment the label after a point is added (i.e., the mouse is clicked in the viewer canvas when in the point adding mode).
 This is convenient for quickly adding all labels to a frame, as one can simply click each feature in order without having to manually swap labels.
 To achieve this, we first check if the points layer is the the adding mode (`layer.mode == 'add'`).
-If so, we then reuse the next_label() function we defined above in the keybindings to increment the label.
+If so, we then reuse the `next_label()` function we defined above in the keybindings to increment the label.
 Finally,
 
 ```python
@@ -432,7 +432,7 @@ point_annotator(im_path, labels=['ear_l', 'ear_r', 'tail'])
 ### Saving the annotations
 
 Once we are happy with the annotations, we can save them to a CSV file using the builing CSV writer for the points layer.
-To do so, first, select the "Points" layer in the layer list and then click "Save Selected layer(s)"  in the "File" menu or press control+S (cmd+S on Mac OS)  to bring up the file save dialog.
+To do so, first, select the "Points" layer in the layer list and then click "Save Selected layer(s)"  in the "File" menu or press {kbd}`control+S` ({kbd}`cmd+S` on Mac OS)  to bring up the file save dialog.
 From here you can enter the file path and save the annotation coordinates as a CSV.
 
 ![Viewer with green box around a points layer in layer list. Label in green says "1. Select Points layer in the layer list". Dialog in the middle of the viewer has options to add save file name and choose save location, with Cancel and Save buttons in the bottom right.](../../_static/images/points_save_dialog.png)

@@ -76,7 +76,7 @@ nbscreenshot(viewer, alt_text="photograph of an astronaut in napari viewer")
 viewer.close()
 ```
 
- {func}`imshow<napari.imshow>` and the {meth}`add_image<napari.components.ViewerModel.add_image>` methods accept any numpy-array like object as input, including n-dimensional arrays. For more information on adding images to the viewer see the [image layer guide](layers-image).
+{func}`imshow<napari.imshow>` and the {meth}`add_image<napari.components.ViewerModel.add_image>` methods accept any numpy-array like object as input, including n-dimensional arrays. For more information on adding images to the viewer see the [image layer guide](layers-image).
 
 Now we will continue exploring the rest of the viewer.
 
@@ -106,28 +106,27 @@ We'll go through each of these in the next sections.
 
 ### Main menu or top bar menu
 
-The main menu consists of the **File**, **View**, **Window**, **Plugins**, and **Help** options.
+The main menu consists of the **File**, **View**, **Layers**, **Plugins**, **Window** and **Help** options.
 
-* **File** has the options to open files, folders, and samples, save layers and screenshots, copy screenshots to clipboard and, in the Windows version, preferences. Additionally, you can make a new `Image` layer from an image (or URL to an image) copied to your Clipboard (keybinding {kbd}`Command/Ctrl+N`).
+* **File** has the options to open files, folders, and samples, save layers and screenshots, copy screenshots to clipboard and, in the Windows and Linux versions, preferences. Additionally, you can make a new `Image` layer from an image (or URL to an image) copied to your Clipboard (keybinding {kbd}`Command/Ctrl+N`). The `New Layer` submenu allows you to create new, blank, `Labels`, `Points` or `Shapes` layers, identical to those created by the buttons above the layer list. Plugins can also contribute custom new layer creators to this menu.
 
-    All the options on the **File** menu are relatively self-explanatory except **Preferences** on the Windows version of napari. **Preferences** allows you to personalize napari to some degree. To learn more about the **Preferences** menu, there is a tutorial designed for developers [here](https://napari.org/stable/guides/preferences.html).
+    All the options on the **File** menu are relatively self-explanatory except **Preferences** on the Windows and Linux versions of napari. **Preferences** allows you to personalize napari to some degree. To learn more about the **Preferences** menu, see our [Preferences guide for developers](napari-preferences).
 
     **Note:** In macOS, **Preferences** is under the napari menu.
 
-
 * **View** allows you to toggle full screen, the menu bar, play, display axes, the scale bar, tooltips, and the activity dock.
-
-* **Window** allows you to open the integrated console, display the layer controls and layer list.
-
+* **Layers** contains actions and commands designed to act on existing layers, or generate new ones. The menu is mostly
+  designed for use by plugins, but will also be populated with builtin actions. Currently this menu is **in development**,
+  so items may change from version to version. For more information on this menu and its usage, see [NAP-6](nap-6-contributable-menus).
 * **Plugins** allows you to install and manage plugins and displays a list of plugins that are currently installed.
-
+* **Window** allows you to open the integrated console, and hide or display the layer controls and layer list.
 * **Help** contains the citation and about information.
 
 +++
 
 ### Canvas
 
-The **canvas** is in the center of the viewer and contains the visual display of the data passed to **napari**, including `Images`, `Points`, `Shapes`, and other supported data types. Under the hood, the canvas is a `vispy.scene.SceneCanvas` object which has built-in support for features such as zooming and panning. As `vispy` uses `OpenGL` and your graphics card, panning and zooming are highly performant. You can return to the original zoom level by clicking the `home` button in the viewer buttons panel.
+The **canvas** is in the center of the viewer and contains the visual display of the data passed to **napari**, including `Images`, `Points`, `Shapes`, and other supported data types. Under the hood, the canvas is a {class}`vispy.scene.canvas.SceneCanvas` object which has built-in support for features such as zooming and panning. As `vispy` uses `OpenGL` and your graphics card, panning and zooming are highly performant. You can return to the original zoom level by clicking the `home` button in the viewer buttons panel.
 
 +++
 
@@ -151,7 +150,7 @@ The **canvas** is in the center of the viewer and contains the visual display of
 
 Layers are one of the basic napari objects. There are different layer types for `Image`, `Points`, `Shapes`, and other data types. They can be added to the viewer either programmatically or through the GUI. Once added, they populate the layer list located on the bottom left side of the canvas.
 
-The layer list contains one widget for each of the layers that have been added to the viewer and includes a `thumbnail` that shows a miniaturized version of the currently viewed data, a `name` that is an editable text box, a `visibility` button (eye icon) that can be toggled on or off to show or hide the layer, and an `icon` for the layer type. Note that you can Option/Alt-click on the `visibility` button to show *just* that one layer, hiding all others. If you then Option/Alt-click on the `visibility` button of a layer a second time, the visibility state of all layers will be restored. Alternately, you can cycle through layers in the layer list, showing only one at a time, by using {kbd}`Shift`+{kbd}`Option/Alt` and the {kbd}`Up` or {kbd}`Down` keys.
+The layer list contains one widget for each of the layers that have been added to the viewer and includes a `thumbnail` that shows a miniaturized version of the currently viewed data, a `name` that is an editable text box, a `visibility` button (eye icon) that can be toggled on or off to show or hide the layer, and an `icon` for the layer type. Note that you can Option/Alt-click on the `visibility` button to show *just* that one layer, hiding all others. If you then Option/Alt-click on the `visibility` button of a layer a second time, the visibility state of all layers will be restored. Alternately, you can cycle through layers in the layer list, showing only one at a time, by using {kbd}`Shift+Option/Alt` and the {kbd}`Up` or {kbd}`Down` keys.
 
 Adding the following three image layers using the code below adds three-layer widgets to the layer list as follows:
 
@@ -174,7 +173,7 @@ nbscreenshot(viewer, alt_text="3 image layers shown in napari viewer with the ca
 
 Note that we've also named each of the layers using the `name` keyword argument in {meth}`add_image<napari.components.viewer_model.ViewerModel.add_image>`, and that name appears as a string in the layer widget. The layer name is coerced into being unique so it can be used to index into the `LayerList`.
 
-You can select layers, which highlights them, by clicking on their layer widget. Multiple layers can be simultaneously selected using either `shift` click to select all the layers in between two clicked-on layers or `Ctrl`+click (Windows) or `Command`+click to select just the clicked on layers respectively.
+You can select layers, which highlights them, by clicking on their layer widget. Multiple layers can be simultaneously selected using either {kbd}`Shift` click to select all the layers in between two clicked-on layers or {kbd}`Ctrl`+click (Windows) or {kbd}`Command`+click to select just the clicked on layers respectively.
 
 You can rearrange the order of the layers by dragging them, including dragging multiple layers at the same time.
 
@@ -337,7 +336,7 @@ On the left and right ends of the dimension sliders are scroll buttons that take
 
 On the left end of the dimension slider is the **frame playback** button. Right clicking on this button brings up a control panel that allows you to enter the **number of frames per second**; the **play direction**, either forward or backward; and the **play mode**, once, loop, or back and forth. Left clicking this button will play the image back according to these parameters.
 
-### Viewer buttons
+## Viewer buttons
 
 Below the **layer list** is a row containing these buttons:
 * Console
@@ -351,7 +350,7 @@ Below the **layer list** is a row containing these buttons:
 
 Each one is explained below.
 
-#### Console button
+### Console button
 
 The first button on the left end of the row is the `Console` button. It shows or hides the console and allows you to interact with the python kernel. Inside the console, for example, you can access the {class}`Viewer<napari.Viewer>` instance using the `viewer` argument.
 
@@ -366,7 +365,7 @@ The console (when available) appears at the bottom of the viewer as shown below:
 
 +++
 
-#### Toggle 2D/3D button
+### Toggle 2D/3D button
 
 The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data.
 For example, run the following code:
@@ -411,15 +410,19 @@ nbscreenshot(viewer, alt_text="A rotated 3D view")
 ```
 
 Note that if you want to drag the canvas/rendering itself, instead of rotating the view, you have to hold down the
-Shift key while dragging with the mouse. Finally, while in 3D mode you can change the perspective of the
-3D view by holding Shift, pressing the right mouse button (on macOS holding Control) and
-dragging the mouse or by right-clicking (on macOS holding Control and clicking) on the 2D/3D mode
-button, which will bring up the perspective slider. The camera perspective can also be altered programmatically:
+{kbd}`Shift` key while dragging with the mouse. Finally, while in 3D mode you can change the perspective of the
+3D view by
+- holding {kbd}`Shift` ({kbd}`Control` on macOS), pressing the right mouse button and
+dragging the mouse; or
+- right-clicking (on macOS holding {kbd}`Control` and clicking) on the 2D/3D mode
+button, which will bring up the perspective slider.
+
+The camera perspective can also be altered programmatically:
 ```python
 viewer.camera.perspective = 45
 ```
 
-#### Roll dimensions
+### Roll dimensions
 
 The third button rolls the dimensions that are currently displayed in the viewer.
 For example if you have a `ZYX` volume and are looking at the `YX` slice, this
@@ -447,21 +450,21 @@ viewer.dims.order = (2, 1, 0)
 In this case the third dimension will be controlled by the slider and the first and second dimension will be visible.
 Note that this has no effect on the order of `viewer.dims.current_step`. The first element still corresponds to the first dimension for example. These are just examples; the only requirement is that the length of the tuple is the same as the number of dimensions.
 
-#### Transpose dimensions
+### Transpose dimensions
 
 The fourth button transposes the displayed dimensions.
 
-#### Grid button
+### Grid button
 
-Then there is a grid button that toggles grid mode. When clicked it displays each layer of the image in its own tile. You can right-click this button to adjust the way the tiles are presented, such as the grid dimensions, the order of the layers in the tiles, and whether layers are overlaid in the tiles.
+The next button, the grid button, toggles grid mode. When clicked, it displays each layer of the image in its own tile. You can right-click this button to adjust the way the tiles are presented, such as the grid dimensions, the order of the layers in the tiles, and whether layers are overlaid in the tiles.
 
-#### Home button
+### Home button
 
 Finally, there is the `home` button. It resets the camera to its initial values.
 
 +++
 
-### Status bar
+## Status bar
 
 At the very bottom of the GUI there is a status bar that contains useful updates and tips.
 
@@ -470,30 +473,40 @@ On the left side of the status bar there is a message about the position of the 
 The right side of the status bar contains some helpful tips depending on which layer and tools are currently selected.
 
 ## Right-click menu
- A context-sensitive menu is available when you right-click on any of the layers. The type of layer determines which options are available. Note that if you have multiple layers selected, the menu actions will affect all of the selected layers. The options that are not available for a layer are greyed out. The following options are available depending on which layer type you have selected:
+
+A context-sensitive menu is available when you right-click on any of the layers. The type of layer determines which options are available. Note that if you have multiple layers selected, the menu actions will affect all of the selected layers. The options that are not available for a layer are greyed out. The following options are available depending on which layer type you have selected:
 * **Toggle visibility** - invert the visibility state (hides or show) of selected layers: hidden layers will be shown, visible layers will be hidden.
 * **Show All Selected Layers** - Set all selected layers to visible.
 * **Hide All Selected Layers** - Set all selected layers to hidden.
 * **Show All Unselected Layers** - Set all *unselected* layers to visible.
 * **Hide All Unselected Layers** - Set all *unselected* layers to hidden.
-* **Duplicate Layer** - creates a second copy of the selected layer. Can be used on **Points**, **Shapes**, **Labels**, and **Image** layers. This is useful for testing your analysis on a copy instead of on the original image.
 * **Convert to Labels** - converts an **Image** layer to a **Labels** layer (if the data is already of type `int` it is not copied or altered, only the representation is changed, making this fully reversible). This is useful for converting a binary image segmentation map to a labels layer with each segmented object denoted by its own integer. Can also be used on a **Shapes** layer, in this case a new **Labels** layer will be created.
 * **Convert to Image** - converts a **Labels** layer into an **Image** layer (the data is not copied or altered, only the representation is changed, making this fully reversible).
 * **Convert datatype** - converts a **Labels** layer into int8, int16, int32, int64, uint8, uint16, uint32, or uint64 data types. The initial data type is the data type of the data itself.
-* **Make Projection** - can be used only on a layer with more than 2 dimensions, also known as a *stack*.  It creates a new layer that is a projection of the layer stack with the characteristic the user selects, reducing the number of dimensions by 1. More information about the types of projections is available [here](https://medium.com/@damiandn/an-intoduction-to-biological-image-processing-in-imagej-part-3-stacks-and-stack-projections-942aa789420f). The following projections are available:
-    * **Max** - maximum intensity projection. At each pixel position, we go  through the stacks, find the pixel with the maximum intensity, and that becomes the intensity of that pixel value in the projected image.
-   * **Min** - minimum intensity projection. Similar to the maximum intensity projection, except that the minimum pixel value is used for the projected image instead of the maximum pixel value.
-   * **Std** - the standard deviation projection. At each pixel position, the standard deviation of the pixel intensities through the stack is the assigned value of that pixel position. Positions with large differences in the pixel intensities through the stack appear brighter in this projection.
-   * **Sum** - the sum projection simply adds together all the pixel values in the stack for a given position. In this projection, the image is typically re-scaled to a 16-bit image, as the sum of all the pixel intensity values usually exceeds 255, which would result in a completely white 8-bit image.
-   * **Mean** - the mean projection is the average intensity projection.  It simply averages all the pixel values in the stacks to make the final projected image.
-   * **Median** - the median projection takes the median pixel intensity for the final projected image.
+* **Copy scale and transforms** - copies the scale and transformation properties of the selected layer to the clipboard. This can be useful for pasting the properties to another layer. The following options are available in this sub-menu:
+  * **Copy all to clipboard** - copy all scale and transform properties to the clipboard.
+  * **Copy affine to clipboard** - copy the affine transformations to the clipboard.
+  * **Copy rotate to clipboard** - copy the rotation transformations to the clipboard.
+  * **Copy scale to clipboard** - copy the scale transformations to the clipboard.
+  * **Copy shear to clipboard** - copy the shear transformations to the clipboard.
+  * **Copy translate to clipboard** - copy the translation transformations to the clipboard.
+* **Apply scale/transforms from Clipboard** - applies the scale and translation properties from the clipboard to the selected layer.
+* **Duplicate Layer** - creates a second copy of the selected layer. Can be used on **Points**, **Shapes**, **Labels**, and **Image** layers. This is useful for testing your analysis on a copy instead of on the original image.
 * **Split RGB** - if the image layer is an RGB image, it will be split into 3 new layers with red, green, and blue values in separate layers.
 * **Split Stack** - if an image layer is a stack (has 3 or more dimensions), it is split into a list of layers along the axis. This option takes a little time to execute. Properties will be changed as follows:
     * **Colormap:** (magenta, green) for a stack with 2 channels, (CYMRGB) for stacks with more than 2 channels
     * **Blending:** additive
     * **Contrast_limits:** min and max values of the layer
     * All other properties, such as **Scale** and **Translate** will be propagated from the original stack.
+* *Merge to RGB** - combines a set of 3 image layers with the same dimensionality to a RGB layer. The layers must have one of `red`, `green`, and `blue` colormaps to indicate merging order.
 * **Merge to Stack** - combines a set of layers to a single-layer stack. The resulting layer stack will contain the layers with their original ordering in the layer list. Layers must be of the same type (e.g. An **Image** layer can be merged only with other **Image** layers.) and must have the same dimensionality.  (e.g. a 1024 x 1024 layer can only be merged with another 1024 x 1024 layer.)
+* **Projection** - can be used only on a layer with more than 2 dimensions, also known as a *stack*.  It creates a new layer that is a projection of the layer stack with the characteristic the user selects, reducing the number of dimensions by 1. More information about the types of projections is available [here](https://medium.com/@damiandn/an-intoduction-to-biological-image-processing-in-imagej-part-3-stacks-and-stack-projections-942aa789420f). The following projections are available:
+  * **max projection** - maximum intensity projection. At each pixel position, we go  through the stacks, find the pixel with the maximum intensity, and that becomes the intensity of that pixel value in the projected image.
+  * **min projection** - minimum intensity projection. Similar to the maximum intensity projection, except that the minimum pixel value is used for the projected image instead of the maximum pixel value.
+  * **std projection** - the standard deviation projection. At each pixel position, the standard deviation of the pixel intensities through the stack is the assigned value of that pixel position. Positions with large differences in the pixel intensities through the stack appear brighter in this projection.
+  * **sum projection** - the sum projection simply adds together all the pixel values in the stack for a given position. In this projection, the image is typically re-scaled to a 16-bit image, as the sum of all the pixel intensity values usually exceeds 255, which would result in a completely white 8-bit image.
+  * **mean projection** - the mean projection is the average intensity projection.  It simply averages all the pixel values in the stacks to make the final projected image.
+  * **median projectio** - the median projection takes the median pixel intensity for the final projected image.
 * **Link Layers** - links the selected layers.  Once layers are linked, any action performed on one layer will be performed on all linked layers at the same time. The layer control panel will show _only_ when a single layer is selected. Changing properties with that layer's control panel will change properties in all of the linked layers.
 * **Unlink Layers** - appears when layers are linked. It unlinks the layers so that changes to one of the layer's properties no longer result in the same changes to the previously linked layers.
 * **Select Linked Layers** - appears only when layers are linked. Selects all layers linked to a given layer.
@@ -528,7 +541,7 @@ nbscreenshot(viewer, alt_text="A napari viewer changed to light theme")
 viewer.theme = 'dark'
 ```
 
-You can also change the theme using the "Toggle theme" keyboard shortcut, by default `Command/Control+Shift+T`. Note that changing the theme using this shortcut will only change the *current* viewer theme. If you wish to make the change permanent for all viewers, make sure to also change your settings in the **Appearance** tab of the **Preferences** menu.
+You can also change the theme using the "Toggle theme" keyboard shortcut, by default {kbd}`Command/Control+Shift+T`. Note that changing the theme using this shortcut will only change the *current* viewer theme. If you wish to make the change permanent for all viewers, make sure to also change your settings in the **Appearance** tab of the **Preferences** menu.
 
 Adding your own custom theme isn't too hard but it requires creating your own color `palette` and rebuilding the icons. It's also possible for [plugins to contribute a theme](contributions-themes). If people want more themes, we're happy to add them or you can look at our [contributing guidelines](napari-contributing) for more information about building the icons and add one yourself!
 
@@ -538,7 +551,7 @@ Adding your own custom theme isn't too hard but it requires creating your own co
 
 napari provides a number of built-in keyboard shortcuts, which you can access and change in **Preferences**>**Shortcuts**.
 
-**Note:** **Preferences** is under the **File** menu on Windows and under **napari** on macOS.)
+**Note:** **Preferences** is under the **File** menu on Windows and Linux, and under **napari** on macOS.)
 
 One of the promises of **napari** is to provide a beginner friendly environment for interactive analysis. For example, we want to enable workflows where people can interact with the GUI, say, click on the centers of some objects or paint over some regions and then perform custom analysis. As a first step towards enabling custom interactivity we've provided support to add your own custom keybindings to the `Viewer` or individual `Layer` objects such that when the corresponding key gets clicked, your custom function gets executed. Depending on which object you bind your key to, your function will either get access to the state of the entire `Viewer` or `Layer` object.
 
