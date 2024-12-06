@@ -128,6 +128,7 @@ html_theme_options = {
     },
     "footer_start": ["napari-footer-links"],
     "footer_end": ["napari-copyright"],
+    "show_version_warning_banner": True,
 }
 
 html_sidebars = {
