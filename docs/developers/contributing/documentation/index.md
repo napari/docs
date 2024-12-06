@@ -577,3 +577,10 @@ is not necessary—you can copy-paste the code above it. However, it is required
 Because our example gallery is built from Python scripts, you need to ensure this
 block is present in all contributed examples.
 ````
+
+### Cross-referencing Gallery examples
+
+If you want to generate links to Gallery examples from anywhere in the docs, then the cross-referencing format you use will depend on the format of the doc you are writing. Note that the gallery examples live in `/gallery` despite being in `napari/examples` because [`docs/docs/conf.py`](https://github.com/napari/docs/blob/main/docs/conf.py) specificies that examples are built into the `gallery` directory.
+
+- When writing in `.md` files (myst, used in the majority of docs) , use the standard Markdown link syntax. For example, `[Add Image Example](gallery/add_image.html)` will display as [Add Image Example](gallery/add_image.html)
+- When writing in `.py` files (rst, used in the example gallery) , cross-reference with `` :ref:`sphx_glr_gallery_example.py` ``. The [Sphinx cross-reference namespace](https://sphinx-gallery.github.io/stable/advanced.html#know-your-gallery-files) is generated with the `sphx_glr` prefix, then path separators are converted to underscores, for example `/gallery/add_image.py` becomes `_gallery_add_image.py` to get the end result `` :ref:`sphx_glr_gallery_add_image.py` ``.
