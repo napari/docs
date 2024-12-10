@@ -72,6 +72,7 @@ Read on for all the changes in this version!
 - [Labels] Add more prominent info about the next label keybind and fix n_dimensional (deprecated) ([docs#522](https://github.com/napari/docs/pull/522))
 - Update NAP-6 to remove mention of context menu ([docs#525](https://github.com/napari/docs/pull/525))
 - Remove Andy Sweet as a core developer ([docs#530](https://github.com/napari/docs/pull/530))
+- Add draft release notes for 0.5.5 ([docs#536](https://github.com/napari/docs/pull/536))
 
 ## Other Pull Requests
 
