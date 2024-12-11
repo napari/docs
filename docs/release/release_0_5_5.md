@@ -2,7 +2,7 @@
 
 *Thu, Dec 12, 2024*
 
-We’re happy to announce the release of napari 0.5.5! (You might have noticed it's been a hot minute since our last release — the team has been busy on the conference circuit (watch our talk [at PyConAU](https://youtu.be/EYmTLGwScBI?si=5SUqxVYuhyAmlD6H)!), defending their PhDs, and more! We are now back to our regularly-scheduled programming. 😂
+We’re happy to announce the release of napari 0.5.5! (You might have noticed it's been a hot minute since our last release — the team has been busy on the conference circuit (watch [our talk at PyConAU](https://youtu.be/EYmTLGwScBI?si=5SUqxVYuhyAmlD6H)!), defending their PhDs, and more! We are now back to our regularly-scheduled programming. 😂
 
 napari is a fast, interactive, multi-dimensional image viewer for Python. It’s designed for exploring, annotating, and analyzing multi-dimensional images. It’s built on Qt (for the GUI), VisPy (for performant GPU-based rendering), and the scientific Python stack (NumPy, SciPy, and friends).
 
@@ -10,14 +10,44 @@ For more information, examples, and documentation, please visit our website: htt
 
 ## Highlights
 
-- Update normal calculation for labels isosurface rendering ([#7431](https://github.com/napari/napari/pull/7431))
-- Speedup triangulation of edges ([#7268](https://github.com/napari/napari/pull/7268))
+Did you have a hole in your heart where high-quality 3D labels rendering should
+have been? Check out [#7431](https://github.com/napari/napari/pull/7431), in
+which [Ashley Anderson](https://github.com/aganders3) has (again) improved the
+quality of 3D labels by filling the (apparent, but fictional) holes in labels
+at the borders of a volume. Before/after gif:
+
+![movie showing before and after of labels rendering at the borders of a
+volume](https://github.com/user-attachments/assets/728505be-d212-417b-a29e-7228761ffed3)
+
+Additionally, [Grzegorz Bokota](https://github.com/Czaki) has again sped up
+launch time for Shapes layers by porting all the edge triangulation code to
+numba ([#7268](https://github.com/napari/napari/pull/7268)). As part of that
+work he also created a fantastic developer example explaining how the edge
+triangulation works, which you can find at
+[examples/dev/triangle_edge.py](https://github.com/napari/napari/blob/b2edccd6e40e04467ccfeec0257c2160783f7187/examples/dev/triangle_edge.py).
+Give it a read and a play if you want to peek under the hood of the Shapes
+layer!
+
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../_static/images/triangle-edge.webm" type="video/webm" />
+    <source src="../_static/images/triangle-edge.mp4" type="video/mp4" />
+    <img src="../_static/images/triangle-edge.png"
+      title="Your browser does not support the video tag"
+      alt="napari viewer showing a shapes layer and associated layers depicting the triangulation of the elements of the Shapes layer."
+    >
+  </video>
+</figure>
+```
 
 Read on for all the changes in this version!
+
 
 ## Improvements
 
 - Do not start notification timer if window is not active. ([#7220](https://github.com/napari/napari/pull/7220))
+- Speedup triangulation of edges ([#7268](https://github.com/napari/napari/pull/7268))
 - [Enh] Double-click to zoom in on the clicked location (alt to zoom out) ([#7286](https://github.com/napari/napari/pull/7286))
 - Highlight Shapes and Points layer data only when active ([#7289](https://github.com/napari/napari/pull/7289))
 - Remove keybinding full stops ([#7304](https://github.com/napari/napari/pull/7304))
@@ -26,7 +56,6 @@ Read on for all the changes in this version!
 - Enable mouse pan and zoom when no active layer is available ([#7408](https://github.com/napari/napari/pull/7408))
 - Add metadata event to Layer class ([#7416](https://github.com/napari/napari/pull/7416))
 - Update normal calculation for labels isosurface rendering ([#7431](https://github.com/napari/napari/pull/7431))
-- Speedup triangulation of edges ([#7268](https://github.com/napari/napari/pull/7268))
 
 ## Bug Fixes
 
@@ -53,6 +82,7 @@ Read on for all the changes in this version!
 - Update the docstrings and comments for status checker thread ([#7381](https://github.com/napari/napari/pull/7381))
 - Update `to_screenshot` and `export_figure` example docstrings ([#7426](https://github.com/napari/napari/pull/7426))
 - Turn off 'flash' in `screenshot`/`export_figure` examples ([#7427](https://github.com/napari/napari/pull/7427))
+- Add draft release notes for 0.5.5 ([docs#536](https://github.com/napari/docs/pull/536))
 - Add linkcheck step to be run once a week ([docs#474](https://github.com/napari/docs/pull/474))
 - Fix broken links detected by make linkcheck-files ([docs#484](https://github.com/napari/docs/pull/484))
 - Add 0.5.4 to the version switcher ([docs#500](https://github.com/napari/docs/pull/500))
@@ -71,8 +101,7 @@ Read on for all the changes in this version!
 - Update finding_and_installing_plugins.md ([docs#521](https://github.com/napari/docs/pull/521))
 - [Labels] Add more prominent info about the next label keybind and fix n_dimensional (deprecated) ([docs#522](https://github.com/napari/docs/pull/522))
 - Update NAP-6 to remove mention of context menu ([docs#525](https://github.com/napari/docs/pull/525))
-- Remove Andy Sweet as a core developer ([docs#530](https://github.com/napari/docs/pull/530))
-- Add draft release notes for 0.5.5 ([docs#536](https://github.com/napari/docs/pull/536))
+- Move Andy Sweet from core-devs to emeritus core-devs ([docs#530](https://github.com/napari/docs/pull/530))
 
 ## Other Pull Requests
 
@@ -122,7 +151,7 @@ Read on for all the changes in this version!
 - [Daniel Althviz Moré](https://github.com/napari/napari/commits?author=dalthviz) - @dalthviz
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [jaime rodriguez-guerra](https://github.com/napari/docs/commits?author=jaimergp) - @jaimergp
-- [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
+- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) ([docs](https://github.com/napari/docs/commits?author=jni))  - @jni
 - [Lucy Liu](https://github.com/napari/napari/commits?author=lucyleeow) ([docs](https://github.com/napari/docs/commits?author=lucyleeow))  - @lucyleeow
 - [Melissa Weber Mendonça](https://github.com/napari/napari/commits?author=melissawm) ([docs](https://github.com/napari/docs/commits?author=melissawm))  - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
@@ -140,7 +169,7 @@ Read on for all the changes in this version!
 - [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
 - [Genevieve Buckley](https://github.com/napari/docs/commits?author=GenevieveBuckley) - @GenevieveBuckley
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
-- [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
+- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) ([docs](https://github.com/napari/docs/commits?author=jni))  - @jni
 - [Lorenzo Gaifas](https://github.com/napari/docs/commits?author=brisvag) - @brisvag
 - [Lucy Liu](https://github.com/napari/napari/commits?author=lucyleeow) ([docs](https://github.com/napari/docs/commits?author=lucyleeow))  - @lucyleeow
 - [Melissa Weber Mendonça](https://github.com/napari/napari/commits?author=melissawm) ([docs](https://github.com/napari/docs/commits?author=melissawm))  - @melissawm
