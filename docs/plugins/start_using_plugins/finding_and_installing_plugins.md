@@ -39,5 +39,11 @@ Then, in the plugin installer menu that opens, you can either:
    ![napari viewer's Plugin dialog. At the bottom of the dialog, there is a place to install by name, URL, or dropping in a file.](../../_static/images/plugin-install-dialog.png)
 
    ```{admonition} Example
+   To install `napari-svg`, enter `napari-svg` in the text field and press {kbd}`Enter` or click "Install". This is equivalent to running `pip install napari-svg`.
+   ```
+   ```{admonition} Example
    If you want to install `napari-svg` directly from the development branch on the [github repository](https://github.com/napari/napari-svg), enter `git+https://github.com/napari/napari-svg.git` in the text field.
+   ```
+   ```{admonition} Example
+   If you want to install `napari-svg` from a specific release, enter `napari-svg==0.1.0` in the text field.
    ```
