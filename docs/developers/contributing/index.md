@@ -2,8 +2,9 @@
 # Contributing guide
 
 We welcome your contributions! Here you will find a guide to the contribution
-workflow and tips for contributing to napari. Do not hesitate to [contact](contact) us
-if you have any queries.
+workflow and tips for contributing to napari.
+If you are looking to learn more about the napari code base, see the [napari architecture guide](architecture-index).
+Do not hesitate to [contact](contact) us if you have any queries.
 
 ```{note}
 To contribute to our blog, the [Island Dispatch](https://napari.org/island-dispatch), check out https://github.com/napari/island-dispatch.
