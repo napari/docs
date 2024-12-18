@@ -352,13 +352,14 @@ range of the colormap.
 ## Adjusting contrast limits
 
 Each image layer gets mapped through its colormap according to values called
-contrast limits. Contrast limits are a 2-tuple where the second value is
+contrast limits. Contrast limits are the minimum and maximum values displayed
+by the layer, represented in napari by a 2-tuple where the second value is
 larger than the first. The smaller contrast limit corresponds to the value of
-the image data that will get mapped to the color defined by 0 in the colormap.
-All values of image data smaller than this value will also get mapped to this
-color. The larger contrast limit corresponds to the value of the image data that
-will get mapped to the color defined by 1 in the colormap. All values of image
-data larger than this value will also get mapped to this color.
+the image data that will get mapped to the color defined by 0 in the colormap,
+such that any value under the smaller contrast limit will appear as black. On
+the other hand, the larger contrast limit corresponds to the value of the image
+data that will get mapped to the color defined by 1 in the colormap. All values
+of image data larger than this value will appear as white.
 
 For example, if you are looking at an image that has values between 0 and 100 with
 a standard `gray` colormap, and you set the contrast limits to `(20, 75)`, then
@@ -397,17 +398,48 @@ value.
 
 As of right now, adjusting the contrast limits has no effect for `rgb` data.
 
+If you pass contrast limits as a keyword argument to a layer, then the full
+extent of the `contrast limits:` range slider will be set to those values.
+
+```{tip}
 If contrast limits are not passed, napari will compute them. If your data is
 small, napari will take the minimum and maximum values across your
 entire image. If your data is exceptionally large, this operation can be very
-time consuming and so if you pass an image pyramid then napari will use only the
+time consuming. If you pass an image pyramid, then napari will use only the
 top level of that pyramid, or it will use the minimum and maximum values
 across the top, middle, and bottom slices of your image. In general, if working
 with big images, it is recommended to explicitly set the contrast limits if you
 can.
+```
 
-Currently if you pass contrast limits as a keyword argument to a layer, then the
-full extent of the `contrast limits:` range slider will be set to those values.
+### Resetting the contrast limits
+
+When all the image data values are near the bottom of the range, the image can
+appear black even if there are some very dark (but not quite black) pixels there.
+
+To avoid such issues, you can reset the contrast limits by clicking the
+"auto-contrast: once" button, or, if that fails, right-clicking on the contrast
+limits to do manual adjustment, including directly editing the numbers shown or
+resetting the contrast limits by right-clicking on the slider and clicking the
+"reset" button in the advanced contrast limits widget.
+
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/contrast_limits.webm" type="video/webm" />
+    <source src="../../_static/images/contrast_limits.mp4" type="video/mp4" />
+    <img src="../../_static/images/contrast_limits.png"
+      title="Your browser does not support the video tag"
+      alt="Contrast limits widget after right-clicking contrast limits slider."
+    >
+  </video>
+</figure>
+```
+
+When in doubt, you can hover over the canvas with your image layer selected, and
+check the status message as you move the mouse around. That will give you an
+idea of the range and variability of the data in your layer, helping you set
+meaningful contrast limits.
 
 ## Saving without image compression
 
