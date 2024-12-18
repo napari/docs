@@ -70,7 +70,7 @@ The installation progress can be monitored on the following window. Some notific
 ![Cropped screenshot of the Installation page of the PKG installer. This page displays a progress bar at a 10%. In the top right corner, an example of a system notification with the text 'Installing packages. This might take a few minutes' is shown](../../_static/images/bundle_10.png)
 
 ```{note}
-If an error ocurred during the installation, do not close the installer immediately. Before doing so, please inspect the logs by clicking on Window > Installer log or pressing <kbd>⌘</kbd> + <kbd>L</kbd>. In the Detail Level dropdown, choose 'Show All Logs' and click on Save to keep a copy of the contents in a text file. This will be useful if you want to [submit an issue](https://github.com/napari/napari/issues/new/choose).
+If an error ocurred during the installation, do not close the installer immediately. Before doing so, please inspect the logs by clicking on Window > Installer log or pressing {kbd}`⌘+L`. In the Detail Level dropdown, choose 'Show All Logs' and click on Save to keep a copy of the contents in a text file. This will be useful if you want to [submit an issue](https://github.com/napari/napari/issues/new/choose).
 ```
 
 After finishing with no errors, a new page with the text "The installation was successful" will appear, as shown below.
@@ -82,7 +82,7 @@ Click Close to finish. You can now get started using napari! Use Launchpad to op
 ![Montage of two cropped screenshots. On the left, the macOS finder icon and the Launchpad icon, highlighted with a red circle. On the right, the opened launchpad UI showing a 4x4 grid of applications icon, with napari appearing in the bottom right corner.](../../_static/images/bundle_13.png)
 
 ```{note}
-The first time you open napari you must use the Launchpad, but in subsequent uses, the napari application should show up in Spotlight search (<kbd>⌘</kbd> + <kbd>spacebar</kbd>). The application shortcut will also be available in Finder, under 🏠 [User directory] > Applications.
+The first time you open napari you must use the Launchpad, but in subsequent uses, the napari application should show up in Spotlight search ({kbd}`⌘+spacebar`). The application shortcut will also be available in Finder, under 🏠 [User directory] > Applications.
 ```
 
 napari comes installed with sample images from scikit-image. Use the dropdown menu File > Open Sample > napari to open a sample image, or open one of your own images using File > Open or dragging and dropping your image onto the canvas.
@@ -127,17 +127,17 @@ Once you have downloaded the Linux SH file, you will have a file with a name lik
 
 ![Montage of the SH installer icon on Ubuntu, with an arrow pointing to an open terminal instance with a pre-typed command that reads 'bash napari-0.4.14.dev73-Linux-x86_64.sh'.](../../_static/images/bundle_28.png)
 
-Press <kbd>Enter</kbd> to display the License Agreement.
+Press {kbd}`Enter` to display the License Agreement.
 
 ![Cropped screenshot of the default Ubuntu terminal displaying the welcome paragraphs of the text-based installer of napari for Linux systems.](../../_static/images/bundle_29.png)
 
-Read through the agreement shown below. You must agree to the terms by typing out `yes` and pressing <kbd>Enter</kbd> to continue.
+Read through the agreement shown below. You must agree to the terms by typing out `yes` and pressing {kbd}`Enter` to continue.
 
 ![Cropped screenshot of the default Ubuntu terminal displaying the first paragraphs of a BSD-3 Clause License text.](../../_static/images/bundle_30.png)
 
 ![Cropped screenshot of the default Ubuntu terminal displaying the last paragraphs of a BSD-3 Clause License text, plus a prompt asking 'Do you accept the license terms?', to which the user must respond 'yes' or 'no'.](../../_static/images/bundle_31.png)
 
-Next you will be shown the default location for the installation. You may confirm this location by pressing <kbd>Enter</kbd>. Alternatively, specify a different location by typing out its absolute path. If it does not exist, it will be created. The terminal will then begin the installation process.
+Next you will be shown the default location for the installation. You may confirm this location by pressing {kbd}`Enter`. Alternatively, specify a different location by typing out its absolute path. If it does not exist, it will be created. The terminal will then begin the installation process.
 
 ![Montage of two instances of the default Ubuntu terminal showing the default installation path, followed by the first extraction steps of the installation process.](../../_static/images/bundle_32.png)
 

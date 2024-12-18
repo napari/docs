@@ -13,13 +13,13 @@ viewing arbitrary slices (in time, channel, z) of these datasets can become cumb
 
 Chunked file formats exist (such as [hdf5](https://support.hdfgroup.org/HDF5/) and [zarr](https://zarr.readthedocs.io/en/stable/)) that store data in a way that makes it easier to retrieve arbitrary subsets of the dataset, but they require either data duplication, or "committing" to a new file standard.
 
-> **Note**: This tutorial is not meant to promote a folder of TIFFs as a "good way" to store large datasets on disk;
-> but it is undoubtedly a common scenario in microscopy.
-> Chunked formats such as `hdf5` or `zarr` are superior in many ways,
-> but they do require the user to either duplicate their data
-> or go "all in" and delete the original data after conversion.
-> And while `napari` can easily handle something like a `zarr` store,
-> it can be a bit more limiting inasmuch as it requires programs that are capable of viewing it (i.e. you can't necessarily just drag it into Fiji ...)
+```{note}
+This tutorial is not meant to promote a folder of TIFFs as a "good way" to store large datasets on disk; but it is
+undoubtedly a common scenario in microscopy. Chunked formats such as `hdf5` or `zarr` are superior in many ways, but
+they do require the user to either duplicate their data or go "all in" and delete the original data after conversion.
+And while `napari` can easily handle something like a `zarr` store, it can be a bit more limiting inasmuch as it
+requires programs that are capable of viewing it (i.e. you can't necessarily just drag it into Fiji ...)
+```
 
 The first part of this tutorial demonstrates how to use [`Dask`](https://docs.dask.org/en/latest/)
 and [`dask.delayed`](https://docs.dask.org/en/latest/delayed.html)

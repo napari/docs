@@ -2,8 +2,9 @@
 # Contributing guide
 
 We welcome your contributions! Here you will find a guide to the contribution
-workflow and tips for contributing to napari. Do not hesitate to [contact](contact) us
-if you have any queries.
+workflow and tips for contributing to napari.
+If you are looking to learn more about the napari code base, see the [napari architecture guide](architecture-index).
+Do not hesitate to [contact](contact) us if you have any queries.
 
 ```{note}
 To contribute to our blog, the [Island Dispatch](https://napari.org/island-dispatch), check out https://github.com/napari/island-dispatch.
@@ -84,6 +85,14 @@ keeping napari maintainable as it grows.
 We have dedicated documentation on [testing](napari-testing) that we recommend you
 read as you're working on your first contribution.
 
+### Automation and CI
+
+We use GitHub Actions to automate our continuous integration and project workflows.
+The [`CONTRIBUTING.md` doc in the `.github` directory](https://github.com/napari/napari/blob/main/.github/CONTRIBUTING.md)
+highlights basics about the GitHub Actions used in the project.
+
+We also automate [deployment of our documentation and website](https://napari.org/stable/developers/contributing/documentation/docs_deployment.html).
+
 ### Adding icons
 
 If you want to add a new icon to the app, make the icon in whatever program you
@@ -117,6 +126,15 @@ also include benchmarks to show the new feature is not too slow but this is less
 [](napari-benchmarks) provides more information on benchmarking. If you find
 poor performance, [profiling](profiling) and [performance monitoring](napari-perfmon) can help
 identify the cause and where to optimize.
+
+### API Changes
+
+If you are changing an existing API or adding a new one, make sure you update
+the corresponding docstring to contain the `.. versionadded::` or
+`.. versionchanged::` directive. For more information see the
+[Sphinx documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#describing-changes-between-versions). 
+Please also consider documenting any major features/changes in our
+[tutorials](tutorials) and other [usage documentation](usage).
 
 ### Contributing documentation
 

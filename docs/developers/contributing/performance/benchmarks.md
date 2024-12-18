@@ -22,7 +22,7 @@ python -m pip install asv
 If you are using conda, then the command:
 
 ```bash
-conda activate napari-dev
+conda activate napari-env
 conda install asv
 ```
 

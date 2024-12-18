@@ -44,28 +44,38 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
     development environment.
     ```
 
-4. Install the package in editable mode, along with all of the developer tools.
+4. Install the package in editable mode, along with all of the developer tools (`dev`)
+   and optionally a Qt backend (`pyqt`, `pyside`).
 
     ```{note}
-    If you only want to use napari, you can install it on most macOS, Linux and
+    If you only want to use napari and do not wish to develop napari itself,
+    you can install napari on most macOS, Linux and
     Windows systems with Python {{ python_version_range }}
-    by following the directions on the
+    by following the steps on the
     [instructions page](install-python-package).
     ```
 
-    napari supports different Qt backends, and you can choose which one to install and use.
+    napari supports different Qt backends and Qt versions. In this step, choose one of the following
+    commands to install the developer tools and your preferred Qt backend.
 
-    For example, for PyQt5, the default, you would use the following:
+    For PyQt5, the default Qt backend, use:
     ```sh
     pip install -e ".[pyqt,dev]"  # (quotes only needed for zsh shell)
     ```
 
-    If you want to use PySide2 instead, you would use:
+    To use PySide2 instead of the PyQt5, use:
     ```sh
     pip install -e ".[pyside,dev]"  # (quotes only needed for zsh shell)
     ```
 
-    Finally, if you already have a Qt backend installed or want to use an experimental one like Qt6 use:
+    For PyOt6, use:
+    ```sh
+    pip install -e ".[pyqt6,dev]"  # (quotes only needed for zsh shell)
+    ```
+    
+    If you wish to install the developer tools only, use the following. Choose
+    this option if you wish to install your Qt backend separately, such as if you already have
+    a Qt backend installed or if you use an experimental backend like PySide6:
     ```sh
     pip install -e ".[dev]"  # (quotes only needed for zsh shell)
     ```
@@ -73,7 +83,7 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
     Note that in this last case you will need to install your Qt backend separately.
 
 5. We use [`pre-commit`](https://pre-commit.com) to format code with
-   [`black`](https://github.com/psf/black) and lint with
+   [`ruff-format`](https://docs.astral.sh/ruff/formatter/) and lint with
    [`ruff`](https://github.com/astral-sh/ruff) automatically prior to each commit.
    To minimize test errors when submitting pull requests, please install `pre-commit`
    in your environment as follows:
@@ -82,20 +92,15 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
    pre-commit install
    ```
 
-   Upon committing, your code will be formatted according to our [`black`
-   configuration](https://github.com/napari/napari/blob/main/pyproject.toml), which includes the settings
-   `skip-string-normalization = true` and `max-line-length = 79`. To learn more,
-   see [`black`'s documentation](https://black.readthedocs.io/en/stable/).
+   Upon committing, your code will be formatted according to our [`ruff-format`
+   configuration](https://github.com/napari/napari/blob/main/pyproject.toml).
 
    Code will also be linted to enforce the stylistic and logistical rules specified
-   in our [`flake8` configuration](https://github.com/napari/napari/blob/main/pyproject.toml), which currently ignores
-   [E203](https://lintlyci.github.io/Flake8Rules/rules/E203.html),
-   [E501](https://lintlyci.github.io/Flake8Rules/rules/E501.html),
-   [W503](https://lintlyci.github.io/Flake8Rules/rules/W503.html) and
-   [C901](https://lintlyci.github.io/Flake8Rules/rules/C901.html).  For information
-   on any specific flake8 error code, see the [Flake8
-   Rules](https://lintlyci.github.io/Flake8Rules/).  You may also wish to refer to
-   the [PEP 8 style guide](https://peps.python.org/pep-0008/).
+   in the `[tool.ruff]` section of
+   [our `pyproject.toml` file](https://github.com/napari/napari/blob/main/pyproject.toml). 
+   For information on any specific `ruff` error code, see the
+   [Ruff Rules](https://docs.astral.sh/ruff/rules/).  You may also wish to refer
+   to the [PEP 8 style guide](https://peps.python.org/pep-0008/).
 
    If you wish to tell the linter to ignore a specific line use the `# noqa`
    comment along with the specific error code (e.g. `import sys  # noqa: E402`) but

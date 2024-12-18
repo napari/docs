@@ -24,7 +24,7 @@ napari has a [Code of Conduct](napari-coc) that should be honored by everyone wh
   onboarding new core developers:
   - [Core Developer guide](core-dev-guide)
   - [Maintenance](napari-maintenance)
-  - [Release guide](release)
+  - [Release guide](napari-release)
   - [Deploying documentation](docs-deployment)
   - [Packaging](napari-packaging)
 

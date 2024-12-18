@@ -24,8 +24,6 @@ napari is an open source project on [GitHub](https://github.com/napari/napari) t
 
 At its core, it provides critical viewer features out-of-the-box, such as support for [large multi-dimensional data](dask-napari); [“layers”](layers-glance) to simultaneously visualize images, models, and analysis results; and easy manual, interactive annotation in 3D.
 
-This tutorial uses napari 0.4.14. <br>
-
 +++
 
 ## What's covered here
@@ -82,21 +80,23 @@ Here we will be mainly focused on the GUI application.
 
 - From command line:
 
-    Once installed, simply run
-```python
+    Once installed, run
+```bash
 napari
 ```
 
 - If you installed the bundled app:
 
-    Click on the app icon to open it.<br>
+    Click on the app icon to open it.
+
     *Note: macOS users might need to right click on the app icon and select "Open" to bypass the security check. You can also go to System Settings > Privacy & Security and click on "Open Anyway".*
 
 +++
 
 ### Open an image
 
-napari natively supports tiff and many other formats supported by [skimage.io.imread](https://scikit-image.org/docs/dev/api/skimage.io.html) as input image file format.<br>
+napari natively supports tiff and many other formats supported by [skimage.io.imread](https://scikit-image.org/docs/dev/api/skimage.io.html) as input image file format.
+
 Try with your own images or download [this ome tiff file](https://downloads.openmicroscopy.org/images/OME-TIFF/2016-06/MitoCheck/00001_01.ome.tiff).
 
 Additional input file formats may be supported [by plugins](https://www.napari-hub.org/).
@@ -107,11 +107,11 @@ and select the image file, or simply drag and drop the image into napari.
 
 For demo purpose, we will use a sample image that comes with napari.
 
-(1) Open napari IPython console
+1. Open napari IPython console
 
 ![IPython console](../../_static/images/IPython.png)
 
-(2) Type
+2. Type
 
 ```python
 from skimage import data
@@ -155,12 +155,17 @@ nbscreenshot(viewer, alt_text="image of singular cell with yellow tint")
 ### Manually label the cell
 
 To measure the area of the cell, we can use a labels layer and manually "paint" the cell.
-The labels layer allows you to record the segmentation result by assigning background = 0, and assigning each object with an integer.
+The labels layer allows you to record the segmentation result by assigning `background = 0`, and assigning each object with an integer.
 
 1. Add a new labels layer
 1. Click on "paint"
 1. Circle the cell
 1. Use "fill" bucket to fill it.
+
+```{tip}
+To switch to a new, unique label -- one larger than the current largest label -- press
+the default keybinding {kbd}`m`.
+```
 
 ```{raw} html
 <figure>

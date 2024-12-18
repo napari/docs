@@ -259,13 +259,65 @@ def test_something_else(qtbot):
     ...
 ```
 
+(qt_viewer)=
+#### `qt_viewer` and `viewer_model`
+
+Since `napari==0.5.4` we have implemented the `qt_viewer` [pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html) which can be used for tests that are only using the `ViewerModel` api or are only checking rendering of the viewer. 
+For the current moment, it is only for internal use and is not exported to the global scope, 
+as it is defined in `conftest.py` file. 
+
+The `qt_viewer` fixture returns the instance of the {class}`~napari.qt.QtViewer` class.
+This class does not provide the same api as the {class}`~napari.ViewerModel` class, 
+but has an associated {class}`~napari.ViewerModel` instance, which can be accessed by the `viewer` attribute.
+Alternatively, you could use the `viewer_model` fixture, which returns this instance of {class}`~napari.ViewerModel` class.
+
+```python
+def test_something(qt_viewer):
+    qt_viewer.viewer.add_image(np.random.random((10, 10)))
+    assert len(viewer.layers) == 1
+    assert viewer.layers[0].name == 'Image'
+```
+
+or 
+
+```python
+def test_something(qt_viewer, viewer_model):
+    viewer_model.add_image(np.random.random((10, 10)))
+    assert len(viewer.layers) == 1
+    assert viewer.layers[0].name == 'Image'
+```
+
+The `qt_viewer` fixture takes care of proper teardown of all qt widgets related to the viewer,
+including hiding and clearing any references to viewer instances.
+If you need to adjust the QtViewer for a given [test file](https://docs.pytest.org/en/stable/how-to/fixtures.html#override-a-fixture-on-a-test-module-level) you can use the `qt_viewer_` fixture.
+
+```python
+@pytest.fixture
+def qt_viewer(qt_viewer_):
+    # in this file we need to have added data and 3d view for all tests in file
+    qt_viewer_.viewer.add_image(np.random.random((5, 10, 10)))
+    qt_viewer_.viewer.dims.ndisplay = 3
+    return qt_viewer_
+```
+
+or 
+
+```python
+@pytest.fixture
+def qt_viewer(qt_viewer_):
+    # Make bigger viewer for all tests in file
+    qt_viewer_.setGeometry(0, 0, 1000, 1000)
+    return qt_viewer_
+```
+
+
 (make_napari_viewer)=
 #### `make_napari_viewer`
 
-We provide a
-[pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html) called
-`make_napari_viewer` for tests that require the {class}`~napari.Viewer`. This
-fixture is available globally and to all tests in the same environment that `napari`
+For more complex test cases where we need to fully test application behaviour 
+(for example, using the `viewer.window` API) we can use `make_napari_viewer` [pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html).
+However, the creating and teardown of the whole viewer is more fragile and slower than using just the `qt_viewer` fixture.
+This fixture is available globally and to all tests in the same environment that `napari`
 is in (see [](test-organization) for details). Thus, there is no need to import it,
 you simply include `make_napari_viewer` as a test function parameter, as shown in the
 **Examples** section below:
