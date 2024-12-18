@@ -61,7 +61,6 @@ comments_config = {'hypothesis': False, 'utterances': False}
 # execution_timeout = 30
 
 extensions = [
-    "sphinxcontrib.mermaid",
     "sphinx.ext.napoleon",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
@@ -75,6 +74,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
+    "sphinxcontrib.mermaid",
 ]
 
 external_toc_path = "_toc.yml"
