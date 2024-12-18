@@ -33,17 +33,9 @@ To fix this, either rename the file or remove all previous napari versions in yo
 ### My image renders as all black/all white
 
 This can happen when the contrast limits are not set correctly. You can reset the contrast limits by right-clicking
-"contrast limits", then clicking the "Reset" button in the dialog shown.
+"contrast limits", then clicking the "Reset" button in the advanced contrast limits widget shown.
 
-The contrast limits are the minimum and maximum values displayed by the layer. Any value under the smaller contrast
-limit will appear as black, while any value above the larger limit will appear as white. Additionally, when all the
-values are near the bottom of the range, the image can still appear black even if there are some very dark but not quite
-black pixels there.
-
-You can reset the contrast limits by clicking the Auto-Contrast: "Once" button, or, if that fails, right clicking on the
-contrast limits to do manual adjustment, including directly editing the numbers shown. When in doubt, you can hover over
-the canvas with your image layer selected, and check the status message as you move the mouse around. That will give you
-an idea of the range and variability of the data in your layer, helping you set meaningful contrast limits.
+See [](contrast-limits) for more information on contrast limits.
 
 ### PermissionError when trying to launch napari on Windows
 
