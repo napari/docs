@@ -86,6 +86,7 @@ tags_overview_title = "Tags"
 tags_extension = ["md", "rst"]
 
 mermaid_d3_zoom = True
+mermaid_version = "11.4.1"
 mermaid_include_elk = ""
 
 # -- Options for HTML output -------------------------------------------------
