@@ -185,6 +185,7 @@ subtrees:
       - file: community/working_groups
       - file: community/meeting_schedule
       - file: community/licensing
+      - file: community/resources
   - file: developers/index
     subtrees:
     - entries:
