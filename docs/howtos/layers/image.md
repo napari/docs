@@ -349,6 +349,7 @@ we had passed only the colormap it would have been given a default name.
 The named colormap now appears in the dropdown alongside a thumbnail of the full
 range of the colormap.
 
+(contrast-limits)=
 ## Adjusting contrast limits
 
 Each image layer gets mapped through its colormap according to values called
