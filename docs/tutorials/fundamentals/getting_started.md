@@ -202,9 +202,9 @@ LD_LIBRARY_PATH="" napari
 ```
 
 If napari is successfully launched after this command, it means that on your machine
-the LD_LIBRARY_PATH environment variable is set to a directory that contains 
-a Qt dynamic dependency that is incompatible with the one that napari uses. 
-As linkers first search in LD_LIBRARY_PATH directories, this may cause napari to crash. 
+the `LD_LIBRARY_PATH` environment variable is set to a directory that contains
+a Qt dynamic dependency that is incompatible with the one that napari uses.
+As linkers first search in `LD_LIBRARY_PATH` directories, this may cause napari to crash.
 
 
 If you want to debug this issue for your specific use case, you 
@@ -224,7 +224,7 @@ Such import may raise an error like:
 
 ```
 ImportError: .../site-packages/PyQt5/QtWidgets.abi3.so: undefined symbol: _ZdlPvm, version Qt_5
-````
+```
 
 Then when you identify which file is causing the problem you can use `ldd` command
 to check which libraries are used by this file:
