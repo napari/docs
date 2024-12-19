@@ -20,7 +20,7 @@ jupyter:
 This guide will teach you how to do a clean install of **napari** and launch the viewer.
 
 ```{note}
-If you want to contribute code back into napari, you should follow the [development installation instructions in the contributing guide](https://napari.org/developers/contributing.html) instead.
+If you want to contribute code back into napari, you should follow the [development installation instructions in the contributing guide](dev-installation) instead.
 ```
 
 (install-python-package)=
