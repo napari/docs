@@ -356,10 +356,9 @@ contrast limits. Contrast limits are the minimum and maximum values displayed
 by the layer, represented in napari by a 2-tuple where the second value is
 larger than the first. The smaller contrast limit corresponds to the value of
 the image data that will get mapped to the color defined by 0 in the colormap,
-such that any value under the smaller contrast limit will appear as black. On
+meaning that in most cases any value under the smaller contrast limit will appear as black. On
 the other hand, the larger contrast limit corresponds to the value of the image
-data that will get mapped to the color defined by 1 in the colormap. All values
-of image data larger than this value will appear as white.
+data that will get mapped to the color defined by 1 in the colormap. For example, for an image using the `gray` colormap, all values larger than this value will appear as white.
 
 For example, if you are looking at an image that has values between 0 and 100 with
 a standard `gray` colormap, and you set the contrast limits to `(20, 75)`, then
@@ -396,10 +395,12 @@ Because the contrast limits are defined by two values, the corresponding slider
 has two handles: one adjusts the smaller value, and one adjusts the larger
 value.
 
-As of right now, adjusting the contrast limits has no effect for `rgb` data.
+For RGB images, adjusting the contrast limits adjusts the black point and white point of the image.
 
-If you pass contrast limits as a keyword argument to a layer, then the full
-extent of the `contrast limits:` range slider will be set to those values.
+```{important}
+If you pass `contrast_limits` as a keyword argument to a layer, then the full
+extent of the `contrast limits:` range slider will also be set to those values!
+```
 
 ```{tip}
 If contrast limits are not passed, napari will compute them. If your data is
@@ -412,6 +413,8 @@ with big images, it is recommended to explicitly set the contrast limits if you
 can.
 ```
 
+For more precise control, you can right-click on the contrast limits slider to show a version of the slider with numerical values. Importantly, all four displayed values can be edited by clicking on them. Editing the numbers above the circular slider handles allows you to precisely specify values for the two contrast limits. Press the {kbd}`Enter` or {kbd}`Return` to confirm the new value.
+Meanwhile, the numbers at the two ends of the horizontal rule let you change the *range* of the contrast limits slider (programmatically accessed using the `contrast_limits_range` property). Clicking the `full range` button will reset the contrast limits slider range back to the full range of the data type (e.g. 0 and 255 for `uint8`). Finally, clicking the `reset` button will reset *both* the contrast limits *and* the contrast limits range to the full range of the data type.
 ### Resetting the contrast limits
 
 When all the image data values are near the bottom of the range, the image can
