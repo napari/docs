@@ -40,8 +40,12 @@ in the builtin plugin installer dialog.
 If you used the {ref}`napari-plugin-template`, you can also
 [setup automated deployments][autodeploy] on GitHub for every tagged commit.
 
-You can also deploy your plugin to conda-forge. Check out [deploying to anaconda](deploying-to-anaconda) for more
+```{admonition} conda-forge
+:class: attention
+
+You can also deploy your plugin to conda-forge. Check out [deploying to conda-forge](deploying-to-conda-forge) for more
 details on how to do that.
+```
 
 The [napari-plugin-manager](https://napari.org/napari-plugin-manager/) can be used to install plugins deployed to both
 PyPI and conda-forge.
