@@ -414,7 +414,7 @@ can.
 ```
 
 For more precise control, you can right-click on the contrast limits slider to show a version of the slider with numerical values. Importantly, all four displayed values can be edited by clicking on them. Editing the numbers above the circular slider handles allows you to precisely specify values for the two contrast limits. Press the {kbd}`Enter` or {kbd}`Return` to confirm the new value.
-Meanwhile, the numbers at the two ends of the horizontal rule let you change the *range* of the contrast limits slider (programmatically accessed using the `contrast_limits_range` property). Clicking the `full range` button will reset the contrast limits slider range back to the full range of the data type (e.g. 0 and 255 for `uint8`). Finally, clicking the `reset` button will reset *both* the contrast limits *and* the contrast limits range to the full range of the data type.
+Meanwhile, the numbers at the two ends of the horizontal rule let you change the *range* of the contrast limits slider (programmatically accessed using the `contrast_limits_range` property). Clicking the `full range` button will reset the contrast limits slider range back to the full range of the data type (e.g. 0 and 255 for `uint8`). Finally, clicking the `reset` button will reset *both* the contrast limits *and* the contrast limits range to the full range for uint8 images (0, 255), and to the minimum and maximum of the *data* for other data types.
 ### Resetting the contrast limits
 
 When all the image data values are near the bottom of the range, the image can
