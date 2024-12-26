@@ -14,3 +14,5 @@ the dependencies between modules and a directory tree showing where those module
 - [Console](./console_ui)
 - [Dialogs](./dialogs_ui)
 
+Also, a plugin to inspect how specific UI elements/widgets are defined
+over the napari source code is available: [napari-ui-tracer](https://github.com/dalthviz/napari-ui-tracer)
