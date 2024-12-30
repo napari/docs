@@ -21,7 +21,7 @@ Please read our [contributing guide](https://napari.org/dev/developers/contribut
     1. Fork this repository, and then clone your fork to your local machine. NB: you may want to name your fork e.g. `napari-docs` rather than just `docs`.
     1. With your local clone's root folder as the working directory, and with the environment created in the first step activated, install the docs requirements with `python -m pip install -r requirements.txt`.
 * __Build__ locally
-    * If you're building on Windows, a few extra steps are required; you can follow [this guide](https://napari.org/stable/developers/documentation/index.html#building-the-documentation-on-windows).
+    * If you're building on Windows, a few extra steps are required; you can follow [this guide](https://napari.org/dev/developers/contributing/documentation/index.html#building-the-documentation-on-windows).
     * From the root of your local clone of this repository, run one of these:
         * `make docs`, if your changes include the example gallery
         * `make docs-install && make html-noplot`, otherwise
