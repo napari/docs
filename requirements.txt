@@ -13,5 +13,6 @@ napari-sphinx-theme>=0.3.0
 matplotlib
 lxml_html_clean
 imageio-ffmpeg
+pyautogui
 pytest
 linkify-it-py
