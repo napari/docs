@@ -127,6 +127,7 @@ are used. i.e. You can't remove a vertex before you have created a shape.
     * Add polygons
     * Add polygons lasso
     * Add lines
+    * add polylines
     * Add path
 * Controls
     * Opacity
@@ -283,15 +284,66 @@ are used. i.e. You can't remove a vertex before you have created a shape.
   coordinates of the first endpoint and the second click marks the coordinates
   of the second endpoint. Add other lines as needed.
 
+* **Add polylines**
+  ![image: Add polyline](../../_static/images/shape-add-polyline.png)
+
+  Select the `Add polyline` tool from the layer controls panel or by pressing the
+  `shift + L` keys when the shapes layer is selected. Click where you want the polyline to
+  start and then click each location where the direction of the polyline changes,
+  this adds a vertex at that location. When you have drawn the complete path,
+  hit `Esc`. This adds a final vertex at the current mouse position and
+  completes the path. You can then add another polyline.
+
 * **Add path**
   ![image: Add path](../../_static/images/shape-add-path.png)
 
   Select the `Add path` tool from the layer controls panel or by pressing the
-  `t` key when the shapes layer is selected. Click where you want the path to
-  start and then click each location where the direction of the path changes,
-  this adds a vertex at that location. When you have drawn the complete path,
-  hit `Esc`. This adds a final vertex at the current mouse position and
-  completes the path. You can then add another path.
+  `t` key when the shapes layer is selected. The tool can be used to draw complex
+  paths using the mouse or tablet.
+
+  :::{dropdown} More details on the lasso tool
+
+  The sequence of events to draw a path is the same as when
+  using the polygon lasso creation tool when either using the mouse or a tablet:
+
+  <ins>Mouse</ins>
+
+  1. Click mouse (left-click) to begin drawing.
+  2. Move mouse -- without holding down the mouse button -- to draw the path.
+  3. Click mouse (left-click) or press `Esc` to end drawing the path.
+
+  <ins>Tablet</ins>
+
+  Drawing the path is started by touching the tablet screen with
+  the tablet stylus and drawing will continue for as long as the pencil is moved
+  while touching the tablet screen. Similar behavior is also available
+  when using a macOS trackpad, using three-finger drag mode.
+
+  <ins>Adding of vertices while drawing</ins>
+
+  For both modes, vertices are added only if the vertex to be added is at a
+  certain number of screen pixels away from the previous vertex. This value can
+  be adjusted in the settings in napari by going to `File` -> `Preferences` (or
+  `control + shift + p`), then in the menu on the left-clicking on
+  `Experimental` and then adjusting the value of
+  `Minimum distance threshold of shapes lasso tool`. The default is 10 and can
+  be any integer higher than 0 and lower than 50. As with the polygon creation
+  tool, drawing the shape can also be finished by pressing the `Esc` key.
+
+  <ins>Reducing the number of vertices</ins>
+
+  After finishing drawing a path using the add path tool, an
+  implementation of the [Ramer–Douglas–Peucker algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm)
+  is applied to reduce the number of vertices that make up the path, while
+  preserving its structure. The aggressiveness with which the algorithm reduces
+  the number of vertices of the path is determined by an `epsilon` parameter,
+  which is a perpendicular distance threshold. Any vertices beyond the threshold
+  will be preserved, so if `epsilon` is set to `0`, no vertices will be removed.
+  With increasing values of `epsilon`, more and more vertices will be removed.
+  The value of `epsilon` can be set in napari by going to `File` ->
+  `Preferences` (or `control + shift + p`), then in the menu on the
+  left-clicking on `Experimental` and then adjusting the value of `RDP epsilon`.
+  The default value is 0.5 and cannot be set lower than 0.
 
 ### Controls
 
