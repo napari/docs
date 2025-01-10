@@ -127,7 +127,7 @@ are used. i.e. You can't remove a vertex before you have created a shape.
     * Add polygons
     * Add polygons lasso
     * Add lines
-    * add polylines
+    * Add polylines
     * Add path
 * Controls
     * Opacity
