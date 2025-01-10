@@ -302,7 +302,7 @@ are used. i.e. You can't remove a vertex before you have created a shape.
   paths using the mouse or tablet. Note that for the initial drawing, sometimes there
   is a delay due to `numba`.zoom
 
-  :::{dropdown} More details on the lasso tool
+  :::{dropdown} More details on the path tool
 
   The sequence of events to draw a path is the same as when
   using the polygon lasso creation tool when either using the mouse or a tablet:
