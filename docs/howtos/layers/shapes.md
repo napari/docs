@@ -298,9 +298,10 @@ are used. i.e. You can't remove a vertex before you have created a shape.
   ![image: Add path](../../_static/images/shape-add-path.png)
 
   Select the `Add path` tool from the layer controls panel or by pressing the
-  `t` key when the shapes layer is selected. The tool can be used to draw freeform, complex
-  paths using the mouse or tablet. Note that for the initial drawing, sometimes there
-  is a delay due to `numba`.zoom
+  `t` key when the shapes layer is selected. The tool can be used to draw freeform, 
+  complex paths using the mouse or tablet. Importantly, the paths will still consist 
+  of vertexes and will be editable like all other Shapes. Note that for the initial 
+  drawing, sometimes there is a delay due to `numba`.
 
   :::{dropdown} More details on the path tool
 
