@@ -236,42 +236,9 @@ are used. i.e. You can't remove a vertex before you have created a shape.
   be found in the layer control panel or by pressing `shift+p`. The tool can be
   used to draw complex `Polygons` with the mouse or tablet.
 
-  :::{dropdown} More details on the lasso tool
-
-  When using the mouse, the sequence of events to draw a polygon is as follows:
-
-  1. Click mouse (left-click) to begin drawing.
-  2. Move mouse -- without holding down the mouse button -- to draw the polygon.
-  3. Click mouse (left-click) or press `Esc` to end drawing—the polygon will
-     auto-complete.
-
-  The polygon lasso tool can also be used to draw `Polygons` using a tablet. In
-  this case, drawing the polygon is started by touching the tablet screen with
-  the tablet stylus and drawing will continue for as long as the pencil is moved
-  while touching the tablet screen. Note that similar behavior is also available
-  when using a macOS trackpad, using three-finger drag mode.
-
-  For both modes, vertices are added only if the vertex to be added is at a
-  certain number of screen pixels away from the previous vertex. This value can
-  be adjusted in the settings in napari by going to `File` -> `Preferences` (or
-  `control + shift + p`), then in the menu on the left-clicking on
-  `Experimental` and then adjusting the value of
-  `Minimum distance threshold of shapes lasso tool`. The default is 10 and can
-  be any integer higher than 0 and lower than 50. As with the polygon creation
-  tool, drawing the shape can also be finished by pressing the `Esc` key.
-
-  After finishing drawing a polygon using the polygon lasso tool, an
-  implementation of the [Ramer–Douglas–Peucker algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm)
-  is applied to reduce the number of vertices that make up the shape, while
-  preserving its contours. The aggressiveness with which the algorithm reduces
-  the number of vertices of the polygon is determined by an `epsilon` parameter,
-  which is a perpendicular distance threshold. Any vertices beyond the threshold
-  will be preserved, so if `epsilon` is set to `0`, no vertices will be removed.
-  With increasing values of `epsilon`, more and more vertices will be removed.
-  The value of `epsilon` can be set in napari by going to `File` ->
-  `Preferences` (or `control + shift + p`), then in the menu on the
-  left-clicking on `Experimental` and then adjusting the value of `RDP epsilon`.
-  The default value is 0.5 and cannot be set lower than 0.
+  :::{dropdown} More details on the lasso and path tool
+  ```{include} ../../_templates/details_polygon_path_tool.md
+  ```
   :::
 
 * **Add lines**
@@ -303,49 +270,10 @@ are used. i.e. You can't remove a vertex before you have created a shape.
   of vertexes and will be editable like all other Shapes. Note that for the initial 
   drawing, sometimes there is a delay due to `numba`.
 
-  :::{dropdown} More details on the path tool
-
-  The sequence of events to draw a path is the same as when
-  using the polygon lasso creation tool when either using the mouse or a tablet:
-
-  <ins>Mouse</ins>
-
-  1. Click mouse (left-click) to begin drawing.
-  2. Move mouse -- without holding down the mouse button -- to draw the path.
-  3. Click mouse (left-click) or press `Esc` to end drawing the path.
-
-  <ins>Tablet</ins>
-
-  Drawing the path is started by touching the tablet screen with
-  the tablet stylus and drawing will continue for as long as the pencil is moved
-  while touching the tablet screen. Similar behavior is also available
-  when using a macOS trackpad, using three-finger drag mode.
-
-  <ins>Adding of vertices while drawing</ins>
-
-  For both modes, vertices are added only if the vertex to be added is at a
-  certain number of screen pixels away from the previous vertex. This value can
-  be adjusted in the settings in napari by going to `File` -> `Preferences` (or
-  `control + shift + p`), then in the menu on the left-clicking on
-  `Experimental` and then adjusting the value of
-  `Minimum distance threshold of shapes lasso tool`. The default is 10 and can
-  be any integer higher than 0 and lower than 50. As with the polygon creation
-  tool, drawing the shape can also be finished by pressing the `Esc` key.
-
-  <ins>Reducing the number of vertices</ins>
-
-  After finishing drawing a path using the add path tool, an
-  implementation of the [Ramer–Douglas–Peucker algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm)
-  is applied to reduce the number of vertices that make up the path, while
-  preserving its structure. The aggressiveness with which the algorithm reduces
-  the number of vertices of the path is determined by an `epsilon` parameter,
-  which is a perpendicular distance threshold. Any vertices beyond the threshold
-  will be preserved, so if `epsilon` is set to `0`, no vertices will be removed.
-  With increasing values of `epsilon`, more and more vertices will be removed.
-  The value of `epsilon` can be set in napari by going to `File` ->
-  `Preferences` (or `control + shift + p`), then in the menu on the
-  left-clicking on `Experimental` and then adjusting the value of `RDP epsilon`.
-  The default value is 0.5 and cannot be set lower than 0.
+  :::{dropdown} More details on the lasso and path tool
+  ```{include} ../../_templates/details_polygon_path_tool.md
+  ```
+  :::
 
 ### Controls
 
