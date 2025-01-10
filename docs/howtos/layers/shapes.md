@@ -291,7 +291,7 @@ are used. i.e. You can't remove a vertex before you have created a shape.
   `shift + L` keys when the shapes layer is selected. Click where you want the polyline to
   start and then click each location where the direction of the polyline changes,
   this adds a vertex at that location. When you have drawn the complete path,
-  hit `Esc`. This adds a final vertex at the current mouse position and
+  hit `Esc` or double-click. This adds a final vertex at the current mouse position and
   completes the path. You can then add another polyline.
 
 * **Add path**
