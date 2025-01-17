@@ -358,7 +358,7 @@ larger than the first. The smaller contrast limit corresponds to the value of
 the image data that will get mapped to the color defined by 0 in the colormap,
 meaning that in most cases any value under the smaller contrast limit will appear as black. On
 the other hand, the larger contrast limit corresponds to the value of the image
-data that will get mapped to the color defined by 1 in the colormap. For example, for an image using the `gray` colormap, all values larger than this value will appear as white.
+data that will get mapped to the color defined by 1 in the colormap; for an image using the `gray` colormap, all values larger than this value will appear as white. Note that the values set in the contrast limits do not change the underlying values of the image, only the visualization of the colormap. 
 
 For example, if you are looking at an image that has values between 0 and 100 with
 a standard `gray` colormap, and you set the contrast limits to `(20, 75)`, then
