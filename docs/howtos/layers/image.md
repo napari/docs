@@ -353,13 +353,13 @@ range of the colormap.
 ## Adjusting contrast limits
 
 Each image layer gets mapped through its colormap according to values called
-contrast limits. Contrast limits are a 2-tuple where the second value is
+contrast limits. Contrast limits are the minimum and maximum values displayed
+by the layer, represented in napari by a 2-tuple where the second value is
 larger than the first. The smaller contrast limit corresponds to the value of
-the image data that will get mapped to the color defined by 0 in the colormap.
-All values of image data smaller than this value will also get mapped to this
-color. The larger contrast limit corresponds to the value of the image data that
-will get mapped to the color defined by 1 in the colormap. All values of image
-data larger than this value will also get mapped to this color.
+the image data that will get mapped to the color defined by 0 in the colormap,
+meaning that in most cases any value under the lower contrast limit will appear as black. On
+the other hand, the upper contrast limit corresponds to the value of the image
+data that will get mapped to the color defined by 1 in the colormap; for an image using the `gray` colormap, all values larger than this value will appear as white. Note that the values set in the contrast limits do not change the underlying values of the image, only the visualization of the colormap. 
 
 For example, if you are looking at an image that has values between 0 and 100 with
 a standard `gray` colormap, and you set the contrast limits to `(20, 75)`, then
@@ -396,19 +396,54 @@ Because the contrast limits are defined by two values, the corresponding slider
 has two handles: one adjusts the smaller value, and one adjusts the larger
 value.
 
-As of right now, adjusting the contrast limits has no effect for `rgb` data.
+For RGB images, adjusting the contrast limits adjusts the black point and white point of the image.
 
+```{important}
+If you pass `contrast_limits` as a keyword argument to a layer, then the full
+extent of the `contrast limits:` range slider will also be set to those values!
+```
+
+```{tip}
 If contrast limits are not passed, napari will compute them. If your data is
 small, napari will take the minimum and maximum values across your
 entire image. If your data is exceptionally large, this operation can be very
-time consuming and so if you pass an image pyramid then napari will use only the
+time consuming. If you pass an image pyramid, then napari will use only the
 top level of that pyramid, or it will use the minimum and maximum values
 across the top, middle, and bottom slices of your image. In general, if working
 with big images, it is recommended to explicitly set the contrast limits if you
 can.
+```
 
-Currently if you pass contrast limits as a keyword argument to a layer, then the
-full extent of the `contrast limits:` range slider will be set to those values.
+For more precise control, you can right-click on the contrast limits slider to show a version of the slider with numerical values. Importantly, all four displayed values can be edited by clicking on them. Editing the numbers above the circular slider handles allows you to precisely specify values for the two contrast limits. Press the {kbd}`Enter` or {kbd}`Return` to confirm the new value.
+Meanwhile, the numbers at the two ends of the horizontal rule let you change the *range* of the contrast limits slider (programmatically accessed using the `contrast_limits_range` property). Clicking the `full range` button will reset the contrast limits slider range back to the full range of the data type (e.g. 0 and 255 for `uint8`). Finally, clicking the `reset` button will reset *both* the contrast limits *and* the contrast limits range to the full range for uint8 images (0, 255), and to the minimum and maximum of the *data* for other data types.
+### Resetting the contrast limits
+
+When all the image data values are near the bottom of the range, the image can
+appear black even if there are some very dark (but not quite black) pixels there.
+
+To avoid such issues, you can reset the contrast limits by clicking the
+"auto-contrast: once" button, or, if that fails, right-clicking on the contrast
+limits to do manual adjustment, including directly editing the numbers shown or
+resetting the contrast limits by right-clicking on the slider and clicking the
+"reset" button in the advanced contrast limits widget.
+
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/contrast_limits.webm" type="video/webm" />
+    <source src="../../_static/images/contrast_limits.mp4" type="video/mp4" />
+    <img src="../../_static/images/contrast_limits.png"
+      title="Your browser does not support the video tag"
+      alt="Contrast limits widget after right-clicking contrast limits slider."
+    >
+  </video>
+</figure>
+```
+
+When in doubt, you can hover over the canvas with your image layer selected, and
+check the status message as you move the mouse around. That will give you an
+idea of the range and variability of the data in your layer, helping you set
+meaningful contrast limits.
 
 ## Saving without image compression
 
