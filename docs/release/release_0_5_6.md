@@ -104,6 +104,7 @@ Read on for the full list of changes since 0.5.5.
 - Add resources page with logos ([docs#544](https://github.com/napari/docs/pull/544))
 - Fix build-on-windows link in README.md ([docs#546](https://github.com/napari/docs/pull/546))
 - add documentation for new path tool ([docs#547](https://github.com/napari/docs/pull/547))
+- Add 0.5.6 release notes ([docs#548](https://github.com/napari/docs/pull/548))
 
 ## Other Pull Requests
 
