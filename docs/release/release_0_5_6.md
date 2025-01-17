@@ -12,7 +12,6 @@ For more information, examples, and documentation, please visit our website: htt
 
 ## Highlights
 
-
 ### Faster shapes 🚀
 
 For its whole history, napari has been a pure Python package. As we go deeper
@@ -33,6 +32,14 @@ To use this speedup, you'll need to:
 Please give it a try and let us know if you encounter any issues! This is the
 beginning of a new era of performance improvements in napari, to help it live
 up to its promise of a *fast* viewer for n-dimensional data in Python!
+
+### New path drawing tool
+
+Drawing paths is easier and smoother with the open-line equilavent of the
+lasso tool. If you want to draw a curve through your data, whether with a
+mouse or a tablet+stylus, it is now much easier to freehand rather than
+clicking on individual points. Try it out!
+([#7099](https://github.com/napari/napari/pull/7099))
 
 ### Other improvements
 
