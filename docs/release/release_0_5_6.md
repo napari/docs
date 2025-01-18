@@ -25,7 +25,9 @@ To use this speedup, you'll need to:
 - install napari core developer Grzegorz Bokota's collection of performant
   algorithms,
   [PartSegCore-compiled-backend](https://pypi.org/project/PartSegCore-compiled-backend/).
-  (you can install it automatically by pip installing `"napari[optional]"`.)
+  You can install it automatically by pip installing `"napari[optional,pyqt]"`
+  (or a GUI backend of your choice among pyqt, pyqt6, pyside, pyside6) or
+  `"napari[all]"`.
 - *and*, in the napari advanced settings, tick the "Use C++ code to speed up
   creation and updates of Shapes layers" box.
 
