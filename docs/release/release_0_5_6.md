@@ -41,6 +41,8 @@ mouse or a tablet+stylus, it is now much easier to freehand rather than
 clicking on individual points. Try it out!
 ([#7099](https://github.com/napari/napari/pull/7099))
 
+![video of new path-drawing tool used to delineate a blood vessel](https://github.com/user-attachments/assets/978584f7-f707-4085-840f-a2f8fee12e21)
+
 ### Other improvements
 
 Often, the important information in a layer name is at the *end* of the name
