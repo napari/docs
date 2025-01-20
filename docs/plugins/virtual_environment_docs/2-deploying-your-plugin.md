@@ -2,17 +2,8 @@
 
 This guide explains some of the techniques you can use to deploy your plugin.
 
-## This guide covers:
-
-- [Overview of PyPI and Anaconda](#overview-of-pypi-and-anaconda)
-- [Building your package](#building-your-package)
-- [Deploying plugins to PyPI](#deploying-plugins-to-pypi)
-  - [Manually via twine](#manually-via-twine)
-  - [Automatically via GitHub actions](#automatically-via-github-actions)
-- [Deploying to Anaconda](#deploying-to-anaconda)
-
-## Overview of PyPI and Anaconda
-PyPI and Anaconda are two options for how you distribute your package and allow your users to more easily find and install it.  Try to deploy to both! But for now, try to at least use PyPI. You can always also provide your users with manual installation instructions (e.g. if you want them to use `conda` or have specific dependencies).
+## Overview of PyPI and conda
+PyPI and conda are two options for how you distribute your package and allow your users to more easily find and install it.  Try to deploy to both! But for now, try to at least use PyPI. You can always also provide your users with manual installation instructions (e.g. if you want them to use `conda` or have specific dependencies).
 
 ### Building your package
 `sdist` means source distribution. An `sdist` includes all of the files that are required to *build* your package. An `sdist` may require specific additional software (e.g. compilers) to actually build.
@@ -92,8 +83,8 @@ jobs:
 
   **Note:** Gate this action on some criterion, e.g. a git tag as above, or [some other criterion](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows).
 
-(deploying-to-anaconda)=
-## Deploying to Anaconda
+(deploying-to-conda-forge)=
+## Deploying to conda-forge
 This is only a brief guide to deploying to `conda-forge`. More information can be found in the [conda-forge docs](https://conda-forge.org/docs/maintainer/adding_pkgs.html).
 
 1. Fork https://github.com/conda-forge/staged-recipes
@@ -102,7 +93,7 @@ This is only a brief guide to deploying to `conda-forge`. More information can b
 4. Update the **meta.yaml** file to include your package's build and run requirements
 5. Commit and open a PR to https://github.com/conda-forge/staged-recipes
 
-Once your recipe is approved and merged, the rest happens *automagically*, and your package will appear on the anaconda cloud.
+Once your recipe is approved and merged, the rest happens *automagically*, and your package will appear on the [conda-forge package list](https://conda-forge.org/packages/).
 
 This is **far** easier if you already have an `sdist` published to PyPI.
 
