@@ -17,8 +17,8 @@ you can visit ![forum image.sc logo](../images/image_sc_logo.png) [forum.image.s
 ## News and updates
 
 To trace latest news from napari you may follow us on:
- * ![twitter logo](../images/twitter_logo.svg) twitter/X [napari_imaging](https://x.com/napari_imaging/) 
- * ![mastodon logo](../images/mastodon_logo.svg) mastodon [fosstodon.org/@napari](https://fosstodon.org/@napari)    
+ * ![mastodon logo](../images/mastodon_logo.svg) mastodon [@napari@fosstodon.org](https://fosstodon.org/@napari)
+ * ![bluesky logo](../images/Bluesky_Logo.svg) BlueSky [napari.fosstodon.org.ap.brid.gy](https://bsky.app/profile/napari.fosstodon.org.ap.brid.gy)
 
 
 ## Contributing and Bug reporting
