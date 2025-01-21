@@ -43,7 +43,17 @@ mouse or a tablet+stylus, it is now much easier to freehand rather than
 clicking on individual points. Try it out!
 ([#7099](https://github.com/napari/napari/pull/7099))
 
-![video of new path-drawing tool used to delineate a blood vessel](https://github.com/user-attachments/assets/978584f7-f707-4085-840f-a2f8fee12e21)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="https://github.com/user-attachments/assets/978584f7-f707-4085-840f-a2f8fee12e21" type="video/mp4" />
+    <img src="https://github.com/user-attachments/assets/20892add-2382-490b-8ad8-6efc023395a7"
+      title="Your browser does not support the video tag"
+      alt="video of new path-drawing tool used to delineate a blood vessel"
+    >
+  </video>
+</figure>
+```
 
 ### Other improvements
 
