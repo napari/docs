@@ -1,6 +1,6 @@
 # napari 0.5.6
 
-*Fri, Jan 17, 2025*
+*Tue, Jan 21, 2025*
 
 🚧 *These notes are under construction while in pre-release* 🚧
 
