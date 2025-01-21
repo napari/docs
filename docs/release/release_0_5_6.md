@@ -73,7 +73,6 @@ grateful! 🙏
 
 Read on for the full list of changes since 0.5.5.
 
-- Add poly line drawing ([#7099](https://github.com/napari/napari/pull/7099))
 
 ## New Features
 
@@ -109,6 +108,7 @@ Read on for the full list of changes since 0.5.5.
 - Bugfix: Check if Layer._loaded before returning status ([#7515](https://github.com/napari/napari/pull/7515))
 - Breakout gray and gray_r from mpl_colormaps and ensure they work with `ensure_colormap` ([#7517](https://github.com/napari/napari/pull/7517))
 - Update camera depth when layer extents change ([#7529](https://github.com/napari/napari/pull/7529))
+- Fix missed cache invalidation in transform shape ([#7537](https://github.com/napari/napari/pull/7537))
 
 ## Documentation
 
@@ -157,6 +157,9 @@ Read on for the full list of changes since 0.5.5.
 - [pre-commit.ci] pre-commit autoupdate ([#7522](https://github.com/napari/napari/pull/7522))
 - Revert PR #3243 ; commit 68157f3 ; (drop compatibility, just use QLabeled* sliders) ([#7525](https://github.com/napari/napari/pull/7525))
 - Fix formatting after ruff update in #7522 ([#7530](https://github.com/napari/napari/pull/7530))
+- Minor grammar fix in preference text ([#7539](https://github.com/napari/napari/pull/7539))
+- [pre-commit.ci] pre-commit autoupdate ([#7542](https://github.com/napari/napari/pull/7542))
+- Replace twitter with mastodon and bluesky in documentation ([docs#553](https://github.com/napari/docs/pull/553))
 
 
 ## 13 authors added to this release (alphabetical)
@@ -168,9 +171,9 @@ Read on for the full list of changes since 0.5.5.
 - [Daniel Althviz Moré](https://github.com/napari/docs/commits?author=dalthviz) - @dalthviz
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - @DragaDoncila
 - [Etienne Doumazane](https://github.com/napari/napari/commits?author=edoumazane) - @edoumazane +
-- [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
+- [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jordão Bragantini](https://github.com/napari/napari/commits?author=JoOkuma) - @JoOkuma
-- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) - @jni
+- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) ([docs](https://github.com/napari/docs/commits?author=jni))  - @jni
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Sesan](https://github.com/napari/napari/commits?author=Olusesan) - @Olusesan +
@@ -186,8 +189,8 @@ Read on for the full list of changes since 0.5.5.
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - @DragaDoncila
 - [Etienne Doumazane](https://github.com/napari/napari/commits?author=edoumazane) - @edoumazane +
 - [Genevieve Buckley](https://github.com/napari/docs/commits?author=GenevieveBuckley) - @GenevieveBuckley
-- [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
-- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) - @jni
+- [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
+- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) ([docs](https://github.com/napari/docs/commits?author=jni))  - @jni
 - [kyle i. s. harrington](https://github.com/napari/docs/commits?author=kephale) - @kephale
 - [Lorenzo Gaifas](https://github.com/napari/docs/commits?author=brisvag) - @brisvag
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
