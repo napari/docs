@@ -125,6 +125,8 @@ Read on for the full list of changes since 0.5.5.
 - add documentation for new path tool ([docs#547](https://github.com/napari/docs/pull/547))
 - Add 0.5.6 release notes ([docs#548](https://github.com/napari/docs/pull/548))
 - 0.5.6 relnotes updates ([docs#552](https://github.com/napari/docs/pull/552))
+- Add napari/napari#7538 to release notes ([docs#554](https://github.com/napari/docs/pull/554)
+- Add Ashley Anderson to list of core developers ([docs#555](https://github.com/napari/docs/pull/555)
 
 ## Other Pull Requests
 
