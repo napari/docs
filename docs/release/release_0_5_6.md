@@ -125,6 +125,8 @@ Read on for the full list of changes since 0.5.5.
 - add documentation for new path tool ([docs#547](https://github.com/napari/docs/pull/547))
 - Add 0.5.6 release notes ([docs#548](https://github.com/napari/docs/pull/548))
 - 0.5.6 relnotes updates ([docs#552](https://github.com/napari/docs/pull/552))
+- Add missing PRs to release notes ([docs#554](https://github.com/napari/docs/pull/554)
+- Add Ashley Anderson to list of core developers ([docs#555](https://github.com/napari/docs/pull/555)
 
 ## Other Pull Requests
 
@@ -158,6 +160,7 @@ Read on for the full list of changes since 0.5.5.
 - Minor grammar fix in preference text ([#7539](https://github.com/napari/napari/pull/7539))
 - [pre-commit.ci] pre-commit autoupdate ([#7542](https://github.com/napari/napari/pull/7542))
 - Replace twitter with mastodon and bluesky in documentation ([docs#553](https://github.com/napari/docs/pull/553))
+- Update `dask`, `hypothesis`, `imageio`, `napari-svg`, `numpy`, `pyopengl`, `virtualenv`, `wrapt` ([#7538](https://github.com/napari/napari/pull/7538)
 
 
 ## 13 authors added to this release (alphabetical)
