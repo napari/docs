@@ -4,7 +4,7 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 
 ## Current Core Developers
 
-- [Ashley Anderson](https://github.com/napari/napari/commits?author=aganders3 ) - [@aganders3 ](https://github.com/aganders3 )
+- [Ashley Anderson](https://github.com/napari/napari/commits?author=aganders3) - [@aganders3](https://github.com/aganders3)
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)*
 - [Genevieve Buckley](https://github.com/napari/napari/commits?author=GenevieveBuckley) - [@GenevieveBuckley](https://github.com/GenevieveBuckley)
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - [@Czaki](https://github.com/Czaki)
