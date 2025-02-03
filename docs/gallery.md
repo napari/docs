@@ -1,5 +1,5 @@
 (gallery)=
-# Gallery
+# Example Gallery
 
 Examples of napari usage.
 
