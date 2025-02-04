@@ -74,7 +74,7 @@ and analysis. With napari you can:
 
 ::::{grid}
 
-:::{grid-item-card} Examples gallery
+:::{grid-item-card} Examples
 :link: gallery
 :link-type: ref
 
