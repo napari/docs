@@ -32,6 +32,7 @@ def main():
     prep_npe2()
     __import__('update_preference_docs').main()
     __import__('update_event_docs').main()
+    __import__('update_ui_sections_docs').main()
 
 
 if __name__ == "__main__":
