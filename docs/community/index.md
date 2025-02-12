@@ -16,7 +16,8 @@ you can visit ![forum image.sc logo](../images/image_sc_logo.png) [forum.image.s
 
 ## News and updates
 
-To trace latest news from napari you may follow us on:
+To get the latest news from the napari team, follow us on:
+
  * ![mastodon logo](../images/mastodon_logo.svg) mastodon [@napari@fosstodon.org](https://fosstodon.org/@napari)
  * ![bluesky logo](../images/Bluesky_Logo.svg) BlueSky [@napari.org](https://bsky.app/profile/napari.org)
 
