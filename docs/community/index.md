@@ -16,10 +16,10 @@ you can visit ![forum image.sc logo](../images/image_sc_logo.png) [forum.image.s
 
 ## News and updates
 
-To trace latest news from napari you may follow us on:
- * ![twitter logo](../images/twitter_logo.svg) twitter/X [napari_imaging](https://x.com/napari_imaging/) 
- * ![mastodon logo](../images/mastodon_logo.svg) mastodon [fosstodon.org/@napari](https://fosstodon.org/@napari)    
+To get the latest news from the napari team, follow us on:
 
+ * ![mastodon logo](../images/mastodon_logo.svg) mastodon [@napari@fosstodon.org](https://fosstodon.org/@napari)
+ * ![bluesky logo](../images/Bluesky_Logo.svg) BlueSky [@napari.org](https://bsky.app/profile/napari.org)
 
 ## Contributing and Bug reporting
 

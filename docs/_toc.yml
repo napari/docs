@@ -74,10 +74,12 @@ subtrees:
       - file: further-resources/glossary
       - file: further-resources/napari-workshops
       - file: further-resources/sample_data
+      - file: troubleshooting
       - file: gallery
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_5_6
           - file: release/release_0_5_5
           - file: release/release_0_5_4
           - file: release/release_0_5_3
@@ -185,6 +187,7 @@ subtrees:
       - file: community/working_groups
       - file: community/meeting_schedule
       - file: community/licensing
+      - file: community/resources
   - file: developers/index
     subtrees:
     - entries:
@@ -217,6 +220,16 @@ subtrees:
           - file: developers/architecture/napari_models
           - file: developers/architecture/app_model
           - file: developers/architecture/magicgui_type_reg
+          - file: developers/architecture/ui_sections/index
+            subtrees:
+            - entries:
+              - file: developers/architecture/ui_sections/application_menus_ui
+              - file: developers/architecture/ui_sections/application_status_bar_ui
+              - file: developers/architecture/ui_sections/layers_controls_ui
+              - file: developers/architecture/ui_sections/layers_list_ui
+              - file: developers/architecture/ui_sections/viewer_ui
+              - file: developers/architecture/ui_sections/console_ui
+              - file: developers/architecture/ui_sections/dialogs_ui
       - file: naps/index
         subtrees:
         - maxdepth: 1

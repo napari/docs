@@ -74,6 +74,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
+    "sphinxcontrib.mermaid",
 ]
 
 external_toc_path = "_toc.yml"
@@ -83,6 +84,10 @@ tags_create_tags = True
 tags_output_dir = "_tags"
 tags_overview_title = "Tags"
 tags_extension = ["md", "rst"]
+
+mermaid_d3_zoom = True
+mermaid_version = "11.4.1"
+mermaid_include_elk = ""
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -118,7 +123,7 @@ html_theme_options = {
     "secondary_sidebar_items": ["page-toc"],
     "pygment_light_style": "napari",
     "pygment_dark_style": "napari",
-    "announcement": "https://napari.org/dev/_static/announcement.html",
+    "announcement": "",
     "back_to_top_button": False,
     "analytics": {
         # The domain you'd like to use for this analytics instance
@@ -128,6 +133,7 @@ html_theme_options = {
     },
     "footer_start": ["napari-footer-links"],
     "footer_end": ["napari-copyright"],
+    "show_version_warning_banner": True,
 }
 
 html_sidebars = {
