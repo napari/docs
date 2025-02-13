@@ -86,7 +86,7 @@ jobs:
 (deploying-to-conda-forge)=
 ## Deploying to conda-forge
 This is only a brief guide to deploying to `conda-forge`. More information can be found in the [conda-forge docs](https://conda-forge.org/docs/maintainer/adding_pkgs.html).
-
+To deploy a plugin to `conda-forge`, the plugin's build and run requirements **must** be available on `conda-forge` so the plugin and its dependencies may be installed.
 1. Fork https://github.com/conda-forge/staged-recipes
 2. Create a new branch
 3. Create a new folder in recipes directory (copy the existing example)
