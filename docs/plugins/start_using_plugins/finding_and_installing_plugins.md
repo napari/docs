@@ -7,17 +7,15 @@ Information about available plugins can be found in the following places:
   tag [`Framework :: napari`](https://pypi.org/search/?q=&o=&c=Framework+%3A%3A+napari) 
 - **conda-forge:** You can search for napari plugins from
   the conda-forge [package search page](https://conda-forge.org/packages/).
-- **napari hub:** The [napari hub](https://napari-hub.org) uses this data, together with additional
-  metadata, to produce a more user-friendly way to find napari plugins.
+- **napari hub:** The [napari hub](https://napari-hub.org) uses package data, together with additional
+  metadata, to produce a user-friendly way to find napari plugins.
 
-Similarly, the napari application lists plugins, annotated on PyPI with `Framework :: napari`,
-in the `Plugins > Install/Uninstall Plugins` menu.
 
 ## Installing plugins with napari
 
 All PyPI packages annotated with the `Framework :: napari` tag can be installed
-directly from within napari, using the [napari plugin manager](https://napari.org/napari-plugin-manager/).
-To install a new plugin, click the "Plugins" menu and select "Install/Uninstall Plugins...".
+directly from within napari, when the user has installed the [napari plugin manager](https://napari.org/napari-plugin-manager/).
+After the napari plugin manager is available, install a plugin by clicking the "Plugins" menu and selecting "Install/Uninstall Plugins...".
 Then, in the plugin installer menu that opens, you can either:
 
 ![napari viewer's Plugins menu with Install/Uninstall Plugins as the first item.](../../_static/images/plugin-menu.png)
@@ -28,7 +26,7 @@ Then, in the plugin installer menu that opens, you can either:
    section.
 
 2. Install plugins via manual input: at the bottom of the napari plugin manager window, there is a text box that will
-   say either "install with 'pip' by name/url, or drop file...", or "install with 'pip' by name/url, or drop file..."
+   say either "install with 'pip' by name/url, or drop file...", or "install with 'conda' by name/url, or drop file..."
    (depending on how you installed napari). Enter the name of the plugin you want to install (or *any* valid pip or conda
     [requirement specifier](https://pip.pypa.io/en/stable/reference/requirement-specifiers/) or
     [VCS scheme](https://pip.pypa.io/en/stable/topics/vcs-support)). Then, click the "Install" button next to the input
@@ -46,7 +44,7 @@ Then, in the plugin installer menu that opens, you can either:
    If you want to install `napari-svg` from a specific release, enter `napari-svg==0.1.0` in the text field.
    ```
 
-3. Advanced installation: after you have searched for the plugin you with to install, clicking on "Installation Info"
+3. Advanced installation: after you have searched for the plugin you wish to install, clicking on "Installation Info"
    button will open choices for installation source (conda or pip) and version selection. After choosing the desired
    options, you can click the "Install" button to install the plugin.
 
