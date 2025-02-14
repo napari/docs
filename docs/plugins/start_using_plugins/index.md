@@ -26,4 +26,3 @@ Submit issues to the [napari github repository][napari_issues].
 
 [napari_issues]: https://github.com/napari/napari/issues/new/choose
 [napari_zulip]: https://napari.zulipchat.com/
-[napari_hub]: https://napari-hub.org

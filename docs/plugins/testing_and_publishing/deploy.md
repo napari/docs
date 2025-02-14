@@ -40,16 +40,15 @@ in the builtin plugin installer dialog.
 If you used the {ref}`napari-plugin-template`, you can also
 [setup automated deployments][autodeploy] on GitHub for every tagged commit.
 
-````{admonition} What about conda?
-While you are free to distribute your plugin on anaconda cloud in addition to
-or instead of PyPI, the built-in napari plugin installer doesn't currently install
-from conda. In this case, you may guide your users to install your package on the
-command line using conda in your readme or documentation.
+```{admonition} conda-forge
+:class: attention
 
-A future version of napari and the napari stand-alone application may support
-directly installing from conda. As such, publishing to conda-forge can be a good
-idea. Checkout [deploying to anaconda](deploying-to-anaconda) for more details.
-````
+You can also deploy your plugin to conda-forge. Check out [deploying to conda-forge](deploying-to-conda-forge) for more
+details on how to do that.
+```
+
+The [napari-plugin-manager](https://napari.org/napari-plugin-manager/) can be used to install plugins deployed to both
+PyPI and conda-forge.
 
 When you are ready for users, announce your plugin on the [Image.sc
 forum](https://forum.image.sc/tag/napari).
