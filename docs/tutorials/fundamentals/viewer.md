@@ -456,7 +456,7 @@ The fourth button transposes the displayed dimensions.
 
 ### Grid button
 
-The next button, the grid button, toggles grid mode. When clicked, it displays each layer of the image in its own tile. You can right-click this button to adjust the way the tiles are presented, such as the grid dimensions, the order of the layers in the tiles, and whether layers are overlaid in the tiles.
+The next button, the grid button, toggles grid mode. When clicked, it displays each layer of the image in its own tile. You can right-click this button to adjust the way the tiles are presented, such as the grid dimensions, the order of the layers in the tiles, whether layers are overlaid in the tiles, as well as the spacing between the tiles (as a proportion of the average height and width).
 
 ### Home button
 
