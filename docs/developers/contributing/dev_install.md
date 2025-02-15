@@ -82,7 +82,13 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
 
     Note that in this last case you will need to install your Qt backend separately.
 
-5. We use [`pre-commit`](https://pre-commit.com) to format code with
+    ```{note}
+    In all of the above cases, you may wish to include the `optional` dependency group,
+    in addition to `dev`. It includes `numba` and other performance packages that are
+    included with the typical end-user `napari[all]` installation.
+    ```
+
+6. We use [`pre-commit`](https://pre-commit.com) to format code with
    [`ruff-format`](https://docs.astral.sh/ruff/formatter/) and lint with
    [`ruff`](https://github.com/astral-sh/ruff) automatically prior to each commit.
    To minimize test errors when submitting pull requests, please install `pre-commit`
