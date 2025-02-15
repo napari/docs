@@ -103,7 +103,7 @@ The image below has the areas of the viewer labeled:
 ![image: viewer layout](../../_static/images/Viewer-with-arrows.png)
 
 :::{tip}
-If you see a button with a chevron mark in the corner, it means you can click it with the right mouse button to bring up more advanced options!
+If you see a button with a chevron mark in the lower right corner, it means you can click it with the right mouse button to bring up more advanced options!
 :::
 
 We'll go through each of these in the next sections.
