@@ -5,13 +5,13 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 ## Current Core Developers
 
 - [Ashley Anderson](https://github.com/napari/napari/commits?author=aganders3) - [@aganders3](https://github.com/aganders3)
-- [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)*
+- [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)
 - [Genevieve Buckley](https://github.com/napari/napari/commits?author=GenevieveBuckley) - [@GenevieveBuckley](https://github.com/GenevieveBuckley)
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - [@Czaki](https://github.com/Czaki)
-- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) - [@jni](https://github.com/jni)*
-- [Kevin Yamauchi](https://github.com/napari/napari/commits?author=kevinyamauchi) - [@kevinyamauchi](https://github.com/kevinyamauchi)*
+- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) - [@jni](https://github.com/jni)
+- [Kevin Yamauchi](https://github.com/napari/napari/commits?author=kevinyamauchi) - [@kevinyamauchi](https://github.com/kevinyamauchi)
 - [Kira Evans](https://github.com/napari/napari/commits?author=kne42) - [@kne42](https://github.com/kne42)
-- [Kyle Harrington](https://github.com/napari/napari/commits?author=kephale) - [@kephale](https://github.com/kephale)*
+- [Kyle Harrington](https://github.com/napari/napari/commits?author=kephale) - [@kephale](https://github.com/kephale)
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - [@brisvag](https://github.com/brisvag)
 - [Lucy Liu](https://github.com/napari/napari/commits?author=lucyleeow) - [@lucyleeow](https://github.com/lucyleeow)
 - [Melissa Weber Mendonça](https://github.com/napari/napari/commits?author=melissawm) - [@melissawm](https://github.com/melissawm)
@@ -25,16 +25,24 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Alister Burt](https://github.com/napari/napari/commits?author=alisterburt) - [@alisterburt](https://github.com/alisterburt)
 - [Andy Sweet](https://github.com/napari/napari/commits?author=andy-sweet) - [@andy-sweet](https://github.com/andy-sweet)
 - [Justine Larsen](https://github.com/napari/napari/commits?author=justinelarsen) - [@justinelarsen](https://github.com/justinelarsen)
-- [Loic Royer](https://github.com/napari/napari/commits?author=royerloic) - [@royerloic](https://github.com/royerloic)^
-- [Nicholas Sofroniew](https://github.com/napari/napari/commits?author=sofroniewn) - [@sofroniewn](https://github.com/sofroniewn)^
+- [Loic Royer](https://github.com/napari/napari/commits?author=royerloic) - [@royerloic](https://github.com/royerloic)
+- [Nicholas Sofroniew](https://github.com/napari/napari/commits?author=sofroniewn) - [@sofroniewn](https://github.com/sofroniewn)
 - [Shannon Axelrod](https://github.com/napari/napari/commits?author=shanaxel42) - [@shanaxel42](https://github.com/shanaxel42)
-- [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - [@tlambert03](https://github.com/tlambert03)^
+- [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - [@tlambert03](https://github.com/tlambert03)
 - [Ziyang Liu](https://github.com/napari/napari/commits?author=potating-potato) - [@potating-potato](https://github.com/potating-potato)
 
+## Current Steering Council Members
 
-<sub>* on the napari [steering council](https://napari.org/community/governance.html#steering-council).</sub>
+- [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)
+- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) - [@jni](https://github.com/jni)
+- [Kevin Yamauchi](https://github.com/napari/napari/commits?author=kevinyamauchi) - [@kevinyamauchi](https://github.com/kevinyamauchi)
+- [Kyle Harrington](https://github.com/napari/napari/commits?author=kephale) - [@kephale](https://github.com/kephale)
 
-<sub>^ emeritus [steering council](https://napari.org/community/governance.html#steering-council).</sub>
+## Emeritus Steering Council Members
+
+- [Loic Royer](https://github.com/napari/napari/commits?author=royerloic) - [@royerloic](https://github.com/royerloic)
+- [Nicholas Sofroniew](https://github.com/napari/napari/commits?author=sofroniewn) - [@sofroniewn](https://github.com/sofroniewn)
+- [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - [@tlambert03](https://github.com/tlambert03)
 
 ## Project history
 
@@ -64,16 +72,3 @@ Read more about napari’s [mission and values](https://napari.org/stable/commun
 The current representative of the Insitutional and Funding Partner Advisory Council on the napari steering council is Kyle I. S. Harrington.
 
 If you or your organization are interested in also supporting the napari project and becoming an Institutional and Funding Partner, please email the napari steering council at `napari-steering-council@googlegroups.com`.
-
-## Current Steering Council Members
-
-- [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)*
-- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) - [@jni](https://github.com/jni)*
-- [Kevin Yamauchi](https://github.com/napari/napari/commits?author=kevinyamauchi) - [@kevinyamauchi](https://github.com/kevinyamauchi)*
-- [Kyle Harrington](https://github.com/napari/napari/commits?author=kephale) - [@kephale](https://github.com/kephale)*
-
-## Emeritus Steering Council Members
-
-- [Loic Royer](https://github.com/napari/napari/commits?author=royerloic) - [@royerloic](https://github.com/royerloic)^
-- [Nicholas Sofroniew](https://github.com/napari/napari/commits?author=sofroniewn) - [@sofroniewn](https://github.com/sofroniewn)^
-- [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - [@tlambert03](https://github.com/tlambert03)^
