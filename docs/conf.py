@@ -229,7 +229,8 @@ min_python_version = min(napari_supported_python_versions)
 max_python_version = max(napari_supported_python_versions)
 
 version_string = '.'.join(str(x) for x in __version_tuple__[:3])
-python_version = '3.10'
+# when updating the version below, ensure to also update napari/napari README
+python_version = '3.11'
 python_version_range = f"{min_python_version}-{max_python_version}"
 
 myst_substitutions = {
