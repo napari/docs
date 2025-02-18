@@ -461,7 +461,13 @@ The fourth button transposes the displayed dimensions.
 
 ### Grid button
 
-The next button, the grid button, toggles grid mode. When clicked, it displays each layer of the image in its own tile. You can right-click this button to adjust the way the tiles are presented, such as the grid dimensions, the order of the layers in the tiles, and whether layers are overlaid in the tiles.
+The fifth button, the grid button, toggles between the default layer mode and grid mode. When clicked, it displays each layer of the image in a series of tiles. The question icons can be hovered for more information about each setting.
+
+1. Grid stride: By default, 1, placing one layer in each tile. The value determines the number of layers overlaid in each tile. Negative values reverse the order in which layers are displayed in the grid.
+2. Grid width/height: By default, -1, which automatically determines the grid layout.
+3. Grid spacing: Changes the spacing between the tiles as a proportion of the average height and width of the largest layer. Positive values add distance between layers creating a 'figure panel' like appearance. Negative values result in overlap, which is useful if layers have translucent blending, allowing visualization of many layers close together.
+
+![image: Grid Mode Widget](../../_static/images/grid-widget.png)
 
 ### Home button
 
