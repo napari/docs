@@ -1,10 +1,20 @@
 (plugins-index)=
 # Plugins
 
-Plugins are a powerful way to extend the functionality of napari and share these extensions with the community.
-While scripts and widgets can also be used to extend napari, plugins offer the most convenient method for publicly sharing additional features.
+Plugins extend napari's functionality, allowing for customization and sharing the community.
+While you can use scripts and widgets to extend napari, plugins provide great flexibility.
+Existing plugins extend napari to add:
+- support for import and export of image types.
+- support for working with specialized data formats.
+- domain specific features, including microscopy, climate, geoscience, and more.
+Share and discover napari plugins on [PyPI](https://pypi.org/search/?q=napari),
+[conda-forge](https://conda-forge.org/packages/), or [napari hub](https://napari-hub.org).
+Interested in creating a plugin? A [napari-plugin-template](https://github.com/napari/napari-plugin-template),
+a [copier](https://copier.readthedocs.io/en/stable/) template, bootstraps authoring
+[npe](https://github.com/napari/npe2)-based napari plugins.
 
-Check out the user focused content to guide you through installing and using napari plugins, or the developer focused content to start creating your own plugins for napari.
+Check out the user focused guides for installing and using napari plugins, or plugin developer guides to start
+creating your own napari plugins.
 
 ::::::{tab-set}
 :::::{tab-item} For plugin users
@@ -20,7 +30,7 @@ Introduction to napari plugins, what they can provide, and where to get support.
 :link: find-and-install-plugins
 :link-type: ref
 
-How to find and install plugins from the napari plugin installer or napari hub.
+How to find and install plugins using the napari plugin installer or napari hub.
 :::
 ::::
 :::::
@@ -47,7 +57,7 @@ Workshop on virtual environments and useful tools for plugin development.
 :link: plugin-test-deploy
 :link-type: ref
 
-How to test your plugin works and how to publish it to PyPI,
+How to test your plugin works and how to publish it,
 along with some tips for making your plugin easy to find.
 :::
 
