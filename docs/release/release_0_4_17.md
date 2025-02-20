@@ -200,7 +200,7 @@ or create issues on GitHub.
 - Fix selection events documentation for LayerList  (#4478)
 - add ABRF LMRG workshop recording (#4487)
 - Add alt_text (#4502)
-- DOC: misc syntax updates and typoes (#4517)
+- DOC: misc syntax updates and typos (#4517)
 - Start a NAP about conda packaging for napari (#4519)
 - Add CZI as an Institutional and Funding Partner (#4524)
 - add I2K workshop (#4528)

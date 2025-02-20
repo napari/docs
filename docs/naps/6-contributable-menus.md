@@ -451,7 +451,7 @@ to add new submenus as required.
 Every 6 months to 1 year, the core developers will perform an analysis on
 the total set of menu item and widget contributions of all plugins, and
 derive new groupings to ensure that the length of each submenu remains
-managable.
+manageable.
 
 For example, consider the `Layers -> Segment` menu. If
 analysis of the plugin ecosystem reveals 40 different contributions

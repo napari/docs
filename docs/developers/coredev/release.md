@@ -231,7 +231,7 @@ Please make sure a correct build for the problematic release is available before
 
 ## Post release: update the documentation
 
-The [napari docs](https://napari.org) are versioned, meaning that each release has its own documentation, selected throught the version switcher dropdown. Once you tag a new version in the `napari/napari` repo, the [`build_and_deploy.yml` workflow](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml) will automatically create a new folder for this version number in the `gh-pages` branch of the `napari/napari.github.io` repo.
+The [napari docs](https://napari.org) are versioned, meaning that each release has its own documentation, selected through the version switcher dropdown. Once you tag a new version in the `napari/napari` repo, the [`build_and_deploy.yml` workflow](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml) will automatically create a new folder for this version number in the `gh-pages` branch of the `napari/napari.github.io` repo.
 
 Next, you need to do the following:
 

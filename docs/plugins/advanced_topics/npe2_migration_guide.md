@@ -128,7 +128,7 @@ you need.  If you are still struggling with a specific conversion after using
 
 
 Existing `napari-plugin-engine` plugins expose functionality via *hook
-implementations*. These are functions decorated to indicate they fullfil a
+implementations*. These are functions decorated to indicate they fulfil a
 *hook specification* described by napari. Though there are some exceptions,
 most *hook implementations* can be straightforwardly mapped to npe2 [contributions](contributions-ref)
 

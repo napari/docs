@@ -124,7 +124,7 @@ We thank the many contributors who have made this release possible!
 - New perfmon doc (#1634)
 - Build docs action (#1638)
 - Increase retry action timeout from 10 to 30 mins (#1651)
-- Add CI tests agains pre-release dependency versions (#1708)
+- Add CI tests against pre-release dependency versions (#1708)
 - Pin dask !=2.28.0 due to performance problems, see napari issue #1656 (#1712)
 - Fix top-level links referenced in README.md and published on napari.org (#1750)
 - Update installation readme (#1758)
