@@ -1,7 +1,7 @@
 (find-and-install-plugins)=
 # Finding and installing plugins
 
-Plugins are Python packages which extend the napari's functionality.
+Plugins are Python packages which extend napari's functionality.
 They can be used to add new features, such as file format support, new visualizations, or new tools.
 This page will show you how to find and install plugins for napari.
 
