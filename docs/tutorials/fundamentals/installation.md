@@ -185,12 +185,13 @@ PyQt5--but this could change in the future.
 To install napari with a specific framework, you can use:
 
 ```sh
-python -m pip install "napari[pyqt5]"    # for PyQt5
+python -m pip install "napari[pyqt6, optional]"    # for PyQt6
 
 # OR
-python -m pip install "napari[pyside2]"  # for PySide2
+python -m pip install "napari[pyside2, optional]"  # for PySide2
 ```
 
+By including `optional` you will install everything that `napari[all]` includes, but with the Qt backend of your choice.
 
 Please note that, if you have a Mac with the newer arm64
 architecture ([Apple Silicon](https://support.apple.com/en-us/116943)), then installing the PySide2 backend using `pip` is not supported because pre-compiled PySide2 packages
@@ -217,10 +218,10 @@ replacing `{tag}` with the desired napari version.
 pip install napari[backend_selection] -c path/to/constraints/file
 ```
 
-For example, if you would like to install napari on python 3.10:
+For example, if you would like to install napari with PyQt6 on python 3.10:
 
 ```sh
-pip install napari[all, pyqt] -c constraints_py3.10.txt
+pip install napari[pyqt6, optional] -c constraints_py3.10.txt
 ```
 
 ## Install as a bundled app
