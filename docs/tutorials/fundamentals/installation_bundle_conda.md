@@ -70,7 +70,7 @@ The installation progress can be monitored on the following window. Some notific
 ![Cropped screenshot of the Installation page of the PKG installer. This page displays a progress bar at a 10%. In the top right corner, an example of a system notification with the text 'Installing packages. This might take a few minutes' is shown](../../_static/images/bundle_10.png)
 
 ```{note}
-If an error ocurred during the installation, do not close the installer immediately. Before doing so, please inspect the logs by clicking on Window > Installer log or pressing {kbd}`⌘+L`. In the Detail Level dropdown, choose 'Show All Logs' and click on Save to keep a copy of the contents in a text file. This will be useful if you want to [submit an issue](https://github.com/napari/napari/issues/new/choose).
+If an error occurred during the installation, do not close the installer immediately. Before doing so, please inspect the logs by clicking on Window > Installer log or pressing {kbd}`⌘+L`. In the Detail Level dropdown, choose 'Show All Logs' and click on Save to keep a copy of the contents in a text file. This will be useful if you want to [submit an issue](https://github.com/napari/napari/issues/new/choose).
 ```
 
 After finishing with no errors, a new page with the text "The installation was successful" will appear, as shown below.
@@ -101,7 +101,7 @@ Click Next to continue and go to the License page. Read the contents and, if you
 
 The recommended installation method is to install napari just for the current user ("Just Me"):
 
-![Cropped screenshot of the Setup Instalation Type page of the napari EXE installer. Two options are available: Just Me (recommended), and All Users (requires admin privileges). At the bottom, three buttons Back, Next and Cancel are displayed.](../../_static/images/bundle_19.png)
+![Cropped screenshot of the Setup Installation Type page of the napari EXE installer. Two options are available: Just Me (recommended), and All Users (requires admin privileges). At the bottom, three buttons Back, Next and Cancel are displayed.](../../_static/images/bundle_19.png)
 
 On the next page you will be shown how much space will be used by the installation and the default destination folder, which can be changed by using the 'Browse' button. Click 'Next' to continue.
 

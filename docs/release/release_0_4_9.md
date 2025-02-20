@@ -81,7 +81,7 @@ It also contains a variety of bug fixes and improvements.
 - Fix octree imports (#2838)
 - Remove opacity from plugin sorter widget (#2840)
 - Fix Labels.fill for tensorstore data (#2856)
-- Be more robust for non-existant keybindings in settings (#2861)
+- Be more robust for non-existent keybindings in settings (#2861)
 - trans NameError bugfix (#2865)
 
 

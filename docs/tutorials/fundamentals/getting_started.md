@@ -80,7 +80,7 @@ import napari
 # create a `Viewer` and `Image` layer here
 viewer, image_layer = napari.imshow(cells3d())
 
-# print shape of image datas
+# print shape of image data
 print(image_layer.data.shape)
 
 # start the event loop and show the viewer

@@ -431,7 +431,7 @@ point_annotator(im_path, labels=['ear_l', 'ear_r', 'tail'])
 
 ### Saving the annotations
 
-Once we are happy with the annotations, we can save them to a CSV file using the builing CSV writer for the points layer.
+Once we are happy with the annotations, we can save them to a CSV file using the building CSV writer for the points layer.
 To do so, first, select the "Points" layer in the layer list and then click "Save Selected layer(s)"  in the "File" menu or press {kbd}`control+S` ({kbd}`cmd+S` on Mac OS)  to bring up the file save dialog.
 From here you can enter the file path and save the annotation coordinates as a CSV.
 

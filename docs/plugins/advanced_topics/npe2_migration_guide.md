@@ -47,7 +47,7 @@ Options:
   --help          Show this message and exit.
 ```
 
-### 2. Ensure your plugin is intalled in your environment
+### 2. Ensure your plugin is installed in your environment
 
 This step is critical: your first-generation plugin *must* be installed
 in your currently active environment for `npe2 convert` to find it.
@@ -276,7 +276,7 @@ function actually instantiating the widget. It accepts only one argument: a
 napari `Viewer` proxy instance. The proxy restricts access to some `Viewer`
 functionality like private methods.
 
-Similarly `napari_experimental_provide_function` hooks return ane or more
+Similarly `napari_experimental_provide_function` hooks return one or more
 functions to be wrapped with [magicgui]. In `npe2`, each of these functions
 should be added as a `Command` contribution with an associated `Widget`
 contribution. For each of these `Widget` contributions, the manifest

@@ -184,7 +184,7 @@ layer:
   The `color picker` can be used to select another color at any time. Click the
   color picker tool then click on the existing color in the labels layer you
   would like to use. That color now appears on the label bar as the selected
-  color. If the color does not exist in the label color pallette, it defaults
+  color. If the color does not exist in the label color palette, it defaults
   to 0 and a checkerboard pattern appears in the thumbnail on the label bar to
   represent the transparent color.
 

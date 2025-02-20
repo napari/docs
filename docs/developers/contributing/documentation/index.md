@@ -408,11 +408,11 @@ of your pull request:
 
 2. Click on **Summary** on the top left corner:
 
-![Summary link in the "Build & Deploy PR Docs / Build & Uplod Artifact" GitHub Action page](../../../_static/images/doc-ci-2.png)
+![Summary link in the "Build & Deploy PR Docs / Build & Upload Artifact" GitHub Action page](../../../_static/images/doc-ci-2.png)
 
 3. Scroll down to **Artifacts** and click on **html** to download the built documentation:
 
-!["html" link in the Artifacts section of the "Build & Deploy PR Docs / Build & Uplod Artifact" GitHub Action page is highlighted](../../../_static/images/doc-ci-3.png)
+!["html" link in the Artifacts section of the "Build & Deploy PR Docs / Build & Upload Artifact" GitHub Action page is highlighted](../../../_static/images/doc-ci-3.png)
 
 4. Extract the compressed archive and open the `html/index.html` file on your preferred browser.
    You can also use Python's `http.server` module to open a local server on

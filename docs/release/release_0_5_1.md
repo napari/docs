@@ -72,7 +72,7 @@ ago!
 - Add actionlint on CI ([#7049](https://github.com/napari/napari/pull/7049))
 - fix: set `target_commitish` for commit sha to fix benchmarks ([#7091](https://github.com/napari/napari/pull/7091))
 - Use `viewer.layers` instead of  `_layers.model().sourceModel()._root` for dummy context creation ([#7109](https://github.com/napari/napari/pull/7109))
-- Limit setuptools vesion for minimum requirements test ([#7110](https://github.com/napari/napari/pull/7110))
+- Limit setuptools version for minimum requirements test ([#7110](https://github.com/napari/napari/pull/7110))
 - [Maint] Update dockerfile for xpra source change ([#7115](https://github.com/napari/napari/pull/7115))
 - Fix pinning packages workflow by remove special pinning from macOS and add special for Windows ([#7119](https://github.com/napari/napari/pull/7119))
 - Trigger docs deployment on tagged commit ([#7122](https://github.com/napari/napari/pull/7122))

@@ -114,7 +114,7 @@ first, then explore the editing options the GUI provides.
     * Cycle allows the color to be set via a color cycle over an attribute.
     * Colormap allows the color to be set via a color map over an attribute.
   * Edge color - click the thumbnail next to `edge color:` to select or create a
-    color from the pallette.
+    color from the palette.
   * Out of slice - if this box is checked, `out of slice` is on or true. If this
     box is not checked, `out of slice` is off or false. If it is on or true,
     vectors slightly out of slice are rendered.
