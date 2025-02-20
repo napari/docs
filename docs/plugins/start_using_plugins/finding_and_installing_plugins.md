@@ -9,12 +9,12 @@ This page will show you how to find and install plugins for napari.
 
 Plugins can be discovered in the following places:
 
+- **napari hub:** The [napari hub](https://napari-hub.org) offers a user-friendly
+  way to find napari plugins.
 - **PyPI:** The Python Package Index (PyPI) stores and distributes plugin packages.
   Search for plugins annotated with the classifier [`Framework :: napari`](https://pypi.org/search/?q=&o=&c=Framework+%3A%3A+napari).
 - **conda-forge:** Many scientific packages are available on conda-forge.
   Use the conda-forge [package search page](https://conda-forge.org/packages/) to find napari plugins.
-- **napari hub:** The [napari hub](https://napari-hub.org) offers a user-friendly
-  way to find napari plugins.
 
 Users may also find plugins by searching on GitHub, napari's Zulip chat, and
 the image.sc forum.
@@ -51,15 +51,18 @@ From the dialog, you can install plugins in the following ways:
 
    ![napari viewer's Plugin dialog. At the bottom of the dialog, there is a place to install by name, URL, or dropping in a file.](../../_static/images/plugin-install-dialog.png)
 
-  ```{admonition} Example
+  ```{admonition} Installing the Current Release
   To install `napari-svg`, enter `napari-svg` in the text field and press {kbd}`Enter` or click "Install". This is equivalent to running `pip install napari-svg`.
   ```
-  ```{admonition} Example
+  ```{admonition} Installing from a Github Branch
   If you want to install `napari-svg` directly from the development branch on the [github repository](https://github.com/napari/napari-svg), enter `git+https://github.com/napari/napari-svg.git` in the text field.
   ```
-  ```{admonition} Example
+  ```{admonition} Installing a Specific Release
   If you want to install `napari-svg` from a specific release, enter `napari-svg==0.1.0` in the text field.
   ```
+```{admonition} Installing with Optional Dependency Groups
+To install a plugin with a group of option dependencies, use the optional group in brackets. If you want to install `napari-svg` with the optional testing group, enter `napari-svg[testing]` in the text field. 
+```
 
 - **Advanced installation:** After searching for the plugin you wish to install, click on the
   "Installation Info" button to open choices for installation source (conda or pip) and version selection. After choosing the desired options, you can click the "Install" button to install the plugin.
