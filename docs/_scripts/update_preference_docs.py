@@ -1,13 +1,13 @@
 from pathlib import Path
 
 from jinja2 import Template
-from napari._pydantic_compat import ModelMetaclass
 from qtpy.QtCore import QTimer
 from qtpy.QtWidgets import QMessageBox
 
 from napari._qt.dialogs.preferences_dialog import PreferencesDialog
 from napari._qt.qt_event_loop import get_qapp
 from napari._qt.qt_resources import get_stylesheet
+from napari._pydantic_compat import ModelMetaclass
 from napari.settings import NapariSettings
 
 DOCS = REPO_ROOT_PATH = Path(__file__).resolve().parent.parent
@@ -134,7 +134,6 @@ def create_preferences_docs():
     sections = {}
 
     for name, field in NapariSettings.__fields__.items():
-
         if not isinstance(field.type_, ModelMetaclass):
             continue
 
@@ -142,7 +141,7 @@ def create_preferences_docs():
         title = field.field_info.title or name
         sections[title.lower()] = {
             "title": title,
-            "description": field.field_info.description or '',
+            "description": field.field_info.description or "",
             "fields": [
                 {
                     "field": n,
@@ -150,10 +149,10 @@ def create_preferences_docs():
                     "description": f.field_info.description,
                     "default": repr(f.get_default()),
                     "ui": n not in excluded,
-                    "type": repr(f._type_display()).replace('.typing', ''),
+                    "type": repr(f._type_display()).replace(".typing", ""),
                 }
                 for n, f in sorted(field.type_.__fields__.items())
-                if n not in ('schema_version')
+                if n not in ("schema_version")
             ],
         }
 
@@ -171,7 +170,9 @@ def create_preferences_docs():
 
 
 def main():
+    print("start generate image")
     generate_images()
+    print("generate preferences docs")
     create_preferences_docs()
 
 
