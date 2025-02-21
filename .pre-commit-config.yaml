@@ -1,5 +1,31 @@
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: "v5.0.0"
     hooks:
-    -   id: trailing-whitespace
+      - id: check-builtin-literals
+      - id: check-case-conflict
+      - id: check-toml
+      - id: check-yaml
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.7
+    hooks:
+      - id: ruff-format
+        exclude: examples
+      - id: ruff
+        args: ["--fix", "--show-fixes"]
+
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: "v3.4.2"
+    hooks:
+      - id: prettier
+        types_or: [yaml, markdown, html, css, scss, javascript, json]
+
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: "v0.23"
+    hooks:
+      - id: validate-pyproject
+        additional_dependencies: ["validate-pyproject-schema-store[all]"]
