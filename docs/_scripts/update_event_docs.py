@@ -1,5 +1,6 @@
 import ast
 import inspect
+import logging
 from dataclasses import dataclass
 from pathlib import Path
 from types import ModuleType
@@ -15,7 +16,8 @@ from napari.components.layerlist import LayerList
 from napari.components.viewer_model import ViewerModel
 from napari.utils.events import EventedModel
 
-print("imports in update_event_docs succeeded")
+logger = logging.getLogger(__name__)
+
 DOCS = Path(__file__).parent.parent
 
 

@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 
 from jinja2 import Template
@@ -9,6 +10,8 @@ from napari._qt.qt_event_loop import get_qapp
 from napari._qt.qt_resources import get_stylesheet
 from napari._pydantic_compat import ModelMetaclass
 from napari.settings import NapariSettings
+
+logger = logging.getLogger(__name__)
 
 DOCS = REPO_ROOT_PATH = Path(__file__).resolve().parent.parent
 GUIDES_PATH = DOCS / "guides"
@@ -170,9 +173,9 @@ def create_preferences_docs():
 
 
 def main():
-    print("start generate image")
+    logger.debug("begin generating images")
     generate_images()
-    print("generate preferences docs")
+    logger.debug("create preferences docs")
     create_preferences_docs()
 
 
