@@ -17,7 +17,7 @@ https://napari.org/docs/0.4.5/ . We'll be continuing to reorganize the
 napari.org website to create a more integrate feel with documentation and tutorials living
 together. You can read more about our website reorganization in (#764).
 
-We've also added exprimental support for the ability to link attribute in layers which could
+We've also added experimental support for the ability to link attribute in layers which could
 be useful for synchronizing attribute values across layers, for example to
 set matching contrast limits for multiple channels (#2226).
 
@@ -41,7 +41,7 @@ set matching contrast limits for multiple channels (#2226).
 ## Bug Fixes
 - Fix show/ hide plugin widgets (#2173)
 - Fix bug with modification of `AVAILABLE_COLORMAPS` when iterating over it  (#2193)
-- Prevent monitor information refering to one of first issues (#2214)
+- Prevent monitor information referring to one of first issues (#2214)
 - Fix close procedure (#2220)
 - Update `napari.run`, prevent double-blocking (#2225)
 
@@ -51,7 +51,7 @@ set matching contrast limits for multiple channels (#2226).
 
 
 ## API Changes
-- Removed github searching for plugin discovery, instead the `Framework :: napari` classifer should be used (#2228)
+- Removed github searching for plugin discovery, instead the `Framework :: napari` classifier should be used (#2228)
 - Removed evented_dataclass, instead the `EventedModel` should be used (#2236)
 - The deprecated ``Viewer.interactive`` parameter has been removed, instead you should use ``Viewer.camera.interactive`` (#2198)
 - The deprecated ``Viewer.palette`` attribute has been removed. To access the palette you can get it using ``napari.utils.theme.register_theme`` dictionary using the ``viewer.theme`` as the key (#2198)

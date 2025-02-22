@@ -400,7 +400,7 @@ The consequence of each type is described below:
 #### Returning a `Layer` subclass
 
 If you use a {class}`~napari.layers.Layer` subclass as a *return* annotation on a
-`magicgui` function, napari will interpet it to mean that the layer returned
+`magicgui` function, napari will interpret it to mean that the layer returned
 from the function should be added to the viewer.  The object returned from the
 function must be an actual {class}`~napari.layers.Layer` instance.
 
@@ -478,7 +478,7 @@ example). In this case, you may use a return type annotation of one the special
 returned by your function to be turned into the corresponding
 {class}`~napari.layers.Layer` type, and added to the viewer.
 
-For example, in combination with the {attr}`~napari.types.ImageData` paramater
+For example, in combination with the {attr}`~napari.types.ImageData` parameter
 annotation [described above](annotating-as-napari-types-data):
 
 ```{code-cell} python

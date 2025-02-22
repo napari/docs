@@ -14,14 +14,14 @@ https://github.com/napari/napari
 In this release we've added two new analysis and GUI focused [hook specifications](https://github.com/napari/napari/blob/87961d0554b2bb1574553e23bf2231a9a5117568/docs/source/plugins/hook_specifications.rst) for our plugin developers (#2080).
 
 The first one `napari_experimental_provide_function_widget` allows you to provide a function or list of functions that we
-will turn into a GUI element using using [magicgui](https://napari.org/magicgui/). This hook spec leverages the newly added and the `viewer.window.add_function_widget` method (#1856) and the newly recently released `0.2` series of magicgui which seperates out an abstract function and widget API from its Qt backend. These functions can take in and return napari layer, allowing you to
+will turn into a GUI element using using [magicgui](https://napari.org/magicgui/). This hook spec leverages the newly added and the `viewer.window.add_function_widget` method (#1856) and the newly recently released `0.2` series of magicgui which separates out an abstract function and widget API from its Qt backend. These functions can take in and return napari layer, allowing you to
 provide analysis functionality to napari without having to write GUI code.
 
 The second one `napari_experimental_provide_dock_widget` allows you to provide a QWidget or list of QWidgets that we will instantiate with access to the napari viewer and add to the GUI. This hook spec leverages our `viewer.window.add_dock_widget` method, and allows you to provide highly customized GUI elements that could include additional plots or interactivity.
 
 Both of these hook specs are marked as `experimental` as we're likely to evolve the API here in response to user needs, and we're excited to get early feedback from plugin developers on them.
 
-In this release we also seperate out more of the Qt functionality from napari making it easier to run headless (#2039, #2055). We also added a `napari.run` method as an alternative to using the `napari.gui_qt` context manager (#2056).
+In this release we also separate out more of the Qt functionality from napari making it easier to run headless (#2039, #2055). We also added a `napari.run` method as an alternative to using the `napari.gui_qt` context manager (#2056).
 
 We've also made good progress on our `experimental` support for an octree system for rendering large 2D multiscale images. You can try this functionality setting `NAPARI_OCTREE=1` as an environment variable. See our [asynchronous rendering guide](https://napari.org/guides/rendering.html) for more details on how to use the octree and its current limitations.
 
@@ -92,7 +92,7 @@ Finally we've added our [0.4 series roadmap](https://napari.org/roadmaps/0_4.htm
 ## API Changes
 - The ``axis`` parameter is no longer present on the ``current_step``, ``range``, or ``axis_labels`` events. Instead a single event is emitted whenever the tuple changes (#1917)
 - The deprecated public layer dims has been removed in 0.4.2 and the private ``layer._dims`` is now a NamedTuple (#1919)
-- The deprecated ``layer.shape`` arrtibute has been removed. Instead you should use the ``layer.extent.data`` and ``layer.extent.world attributes`` to get the extent of the data in data or world coordinates (#1990, #2002)
+- The deprecated ``layer.shape`` attribute has been removed. Instead you should use the ``layer.extent.data`` and ``layer.extent.world attributes`` to get the extent of the data in data or world coordinates (#1990, #2002)
 - Keymap handling has been moved off the ``Viewer`` and ``Viewer.keymap_providers`` has been removed. The ``Viewer`` itself
 can still provide keymappings, but no longer handles keymappings from other objects like the layers. (#2003)
 - Drop scale background color and axes background color. These colors are now determined by defaults or the canvas background color. (#2037)

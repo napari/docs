@@ -146,7 +146,7 @@ welcome_image: resources/napari_1227x600.png  # bg image with the napari logo on
 welcome_file: resources/osx_pkg_welcome.rtf  # rendered text in the first screen
 conclusion_text: ""  # set to an empty string to revert constructor customizations back to system's
 readme_text: ""  # set to an empty string to revert constructor customizations back to system's
-signing_identity_name: "Apple Developer ID: ..."  # Name of our installer signing certicate
+signing_identity_name: "Apple Developer ID: ..."  # Name of our installer signing certificate
 
 # windows-specific config
 welcome_image: resources/napari_164x314.png  # logo image for the first screen

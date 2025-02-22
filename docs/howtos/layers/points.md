@@ -166,7 +166,7 @@ layer:
   whose properties you want to change, otherwise you will just be initializing
   the property for the next point to add. Select the point you want to change,
   then click the thumbnail next to `face color:` or `border color:` to select or
-  create a color from the pallette.
+  create a color from the palette.
 
 * Display text
 

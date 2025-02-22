@@ -107,7 +107,7 @@ def _update_display(event):
 # register our callback with the model
 dims.events.ndisplay.connect(_update_display)
 
-# now, everytime dims.ndisplay is changed, _update_display is called
+# now, every time dims.ndisplay is changed, _update_display is called
 dim.ndisplay = 3
 ```
 

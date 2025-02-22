@@ -79,7 +79,7 @@ Reloading code as it changes with IPython provides an easy way to see the immedi
 
 ### Write a script to setup the plugin without user interaction
 
-Writing a setup script reproducibly places your napari viewer at the state of problems, without having to perform user interaction in the GUI to get back to the problem state. Launching napari and your plugin from a script can often allow you to use your IDE's built in debugging tools, as long as both your plugin and napari itself are installed in editable mode in your enviroment.
+Writing a setup script reproducibly places your napari viewer at the state of problems, without having to perform user interaction in the GUI to get back to the problem state. Launching napari and your plugin from a script can often allow you to use your IDE's built in debugging tools, as long as both your plugin and napari itself are installed in editable mode in your environment.
 
 ### Isolate the plugin functionality from napari
 
@@ -326,7 +326,7 @@ Because of the limitations of the Qt library, such interactions with napari may 
 
 To test if this is the case, you can use the `NAPARI_ENSURE_PLUGIN_MAIN_THREAD` environment variable to help debug the issue.
 
-Set the environement variable: `NAPARI_ENSURE_PLUGIN_MAIN_THREAD=1`, then start napari and run your plugin.
+Set the environment variable: `NAPARI_ENSURE_PLUGIN_MAIN_THREAD=1`, then start napari and run your plugin.
 
 ```bash
 NAPARI_ENSURE_PLUGIN_MAIN_THREAD=1 napari

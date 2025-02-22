@@ -36,11 +36,11 @@ The above workarounds have the following issues:
 - *performance and usability*: regardless of the workaround used, reader plugins can't know about it, so a user would be forced to either first load everything into the viewer and then do something with it, significantly slowing down startup and adding one more step to opening napari
 - *serialization*: without a native `napari` support, these workarounds cannot be properly serialized.
 
-Additionally, while this was not the main goal of this NAP, people have sometimes asked for "workspaces", where different workflows can be tested in parallel [^workspaces]; `spaces` would also implicitly allow this by letting users re-use a layer in multiple spaces.
+Additionally, while this was not the main goal of this NAP, people have sometimes asked for "workspaces", where different workflows can be tested in parallel [^workspaces]; `spaces` would also implicitly allow this by letting users reuse a layer in multiple spaces.
 
 ### Non-goals
 
-- *window state*: in [#4227](https://github.com/napari/napari/issues/4227), a proposal was advanced for managing window state and layout, with the ability to re-use and restore them. While this could be conceivably be dealt with here, it is probably better to keep separate the state of the window from the representation and the data.
+- *window state*: in [#4227](https://github.com/napari/napari/issues/4227), a proposal was advanced for managing window state and layout, with the ability to reuse and restore them. While this could be conceivably be dealt with here, it is probably better to keep separate the state of the window from the representation and the data.
 - *rendering/data separation*: while necessary for some of the future benefits of spaces (i.e: [](nap-3:multicanvas)), the separation of rendering and data from the currently unified `Layer` object is not in the scope of this NAP. This means that (just like now), layer won't be shareable between `Viewer`s. However, they should be shareable between `Space`s, as long as the spaces are not *rendered* at the same time (i.e: in separate `Viewer`s).
 
 ## Implementation proposal
@@ -149,7 +149,7 @@ As part of the "multiple viewers" proposals in the past, the idea of accessing t
 (nap-3:multicanvas)=
 ### Multicanvas
 
-While multicanvas is still some ways off, this NAP can provide the basis for that functionality. For example, a future multicanvas-capable viewer could associate each `Canvas` to a `Space`; this way, we already have the machinery for multiple layer lists, as well as the ability to re-use the same layer in multiple canvases, while having a different `Camera` and `Dims` setup for the different copies (note that this would rely on the current efforts in separating the slicing logic from the `Layer` object).
+While multicanvas is still some ways off, this NAP can provide the basis for that functionality. For example, a future multicanvas-capable viewer could associate each `Canvas` to a `Space`; this way, we already have the machinery for multiple layer lists, as well as the ability to reuse the same layer in multiple canvases, while having a different `Camera` and `Dims` setup for the different copies (note that this would rely on the current efforts in separating the slicing logic from the `Layer` object).
 
 
 ## References

@@ -50,7 +50,7 @@ def generate_dependencies_graph(options):
     dep_graph : DepGraph
         Result dependency graph constructed by pydeps.
     dot_src : str
-        Result dependecy graph description using .dot format.
+        Result dependency graph description using .dot format.
         It can return `None` depending on the options passed.
     graph_content : bytes
         Result dependency graph in binary format.
@@ -179,11 +179,11 @@ def generate_mermaid_diagram(
             https://mermaid.js.org/syntax/flowchart.html#interaction
         The default is None.
     graph_title : str, optional
-        Accesible title for the graph. For more info see:
+        Accessible title for the graph. For more info see:
             https://mermaid.js.org/config/accessibility.html#accessible-title-and-description
         The default is None.
     graph_description : str, optional
-        Accesible description for the graph. The default is None.
+        Accessible description for the graph. The default is None.
 
     Returns
     -------
@@ -326,7 +326,7 @@ def generate_docs_ui_section(
     mermaid_graph_base_properties,
 ):
     """
-    Generate the needed content for a UI section page as well as a fomatted
+    Generate the needed content for a UI section page as well as a formatted
     page for the section.
 
     Parameters

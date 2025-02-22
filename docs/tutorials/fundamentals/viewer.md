@@ -275,12 +275,12 @@ viewer.layers.pop(i)
 One of the main strengths of **napari** is that it has been designed from the beginning to handle n-dimensional data. While much consumer photography is 2D and `RGB`, scientific image data can often be volumetric (i.e. 3D), volumetric timeseries (i.e. 4D), or even higher dimensional. **napari** places no limits on the dimensionality of its input data for all its layer types.
 
 Adding data with a dimensionality greater than 2D will cause dimension sliders to appear directly underneath the canvas and above the status bar. As many sliders as needed will appear to ensure the data can be fully browsed. For example, a 3D dataset needs one slider, a 4D dataset needs two sliders, and so on. The widths of the scroll bars of the dimension sliders are directly related to how many slices are in each dimension.
-To the left of each slider will be an integer indicating which dimension is being controlled by that slider. These integers are automatically updated when changing which dimensions are to be displayed. Alternately, the sliders can be labeled by double-clicking on the integer and editing the field. The labels can be retrieved programatically as follows:
+To the left of each slider will be an integer indicating which dimension is being controlled by that slider. These integers are automatically updated when changing which dimensions are to be displayed. Alternately, the sliders can be labeled by double-clicking on the integer and editing the field. The labels can be retrieved programmatically as follows:
 ```{code-cell} python
 # To get the dimension labels
 viewer.dims.axis_labels
 ```
-You can also set the axis labels programatically as follows:
+You can also set the axis labels programmatically as follows:
 ```{code-cell} python
 # To set new axis labels
 viewer.dims.axis_labels = ("label_1", "label_2")
@@ -517,7 +517,7 @@ A context-sensitive menu is available when you right-click on any of the layers.
   * **std projection** - the standard deviation projection. At each pixel position, the standard deviation of the pixel intensities through the stack is the assigned value of that pixel position. Positions with large differences in the pixel intensities through the stack appear brighter in this projection.
   * **sum projection** - the sum projection simply adds together all the pixel values in the stack for a given position. In this projection, the image is typically re-scaled to a 16-bit image, as the sum of all the pixel intensity values usually exceeds 255, which would result in a completely white 8-bit image.
   * **mean projection** - the mean projection is the average intensity projection.  It simply averages all the pixel values in the stacks to make the final projected image.
-  * **median projectio** - the median projection takes the median pixel intensity for the final projected image.
+  * **median projection** - the median projection takes the median pixel intensity for the final projected image.
 * **Link Layers** - links the selected layers.  Once layers are linked, any action performed on one layer will be performed on all linked layers at the same time. The layer control panel will show _only_ when a single layer is selected. Changing properties with that layer's control panel will change properties in all of the linked layers.
 * **Unlink Layers** - appears when layers are linked. It unlinks the layers so that changes to one of the layer's properties no longer result in the same changes to the previously linked layers.
 * **Select Linked Layers** - appears only when layers are linked. Selects all layers linked to a given layer.

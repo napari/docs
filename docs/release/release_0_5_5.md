@@ -94,7 +94,7 @@ Read on for all the changes in this version!
 - Prevent errors when interacting with selected non-visible layers ([#7418](https://github.com/napari/napari/pull/7418))
 - [bugfix] implement proper world to data normal transformation ([#7422](https://github.com/napari/napari/pull/7422))
 - Turn off 'flash' in `screenshot`/`export_figure` examples ([#7427](https://github.com/napari/napari/pull/7427))
-- Update surface shading control combobox when value is set programatically ([#7432](https://github.com/napari/napari/pull/7432))
+- Update surface shading control combobox when value is set programmatically ([#7432](https://github.com/napari/napari/pull/7432))
 
 ## Documentation
 

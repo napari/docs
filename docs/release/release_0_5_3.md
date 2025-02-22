@@ -72,7 +72,7 @@ changes!
 - Add short guide on updating constraints files ([docs#460](https://github.com/napari/docs/pull/460))
 - Add 0.5.2 to the version switcher ([docs#479](https://github.com/napari/docs/pull/479))
 - Minor improvement to `qtbot` testing section ([docs#481](https://github.com/napari/docs/pull/481))
-- Improve informations on community page ([docs#482](https://github.com/napari/docs/pull/482))
+- Improve information on community page ([docs#482](https://github.com/napari/docs/pull/482))
 
 ## Other Pull Requests
 

@@ -19,7 +19,7 @@ In order to facilitate discussion - this NAP will use the following definitions.
 
 *Layer* - The base unit of the napari image data model. A `ViewerModel` maintains an ordered list of Layers that it may display on its Canvas.
 
-*Layer Slice* - A subset of data from a Layer, reduced to 2D or 3D (via slicing) for visualization. This again is a general conecpt that this NAP proposes to formalize as a napari class (or set of classes paired with the Layer types).
+*Layer Slice* - A subset of data from a Layer, reduced to 2D or 3D (via slicing) for visualization. This again is a general concept that this NAP proposes to formalize as a napari class (or set of classes paired with the Layer types).
 
 *Visual* - The corresponding visual representation of a Layer Slice displayed on a Canvas. The specific visual is determined by the Layer (and Layer Slice) type.
 

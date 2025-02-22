@@ -69,7 +69,7 @@ Complete list of changes below:
 - Initial support for npe2 widget (#3591)
 - Cache layer extents (#3606)
 - Make points add mode cursor a crosshair (#3607)
-- Ommit RuntimeError during `remove_flash_animation` (#3609)
+- Omit RuntimeError during `remove_flash_animation` (#3609)
 - Transform mode for image layer (#3611)
 - Add better error messages for bad colormaps (#3613)
 - Turn off vispy auto connect magic (#3615)
@@ -189,7 +189,7 @@ Complete list of changes below:
 - Deprecate `qt_viewer.screenshot` & `clipboard` (#3765)
 - Restrict PublicOnlyProxy to napari namespace, allow napari-internal private usage (#3777)
 - Change PublicOnlyProxy deprecation expiry to 0.5.0 (#3788)
-- Remove deprecation of sceenshot in qt_viewer (#3937)
+- Remove deprecation of screenshot in qt_viewer (#3937)
 
 
 ## Build Tools and Docs

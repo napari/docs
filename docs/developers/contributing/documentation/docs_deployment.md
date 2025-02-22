@@ -36,7 +36,7 @@ through several CI workflows detailed below.
         - Pulls in sources from `napari/napari`, builds docs, then uploads as an
           artifact named 'html' to this repository (`napari/docs`).
         - This is triggered on every Pull Request and shows up as a "Build & Deploy PR
-          Docs / Build & Uplod Artifact" check on the PR.
+          Docs / Build & Upload Artifact" check on the PR.
         - **job:** `deploy`
         - Downloads the artifact from the `build-and-upload` job and deploys the html
           to GitHub pages at the `gh-pages` branch of

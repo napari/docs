@@ -36,7 +36,7 @@ create analysis pipelines in napari (#2158).
 - Points layer enable interactive mode in add mode, don't add point when dragging, addresses #2146 (WIP) (#2148)
 - Change plugin window search from naming convention to pypi classifier (#2153)
 - Add compress=1 to tifffile imsave call (#2157)
-- Add informations on what to do on error in GUI (#2165)
+- Add information on what to do on error in GUI (#2165)
 
 ## Documentation
 - Better documentation of API changes in 0.4.4 release notes (#2171)

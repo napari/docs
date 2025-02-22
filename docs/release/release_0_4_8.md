@@ -199,7 +199,7 @@ and
 - Add about team page (#2508)
 - Update translations guide (#2510)
 - Misc Doc fixes. (#2515)
-- Correct lenght for title underline. (#2541)
+- Correct length for title underline. (#2541)
 - Minor reformatting. (#2555)
 - Automate doc copy (#2562)
 - Pin docs dependencies (#2568)

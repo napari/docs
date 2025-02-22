@@ -408,11 +408,11 @@ of your pull request:
 
 2. Click on **Summary** on the top left corner:
 
-![Summary link in the "Build & Deploy PR Docs / Build & Uplod Artifact" GitHub Action page](../../../_static/images/doc-ci-2.png)
+![Summary link in the "Build & Deploy PR Docs / Build & Upload Artifact" GitHub Action page](../../../_static/images/doc-ci-2.png)
 
 3. Scroll down to **Artifacts** and click on **html** to download the built documentation:
 
-!["html" link in the Artifacts section of the "Build & Deploy PR Docs / Build & Uplod Artifact" GitHub Action page is highlighted](../../../_static/images/doc-ci-3.png)
+!["html" link in the Artifacts section of the "Build & Deploy PR Docs / Build & Upload Artifact" GitHub Action page is highlighted](../../../_static/images/doc-ci-3.png)
 
 4. Extract the compressed archive and open the `html/index.html` file on your preferred browser.
    You can also use Python's `http.server` module to open a local server on
@@ -580,7 +580,7 @@ block is present in all contributed examples.
 
 ### Cross-referencing Gallery examples
 
-If you want to generate links to Gallery examples from anywhere in the docs, then the cross-referencing format you use will depend on the format of the doc you are writing. Note that the gallery examples live in `/gallery` despite being in `napari/examples` because [`docs/docs/conf.py`](https://github.com/napari/docs/blob/main/docs/conf.py) specificies that examples are built into the `gallery` directory. The [Sphinx cross-reference namespace](https://sphinx-gallery.github.io/stable/advanced.html#know-your-gallery-files) is generated with the `sphx_glr` prefix, then path separators are converted to underscores, for example `/gallery/add_image.py` becomes `_gallery_add_image.py` to get the end result `sphx_glr_gallery_add_image.py`. 
+If you want to generate links to Gallery examples from anywhere in the docs, then the cross-referencing format you use will depend on the format of the doc you are writing. Note that the gallery examples live in `/gallery` despite being in `napari/examples` because [`docs/docs/conf.py`](https://github.com/napari/docs/blob/main/docs/conf.py) specifies that examples are built into the `gallery` directory. The [Sphinx cross-reference namespace](https://sphinx-gallery.github.io/stable/advanced.html#know-your-gallery-files) is generated with the `sphx_glr` prefix, then path separators are converted to underscores, for example `/gallery/add_image.py` becomes `_gallery_add_image.py` to get the end result `sphx_glr_gallery_add_image.py`. 
 
 - For `.md` files (myst, used in the majority of docs), use the `{ref}` directive. ``{ref}`sphx_glr_gallery_add_image.py` `` displays as: {ref}`sphx_glr_gallery_add_image.py`
 - For `.py` files (rst, used in the example gallery), cross-reference with the `:ref:` directive: `` :ref:`sphx_glr_gallery_example.py` ``.

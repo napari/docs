@@ -22,7 +22,7 @@ and (#1643). This will also be our last release supporting Python3.6.
 - Speed up points selection and selection display (#1648)
 
 ## Bug Fixes
-- Remove silence overwritte during screenshot (#1567)
+- Remove silence overwrite during screenshot (#1567)
 - Fix usage nan_to_num to work with numpy 1.16 (#1613)
 - Update colortransform when building texture (#1622)
 - Fix points layer coloring (#1623)

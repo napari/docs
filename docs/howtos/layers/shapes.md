@@ -60,7 +60,7 @@ All shapes are edited in the same way:
 
 4. Change the face or edge color by clicking on the thumbnail to the right of
    `face color:` or `edge color:` and choosing or creating a color from the
-   pallette.
+   palette.
 5. Change the edge width of a shape or the width of a line or path by clicking
    the circle next to `edge width:` and dragging it to a new width.
 6. Move the shape by dragging it.
@@ -267,7 +267,7 @@ are used. i.e. You can't remove a vertex before you have created a shape.
   Select the `Add path` tool from the layer controls panel or by pressing the
   `t` key when the shapes layer is selected. The tool can be used to draw freeform, 
   complex paths using the mouse or tablet. Importantly, the paths will still consist 
-  of vertexes and will be editable like all other Shapes.
+  of vertices and will be editable like all other Shapes.
   :::{dropdown} More details on the lasso and path tool
   ```{include} ../../_templates/details_polygon_path_tool.md
   ```
@@ -298,7 +298,7 @@ are used. i.e. You can't remove a vertex before you have created a shape.
   whose properties you want to change, otherwise you will just be initializing
   the color for the next shape to add. Select the shape you want to change,
   click the thumbnail next to `face color:` or `edge color:` to select or create
-  a color from the pallette.
+  a color from the palette.
 
 * Display text
 
