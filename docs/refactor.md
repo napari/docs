@@ -9,9 +9,13 @@
 ## Done
 
 - added logging to scripts
+- fixed code copy
 
 ## TODO
 
-- reduce warnings
-- add scripts from nap theme here maybe
+- reduce warnings (no warnings when make no plot)
+- ~~add scripts from nap theme here maybe~~
 - pygments highlighting
+- headless on mac
+- fix styling for This Page source
+- search wtf keyboard shortcut (where did you go)
