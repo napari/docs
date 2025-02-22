@@ -1,0 +1,21 @@
+<div class="napari-copyright">
+  <p class="copyright">
+    {%- if hasdoc('copyright') %} {% trans path=pathto('copyright'),
+    copyright=copyright|e %}<a href="{{ path }}">Copyright</a> {{ copyright }}{%
+    endtrans %}<br />
+    {%- else %} {% trans copyright=copyright|e %}Copyright {{ copyright }}{%
+    endtrans %}<br />
+    {%- endif %}
+  </p>
+
+  <div class="sphinx-version">
+    <div class="sphinx-link">
+      <span>Created using</span>
+      <a href="http://sphinx-doc.org/">Sphinx</a>
+    </div>
+
+    {% trans sphinx_version=sphinx_version|e %}
+    <span>{{ sphinx_version }}</span>
+    {% endtrans %}
+  </div>
+</div>
