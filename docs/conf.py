@@ -16,6 +16,7 @@ from urllib.parse import urlparse, urlunparse
 from jinja2.filters import FILTERS
 from packaging.version import parse as parse_version
 from pygments.lexers import TOMLLexer
+from qtpy.QtWidgets import QApplication
 from sphinx_gallery import gen_rst
 from sphinx_gallery import scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
@@ -23,7 +24,9 @@ from sphinx.highlighting import lexers
 from sphinx.util import logging as sphinx_logging
 
 import napari
+from napari.settings import get_settings
 from napari._version import __version_tuple__
+
 
 # -- Project information -----------------------------------------------------
 
@@ -96,12 +99,12 @@ html_theme_options = {
     ],
     "github_url": "https://github.com/napari/napari",
     "navbar_start": ["navbar-logo", "navbar-project"],
-    "navbar_end": ["version-switcher", "navbar-icon-links"],
+    "navbar_end": ["version-switcher", "navbar-icon-links", "search-field.html"],
     "switcher": {
         "json_url": json_url,
         "version_match": version_match,
     },
-    "navbar_persistent": [],
+    "navbar_persistent": False,
     "header_links_before_dropdown": 6,
     "secondary_sidebar_items": ["page-toc"],
     "pygment_light_style": "napari",
@@ -265,9 +268,6 @@ lexers["toml"] = TOMLLexer(startinline=True)
 
 
 def reset_napari(gallery_conf, fname):
-    from napari.settings import get_settings
-    from qtpy.QtWidgets import QApplication
-
     settings = get_settings()
     settings.appearance.theme = "dark"
 
