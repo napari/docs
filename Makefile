@@ -1,4 +1,4 @@
-.PHONY: docs clean
+make.PHONY: docs clean
 
 SPHINXOPTS =
 

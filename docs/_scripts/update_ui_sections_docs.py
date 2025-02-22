@@ -1,21 +1,26 @@
 # ---- Standard library imports
 import json
+import os
 from pathlib import Path
 
-# ---- Napari imports
-from napari._qt.containers import qt_layer_list
-from napari._qt.layer_controls import qt_layer_controls_container
-from napari._qt.widgets import qt_viewer_status_bar
-from napari._qt._qapp_model import qactions
-from napari._qt import qt_viewer
-from napari._qt import dialogs
-from napari_console import qt_console
-
 # ---- Third-party imports
+import seedir as sd
 from pydeps import cli, colors, dot, py2depgraph
 from pydeps.pydeps import depgraph_to_dotsrc
 from pydeps.target import Target
-import seedir as sd
+
+# ---- Napari imports
+from napari._qt import dialogs
+from napari._qt import qt_viewer
+from napari._qt.containers import qt_layer_list
+from napari._qt.layer_controls import qt_layer_controls_container
+from napari._qt._qapp_model import qactions
+from napari._qt.widgets import qt_viewer_status_bar
+from napari_console import qt_console
+
+from scripts_logger import setup_logger
+
+logger = setup_logger(__name__)
 
 # ---- General constants
 # Docs paths
@@ -31,6 +36,8 @@ APPLICATION_MENUS_MODULE_PATH = Path(qactions.__file__)
 VIEWER_MODULE_PATH = Path(qt_viewer.__file__)
 DIALOGS_MODULE_PATH = Path(dialogs.__file__).parent
 CONSOLE_MODULE_PATH = Path(qt_console.__file__).parent
+
+logger.debug("paths successfully set in update ui sections")
 
 
 # ---- Utility functions
@@ -206,13 +213,8 @@ def generate_mermaid_diagram(
         if "imports" in dependency:
             dep_imports = dependency["imports"]
             for dep_import_name in dep_imports:
-                if (
-                    dep_import_name != dep_name
-                    and dep_import_name not in dep_name
-                ):
-                    mermaid_diagram_content += (
-                        f"\t{dep_name} --> {dep_import_name}\n"
-                    )
+                if dep_import_name != dep_name and dep_import_name not in dep_name:
+                    mermaid_diagram_content += f"\t{dep_name} --> {dep_import_name}\n"
         if graph_urls_prefix and dependency["path"]:
             module_path = Path(dependency["path"])
             # Check if module is outside napari, like
@@ -222,9 +224,7 @@ def generate_mermaid_diagram(
                     NAPARI_ROOT_DIRECTORY_PATH
                 ).as_posix()
                 module_url = f"{graph_urls_prefix}{module_relative_path}"
-                mermaid_diagram_content += (
-                    f'\tclick {dep_name} "{module_url}" _blank\n'
-                )
+                mermaid_diagram_content += f'\tclick {dep_name} "{module_url}" _blank\n'
                 dep_name_parent = ".".join(dep_name.split(".")[:-1])
                 if dep_name_parent not in subgraphs:
                     subgraphs[dep_name_parent] = [dep_name]
@@ -234,18 +234,14 @@ def generate_mermaid_diagram(
                 external_nodes.append(dep_name)
 
     for subgraph_key, subgraph_value in subgraphs.items():
-        mermaid_diagram_content += (
-            f"\tsubgraph module.{subgraph_key}[{subgraph_key}]\n"
-        )
+        mermaid_diagram_content += f"\tsubgraph module.{subgraph_key}[{subgraph_key}]\n"
         for dep_subgraph_name in subgraph_value:
             mermaid_diagram_content += f"\t\t {dep_subgraph_name}\n"
         mermaid_diagram_content += "\tend\n"
         mermaid_diagram_content += f"\tclass module.{subgraph_key} subgraphs\n"
 
     if external_nodes:
-        mermaid_diagram_content += (
-            "\tsubgraph module.external[external]\n"
-        )
+        mermaid_diagram_content += "\tsubgraph module.external[external]\n"
         for external_node in external_nodes:
             mermaid_diagram_content += f"\t\t {external_node}\n"
         mermaid_diagram_content += "\tend\n"
@@ -256,17 +252,11 @@ def generate_mermaid_diagram(
             "\tclassDef subgraphs fill:white,strock:black,color:black;"
         )
     if graph_node_default_style:
-        mermaid_diagram_content += (
-            f"\tclassDef default {graph_node_default_style}\n"
-        )
+        mermaid_diagram_content += f"\tclassDef default {graph_node_default_style}\n"
     if graph_link_default_style:
-        mermaid_diagram_content += (
-            f"\tlinkStyle default {graph_link_default_style}\n"
-        )
+        mermaid_diagram_content += f"\tlinkStyle default {graph_link_default_style}\n"
     if graph_node_external_style:
-        mermaid_diagram_content += (
-            f"\tclassDef external {graph_node_external_style}\n"
-        )
+        mermaid_diagram_content += f"\tclassDef external {graph_node_external_style}\n"
         for external_dep in external_nodes:
             mermaid_diagram_content += f"\tclass {external_dep} external\n"
 
@@ -310,7 +300,9 @@ def generate_docs_ui_section_page(
     page_content = f"## {section_name}\n"
     page_content += "### Dependencies diagram (related `napari` modules)\n"
     page_content += mermaid_diagram
-    page_content += "### Source code directory layout (related to modules inside `napari`)\n"
+    page_content += (
+        "### Source code directory layout (related to modules inside `napari`)\n"
+    )
     page_content += directory_layout
     if output_file:
         output_file.parent.mkdir(exist_ok=True, parents=True)
@@ -388,7 +380,10 @@ def generate_docs_ui_section(
 
 # ---- Main and UI sections parameters
 def main():
-    # General 'settings'
+    logger.debug("Empty ui sections list created")
+    ui_sections = []
+
+    # --- mermaid settings
     mermaid_graph_base_settings = {
         "graph_orientation": "LR",
         "graph_node_default_style": "fill:#00c3ff,color:black;",
@@ -396,9 +391,8 @@ def main():
         "graph_link_default_style": "stroke:#00c3ff",
         "graph_urls_prefix": "https://github.com/napari/napari/tree/main/napari/",
     }
-    ui_sections = []
 
-    # ---- Layer list section parameters
+    # --- Layer list section parameters
     layer_list_section_name = "Layers list"
     layer_list_output_page = UI_SECTIONS_DOCS_ROOT_PATH / "layers_list_ui.md"
     layer_list_pydeps_args = [
@@ -433,6 +427,8 @@ def main():
         "--show-deps",
         "--no-output",
     ]
+
+    logger.debug("adding layer list to ui section")
     ui_sections.append(
         (
             layer_list_section_name,
@@ -443,10 +439,9 @@ def main():
     )
 
     # ---- Layer controls section parameters
+    logger.debug("start layer controls")
     layer_controls_section_name = "Layers controls"
-    layer_controls_output_page = (
-        UI_SECTIONS_DOCS_ROOT_PATH / "layers_controls_ui.md"
-    )
+    layer_controls_output_page = UI_SECTIONS_DOCS_ROOT_PATH / "layers_controls_ui.md"
     layer_controls_pydeps_args = [
         f"{LAYER_CONTROLS_MODULE_PATH}",
         "--exclude",
@@ -475,6 +470,8 @@ def main():
         "--show-deps",
         "--no-output",
     ]
+
+    logger.debug("adding layer controls to ui section")
     ui_sections.append(
         (
             layer_controls_section_name,
@@ -514,6 +511,7 @@ def main():
         "--show-deps",
         "--no-output",
     ]
+    logger.debug("adding application status bar to ui section")
     ui_sections.append(
         (
             application_status_bar_section_name,
@@ -565,6 +563,7 @@ def main():
         "--show-deps",
         "--no-output",
     ]
+    logger.debug("adding application menus to ui section")
     ui_sections.append(
         (
             application_menus_section_name,
@@ -606,6 +605,7 @@ def main():
         "--show-deps",
         "--no-output",
     ]
+    logger.debug("adding viewer to ui section")
     ui_sections.append(
         (
             viewer_section_name,
@@ -660,6 +660,7 @@ def main():
         "--show-deps",
         "--no-output",
     ]
+    logger.debug("adding dialogs to ui section")
     ui_sections.append(
         (
             dialogs_section_name,
@@ -687,6 +688,7 @@ def main():
         "--show-deps",
         "--no-output",
     ]
+    logger.debug("adding console to ui section")
     ui_sections.append(
         (
             console_section_name,
@@ -696,6 +698,8 @@ def main():
         )
     )
 
+    logger.debug("getting ready to iterate over sections")
+    logger.debug(f"ui sections {ui_sections}")
     for (
         section_name,
         output_page,
@@ -711,5 +715,9 @@ def main():
 
 
 if __name__ == "__main__":
-    # ---- Call main
+    # Example usage within a script
+    current_script_name = os.path.basename(__file__)
+    # Get the name of the current script
+    logger = setup_logger(current_script_name)
+
     main()
