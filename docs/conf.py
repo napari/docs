@@ -233,8 +233,8 @@ html_theme_options = {
     "header_links_before_dropdown": 6,
     "page_sidebar_items": ["page-toc.html"],
     "secondary_sidebar_items": ["page-toc", "sourcelink"],
-    "pygment_light_style": "napari",
-    "pygment_dark_style": "napari",
+    "pygments_light_style": "napari",
+    "pygments_dark_style": "napari",
     "announcement": "",
     "back_to_top_button": False,
     "analytics": {
