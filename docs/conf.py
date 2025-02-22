@@ -104,7 +104,7 @@ html_theme_options = {
         "json_url": json_url,
         "version_match": version_match,
     },
-    "navbar_persistent": False,
+    "navbar_persistent": [],
     "header_links_before_dropdown": 6,
     "secondary_sidebar_items": ["page-toc"],
     "pygment_light_style": "napari",
