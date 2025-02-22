@@ -99,7 +99,7 @@ html_theme_options = {
     ],
     "github_url": "https://github.com/napari/napari",
     "navbar_start": ["navbar-logo", "navbar-project"],
-    "navbar_end": ["version-switcher", "navbar-icon-links", "search-field.html"],
+    "navbar_end": ["version-switcher", "navbar-icon-links"],
     "switcher": {
         "json_url": json_url,
         "version_match": version_match,
