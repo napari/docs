@@ -232,7 +232,6 @@ html_theme_options = {
     "navbar_persistent": [],
     "navigation_with_keys": True,
     "header_links_before_dropdown": 6,
-    "page_sidebar_items": ["page-toc.html"],
     "secondary_sidebar_items": ["page-toc", "sourcelink"],
     "pygments_light_style": "napari",
     "pygments_dark_style": "napari",
