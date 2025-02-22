@@ -182,11 +182,13 @@ favicons = [
 
 html_css_files = [
     "custom.css",
+    "napari-sphinx-theme.css",
 ]
 
 intersphinx_mapping = {
     "python": ["https://docs.python.org/3", None],
     "numpy": ["https://numpy.org/doc/stable/", None],
+    # napari_plugin_engine is deprecated
     "napari_plugin_engine": [
         "https://napari-plugin-engine.readthedocs.io/en/latest/",
         "https://napari-plugin-engine.readthedocs.io/en/latest/objects.inv",
