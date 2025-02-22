@@ -138,6 +138,7 @@ exclude_patterns = [
     "plugins/_*.md",
     "plugins/building_a_plugin/_layer_data_guide.md",
     "gallery/index.rst",
+    "refactor.md",
 ]
 
 myst_footnote_transition = False
