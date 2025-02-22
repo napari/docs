@@ -4,42 +4,26 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-# -- Path setup --------------------------------------------------------------
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
-
-import re
+import logging
 import os
+import re
 from datetime import datetime
 from importlib import import_module
 from importlib.metadata import distribution
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
-import logging
 
 from jinja2.filters import FILTERS
+from packaging.version import parse as parse_version
+from pygments.lexers import TOMLLexer
 from sphinx_gallery import gen_rst
 from sphinx_gallery import scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
 from sphinx.highlighting import lexers
 from sphinx.util import logging as sphinx_logging
-from packaging.version import parse as parse_version
-from pygments.lexers import TOMLLexer
 
 import napari
 from napari._version import __version_tuple__
-
-release = napari.__version__
-if "dev" in release:
-    version = "dev"
-else:
-    version = release
 
 # -- Project information -----------------------------------------------------
 
@@ -47,36 +31,34 @@ project = "napari"
 copyright = f"{datetime.now().year}, The napari team"
 author = "The napari team"
 
+release = napari.__version__
+if "dev" in release:
+    version = "dev"
+else:
+    version = release
+
 # -- General configuration ---------------------------------------------------
 
-# Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-# ones.
-autosummary_generate = True
-autosummary_imported_members = True
-comments_config = {"hypothesis": False, "utterances": False}
-
-# execution_allow_errors = False
-# execution_excludepatterns = []
-# execution_in_temp = False
-# execution_timeout = 30
-
+# Add sphinx extensions here
 extensions = [
-    "sphinx.ext.napoleon",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
-    "sphinx_external_toc",
-    "sphinx_design",
-    "myst_nb",
-    #    "sphinx_comments",
+    "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
-    "sphinx_favicon",
+    "myst_nb",
     "sphinx_copybutton",
+    "sphinx_design",
+    "sphinx_external_toc",
+    "sphinx_favicon",
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
     "sphinxcontrib.mermaid",
 ]
+
+autosummary_generate = True
+autosummary_imported_members = True
+autosummary_ignore_module_all = False
 
 external_toc_path = "_toc.yml"
 external_toc_exclude_missing = False
@@ -92,9 +74,6 @@ mermaid_include_elk = ""
 
 # -- Options for HTML output -------------------------------------------------
 
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-#
 html_theme = "pydata_sphinx_theme"
 
 # Define the json_url for our version switcher.
@@ -392,7 +371,6 @@ class FilterSphinxWarnings(logging.Filter):
 
     The warnings are not useful - they don't result in any missing documentation
     or rendering issues, so we can safely ignore them.
-
     """
 
     def __init__(self, app):
@@ -461,8 +439,6 @@ def get_attributes(item, obj, modulename):
 
 
 FILTERS["get_attributes"] = get_attributes
-
-autosummary_ignore_module_all = False
 
 linkcheck_anchors_ignore = [r"^!", r"L\d+-L\d+", r"r\d+", r"issuecomment-\d+"]
 linkcheck_ignore = [
