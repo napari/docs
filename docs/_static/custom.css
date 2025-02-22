@@ -337,7 +337,7 @@ a.headerlink {
   display: block;
 }
 
-/* Recommended by PST */
+/* Recommended by PST so that components will display horizontally */
 .footer-items__start,
 .footer-items__end {
   flex-direction: row;
