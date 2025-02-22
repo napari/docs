@@ -1,6 +1,6 @@
 import ast
 import inspect
-import logging
+import os
 from dataclasses import dataclass
 from pathlib import Path
 from types import ModuleType
@@ -16,7 +16,9 @@ from napari.components.layerlist import LayerList
 from napari.components.viewer_model import ViewerModel
 from napari.utils.events import EventedModel
 
-logger = logging.getLogger(__name__)
+from scripts_logger import setup_logger
+
+logger = setup_logger(__name__)
 
 DOCS = Path(__file__).parent.parent
 
@@ -74,6 +76,7 @@ def walk_modules(
     module: ModuleType, pkg="napari", _walked=None
 ) -> Iterator[ModuleType]:
     """walk all modules in pkg, starting with `module`."""
+    logger.debug(f"walking {pkg}")
     if not _walked:
         _walked = set()
     yield module
@@ -90,6 +93,7 @@ def walk_modules(
 
 def iter_classes(module: ModuleType) -> Iterator[Type]:
     """iter all classes in module"""
+    logger.debug(f"walking {module}")
     for name in dir(module):
         attr = getattr(module, name)
         if inspect.isclass(attr) and attr.__module__ == module.__name__:
@@ -97,12 +101,14 @@ def iter_classes(module: ModuleType) -> Iterator[Type]:
 
 
 def class_doc_attrs(kls: Type) -> Dict[str, Parameter]:
+    logger.debug(f"walking {kls}")
     docs = {p.name: " ".join(p.desc) for p in ClassDoc(kls).get("Attributes")}
     docs.update({p.name: " ".join(p.desc) for p in ClassDoc(kls).get("Parameters")})
     return docs
 
 
 def iter_evented_model_events(module: ModuleType = napari) -> Iterator[Ev]:
+    logger.debug(f"walking evented model events {module}")
     for mod in walk_modules(module):
         for kls in iter_classes(mod):
             if not issubclass(kls, EventedModel):
@@ -118,6 +124,7 @@ def iter_evented_model_events(module: ModuleType = napari) -> Iterator[Ev]:
 def iter_evented_container_events(
     module: ModuleType = napari, container_class=LayerList
 ) -> Iterator[Ev]:
+    logger.debug(f"walking evented container events {module}")
     for mod in walk_modules(module):
         for kls in iter_classes(mod):
             if not issubclass(kls, container_class):
@@ -149,6 +156,7 @@ class BaseEmitterVisitor(ast.NodeVisitor):
 
 
 def base_event_names() -> List[str]:
+    logger.debug("walking base event names")
     from napari.layers.base import base
 
     root = ast.parse(Path(base.__file__).read_text())
@@ -158,6 +166,7 @@ def base_event_names() -> List[str]:
 
 
 def iter_layer_events() -> Iterator[Ev]:
+    logger.debug("walking layer events")
     basenames = base_event_names()
     docs = class_doc_attrs(layers.Layer)
     for name in basenames:
@@ -191,6 +200,7 @@ def iter_layer_events() -> Iterator[Ev]:
 
 def merge_image_and_label_rows(rows: List[List[str]]):
     """Merge events common to _ImageBase or IntensityVisualizationMixin."""
+    logger.debug(f"merging {len(rows)} rows")
     # find events that are common across both Image, Labels and Surface layers.
     image_events = {r[1] for r in rows if r[0] == "`Image`"}
     labels_events = {r[1] for r in rows if r[0] == "`Labels`"}
@@ -264,4 +274,8 @@ def main():
 
 
 if __name__ == "__main__":
+    # Example usage within a script
+    current_script_name = os.path.basename(__file__)
+    # Get the name of the current script
+    logger = setup_logger(current_script_name)
     main()

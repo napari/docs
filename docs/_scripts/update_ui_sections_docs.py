@@ -1,6 +1,6 @@
 # ---- Standard library imports
 import json
-import logging
+import os
 from pathlib import Path
 
 # ---- Third-party imports
@@ -18,7 +18,9 @@ from napari._qt._qapp_model import qactions
 from napari._qt.widgets import qt_viewer_status_bar
 from napari_console import qt_console
 
-logger = logging.getLogger(__name__)
+from scripts_logger import setup_logger
+
+logger = setup_logger(__name__)
 
 # ---- General constants
 # Docs paths
@@ -713,4 +715,9 @@ def main():
 
 
 if __name__ == "__main__":
+    # Example usage within a script
+    current_script_name = os.path.basename(__file__)
+    # Get the name of the current script
+    logger = setup_logger(current_script_name)
+
     main()

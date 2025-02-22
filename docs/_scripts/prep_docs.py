@@ -6,20 +6,16 @@ Note: make no assumptions about the working directory
 from which this script will be called.
 """
 
-import logging
+import os
 import sys
 from importlib.metadata import version
 from pathlib import Path
 
 from packaging.version import parse
 
+from scripts_logger import setup_logger
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-handler = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter("[%(levelname)s] - %(asctime)s - %(name)s - %(message)s")
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+logger = setup_logger(__name__)
 
 # Set up paths to docs and npe2 docs source
 DOCS = Path(__file__).parent.parent.absolute()
@@ -66,4 +62,9 @@ def main():
 
 
 if __name__ == "__main__":
+    # Example usage within a script
+    current_script_name = os.path.basename(__file__)
+    # Get the name of the current script
+    logger = setup_logger(current_script_name)
+
     main()
