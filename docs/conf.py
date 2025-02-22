@@ -1,8 +1,9 @@
 # Configuration file for the Sphinx documentation builder.
 #
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+# For sphinx config settings available, see:
+# See https://www.sphinx-doc.org/en/master/usage/configuration.html
+# For theme specific config, see:
+# https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html
 
 import logging
 import os
@@ -27,6 +28,7 @@ import napari
 from napari.settings import get_settings
 from napari._version import __version_tuple__
 
+logger = logging.getLogger(__name__)
 
 # -- Project information -----------------------------------------------------
 
@@ -34,15 +36,9 @@ project = "napari"
 copyright = f"{datetime.now().year}, The napari team"
 author = "The napari team"
 
-release = napari.__version__
-if "dev" in release:
-    version = "dev"
-else:
-    version = release
-
 # -- General configuration ---------------------------------------------------
 
-# Add sphinx extensions here
+# Add sphinx extensions here, as strings.
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
@@ -59,25 +55,109 @@ extensions = [
     "sphinxcontrib.mermaid",
 ]
 
+# Config for sphinx.ext.autosummary
+
 autosummary_generate = True
 autosummary_imported_members = True
 autosummary_ignore_module_all = False
 
+# Config for sphinx_copybutton
+
+# Specify how to identify the prompt when copying code snippets
+copybutton_prompt_text = r">>> |\.\.\. "
+copybutton_prompt_is_regexp = True
+copybutton_exclude = "style"
+
+# Config for sphinx_external_toc
+
 external_toc_path = "_toc.yml"
 external_toc_exclude_missing = False
+
+# Config for sphinx.ext.intersphinx
+
+intersphinx_mapping = {
+    "python": ["https://docs.python.org/3", None],
+    "numpy": ["https://numpy.org/doc/stable/", None],
+    # napari_plugin_engine is deprecated
+    "napari_plugin_engine": [
+        "https://napari-plugin-engine.readthedocs.io/en/latest/",
+        "https://napari-plugin-engine.readthedocs.io/en/latest/objects.inv",
+    ],
+    "magicgui": [
+        "https://pyapp-kit.github.io/magicgui/",
+        "https://pyapp-kit.github.io/magicgui/objects.inv",
+    ],
+    "app-model": [
+        "http://app-model.readthedocs.io/en/latest/",
+        "http://app-model.readthedocs.io/en/latest/objects.inv",
+    ],
+    "vispy": [
+        "https://vispy.org/",
+        "https://vispy.org/objects.inv",
+    ],
+}
+
+# Config for sphinx_tags
 
 tags_create_tags = True
 tags_output_dir = "_tags"
 tags_overview_title = "Tags"
 tags_extension = ["md", "rst"]
 
+# Config for sphinxcontrib.mermaid
+
 mermaid_d3_zoom = True
 mermaid_version = "11.4.1"
 mermaid_include_elk = ""
 
-# -- Options for HTML output -------------------------------------------------
+# Config for myst_nb
 
-html_theme = "pydata_sphinx_theme"
+myst_enable_extensions = [
+    "colon_fence",
+    "dollarmath",
+    "substitution",
+    "tasklist",
+    "attrs_inline",
+    "linkify",
+]
+
+myst_heading_anchors = 4
+
+# Add any paths that contain templates here, relative to this directory.
+templates_path = ["_templates"]
+
+# List of patterns, relative to source directory, that match files and
+# directories to ignore when looking for source files.
+# This pattern also affects html_static_path and html_extra_path.
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    ".jupyter_cache",
+    "jupyter_execute",
+    "plugins/_*.md",
+    "plugins/building_a_plugin/_layer_data_guide.md",
+    "gallery/index.rst",
+]
+
+myst_footnote_transition = False
+
+nb_output_stderr = "show"
+
+panels_add_bootstrap_css = False
+pygments_style = "solarized-dark"
+suppress_warnings = ["myst.header", "etoc.toctree", "config.cache"]
+
+napoleon_custom_sections = [("Events", "params_style")]
+lexers["toml"] = TOMLLexer(startinline=True)
+
+# -- Config for versions ----------------------------------------------------
+
+release = napari.__version__
+if "dev" in release:
+    version = "dev"
+else:
+    version = release
 
 # Define the json_url for our version switcher.
 json_url = "https://napari.org/dev/_static/version_switcher.json"
@@ -86,6 +166,48 @@ if version == "dev":
     version_match = "dev"
 else:
     version_match = release
+
+
+def get_supported_python_versions(project_name):
+    """
+    Get the supported Python versions for a given project
+    based on the classifiers in its distribution metadata.
+    """
+    dist = distribution(project_name)
+    classifiers = [
+        value
+        for key, value in dist.metadata.items()
+        if key == "Classifier" and value.startswith("Programming Language :: Python ::")
+    ]
+    return [
+        parse_version(c.split(" :: ")[-1])
+        for c in classifiers
+        if not c.endswith("Only")
+    ]
+
+
+napari_supported_python_versions = get_supported_python_versions("napari")
+
+min_python_version = min(napari_supported_python_versions)
+max_python_version = max(napari_supported_python_versions)
+
+version_string = ".".join(str(x) for x in __version_tuple__[:3])
+# when updating the version below, ensure to also update napari/napari README
+python_version = "3.11"
+python_version_range = f"{min_python_version}-{max_python_version}"
+
+myst_substitutions = {
+    "napari_conda_version": f"`napari={version_string}`",
+    "napari_version": version_string,
+    "python_version": python_version,
+    "python_version_range": python_version_range,
+    "python_version_code": f"`python={python_version}`",
+    "conda_create_env": f"```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```",
+}
+
+# -- Options for HTML output -------------------------------------------------
+
+html_theme = "pydata_sphinx_theme"
 
 html_theme_options = {
     "external_links": [
@@ -168,107 +290,7 @@ favicons = [
 
 html_css_files = [
     "custom.css",
-    "napari-sphinx-theme.css",
 ]
-
-intersphinx_mapping = {
-    "python": ["https://docs.python.org/3", None],
-    "numpy": ["https://numpy.org/doc/stable/", None],
-    # napari_plugin_engine is deprecated
-    "napari_plugin_engine": [
-        "https://napari-plugin-engine.readthedocs.io/en/latest/",
-        "https://napari-plugin-engine.readthedocs.io/en/latest/objects.inv",
-    ],
-    "magicgui": [
-        "https://pyapp-kit.github.io/magicgui/",
-        "https://pyapp-kit.github.io/magicgui/objects.inv",
-    ],
-    "app-model": [
-        "http://app-model.readthedocs.io/en/latest/",
-        "http://app-model.readthedocs.io/en/latest/objects.inv",
-    ],
-    "vispy": [
-        "https://vispy.org/",
-        "https://vispy.org/objects.inv",
-    ],
-}
-
-myst_enable_extensions = [
-    "colon_fence",
-    "dollarmath",
-    "substitution",
-    "tasklist",
-    "attrs_inline",
-    "linkify",
-]
-
-myst_heading_anchors = 4
-
-
-def get_supported_python_versions(project_name):
-    """
-    Get the supported Python versions for a given project
-    based on the classifiers in its distribution metadata.
-    """
-    dist = distribution(project_name)
-    classifiers = [
-        value
-        for key, value in dist.metadata.items()
-        if key == "Classifier" and value.startswith("Programming Language :: Python ::")
-    ]
-    return [
-        parse_version(c.split(" :: ")[-1])
-        for c in classifiers
-        if not c.endswith("Only")
-    ]
-
-
-napari_supported_python_versions = get_supported_python_versions("napari")
-
-min_python_version = min(napari_supported_python_versions)
-max_python_version = max(napari_supported_python_versions)
-
-version_string = ".".join(str(x) for x in __version_tuple__[:3])
-# when updating the version below, ensure to also update napari/napari README
-python_version = "3.11"
-python_version_range = f"{min_python_version}-{max_python_version}"
-
-myst_substitutions = {
-    "napari_conda_version": f"`napari={version_string}`",
-    "napari_version": version_string,
-    "python_version": python_version,
-    "python_version_range": python_version_range,
-    "python_version_code": f"`python={python_version}`",
-    "conda_create_env": f"```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```",
-}
-
-myst_footnote_transition = False
-
-nb_output_stderr = "show"
-
-panels_add_bootstrap_css = False
-pygments_style = "solarized-dark"
-suppress_warnings = ["myst.header", "etoc.toctree", "config.cache"]
-
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
-
-# List of patterns, relative to source directory, that match files and
-# directories to ignore when looking for source files.
-# This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = [
-    "_build",
-    "Thumbs.db",
-    ".DS_Store",
-    ".jupyter_cache",
-    "jupyter_execute",
-    "plugins/_*.md",
-    "plugins/building_a_plugin/_layer_data_guide.md",
-    "gallery/index.rst",
-]
-
-napoleon_custom_sections = [("Events", "params_style")]
-lexers["toml"] = TOMLLexer(startinline=True)
 
 
 def reset_napari(gallery_conf, fname):
@@ -309,7 +331,7 @@ def napari_scraper(block, block_vars, gallery_conf):
     return scrapers.figure_rst(img_paths, gallery_conf["src_dir"])
 
 
-# -- Sphinx gallery
+# -- Sphinx gallery ----------------------------------------------------
 gen_rst.EXAMPLE_HEADER = """
 .. DO NOT EDIT.
 .. THIS FILE WAS AUTOMATICALLY GENERATED BY SPHINX-GALLERY.
@@ -352,6 +374,8 @@ sphinx_gallery_conf = {
     "reference_url": {"napari": None},
     "within_subsection_order": ExampleTitleSortKey,
 }
+
+# -- Google calendar integration ----------------------------------------
 
 GOOGLE_CALENDAR_API_KEY = os.environ.get("GOOGLE_CALENDAR_API_KEY", "")
 
@@ -426,6 +450,9 @@ def setup(app):
     warning_handler.filters.insert(0, FilterSphinxWarnings(app))
 
 
+# -- Attributes for autosummary --------------------------------------
+
+
 def get_attributes(item, obj, modulename):
     """Filters attributes to be used in autosummary.
 
@@ -443,6 +470,8 @@ def get_attributes(item, obj, modulename):
 
 
 FILTERS["get_attributes"] = get_attributes
+
+# -- Config for linkcheck ---------------------------------------------------
 
 linkcheck_anchors_ignore = [r"^!", r"L\d+-L\d+", r"r\d+", r"issuecomment-\d+"]
 linkcheck_ignore = [
@@ -462,6 +491,8 @@ linkcheck_allowed_redirects = {
     r"https://youtu\.be/.*": r"https://www\.youtube\.com/.*",
     r"https://github\.com/napari/napari/releases/download/.*": r"https://objects\.githubusercontent\.com/.*",
 }
+
+# -- GitHub Anchors for Links -----------------------------------------
 
 
 def rewrite_github_anchor(app, uri: str):
