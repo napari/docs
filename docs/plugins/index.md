@@ -9,11 +9,12 @@ Existing plugins extend napari to add:
 - support for import and export of image and related data types.
 - support for working with specialized data formats.
 - domain specific features, including microscopy, climate, geoscience, and more.
-  Share and discover napari plugins on [napari hub](https://napari-hub.org),
-  [PyPI](https://pypi.org/search/?q=napari), or [conda-forge](https://conda-forge.org/packages/).
-  Interested in creating a plugin? A [napari-plugin-template](https://github.com/napari/napari-plugin-template),
-  a [copier](https://copier.readthedocs.io/en/stable/) template, bootstraps authoring
-  [npe](https://github.com/napari/npe2)-based napari plugins.
+
+Share and discover napari plugins on [napari hub](https://napari-hub.org),
+[PyPI](https://pypi.org/search/?q=napari), or [conda-forge](https://conda-forge.org/packages/).
+Interested in creating a plugin? A [napari-plugin-template](https://github.com/napari/napari-plugin-template),
+a [copier](https://copier.readthedocs.io/en/stable/) template, bootstraps authoring
+[npe](https://github.com/napari/npe2)-based napari plugins.
 
 ## Plugin users
 
