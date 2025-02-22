@@ -1,5 +1,6 @@
 # ---- Standard library imports
 import json
+import logging
 from pathlib import Path
 
 # ---- Third-party imports
@@ -17,6 +18,7 @@ from napari._qt._qapp_model import qactions
 from napari._qt.widgets import qt_viewer_status_bar
 from napari_console import qt_console
 
+logger = logging.getLogger(__name__)
 
 # ---- General constants
 # Docs paths
@@ -33,7 +35,7 @@ VIEWER_MODULE_PATH = Path(qt_viewer.__file__)
 DIALOGS_MODULE_PATH = Path(dialogs.__file__).parent
 CONSOLE_MODULE_PATH = Path(qt_console.__file__).parent
 
-print("set paths in update ui sections")
+logger.debug("paths successfully set in update ui sections")
 
 
 # ---- Utility functions
@@ -376,7 +378,7 @@ def generate_docs_ui_section(
 
 # ---- Main and UI sections parameters
 def main():
-    print("ui sections created")
+    logger.debug("Empty ui sections list created")
     ui_sections = []
 
     # --- mermaid settings
@@ -424,7 +426,7 @@ def main():
         "--no-output",
     ]
 
-    print("adding layer list to ui section")
+    logger.debug("adding layer list to ui section")
     ui_sections.append(
         (
             layer_list_section_name,
@@ -435,7 +437,7 @@ def main():
     )
 
     # ---- Layer controls section parameters
-    print("start layer controls")
+    logger.debug("start layer controls")
     layer_controls_section_name = "Layers controls"
     layer_controls_output_page = UI_SECTIONS_DOCS_ROOT_PATH / "layers_controls_ui.md"
     layer_controls_pydeps_args = [
@@ -467,7 +469,7 @@ def main():
         "--no-output",
     ]
 
-    print("adding layer controls to ui section")
+    logger.debug("adding layer controls to ui section")
     ui_sections.append(
         (
             layer_controls_section_name,
@@ -507,7 +509,7 @@ def main():
         "--show-deps",
         "--no-output",
     ]
-    print("adding application status bar to ui section")
+    logger.debug("adding application status bar to ui section")
     ui_sections.append(
         (
             application_status_bar_section_name,
@@ -559,7 +561,7 @@ def main():
         "--show-deps",
         "--no-output",
     ]
-    print("adding application menus to ui section")
+    logger.debug("adding application menus to ui section")
     ui_sections.append(
         (
             application_menus_section_name,
@@ -601,7 +603,7 @@ def main():
         "--show-deps",
         "--no-output",
     ]
-    print("adding viewer to ui section")
+    logger.debug("adding viewer to ui section")
     ui_sections.append(
         (
             viewer_section_name,
@@ -656,7 +658,7 @@ def main():
         "--show-deps",
         "--no-output",
     ]
-    print("adding dialogs to ui section")
+    logger.debug("adding dialogs to ui section")
     ui_sections.append(
         (
             dialogs_section_name,
@@ -684,7 +686,7 @@ def main():
         "--show-deps",
         "--no-output",
     ]
-    print("adding console to ui section")
+    logger.debug("adding console to ui section")
     ui_sections.append(
         (
             console_section_name,
@@ -694,8 +696,8 @@ def main():
         )
     )
 
-    print("getting ready to iterate over sections")
-    print(f"ui sections {ui_sections}")
+    logger.debug("getting ready to iterate over sections")
+    logger.debug(f"ui sections {ui_sections}")
     for (
         section_name,
         output_page,
