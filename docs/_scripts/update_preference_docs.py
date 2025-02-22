@@ -1,4 +1,4 @@
-import logging
+import os
 from pathlib import Path
 
 from jinja2 import Template
@@ -11,7 +11,9 @@ from napari._qt.qt_resources import get_stylesheet
 from napari._pydantic_compat import ModelMetaclass
 from napari.settings import NapariSettings
 
-logger = logging.getLogger(__name__)
+from scripts_logger import setup_logger
+
+logger = setup_logger(__name__)
 
 DOCS = REPO_ROOT_PATH = Path(__file__).resolve().parent.parent
 GUIDES_PATH = DOCS / "guides"
@@ -101,7 +103,7 @@ def generate_images():
     Generate images from `CORE_SETTINGS`. and save them in the developer
     section of the docs.
     """
-
+    logger.debug("Generating images")
     app = get_qapp()
     pref = PreferencesDialog()
     pref.setStyleSheet(get_stylesheet("dark"))
@@ -134,6 +136,7 @@ def generate_images():
 
 def create_preferences_docs():
     """Create preferences docs from SETTINGS using a jinja template."""
+    logger.debug("Creating preferences docs")
     sections = {}
 
     for name, field in NapariSettings.__fields__.items():
@@ -173,11 +176,14 @@ def create_preferences_docs():
 
 
 def main():
-    logger.debug("begin generating images")
     generate_images()
-    logger.debug("create preferences docs")
     create_preferences_docs()
 
 
 if __name__ == "__main__":
+    # Example usage within a script
+    current_script_name = os.path.basename(__file__)
+    # Get the name of the current script
+    logger = setup_logger(current_script_name)
+
     main()
