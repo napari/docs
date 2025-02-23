@@ -18,7 +18,7 @@ a [copier](https://copier.readthedocs.io/en/stable/) template, bootstraps author
 
 ## Plugin users
 
-Check out the user focused guides for installing and using napari plugins.
+Check out the user focused guides for finding, installing, and using napari plugins.
 
 ::::{grid} Plugin Users
 :::{grid-item-card} Start using plugins
