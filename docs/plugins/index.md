@@ -38,7 +38,7 @@ How to find and install plugins using the napari plugin installer or napari hub.
 
 ## Plugin Developers
 
-Checkout our plugin developer guides to start creating your own napari plugins.
+Check out our plugin developer guides to start creating your own napari plugins.
 
 ::::{grid}
 :::{grid-item-card} Building a plugin
