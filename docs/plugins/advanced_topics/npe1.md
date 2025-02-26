@@ -210,7 +210,7 @@ functionality by simply installing your package along with napari:
 ### Step 4: Deploy your plugin
 
 See [testing and deploying](plugin-test-deploy) your plugin.  (This hasn't changed
-significantly with the secod generation (`npe2`) plugin engine).
+significantly with the second generation (`npe2`) plugin engine).
 
 
 (napari-plugin-template)=

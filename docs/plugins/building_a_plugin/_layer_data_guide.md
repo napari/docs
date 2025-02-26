@@ -1,7 +1,7 @@
 (layer-data-tuples)=
 ## The LayerData tuple
 
-When transfering data to and from plugins, napari does not pass `Layer` objects
+When transferring data to and from plugins, napari does not pass `Layer` objects
 directly. Instead, it passes (mostly) pure-python and array-like types,
 deconstructed into a {class}`tuple` that we refer to as a `LayerData` tuple.  This type shows
 up often in plugins and is explained here.
@@ -79,7 +79,7 @@ All of the following are valid `LayerData` tuples:
 (data, {})
 (data, {}, 'image')
 
-# provide kwargs for image contructor
+# provide kwargs for image constructor
 (data, {'name': 'My Image', 'colormap': 'red'})
 
 # labels layer instead of image:
