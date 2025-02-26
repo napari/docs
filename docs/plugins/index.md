@@ -20,7 +20,7 @@ a [copier](https://copier.readthedocs.io/en/stable/) template, bootstraps author
 
 Check out the user focused guides for finding, installing, and using napari plugins.
 
-::::{grid} Plugin Users
+::::{grid} 2
 :::{grid-item-card} Start using plugins
 :link: plugins-getting-started
 :link-type: ref
@@ -40,7 +40,7 @@ How to find and install plugins using the napari plugin installer or napari hub.
 
 Check out our plugin developer guides to start creating your own napari plugins.
 
-::::{grid}
+::::{grid} 2
 :::{grid-item-card} Building a plugin
 :link: how-to-build-a-plugin
 :link-type: ref
@@ -56,7 +56,7 @@ Workshop on virtual environments and useful tools for plugin development.
 
 ::::
 
-::::{grid}
+::::{grid} 2
 :::{grid-item-card} Testing and publishing
 :link: plugin-test-deploy
 :link-type: ref
