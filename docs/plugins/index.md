@@ -36,7 +36,7 @@ How to find and install plugins using the napari plugin installer or napari hub.
 :::
 ::::
 
-## Plugin Developers
+## Plugin developers
 
 Check out our plugin developer guides to start creating your own napari plugins.
 
