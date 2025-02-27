@@ -169,6 +169,7 @@ subtrees:
         subtrees:
         - entries:
           - file: plugins/advanced_topics/npe2_migration_guide
+          - file: plugins/advanced_topics/adapted_plugin_guide
           - file: plugins/advanced_topics/npe1
       - file: plugins/technical_references/index
         subtrees:
