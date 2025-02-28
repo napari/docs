@@ -29,8 +29,6 @@ docs-build: prep-docs
 docs-xvfb: prep-docs
 	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -M html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
-docs: clean docs-install docs-build
-
 html: clean docs-build
 
 # Implies noplot, but no clean - call 'make clean' manually if needed
