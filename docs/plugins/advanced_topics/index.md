@@ -8,13 +8,6 @@ Some plugin developers may find more **in-depth, technical information** helpful
 ## npe2 advanced topics and reference
 
 ::::{grid}
-:::{grid-item-card} Migration guide to `npe2`
-:link: npe2-migration-guide
-:link-type: ref
-Have a plugin written for the first generation plugin system? This guide will help you migrate to the `npe2` plugin system.
-
-:::
-
 :::{grid-item-card} npe2 manifest reference
 :link: plugin-manifest
 :link-type: ref
@@ -45,4 +38,12 @@ New plugins should use the `npe2` standard.
 We encourage first generation plugin authors to migrate their plugin to the `npe2` standard.
 
 :::
+
+:::{grid-item-card} Migration guide to `npe2`
+:link: npe2-migration-guide
+:link-type: ref
+Have a plugin written for the first generation plugin system? This guide will help you migrate to the `npe2` plugin system.
+
+:::
+
 ::::
