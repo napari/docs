@@ -32,7 +32,7 @@ A technical specification for how plugins can contribute additional functionalit
 :::
 ::::
 
-## Historical documents
+## Deprecated v1 napari plugin engine reference
 
 ::::{grid}
 :::{grid-item-card} First generation napari plugin engine v1
