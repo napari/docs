@@ -174,10 +174,7 @@ Jupyter notebook, or in your preferred text editor.
 ```{admonition} Already have a notebook?
 :class: tip
 
-If you have an existing `.ipynb` Jupyter notebook that you'd like to contribute, you can convert it to MyST markdown
-and then edit the `.md` file to prepare it for contributing.
-
-Run `jupytext your-notebook.ipynb --to myst` to create a new MyST version of your file,
+If you have an existing `.ipynb` Jupyter notebook that you'd like to contribute, you can convert it to MyST markdown and then edit the `.md` file to prepare it for contributing. For the conversion, you can use the [`jupytext` package](https://jupytext.readthedocs.io/en/latest/). Run `jupytext your-notebook.ipynb --to myst` to create a new MyST version of your file,
 `your-notebook.md`. Edit this file to include the relevant sections from the docs template.
 ```
 
@@ -289,12 +286,12 @@ To see the markdown document structure and content change in real-time without b
 
 ### 3.1. Building locally
 
-To build the documentation locally from scratch, run `make docs` from the root
+To build the documentation locally from scratch, run `make html` from the root
 of your local clone of the `napari/docs` repository (assuming you've installed
-the [docs prerequisites](prerequisites)).
+napari with the [docs prerequisites](prerequisites)).
 
 ```bash
-make docs
+make html
 ```
 
 If the changes you have made to documentation don't involve changing the napari gallery,
@@ -302,7 +299,6 @@ you can speed up this build by running `make html-noplot` instead. This will ski
 gallery build, which involves launching up napari and rendering all the examples.
 
 ```bash
-make docs-install  # only needed the first time
 make html-noplot
 ```
 
@@ -316,13 +312,13 @@ $ python3 -m http.server --directory docs/_build/html
 ```
 
 ````{note}
-The `make docs` command above assumes you have a local clone of the
+The `make html` command above assumes you have a local clone of the
 [`napari/napari`](https://github.com/napari/napari) repo at the same level as
 the `napari/docs` clone. If that's not the case, you can specify the location of
 the examples gallery folder by executing
 
 ```bash
-make docs GALLERY_PATH=<path-to-examples-folder>
+make html GALLERY_PATH=<path-to-examples-folder>
 ```
 
 The `GALLERY_PATH` option must be given relative to the `docs` folder. If your
@@ -342,7 +338,7 @@ folder structure is
 
 Then the command would be
 ```bash
-make docs GALLERY_PATH=../../napari/examples
+make html GALLERY_PATH=../../napari/examples
 ```
 
 ````
@@ -476,7 +472,7 @@ Then install Git Bash and build the documentation:
 2. Activate your virtual environment in Git Bash.
     - Conda environment: To have your conda environment available in Git Bash, launch Git Bash, then run `conda init bash` from anaconda prompt and restart Git Bash. The conda environment can then be activated from Git Bash with `conda activate <env_name>`.
     - Virtualenv: To have your virtualenv available in Git Bash, launch Git Bash, then run `source <path_to_virtualenv>/Scripts/activate`.
-3. From Git Bash, `cd` to the napari docs repository and run `make docs` or other `make` commands to build the documentation.
+3. From Git Bash, `cd` to the napari docs repository and run `make html` or other `make` commands to build the documentation.
 
 ```{tip}
 If you use Git Bash a lot, you may want to set conda to not initialize on bash by default to speed up the launch process. This can be done with `conda config --set auto_activate_base false`. You can then activate conda in Git Bash with `conda activate base`.
@@ -506,7 +502,7 @@ We will use Ubuntu for this guide since it is the default WSL distribution, easy
 8. `pip install pyqt5-tools`.
 9. Fork the napari docs repository and clone it to the same parent folder as the napari repository (see [](prerequisites)). Then navigate to the napari docs folder via `cd napari-docs`.
 10. Install `make` with `sudo apt install make`.
-11. Run `make docs` or other `make` commands to build the documentation.
+11. Run `make html` or other `make` commands to build the documentation.
 
 ````{admonition} Route graphical output to Windows
 :class: tip
