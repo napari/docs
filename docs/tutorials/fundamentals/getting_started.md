@@ -54,7 +54,20 @@ napari my_image.png
 
 If the image is `RGB` or `RGBA` use the `-r` or `--rgb` flag.
 
-![image: napari viewer displaying an image layer](../../_static/images/launch_cli_image.png)
+Here's an example of a viewer with an RGB image, the `astronaut` sample image.
+
+```{code-cell} python
+:tags: [hide-input]
+import napari
+from napari.utils import nbscreenshot
+from skimage.data import astronaut
+
+
+viewer = napari.Viewer()
+viewer.add_image(astronaut())
+
+nbscreenshot(viewer, alt_text="Screenshot of an napari viewer showing the scikit-image sample image `astronaut`, which is an RGB image of the astronaut Eileen Collins.")
+```
 
 Launching `napari` directly from the command line is the simplest and fastest way to open the viewer,
 but it doesn't allow you to preprocess your images before opening them.
