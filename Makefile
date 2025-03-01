@@ -1,6 +1,6 @@
 .PHONY: docs clean
 
-SPHINXOPTS =
+SPHINXOPTS = "-j 2"
 
 # Gallery path must be given relative to the docs/ folder
 
@@ -28,7 +28,7 @@ prep-docs:
 	python $(docs_dir)/_scripts/prep_docs.py
 
 docs-build: prep-docs
-	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build  -WT --keep-going -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) -j2 $(SPHINXOPTS)
+	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build  -WT --keep-going -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 docs-xvfb: prep-docs
 	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -M html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
