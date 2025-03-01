@@ -153,7 +153,7 @@ napari
 An empty napari viewer should appear as follows:
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input]
 import napari
 from napari.utils import nbscreenshot
 

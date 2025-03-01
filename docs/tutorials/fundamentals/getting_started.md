@@ -46,7 +46,7 @@ napari
 This command will launch an empty viewer:
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input]
 import napari
 from napari.utils import nbscreenshot
 
@@ -71,7 +71,7 @@ If the image is `RGB` or `RGBA` use the `-r` or `--rgb` flag.
 Here's an example of a viewer with an RGB image, the `astronaut` sample image.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [remove-input]
 import napari
 from napari.utils import nbscreenshot
 from skimage.data import astronaut
