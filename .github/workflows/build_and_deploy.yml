@@ -75,8 +75,8 @@ jobs:
 
       - name: Set napari docs version
         run: |
-          if [[ "${{ github.event.client_payload.version }}" != "" ]]; then
-            echo "NAPARI_DOCS_VERSION=${{ github.event.client_payload.version }}" >> GITHUB_ENV
+          if [[ "${{ github.event.client_payload.napari_version }}" != "" ]]; then
+            echo "NAPARI_DOCS_VERSION=${{ github.event.client_payload.napari_version }}" >> GITHUB_ENV
           fi
 
       - name: Build Docs
