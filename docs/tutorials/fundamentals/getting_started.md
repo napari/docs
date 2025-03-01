@@ -31,7 +31,16 @@ napari
 
 This command will launch an empty viewer:
 
-![image: an empty napari viewer](../../_static/images/launch_cli_empty.png)
+```{code-cell} python
+:tags: [hide-input]
+import napari
+from napari.utils import nbscreenshot
+
+
+viewer = napari.Viewer()
+
+nbscreenshot(viewer, alt_text="Screenshot of an empty napari viewer, right after launching.")
+```
 
 Once you have the viewer open you can add images through the `File -> Open` dropdown menu
 or by dragging and dropping images directly on the viewer. We currently only support files that can be read with [`skimage.io.imread`](https://scikit-image.org/docs/dev/api/skimage.io.html#skimage.io.imread),
