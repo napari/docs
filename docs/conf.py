@@ -138,7 +138,7 @@ html_theme_options = {
 
 html_sidebars = {
     "**": ["search-field.html", "sidebar-nav-bs"],
-    "index": ["search-field.html" , "calendar-template"],
+    "index": ["search-field.html" , "sidebar-link-items.html"],
 }
 
 html_context = {
