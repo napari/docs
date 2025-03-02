@@ -133,10 +133,7 @@ subtrees:
   - file: plugins/index
     subtrees:
     - entries:
-      - file: plugins/start_using_plugins/index
-        subtrees:
-        - entries:
-          - file: plugins/start_using_plugins/finding_and_installing_plugins
+      - file: plugins/start_using_plugins/finding_and_installing_plugins
       - file: plugins/building_a_plugin/index
         subtrees:
         - entries:
