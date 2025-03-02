@@ -8,7 +8,11 @@
                 <a class="reference external" href="https://napari.zulipchat.com/">Community chat</a>
             </li>
             <li class="toctree-l1">
-                <a class="reference internal" href="release/index.html">Release notes</a>
+                {% if version == "dev" %}
+                <a class="reference internal" href="{'release/index.html'}">Release notes</a>
+                {% else %}
+                <a class="reference internal" href="{{ 'release/release_' + version.replace('.', '_') + '.html' }}">Latest release notes</a>
+                {% endif %}
             </li>
         </ul>
     </div>
