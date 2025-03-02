@@ -1,11 +1,10 @@
 # Advanced Topics
 
 Some plugin developers may find more **in-depth, technical information** helpful. This section describes topics, such as:
-- specifications for napari's plugin ecosystem using the standard plugin engine `npe2`.
-- migration to the present standard plugin engine `npe2` from the deprecated plugin engine, napari plugin engine v1.
-- reference documentation about the deprecated napari plugin engine v1.
+- specifications for napari's plugin ecosystem using the plugin engine `npe2`.
+- migration to `npe2` from the deprecated napari plugin engine v1.
 
-## npe2 advanced topics and reference
+## npe2: napari plugin engine v2
 
 ::::{grid}
 :::{grid-item-card} npe2 manifest reference
@@ -25,17 +24,19 @@ A technical specification for how plugins can contribute additional functionalit
 :::
 ::::
 
-## Deprecated v1 napari plugin engine reference
+## Deprecated: napari plugin engine v1
+
+:::{important} Use npe2.
+New plugins should use the `npe2` standard.
+We encourage first generation plugin authors to migrate their plugin to the `npe2` standard.
+:::
 
 ::::{grid}
-:::{grid-item-card} First generation napari plugin engine v1
+:::{grid-item-card} Napari plugin engine v1 reference
 :link: napari-plugin-engine
 :link-type: ref
 
 These documents provide background on the first generation plugin system which is now deprecated.
-
-New plugins should use the `npe2` standard.
-We encourage first generation plugin authors to migrate their plugin to the `npe2` standard.
 
 :::
 
