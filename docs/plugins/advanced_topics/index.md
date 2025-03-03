@@ -26,7 +26,7 @@ A technical specification for how plugins can contribute additional functionalit
 
 ## Deprecated: napari plugin engine v1
 
-:::{important} Use npe2.
+:::{important}
 New plugins should use the `npe2` standard.
 We encourage first generation plugin authors to migrate their plugin to the `npe2` standard.
 :::
