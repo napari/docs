@@ -1,3 +1,17 @@
+---
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
+
 (launch)=
 # How to launch napari
 
@@ -31,7 +45,16 @@ napari
 
 This command will launch an empty viewer:
 
-![image: an empty napari viewer](../../_static/images/launch_cli_empty.png)
+```{code-cell} ipython3
+:tags: [remove-input]
+import napari
+from napari.utils import nbscreenshot
+
+
+viewer = napari.Viewer()
+
+nbscreenshot(viewer, alt_text="Screenshot of an empty napari viewer, right after launching.")
+```
 
 Once you have the viewer open you can add images through the `File -> Open` dropdown menu
 or by dragging and dropping images directly on the viewer. We currently only support files that can be read with [`skimage.io.imread`](https://scikit-image.org/docs/dev/api/skimage.io.html#skimage.io.imread),
@@ -45,7 +68,20 @@ napari my_image.png
 
 If the image is `RGB` or `RGBA` use the `-r` or `--rgb` flag.
 
-![image: napari viewer displaying an image layer](../../_static/images/launch_cli_image.png)
+Here's an example of a viewer with an RGB image, the `astronaut` sample image.
+
+```{code-cell} ipython3
+:tags: [remove-input]
+import napari
+from napari.utils import nbscreenshot
+from skimage.data import astronaut
+
+
+viewer = napari.Viewer()
+viewer.add_image(astronaut())
+
+nbscreenshot(viewer, alt_text="Screenshot of an napari viewer showing the scikit-image sample image `astronaut`, which is an RGB image of the astronaut Eileen Collins.")
+```
 
 Launching `napari` directly from the command line is the simplest and fastest way to open the viewer,
 but it doesn't allow you to preprocess your images before opening them.
