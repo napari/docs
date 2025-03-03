@@ -20,7 +20,7 @@ PREFERENCES_TEMPLATE = """(napari-preferences)=
 
 Starting with version 0.4.6, napari provides persistent settings.
 
-Settings are managed by getting the global settings object:
+Settings are managed by getting the global settings object and modifying settings:
 
 ```python
 from napari.settings import get_settings
@@ -28,38 +28,6 @@ from napari.settings import get_settings
 settings = get_settings()
 # then modify... e.g:
 settings.appearance.theme = 'dark'
-```
-
-## Sections
-
-The settings are grouped by sections and napari core provides the following:
-
-{%- for section, section_data in sections.items() %}
-
-### {{ section_data["title"]|upper }}
-
-{{ section_data["description"] }}
-
-{%   for fields in section_data["fields"] %}
-#### {{ fields["title"] }}
-
-*{{ fields["description"] }}*
-
-* <small>Access programmatically with `SETTINGS.{{ section }}.{{ fields["field"] }}`.</small>
-* <small>Type: `{{ fields["type"] }}`.</small>
-* <small>Default: `{{ fields["default"] }}`.</small>
-{% if fields["ui"] %}* <small>UI: This setting can be configured via the preferences dialog.</small>{% endif %}
-{%-   endfor -%}
-{% endfor %}
-
-**Support for plugin specific settings will be provided in an upcoming release.**
-
-## Changing settings programmatically
-
-```python
-from napari.settings import SETTINGS
-
-SETTINGS.appearance.theme = "light"
 ```
 
 ## Reset to defaults via CLI
@@ -89,6 +57,30 @@ To reset the preferences click on the `Restore defaults` button and continue
 by clicking on `Restore`.
 
 ![{{ reset }}]({{ images_path }}/preferences-reset.png)
+
+## Sections
+
+The settings are grouped by sections and napari core provides the following:
+
+{%- for section, section_data in sections.items() %}
+
+### {{ section_data["title"]|upper }}
+
+{{ section_data["description"] }}
+
+{%   for fields in section_data["fields"] %}
+#### {{ fields["title"] }}
+
+*{{ fields["description"] }}*
+
+* <small>Access programmatically with `SETTINGS.{{ section }}.{{ fields["field"] }}`.</small>
+* <small>Type: `{{ fields["type"] }}`.</small>
+* <small>Default: `{{ fields["default"] }}`.</small>
+{% if fields["ui"] %}* <small>UI: This setting can be configured via the preferences dialog.</small>{% endif %}
+{%-   endfor -%}
+{% endfor %}
+
+**Support for plugin specific settings will be provided in an upcoming release.**
 
 """
 
