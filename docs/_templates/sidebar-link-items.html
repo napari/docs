@@ -9,7 +9,7 @@
             </li>
             <li class="toctree-l1">
                 {% if version == "dev" %}
-                <a class="reference internal" href="{'release/index.html'}">Release notes</a>
+                <a class="reference internal" href="{{ 'release/index.html' }}">Release notes</a>
                 {% else %}
                 <a class="reference internal" href="{{ 'release/release_' + version.replace('.', '_') + '.html' }}">Latest release notes</a>
                 {% endif %}
