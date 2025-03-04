@@ -21,18 +21,18 @@ a [copier](https://copier.readthedocs.io/en/stable/) template, bootstraps author
 Check out the user focused guides for finding, installing, and using napari plugins.
 
 ::::{grid} 2
-:::{grid-item-card} Start using plugins
-:link: plugins-getting-started
-:link-type: ref
-
-Introduction to napari plugins, what they can provide, and where to get support.
-:::
-
 :::{grid-item-card} Finding and installing plugins
 :link: find-and-install-plugins
 :link-type: ref
 
-How to find and install plugins using the napari plugin installer or napari hub.
+How to find and install plugins using the napari plugin manager.
+:::
+
+:::{grid-item-card} napari hub
+:link: https://napari-hub.org
+:link-type: url
+
+Head over to the napari hub to search for plugins that suit your needs.
 :::
 ::::
 
@@ -74,3 +74,11 @@ and guides to convert from first generation plugins to npe2.
 :::
 ::::
 :::::
+
+## Looking for help?
+
+If you have questions, try asking on the [zulip chat][napari_zulip].
+Submit issues to the [napari github repository][napari_issues].
+
+[napari_issues]: https://github.com/napari/napari/issues/new/choose
+[napari_zulip]: https://napari.zulipchat.com/
