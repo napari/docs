@@ -1,24 +1,26 @@
 (plugins-index)=
+
 # Plugins
 
 Plugins extend napari's functionality, allowing for customization and sharing with the community.
 While you can use scripts and widgets to extend napari, plugins provide great flexibility.
 Existing plugins extend napari to add:
+
 - support for import and export of image and related data types.
 - support for working with specialized data formats.
 - domain specific features, including microscopy, climate, geoscience, and more.
-Share and discover napari plugins on [napari hub](https://napari-hub.org), 
+
+Share and discover napari plugins on [napari hub](https://napari-hub.org),
 [PyPI](https://pypi.org/search/?q=napari), or [conda-forge](https://conda-forge.org/packages/).
 Interested in creating a plugin? A [napari-plugin-template](https://github.com/napari/napari-plugin-template),
 a [copier](https://copier.readthedocs.io/en/stable/) template, bootstraps authoring
 [npe](https://github.com/napari/npe2)-based napari plugins.
 
-Check out the user focused guides for installing and using napari plugins, or plugin developer guides to start
-creating your own napari plugins.
+## Plugin users
 
-::::::{tab-set}
-:::::{tab-item} For plugin users
-::::{grid}
+Check out the user focused guides for finding, installing, and using napari plugins.
+
+::::{grid} 2
 :::{grid-item-card} Start using plugins
 :link: plugins-getting-started
 :link-type: ref
@@ -33,10 +35,12 @@ Introduction to napari plugins, what they can provide, and where to get support.
 How to find and install plugins using the napari plugin installer or napari hub.
 :::
 ::::
-:::::
 
-:::::{tab-item} For plugin developers
-::::{grid}
+## Plugin developers
+
+Check out our plugin developer guides to start creating your own napari plugins.
+
+::::{grid} 2
 :::{grid-item-card} Building a plugin
 :link: how-to-build-a-plugin
 :link-type: ref
@@ -52,7 +56,7 @@ Workshop on virtual environments and useful tools for plugin development.
 
 ::::
 
-::::{grid}
+::::{grid} 2
 :::{grid-item-card} Testing and publishing
 :link: plugin-test-deploy
 :link-type: ref
@@ -70,4 +74,3 @@ and guides to convert from first generation plugins to npe2.
 :::
 ::::
 :::::
-::::::
