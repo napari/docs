@@ -26,8 +26,6 @@ Users will be warned about any auto-converted plugins when launching napari, and
 
 ![Native npe1 plugin with no tag](./images/npe1_plugin_no_tag.png)
 
-
-
 ## How does this affect plugins?
 
 The vast majority of plugins will be unaffected, and it will appear to the user that nothing at all has changed. 
