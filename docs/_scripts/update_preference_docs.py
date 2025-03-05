@@ -97,11 +97,25 @@ def generate_images():
     pref.show()
     QTimer.singleShot(1000, pref.close)
 
-    for idx, (name, field) in enumerate(NapariSettings.__fields__.items()):
+    # Collect all sections first
+    sections = [field.field_info.title or name
+                for name, field in NapariSettings.__fields__.items()
+                if isinstance(field.type_, ModelMetaclass)]
+    
+    # Process each section with proper timing
+    for idx, title in enumerate(sections):
+        # Set current index
         pref._stack.setCurrentIndex(idx)
+        pref._list.setCurrentRow(idx)
+        
+        # Process events to ensure UI has updated
+        app.processEvents()
+        
+        # Capture screenshot
         pixmap = pref.grab()
-        title = field.field_info.title or name
         pixmap.save(str(IMAGES_PATH / f"preferences-{title.lower()}.png"))
+    
+
 
     box = QMessageBox(
         QMessageBox.Icon.Question,
