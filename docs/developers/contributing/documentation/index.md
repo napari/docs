@@ -174,7 +174,7 @@ Jupyter notebook, or in your preferred text editor.
 ```{admonition} Already have a notebook?
 :class: tip
 
-If you have an existing `.ipynb` Jupyter notebook that you'd like to contribute, you can convert it to MyST markdown and then edit the `.md` file to prepare it for contributing. For the conversion, you can use the [`jupytext` package](https://jupytext.readthedocs.io/en/latest/). Run `jupytext your-notebook.ipynb --to myst` to create a new MyST version of your file,
+If you have an existing `.ipynb` Jupyter notebook that you'd like to contribute, you can convert it to MyST markdown and then edit the `.md` file to prepare it for contributing. For the conversion, you can install the [`jupytext` package](https://jupytext.readthedocs.io/en/latest/). Run `jupytext your-notebook.ipynb --to myst` to create a new MyST version of your file,
 `your-notebook.md`. Edit this file to include the relevant sections from the docs template.
 ```
 
