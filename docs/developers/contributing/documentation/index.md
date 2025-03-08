@@ -583,6 +583,8 @@ Because our example gallery is built from Python scripts, you need to ensure thi
 block is present in all contributed examples.
 ````
 
+Finally, you can find the current example dependencies in [the `pyproject.toml` of napari/napari](https://github.com/napari/napari/blob/main/pyproject.toml) under the optional dependency `gallery`. If you add an example with a new dependency, be sure to include it here such that your example can be properly tested and built into the documentation.
+
 ### Cross-referencing Gallery examples
 
 If you want to generate links to Gallery examples from anywhere in the docs, then the cross-referencing format you use will depend on the format of the doc you are writing. Note that the gallery examples live in `/gallery` despite being in `napari/examples` because [`docs/docs/conf.py`](https://github.com/napari/docs/blob/main/docs/conf.py) specifies that examples are built into the `gallery` directory. The [Sphinx cross-reference namespace](https://sphinx-gallery.github.io/stable/advanced.html#know-your-gallery-files) is generated with the `sphx_glr` prefix, then path separators are converted to underscores, for example `/gallery/add_image.py` becomes `_gallery_add_image.py` to get the end result `sphx_glr_gallery_add_image.py`. 
