@@ -4,7 +4,7 @@
 We welcome your contributions! Here you will find a guide to the contribution
 workflow and tips for contributing to napari.
 If you are looking to learn more about the napari code base, see the [napari architecture guide](architecture-index).
-Do not hesitate to [contact](contact) us if you have any queries.
+Please [contact](contact) us if you have any queries.
 
 ```{note}
 To contribute to our blog, the [Island Dispatch](https://napari.org/island-dispatch), check out https://github.com/napari/island-dispatch.
@@ -14,8 +14,12 @@ To contribute to our blog, the [Island Dispatch](https://napari.org/island-dispa
 
 napari development occurs primarily on GitHub. If you are new to GitHub we recommend checking out the detailed [Github Docs](https://docs.github.com/en).
 
+### Set up a local development environment
+
 The first step to make changes to napari is to
 set up a [napari development installation](dev-installation).
+
+### Make changes and submit a pull request
 
 You can then use git to save your changes and open a
 [pull-request](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) (PR) via the following steps:
@@ -66,34 +70,31 @@ git remote -vv
 You can then make a
 [PR](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project#making-a-pull-request) to `napari`'s `main` branch.
 
-## napari contribution guides
+### Respond to pull request review
 
-### Translations
+Continuous integration will provide initial feedback on your PR by running the
+tests and code quality checks. Please correct any errors found by the automated tests.
 
-Starting with version 0.4.7 offers the possibility of installing language packs,
-enabling the user interface to be displayed in different languages. This means that all
-user interface strings need to use the {func}`~napari.utils.translations.trans` helper
-function.
-See the [translations](translations) guide for more.
+Core developers and community members will review your suggested changes and
+provide feedback. Your next step would be to make any necessary updates to
+your PR.
 
-### Tests
+### Acceptance of the pull request
 
-We use unit tests, integration tests, and functional tests to ensure that
-napari works as intended. Writing tests for new code is a critical part of
-keeping napari maintainable as it grows.
+After a core developer approves your PR, the PR will be merged into the main codebase.
 
-We have dedicated documentation on [testing](napari-testing) that we recommend you
-read as you're working on your first contribution.
+## Contribution guides
 
-### Automation and CI
+Contributions can be made in different areas of the project.
+These guides should help you begin contributing to a specific project area.
 
-We use GitHub Actions to automate our continuous integration and project workflows.
-The [`CONTRIBUTING.md` doc in the `.github` directory](https://github.com/napari/napari/blob/main/.github/CONTRIBUTING.md)
-highlights basics about the GitHub Actions used in the project.
+### Documentation
 
-We also automate [deployment of our documentation and website](https://napari.org/stable/developers/contributing/documentation/docs_deployment.html).
+See [](contributing-docs) for information on how to contribute documentation.
 
-### Adding icons
+### UI
+
+#### Icons
 
 If you want to add a new icon to the app, make the icon in whatever program you
 like and add it to `napari/resources/icons/`.  Icons must be in `.svg` format.
@@ -118,6 +119,32 @@ QtDeleteButton {
 }
 ```
 
+#### Translations
+
+Starting with version 0.4.7 offers the possibility of installing language packs,
+enabling the user interface to be displayed in different languages. This means that all
+user interface strings need to use the {func}`~napari.utils.translations.trans` helper
+function.
+See the [translations](translations) guide for more.
+
+### API
+
+If you are changing an existing API or adding a new one, make sure you update
+the corresponding docstring to contain the `.. versionadded::` or
+`.. versionchanged::` directive. For more information see the
+[Sphinx documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#describing-changes-between-versions).
+Please also consider documenting any major features/changes in our
+[tutorials](tutorials) and other [usage documentation](usage).
+
+### Tests
+
+We use unit tests, integration tests, and functional tests to ensure that
+napari works as intended. Writing tests for new code is a critical part of
+keeping napari maintainable as it grows.
+
+We have dedicated documentation on [testing](napari-testing) that we recommend you
+read as you're working on your first contribution.
+
 ### Performance
 
 Performance related PRs should include a benchmark in order to clearly depict the
@@ -127,15 +154,12 @@ also include benchmarks to show the new feature is not too slow but this is less
 poor performance, [profiling](profiling) and [performance monitoring](napari-perfmon) can help
 identify the cause and where to optimize.
 
-### API Changes
+### Automation and CI
 
-If you are changing an existing API or adding a new one, make sure you update
-the corresponding docstring to contain the `.. versionadded::` or
-`.. versionchanged::` directive. For more information see the
-[Sphinx documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#describing-changes-between-versions). 
-Please also consider documenting any major features/changes in our
-[tutorials](tutorials) and other [usage documentation](usage).
+We use GitHub Actions to automate our continuous integration and project workflows.
+The [`CONTRIBUTING.md` doc in the `.github` directory](https://github.com/napari/napari/blob/main/.github/CONTRIBUTING.md)
+highlights basics about the GitHub Actions used in the project.
 
-### Contributing documentation
+We also automate [deployment of our documentation and website](https://napari.org/stable/developers/contributing/documentation/docs_deployment.html).
 
-See [](contributing-docs) for information on how to contribute documentation.
+
