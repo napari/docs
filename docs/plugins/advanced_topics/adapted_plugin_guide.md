@@ -1,24 +1,28 @@
 # Changes to the plugin engine in 0.6.0
 
-In napari 0.6.0 we have made some changes to the default behaviour of legacy "npe1" plugins in napari. This document explains those changes and how they may affect you.
+In napari 0.6.0 we have made some changes to napari's default behaviour when validating legacy "npe1" plugins. This document explains those changes and how they may affect plugin users.
 
 ## Context
 
 In mid-2022, we released npe2 - a new napari plugin engine. Mostly invisible to users, npe2 changed the way plugins are built, and how they declare contributions to napari. Because many plugins were already released using the original plugin engine, we continued maintaining all code relating to npe1 plugins, to give developers time to migrate. We also provided [guides and utilities](npe2-migration-guide) for auto-converting npe1 plugins to the new plugin engine.
 
-Through these conversion utilities, the vast majority of npe1 plugins can be automatically loaded by napari in npe2 form, without any changes required from the plugin developer. By enabling the `Preferences -> Plugins -> Use npe2 adaptor` setting, users could also make their own napari installation auto-convert plugins to the new plugin engine, but this setting was off by default.
+Through these robust conversion utilities, the vast majority of npe1 plugins can be automatically loaded by napari in an npe2-compatible form, without any changes required from the plugin developer. By enabling the `Preferences -> Plugins -> Use npe2 adaptor` setting, users could also make their own napari installation auto-convert plugins to the new plugin engine. Before 0.6.0, this setting was off by default; in 0.6.0, this setting will be on by default.
 
-In the intervening years, adoption of npe2 has improved, and currently, more than 80% of napari plugins are defined using the npe2 engine. As a result, we will start deprecating the npe1 plugin infrastructure, so that we can simplify our codebase and improve maintainability.
+In the intervening years, adoption of npe2 has improved, and currently, more than 80% of napari plugins are defined using the npe2 engine. As a result, we will deprecate the npe1 plugin infrastructure, so that we can simplify our codebase and improve maintainability.
 
 ## What is changing in 0.6.0?
 
-In napari 0.6.0, the `Use npe2 adaptor` setting will be turned on by default. This means that even if a plugin is still declared using the npe1 engine, napari will auto-convert it to npe2 before loading it.
+In napari 0.6.0: 
+- the `Use npe2 adaptor` setting will be turned on by default. 
+- if a plugin is still declared using the npe1 engine, napari will auto-convert it to npe2 before loading it.
+- users will be notified about any auto-converted plugins when launching napari.
+- if there is a conflict with a plugin, the `Use npe2 adaptor` setting may be disabled. This will allow plugins to be loaded using the original npe1 plugin engine.
 
 Users will be warned about any auto-converted plugins when launching napari, and they will be able to turn off the `Use npe2 adaptor` setting if they wish for these plugins to be loaded using the original plugin engine.
 
 ## How do I know if a plugin is npe1?
 
-- It will show up in the warning dialog
+- It will show up in the plugin warning dialog.
 - It will be listed in the plugin manager with an `npe2 (adapted)` tag, if `Use npe2 adaptor` is checked, or without any tag if `Use npe2 adaptor` is not checked (screenshots below)
 - It is on this [list of plugins](https://gist.github.com/DragaDoncila/feb87fcbadc756269fdf99000a6ea77c). Please note that not all plugins may be listed here.
 
@@ -28,18 +32,18 @@ Users will be warned about any auto-converted plugins when launching napari, and
 
 ## How does this affect plugins?
 
-The vast majority of plugins will be unaffected, and it will appear to the user that nothing at all has changed. 
+The vast majority of plugins will be unaffected by changing the default behavior in 0.6.0, and users will see minimal, if any, changes. 
 
-There are two known limitations to this:
+There are two known cases where autoconversion may be inadequate:
 
 - Plugins that performed some action on napari start-up will not do so, as their code is no longer imported on start-up. Instead, the "start-up" behaviour will occur when the user first interacts with any of the plugin's contributions e.g. if they open a plugin widget, or open a file using the plugin.
 - Plugin "multi-layer writers" cannot be auto-converted. Multi-layer writers are plugin contributions that allow multiple selected layers to be saved. If an adapted npe1 plugin declares a multi-layer writer, you will see a warning when loading the plugin.
 
-In either of these cases, you can recover original plugin behaviour by going to `Preferences -> Plugins` and unchecking the `Use npe2 adaptor` setting, and restarting napari, as directed. Note that this setting will no longer be available in 0.7.0, and only npe2-compatible plugins will be usable.
+In either of these cases, you can recover original plugin behaviour by going to `Preferences -> Plugins` and unchecking the `Use npe2 adaptor` setting, and restarting napari, as directed. Note that this setting is deprecated and will no longer be available in 0.7.0. In the 0.7.0 release only npe2-compatible plugins will be supported.
 
 ## When is 0.7.0 coming out?
 
-While we don't yet have a set release date for 0.7.0, this setting **will not** be removed until at least July 31st, and we will provide a further warning in the final minor release before 0.7.0.
+While we don't yet have a set release date for 0.7.0, the `Use npe2 adaptor` setting **will not** be removed until the earliest, July 31, 2025. We will provide a further warning in the final minor release before 0.7.0.
 
 ## What can I do before 0.7.0?
 
