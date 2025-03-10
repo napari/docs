@@ -1,3 +1,5 @@
+(adapted-plugin-guide)=
+
 # Changes to the plugin engine in 0.6.0
 
 In napari 0.6.0 we have made some changes to napari's default behaviour when validating legacy "npe1" plugins. This document explains those changes and how they may affect plugin users.
