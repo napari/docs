@@ -18,8 +18,6 @@ In napari 0.6.0:
 - users will be notified about any auto-converted plugins when launching napari.
 - if there is a conflict with a plugin, the `Use npe2 adaptor` setting may be disabled. This will allow plugins to be loaded using the original npe1 plugin engine.
 
-Users will be warned about any auto-converted plugins when launching napari, and they will be able to turn off the `Use npe2 adaptor` setting if they wish for these plugins to be loaded using the original plugin engine.
-
 ## How do I know if a plugin is npe1?
 
 - It will show up in the plugin warning dialog.
