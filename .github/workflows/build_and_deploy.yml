@@ -71,6 +71,9 @@ jobs:
         run: |
           uv venv
           uv pip install "napari/[pyqt5, docs]"
+          cd ../napari
+          make build
+          cd ../docs
         env:
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
 
