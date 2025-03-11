@@ -19,13 +19,15 @@ on:
   workflow_dispatch:
     inputs:
       target_directory:
-        description: 'The directory to deploy the docs to'
+        description: 'Deployment directory for generated docs'
         required: true
         default: 'dev'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+
+permissions: {}
 
 jobs:
   build-and-upload:
@@ -35,30 +37,41 @@ jobs:
       - name: Clone docs repo
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           # place in '/home/runner/work/docs/docs/docs'
+          # docs and napari are in the same parent directory
           path: docs  # place in a named directory
+          fetch-depth: 1
 
-      - name: Clone main repo
+      - name: Clone napari repo
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           # place in '/home/runner/work/docs/docs/napari'
+          # docs and napari are in the same parent directory
           path: napari  # place in a named directory
           repository: napari/napari
-          # ensure version metadata is proper
-          fetch-depth: 0
+          # relax the fetch-depth to allow for the possibility of a shallow clone
+          fetch-depth: 1
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: astral-sh/setup-uv@v5
         with:
-          python-version: "3.10"
-          cache-dependency-path: |
-            napari/pyproject.toml
+          enable-cache: true
+          version: "3.10"
+          cache-dependency-glob: "napari/pyproject.toml"
 
-      - uses: tlambert03/setup-qt-libs@v1
+      - name: Install Qt Libraries
+        uses: tlambert03/setup-qt-libs@v1
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "napari/pyproject.toml"
 
       - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install "napari/[pyqt5, docs]"
+        run:
+          uv pip install "napari/[pyqt5, docs]"
         env:
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
 
@@ -99,6 +112,8 @@ jobs:
     name: Download & Deploy Artifact
     needs: build-and-upload
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     # Working directory: '/home/runner/work/docs/docs'
     steps:
       - name: Download artifact
