@@ -68,7 +68,8 @@ jobs:
           python-version-file: "napari/pyproject.toml"
 
       - name: Install Dependencies
-        run:
+        run: |
+          uv venv
           uv pip install "napari/[pyqt5, docs]"
         env:
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
