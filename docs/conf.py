@@ -138,12 +138,15 @@ html_theme_options = {
 
 html_sidebars = {
     "**": ["search-field.html", "sidebar-nav-bs"],
-    "index": ["search-field.html" , "calendar-template"],
+    "index": ["search-field.html" , "sidebar-link-items.html"],
 }
 
 html_context = {
    # use Light theme only, don't auto switch (default)
-   "default_mode": "light"
+   "default_mode": "light",
+   # add release version to context
+   "release": release,
+   "version": version,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
