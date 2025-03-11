@@ -51,8 +51,8 @@ jobs:
           # docs and napari are in the same parent directory
           path: napari  # place in a named directory
           repository: napari/napari
-          # relax the fetch-depth to allow for the possibility of a shallow clone
-          fetch-depth: 1
+          # set to all for version
+          fetch-depth: 0
 
       - name: Set up Python
         uses: astral-sh/setup-uv@v5
