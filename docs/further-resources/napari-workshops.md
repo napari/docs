@@ -9,7 +9,7 @@ You can find more videos of talks, tutorials and demos on the
 
 ```{admonition} Got a workshop?
 If you are looking to create your own workshop, you can use the
-[napari workshop template](https://github.com/napari/napari-workshop-template)
+[napari workshop template](https://napari.org/napari-workshop-template/)
 as a starting point.
 
 If you have organized a napari workshop and would like to see it featured here
