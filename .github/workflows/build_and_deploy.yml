@@ -86,8 +86,7 @@ jobs:
           python -c 'import napari.layers; print(napari.layers.__doc__)'
 
       - name: Create fallback videos
-        run: |
-          make fallback-videos
+        run: make -C docs fallback-videos
 
       - name: Build Docs
         uses: aganders3/headless-gui@v2
