@@ -16,15 +16,14 @@ Please read our [contributing guide](https://napari.org/dev/developers/contribut
 
 ### quickstart: local setup
 * __Check the prerequisites__
-    1. Create a clean Python environment (e.g., with conda).
-    1. In that environment, create a [development installation](https://napari.org/dev/developers/contributing/dev_install.html#dev-installation) of `napari` on your local machine, first forking and cloning the main `napari` project if you've not previously done so.
-    1. Fork this repository, and then clone your fork to your local machine. NB: you may want to name your fork e.g. `napari-docs` rather than just `docs`.
-    1. With your local clone's root folder as the working directory, and with the environment created in the first step activated, install the docs requirements with `python -m pip install -r requirements.txt`.
+    1. Create a clean Python (>=3.10) environment (e.g., with conda).
+    1. In that environment, create an editable `napari` installation with the `docs` dependency group and a Qt backend. For example, after first forking and cloning the main `napari` project if you've not previously done so, run `python -m pip install -e ".[pyqt, docs]"` from your `napari/napari` clone directory. This will use the default Qt backend.
+    1. Fork *this* repository, `napari/docs`, and then clone your fork to your local machine. NB: you may want to name your fork e.g. `napari-docs` rather than just `docs`.
 * __Build__ locally
     * If you're building on Windows, a few extra steps are required; you can follow [this guide](https://napari.org/dev/developers/contributing/documentation/index.html#building-the-documentation-on-windows).
     * From the root of your local clone of this repository, run one of these:
-        * `make docs`, if your changes include the example gallery
-        * `make docs-install && make html-noplot`, otherwise
+        * `make html`, if your changes include the example gallery
+        * `make html-noplot`, otherwise
 * __Preview__ locally, either dragging-and-dropping `docs/_build/index.html` into a browser, or deploying a local server with `python3 -m http.server --directory docs/_build`.
 
 These steps should set you up to build and preview your docs contributions on your local machine.
