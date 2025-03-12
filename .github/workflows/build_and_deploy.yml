@@ -4,6 +4,13 @@
 # Note this workflow is also triggered by
 # https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml when a
 # commit to `main` occurs in `napari/napari`
+#
+# For builds:
+#   working directory: '/home/runner/work/docs/docs'
+#   docs and napari are in the same parent directory
+#   place docs in:   '/home/runner/work/docs/docs/docs'
+#   place napari in: '/home/runner/work/docs/docs/napari'
+
 
 name: Build & Deploy PR Docs
 
@@ -38,54 +45,50 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
-          # place in '/home/runner/work/docs/docs/docs'
-          # docs and napari are in the same parent directory
-          path: docs  # place in a named directory
+          path: docs
           fetch-depth: 1
 
       - name: Clone napari repo
         uses: actions/checkout@v4
         with:
           persist-credentials: false
-          # place in '/home/runner/work/docs/docs/napari'
+          # p
           # docs and napari are in the same parent directory
-          path: napari  # place in a named directory
+          path: napari
           repository: napari/napari
-          # set to all for version
+          # needs 0 depth to get the latest versions
           fetch-depth: 0
 
       - name: Set up Python
         uses: astral-sh/setup-uv@v5
         with:
           enable-cache: true
+          python-version: "3.10"
+
+      - name: Set up video dependency
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Create a virtual environment to use for the builds
+        run: |
+          uv venv
+          source .venv/bin/activate
 
       - name: Install Qt Libraries
         uses: tlambert03/setup-qt-libs@v1
 
-      - name: Install Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-
       - name: Install Dependencies
         run: |
-          uv venv
           uv pip install "napari/[pyqt5, docs]"
-          cd ../napari
-          make build
-          cd ../docs
         env:
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
 
-      - name: Testing
+      - name: Test installation succeeded
         run: |
           python -c 'import napari; print(napari.__version__)'
           python -c 'import napari.layers; print(napari.layers.__doc__)'
 
       - name: Create fallback videos
         run: |
-          sudo apt-get update && sudo apt-get install -y ffmpeg
-          cd docs
           make fallback-videos
 
       - name: Build Docs
@@ -95,8 +98,6 @@ jobs:
           GOOGLE_CALENDAR_API_KEY: ${{ secrets.GOOGLE_CALENDAR_API_KEY }}
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
         with:
-          # Runs in '/home/runner/work/docs/docs/docs'
-          # Built HTML pages in '/home/runner/work/docs/docs/docs/docs/_build/html'
           run:  make -C docs html
           # skipping setup stops the action from running the default (tiling) window manager
           # the window manager is not necessary for docs builds at this time and it was causing
@@ -116,6 +117,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     # Working directory: '/home/runner/work/docs/docs'
     steps:
       - name: Download artifact
