@@ -2,6 +2,12 @@
 
 # Plugins
 
+```{warning}
+In napari 0.6.0 we have made some changes to napari's default behaviour when validating legacy "npe1" plugins.
+You may see a warning when starting `napari` if you have legacy "npe1" plugins installed.
+You can learn more about this change in the [Changes to the plugin engine in 0.6.0](adapted-plugin-guide) document.
+```
+
 Plugins extend napari's functionality, allowing for customization and sharing with the community.
 While you can use scripts and widgets to extend napari, plugins provide great flexibility.
 Existing plugins extend napari to add:
