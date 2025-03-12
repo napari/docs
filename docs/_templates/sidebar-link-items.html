@@ -8,7 +8,7 @@
                 <a class="reference external" href="https://napari.zulipchat.com/">Community chat</a>
             </li>
             <li class="toctree-l1">
-                <a class="reference external" href="https://napari.org/island-dispatch">Blog</a>
+                <a class="reference internal" href="troubleshooting.html">Troubleshooting</a>
             </li>
             <li class="toctree-l1">
                 {% if version == "dev" %}
@@ -16,6 +16,9 @@
                 {% else %}
                 <a class="reference internal" href="{{ 'release/release_' + version.replace('.', '_') + '.html' }}">Latest release notes</a>
                 {% endif %}
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="https://napari.org/island-dispatch">Blog</a>
             </li>
         </ul>
     </div>
