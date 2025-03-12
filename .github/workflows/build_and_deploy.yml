@@ -52,8 +52,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
-          # p
-          # docs and napari are in the same parent directory
           path: napari
           repository: napari/napari
           # needs 0 depth to get the latest versions
