@@ -34,6 +34,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  FORCE_COLOR: "1"
+
 permissions: {}
 
 jobs:
@@ -62,6 +65,7 @@ jobs:
         with:
           enable-cache: true
           python-version: "3.10"
+          cache-dependency-glob: "uv.lock"
 
       - name: Set up video dependency
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
@@ -107,6 +111,9 @@ jobs:
         with:
           name: html
           path: docs/docs/_build/html/
+
+      - name: Minimize uv cache
+        run: uv cache prune --ci
 
   deploy:
     name: Download & Deploy Artifact
