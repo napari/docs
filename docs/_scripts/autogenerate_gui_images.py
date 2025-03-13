@@ -17,11 +17,19 @@ def autogenerate_images():
     viewer.window._qt_window.resize(800, 600)
     viewer.window._qt_window.setStyleSheet(get_stylesheet("dark"))
     
+        # Ensure window is active
+    viewer.window._qt_window.activateWindow()
+    viewer.window._qt_window.raise_()
+    app.processEvents()
+    
+    viewer.screenshot(str(IMAGES_PATH / "viewer_empty.png"), canvas_only=False)
     # Add sample data
     viewer.open_sample(plugin='napari', sample='cells3d')
     
+    app.processEvents() # Ensure viewer is fully initialized
+    viewer.screenshot(str(IMAGES_PATH / "viewer_cells3d.png"), canvas_only=False)
+    
     # Print Qt widget hierarchy
-    print_qt_attributes(viewer)
     print_widget_hierarchy(viewer.window._qt_window)
     
     # Wait for viewer to fully initialize and render
@@ -35,8 +43,8 @@ def capture_elements(viewer):
     # Main components - using the hierarchy you provided
     components = {
         "welcome_widget": find_widget_by_class(viewer.window._qt_window, "QtWelcomeWidget"),
-        "console": find_widget_by_class(viewer.window._qt_window, "QtConsole"),
-        "console_dock": find_widget_by_name(viewer.window._qt_window, "console"),
+        
+        "console_dock": find_widget_by_name(viewer.window._qt_window, "console"), # TODO: this was working?
         
         "dimension_slider": find_widget_by_class(viewer.window._qt_window, "QtDims"), #QtDimSliderWidget
         
@@ -95,6 +103,10 @@ def show_menu_for_screenshot(menu, name):
     
     QTimer.singleShot(300, grab_menu)
 
+def close_all(viewer):
+    viewer.close()
+    QTimer.singleShot(100, lambda: get_qapp().quit())
+
 def find_widget_by_name(parent, name):
     """Find a widget by its object name."""
     if parent.objectName() == name:
@@ -113,6 +125,9 @@ def find_widget_by_name(parent, name):
 
 def find_widget_by_class(parent, class_name):
     """Find a child widget by its class name."""
+    if parent.__class__.__name__ == class_name:
+        return parent
+        
     for child in parent.children():
         if child.__class__.__name__ == class_name:
             return child
@@ -124,35 +139,13 @@ def find_widget_by_class(parent, class_name):
     
     return None
 
-def close_all(viewer):
-    print("Closing viewer")
-    viewer.close()
-    QTimer.singleShot(100, lambda: get_qapp().quit())
 
-def print_qt_attributes(viewer):
-    """Print important Qt-related attributes of the napari viewer."""
-    qt_window = viewer.window._qt_window
-    qt_viewer = viewer.window.qt_viewer
-    
-    print("\nQt Window Attributes:")
-    for attr in dir(qt_window):
-        if not attr.startswith('_') and hasattr(getattr(qt_window, attr), 'objectName'):
-            obj = getattr(qt_window, attr)
-            name = obj.objectName()
-            print(f"  {attr}: {obj.__class__.__name__}{f' (name: {name})' if name else ''}")
-    
-    print("\nQt Viewer Attributes:")
-    for attr in dir(qt_viewer):
-        if not attr.startswith('_') and not callable(getattr(qt_viewer, attr)):
-            try:
-                obj = getattr(qt_viewer, attr)
-                class_name = obj.__class__.__name__
-                print(f"  {attr}: {class_name}")
-            except:
-                pass
-            
-def print_widget_hierarchy(widget, indent=0):
-    """Print a hierarchy of child widgets with their class names."""
+def print_widget_hierarchy(widget, indent=0, max_depth=None):
+    """Print a hierarchy of child widgets with their class names and object names."""
+
+    if max_depth is not None and indent > max_depth:
+        return
+        
     class_name = widget.__class__.__name__
     object_name = widget.objectName()
     name_str = f" (name: '{object_name}')" if object_name else ""
@@ -160,7 +153,7 @@ def print_widget_hierarchy(widget, indent=0):
     
     for child in widget.children():
         if hasattr(child, "children"):
-            print_widget_hierarchy(child, indent + 4)
+            print_widget_hierarchy(child, indent + 4, max_depth)
 
     
 if __name__ == "__main__":
