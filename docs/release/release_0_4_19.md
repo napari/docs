@@ -160,7 +160,7 @@ Read on for the full list of changes that went into this release.
 - Ensure visual is updated when painting into zarr array ([napari/napari#6112](https://github.com/napari/napari/pull/6112))
 - Emit event from Points data setter ([napari/napari#6117](https://github.com/napari/napari/pull/6117))
 - Emit event from Shapes data setter ([napari/napari#6134](https://github.com/napari/napari/pull/6134))
-- Fix oblique button by chekcing if action is generator ([napari/napari#6145](https://github.com/napari/napari/pull/6145))
+- Fix oblique button by checking if action is generator ([napari/napari#6145](https://github.com/napari/napari/pull/6145))
 - Fix bug in `examples/multiple_viewer_widget.py` copy layer logic ([napari/napari#6162](https://github.com/napari/napari/pull/6162))
 - Fix split logic in shortcut editor ([napari/napari#6163](https://github.com/napari/napari/pull/6163))
 - Layer data events before and after ([napari/napari#6178](https://github.com/napari/napari/pull/6178))
@@ -183,7 +183,7 @@ Read on for the full list of changes that went into this release.
 - Fix bounding box transforms when multiscale layer corner goes below zero ([napari/napari#6438](https://github.com/napari/napari/pull/6438))
 - Update performance and reduce memory usage for big Labels layer in direct color mode ([napari/napari#6439](https://github.com/napari/napari/pull/6439))
 - Fix `breakpoint()` function after console import ([napari/napari#6443](https://github.com/napari/napari/pull/6443))
-- fix problem with alligned overlay ([napari/napari#6445](https://github.com/napari/napari/pull/6445))
+- fix problem with aligned overlay ([napari/napari#6445](https://github.com/napari/napari/pull/6445))
 - Fix guess_continuous to not assign continuous for string categories ([napari/napari#6452](https://github.com/napari/napari/pull/6452))
 - Fix casting uint32 to vispy dtype for image layers ([napari/napari#6456](https://github.com/napari/napari/pull/6456))
 - Fix thumbnail for auto color mode in labels ([napari/napari#6459](https://github.com/napari/napari/pull/6459))
@@ -207,7 +207,7 @@ Read on for the full list of changes that went into this release.
 - Fix points selection ([napari/napari#6621](https://github.com/napari/napari/pull/6621))
 - Select only linked layers already present in layer list ([napari/napari#6622](https://github.com/napari/napari/pull/6622))
 - Bug fixes to multiple issues with linked layers ([napari/napari#6623](https://github.com/napari/napari/pull/6623))
-- Fix rendering of vertexes of shape layers with small scale ([napari/napari#6628](https://github.com/napari/napari/pull/6628))
+- Fix rendering of vertices of shape layers with small scale ([napari/napari#6628](https://github.com/napari/napari/pull/6628))
 
 ## API Changes
 
@@ -325,7 +325,7 @@ replacements:
 - Fix labeler by adding permissions ([napari/napari#6289](https://github.com/napari/napari/pull/6289))
 - Update pre-commit and constraints and minor fixes for 0.4.19 release ([napari/napari#6340](https://github.com/napari/napari/pull/6340))
 - Ensure conda workflow runs with proper permissions ([napari/napari#6378](https://github.com/napari/napari/pull/6378))
--  Remove sphinx dependency from defaults dependecies ([napari/napari#6380](https://github.com/napari/napari/pull/6380))
+-  Remove sphinx dependency from defaults dependencies ([napari/napari#6380](https://github.com/napari/napari/pull/6380))
 - Fix `test_link_layers_with_images_then_loaded_not_linked` test ([napari/napari#6385](https://github.com/napari/napari/pull/6385))
 - Do not repeat warnings in GUI ([napari/napari#6396](https://github.com/napari/napari/pull/6396))
 - Fix drawing timer ([napari/napari#6400](https://github.com/napari/napari/pull/6400))

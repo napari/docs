@@ -109,8 +109,8 @@ html_theme_options = {
     "navbar_persistent": [],
     "header_links_before_dropdown": 6,
     "secondary_sidebar_items": ["page-toc"],
-    "pygment_light_style": "napari",
-    "pygment_dark_style": "napari",
+    "pygments_light_style": "napari",
+    "pygments_dark_style": "napari",
     "announcement": "",
     "back_to_top_button": False,
     "analytics": {
@@ -126,12 +126,15 @@ html_theme_options = {
 
 html_sidebars = {
     "**": ["search-field.html", "sidebar-nav-bs"],
-    "index": ["search-field.html" , "calendar-template"],
+    "index": ["search-field.html" , "sidebar-link-items.html"],
 }
 
 html_context = {
    # use Light theme only, don't auto switch (default)
-   "default_mode": "light"
+   "default_mode": "light",
+   # add release version to context
+   "release": release,
+   "version": version,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

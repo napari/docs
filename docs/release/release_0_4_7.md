@@ -18,7 +18,7 @@ After nearly a year of planning, thanks to help from the fine folks at
 your customization needs!
 
 Thanks to Matthias Bussonnier and Talley Lambert, we've also improved our
-notification handling and can now show tracebacks in our error notifcations in
+notification handling and can now show tracebacks in our error notifications in
 the GUI!
 
 You can now use PyData/Sparse arrays as labels layers, thanks to work by Draga

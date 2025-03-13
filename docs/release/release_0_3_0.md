@@ -184,7 +184,7 @@ with napari.gui_qt():
 - Reduce code duplication for `_on_scale_change` & `_on_translate_change` (#1015)
 - Style refactor (#1017)
 - Add ScaleTranslate transform (#1018)
-- Add docstrings for all the Qt classees (#1022)
+- Add docstrings for all the Qt classes (#1022)
 - Sorting and disabling of hook implementations (#1023)
 - Plugin exception storage and developer notification GUI (#1024)
 - Refactor points layer mouse bindings (#1033)

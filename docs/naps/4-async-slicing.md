@@ -62,7 +62,7 @@ often causes issues for developers.
 Some of these issues were caused by a previous effort around asynchronous slicing
 in an effort to keep it isolated from the core code base.
 By contrast, our approach in this project is to redesign slicing in napari to
-provide a solid foundation for asychronous slicing and related future work like
+provide a solid foundation for asynchronous slicing and related future work like
 multi-canvas and multi-scale slicing.
 
 ### Goals

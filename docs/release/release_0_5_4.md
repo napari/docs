@@ -92,7 +92,7 @@ Read on for all the changes in this version!
 - [pre-commit.ci] pre-commit autoupdate ([#7239](https://github.com/napari/napari/pull/7239))
 - Fix coverage and debug artifacts upload ([#7241](https://github.com/napari/napari/pull/7241))
 - Replaced broken link to the "Translations" page :) ([#7243](https://github.com/napari/napari/pull/7243))
-- Alow to call benchmark that do not have params ([#7252](https://github.com/napari/napari/pull/7252))
+- Allow to call benchmark that do not have params ([#7252](https://github.com/napari/napari/pull/7252))
 - Block zarr=3.0.0a3 to fix pre-release tests ([#7254](https://github.com/napari/napari/pull/7254))
 - Change type of layer Metadata from dict to Mapping ([#7257](https://github.com/napari/napari/pull/7257))
 - Update `fsspec`, `hypothesis`, `pydantic`, `tensorstore`, `virtualenv`, `zarr` ([#7258](https://github.com/napari/napari/pull/7258))

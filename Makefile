@@ -20,10 +20,6 @@ clean:
 	rm -rf $(docs_dir)/gallery/*
 	rm -rf $(docs_dir)/_tags
 
-docs-install:
-	python -m pip install -qr $(current_dir)requirements.txt
-	python -m pip freeze
-
 prep-docs:
 	python $(docs_dir)/_scripts/prep_docs.py
 
@@ -32,8 +28,6 @@ docs-build: prep-docs
 
 docs-xvfb: prep-docs
 	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -M html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
-
-docs: clean docs-install docs-build
 
 html: clean docs-build
 

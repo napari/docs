@@ -197,10 +197,10 @@ Since `f-strings` do not work with localizable strings, we loose their
 convenience and have to use `str.format`. However, when using deferred
 translations, we need to be able to use any variables the original string
 needs to be able to render itself. To handle this, the `trans` helpers
-provide the ability to receive any extra keyword arguments whcih will be
+provide the ability to receive any extra keyword arguments which will be
 used for rendering the deferred strings on demand.
 
-An example of how this works with Spanish and defered string yields:
+An example of how this works with Spanish and deferred string yields:
 
 ```python
 from napari.utils.translations import trans
