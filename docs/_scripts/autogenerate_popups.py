@@ -1,11 +1,10 @@
 """
-Minimalist script to capture napari button popups.
+Ultra-simple script to capture napari button popups using the same approach as napari's tests.
 """
 from pathlib import Path
-from qtpy.QtCore import QPoint, QTimer, Qt
+from qtpy.QtCore import QPoint, QTimer
 from qtpy.QtWidgets import QApplication
 from napari._qt.qt_event_loop import get_qapp
-from napari._qt.qt_resources import get_stylesheet
 from napari._qt.dialogs.qt_modal import QtPopup
 import napari
 
@@ -14,82 +13,78 @@ IMAGES_PATH = Path(__file__).resolve().parent.parent / "images" / "_autogenerate
 IMAGES_PATH.mkdir(parents=True, exist_ok=True)
 
 def capture_popups():
-    """Capture button popups from napari."""
+    """Capture napari button popups."""
     app = get_qapp()
     
     # Create viewer and add sample data
-    print("Setting up viewer...")
     viewer = napari.Viewer(show=True)
     viewer.window._qt_window.resize(800, 600)
-    viewer.window._qt_window.setStyleSheet(get_stylesheet("dark"))
     viewer.open_sample(plugin='napari', sample='cells3d')
     
-    # Wait for viewer to initialize, then start capturing
-    QTimer.singleShot(2000, lambda: capture_ndisplay_popup(viewer))
+    # Wait for viewer to initialize
+    QTimer.singleShot(2000, lambda: start_capture(viewer))
     app.exec_()
 
-def capture_ndisplay_popup(viewer):
-    """Capture the ndisplay popup."""
-    print("Capturing ndisplay popup...")
+def start_capture(viewer):
+    """Start the popup capture sequence."""
+    # Get the viewer buttons directly - like in the tests
+    for widget in viewer.window._qt_window.findChildren(object):
+        if widget.__class__.__name__ == "QtViewerButtons":
+            viewer_buttons = widget
+            break
     
-    # Set to 3D mode for full controls
+    # First, set 3D mode for ndisplay popup
     viewer.dims.ndisplay = 3
     get_qapp().processEvents()
     
-    # Find viewer buttons widget
-    viewer_buttons = next(w for w in viewer.window._qt_window.findChildren(object) 
-                         if w.__class__.__name__ == "QtViewerButtons")
-    
-    # Ensure button responds to context menu
-    viewer_buttons.ndisplayButton.setContextMenuPolicy(Qt.CustomContextMenu)
-    
-    # Trigger and capture popup
-    viewer_buttons.ndisplayButton.customContextMenuRequested.emit(QPoint())
-    QTimer.singleShot(800, lambda: save_popup("ndisplay_popup", 
-                               lambda: capture_grid_popup(viewer, viewer_buttons)))
+    # Schedule the three popups in sequence with delays
+    # First: ndisplay popup
+    QTimer.singleShot(100, lambda: trigger_popup(
+        viewer_buttons.ndisplayButton, 
+        "ndisplay_popup", 
+        lambda: trigger_popup(
+            viewer_buttons.gridViewButton, 
+            "grid_popup", 
+            lambda: cleanup(viewer)
+        )
+    ))
 
-def capture_grid_popup(viewer, viewer_buttons):
-    """Capture the grid view popup."""
-    print("Capturing grid view popup...")
+def trigger_popup(button, name, next_func):
+    """Trigger a popup by emitting a context menu request, then capture it."""
+    print(f"Triggering {name}...")
     
-    # Ensure button responds to context menu
-    viewer_buttons.gridViewButton.setContextMenuPolicy(Qt.CustomContextMenu)
+    # Trigger the popup - same as in the tests
+    button.customContextMenuRequested.emit(QPoint())
     
-    # Trigger and capture popup
-    viewer_buttons.gridViewButton.customContextMenuRequested.emit(QPoint())
-    QTimer.singleShot(800, lambda: save_popup("grid_view_popup", 
-                               lambda: capture_roll_popup(viewer, viewer_buttons)))
+    # Give popup time to appear
+    QTimer.singleShot(800, lambda: capture_popup(name, next_func))
 
-def capture_roll_popup(viewer, viewer_buttons):
-    """Capture the roll dims popup."""
-    print("Capturing roll dims popup...")
-    
-    # Ensure button responds to context menu
-    viewer_buttons.rollDimsButton.setContextMenuPolicy(Qt.CustomContextMenu)
-    
-    # Trigger and capture popup
-    viewer_buttons.rollDimsButton.customContextMenuRequested.emit(QPoint())
-    QTimer.singleShot(800, lambda: save_popup("roll_dims_popup", 
-                               lambda: close_viewer(viewer)))
-
-def save_popup(name, next_function):
-    """Save the current popup and call the next function."""
+def capture_popup(name, next_func):
+    """Capture the currently visible popup."""
     # Find the popup
-    popup = next((w for w in QApplication.topLevelWidgets() 
-                 if isinstance(w, QtPopup)), None)
+    popup = None
+    for widget in QApplication.topLevelWidgets():
+        if isinstance(widget, QtPopup):
+            popup = widget
+            break
     
     if popup:
-        print(f"Saving {name} popup...")
+        print(f"Found popup, capturing {name}...")
         get_qapp().processEvents()
+        
+        # Capture and save
         popup.grab().save(str(IMAGES_PATH / f"{name}.png"))
         popup.close()
+        print(f"Saved {name}")
+    else:
+        print(f"No popup found for {name}")
     
-    # Call the next function
-    QTimer.singleShot(500, next_function)
+    # Call the next function after a delay
+    QTimer.singleShot(500, next_func)
 
-def close_viewer(viewer):
-    """Close the viewer and exit."""
-    print("All popups captured, exiting...")
+def cleanup(viewer):
+    """Close the viewer and quit."""
+    print("All captures complete")
     viewer.close()
     QTimer.singleShot(200, lambda: get_qapp().quit())
 
