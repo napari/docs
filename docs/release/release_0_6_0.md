@@ -1,10 +1,9 @@
 # napari 0.6.0
 ⚠️ *Note: these release notes are still in draft while 0.6.0 is in release candidate testing.* ⚠️
 
-Thursday, Mar 13, 2025
+Thursday, Mar 13, 2025 (0.6.0a1)
 
 
-*Thu, Jan 30 2024*
 
 🚧 *These notes are under construction while in pre-release* 🚧
 
