@@ -79,7 +79,7 @@ Pytest fixtures to aid testing live in:
 
 One often used fixture is `make_napari_viewer`. This fixture can take an argument `show`
 which is either `True` or `False`. In case your test depends on rendering of the viewer,
-it should be set to `True`. This is for example the case when testing a screenshot 
+it should be set to `True`. This is, for example, the case when testing a screenshot 
 functionality. Otherwise, it is best to set the argument to `False` to prevent the viewer
 from fully rendering.
 
