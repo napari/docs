@@ -170,7 +170,7 @@ def capture_menu(menu, name):
         pixmap.save(str(MENUS_PATH / f"{name}.png"))
         menu.hide()
     
-    QTimer.singleShot(300, grab_menu)
+    QTimer.singleShot(50, grab_menu)
     return
 
 def close_all(viewer):
