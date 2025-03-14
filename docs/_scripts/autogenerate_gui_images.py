@@ -43,7 +43,7 @@ def autogenerate_images():
     viewer_buttons.consoleButton.click()
     
     # Print Qt widget hierarchy
-    print_widget_hierarchy(viewer.window._qt_window)
+    # print_widget_hierarchy(viewer.window._qt_window)
     
     # Wait for viewer to fully initialize and render
     QTimer.singleShot(200, lambda: capture_elements(viewer))
@@ -75,6 +75,10 @@ def capture_elements(viewer):
         "status_bar": viewer.window._status_bar,
     }
     
+    # Capture each component
+    for name, widget in viewer_components.items():
+        capture_widget(widget, name)
+    
     menu_components = {
         "file_menu": find_widget_by_name(qt_window, "napari/file"),
         "samples_menu": find_widget_by_name(qt_window, "napari/file/samples/napari"),
@@ -84,8 +88,11 @@ def capture_elements(viewer):
         "window_menu": find_widget_by_name(qt_window, "napari/window"),
         "help_menu": find_widget_by_name(qt_window, "napari/help"),
     }
-        
-    
+
+    for name, menu in menu_components.items():
+        capture_menu(menu, name)
+
+
     viewer_buttons = viewer_components["viewer_buttons"]
     
     popups_configs = [
@@ -95,19 +102,22 @@ def capture_elements(viewer):
             "button": viewer_buttons.ndisplayButton,
         },
         {
+            "name": "roll_dims_popup",
+            "prep": lambda: setattr(viewer.dims, "ndisplay", 2),
+            "button": viewer_buttons.rollDimsButton,
+        },
+        {
             "name": "ndisplay_3D_popup",
             "prep": lambda: setattr(viewer.dims, "ndisplay", 3),
             "button": viewer_buttons.ndisplayButton,
+        },
+        {
+            "name": "grid_popup",
+            "prep": None,
+            "button": viewer_buttons.gridViewButton,
         }
     ]
-    
-    # Capture each component
-    for name, widget in viewer_components.items():
-        capture_widget(widget, name)
-            
-    for name, menu in menu_components.items():
-        capture_menu(menu, name)
-        
+
     for config in popups_configs:
         capture_popups(config)
     
@@ -118,7 +128,9 @@ def capture_popups(config):
     app = get_qapp()
     close_existing_popups()
 
-    config["prep"]()
+    if config["prep"] is not None:
+        config["prep"]()
+
     app.processEvents()
     config["button"].customContextMenuRequested.emit(QPoint())
     app.processEvents()
@@ -126,17 +138,15 @@ def capture_popups(config):
     
     if not popups:
         return print(f"No popup found for {config['name']}")
-    popup = popups[-1]
+
+    popup = popups[-1] # grab the most recent popup, just in case
     
     app.processEvents()
 
-    def grab_popup():
-        pixmap = popup.grab()
-        pixmap.save(str(POPUPS_PATH / f"{config['name']}.png"))
-        popup.close()
-        app.processEvents()
-    
-    QTimer.singleShot(300, grab_popup)
+    pixmap = popup.grab()
+    pixmap.save(str(POPUPS_PATH / f"{config['name']}.png"))
+    popup.close()
+    app.processEvents()
 
 def capture_widget(widget, name):
     """Capture a widget and save it to a file."""
