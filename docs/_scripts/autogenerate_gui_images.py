@@ -46,7 +46,7 @@ def autogenerate_images():
     print_widget_hierarchy(viewer.window._qt_window)
     
     # Wait for viewer to fully initialize and render
-    QTimer.singleShot(2000, lambda: capture_elements(viewer))
+    QTimer.singleShot(200, lambda: capture_elements(viewer))
     
     app.exec_()
 
@@ -109,73 +109,34 @@ def capture_elements(viewer):
         capture_menu(menu, name)
         
     for config in popups_configs:
-        pass
+        capture_popups(config)
     
-    QTimer.singleShot(500, lambda: capture_viewer_button_popups(viewer))
-    
-    # TODO: This needs to be done at the end of capture_elements and not autogenerate_images, why?
-    # QTimer.singleShot(100, lambda: close_all(viewer))
+    QTimer.singleShot(100, lambda: close_all(viewer))
 
-def capture_viewer_button_popups(viewer):
+def capture_popups(config):
     """Capture popups that appear when clicking on viewer buttons."""
-    print("Capturing viewer button popups")
-    viewer_buttons = find_widget_by_class(viewer.window._qt_window, "QtViewerButtons")
-   
-    # First capture ndisplay popup, when done it will trigger grid view
-    capture_ndisplay_popup(viewer, viewer_buttons)
-
-def capture_ndisplay_popup(viewer, viewer_buttons):
-    """Capture the ndisplay button popup."""    
-    
-    # Switch to 3D mode to see all perspective controls
-    viewer.dims.ndisplay = 3    
+    app = get_qapp()
     close_existing_popups()
 
-    # viewer_buttons.ndisplayButton.click()
-    button = viewer_buttons.ndisplayButton
-    button.customContextMenuRequested.emit(QPoint())
-        
-        # Wait longer for the popup to appear
-    QTimer.singleShot(500, lambda: find_and_capture_popup("ndisplay_popup", 
-                                    lambda: capture_grid_view_popup(viewer, viewer_buttons)))
-
-def capture_grid_view_popup(viewer, viewer_buttons):
-    """Capture the grid view button popup."""
-    close_existing_popups()
-
-    button = viewer_buttons.gridViewButton
-    button.customContextMenuRequested.emit(QPoint())
-        
-    # Wait longer for the popup to appear and then close the app when done
-    QTimer.singleShot(500, lambda: find_and_capture_popup("grid_view_popup", 
-                                    lambda: QTimer.singleShot(500, lambda: close_all(viewer))))
-
-def find_and_capture_popup(name, next_function=None):
-    """Find any open QtPopup widgets and capture them."""
-    popup = None
-    for widget in QApplication.topLevelWidgets():
-        if isinstance(widget, QtPopup):
-            popup = widget
-            break
+    config["prep"]()
+    app.processEvents()
+    config["button"].customContextMenuRequested.emit(QPoint())
+    app.processEvents()
+    popups = [w for w in QApplication.topLevelWidgets() if isinstance(w, QtPopup) and w.isVisible()]
     
-    if popup:
-        try:
-            print(f"Found popup, capturing {name}...")
-            get_qapp().processEvents()
-            
-            pixmap = popup.grab()
-            pixmap.save(str(POPUPS_PATH / f"{name}.png"))
-            popup.close()
-            print(f"Captured and closed {name}")
-        except Exception as e:
-            print(f"Error grabbing popup {name}: {e}")
-    else:
-        print(f"No popup found for {name}")
+    if not popups:
+        return print(f"No popup found for {config['name']}")
+    popup = popups[-1]
     
-    # Call the next function in sequence if provided
-    if next_function:
-        QTimer.singleShot(500, next_function)
+    app.processEvents()
+
+    def grab_popup():
+        pixmap = popup.grab()
+        pixmap.save(str(POPUPS_PATH / f"{config['name']}.png"))
+        popup.close()
+        app.processEvents()
     
+    QTimer.singleShot(300, grab_popup)
 
 def capture_widget(widget, name):
     """Capture a widget and save it to a file."""
