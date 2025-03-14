@@ -1,8 +1,7 @@
 # napari 0.6.0
 ⚠️ *Note: these release notes are still in draft while 0.6.0 is in release candidate testing.* ⚠️
 
-Thursday, Mar 13, 2025 (0.6.0a1)
-
+Friday, Mar 14, 2025 (0.6.0a1)
 
 
 🚧 *These notes are under construction while in pre-release* 🚧
@@ -158,6 +157,7 @@ issues](https://github.com/napari/napari) or on our [Zulip chat room](https://na
 - Add sections to Contributing landing page and edit lightly ([docs#614](https://github.com/napari/docs/pull/614))
 - Move links out of navbar and into sidebar / other docs. ([docs#620](https://github.com/napari/docs/pull/620))
 - Add 0.6.0 alpha release note ([docs#622](https://github.com/napari/docs/pull/622))
+- Add info about adapted plugins to troubleshooting guide ([docs#623](https://github.com/napari/docs/pull/623))
 
 ## Other Pull Requests
 
@@ -202,6 +202,7 @@ issues](https://github.com/napari/napari) or on our [Zulip chat room](https://na
 - Show version for PyQt6 and PySide6 ([#7691](https://github.com/napari/napari/pull/7691))
 - Add CI status badge and remove Cirrus CI badge from README ([#7693](https://github.com/napari/napari/pull/7693))
 - Bump python versions in CircleCI to match docs repo ([#7694](https://github.com/napari/napari/pull/7694))
+- Skip vispy bounding box test on windows ([#7697](https://github.com/napari/napari/pull/7697))
 - Add codespell support (config, workflow to detect/not fix) and make it fix few typos ([docs#587](https://github.com/napari/docs/pull/587))
 - Update CircleCI config.yml to use napari docs and gallery dependency groups ([docs#590](https://github.com/napari/docs/pull/590))
 - Update build_and_deploy.yml to use napari docs dependency group ([docs#591](https://github.com/napari/docs/pull/591))
