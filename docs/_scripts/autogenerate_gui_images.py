@@ -16,7 +16,7 @@ def autogenerate_images():
     
     # Create viewer with visible window
     viewer = napari.Viewer(show=True)
-    viewer.window._qt_window.resize(800, 600)
+    viewer.window._qt_window.resize(1000, 800)
     viewer.window._qt_window.setStyleSheet(get_stylesheet("dark"))
     
         # Ensure window is active
