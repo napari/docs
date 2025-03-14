@@ -31,8 +31,12 @@ def autogenerate_images():
     app.processEvents() # Ensure viewer is fully initialized
     viewer.screenshot(str(IMAGES_PATH / "viewer_cells3d.png"), canvas_only=False)
     
+    # Open the console
+    viewer_buttons = find_widget_by_class(viewer.window._qt_window, "QtViewerButtons")
+    viewer_buttons.consoleButton.click()
+    
     # Print Qt widget hierarchy
-    # print_widget_hierarchy(viewer.window._qt_window)
+    print_widget_hierarchy(viewer.window._qt_window)
     
     # Wait for viewer to fully initialize and render
     QTimer.singleShot(2000, lambda: capture_elements(viewer))
@@ -110,13 +114,24 @@ def capture_ndisplay_popup(viewer, viewer_buttons):
     # Switch to 3D mode to see all perspective controls
     viewer.dims.ndisplay = 3
     get_qapp().processEvents()
+    
+    close_existing_popups()
 
+    # viewer_buttons.ndisplayButton.click()
     button = viewer_buttons.ndisplayButton
     button.customContextMenuRequested.emit(QPoint())
         
         # Wait longer for the popup to appear
-    QTimer.singleShot(800, lambda: find_and_capture_popup("ndisplay_popup", 
+    QTimer.singleShot(500, lambda: find_and_capture_popup("ndisplay_popup", 
                                     lambda: capture_grid_view_popup(viewer, viewer_buttons)))
+
+def close_existing_popups():
+    """Close any existing popups."""
+    for widget in QApplication.topLevelWidgets():
+        if isinstance(widget, QtPopup):
+            widget.close()
+            
+    get_qapp().processEvents()
 
 def capture_grid_view_popup(viewer, viewer_buttons):
     """Capture the grid view button popup."""
@@ -125,7 +140,7 @@ def capture_grid_view_popup(viewer, viewer_buttons):
     button.customContextMenuRequested.emit(QPoint())
         
     # Wait longer for the popup to appear and then close the app when done
-    QTimer.singleShot(800, lambda: find_and_capture_popup("grid_view_popup", 
+    QTimer.singleShot(500, lambda: find_and_capture_popup("grid_view_popup", 
                                     lambda: QTimer.singleShot(500, lambda: close_all(viewer))))
 
 def find_and_capture_popup(name, next_function=None):
