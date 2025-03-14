@@ -109,12 +109,9 @@ def capture_viewer_button_popups(viewer):
 
 def capture_ndisplay_popup(viewer, viewer_buttons):
     """Capture the ndisplay button popup."""    
-    print("Capturing ndisplay popup")
     
     # Switch to 3D mode to see all perspective controls
-    viewer.dims.ndisplay = 3
-    get_qapp().processEvents()
-    
+    viewer.dims.ndisplay = 3    
     close_existing_popups()
 
     # viewer_buttons.ndisplayButton.click()
@@ -125,16 +122,9 @@ def capture_ndisplay_popup(viewer, viewer_buttons):
     QTimer.singleShot(500, lambda: find_and_capture_popup("ndisplay_popup", 
                                     lambda: capture_grid_view_popup(viewer, viewer_buttons)))
 
-def close_existing_popups():
-    """Close any existing popups."""
-    for widget in QApplication.topLevelWidgets():
-        if isinstance(widget, QtPopup):
-            widget.close()
-            
-    get_qapp().processEvents()
-
 def capture_grid_view_popup(viewer, viewer_buttons):
     """Capture the grid view button popup."""
+    close_existing_popups()
 
     button = viewer_buttons.gridViewButton
     button.customContextMenuRequested.emit(QPoint())
@@ -185,6 +175,14 @@ def show_menu_for_screenshot(menu, name):
 def close_all(viewer):
     viewer.close()
     QTimer.singleShot(100, lambda: get_qapp().quit())
+
+def close_existing_popups():
+    """Close any existing popups."""
+    for widget in QApplication.topLevelWidgets():
+        if isinstance(widget, QtPopup):
+            widget.close()
+            
+    get_qapp().processEvents()
 
 def find_widget_by_name(parent, name):
     """Find a widget by its object name."""
