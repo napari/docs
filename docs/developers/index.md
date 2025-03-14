@@ -7,9 +7,10 @@ to napari.
 napari has a [Code of Conduct](napari-coc) that should be honored by everyone who participates in the `napari` community.
 
 - [](contact): how to contact us.
-- [](roadmaps): convey the general direction for napari development and possible
-  work plans.
-- **Contributor guides**: resources on for contributors:
+- [](roadmaps): convey the general direction for napari development and possible work plans
+- [napari Workshop](https://napari.org/napari-workshop-template/home.html): create and deploy your own napari workshop materials
+
+- **Contributor guides**: resources for contributors:
   - [Contributing guide](napari-contributing)
     - [Development installation](dev-installation)
     - [Testing](napari-testing)
