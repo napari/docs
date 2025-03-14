@@ -7,6 +7,22 @@ please open a new issue.
 
 ## Known issues
 
+### Installed plugin doesn't show up in `Plugins` menu
+
+Installed `npe2` plugins (this is most plugins!) are not loaded until you restart `napari`. Try restarting the viewer
+and see whether this resolves your issue.
+
+### Plugin options missing
+
+If you've installed a plugin, restarted `napari`, and some of the plugin's options are missing e.g. there is no `Tools`
+menu or you're trying to save layers and can't find the plugin in the listed writers, you might have an auto-converted
+plugin using the deprecated `npe1` engine.
+
+Try turning off the `Use npe2 adaptor` setting under `Preferences -> Plugins -> Use npe2 adaptor` and restarting napari.
+This setting will be removed in version `0.7.0` of napari, so reach out to the plugin developer to update their plugin.
+
+Learn more about this in the [adapted plugin guide](adapted-plugin-guide).
+
 ### Resetting preferences and settings
 
 Changing napari versions—updating or downgrading—within an environment can cause issues with settings.  These issues can
