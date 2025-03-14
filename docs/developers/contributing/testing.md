@@ -77,7 +77,7 @@ Pytest fixtures to aid testing live in:
   available globally to all of `napari` **and** to all tests in the same environment
   that `napari` is in (as this file is exported).
 
-One often used fixture is `make_napari_viewer`. This fixture can take as argument `show`
+One often used fixture is `make_napari_viewer`. This fixture can take an argument `show`
 which is either `True` or `False`. In case your test depends on rendering of the viewer,
 it should be set to `True`. This is for example the case when testing a screenshot 
 functionality. Otherwise, it is best to set the argument to `False` to prevent the viewer
