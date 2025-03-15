@@ -1,4 +1,11 @@
-# Configuration file for the Sphinx documentation builder.
+"""Configuration file for the Sphinx documentation builder.
+
+This configuration build file contains settings to customize Sphinx
+input and output behavior as well as styling for napari documentation.
+
+See https://www.sphinx-doc.org/en/master/usage/configuration.html or
+individual extension documentation for more information on specific settings.
+"""
 
 # -- Imports --------------------------------------------------------------
 
@@ -32,7 +39,7 @@ if napari_version.is_devrelease:
 else:
     version = napari_version.base_version
 
-# -- Project information -----------------------------------------------------
+# -- Project information ---------------------------------------------------
 
 project = 'napari'
 copyright = f'{datetime.now().year}, The napari team'
@@ -57,27 +64,10 @@ extensions = [
     "myst_nb",
 ]
 
-# -- General configuration ---------------------------------------------------
-
-comments_config = {'hypothesis': False, 'utterances': False}
-
-external_toc_path = "_toc.yml"
-external_toc_exclude_missing = False
-
-mermaid_d3_zoom = True
-mermaid_version = "11.4.1"
-mermaid_include_elk = ""
-
-tags_create_tags = True
-tags_output_dir = "_tags"
-tags_overview_title = "Tags"
-tags_extension = ["md", "rst"]
-
-# -- HTML Theme Options -------------------------------------------------
+# -- HTML Theme ------------------------------------------------------------
 
 # See https://github.com/napari/napari-sphinx-theme for more information.
 html_theme = 'napari_sphinx_theme'
-<<<<<<< HEAD
 
 # Define the json_url for our version switcher.
 json_url = "https://napari.org/dev/_static/version_switcher.json"
@@ -88,8 +78,7 @@ else:
     version_match = str(release)
 
 html_sourcelink_suffix = ""
-=======
->>>>>>> 3886a73 (Add logger and update some docstrings)
+
 html_title = "napari"
 
 # Path to static files, images, favicons, logos, css, and extra templates
@@ -157,7 +146,7 @@ html_sidebars = {
     "index": ["search-field.html" , "sidebar-link-items.html"],
 }
 
-# html context
+# html context is passed into the template engine’s context for all pages.
 html_context = {
    # use Light theme only, don't auto switch (default)
    "default_mode": "light",
@@ -200,15 +189,26 @@ myst_enable_extensions = [
 myst_footnote_transition = False
 myst_heading_anchors = 4
 
-html_sourcelink_suffix = ""
+# configuration settings for sphinx and its extensions
+comments_config = {"hypothesis": False, "utterances": False}
+external_toc_path = "_toc.yml"
+external_toc_exclude_missing = False
 lexers["toml"] = TOMLLexer(startinline=True)
 napoleon_custom_sections = [("Events", "params_style")]
 nb_output_stderr = "show"
+mermaid_d3_zoom = True
+mermaid_version = "11.4.1"
+mermaid_include_elk = ""
+tags_create_tags = True
+tags_output_dir = "_tags"
+tags_overview_title = "Tags"
+tags_extension = ["md", "rst"]
+html_sourcelink_suffix = ""
 panels_add_bootstrap_css = False
 pygments_style = "solarized-dark"
 suppress_warnings = ["myst.header", "etoc.toctree", "config.cache"]
 
-# files to exclude from docs build
+# glob-style patterns to exclude from docs build source files
 exclude_patterns = [
     "_build",
     "Thumbs.db",
@@ -220,7 +220,7 @@ exclude_patterns = [
     "gallery/index.rst",
 ]
 
-# -- Versions and version switcher -----------------------------------------
+# -- Versions and switcher -------------------------------------------------
 
 # Define the json_url for our version switcher.
 json_url = "https://napari.org/dev/_static/version_switcher.json"
@@ -258,7 +258,7 @@ myst_substitutions = {
     "conda_create_env": f"```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```",
 }
 
-# -- Autosummary options ----------------------------------------------------
+# -- Autosummary ------------------------------------------------------------
 
 autosummary_generate = True
 autosummary_ignore_module_all = False
@@ -306,7 +306,7 @@ class FilterSphinxWarnings(logging.Filter):
             return False
         return True
 
-# -- Gallery of examples ----------------------------------------------------
+# -- Examples gallery -------------------------------------------------------
 
 def reset_napari(gallery_conf, fname):
     from napari.settings import get_settings
@@ -390,7 +390,7 @@ sphinx_gallery_conf = {
     'within_subsection_order': ExampleTitleSortKey,
 }
 
-# -- Calendar options ------------------------------------------------------
+# -- Calendar ---------------------------------------------------------------
 
 GOOGLE_CALENDAR_API_KEY = os.environ.get('GOOGLE_CALENDAR_API_KEY', '')
 
@@ -404,7 +404,7 @@ def add_google_calendar_secrets(app, docname, source):
     if docname == 'community/meeting_schedule':
         source[0] = source[0].replace('{API_KEY}', GOOGLE_CALENDAR_API_KEY)
 
-# -- Links and linkcheck options ------------------------------------------------------
+# -- Links and checks ------------------------------------------------------
 
 linkcheck_allowed_redirects = {
     r"https://youtu\.be/.*": r"https://www\.youtube\.com/.*",
@@ -450,9 +450,6 @@ def rewrite_github_anchor(app, uri: str):
             return urlunparse(parsed._replace(fragment=fragment))
     return None
 
-# -- Filters to reduce duplicate warnings -----------------------------------
-
-
 # -- Qt threading docstrings ------------------------------------------------
 
 def qt_docstrings(app, what, name, obj, options, lines):
@@ -466,7 +463,7 @@ def qt_docstrings(app, what, name, obj, options, lines):
         if len(lines) > 0:
             del lines[1:]
 
-# -- Setup for docs build ---------------------------------------------------
+# -- Docs build setup ------------------------------------------------------
 
 def setup(app):
     """Set up docs build.
@@ -483,8 +480,8 @@ def setup(app):
     app.connect('source-read', add_google_calendar_secrets)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
     app.connect('autodoc-process-docstring', qt_docstrings)
-    logger = logging.getLogger("sphinx")
 
+    logger = logging.getLogger("sphinx")
     warning_handler, *_ = [
         h for h in logger.handlers
         if isinstance(h, sphinx_logging.WarningStreamHandler)
