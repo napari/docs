@@ -81,6 +81,13 @@ html_sourcelink_suffix = ""
 
 html_title = "napari"
 
+# Define the json_url for our version switcher and match dev and release.
+json_url = "https://napari.org/dev/_static/version_switcher.json"
+if version == "dev":
+    version_match = "dev"
+else:
+    version_match = release
+
 # Path to static files, images, favicons, logos, css, and extra templates
 html_static_path = ["_static"]
 html_logo = "_static/images/logo.png"
@@ -221,14 +228,6 @@ exclude_patterns = [
 ]
 
 # -- Versions and switcher -------------------------------------------------
-
-# Define the json_url for our version switcher.
-json_url = "https://napari.org/dev/_static/version_switcher.json"
-
-if version == "dev":
-    version_match = "dev"
-else:
-    version_match = release
 
 def get_supported_python_versions(project_name):
     """
