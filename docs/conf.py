@@ -1,38 +1,29 @@
 # Configuration file for the Sphinx documentation builder.
-#
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-# -- Path setup --------------------------------------------------------------
+# -- Imports --------------------------------------------------------------
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
-
-import re
+import logging
 import os
+import re
 from datetime import datetime
 from importlib import import_module
 from importlib.metadata import distribution
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
-import logging
+
 
 from jinja2.filters import FILTERS
+from packaging.version import parse as parse_version
+from pygments.lexers import TOMLLexer
 from sphinx_gallery import scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
 from sphinx.highlighting import lexers
 from sphinx.util import logging as sphinx_logging
-from packaging.version import parse as parse_version
-from pygments.lexers import TOMLLexer
 
 import napari
 from napari._version import __version_tuple__
+
+# -- Version information ---------------------------------------------------
 
 napari_version = parse_version(napari.__version__)
 release = str(napari_version)
@@ -46,54 +37,44 @@ project = 'napari'
 copyright = f'{datetime.now().year}, The napari team'
 author = 'The napari team'
 
-# -- General configuration ---------------------------------------------------
-
-# Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-# ones.
-autosummary_generate = True
-autosummary_imported_members = True
-comments_config = {'hypothesis': False, 'utterances': False}
-
-# execution_allow_errors = False
-# execution_excludepatterns = []
-# execution_in_temp = False
-# execution_timeout = 30
+# -- Sphinx extensions -------------------------------------------------------
 
 extensions = [
-    "sphinx.ext.napoleon",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
-    "sphinx_external_toc",
-    "sphinx_design",
-    'myst_nb',
-    #    "sphinx_comments",
+    "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
-    "sphinx_favicon",
+    "sphinxcontrib.mermaid",
+    #    "sphinx_comments",
     "sphinx_copybutton",
+    "sphinx_design",
+    "sphinx_external_toc",
+    "sphinx_favicon",
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
-    "sphinxcontrib.mermaid",
+    "myst_nb",
 ]
+
+# -- General configuration ---------------------------------------------------
+
+comments_config = {'hypothesis': False, 'utterances': False}
 
 external_toc_path = "_toc.yml"
 external_toc_exclude_missing = False
+
+mermaid_d3_zoom = True
+mermaid_version = "11.4.1"
+mermaid_include_elk = ""
 
 tags_create_tags = True
 tags_output_dir = "_tags"
 tags_overview_title = "Tags"
 tags_extension = ["md", "rst"]
 
-mermaid_d3_zoom = True
-mermaid_version = "11.4.1"
-mermaid_include_elk = ""
+# -- HTML Theme Options -------------------------------------------------
 
-# -- Options for HTML output -------------------------------------------------
-
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-#
+# See https://github.com/napari/napari-sphinx-theme for more information.
 html_theme = 'napari_sphinx_theme'
 
 # Define the json_url for our version switcher.
@@ -103,6 +84,9 @@ if version == "dev":
     version_match = "dev"
 else:
     version_match = str(release)
+
+html_sourcelink_suffix = ""
+html_title = "napari"
 
 html_theme_options = {
     "external_links": [
@@ -146,13 +130,18 @@ html_context = {
    "version": version,
 }
 
+templates_path = ["_templates"]
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_logo = "_static/images/logo.png"
-html_sourcelink_suffix = ''
-html_title = 'napari'
+
+html_css_files = [
+    "custom.css",
+]
+
 
 favicons = [
     {
@@ -174,10 +163,6 @@ favicons = [
         "sizes": "180x180",
         "static-file": "favicon/logo-noborder-180.png",
     },
-]
-
-html_css_files = [
-    'custom.css',
 ]
 
 intersphinx_mapping = {
@@ -212,7 +197,6 @@ myst_enable_extensions = [
 
 myst_heading_anchors = 4
 
-
 def get_supported_python_versions(project_name):
     """
     Get the supported Python versions for a given project
@@ -221,7 +205,6 @@ def get_supported_python_versions(project_name):
     dist = distribution(project_name)
     classifiers = [value for key, value in dist.metadata.items() if key == 'Classifier' and value.startswith('Programming Language :: Python ::')]
     return [parse_version(c.split(' :: ')[-1]) for c in classifiers if not c.endswith('Only')]
-
 
 napari_supported_python_versions = get_supported_python_versions('napari')
 
@@ -250,8 +233,8 @@ panels_add_bootstrap_css = False
 pygments_style = 'solarized-dark'
 suppress_warnings = ['myst.header', 'etoc.toctree', 'config.cache']
 
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+napoleon_custom_sections = [("Events", "params_style")]
+lexers["toml"] = TOMLLexer(startinline=True)
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -267,9 +250,33 @@ exclude_patterns = [
     'gallery/index.rst',
 ]
 
-napoleon_custom_sections = [('Events', 'params_style')]
-lexers['toml'] = TOMLLexer(startinline=True)
+# -- Autosummary options ----------------------------------------------------
 
+autosummary_generate = True
+autosummary_ignore_module_all = False
+autosummary_imported_members = True
+
+
+def get_attributes(item, obj, modulename):
+    """Filters attributes to be used in autosummary.
+
+    Fixes import errors when documenting inherited attributes with autosummary.
+
+    """
+    module = import_module(modulename)
+    if hasattr(module, "__all__") and obj not in module.__all__:
+        return ""
+
+    if hasattr(getattr(module, obj), item):
+        return f"~{obj}.{item}"
+    else:
+        return ""
+
+
+FILTERS["get_attributes"] = get_attributes
+
+
+# -- Gallery of examples ----------------------------------------------------
 
 def reset_napari(gallery_conf, fname):
     from napari.settings import get_settings
@@ -353,8 +360,9 @@ sphinx_gallery_conf = {
     'within_subsection_order': ExampleTitleSortKey,
 }
 
-GOOGLE_CALENDAR_API_KEY = os.environ.get('GOOGLE_CALENDAR_API_KEY', '')
+# -- Calendar options ------------------------------------------------------
 
+GOOGLE_CALENDAR_API_KEY = os.environ.get('GOOGLE_CALENDAR_API_KEY', '')
 
 def add_google_calendar_secrets(app, docname, source):
     """Add google calendar api key to meeting schedule page.
@@ -366,6 +374,53 @@ def add_google_calendar_secrets(app, docname, source):
     if docname == 'community/meeting_schedule':
         source[0] = source[0].replace('{API_KEY}', GOOGLE_CALENDAR_API_KEY)
 
+# -- Links and linkcheck options ------------------------------------------------------
+
+linkcheck_allowed_redirects = {
+    r"https://youtu\.be/.*": r"https://www\.youtube\.com/.*",
+    r"https://github\.com/napari/napari/releases/download/.*": r"https://objects\.githubusercontent\.com/.*",
+}
+linkcheck_anchors_ignore = [r"^!", r"L\d+-L\d+", r"r\d+", r"issuecomment-\d+"]
+linkcheck_ignore = [
+    "https://napari.zulipchat.com/",
+    "../_tags",
+    "https://en.wikipedia.org/wiki/Napari#/media/File:Tabuaeran_Kiribati.jpg",
+    "http://localhost:8000",
+    "https://datadryad.org/stash/downloads/file_stream/182482",
+    "https://github.com/napari/docs/issues/new/choose",
+    "https://github.com/napari/napari/issues/new/choose",
+    "https://github.com/napari/napari/issues/new",
+    "https://napari-hub.org",
+    "https://github.com/napari/napari/releases/latest",
+    "https://onlinelibrary.wiley.com/doi/10.1002/col.20327",
+]
+
+def rewrite_github_anchor(app, uri: str):
+    """Rewrite anchor name of the hyperlink to github.com
+
+    The hyperlink anchors in github.com are dynamically generated.  This rewrites
+    them before checking and makes them comparable.
+    """
+    parsed = urlparse(uri)
+    if parsed.hostname == "github.com" and parsed.fragment:
+        for text in [
+            "L",
+            "readme",
+            "pullrequestreview",
+            "issuecomment",
+            "issue",
+        ]:
+            if parsed.fragment.startswith(text):
+                return None
+        if re.match(r"r\d+", parsed.fragment):
+            return None
+        prefixed = parsed.fragment.startswith("user-content-")
+        if not prefixed:
+            fragment = f"user-content-{parsed.fragment}"
+            return urlunparse(parsed._replace(fragment=fragment))
+    return None
+
+# -- Logging and warnings ---------------------------------------------------
 
 class FilterSphinxWarnings(logging.Filter):
     """Filter 'duplicate object description' warnings.
@@ -392,6 +447,7 @@ class FilterSphinxWarnings(logging.Filter):
             return False
         return True
 
+# -- Qt threading docstrings ------------------------------------------------
 
 def qt_docstrings(app, what, name, obj, options, lines):
     """Only show first line of Qt threading docstrings.
@@ -404,6 +460,7 @@ def qt_docstrings(app, what, name, obj, options, lines):
         if len(lines) > 0:
             del lines[1:]
 
+# -- Setup for docs build ---------------------------------------------------
 
 def setup(app):
     """Set up docs build.
@@ -427,69 +484,3 @@ def setup(app):
         if isinstance(h, sphinx_logging.WarningStreamHandler)
     ]
     warning_handler.filters.insert(0, FilterSphinxWarnings(app))
-
-
-def get_attributes(item, obj, modulename):
-    """Filters attributes to be used in autosummary.
-
-    Fixes import errors when documenting inherited attributes with autosummary.
-
-    """
-    module = import_module(modulename)
-    if hasattr(module, "__all__") and obj not in module.__all__:
-        return ""
-
-    if hasattr(getattr(module, obj), item):
-        return f"~{obj}.{item}"
-    else:
-        return ""
-
-
-FILTERS["get_attributes"] = get_attributes
-
-autosummary_ignore_module_all = False
-
-linkcheck_anchors_ignore = [r'^!', r'L\d+-L\d+', r'r\d+', r'issuecomment-\d+']
-linkcheck_ignore = [
-    "https://napari.zulipchat.com/",
-    "../_tags",
-    "https://en.wikipedia.org/wiki/Napari#/media/File:Tabuaeran_Kiribati.jpg",
-    "http://localhost:8000",
-    "https://datadryad.org/stash/downloads/file_stream/182482",
-    "https://github.com/napari/docs/issues/new/choose",
-    "https://github.com/napari/napari/issues/new/choose",
-    "https://github.com/napari/napari/issues/new",
-    "https://napari-hub.org",
-    "https://github.com/napari/napari/releases/latest",
-    "https://onlinelibrary.wiley.com/doi/10.1002/col.20327",
-]
-linkcheck_allowed_redirects = {
-    r"https://youtu\.be/.*": r"https://www\.youtube\.com/.*",
-    r"https://github\.com/napari/napari/releases/download/.*": r"https://objects\.githubusercontent\.com/.*",
-}
-
-
-def rewrite_github_anchor(app, uri: str):
-    """Rewrite anchor name of the hyperlink to github.com
-
-    The hyperlink anchors in github.com are dynamically generated.  This rewrites
-    them before checking and makes them comparable.
-    """
-    parsed = urlparse(uri)
-    if parsed.hostname == "github.com" and parsed.fragment:
-        for text in [
-            "L",
-            "readme",
-            "pullrequestreview",
-            "issuecomment",
-            "issue",
-        ]:
-            if parsed.fragment.startswith(text):
-                return None
-        if re.match(r'r\d+', parsed.fragment):
-            return None
-        prefixed = parsed.fragment.startswith('user-content-')
-        if not prefixed:
-            fragment = f'user-content-{parsed.fragment}'
-            return urlunparse(parsed._replace(fragment=fragment))
-    return None
