@@ -35,7 +35,7 @@ import napari
 from napari._version import __version_tuple__
 
 release = napari.__version__
-if "dev" in release:
+if "dev" in release or parse_version(release).is_prerelease:
     version = "dev"
 else:
     version = release
