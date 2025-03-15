@@ -24,7 +24,7 @@ def setup_logger(script_name, log_directory="logs"):
 
     # Create a logger
     logger = logging.getLogger(script_name_no_ext)
-    logger.setLevel(logging.DEBUG)  # Set the minimum logging level
+    logger.setLevel(logging.INFO)  # Set the minimum logging level
 
     # Create a file handler
     # log_file_path = os.path.join(log_directory, f"{script_name_no_ext}.log")
