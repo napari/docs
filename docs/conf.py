@@ -31,6 +31,7 @@ if napari_version.is_devrelease:
     version = "dev"
 else:
     version = napari_version.base_version
+
 # -- Project information -----------------------------------------------------
 
 project = 'napari'
@@ -76,6 +77,7 @@ tags_extension = ["md", "rst"]
 
 # See https://github.com/napari/napari-sphinx-theme for more information.
 html_theme = 'napari_sphinx_theme'
+<<<<<<< HEAD
 
 # Define the json_url for our version switcher.
 json_url = "https://napari.org/dev/_static/version_switcher.json"
@@ -86,8 +88,40 @@ else:
     version_match = str(release)
 
 html_sourcelink_suffix = ""
+=======
+>>>>>>> 3886a73 (Add logger and update some docstrings)
 html_title = "napari"
 
+# Path to static files, images, favicons, logos, css, and extra templates
+html_static_path = ["_static"]
+html_logo = "_static/images/logo.png"
+html_css_files = [
+    "custom.css",
+]
+templates_path = ["_templates"]
+favicons = [
+    {
+        # the SVG is the "best" and contains code to detect OS light/dark mode
+        "static-file": "favicon/logo-silhouette-dark-light.svg",
+        "type": "image/svg+xml",
+    },
+    {
+        # Safari in Oct. 2022 does not support SVG
+        # an ICO would work as well, but PNG should be just as good
+        # setting sizes="any" is needed for Chrome to prefer the SVG
+        "sizes": "any",
+        "static-file": "favicon/logo-silhouette-192.png",
+    },
+    {
+        # this is used on iPad/iPhone for "Save to Home Screen"
+        # apparently some other apps use it as well
+        "rel": "apple-touch-icon",
+        "sizes": "180x180",
+        "static-file": "favicon/logo-noborder-180.png",
+    },
+]
+
+# napari sphinx theme options
 html_theme_options = {
     "external_links": [
         {"name": "napari hub", "url": "https://napari-hub.org"},
@@ -117,11 +151,13 @@ html_theme_options = {
     "show_version_warning_banner": True,
 }
 
+# sidebar content
 html_sidebars = {
     "**": ["search-field.html", "sidebar-nav-bs"],
     "index": ["search-field.html" , "sidebar-link-items.html"],
 }
 
+# html context
 html_context = {
    # use Light theme only, don't auto switch (default)
    "default_mode": "light",
@@ -130,41 +166,7 @@ html_context = {
    "version": version,
 }
 
-templates_path = ["_templates"]
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
-html_logo = "_static/images/logo.png"
-
-html_css_files = [
-    "custom.css",
-]
-
-
-favicons = [
-    {
-        # the SVG is the "best" and contains code to detect OS light/dark mode
-        "static-file": "favicon/logo-silhouette-dark-light.svg",
-        "type": "image/svg+xml",
-    },
-    {
-        # Safari in Oct. 2022 does not support SVG
-        # an ICO would work as well, but PNG should be just as good
-        # setting sizes="any" is needed for Chrome to prefer the SVG
-        "sizes": "any",
-        "static-file": "favicon/logo-silhouette-192.png",
-    },
-    {
-        # this is used on iPad/iPhone for "Save to Home Screen"
-        # apparently some other apps use it as well
-        "rel": "apple-touch-icon",
-        "sizes": "180x180",
-        "static-file": "favicon/logo-noborder-180.png",
-    },
-]
-
+# intersphinx configuration for frequently used links to other projects
 intersphinx_mapping = {
     'python': ['https://docs.python.org/3', None],
     'numpy': ['https://numpy.org/doc/stable/', None],
@@ -186,6 +188,7 @@ intersphinx_mapping = {
     ],
 }
 
+# myst markdown extensions for additional markdown features
 myst_enable_extensions = [
     'colon_fence',
     'dollarmath',
@@ -194,8 +197,38 @@ myst_enable_extensions = [
     'attrs_inline',
     'linkify',
 ]
-
+myst_footnote_transition = False
 myst_heading_anchors = 4
+
+html_sourcelink_suffix = ""
+lexers["toml"] = TOMLLexer(startinline=True)
+napoleon_custom_sections = [("Events", "params_style")]
+nb_output_stderr = "show"
+panels_add_bootstrap_css = False
+pygments_style = "solarized-dark"
+suppress_warnings = ["myst.header", "etoc.toctree", "config.cache"]
+
+# files to exclude from docs build
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    ".jupyter_cache",
+    "jupyter_execute",
+    "plugins/_*.md",
+    "plugins/building_a_plugin/_layer_data_guide.md",
+    "gallery/index.rst",
+]
+
+# -- Versions and version switcher -----------------------------------------
+
+# Define the json_url for our version switcher.
+json_url = "https://napari.org/dev/_static/version_switcher.json"
+
+if version == "dev":
+    version_match = "dev"
+else:
+    version_match = release
 
 def get_supported_python_versions(project_name):
     """
@@ -225,31 +258,6 @@ myst_substitutions = {
     "conda_create_env": f"```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```",
 }
 
-myst_footnote_transition = False
-
-nb_output_stderr = 'show'
-
-panels_add_bootstrap_css = False
-pygments_style = 'solarized-dark'
-suppress_warnings = ['myst.header', 'etoc.toctree', 'config.cache']
-
-napoleon_custom_sections = [("Events", "params_style")]
-lexers["toml"] = TOMLLexer(startinline=True)
-
-# List of patterns, relative to source directory, that match files and
-# directories to ignore when looking for source files.
-# This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = [
-    '_build',
-    'Thumbs.db',
-    '.DS_Store',
-    '.jupyter_cache',
-    'jupyter_execute',
-    'plugins/_*.md',
-    'plugins/building_a_plugin/_layer_data_guide.md',
-    'gallery/index.rst',
-]
-
 # -- Autosummary options ----------------------------------------------------
 
 autosummary_generate = True
@@ -275,6 +283,28 @@ def get_attributes(item, obj, modulename):
 
 FILTERS["get_attributes"] = get_attributes
 
+class FilterSphinxWarnings(logging.Filter):
+    """Filter autosummary 'duplicate object description' warnings.
+
+    These warnings are a result of autosummary limitations when we have
+    Attributes and Properties in a class sharing the same name.
+
+    These warnings are unnecessary as they do not cause missing documentation
+    or rendering issues, so it is safe to filter them out.
+    """
+
+    def __init__(self, app):
+        self.app = app
+        super().__init__()
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        msg = record.getMessage()
+
+        filter_out = ("duplicate object description",)
+
+        if msg.strip().startswith(filter_out):
+            return False
+        return True
 
 # -- Gallery of examples ----------------------------------------------------
 
@@ -420,32 +450,8 @@ def rewrite_github_anchor(app, uri: str):
             return urlunparse(parsed._replace(fragment=fragment))
     return None
 
-# -- Logging and warnings ---------------------------------------------------
+# -- Filters to reduce duplicate warnings -----------------------------------
 
-class FilterSphinxWarnings(logging.Filter):
-    """Filter 'duplicate object description' warnings.
-
-    These warnings are a result of autosummary limitations when we have
-    Attributes and Properties in a class sharing the same name.
-
-    The warnings are not useful - they don't result in any missing documentation
-    or rendering issues, so we can safely ignore them.
-
-    """
-    def __init__(self, app):
-        self.app = app
-        super().__init__()
-
-    def filter(self, record: logging.LogRecord) -> bool:
-        msg = record.getMessage()
-
-        filter_out = (
-            "duplicate object description",
-        )
-
-        if msg.strip().startswith(filter_out):
-            return False
-        return True
 
 # -- Qt threading docstrings ------------------------------------------------
 
