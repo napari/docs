@@ -7,6 +7,22 @@ please open a new issue.
 
 ## Known issues
 
+### Plugin errors related to `pydantic`
+
+napari depends on [`pydantic`](https://github.com/pydantic/pydantic), a data validation library. 
+In napari 0.6.0, we dropped support for `pydantic` v1, changing our minimum required `pydantic` version to 2.2. 
+This will bring significant speed and functionality advantages to napari. `Pydantic` v2 was release nearly 2 
+years ago, so we feel that there has been time for plugins to update and there is [a detailed migration guide](https://docs.pydantic.dev/latest/migration/).  
+However, there may be plugins that depend on pydantic that have not been updated to work with pydantic 2, but 
+can be installed with napari 0.6.0, because it is not typical to set upper bounds on dependencies. In this case, 
+you will get Import or Runtime errors related to `pydantic`. If this occurs, you will need to reach out to the 
+developers of the plugin and ask them to update the plugin.  
+To do this, you can open the Plugin Manager using the Plugins menu: `Plugins > Install/Uninstall Plugins...` and then 
+click the name of the plugin in the `Installed Plugins` list. This will take you to the plugin website, where 
+you can look for information on opening an issue or contacting the developers.  
+Alternately, you can install and use napari 0.5.6 (or lower) and specify `"pydantic<2"` when installing to 
+continue to use such plugins.
+
 ### Installed plugin doesn't show up in `Plugins` menu
 
 Installed `npe2` plugins (this is most plugins!) are not loaded until you restart `napari`. Try restarting the viewer
