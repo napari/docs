@@ -60,22 +60,22 @@ workflows:
 
 
 
-    steps:
-      - restore_cache:
-          name: Restore python cache
-          keys:
-            - <<parameters.cache_key>>-uv-cache-{{ checksum "uv.lock" }}
-            - <<parameters.cache_key>>-uv-cache-
-      - run:
-          name: Install python dependencies
-          command: |
-            mkdir -p "<<parameters.cache_dir>>" && \
-            uv sync --frozen --compile-bytecode --cache-dir <<parameters.cache_dir>>
-      - run:
-          name: Clean pre-built wheels
-          command: uv cache prune --ci --cache-dir <<parameters.cache_dir>>
-      - save_cache:
-          name: Save cache
-          key: <<parameters.cache_key>>-uv-cache-{{ checksum "uv.lock" }}
-          paths:
-            - "<<parameters.cache_dir>>"
+    #steps:
+    #  - restore_cache:
+    #      name: Restore python cache
+    #      keys:
+    #        - <<parameters.cache_key>>-uv-cache-{{ checksum "uv.lock" }}
+    #        - <<parameters.cache_key>>-uv-cache-
+    #  - run:
+    #      name: Install python dependencies
+    #      command: |
+    #        mkdir -p "<<parameters.cache_dir>>" && \
+    #        uv sync --frozen --compile-bytecode --cache-dir <<parameters.cache_dir>>
+    #  - run:
+    #      name: Clean pre-built wheels
+    #      command: uv cache prune --ci --cache-dir <<parameters.cache_dir>>
+    #  - save_cache:
+    #      name: Save cache
+    #      key: <<parameters.cache_key>>-uv-cache-{{ checksum "uv.lock" }}
+    #      paths:
+    #        - "<<parameters.cache_dir>>"
