@@ -13,7 +13,7 @@ can be found in:
 ## Overview
 
 We use unit tests, integration tests, and functional tests to ensure that
-`napari` works as intended. We have
+`napari` works as intended. We have:
 
 - Unit tests which test if individual modules or functions work correctly
 in isolation.
@@ -23,6 +23,8 @@ when combined.
 
 - Functional tests which test if slices of `napari` functionality work as
 intended in the whole system.
+
+### Testing philosophy
 
 To get the most return on investment (ROI) from our coding, we strive to test as
 much as we can with unit tests, requiring fewer integration tests, and the least number
@@ -41,7 +43,7 @@ from unit tests to integration and functional tests.
 
 All of `napari` tests are located in folders named `_tests`. We use the [`pytest`](https://docs.pytest.org/en/stable/)
 library and test runner to execute our tests locally and in
-[continuous integration]((https://en.wikipedia.org/wiki/Continuous_integration), CI.
+[continuous integration](https://en.wikipedia.org/wiki/Continuous_integration), CI.
 
 ### Integration and functional tests
 
@@ -51,7 +53,7 @@ Our integration and functional tests are located in the [`napari/_tests`](https:
 
 To keep unit tests close to their related source code, these tests are located in module folders.
 For example, units tests for the `Image` layer are located in [`/napari/layers/image/_tests`](https://github.com/napari/napari/tree/main/napari/layers/image/_tests)
-alongside the `Image` layer's module code [`/napari/layers/image](https://github.com/napari/napari/tree/main/napari/layers/image).
+alongside the `Image` layer's module code [`/napari/layers/image`](https://github.com/napari/napari/tree/main/napari/layers/image).
 
 napari is made up of its core library code and its GUI code. As a general practice,
 we strive to unit test as much of our core library code, models and utils, independently of
