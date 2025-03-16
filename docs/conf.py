@@ -102,7 +102,7 @@ json_url = "https://napari.org/dev/_static/version_switcher.json"
 if version == "dev":
     version_match = "dev"
 else:
-    version_match = release
+    version_match = str(release)
 
 html_theme_options = {
     "external_links": [
