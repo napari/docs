@@ -34,12 +34,12 @@ from pygments.lexers import TOMLLexer
 import napari
 from napari._version import __version_tuple__
 
-release = parse_version(napari.__version__)
-if release.is_devrelease:
+napari_version = parse_version(napari.__version__)
+release = str(napari_version)
+if napari_version.is_devrelease:
     version = "dev"
 else:
-    version = release.base_version
-
+    version = napari_version.base_version
 # -- Project information -----------------------------------------------------
 
 project = 'napari'
