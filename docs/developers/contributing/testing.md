@@ -39,55 +39,73 @@ from unit tests to integration and functional tests.
 
 ## Test organization
 
-All of `napari` tests are located in folders named `_tests`. We keep our unit
-tests located in the individual folders with the modules or functions they are
-testing (e.g. the tests for the `Image` layer are located in
-[`/napari/layers/image/_tests`](https://github.com/napari/napari/tree/main/napari/layers/image/_tests)
-alongside the `Image` layer code).
-Our integration and functional tests are located in
-the [`napari/_tests`](https://github.com/napari/napari/tree/main/napari/_tests)
-folder at the top of the repository.
+All of `napari` tests are located in folders named `_tests`. We use the [`pytest`](https://docs.pytest.org/en/stable/)
+library and test runner to execute our tests locally and in
+[continuous integration]((https://en.wikipedia.org/wiki/Continuous_integration), CI.
 
-We also strive to unit test as much of our model and utils code independently of
-our GUI code. These tests are located in the following folders:
+### Integration and functional tests
+
+Our integration and functional tests are located in the [`napari/_tests`](https://github.com/napari/napari/tree/main/napari/_tests) folder at the top of the repository.
+
+### Unit tests
+
+To keep unit tests close to their related source code, these tests are located in module folders.
+For example, units tests for the `Image` layer are located in [`/napari/layers/image/_tests`](https://github.com/napari/napari/tree/main/napari/layers/image/_tests)
+alongside the `Image` layer's module code [`/napari/layers/image](https://github.com/napari/napari/tree/main/napari/layers/image).
+
+napari is made up of its core library code and its GUI code. As a general practice,
+we strive to unit test as much of our core library code, models and utils, independently of
+our GUI code.
+
+#### Core library unit tests
+
+Core library tests are located in the following folders:
 
 * [`napari/layers`](https://github.com/napari/napari/tree/main/napari/layers)
 * [`napari/components`](https://github.com/napari/napari/tree/main/napari/components)
 * [`napari/utils`](https://github.com/napari/napari/tree/main/napari/utils)
 
-Our GUI code is tests in the following folders:
+#### GUI unit tests
+Our GUI code have tests in the following folders:
 
 * [`napari/_tests`](https://github.com/napari/napari/tree/main/napari/_tests)
 * [`napari/_qt`](https://github.com/napari/napari/tree/main/napari/_qt)
 * [`napari/_vispy`](https://github.com/napari/napari/tree/main/napari/_vispy)
 
-The tests in these three folders are ignored when we run them in the subset of our
-[continuous integration](https://en.wikipedia.org/wiki/Continuous_integration)
-workflows that run in a headless environment (without a Qt backend).
-When we are testing "non-GUI" code in a way that requires a GUI backend, they are
-placed here.
+These GUI tests are ignored when we run them in the subset of our continuous integration
+workflows. Workflows that run in a "headless" environment (without a Qt backend that ).
+Testing of core library, or "non-GUI" code, that requires a specific GUI backend are also found in these folders.
 
-The `napari/plugins` folder contains tests related to plugins.
+### napari plugin tests
 
-Pytest fixtures to aid testing live in:
+The `napari/plugins` folder contains most tests related to plugins.
+
+### pytest fixtures
+
+Pytest fixtures are used to set up test state, such as setup and teardown, and provide frequently test data. These
+fixtures reduce repetitive code when writing and running tests. The fixtures can be found in:
 
 * [`napari/conftest.py`](https://github.com/napari/napari/blob/main/napari/conftest.py) -
   available globally to all of `napari`.
 * [`napari/utils/_testsupport.py`](https://github.com/napari/napari/blob/main/napari/utils/_testsupport.py) -
-  available globally to all of `napari` **and** to all tests in the same environment
-  that `napari` is in (as this file is exported).
+  available globally to all of `napari` **and** to all tests in the same virtual environment
+  that `napari` is in (as this `testsupport.py` file is exported).
 
+### `make_napari_viewer` fixture
 One often used fixture is `make_napari_viewer`. This fixture can take an argument `show`
 which is either `True` or `False`. In case your test depends on rendering of the viewer,
-it should be set to `True`. This is, for example, the case when testing a screenshot 
+it should be set to `True`. This is, for example, the case when testing a screenshot
 functionality. Otherwise, it is best to set the argument to `False` to prevent the viewer
 from fully rendering.
 
-There are also fixtures for testing the `napari` builtin plugin (provides contributions
-that come builtin with `napari`).
-These live in
+### napari builtin plugin fixtures
+
+napari comes with a number of samples and examples builtin.
+There are also fixtures for testing these `napari` builtin plugins that provide contributions
+that come builtin with `napari`.
+These fixtures are found in
 [`napari_builtins/_tests/conftest.py`](https://github.com/napari/napari/blob/main/napari_builtins/_tests/conftest.py)
-and are available within
+and are available to tests stored in
 [`napari_builtins/_tests`](https://github.com/napari/napari/tree/main/napari_builtins/_tests).
 
 (running-tests)=
@@ -268,12 +286,12 @@ def test_something_else(qtbot):
 (qt_viewer)=
 #### `qt_viewer` and `viewer_model`
 
-Since `napari==0.5.4` we have implemented the `qt_viewer` [pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html) which can be used for tests that are only using the `ViewerModel` api or are only checking rendering of the viewer. 
-For the current moment, it is only for internal use and is not exported to the global scope, 
-as it is defined in `conftest.py` file. 
+Since `napari==0.5.4` we have implemented the `qt_viewer` [pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html) which can be used for tests that are only using the `ViewerModel` api or are only checking rendering of the viewer.
+For the current moment, it is only for internal use and is not exported to the global scope,
+as it is defined in `conftest.py` file.
 
 The `qt_viewer` fixture returns the instance of the {class}`~napari.qt.QtViewer` class.
-This class does not provide the same api as the {class}`~napari.ViewerModel` class, 
+This class does not provide the same api as the {class}`~napari.ViewerModel` class,
 but has an associated {class}`~napari.ViewerModel` instance, which can be accessed by the `viewer` attribute.
 Alternatively, you could use the `viewer_model` fixture, which returns this instance of {class}`~napari.ViewerModel` class.
 
@@ -284,7 +302,7 @@ def test_something(qt_viewer):
     assert viewer.layers[0].name == 'Image'
 ```
 
-or 
+or
 
 ```python
 def test_something(qt_viewer, viewer_model):
@@ -306,7 +324,7 @@ def qt_viewer(qt_viewer_):
     return qt_viewer_
 ```
 
-or 
+or
 
 ```python
 @pytest.fixture
@@ -320,7 +338,7 @@ def qt_viewer(qt_viewer_):
 (make_napari_viewer)=
 #### `make_napari_viewer`
 
-For more complex test cases where we need to fully test application behaviour 
+For more complex test cases where we need to fully test application behaviour
 (for example, using the `viewer.window` API) we can use `make_napari_viewer` [pytest fixture](https://docs.pytest.org/en/stable/explanation/fixtures.html).
 However, the creating and teardown of the whole viewer is more fragile and slower than using just the `qt_viewer` fixture.
 This fixture is available globally and to all tests in the same environment that `napari`
