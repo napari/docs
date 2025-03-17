@@ -11,8 +11,8 @@ please open a new issue.
 
 napari depends on [`pydantic`](https://github.com/pydantic/pydantic), a data validation library. 
 In napari 0.6.0, we dropped support for `pydantic` v1, changing our minimum required `pydantic` version to 2.2. 
-This will bring significant speed and functionality advantages to napari. `Pydantic` v2 was release nearly 2 
-years ago, so we feel that there has been time for plugins to update and there is [a detailed migration guide](https://docs.pydantic.dev/latest/migration/).  
+This will bring significant speed and functionality advantages to napari. `Pydantic` v2 was released nearly 2 
+years ago, so we feel that there has been adequate time for plugins to update (there is [a detailed migration guide](https://docs.pydantic.dev/latest/migration/)).  
 However, there may be plugins that depend on pydantic that have not been updated to work with pydantic 2, but 
 can be installed with napari 0.6.0, because it is not typical to set upper bounds on dependencies. In this case, 
 you will get Import or Runtime errors related to `pydantic`. If this occurs, you will need to reach out to the 
