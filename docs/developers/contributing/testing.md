@@ -114,42 +114,51 @@ and are available to tests stored in
 
 ## Running tests
 
-To run our test suite locally, run `pytest` on the command line.  If, for some reason
-you don't already have the test requirements in your environment, run `python -m pip install -e .[testing]`.
+To run our test suite locally, run `pytest` on the command line.
+If you don't already have the test requirements installed in your environment, run `python -m pip install -e .[testing]`.
 
-There are some tests that require showing GUI elements (such
-as testing screenshots) and window focus (such as testing drag and drop behavior). By default, these are only run during continuous integration.
-If you'd like to enable them in local tests, you can set the environment variables: `NAPARI_POPUP_TESTS=1` or `NAPARI_FOCUS_TESTS=1` or set the environment variable `CI=1`:
+### Run GUI tests locally
+
+Since napari can run as an interactive application, some tests require showing GUI elements (such
+as testing screenshots) and window focus (such as testing drag and drop behavior).
+By default, these tests are only run during continuous integration.
+If you'd like to enable GUI element tests to run locally, you can set the environment variables
+`NAPARI_POPUP_TESTS=1`, `NAPARI_FOCUS_TESTS=1`, or `CI=1` before the `pytest` command:
 
 ```sh
 CI=1 pytest
 ```
 
-Note: setting `CI=1` will also disable certain tests that take too long, etc. on CI.
-Also, if running the GUI tests that use `pyautogui` on macOS, be sure to give the Terminal app `Accessibility` permissions in `System Settings > Privacy & Security > Accessibility` so `pyautogui` can control the mouse, keyboard, etc.
+Note: setting `CI=1` will also disable certain tests that take too long on CI.
 
-It is also possible to run test using `tox`. This is the same way as it is done in CI.
-The main difference is that tox will create a virtual environment for each test environment, so it will take more time
-but it will be more similar to the CI environment.
+Also, if running the GUI tests that use `pyautogui` on macOS, be sure to set the Terminal app `Accessibility` permissions
+in `System Settings > Privacy & Security > Accessibility` so `pyautogui` can control the mouse, keyboard, etc.
+
+### Use tox to run tests locally
+
+It is also possible to run tests locally using `tox`. We use `tox` to run test in CI.
+The main difference between running `pytest` locally or `tox` locally is that `tox` will create a virtual environment
+for each test environment, so it will take a bit more time. Though, `tox` will be more similar to the CI environment.
+To run test using `tox` using Python 3.10 and pyqt5 on Linux, enter:
 
 ```sh
 tox -e py310-linux-pyqt5
 ```
 
-To get list of all available environments run:
+To get list of all available environments that may be run:
 
 ```sh
 tox list
 ```
 
-### Running tests without pop-up windows
+### Run tests without pop-up windows
 
 Some tests create visible napari viewers, which pop up on your monitor then quickly disappear.
 This can be annoying if you are trying to use your computer while the tests are running.
-There are two ways to avoid this:
+You can avoid pop-up windows opening two different ways:
 
-1. Use the `QT_QPA_PLATFORM=offscreen` environment variable.
-This tells Qt to render windows "offscreen", which is slower but will avoid the pop-ups.
+1. Use the `QT_QPA_PLATFORM=offscreen` environment variable with pytest or tox.
+This tells Qt to render windows "offscreen", which is slower but will avoid the distracting pop-ups.
    ```shell
    QT_QPA_PLATFORM=offscreen pytest napari
    ```
@@ -158,7 +167,7 @@ This tells Qt to render windows "offscreen", which is slower but will avoid the 
    QT_QPA_PLATFORM=offscreen tox -e py310-linux-pyqt5
    ```
 
-2. If you are using Linux or WSL, you can use the `xvfb-run` command.
+2. If you are using Linux or WSL (Windows Subsystem for Linux), you can use the `xvfb-run` command.
    This will run the tests in a virtual X server.
    ```sh
    xvfb-run pytest napari
@@ -172,15 +181,19 @@ where the tox environment selector `py310-linux-pyqt5` must match your OS and Py
 
 ### Tips for speeding up local testing
 
-Very often when developing new code, you don't need or want to run the entire test suite (which can take many minutes to finish).  With `pytest`, it's easy to run a subset of your tests:
+Very often when developing new code, you don't need or want to run the entire test suite (which can take many minutes to finish).
+With `pytest`, it's easy to run a subset of your tests:
 
 ```sh
 # run tests in a specific subdirectory
 pytest napari/components
+
 # run tests in a specific file
 pytest napari/components/_tests/test_add_layers.py
+
 # run a specific test within a specific file
 pytest napari/components/_tests/test_add_layers.py::test_add_layers_with_plugins
+
 # select tests based on substring match of test name:
 pytest napari/layers/ -k 'points and not bindings'
 ```
@@ -189,14 +202,17 @@ In general, it pays to learn a few of the [tips and tricks](https://docs.pytest.
 
 ### Testing coverage locally
 
-We always aim for good [test coverage](https://en.wikipedia.org/wiki/Code_coverage) and we use [codecov](https://app.codecov.io/gh/napari/napari) during continuous integration to make sure we maintain good coverage.  If you'd like to test coverage locally as you develop new code, you can install [`pytest-cov`](https://github.com/pytest-dev/pytest-cov) and take advantage of a few handy commands:
+We aim for good [test coverage](https://en.wikipedia.org/wiki/Code_coverage), and we use [codecov](https://app.codecov.io/gh/napari/napari)
+during continuous integration to make sure we maintain good coverage.  If you'd like to test coverage locally as you develop new code, you can install [`pytest-cov`](https://github.com/pytest-dev/pytest-cov) and take advantage of a few handy commands:
 
 ```sh
 # run the full test suite with coverage
 pytest --cov=napari
+
 # instead of coverage in the console, get a nice browser-based cov-report
 pytest --cov=napari --cov-report=html
 open htmlcov/index.html  # look at the report
+
 # run a subset of tests with coverage
 pytest --cov=napari.layers.shapes --cov-report=html napari/layers/shapes
 open htmlcov/index.html  # look at the report
