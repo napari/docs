@@ -221,8 +221,26 @@ open htmlcov/index.html  # look at the report
 ## Writing tests
 
 Writing tests for new code is a critical part of keeping napari maintainable as
-it grows. Tests are written in files whose names
-begin with `test_*` and which are contained in one of the `_tests` directories.
+it grows. Tests are written in files with names that
+begin with `test_*` and these test files are contained in one of the `_tests` directories.
+
+Writing tests is a learned skill. If you are starting out writing tests,
+`pytest`'s documentation provides good examples. Reading existing
+tests is also helpful for understanding how tests are written. If you have questions, ask them in our
+chat.
+
+### Mocking: "Fake it till you make it"
+
+It can be confusing to write unit tests for individual functions, when the
+function being tested in turn depends on the output from some other function or
+method.  This makes it tempting to write integration tests that "just test the
+whole thing together".  A useful tool in this case is the [mock object
+library](https://docs.python.org/3/library/unittest.mock.html).  "Mocking" lets
+you patch or replace parts of the code being tested with "fake" behavior or
+return values, so that you can test how a given function would perform *if* it
+were to receive some value from the upstream code.  For a few examples of using
+mocks when testing napari, search the codebase for
+[`unittest.mock`](https://github.com/search?q=repo%3Anapari%2Fnapari+%22unittest.mock%22&type=Code).
 
 ### Property-based testing with Hypothesis
 
@@ -238,6 +256,11 @@ See also [this paper on property-based testing in science](https://conference.sc
 (including [Numpy support](https://hypothesis.readthedocs.io/en/latest/numpy.html)).
 
 (testing-qt)=
+
+## Writing tests of the GUI
+
+Fixtures are used when testing the GUI. Fixtures are helpful for setting state such as setup and teardown of the GUI.
+When using fixtures with mocks, the GUI behavior can be simulated and tested.
 
 ### Testing with `Qt` and `napari.Viewer`
 
@@ -368,12 +391,8 @@ you simply include `make_napari_viewer` as a test function parameter, as shown i
 .. autofunction:: napari.utils._testsupport.make_napari_viewer()
 ```
 
-#### Skipping tests that show GUI elements or need window focus
 
-Tests that require showing GUI elements should be marked with `skip_local_popups`. If a test requires window focus, it should be marked with `skip_local_focus`.
-This is so they can be excluded and run only during continuous integration (see [](running-tests) for details).
-
-#### Testing `QWidget` visibility
+### Testing `QWidget` visibility
 
 When checking that `QWidget` visibility is updated correctly, you may need to use
 [`qtbot.waitUntil`](https://pytest-qt.readthedocs.io/en/latest/reference.html#pytestqt.qtbot.QtBot.waitUntil) or
@@ -406,20 +425,35 @@ Another function that may be useful for testing `QWidget` visibility is
 [`QWidget.isVisibleTo`](https://doc.qt.io/qt-5/qwidget.html#isVisibleTo), which
 tells you if a widget is visible relative to an ancestor.
 
-### Mocking: "Fake it till you make it"
+### Skipping tests with GUI elements or need window focus
 
-It can be confusing to write unit tests for individual functions, when the
-function being tested in turn depends on the output from some other function or
-method.  This makes it tempting to write integration tests that "just test the
-whole thing together".  A useful tool in this case is the [mock object
-library](https://docs.python.org/3/library/unittest.mock.html).  "Mocking" lets
-you patch or replace parts of the code being tested with "fake" behavior or
-return values, so that you can test how a given function would perform *if* it
-were to receive some value from the upstream code.  For a few examples of using
-mocks when testing napari, search the codebase for
-[`unittest.mock`](https://github.com/search?q=repo%3Anapari%2Fnapari+%22unittest.mock%22&type=Code)
+When you want to mark a test that should be skipped during a test run, `pytest` has
+built-in decorators that can be added before the test. For example, `@pytest.mark.skip` or `@pyteset.mark.skipif`
+can decorate a test that you want to skip:
 
-## Known issues
+```python
+@pytest.mark.skip(reason="test is causing intermittent failures")
+def test_hello_world_exists():
+    # test source code
+```
+
+You can also use custom napari decorators to skip tests that use popups or need window focus.
+These decorators are defined in `napari/_tests/utils`.
+Tests that require showing GUI elements should be marked with `skip_local_popups`.
+If a test requires window focus, it should be marked with `skip_local_focus`.
+To use these custom skip decorators, import the decorator and apply it to a test:
+
+```python
+from napari._tests.utils import skip_local_popups
+
+@skip_local_popups
+def test_popup_window_after_error():
+    # test source code
+```
+
+This is so they can be excluded and run only during continuous integration (see [](running-tests) for details).
+
+## Known testing issues
 
 There are several known issues with displaying GUI tests on windows in CI, and
 so certain tests have been disabled from windows in CI, see
