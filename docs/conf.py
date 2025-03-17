@@ -34,12 +34,12 @@ from pygments.lexers import TOMLLexer
 import napari
 from napari._version import __version_tuple__
 
-release = napari.__version__
-if "dev" in release:
+napari_version = parse_version(napari.__version__)
+release = str(napari_version)
+if napari_version.is_devrelease:
     version = "dev"
 else:
-    version = release
-
+    version = napari_version.base_version
 # -- Project information -----------------------------------------------------
 
 project = 'napari'
@@ -102,7 +102,7 @@ json_url = "https://napari.org/dev/_static/version_switcher.json"
 if version == "dev":
     version_match = "dev"
 else:
-    version_match = release
+    version_match = str(release)
 
 html_theme_options = {
     "external_links": [
