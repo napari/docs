@@ -68,6 +68,8 @@ extensions = [
 
 # See https://github.com/napari/napari-sphinx-theme for more information.
 html_theme = 'napari_sphinx_theme'
+html_title = "napari"
+html_sourcelink_suffix = ""
 
 # Define the json_url for our version switcher.
 json_url = "https://napari.org/dev/_static/version_switcher.json"
@@ -76,17 +78,6 @@ if version == "dev":
     version_match = "dev"
 else:
     version_match = str(release)
-
-html_sourcelink_suffix = ""
-
-html_title = "napari"
-
-# Define the json_url for our version switcher and match dev and release.
-json_url = "https://napari.org/dev/_static/version_switcher.json"
-if version == "dev":
-    version_match = "dev"
-else:
-    version_match = release
 
 # Path to static files, images, favicons, logos, css, and extra templates
 html_static_path = ["_static"]
@@ -210,7 +201,6 @@ tags_create_tags = True
 tags_output_dir = "_tags"
 tags_overview_title = "Tags"
 tags_extension = ["md", "rst"]
-html_sourcelink_suffix = ""
 panels_add_bootstrap_css = False
 pygments_style = "solarized-dark"
 suppress_warnings = ["myst.header", "etoc.toctree", "config.cache"]
@@ -391,6 +381,8 @@ sphinx_gallery_conf = {
 
 # -- Calendar ---------------------------------------------------------------
 
+# We host a google calendar on the docs website. To keep it up to date, we
+# need an api key to make requests to the Google API for updating calendar events.
 GOOGLE_CALENDAR_API_KEY = os.environ.get('GOOGLE_CALENDAR_API_KEY', '')
 
 def add_google_calendar_secrets(app, docname, source):
