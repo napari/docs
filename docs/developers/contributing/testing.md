@@ -68,6 +68,7 @@ Core library tests are located in the following folders:
 * [`napari/utils`](https://github.com/napari/napari/tree/main/napari/utils)
 
 #### GUI unit tests
+
 Our GUI code have tests in the following folders:
 
 * [`napari/_tests`](https://github.com/napari/napari/tree/main/napari/_tests)
@@ -75,7 +76,7 @@ Our GUI code have tests in the following folders:
 * [`napari/_vispy`](https://github.com/napari/napari/tree/main/napari/_vispy)
 
 These GUI tests are ignored when we run them in the subset of our continuous integration
-workflows. Workflows that run in a "headless" environment (without a Qt backend that ).
+workflows. Workflows that run in a "headless" environment (without a Qt backend).
 Testing of core library, or "non-GUI" code, that requires a specific GUI backend are also found in these folders.
 
 ### napari plugin tests
@@ -94,6 +95,7 @@ fixtures reduce repetitive code when writing and running tests. The fixtures can
   that `napari` is in (as this `testsupport.py` file is exported).
 
 ### `make_napari_viewer` fixture
+
 One often used fixture is `make_napari_viewer`. This fixture can take an argument `show`
 which is either `True` or `False`. In case your test depends on rendering of the viewer,
 it should be set to `True`. This is, for example, the case when testing a screenshot
@@ -115,7 +117,14 @@ and are available to tests stored in
 ## Running tests
 
 To run our test suite locally, run `pytest` on the command line.
-If you don't already have the test requirements installed in your environment, run `python -m pip install -e .[testing]`.
+When running tests, you will want to have development and testing dependencies installed
+in your environment:
+
+```sh
+python -m pip install -e .[dev, testing]
+```
+
+placing ".[dev, testing]" in quotes if you are running z-shell.
 
 ### Run GUI tests locally
 
