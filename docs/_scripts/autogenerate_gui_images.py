@@ -2,6 +2,7 @@ from pathlib import Path
 
 from qtpy.QtCore import QTimer, QPoint
 import napari
+import time
 
 from napari._qt.qt_event_loop import get_qapp
 from napari._qt.qt_resources import get_stylesheet
@@ -83,6 +84,10 @@ def autogenerate_images():
     
     # Create viewer with visible window
     viewer = napari.Viewer(show=True)
+    
+    # Print Qt widget hierarchy
+    # print_widget_hierarchy(viewer.window._qt_window)
+    
     viewer.window._qt_window.resize(1000, 800)
     viewer.window._qt_window.setStyleSheet(get_stylesheet("dark"))
     
@@ -94,16 +99,20 @@ def autogenerate_images():
     viewer.screenshot(str(IMAGES_PATH / "viewer_empty.png"), canvas_only=False)
     viewer.open_sample(plugin='napari', sample='cells3d')
     
+    # Mouse over canvas for status bar update
+    viewer.layers.selection = viewer.layers
+    viewer.mouse_over_canvas = True
+    viewer.cursor.position = [25, 50, 120]
+    viewer.update_status_from_cursor()
     app.processEvents() # Ensure viewer is fully initialized
+
     viewer.screenshot(str(IMAGES_PATH / "viewer_cells3d.png"), canvas_only=False)
 
     # Open the console
     viewer_buttons = find_widget_by_class(viewer.window._qt_window, "QtViewerButtons")
     viewer_buttons.consoleButton.click()
     app.processEvents()
-    
-    # Print Qt widget hierarchy
-    # print_widget_hierarchy(viewer.window._qt_window)
+
     
     widget_componenets = _get_widget_componenets(viewer.window._qt_window)
     for name, widget in widget_componenets.items():
