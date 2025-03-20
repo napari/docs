@@ -1,12 +1,11 @@
 from pathlib import Path
 
-from qtpy.QtCore import QTimer, QPoint
+from qtpy.QtCore import QTimer, QPoint, QRect
 import napari
 
 from napari._qt.qt_event_loop import get_qapp
 from napari._qt.qt_resources import get_stylesheet
 from napari._qt.dialogs.qt_modal import QtPopup
-from napari._qt.widgets.qt_viewer_buttons import QtViewerButtons
 from qtpy.QtWidgets import QApplication, QWidget
 
 DOCS = REPO_ROOT_PATH = Path(__file__).resolve().parent.parent
@@ -18,8 +17,10 @@ MENUS_PATH = IMAGES_PATH / "menus"
 MENUS_PATH.mkdir(parents=True, exist_ok=True)
 POPUPS_PATH = IMAGES_PATH / "popups"
 POPUPS_PATH.mkdir(parents=True, exist_ok=True)
+REGION_PATH = IMAGES_PATH / "regions"
+REGION_PATH.mkdir(parents=True, exist_ok=True)
 
-def _get_widget_componenets(qt_window: QWidget) -> dict:
+def _get_widget_components(qt_window: QWidget) -> dict:
     """Get visible widget components from the Qt window.
     
     Parameters
@@ -102,7 +103,6 @@ def _get_button_popups_configs(
         viewer.window._qt_window,
         "QtViewerButtons"
     )
-    
     return [
         {
             "name": "ndisplay_2D_popup",
@@ -124,6 +124,29 @@ def _get_button_popups_configs(
             "prep": None,
             "button": viewer_buttons.gridViewButton,
         }
+    ]
+
+def _get_viewer_regions() -> list[dict]:
+    """Get regions of the viewer to capture as a single image.
+    
+    Returns
+    -------
+    list[dict]
+        List of dictionaries with the following keys:
+        - name: str
+            Name of the region.
+        - components: list of str
+            Names of components to determine the bounding region
+    """
+    return [
+        {
+            "name": "console_and_buttons",
+            "components": ["console_dock", "viewer_buttons"]
+        },
+        {
+            "name": "layer_list_and_controls",
+            "components": ["layer_list_dock", "layer_controls_dock"]
+        },
     ]
 
 def autogenerate_images():
@@ -161,7 +184,7 @@ def autogenerate_images():
     viewer.open_sample(plugin='napari', sample='cells3d')
     
     # Mouse over canvas for status bar update
-    viewer.layers.selection = viewer.layers
+    viewer.layers.selection = [viewer.layers[0]]
     viewer.mouse_over_canvas = True
     viewer.cursor.position = [25, 50, 120]
     viewer.update_status_from_cursor()
@@ -175,9 +198,8 @@ def autogenerate_images():
     app.processEvents()
     
     viewer.screenshot(str(IMAGES_PATH / "viewer_cells3d_console.png"), canvas_only=False)
-
     
-    widget_componenets = _get_widget_componenets(viewer.window._qt_window)
+    widget_componenets = _get_widget_components(viewer.window._qt_window)
     for name, widget in widget_componenets.items():
         capture_widget(widget, name)
         
@@ -188,6 +210,9 @@ def autogenerate_images():
     button_popups_configs = _get_button_popups_configs(viewer)
     for config in button_popups_configs:
         capture_popups(config)
+
+    for region in _get_viewer_regions():
+        capture_viewer_region(viewer, region["components"], region["name"])
 
     close_all(viewer)
     app.exec_()
@@ -237,6 +262,55 @@ def capture_menu(menu, name):
     pixmap.save(str(MENUS_PATH / f"{name}.png"))
     menu.hide()
     return
+
+def capture_viewer_region(viewer, component_names, save_name):
+    """Capture a screenshot of a region containing multiple components.
+    
+    Requires that the component is defined in _get_widget_components
+    
+    Parameters
+    ----------
+    viewer : napari.Viewer
+        The napari viewer
+    component_names : list of str
+        Names of components to determine the bounding region
+    save_name : str
+        Name of the output image file
+    """
+    app = get_qapp()
+    qt_window = viewer.window._qt_window
+    widget_components = _get_widget_components(qt_window)
+    
+    # Find the bounding rectangle for all requested components
+    min_x, min_y = float('inf'), float('inf')
+    max_x, max_y = float('-inf'), float('-inf')
+    
+    for name in component_names:
+        if name not in widget_components or widget_components[name] is None:
+            print(f"Component {name} not found, skipping")
+            continue
+            
+        widget = widget_components[name]
+        # Map to global coordinates
+        global_pos = widget.mapToGlobal(widget.rect().topLeft())
+        global_rect = widget.rect()
+        global_rect.moveTo(global_pos)
+        
+        min_x = min(min_x, global_rect.left())
+        min_y = min(min_y, global_rect.top())
+        max_x = max(max_x, global_rect.right())
+        max_y = max(max_y, global_rect.bottom())
+    
+    if min_x == float('inf'):
+        print(f"No valid components found for {save_name}")
+        return
+    
+    region = QRect(QPoint(min_x, min_y), QPoint(max_x, max_y))
+    
+    app.processEvents()
+    screen = QApplication.primaryScreen()
+    pixmap = screen.grabWindow(0, region.x(), region.y(), region.width(), region.height())
+    pixmap.save(str(REGION_PATH / f"{save_name}.png"))
 
 def close_all(viewer):
     viewer.close()
