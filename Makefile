@@ -1,6 +1,6 @@
 .PHONY: docs clean
 
-SPHINXOPTS =
+SPHINXOPTS = "-j 2"
 
 # Gallery path must be given relative to the docs/ folder
 
