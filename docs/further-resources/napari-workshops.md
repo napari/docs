@@ -22,6 +22,13 @@ or contact the core developers on [zulip chat](https://napari.zulipchat.com/logi
 ## Workshops
 
 *Workshops are listed from newest to oldest.*
+
+* October 2024, I2K 2024
+  * [Intermediate napari: from exploratory workflow to widgets](https://psobolewskiphd.github.io/i2k2024_napari_workshop/home.html)
+
+* July 2024, SciPy 2024
+  * [Image analysis and visualization in Python with scikit-image, napari, and friends](https://scipy-2024-image-analysis.github.io/tutorial/#)
+
 * October 2023, Halfway to I2K
   * [An updated general napari
     workshop](https://kephale.github.io/napari-workshop-halfway-to-i2k/home.html). Note
@@ -31,7 +38,10 @@ or contact the core developers on [zulip chat](https://napari.zulipchat.com/logi
 * September 2023
   * [Plugin design](https://chanzuckerberg.github.io/napari-plugin-accel-workshops/workshops/design23.html) and [software development workshop](https://chanzuckerberg.github.io/napari-plugin-accel-workshops/workshops/softwaredev.html) for [napari plugin grantees](https://chanzuckerberg.com/rfa/napari-plugin-grants/).
   * [Bioimage Analysis with Python and Napari (video lecture)](https://www.youtube.com/watch?v=QDS5t7oZH-c) at the [EMBO Practical Course for Advanced Methods in Bioimage Analysis](https://www.embl.org/about/info/course-and-conference-office/events/bia23-01/)  
-  
+
+* August 2023, [LIBRE hub](https://librehub.github.io) & Latin America Bioimaging
+  * [Image data science with Python and Napari](https://librehub.github.io/napari-LatAm-workshop-2023/intro.html#)
+
 * July 2023, Microscopy and Microanalysis 2023
   * [napari for electron microscopy](https://kephale.github.io/napari-workshop-mandm-2023/home.html)
 
