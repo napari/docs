@@ -23,6 +23,10 @@ The latest prerelease (alpha or release candidate) can be installed with:
 
 `uv pip install --pre napari`
 
+:::{important}
+Note: the `--pre` in the above commands will install prereleases of napari and all dependencies! This may result in errors or warnings. If this happens, you can instead install napari without `--pre`, but instead specify `a0` in the installation. For example, for a prerelease of a hypothetical `1.0.0` version of napari, you would install `"napari>=1.0.0a0"`. Replace `1.0.0` with the actual version you are interested in.
+:::
+
 ## Release management
 
 The release will be coordinated by a release manager whose responsibilities include the following.
