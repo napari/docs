@@ -153,39 +153,6 @@ viewer = napari.Viewer()  # This will create a Application if one doesn't exist
 napari.run()  # This will call `app.exec_()` and start the event loop.
 ```
 
-(gui-qt-deprecated)=
-
-:::{admonition}  What about `napari.gui_qt`?
-:class: caution
-
-**{func}`napari.gui_qt` was deprecated in version 0.4.8.**
-
-The autocreation of the `QApplication` instance and the {func}`napari.run`
-function was introduced in
-[PR#2056](https://github.com/napari/napari/pull/2056), and released in [version
-0.4.3](https://github.com/napari/napari/releases/tag/v0.4.3).  Prior to that,
-all napari examples included this `gui_qt()` context manager:
-
-```python
-# deprecated
-with napari.gui_qt():
-    viewer = napari.Viewer()
-```
-
-On entering the context, `gui_qt` would create a `QApplication`, and on exiting
-the context, it would start the event loop (the two critical steps [mentioned
-above](#qt-applications-event-loops-and-widgets)).
-
-Unlike a typical context manager, however, it did not actually *destroy* the
-`QApplication` (since it may still be needed in the same session)... and future
-calls to `gui_qt` were only needed to start the event loop.  By auto-creating
-the `QApplication` during {class}`~napari.Viewer` creation, introducing the
-explicit {func}`napari.run` function, and using the [integrated IPython event
-loop](#in-ipython-or-jupyter-notebook) when applicable, we hope to simplify the
-usage of napari.
-
-:::
-
 Now that you have an understanding of how napari creates the event loop, you may
 wish to learn more about {ref}`hooking up your own callbacks <connecting-events>`
 to specific events.
