@@ -34,7 +34,7 @@ Actual:
 
 - 0.5.6: Tuesday, 2025-01-21
 - 0.6.0 development begins:
-- 0.6.0a0 alpha 1:
+- 0.6.0a0 alpha 1: Friday, Mar 14, 2025
 
 Expected:
 
