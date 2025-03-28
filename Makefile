@@ -1,4 +1,4 @@
-.PHONY: docs clean
+.PHONY: clean slim
 
 SPHINXOPTS =
 
@@ -51,6 +51,14 @@ html-live: prep-docs
 
 html-noplot: clean prep-docs
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+
+# no notebook execution, no prep docs scripts
+slim: clean
+	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+
+# slim, but uses -j auto to parallelize the build
+slimfast: clean
+	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) -j auto $(SPHINXOPTS)
 
 linkcheck-files: prep-docs
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build/html ${FILES} -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
