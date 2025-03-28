@@ -1,14 +1,19 @@
+import os
 from pathlib import Path
 
 from jinja2 import Template
-from napari._pydantic_compat import ModelMetaclass
 from qtpy.QtCore import QTimer
 from qtpy.QtWidgets import QMessageBox
 
 from napari._qt.dialogs.preferences_dialog import PreferencesDialog
 from napari._qt.qt_event_loop import get_qapp
 from napari._qt.qt_resources import get_stylesheet
+from napari._pydantic_compat import ModelMetaclass
 from napari.settings import NapariSettings
+
+from scripts_logger import setup_logger
+
+logger = setup_logger(__name__)
 
 DOCS = REPO_ROOT_PATH = Path(__file__).resolve().parent.parent
 GUIDES_PATH = DOCS / "guides"
@@ -90,7 +95,7 @@ def generate_images():
     Generate images from `CORE_SETTINGS`. and save them in the developer
     section of the docs.
     """
-
+    logger.debug("Generating images")
     app = get_qapp()
     pref = PreferencesDialog()
     pref.setStyleSheet(get_stylesheet("dark"))
@@ -137,10 +142,10 @@ def generate_images():
 
 def create_preferences_docs():
     """Create preferences docs from SETTINGS using a jinja template."""
+    logger.debug("Creating preferences docs")
     sections = {}
 
     for name, field in NapariSettings.__fields__.items():
-
         if not isinstance(field.type_, ModelMetaclass):
             continue
 
@@ -148,7 +153,7 @@ def create_preferences_docs():
         title = field.field_info.title or name
         sections[title.lower()] = {
             "title": title,
-            "description": field.field_info.description or '',
+            "description": field.field_info.description or "",
             "fields": [
                 {
                     "field": n,
@@ -156,10 +161,10 @@ def create_preferences_docs():
                     "description": f.field_info.description,
                     "default": repr(f.get_default()),
                     "ui": n not in excluded,
-                    "type": repr(f._type_display()).replace('.typing', ''),
+                    "type": repr(f._type_display()).replace(".typing", ""),
                 }
                 for n, f in sorted(field.type_.__fields__.items())
-                if n not in ('schema_version')
+                if n not in ("schema_version")
             ],
         }
 
@@ -182,4 +187,9 @@ def main():
 
 
 if __name__ == "__main__":
+    # Example usage within a script
+    current_script_name = os.path.basename(__file__)
+    # Get the name of the current script
+    logger = setup_logger(current_script_name)
+
     main()

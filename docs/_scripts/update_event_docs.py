@@ -1,5 +1,6 @@
 import ast
 import inspect
+import os
 from dataclasses import dataclass
 from pathlib import Path
 from types import ModuleType
@@ -15,6 +16,10 @@ from napari.components.layerlist import LayerList
 from napari.components.viewer_model import ViewerModel
 from napari.utils.events import EventedModel
 
+from scripts_logger import setup_logger
+
+logger = setup_logger(__name__)
+
 DOCS = Path(__file__).parent.parent
 
 
@@ -28,49 +33,50 @@ class Ev:
     def access_at(self):
         """Where this event can be accessed (in code)"""
         if issubclass(self.model, layers.Layer):
-            return f'layer.events.{self.name}'
+            return f"layer.events.{self.name}"
 
         if issubclass(self.model, LayerList):
-            if self.name.startswith('selection.'):
-                return f'layers.selection.events.{self.name[10:]}'
-            return f'layers.events.{self.name}'
+            if self.name.startswith("selection."):
+                return f"layers.selection.events.{self.name[10:]}"
+            return f"layers.events.{self.name}"
 
         if issubclass(self.model, ViewerModel):
-            return f'viewer.events.{self.name}'
+            return f"viewer.events.{self.name}"
         for name, field_ in napari.Viewer.__fields__.items():
             if field_.type_ is self.model:
-                return f'viewer.{name}.events.{self.name}'
-        return ''
+                return f"viewer.{name}.events.{self.name}"
+        return ""
 
     def type_name(self):
-        if cls_name := getattr(self.type_, '__name__', None):
+        if cls_name := getattr(self.type_, "__name__", None):
             return cls_name
-        name = str(self.type_) if self.type_ else ''
+        name = str(self.type_) if self.type_ else ""
         return name.replace("typing.", "")
 
     def ev_model_row(self) -> List[str]:
         return [
-            f'`{self.model.__name__}`',
-            f'`{self.name}`',
-            f'`{self.access_at()}`',
-            self.description or '',
-            f'`{self.type_name()}`',
+            f"`{self.model.__name__}`",
+            f"`{self.name}`",
+            f"`{self.access_at()}`",
+            self.description or "",
+            f"`{self.type_name()}`",
         ]
 
     def layer_row(self) -> List[str]:
         return [
-            f'`{self.model.__name__}`',
-            f'`{self.name}`',
-            f'`{self.access_at()}`',
-            self.description or '',
-            '',
+            f"`{self.model.__name__}`",
+            f"`{self.name}`",
+            f"`{self.access_at()}`",
+            self.description or "",
+            "",
         ]
 
 
 def walk_modules(
-    module: ModuleType, pkg='napari', _walked=None
+    module: ModuleType, pkg="napari", _walked=None
 ) -> Iterator[ModuleType]:
     """walk all modules in pkg, starting with `module`."""
+    logger.debug(f"walking {pkg}")
     if not _walked:
         _walked = set()
     yield module
@@ -87,6 +93,7 @@ def walk_modules(
 
 def iter_classes(module: ModuleType) -> Iterator[Type]:
     """iter all classes in module"""
+    logger.debug(f"walking {module}")
     for name in dir(module):
         attr = getattr(module, name)
         if inspect.isclass(attr) and attr.__module__ == module.__name__:
@@ -94,14 +101,14 @@ def iter_classes(module: ModuleType) -> Iterator[Type]:
 
 
 def class_doc_attrs(kls: Type) -> Dict[str, Parameter]:
-    docs = {p.name: " ".join(p.desc) for p in ClassDoc(kls).get('Attributes')}
-    docs.update(
-        {p.name: " ".join(p.desc) for p in ClassDoc(kls).get('Parameters')}
-    )
+    logger.debug(f"walking {kls}")
+    docs = {p.name: " ".join(p.desc) for p in ClassDoc(kls).get("Attributes")}
+    docs.update({p.name: " ".join(p.desc) for p in ClassDoc(kls).get("Parameters")})
     return docs
 
 
 def iter_evented_model_events(module: ModuleType = napari) -> Iterator[Ev]:
+    logger.debug(f"walking evented model events {module}")
     for mod in walk_modules(module):
         for kls in iter_classes(mod):
             if not issubclass(kls, EventedModel):
@@ -110,17 +117,14 @@ def iter_evented_model_events(module: ModuleType = napari) -> Iterator[Ev]:
             for name, field_ in kls.__fields__.items():
                 finfo = field_.field_info
                 if finfo.allow_mutation:
-                    descr = (
-                        f"{finfo.title.lower()}"
-                        if finfo.title
-                        else docs.get(name)
-                    )
+                    descr = f"{finfo.title.lower()}" if finfo.title else docs.get(name)
                     yield Ev(name, kls, descr, field_.type_)
 
 
 def iter_evented_container_events(
     module: ModuleType = napari, container_class=LayerList
 ) -> Iterator[Ev]:
+    logger.debug(f"walking evented container events {module}")
     for mod in walk_modules(module):
         for kls in iter_classes(mod):
             if not issubclass(kls, container_class):
@@ -130,13 +134,13 @@ def iter_evented_container_events(
             for name, emitter in kls_instance.events._emitters.items():
                 descr = docs.get(name)
                 yield Ev(name, kls, descr, type_=None)
-            if hasattr(kls_instance, 'selection'):
+            if hasattr(kls_instance, "selection"):
                 selection = kls_instance.selection
                 for name, emitter in selection.events._emitters.items():
-                    if name.startswith('_'):
+                    if name.startswith("_"):
                         # skip private emitters
                         continue
-                    name = 'selection.' + name
+                    name = "selection." + name
                     descr = docs.get(name)
                     yield Ev(name, kls, descr, type_=None)
 
@@ -147,11 +151,12 @@ class BaseEmitterVisitor(ast.NodeVisitor):
         self._emitters: List[str] = []
 
     def visit_Call(self, node: ast.Call):
-        if getattr(node.func, 'id', None) == 'EmitterGroup':
+        if getattr(node.func, "id", None) == "EmitterGroup":
             self._emitters.extend([name.arg for name in node.keywords])  # type: ignore
 
 
 def base_event_names() -> List[str]:
+    logger.debug("walking base event names")
     from napari.layers.base import base
 
     root = ast.parse(Path(base.__file__).read_text())
@@ -161,6 +166,7 @@ def base_event_names() -> List[str]:
 
 
 def iter_layer_events() -> Iterator[Ev]:
+    logger.debug("walking layer events")
     basenames = base_event_names()
     docs = class_doc_attrs(layers.Layer)
     for name in basenames:
@@ -194,10 +200,11 @@ def iter_layer_events() -> Iterator[Ev]:
 
 def merge_image_and_label_rows(rows: List[List[str]]):
     """Merge events common to _ImageBase or IntensityVisualizationMixin."""
+    logger.debug(f"merging {len(rows)} rows")
     # find events that are common across both Image, Labels and Surface layers.
-    image_events = {r[1] for r in rows if r[0] == '`Image`'}
-    labels_events = {r[1] for r in rows if r[0] == '`Labels`'}
-    surface_events = {r[1] for r in rows if r[0] == '`Surface`'}
+    image_events = {r[1] for r in rows if r[0] == "`Image`"}
+    labels_events = {r[1] for r in rows if r[0] == "`Labels`"}
+    surface_events = {r[1] for r in rows if r[0] == "`Surface`"}
     common_events = image_events & labels_events & surface_events
     # common only to Image and Labels
     imagebase_events = (image_events & labels_events) - common_events
@@ -206,24 +213,24 @@ def merge_image_and_label_rows(rows: List[List[str]]):
     rows = [
         r
         for r in rows
-        if not (r[0] in ['`Labels`', '`Surface`'] and r[1] in common_events)
+        if not (r[0] in ["`Labels`", "`Surface`"] and r[1] in common_events)
     ]
     rows = [
         r
         for r in rows
-        if not (r[0] in ['`Labels`', '`Surface`'] and r[1] in imagebase_events)
+        if not (r[0] in ["`Labels`", "`Surface`"] and r[1] in imagebase_events)
     ]
 
     # modify the class name of the Image entries to mention Labels, Surface
     rows = [
-        ['`Image`, `Labels`'] + r[1:]
-        if r[0] == '`Image`' and r[1] in imagebase_events
+        ["`Image`, `Labels`"] + r[1:]
+        if r[0] == "`Image`" and r[1] in imagebase_events
         else r
         for r in rows
     ]
     rows = [
-        ['`Image`, `Labels`, `Surface`'] + r[1:]
-        if r[0] == '`Image`' and r[1] in common_events
+        ["`Image`, `Labels`, `Surface`"] + r[1:]
+        if r[0] == "`Image`" and r[1] in common_events
         else r
         for r in rows
     ]
@@ -232,45 +239,43 @@ def merge_image_and_label_rows(rows: List[List[str]]):
 
 def main():
     HEADER = [
-        'Event',
-        'Description',
-        'Event.value type',
+        "Event",
+        "Description",
+        "Event.value type",
     ]
 
     # Do viewer events
     rows = [
-        ev.ev_model_row()[2:]
-        for ev in iter_evented_model_events()
-        if ev.access_at()
+        ev.ev_model_row()[2:] for ev in iter_evented_model_events() if ev.access_at()
     ]
     table1 = table_repr(rows, padding=2, header=HEADER, divide_rows=False)
-    (DOCS / 'guides' / '_viewer_events.md').write_text(table1)
+    (DOCS / "guides" / "_viewer_events.md").write_text(table1)
 
     # Do LayerList events
     rows = [
         ev.layer_row()[2:]
-        for ev in iter_evented_container_events(
-            napari, container_class=LayerList
-        )
+        for ev in iter_evented_container_events(napari, container_class=LayerList)
         if ev.access_at()
     ]
     table2 = table_repr(rows, padding=2, header=HEADER, divide_rows=False)
-    (DOCS / 'guides' / '_layerlist_events.md').write_text(table2)
+    (DOCS / "guides" / "_layerlist_events.md").write_text(table2)
 
     # Do layer events
     HEADER = [
-        'Class',
-        'Event',
-        'Description',
-        'Event.value type',
+        "Class",
+        "Event",
+        "Description",
+        "Event.value type",
     ]
-    rows = [
-        [ev.layer_row()[0]] + ev.layer_row()[2:] for ev in iter_layer_events()
-    ]
+    rows = [[ev.layer_row()[0]] + ev.layer_row()[2:] for ev in iter_layer_events()]
     rows = merge_image_and_label_rows(rows)
     table3 = table_repr(rows, padding=2, header=HEADER, divide_rows=False)
-    (DOCS / 'guides' / '_layer_events.md').write_text(table3)
+    (DOCS / "guides" / "_layer_events.md").write_text(table3)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    # Example usage within a script
+    current_script_name = os.path.basename(__file__)
+    # Get the name of the current script
+    logger = setup_logger(current_script_name)
     main()
