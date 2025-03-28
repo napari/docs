@@ -49,10 +49,16 @@ html-live: prep-docs
 		--port=0 \
 		$(SPHINXOPTS)
 
+# full build, no gallery
 html-noplot: clean prep-docs
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
-# no notebook execution, no prep docs scripts
+# just napari/docs
+# no prep_docs scripts, no gallery
+docs: clean
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS) 
+
+# no notebook execution, no prep_docs, no gallery
 slim: clean
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
