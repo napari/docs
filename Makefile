@@ -1,4 +1,4 @@
-.PHONY: clean slim
+.PHONY: clean
 
 SPHINXOPTS =
 
