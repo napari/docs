@@ -8,7 +8,7 @@ Most required tools mentioned here are in https://github.com/napari/napari-relea
 ## Timeline
 
 Currently, we are releasing a major version every six to twelve months.
-We plan minor napari version releases every 3 months.
+We plan minor napari version releases every 1-2 months.
 We will ship bug fix releases as needed.
 
 Prior to major and minor releases, we will have a release testing cycle with
