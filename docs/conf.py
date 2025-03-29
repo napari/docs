@@ -193,6 +193,8 @@ external_toc_path = "_toc.yml"
 external_toc_exclude_missing = False
 lexers["toml"] = TOMLLexer(startinline=True)
 napoleon_custom_sections = [("Events", "params_style")]
+# use an env var to control whether noteboos are executed
+nb_execution_mode = os.environ.get('NB_EXECUTION_MODE', 'auto')
 nb_output_stderr = "show"
 mermaid_d3_zoom = True
 mermaid_version = "11.4.1"
