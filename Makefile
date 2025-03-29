@@ -74,6 +74,23 @@ slim: clean prep-stubs
 slimfast: clean prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) -j auto $(SPHINXOPTS)
 
+# slimfast, but uses sphinx-autobuild to rebuild changed files
+# this will run an initial build, because it's fast
+# added --quiet to reduce output spam
+slimfast-live: clean prep-stubs
+	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
+	sphinx-autobuild -M html docs/ docs/_build -D plot_gallery=0 \
+	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
+	--ignore $(docs_dir)"/_tags/*" \
+	--ignore $(docs_dir)"/api/napari*.rst" \
+	--ignore $(docs_dir)"/gallery/*" \
+	--ignore $(docs_dir)"/jupyter_execute/*" \
+	--open-browser \
+	--port=0 \
+	--quiet \
+	-j auto $(SPHINXOPTS)
+
+
 linkcheck-files: prep-docs
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build/html ${FILES} -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
