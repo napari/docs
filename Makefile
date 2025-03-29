@@ -23,6 +23,11 @@ clean:
 prep-docs:
 	python $(docs_dir)/_scripts/prep_docs.py
 
+# generate stubs in place of the files from prep_docs
+# this will not overwrite existing files
+prep-stubs:
+	python $(docs_dir)/_scripts/prep_docs.py --stubs
+
 docs-build: prep-docs
 	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build  -WT --keep-going -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
@@ -54,16 +59,16 @@ html-noplot: clean prep-docs
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 # just napari/docs
-# no prep_docs scripts, no gallery
-docs: clean
+# no generation from prep_docs scripts, no gallery
+docs: clean prep-stubs
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS) 
 
-# no notebook execution, no prep_docs, no gallery
-slim: clean
+# no notebook execution, no generation from prep_docs, no gallery
+slim: clean prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 # slim, but uses -j auto to parallelize the build
-slimfast: clean
+slimfast: clean prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) -j auto $(SPHINXOPTS)
 
 linkcheck-files: prep-docs
