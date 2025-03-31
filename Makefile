@@ -97,7 +97,7 @@ slimfast-live: clean prep-stubs
 	--port=0 \
 	-j auto $(SPHINXOPTS)
 
-# slim, but with gallery examples
+# slim, but with all gallery examples
 # does not remove existing gallery files
 slimgallery: clean prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
@@ -105,9 +105,24 @@ slimgallery: clean prep-stubs
 	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
 	$(SPHINXOPTS)
 
-# slimgallery, but uses sphinx-autobuild to rebuild changed examples
+# a target for slimgallery-example_name
+# runs slimgallery with a single example
+build-specific-example: clean prep-stubs
+	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
+	sphinx-build -M html docs/ docs/_build -T --keep-going \
+	-D sphinx_gallery_conf.filename_pattern=$(EXAMPLE_NAME)".py" \
+	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
+	-j auto \
+	$(SPHINXOPTS)
+
+# slimgallery, but with a single gallery example specified
+# e.g. slimgallery-vortex
+slimgallery-%:
+	$(MAKE) build-specific-example EXAMPLE_NAME=$*
+
+# slimgallery, but uses sphinx-autobuild to rebuild any changed examples
 # no clean - call 'make clean' and/or `make clean-gallery` manually
-# will rebuild gallery if it's not present
+# will rebuild whole gallery if it's not present
 slimgallery-live: prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
 	sphinx-autobuild -M html docs/ docs/_build -T --keep-going \
@@ -121,6 +136,29 @@ slimgallery-live: prep-stubs
 	--open-browser \
 	--port=0 \
 	$(SPHINXOPTS)
+
+# a target for slimgallery-live-example_name
+# runs slimgallery-live with a single example
+build-specific-example-live: prep-stubs
+	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
+	sphinx-autobuild -M html docs/ docs/_build -T --keep-going \
+	-D sphinx_gallery_conf.filename_pattern=$(EXAMPLE_NAME)".py" \
+	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
+	--ignore $(docs_dir)"/_tags/*" \
+	--ignore $(docs_dir)"/api/napari*.rst" \
+	--ignore $(docs_dir)"/gallery/*" \
+	--ignore $(docs_dir)"/jupyter_execute/*" \
+	--ignore $(docs_dir)/sg_execution_times.rst \
+	--watch $(docs_dir)/$(GALLERY_PATH)/$(EXAMPLE_NAME)".py" \
+	--open-browser \
+	--port=0 \
+	-j auto \
+	$(SPHINXOPTS)
+
+# slimgallery-live, but with a single gallery example specified
+# e.g. slimgallery-live-vortex
+slimgallery-live-%:
+	$(MAKE) build-specific-example-live EXAMPLE_NAME=$*
 
 linkcheck-files: prep-docs
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build/html ${FILES} -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
