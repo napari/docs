@@ -99,7 +99,7 @@ slimfast-live: clean prep-stubs
 
 # slim, but with all gallery examples
 # does not remove existing gallery files
-slimgallery: clean prep-stubs
+slimgallery: clean clean-gallery prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
 	sphinx-build -M html docs/ docs/_build -T --keep-going \
 	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
@@ -107,6 +107,7 @@ slimgallery: clean prep-stubs
 
 # slimgallery, but uses sphinx-autobuild to rebuild any changed examples
 # no clean - call 'make clean' and/or `make clean-gallery` manually
+# does not remove existing gallery files
 # will rebuild whole gallery if it's not present
 slimgallery-live: prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
@@ -126,7 +127,8 @@ slimgallery-live: prep-stubs
 # pass the name of the example without .py
 # e.g. slimgallery-live-vortex for vortex.py
 # because it's just 1 example, uses -j auto
-# Does not require a full gallery build, but will result in warnings
+# Does not require a full gallery build
+# Does clean existing files first, to minimize warnings
 # Makefile note: this needs to be first, as the matching rule is more specific
 slimgallery-live-%:
 	$(MAKE) build-specific-example-live EXAMPLE_NAME=$*
@@ -135,13 +137,14 @@ slimgallery-live-%:
 # pass the name of the example without .py
 # e.g. slimgallery-vortex for vortex.py
 # because it's just 1 example, uses -j auto
-# Does not require a full gallery build first, but will result in warnings
+# Does not require a full gallery build first
+# Does clean the existing gallery to minimize warnings
 slimgallery-%:
 	$(MAKE) build-specific-example EXAMPLE_NAME=$*
 
 # a target for slimgallery-%
 # runs slimgallery with a single example
-build-specific-example: clean prep-stubs
+build-specific-example: clean clean-gallery prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
 	sphinx-build -M html docs/ docs/_build -T --keep-going \
 	-D sphinx_gallery_conf.filename_pattern=$(EXAMPLE_NAME)".py" \
@@ -151,7 +154,7 @@ build-specific-example: clean prep-stubs
 
 # a target for slimgallery-live-%
 # runs slimgallery-live with a single example
-build-specific-example-live: prep-stubs
+build-specific-example-live: clean clean-gallery prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
 	sphinx-autobuild -M html docs/ docs/_build -T --keep-going \
 	-D sphinx_gallery_conf.filename_pattern=$(EXAMPLE_NAME)".py" \
