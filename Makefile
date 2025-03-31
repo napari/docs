@@ -105,21 +105,6 @@ slimgallery: clean prep-stubs
 	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
 	$(SPHINXOPTS)
 
-# a target for slimgallery-example_name
-# runs slimgallery with a single example
-build-specific-example: clean prep-stubs
-	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
-	sphinx-build -M html docs/ docs/_build -T --keep-going \
-	-D sphinx_gallery_conf.filename_pattern=$(EXAMPLE_NAME)".py" \
-	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
-	-j auto \
-	$(SPHINXOPTS)
-
-# slimgallery, but with a single gallery example specified
-# e.g. slimgallery-vortex
-slimgallery-%:
-	$(MAKE) build-specific-example EXAMPLE_NAME=$*
-
 # slimgallery, but uses sphinx-autobuild to rebuild any changed examples
 # no clean - call 'make clean' and/or `make clean-gallery` manually
 # will rebuild whole gallery if it's not present
@@ -137,7 +122,34 @@ slimgallery-live: prep-stubs
 	--port=0 \
 	$(SPHINXOPTS)
 
-# a target for slimgallery-live-example_name
+# slimgallery-live, but only builds a single gallery example
+# pass the name of the example without .py
+# e.g. slimgallery-live-vortex for vortex.py
+# because it's just 1 example, uses -j auto
+# Does not require a full gallery build, but will result in warnings
+# Makefile note: this needs to be first, as the matching rule is more specific
+slimgallery-live-%:
+	$(MAKE) build-specific-example-live EXAMPLE_NAME=$*
+
+# slimgallery, but only builds a single gallery example
+# pass the name of the example without .py
+# e.g. slimgallery-vortex for vortex.py
+# because it's just 1 example, uses -j auto
+# Does not require a full gallery build first, but will result in warnings
+slimgallery-%:
+	$(MAKE) build-specific-example EXAMPLE_NAME=$*
+
+# a target for slimgallery-%
+# runs slimgallery with a single example
+build-specific-example: clean prep-stubs
+	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
+	sphinx-build -M html docs/ docs/_build -T --keep-going \
+	-D sphinx_gallery_conf.filename_pattern=$(EXAMPLE_NAME)".py" \
+	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
+	-j auto \
+	$(SPHINXOPTS)
+
+# a target for slimgallery-live-%
 # runs slimgallery-live with a single example
 build-specific-example-live: prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
@@ -154,11 +166,6 @@ build-specific-example-live: prep-stubs
 	--port=0 \
 	-j auto \
 	$(SPHINXOPTS)
-
-# slimgallery-live, but with a single gallery example specified
-# e.g. slimgallery-live-vortex
-slimgallery-live-%:
-	$(MAKE) build-specific-example-live EXAMPLE_NAME=$*
 
 linkcheck-files: prep-docs
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -b linkcheck -D plot_gallery=0 --color docs/ docs/_build/html ${FILES} -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
