@@ -48,7 +48,6 @@ html: clean clean-gallery docs-build
 html-noplot-live: prep-stubs
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
 	sphinx-autobuild \
-		--no-initial \
 		-b html \
 		docs/ \
 		docs/_build/html \
