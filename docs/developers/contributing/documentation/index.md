@@ -292,30 +292,62 @@ To see the markdown document structure and content change in real-time without b
 
 ### 3.1. Building locally
 
-To build the documentation locally from scratch, run `make html` from the root
-of your local clone of the `napari/docs` repository (assuming you've installed
-napari with the [docs prerequisites](prerequisites)).
+To build the documentation locally we use the 
+[`make` tool](https://en.wikipedia.org/wiki/Make_(software)) to execute 
+[`sphinx`](https://www.sphinx-doc.org/en/master/) builds, as defined in the
+`Makefile` at the root of the `docs` repository.  
 
-```bash
-make html
-```
+Once the build is completed rendered HTML will be placed in `docs/_build/html`. 
+Find `index.html` in this folder and drag it into a browser to preview the 
+website with your new document.
 
-If the changes you have made to documentation don't involve changing the napari gallery,
-you can speed up this build by running `make html-noplot` instead. This will skip the
-gallery build, which involves launching up napari and rendering all the examples.
-
-```bash
-make html-noplot
-```
-
-The rendered HTML will be placed in `docs/_build/html`. Find `index.html` in this
-folder and drag it into a browser to preview the website with your new document.
 You can also run this Python one-liner to deploy a quick local server on
 [http://localhost:8000](http://localhost:8000):
 
 ```shell
 $ python3 -m http.server --directory docs/_build/html
 ```
+
+:::{note}
+The entire build process pulls together files from multiple sources and can be
+time consuoming, with a full build taking upwards of 20 minutes. Additionally, 
+building the examples gallery, as well as executing notebook cells will 
+repeatedly launch `napari`, resulting in flashing windows. 
+
+As a result, there are several partial-build options available in addition to 
+a full build that only build certain parts of the full documentation build. 
+Depending on what you want to contribute, **you may never need to run the full 
+build locally**. For example, maybe you don't want to build the examples gallery 
+or you only want to edit copy and not run the notebook cells or only want to 
+edit a single napari example. See [Building what you need](#building-what-you-need)
+for details.
+:::
+
+#### Running a full build
+
+To run a full documentation build from scratch, matching what is deployed 
+at [napari.org](https://napari.org), run:
+
+```bash
+make html
+```
+from the root of your local clone of the `napari/docs` repository (assuming you've installed
+napari with the [docs prerequisites](prerequisites)). Note this can take upwards of 20 minutes
+and will repeatedly pop up napari viewers as examples and notebook cells are executed.
+
+If the changes you have made to documentation don't involve the gallery of napari examples,
+which are in the `examples` directory in the `napari` repository, you can speed up this 
+build by running:
+
+```bash
+make html-noplot
+```
+
+This will skip the gallery build, which involves launching up napari and rendering 
+all the examples, but it will still build all of the other content, including the
+[UI architecture diagrams](ui-sections), [events reference](events-reference), and
+[preferences](napari-preferences), which are generated from sources in the `napari`
+repository. This will also run all notebook cells.
 
 ````{note}
 The `make html` command above assumes you have a local clone of the
@@ -348,25 +380,35 @@ make html GALLERY_PATH=../../napari/examples
 ```
 
 ````
-
+(live-builds)=
 ````{admonition} Update documentation on file change
 :class: tip
-There's another `make` task you can use for live previews while editing docs:
-
-```shell
-$ make html-live
-# or for faster reloads:
-$ make html-live SPHINXOPTS="-j4"
-```
-
-The first run will take a bit longer and a few napari instances will pop up
-here and there, but the successive ones (triggered automatically every time
-you save a file under `docs/`) will be faster!
-The browser preview will open up automatically at `http://127.0.0.1`,
-no need for further action! Edit the documents at will, and the browser will
-auto-reload.
+We've provided several build variants with `-live` that will use
+[sphinx-autobuild](https://github.com/sphinx-doc/sphinx-autobuild).
+When using these `make` variants, when you save a file, re-builds 
+of the changed file will be triggered automatically and will be faster,
+because not everything will be built from scratch. Further, a browser preview 
+will open up automatically at `http://127.0.0.1`, no need for further action! 
+Edit the documents at will, and the browser will auto-reload.
 Once you are done with the live previews, you can exit via <kbd>Ctrl</kbd>+<kbd>C</kbd>
 on your terminal.
+
+For example, if you are not editing the gallery examples in the napari repository, 
+but otherwise want a full build, then you can use:
+
+```bash
+make html-noplot-live
+```
+The first run will be a full build (without the gallery) so a number of napari 
+instances will pop up, but then when re-building on save only edited files will
+be rebuilt.
+
+For faster reloads, you can try:
+```bash
+make html-live SPHINXOPTS="-j4"
+```
+Note: using `-j4` will parallelize the build over 4 cores and can result in crashes.
+
 ````
 
 ````{tip}
@@ -374,13 +416,113 @@ If you have [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml)
 installed on your system, you can also run a "headless GUI" build by using the
 `docs-xvfb` command:
 
-```shell
-$ make docs-xvfb
+```bash
+make docs-xvfb
 ```
 
 This will prevent all but the first napari window from being shown during the docs
 build.
 ````
+
+#### Building what you need
+
+**If you only want to edit materials in the `docs` repository, including
+notebook code cell outputs (e.g. any of the tutorials), but you don't need any
+of the external materials built**, then you can use the `docs` build variant. Run:
+
+```bash
+make docs
+```
+or 
+```bash
+make docs-live
+```
+Note that this will still execute the `docs` repository notebook code cells, 
+resulting in napari windows popping up repeatedly. The [`-live`
+variant](live-builds) will open a browser preview and auto-rebuild any pages you edit.
+
+**If you you only want to edit copy in the `docs` repository and don't need any
+of the external materials built nor the notebook cell outputs**, then you can use one
+of the `slim` builds. Run:
+
+```bash
+make slim
+```
+or
+```bash
+make slimfast
+```
+or
+```bash
+make slimfast-live
+```
+These will not build any of the external content (such as the gallery) and will
+not execute code cells. `slimfast` will run the build in parallel, which can be
+significantly faster on multi-core machines (under a minute), while `slimfast-live`
+will open a browser preview and auto-rebuild any pages you edit. 
+See [the `-live` builds note](live-builds).
+
+**If you are working on the napari examples and want to build the whole examples
+gallery, but not other external content nor the `docs` notebook cell outputs**, 
+then you can use:
+
+```bash
+make slimgallery
+```
+or
+```bash
+make slimgallery-live
+```
+These builds will build the documentation with the entire gallery. The [`-live`
+variant](live-builds) will will open a browser preview and auto-rebuild any pages you edit.
+
+**If you want to work on a single example Python script in the napari repository
+`examples` directory**, you can build the documentation with just a chosen example by
+specifying it by name. For example, to build the `vortex.py` example, run:
+
+```bash
+make slimgallery-vortex
+```
+or
+```bash
+make slimgallery-live-vortex
+```
+This will only execute and build the single chosen example. The [`-live`
+variant](live-builds) will open a browser preview and auto-rebuild the single example or
+any other `docs` pages on edit, but it will not run any other code cells.
+
+#### Additional utilities in the Makefile
+
+To clean up (delete) generated content, including auto-generated `.rst` and `.md` files,
+as well as the `html` files, you can use:
+
+```bash
+make clean
+```
+
+Running this is a good idea if you have not built the documentation in a long
+time and there may have been significant changes to the `docs` repository, e.g.
+changes to the table of contents or layout.
+
+To clean up the files generated for the examples gallery, you can use:
+
+```bash
+make clean-gallery
+```
+Running this is a good idea if you have not built the documentation in a long
+time and there may have been significant changes to the `napari` examples.
+
+To generate the source files from the napari repository, including the
+[UI architecture diagrams](ui-sections), [events reference](events-reference), and
+[preferences](napari-preferences), you can run:
+
+```bash
+make prep-docs
+```
+Note that this is can take upwards of 10 minutes! Run this if you are interested
+in building the external resources or editing the scripts that generate them in
+`docs/docs/_scripts`. In most cases `make prep-stubs` will suffice, which will 
+generate place-holder stub files for the external content.
 
 (doc_view_ci)=
 ### 3.2. View in GitHub Pull Request
