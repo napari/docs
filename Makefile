@@ -69,9 +69,23 @@ html-noplot: clean prep-docs
 
 # just napari/docs
 # no generation from prep_docs scripts, no gallery
+# does run notebook cells
 # will not remove existing gallery files
 docs: clean prep-stubs
 	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS) 
+
+# live variant of `docs`
+docs-live: prep-stubs
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
+	sphinx-autobuild -M html docs/ docs/_build -D plot_gallery=0 \
+	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
+	--ignore $(docs_dir)"/_tags/*" \
+	--ignore $(docs_dir)"/api/napari*.rst" \
+	--ignore $(docs_dir)"/gallery/*" \
+	--ignore $(docs_dir)"/jupyter_execute/*" \
+	--open-browser \
+	--port=0 \
+	-j auto $(SPHINXOPTS)
 
 # no notebook execution, no generation from prep_docs, no gallery
 # will note remove existing gallery files
