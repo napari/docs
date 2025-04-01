@@ -312,12 +312,15 @@ $ python3 -m http.server --directory docs/_build/html
 The entire build process pulls together files from multiple sources and can be
 time consuoming, with a full build taking upwards of 20 minutes. Additionally, 
 building the examples gallery, as well as executing notebook cells will 
-repeatedly launch `napari`, resulting in flashing windows.
+repeatedly launch `napari`, resulting in flashing windows. 
 
-As a result, there are several partial-build options available in addition to a full build.
-For example, you don't want to build the examples gallery or you only want to edit copy 
-and not run the notebook cells or only want to edit a single napariexample,
-see: [Building what you need](#building-what-you-need).
+As a result, there are several partial-build options available in addition to 
+a full build that only build certain parts of the full documentation build. 
+Depending on what you want to contribute, **you may never need to run the full 
+build locally**. For example, maybe you don't want to build the examples gallery 
+or you only want to edit copy and not run the notebook cells or only want to 
+edit a single napari example. See [Building what you need](#building-what-you-need)
+for details.
 :::
 
 #### Running a full build
