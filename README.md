@@ -22,8 +22,11 @@ Please read our [contributing guide](https://napari.org/dev/developers/contribut
 * __Build__ locally
     * If you're building on Windows, a few extra steps are required; you can follow [this guide](https://napari.org/dev/developers/contributing/documentation/index.html#building-the-documentation-on-windows).
     * From the root of your local clone of this repository, run one of these:
-        * `make html`, if your changes include the example gallery
-        * `make html-noplot`, otherwise
+        * `make html`, for a full build, including the example gallery
+        * `make html-noplot`, for a full build without building the example gallery
+        * `make slimfast`, for a *fast, parallel* build of only sources in the `docs` repository, with no notebook cell outputs and no example gallery.  
+  
+        Note: `-live` variants of these are available to auto-build when edited files are saved, e.g. `slimfast-live`. For more options, see [the documentation](https://napari.org/dev/developers/contributing/documentation/index.html#building-what-you-need).
 * __Preview__ locally, either dragging-and-dropping `docs/_build/index.html` into a browser, or deploying a local server with `python3 -m http.server --directory docs/_build`.
 
 These steps should set you up to build and preview your docs contributions on your local machine.
