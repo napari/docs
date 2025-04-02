@@ -41,7 +41,7 @@ jobs:
           echo "target=$TARGET" >> $GITHUB_OUTPUT
 
       - name: Trigger CircleCI Pipeline
-        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0.5
         with:
           api-token: ${{ secrets.CIRCLECI_TOKEN }}
           org-slug: gh/psobolewskiPhD
