@@ -1,6 +1,9 @@
 name: Docs Build Trigger
 
 on:
+  pull_request_target:
+    types: [opened, synchronize]
+
   issue_comment:
     types: [created]
 
