@@ -9,6 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.issue.pull_request && contains(github.event.comment.body, '@napari-bot make')
     steps:
+      - name: Add eyes reaction
+        # show that workflow has started
+        if: github.event_name == 'issue_comment'
+        run: |
+          COMMENT_ID=${{ github.event.comment.id }}
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/issues/comments/$COMMENT_ID/reactions" \
+            -d '{"content": "eyes"}'
+
       - name: Extract make target
         id: extract-target
         run: |
@@ -30,3 +42,11 @@ jobs:
             {
               "make_target": "${{ steps.extract-target.outputs.target }}"
             }
+      - name: Wait for CircleCI Job Completion
+        uses: larsoner/circleci-artifacts-redirector-action@master
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          api-token: ${{ secrets.CIRCLECI_TOKEN }}
+          artifact-path: 0/docs/docs/_build/html/index.html
+          circleci-jobs: build-docs
+          job-title: Check the rendered docs here!
