@@ -41,15 +41,18 @@ jobs:
           echo "target=$TARGET" >> $GITHUB_OUTPUT
 
       - name: Trigger CircleCI Pipeline
-        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0.5
-        with:
-          api-token: ${{ secrets.CIRCLECI_TOKEN }}
-          org-slug: gh/psobolewskiPhD
-          project-slug: napari-docs
-          pipeline-parameters: |
-            {
+        run: |
+          curl -X POST \
+          -H "Content-Type: application/json" \
+          -H "Circle-Token: ${{ secrets.CIRCLECI_TOKEN }}" \
+          -d '{
+            "branch": "${{ github.ref_name }}",
+            "parameters": {
               "make_target": "${{ steps.extract-target.outputs.target }}"
             }
+          }' \
+          https://circleci.com/api/v2/project/gh/<your-org>/<your-repo>/pipeline
+        
       - name: Wait for CircleCI Job Completion
         uses: larsoner/circleci-artifacts-redirector-action@master
         with:
