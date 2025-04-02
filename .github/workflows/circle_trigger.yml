@@ -1,0 +1,32 @@
+name: Docs Build Trigger
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  trigger-circleci:
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '@napari-bot make')
+    steps:
+      - name: Extract make target
+        id: extract-target
+        run: |
+          TARGET=$(echo "${{ github.event.comment.body }}" | grep -oP '(?<=make\s)\w+' || echo "html")
+          ALLOWED_TARGETS="html docs slimfast slimgallery"
+          if ! grep -qw "$TARGET" <<< "$ALLOWED_TARGETS"; then
+            echo "::error::Invalid target '$TARGET'. Allowed targets: $ALLOWED_TARGETS"
+            exit 1
+          fi
+          echo "target=$TARGET" >> $GITHUB_OUTPUT
+
+      - name: Trigger CircleCI Pipeline
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1
+        with:
+          api-token: ${{ secrets.CIRCLECI_TOKEN }}
+          org-slug: gh/your-org-or-user
+          project-slug: your-project-name
+          pipeline-parameters: |
+            {
+              "make_target": "${{ steps.extract-target.outputs.target }}"
+            }

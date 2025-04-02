@@ -7,6 +7,10 @@ version: 2.1
 # See: https://circleci.com/docs/2.1/orb-intro/
 orbs:
   python: circleci/python@3.0.0
+parameters:
+  make_target:
+    type: string
+    default: "slimfast"
 jobs:
   build-docs:
     docker:
@@ -40,7 +44,7 @@ jobs:
           command: |
             . venv/bin/activate
             cd docs
-            xvfb-run --auto-servernum make html
+            xvfb-run --auto-servernum make << pipeline.parameters.make_target >>
           environment:
             PIP_CONSTRAINT: ../napari/resources/constraints/constraints_py3.10_docs.txt
       - store_artifacts:
@@ -52,4 +56,6 @@ jobs:
 workflows:
   build-docs:
     jobs:
-      - build-docs
+      - build-docs:
+          context: 
+          - make-target-params
