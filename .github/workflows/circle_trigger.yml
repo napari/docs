@@ -3,6 +3,9 @@ name: Docs Build Trigger
 on:
   issue_comment:
     types: [created]
+  pull_request:
+    paths:
+      - '.github/workflows/circle_trigger.yml'
 
 jobs:
   trigger-circleci:
