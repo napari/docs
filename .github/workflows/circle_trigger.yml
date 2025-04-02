@@ -36,8 +36,8 @@ jobs:
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1
         with:
           api-token: ${{ secrets.CIRCLECI_TOKEN }}
-          org-slug: gh/your-org-or-user
-          project-slug: your-project-name
+          org-slug: gh/psobolewskiPhD
+          project-slug: napari-docs
           pipeline-parameters: |
             {
               "make_target": "${{ steps.extract-target.outputs.target }}"
