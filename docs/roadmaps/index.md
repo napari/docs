@@ -2,7 +2,7 @@
 
 # Roadmaps
 
-The [napari global roadmap](https://github.com/orgs/napari/projects/24/views/2?pane=info) is hosted on a Github Project board. This roadmap captures the current priorities of the napari core developer team. It is revisited every six months.
+The [**napari global roadmap**](https://github.com/orgs/napari/projects/24/views/2?pane=info) is hosted on a Github Project board. This roadmap captures the current priorities of the napari core developer team. It is revisited every six months.
 
 ## For contributors
 
