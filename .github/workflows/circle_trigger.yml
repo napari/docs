@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       (github.event_name == 'issue_comment' && 
-       github.event.issue.pull_request != '' && 
-       contains(github.event.comment.body, '@napari-bot make')) ||
+        github.event.issue.pull_request != '' && 
+        contains(github.event.comment.body, '@napari-bot make')) ||
       github.event_name == 'workflow_dispatch'
     steps:
       - name: Determine make target
