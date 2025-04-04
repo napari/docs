@@ -16,7 +16,6 @@ jobs:
     docker:
       # A list of available CircleCI Docker convenience images are available here: https://circleci.com/developer/images/image/cimg/python
       - image: cimg/python:3.10.16
-    concurrency: docs-build-<< pipeline.git.branch >>  # Unique per branch
     steps:
       - checkout:
           path: docs
