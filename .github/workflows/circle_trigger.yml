@@ -54,7 +54,7 @@ jobs:
               "make_target": "${{ steps.extract-target.outputs.target }}"
             }
           }' \
-          https://circleci.com/api/v2/project/gh/psobolewskiPhD/<your-repo>/pipeline
+          https://circleci.com/api/v2/project/gh/psobolewskiPhD/napari-docs/pipeline
         
       - name: Wait for CircleCI Job Completion
         uses: larsoner/circleci-artifacts-redirector-action@master
