@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       make_target:
-        description: "Enter make target: html docs slimfast slimgallery"
+        description: "Enter make target: html html-noplot docs slimfast slimgallery"
         type: string
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
           else
             # Safely handle comment body through environment variable
             TARGET=$(echo "$COMMENT_BODY" | grep -oP '(?<=make\s)\w+' || echo "slimfast")
-            ALLOWED_TARGETS="html docs slimfast slimgallery"
+            ALLOWED_TARGETS="html html-noplot docs slimfast slimgallery"
             if ! grep -qw "$TARGET" <<< "$ALLOWED_TARGETS"; then
               echo "::error::Invalid target '$TARGET'. Allowed targets: $ALLOWED_TARGETS"
               exit 1
