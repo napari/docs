@@ -25,15 +25,19 @@ jobs:
         id: determine-target
         env:
           COMMENT_BODY: ${{ github.event.comment.body }}
+          MAKE_TARGET_INPUT: ${{ github.event.inputs.make_target }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "Using manual input target: ${{ inputs.make_target }}"
-            echo "target=${{ inputs.make_target }}" >> "$GITHUB_OUTPUT"
+            if [ -z "$MAKE_TARGET_INPUT" ]; then
+              echo "::error::No make target provided in workflow dispatch input."
+              exit 1
+            fi
+            echo "Using manual input target: $MAKE_TARGET_INPUT"
+            echo "target=$MAKE_TARGET_INPUT" >> "$GITHUB_OUTPUT"
           else
             # Safely handle comment body through environment variable
             TARGET=$(echo "$COMMENT_BODY" | grep -oP '(?<=make\s)\w+' || echo "slimfast")
             ALLOWED_TARGETS="html docs slimfast slimgallery"
-            # Add quotes to prevent word splitting
             if ! grep -qw "$TARGET" <<< "$ALLOWED_TARGETS"; then
               echo "::error::Invalid target '$TARGET'. Allowed targets: $ALLOWED_TARGETS"
               exit 1
@@ -48,7 +52,7 @@ jobs:
           -H "Content-Type: application/json" \
           -H "Circle-Token: ${{ secrets.CIRCLECI_TOKEN }}" \
           -d '{
-            "branch": "'"${{ github.head_ref || github.ref_name }}"'",  # Use head_ref for PRs
+            "branch": "'"${{ github.head_ref || github.ref_name }}"'",
             "parameters": {
               "make_target": "'"${{ steps.determine-target.outputs.target }}"'"
             }
