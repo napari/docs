@@ -410,9 +410,9 @@ from the function should be added to the viewer.  The object returned from the
 function must be an actual {class}`~napari.layers.Layer` instance.
 
 ```python
+import numpy as np
 from magicgui import magicgui
 from napari.layers import Image
-import numpy as np
 
 @magicgui
 def my_widget(ny: int=64, nx: int=64) -> Image:
