@@ -291,9 +291,9 @@ Here's a complete example:
 
 ```{code-cell} python
 :tags: [remove-output]
-from magicgui import magicgui
 import napari
 import numpy as np
+from magicgui import magicgui
 from napari.layers import Image
 
 @magicgui(image={'label': 'Pick an Image'})
@@ -423,7 +423,10 @@ Here's a complete example
 
 ```{code-cell} python
 :tags: [remove-output]
+import napari
+import numpy as np
 from magicgui import magicgui
+from napari.layers import Image
 
 @magicgui(call_button='Add Image')
 def my_widget(ny: int=64, nx: int=64) -> Image:
