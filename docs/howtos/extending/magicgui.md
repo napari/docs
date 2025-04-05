@@ -563,8 +563,9 @@ a `magicgui` function:
 
 ```{code-cell} python
 :tags: [remove-output]
+import napari
+import numpy as np
 from magicgui import magicgui
-import napari.types
 
 @magicgui(call_button='Make Points')
 def make_points(n_points=40) -> napari.types.LayerDataTuple:
