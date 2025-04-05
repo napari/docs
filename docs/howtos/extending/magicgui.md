@@ -370,6 +370,7 @@ in which the widget is docked, you can annotate one of your parameters as a
 
 ```python
 from napari import Viewer
+from magicgui import magicgui
 
 @magicgui
 def my_widget(viewer: Viewer):
@@ -493,7 +494,6 @@ annotation [described above](annotating-as-napari-types-data):
 
 ```{code-cell} python
 :tags: [remove-output]
-
 import numpy as np
 from magicgui import magicgui
 from napari.types import LabelsData, ImageData
@@ -561,7 +561,6 @@ a `magicgui` function:
 
 ```{code-cell} python
 :tags: [remove-output]
-
 import numpy as np
 from magicgui import magicgui
 
