@@ -189,6 +189,7 @@ For example, the threshold widget [shown above](returning-napari-types-data)
 could be provided as a napari plugin as follows:
 
 ```python
+import napari
 from magicgui import magic_factory
 
 @magic_factory(auto_call=True, threshold={'max': 2 ** 16})
@@ -274,6 +275,7 @@ def my_widget(image: Image):
 Using `Image`  annotation in `create_widget`:
 
 ```python
+import napari
 from magicgui.widgets import Container, create_widget
 
 class ImageWidget(Container):
@@ -495,8 +497,9 @@ annotation [described above](annotating-as-napari-types-data):
 ```{code-cell} python
 :tags: [remove-output]
 import numpy as np
-from magicgui import magicgui
+import napari
 from napari.types import LabelsData, ImageData
+from magicgui import magicgui
 
 @magicgui(call_button='Run Threshold')
 def threshold(image: ImageData, threshold: int = 75) -> LabelsData:
@@ -543,6 +546,8 @@ following three forms:
 The following are all valid {attr}`napari.types.LayerDataTuple` examples:
 
 ```python
+import numpy as np
+
 # an image array
 (np.random.rand(64, 64),)
 
@@ -616,6 +621,9 @@ time the function is called:
 
 ```{code-cell} python
 :tags: [remove-output]
+import napari
+import numpy as np
+from magicgui import magicgui
 
 @magicgui(call_button='Make Points', n_points={'max': 200})
 def make_points(n_points=40) -> napari.types.LayerDataTuple:
@@ -677,9 +685,8 @@ Subclassing {class}`~magicgui.widgets.FunctionGui` however, gives you access to 
 custom elements.
 
 ```python
+import napari
 from magicgui.widgets import FunctionGui
-
-
 
 def my_function(...):
     ...
@@ -717,6 +724,7 @@ are connected to events but you can still use the convenient `magicgui` widget
 generation features as shown below.
 
 ```python
+import napari
 from magicgui.widgets import Container, create_widget
 
 class ImageThreshold(Container):
@@ -790,12 +798,11 @@ manually connect the `reset_choices` of the created widget with the
 with the current layers of the viewer:
 
 ```python
-import numpy
+import numpy as np
 import napari
+from napari.types import ImageData
 from magicgui.widgets import create_widget
 from qtpy.QtWidgets import QHBoxLayout, QPushButton, QWidget
-
-from napari.types import ImageData
 
 
 class ExampleLayerListWidget(QWidget):
@@ -830,8 +837,8 @@ class ExampleLayerListWidget(QWidget):
 
 # Create a `viewer`
 viewer = napari.Viewer()
-viewer.add_image(numpy.random.rand(20, 20), name="Layer 1")
-viewer.add_image(numpy.random.rand(40, 40), name="Layer 2")
+viewer.add_image(np.random.rand(20, 20), name="Layer 1")
+viewer.add_image(np.random.rand(40, 40), name="Layer 2")
 # Instantiate your widget
 my_widg = ExampleLayerListWidget(viewer)
 # Add widget to `viewer`
