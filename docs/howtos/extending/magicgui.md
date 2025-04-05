@@ -398,7 +398,7 @@ functions to add layers to napari from your `magicgui` function:
 - any of the `<LayerType>Data` types from {mod}`napari.types`, such as
   {attr}`napari.types.ImageData` or  {attr}`napari.types.LabelsData`
 - {attr}`napari.types.LayerDataTuple`
-- `List`s of {class}`napari.layers.Layer` or {attr}`napari.types.LayerDataTuple`
+- `list`s of {class}`napari.layers.Layer` or {attr}`napari.types.LayerDataTuple`
 
 The consequence of each type is described below:
 
@@ -455,24 +455,23 @@ function is called.  To update an existing layer, you must use the
 `LayerDataTuple` approach described below
 ```
 
-#### Returning `List[napari.layers.Layer]`
+#### Returning `list[napari.layers.Layer]`
 
 You can create multiple layers by returning a list of
 {class}`~napari.layers.Layer`.
 
 ```python
 from magicgui import magicgui
-from typing import List
 
 @magicgui
-def make_points(...) -> List[napari.layers.Layer]:
+def make_points(...) -> list[napari.layers.Layer]:
   ...
 ```
 
 ```{note}
-Note: the `List[]` syntax here is optional from the perspective of napari.  You
+Note: the `list[]` syntax here is optional from the perspective of napari.  You
 can return either a single Layer or a list of Layers and they will all be added
-to the viewer as long as you annotate with either `List[napari.layers.Layer]` or
+to the viewer as long as you annotate with either `list[napari.layers.Layer]` or
 `napari.layers.Layer`.  If you want your code to be properly typed, however,
 your return type must match your return annotation.
 ```
@@ -588,24 +587,23 @@ viewer.window._qt_window.resize(1225, 900)
 nbscreenshot(viewer, alt_text="A magicgui widget returning a LayerDataTuple")
 ```
 
-#### Returning `List[napari.types.LayerDataTuple]`
+#### Returning `list[napari.types.LayerDataTuple]`
 
 You can also create multiple layers by returning a list of
 {attr}`~napari.types.LayerDataTuple`.
 
 ```python
 from magicgui import magicgui
-from typing import List
 
 @magicgui
-def make_points(...) -> List[napari.types.LayerDataTuple]:
+def make_points(...) -> list[napari.types.LayerDataTuple]:
   ...
 ```
 
 ```{note}
-Note: the `List[]` syntax here is optional from the perspective of napari.  You
+Note: the `list[]` syntax here is optional from the perspective of napari.  You
 can return either a single tuple or a list of tuples and they will all be added
-to the viewer as long as you annotate with either `List[napari.types.LayerDataTuple]`
+to the viewer as long as you annotate with either `list[napari.types.LayerDataTuple]`
 or `napari.types.LayerDataTuple`.  If you want your code to be properly typed, however,
 your return type must match your return annotation.
 ```
