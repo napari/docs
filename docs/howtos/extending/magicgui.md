@@ -129,6 +129,7 @@ as soon as we add the 'camera' image.
 
 ```{code-cell} python
 :tags: [remove-output]
+from magicgui import magicgui
 from skimage import data
 from skimage.util import img_as_float
 
@@ -261,6 +262,7 @@ Using `Image` annotation in a {func}`@magic_factory <magicgui.magic_factory>`
 decorated function:
 
 ```python
+from magicgui import magicgui
 from napari.layers import Image
 
 @magicgui
@@ -289,6 +291,7 @@ Here's a complete example:
 
 ```{code-cell} python
 :tags: [remove-output]
+from magicgui import magicgui
 import napari
 import numpy as np
 from napari.layers import Image
@@ -319,6 +322,7 @@ user to pick from *all* layers in the layer list, annotate your parameter as
 {class}`~napari.layers.Layer`.
 
 ```python
+from magicgui import magicgui
 from napari.layers import Layer
 
 @magicgui
@@ -343,6 +347,7 @@ from {mod}`napari.types` to indicate that you only want the data attribute from
 the layer (where `<LayerType>` is one of the available layer types).
 
 ```python
+from magicgui import magicgui
 from napari.types import ImageData
 import numpy as np
 
@@ -405,6 +410,7 @@ from the function should be added to the viewer.  The object returned from the
 function must be an actual {class}`~napari.layers.Layer` instance.
 
 ```python
+from magicgui import magicgui
 from napari.layers import Image
 import numpy as np
 
@@ -417,6 +423,8 @@ Here's a complete example
 
 ```{code-cell} python
 :tags: [remove-output]
+from magicgui import magicgui
+
 @magicgui(call_button='Add Image')
 def my_widget(ny: int=64, nx: int=64) -> Image:
   return Image(np.random.rand(ny, nx), name='My Image')
@@ -450,6 +458,7 @@ You can create multiple layers by returning a list of
 {class}`~napari.layers.Layer`.
 
 ```python
+from magicgui import magicgui
 from typing import List
 
 @magicgui
@@ -483,6 +492,7 @@ annotation [described above](annotating-as-napari-types-data):
 
 ```{code-cell} python
 :tags: [remove-output]
+from magicgui import magicgui
 from napari.types import LabelsData, ImageData
 
 @magicgui(call_button='Run Threshold')
@@ -548,6 +558,7 @@ a `magicgui` function:
 
 ```{code-cell} python
 :tags: [remove-output]
+from magicgui import magicgui
 import napari.types
 
 @magicgui(call_button='Make Points')
@@ -577,6 +588,7 @@ You can also create multiple layers by returning a list of
 {attr}`~napari.types.LayerDataTuple`.
 
 ```python
+from magicgui import magicgui
 from typing import List
 
 @magicgui
