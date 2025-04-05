@@ -129,11 +129,10 @@ as soon as we add the 'camera' image.
 
 ```{code-cell} python
 :tags: [remove-output]
+import napari
 from magicgui import magicgui
 from skimage import data
 from skimage.util import img_as_float
-
-import napari
 
 @magicgui(
     threshold={"widget_type": "FloatSlider", "max": 1}, auto_call=True
@@ -494,7 +493,7 @@ annotation [described above](annotating-as-napari-types-data):
 
 ```{code-cell} python
 :tags: [remove-output]
-import napari
+
 import numpy as np
 from magicgui import magicgui
 from napari.types import LabelsData, ImageData
@@ -562,7 +561,7 @@ a `magicgui` function:
 
 ```{code-cell} python
 :tags: [remove-output]
-import napari
+
 import numpy as np
 from magicgui import magicgui
 
@@ -681,7 +680,7 @@ custom elements.
 ```python
 from magicgui.widgets import FunctionGui
 
-import napari
+
 
 def my_function(...):
     ...
