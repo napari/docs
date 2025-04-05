@@ -495,6 +495,8 @@ annotation [described above](annotating-as-napari-types-data):
 
 ```{code-cell} python
 :tags: [remove-output]
+import napari
+import numpy as np
 from magicgui import magicgui
 from napari.types import LabelsData, ImageData
 
