@@ -347,9 +347,9 @@ from {mod}`napari.types` to indicate that you only want the data attribute from
 the layer (where `<LayerType>` is one of the available layer types).
 
 ```python
+import numpy as np
 from magicgui import magicgui
 from napari.types import ImageData
-import numpy as np
 
 @magicgui
 def my_widget(array: ImageData):
