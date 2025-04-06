@@ -21,6 +21,7 @@ jobs:
         contains(github.event.comment.body, '@napari-bot make')) ||
       github.event_name == 'workflow_dispatch'
     steps:
+      - uses: actions/checkout@v4
       - name: Determine make target
         id: determine-target
         env:
