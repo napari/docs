@@ -22,11 +22,6 @@ on:
         description: 'The directory to deploy the docs to'
         required: true
         default: 'dev'
-      make_target:
-        description: "Enter make target: html html-noplot docs slimfast slimgallery"
-        type: string
-        default: 'slimfast'
-      
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -87,7 +82,7 @@ jobs:
         with:
           # Runs in '/home/runner/work/docs/docs/docs'
           # Built HTML pages in '/home/runner/work/docs/docs/docs/docs/_build/html'
-          run:  make -C docs ${{ github.event.inputs.make_target || 'slimfast' }}
+          run:  make -C docs html
           # skipping setup stops the action from running the default (tiling) window manager
           # the window manager is not necessary for docs builds at this time and it was causing
           # problems with screenshots (https://github.com/napari/docs/issues/285)

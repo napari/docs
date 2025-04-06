@@ -13,7 +13,7 @@ on:
         type: string
 
 jobs:
-  trigger-docs-builds:
+  trigger-circleci:
     runs-on: ubuntu-latest
     if: |
       (github.event_name == 'issue_comment' && 
@@ -67,10 +67,3 @@ jobs:
               }
             }' \
             "https://circleci.com/api/v2/project/gh/psobolewskiPhD/napari-docs/pipeline"
-
-      - name: Trigger artifact build
-        uses: ./.github/workflows/build_and_deploy.yml@main
-        with:
-          target_directory: dev
-          make_target: ${{ steps.determine-target.outputs.target }}
-        secrets: inherit
