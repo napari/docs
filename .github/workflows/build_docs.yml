@@ -4,9 +4,16 @@ name: Build PR Docs
 
 on:
   pull_request:
-    branches:
-      - main
+    types:
+        - opened
+        - synchronize
   workflow_dispatch:
+    inputs:
+      make_target:
+        description: "Enter make target: html html-noplot docs slimfast slimgallery"
+        type: string
+        default: 'slimfast'
+  workflow_call:
     inputs:
       make_target:
         description: "Enter make target: html html-noplot docs slimfast slimgallery"
