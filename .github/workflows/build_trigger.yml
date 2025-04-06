@@ -78,51 +78,25 @@ jobs:
 
   trigger-artifact-build:
     needs: determine-target
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    uses: ./.github/workflows/build_docs.yml
+    with:
+      make_target: ${{ needs.determine-target.outputs.target }}
 
-      - name: Create Check Run
-        id: create-check
-        uses: LouisBrunner/checks-action@v1.1.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          name: "Artifact Build"
-          status: "in_progress"
-          sha: ${{ github.event.pull_request.head.sha || github.sha }}  # Use PR head SHA
-          output: |
-            {
-              "summary": "Build in progress",
-              "details_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }
-
-      - name: Trigger Artifact Build
-        uses: ./.github/workflows/build_docs.yml
-        with:
-          make_target: ${{ needs.determine-target.outputs.target }}
-
-      - name: Update Check Run to Success
-        if: success()
-        uses: LouisBrunner/checks-action@v2.0.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          check_id: ${{ steps.create-check.outputs.check_id }}
-          conclusion: "success"
-          output: |
-            {
-              "summary": "Success",
-              "details_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }
-
-      - name: Update Check Run to Failure
-        if: failure()
-        uses: LouisBrunner/checks-action@v2.0.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          check_id: ${{ steps.create-check.outputs.check_id }}
-          conclusion: "failure"
-          output: |
-            {
-              "summary": "Failed!",
-              "details_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }
+  report-artifact-build-status:
+      needs: trigger-artifact-build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Create Check Run
+          id: create-check
+          uses: LouisBrunner/checks-action@v2.0.0
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            name: "Artifact Build"
+            status: "completed"
+            conclusion: ${{ needs.trigger-artifact-build.result == 'success' && 'success' || 'failure' }}
+            sha: ${{ github.event.pull_request.head.sha || github.sha }}
+            output: |
+              {
+                "summary": "View full logs",
+                "details_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+              }
