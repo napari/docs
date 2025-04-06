@@ -1,7 +1,6 @@
 name: Docs Build Trigger
 
 on:
-  pull_request:
   issue_comment:
     types: [created]
   workflow_dispatch:
@@ -11,6 +10,9 @@ on:
         type: string
         default: 'slimfast'
 
+permissions:
+  checks: write  # Required for check runs
+  contents: read
 
 jobs:
   determine-target:
@@ -77,6 +79,49 @@ jobs:
 
   trigger-artifact-build:
     needs: determine-target
-    uses: ./.github/workflows/build_docs.yml
-    with:
-      make_target: ${{ needs.determine-target.outputs.target }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Check Run
+        id: create-check
+        uses: LouisBrunner/checks-action@v1.1.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: "Artifact Build"
+          status: "in_progress"
+          sha: ${{ github.event.pull_request.head.sha || github.sha }}  # Use PR head SHA
+          output: |
+            {
+              "summary": "Build in progress",
+              "text": "View full logs [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+            }
+
+      - name: Trigger Artifact Build
+        uses: ./.github/workflows/build_docs.yml
+        with:
+          make_target: ${{ needs.determine-target.outputs.target }}
+
+      - name: Update Check Run to Success
+        if: success()
+        uses: LouisBrunner/checks-action@v1.1.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          check_id: ${{ steps.create-check.outputs.check_id }}
+          conclusion: "success"
+          output: |
+            {
+              "summary": "Success",
+              "text": "View full logs [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+            }
+
+      - name: Update Check Run to Failure
+        if: failure()
+        uses: LouisBrunner/checks-action@v1.1.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          check_id: ${{ steps.create-check.outputs.check_id }}
+          conclusion: "failure"
+          output: |
+            {
+              "summary": "Failed!",
+              "text": "View full logs [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+            }
