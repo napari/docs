@@ -1,24 +1,17 @@
 # As much as possible, this file should be kept in sync with
-# https://github.com/napari/napari/blob/main/.github/workflows/build_docs.yml
-#
-# Note this workflow is also triggered by
-# https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml when a
-# commit to `main` occurs in `napari/napari`
+# https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy_docs.yml
+name: Build PR Docs
 
-name: Build & Deploy PR Docs
-# this does a full build of the docs for deployment
 on:
-  push:
+  pull_request:
     branches:
       - main
-    tags:
-      - 'v*'
   workflow_dispatch:
     inputs:
-      target_directory:
-        description: 'The directory to deploy the docs to'
-        required: true
-        default: 'dev'
+      make_target:
+        description: "Enter make target: html html-noplot docs slimfast slimgallery"
+        type: string
+        default: 'slimfast'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -32,15 +25,13 @@ jobs:
       - name: Clone docs repo
         uses: actions/checkout@v4
         with:
-          # place in '/home/runner/work/docs/docs/docs'
           path: docs  # place in a named directory
+          repository: napari/docs
 
       - name: Clone main repo
         uses: actions/checkout@v4
         with:
-          # place in '/home/runner/work/docs/docs/napari'
           path: napari  # place in a named directory
-          repository: napari/napari
           # ensure version metadata is proper
           fetch-depth: 0
 
@@ -64,12 +55,6 @@ jobs:
           python -c 'import napari; print(napari.__version__)'
           python -c 'import napari.layers; print(napari.layers.__doc__)'
 
-      - name: Create fallback videos
-        run: |
-          sudo apt-get update && sudo apt-get install -y ffmpeg
-          cd docs
-          make fallback-videos
-
       - name: Build Docs
         uses: aganders3/headless-gui@v2
         env:
@@ -77,9 +62,7 @@ jobs:
           GOOGLE_CALENDAR_API_KEY: ${{ secrets.GOOGLE_CALENDAR_API_KEY }}
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
         with:
-          # Runs in '/home/runner/work/docs/docs/docs'
-          # Built HTML pages in '/home/runner/work/docs/docs/docs/docs/_build/html'
-          run:  make -C docs html
+          run:  make -C docs ${{ github.event.inputs.make_target || 'slimfast' }}
           # skipping setup stops the action from running the default (tiling) window manager
           # the window manager is not necessary for docs builds at this time and it was causing
           # problems with screenshots (https://github.com/napari/docs/issues/285)
@@ -89,29 +72,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: html
-          path: docs/docs/_build/html/
-
-  deploy:
-    name: Download & Deploy Artifact
-    needs: build-and-upload
-    runs-on: ubuntu-latest
-    # Working directory: '/home/runner/work/docs/docs'
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: html
-          # Downloads to '/home/runner/work/docs/docs/html'
-          path: html
-
-      - name: Deploy Docs
-        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (startsWith(github.ref, 'refs/tags/v') || startsWith(github.ref, 'refs/heads/main'))
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          external_repository: napari/napari.github.io
-          publish_dir: ./html
-          publish_branch: gh-pages
-          destination_dir: ${{ github.event.inputs.target_directory || 'dev' }}
-          cname: napari.org
+          name: docs
+          path: docs/docs/_build/html
