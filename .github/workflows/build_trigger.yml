@@ -57,23 +57,25 @@ jobs:
     env:
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
       MAKE_TARGET: ${{ steps.determine-target.outputs.target }}
-    run: |
-      # Validate branch name isn't empty
-      if [ -z "$BRANCH_NAME" ]; then
-        echo "::error::Branch name is empty"
-        exit 1
-      fi
+    steps:
+      - name: Trigger CircleCI Pipeline
+        run: |
+          # Validate branch name isn't empty
+          if [ -z "$BRANCH_NAME" ]; then
+            echo "::error::Branch name is empty"
+            exit 1
+          fi
 
-      curl -X POST \
-        -H "Content-Type: application/json" \
-        -H "Circle-Token: ${{ secrets.CIRCLECI_TOKEN }}" \
-        -d '{
-          "branch": "'"$BRANCH_NAME"'",
-          "parameters": {
-            "make_target": "'"$MAKE_TARGET"'"
-          }
-        }' \
-        "https://circleci.com/api/v2/project/gh/psobolewskiPhD/napari-docs/pipeline"
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "Circle-Token: ${{ secrets.CIRCLECI_TOKEN }}" \
+            -d '{
+              "branch": "'"$BRANCH_NAME"'",
+              "parameters": {
+                "make_target": "'"$MAKE_TARGET"'"
+              }
+            }' \
+            "https://circleci.com/api/v2/project/gh/psobolewskiPhD/napari-docs/pipeline"
 
   trigger-artifact-build:
     needs: determine-target
