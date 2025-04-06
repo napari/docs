@@ -93,8 +93,9 @@ jobs:
           output: |
             {
               "summary": "Build in progress",
-              "text": "View full logs [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+              "details_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }
+
       - name: Trigger Artifact Build
         uses: ./.github/workflows/build_docs.yml
         with:
@@ -102,7 +103,7 @@ jobs:
 
       - name: Update Check Run to Success
         if: success()
-        uses: LouisBrunner/checks-action@v1.1.0
+        uses: LouisBrunner/checks-action@v2.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           check_id: ${{ steps.create-check.outputs.check_id }}
@@ -110,12 +111,12 @@ jobs:
           output: |
             {
               "summary": "Success",
-              "text": "View full logs [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+              "details_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }
 
       - name: Update Check Run to Failure
         if: failure()
-        uses: LouisBrunner/checks-action@v1.1.0
+        uses: LouisBrunner/checks-action@v2.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           check_id: ${{ steps.create-check.outputs.check_id }}
@@ -123,5 +124,5 @@ jobs:
           output: |
             {
               "summary": "Failed!",
-              "text": "View full logs [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+              "details_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }
