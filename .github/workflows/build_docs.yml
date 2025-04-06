@@ -32,13 +32,15 @@ jobs:
       - name: Clone docs repo
         uses: actions/checkout@v4
         with:
+          # place in '/home/runner/work/docs/docs/docs'
           path: docs  # place in a named directory
-          repository: napari/docs
 
       - name: Clone main repo
         uses: actions/checkout@v4
         with:
+          # place in '/home/runner/work/docs/docs/napari'
           path: napari  # place in a named directory
+          repository: napari/napari
           # ensure version metadata is proper
           fetch-depth: 0
 
