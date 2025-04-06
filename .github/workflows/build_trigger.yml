@@ -15,8 +15,10 @@ on:
 
 
 jobs:
-  trigger-docs-builds:
+  determine-target:
     runs-on: ubuntu-latest
+    outputs:
+      target: ${{ steps.determine-target.outputs.target }}
     if: |
       (github.event_name == 'issue_comment' && 
         github.event.issue.pull_request != '' && 
@@ -49,29 +51,32 @@ jobs:
             echo "target=$TARGET" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Trigger CircleCI Pipeline
-        env:
-          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
-          MAKE_TARGET: ${{ steps.determine-target.outputs.target }}
-        run: |
-          # Validate branch name isn't empty
-          if [ -z "$BRANCH_NAME" ]; then
-            echo "::error::Branch name is empty"
-            exit 1
-          fi
-    
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -H "Circle-Token: ${{ secrets.CIRCLECI_TOKEN }}" \
-            -d '{
-              "branch": "'"$BRANCH_NAME"'",
-              "parameters": {
-                "make_target": "'"$MAKE_TARGET"'"
-              }
-            }' \
-            "https://circleci.com/api/v2/project/gh/psobolewskiPhD/napari-docs/pipeline"
+  trigger-circleci:
+    needs: determine-target
+    runs-on: ubuntu-latest
+    env:
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+      MAKE_TARGET: ${{ steps.determine-target.outputs.target }}
+    run: |
+      # Validate branch name isn't empty
+      if [ -z "$BRANCH_NAME" ]; then
+        echo "::error::Branch name is empty"
+        exit 1
+      fi
 
-      - name: Trigger artifact build
-        uses: ./.github/workflows/build_docs.yml
-        with:
-          make_target: ${{ steps.determine-target.outputs.target }}
+      curl -X POST \
+        -H "Content-Type: application/json" \
+        -H "Circle-Token: ${{ secrets.CIRCLECI_TOKEN }}" \
+        -d '{
+          "branch": "'"$BRANCH_NAME"'",
+          "parameters": {
+            "make_target": "'"$MAKE_TARGET"'"
+          }
+        }' \
+        "https://circleci.com/api/v2/project/gh/psobolewskiPhD/napari-docs/pipeline"
+
+  trigger-artifact-build:
+    needs: determine-target
+    uses: ./.github/workflows/build_docs.yml
+    with:
+      make_target: ${{ needs.determine-target.outputs.target }}
