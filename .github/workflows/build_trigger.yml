@@ -25,7 +25,6 @@ jobs:
         contains(github.event.comment.body, '@napari-bot make')) ||
       github.event_name == 'workflow_dispatch'
     steps:
-      - uses: actions/checkout@v4
       - name: Determine make target
         id: determine-target
         env:
@@ -82,6 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Create Check Run
         id: create-check
         uses: LouisBrunner/checks-action@v1.1.0
@@ -95,7 +95,6 @@ jobs:
               "summary": "Build in progress",
               "text": "View full logs [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
             }
-
       - name: Trigger Artifact Build
         uses: ./.github/workflows/build_docs.yml
         with:
