@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
-      MAKE_TARGET: ${{ steps.determine-target.outputs.target }}
+      MAKE_TARGET: ${{ needs.determine-target.outputs.target }}
     steps:
       - name: Trigger CircleCI Pipeline
         run: |
