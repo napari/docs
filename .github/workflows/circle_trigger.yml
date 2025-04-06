@@ -69,7 +69,7 @@ jobs:
             "https://circleci.com/api/v2/project/gh/psobolewskiPhD/napari-docs/pipeline"
 
       - name: Trigger artifact build
-        uses: napari/docs/.github/workflows/build_and_deploy.yml@main
+        uses: ./.github/workflows/build_and_deploy.yml@main
         with:
           target_directory: dev
           make_target: ${{ steps.determine-target.outputs.target }}
