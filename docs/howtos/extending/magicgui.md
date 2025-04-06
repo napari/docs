@@ -567,6 +567,7 @@ a `magicgui` function:
 ```{code-cell} python
 :tags: [remove-output]
 import numpy as np
+import napari
 from magicgui import magicgui
 
 @magicgui(call_button='Make Points')
