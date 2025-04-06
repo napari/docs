@@ -11,6 +11,8 @@ on:
       make_target:
         description: "Enter make target: html html-noplot docs slimfast slimgallery"
         type: string
+        default: 'slimfast'
+
 
 jobs:
   trigger-docs-builds:
