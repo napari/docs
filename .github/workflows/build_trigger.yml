@@ -1,6 +1,8 @@
 name: Docs Build Trigger
 
 on:
+  pull_request:
+    types: [synchronize]
   issue_comment:
     types: [created]
   workflow_dispatch:
@@ -11,7 +13,8 @@ on:
         default: 'slimfast'
 
 permissions:
-  checks: write  # Required for check runs
+  checks: write
+  pull-requests: write
   contents: read
 
 jobs:
@@ -95,7 +98,7 @@ jobs:
             name: "Artifact Build"
             status: "completed"
             conclusion: ${{ needs.trigger-artifact-build.result == 'success' && 'success' || 'failure' }}
-            sha: ${{ github.event.pull_request.head.sha || github.sha }}
+            sha: ${{ github.event.pull_request.head.sha }}
             output: |
               {
                 "summary": "View full logs",
