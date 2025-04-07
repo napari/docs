@@ -1,8 +1,6 @@
 name: Docs Build Trigger
 
 on:
-  pull_request:
-    types: [synchronize]
   issue_comment:
     types: [created]
   workflow_dispatch:
@@ -97,10 +95,9 @@ jobs:
             token: ${{ secrets.GITHUB_TOKEN }}
             name: "Artifact Build"
             status: "completed"
-            conclusion: ${{ needs.trigger-artifact-build.result || 'neutral' }}
-            sha: ${{ github.event.pull_request.head.sha }}
+            conclusion: ${{ job.status }}
             details_url: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             output: |
               {
-                "summary": "View full logs"
+                "summary": "${{ job.status }}"
               }
