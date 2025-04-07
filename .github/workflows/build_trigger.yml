@@ -13,6 +13,7 @@ on:
         default: 'slimfast'
 
 permissions:
+  pull-requests: write
   contents: read
 
 jobs:
@@ -26,6 +27,9 @@ jobs:
         contains(github.event.comment.body, '@napari-bot make')) ||
       github.event_name == 'workflow_dispatch'
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Determine make target
         id: determine-target
         env:
@@ -79,6 +83,7 @@ jobs:
 
   trigger-artifact-build:
     needs: determine-target
-    uses: ./.github/workflows/build_docs.yml
+    uses: ./.github/workflows/build_docs.yml@@${{ github.ref }}
     with:
+      ref: ${{ github.event.pull_request.head.sha }}
       make_target: ${{ needs.determine-target.outputs.target }}
