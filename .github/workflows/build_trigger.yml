@@ -1,6 +1,8 @@
 name: Docs Build Trigger
 
 on:
+  pull_request:
+    types: [opened, synchronize]
   issue_comment:
     types: [created]
   workflow_dispatch:
@@ -11,8 +13,6 @@ on:
         default: 'slimfast'
 
 permissions:
-  checks: write
-  pull-requests: write
   contents: read
 
 jobs:
@@ -82,22 +82,3 @@ jobs:
     uses: ./.github/workflows/build_docs.yml
     with:
       make_target: ${{ needs.determine-target.outputs.target }}
-
-  report-artifact-build-status:
-      needs: trigger-artifact-build
-      runs-on: ubuntu-latest
-      if: always()
-      steps:
-        - name: Create Check Run
-          id: create-check
-          uses: LouisBrunner/checks-action@v2.0.0
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            name: "Artifact Build"
-            status: "completed"
-            conclusion: ${{ job.status }}
-            details_url: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            output: |
-              {
-                "summary": "${{ job.status }}"
-              }
