@@ -102,5 +102,5 @@ jobs:
             details_url: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             output: |
               {
-                "summary": "View full logs",
+                "summary": "View full logs"
               }
