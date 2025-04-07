@@ -85,6 +85,7 @@ jobs:
   report-artifact-build-status:
       needs: trigger-artifact-build
       runs-on: ubuntu-latest
+      if: always()
       steps:
         - name: Create Check Run
           id: create-check
