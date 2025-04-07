@@ -13,8 +13,7 @@ on:
         default: 'slimfast'
 
 permissions:
-  checks: write
-  pull-requests: write
+  checks: read
   contents: read
 
 jobs:
@@ -88,17 +87,12 @@ jobs:
     with:
       make_target: ${{ needs.determine-target.outputs.target }}
 
-  update-pr-checks:
-    needs: [determine-target, trigger-artifact-build]
+  enforce-checks:
+    needs: trigger-artifact-build
     runs-on: ubuntu-latest
-    if: always()
     steps:
-      - name: Update PR Check
-        uses: LouisBrunner/checks-action@v2.0.0
+      - name: Wait for Artifact Build Check
+        uses: poseidon/wait-for-status-checks@v0.6.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: "Artifact Build"
-          status: "completed"
-          conclusion: ${{ needs.trigger-artifact-build.result || 'neutral' }}
-          sha: ${{ github.event.pull_request.head.sha }}
-          details_url: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          match_pattern: "build_docs.yml"  # Match reusable workflow check name
