@@ -48,7 +48,7 @@ jobs:
 
       - name: Get PR SHA
         id: sha
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           result-encoding: string
           script: |
@@ -61,7 +61,7 @@ jobs:
             return pr.data.head.sha 
             
       - name: Create Pending Status Check
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             github.rest.repos.createCommitStatus({
@@ -116,7 +116,7 @@ jobs:
 
       - name: Create Unsuccessful Status Check
         if: ${{ steps.upload.outcome }} == 'failure'
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             github.rest.repos.createCommitStatus({
@@ -130,7 +130,7 @@ jobs:
             
       - name: Create Successful Status Check
         if: ${{ steps.upload.outcome }} == 'success'
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             github.rest.repos.createCommitStatus({
