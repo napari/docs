@@ -130,7 +130,7 @@ jobs:
               repo: context.repo.repo,
               sha: "${{ github.event.pull_request.head.sha }}",
               state: "${{ needs.trigger-artifact-build.result || 'pending' }}",
-              target_url: "${{ steps.get-job-url.outputs.result }}",
+              target_url: `${{ steps.get-job-url.outputs.result }}`,
               context: "📚 Documentation Build",
               description: "View artifact build logs"
             });
