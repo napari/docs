@@ -11,7 +11,7 @@ on:
         default: 'slimfast'
 
 permissions:
-  checks: read
+  checks: write
   contents: read
 
 jobs:
