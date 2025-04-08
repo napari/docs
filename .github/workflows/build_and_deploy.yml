@@ -117,4 +117,5 @@ jobs:
           publish_dir: ./html
           publish_branch: gh-pages
           destination_dir: ${{ github.event.inputs.target_directory || 'dev' }}
+          force_orphan: true
           cname: napari.org
