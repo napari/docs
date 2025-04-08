@@ -12,6 +12,7 @@ on:
 
 permissions:
   checks: write
+  actions: read
   contents: read
 
 jobs:
