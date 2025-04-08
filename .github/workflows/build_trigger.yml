@@ -116,9 +116,9 @@ jobs:
             
             const job = jobs.jobs.find(j => j.name === 'build-and-upload');
             if (!job) {
-              throw new Error('Job "build-and-upload" not found');
+              throw new Error(`Job "build-and-upload" not found. Available jobs: ${jobs.jobs.map(j => j.name).join(', ')}`);
             }
-            
+
             return job.html_url;
 
       - name: Update PR Check
