@@ -89,19 +89,35 @@ jobs:
     needs: [determine-target, trigger-artifact-build]
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for Artifact Build Checks
-        id: wait-checks
-        uses: poseidon/wait-for-status-checks@v0.6.0
+      - name: Get Reusable Workflow Job URL
+        id: get-job-url
+        uses: actions/github-script@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          match_pattern: "build_docs.yml"
+          script: |
+            const { data: runs } = await github.rest.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'build_docs.yml',  # Name of your reusable workflow file
+              head_sha: '${{ github.event.pull_request.head.sha }}',
+              per_page: 1
+            });
+            const runId = runs.workflow_runs[0].id;
+      
+            const { data: jobs } = await github.rest.actions.listJobsForWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: runId
+            });
+      
+            const job = jobs.jobs.find(j => j.name === 'build-and-upload');  # Job name in reusable workflow
+            return job.html_url;
 
       - name: Update PR Check
         uses: LouisBrunner/checks-action@v2.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: "📚 Documentation Build"
+          name: "📚 Docs Artifact Build"
           status: "completed"
           conclusion: ${{ needs.trigger-artifact-build.result || 'neutral' }}
           sha: ${{ github.event.pull_request.head.sha }}
-          details_url: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          details_url: ${{ steps.get-job-url.outputs.result }}
