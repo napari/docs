@@ -97,19 +97,27 @@ jobs:
             const { data: runs } = await github.rest.actions.listWorkflowRuns({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'build_docs.yml',  # Name of your reusable workflow file
-              head_sha: '${{ github.event.pull_request.head.sha }}',
+              workflow_id: 'build_docs.yml',
+              head_sha: `${{ github.event.pull_request.head.sha }}`,
               per_page: 1
             });
+            
+            if (!runs.workflow_runs?.length) {
+              throw new Error('No workflow runs found');
+            }
+            
             const runId = runs.workflow_runs[0].id;
-      
             const { data: jobs } = await github.rest.actions.listJobsForWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
               run_id: runId
             });
-      
-            const job = jobs.jobs.find(j => j.name === 'build-and-upload');  # Job name in reusable workflow
+            
+            const job = jobs.jobs.find(j => j.name === 'build-and-upload');
+            if (!job) {
+              throw new Error('Job "build-and-upload" not found');
+            }
+            
             return job.html_url;
 
       - name: Update PR Check
