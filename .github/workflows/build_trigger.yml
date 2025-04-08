@@ -121,6 +121,10 @@ jobs:
 
             return job.html_url;
 
+      - name: Debug Job URL
+        run: |
+          echo "Job URL: ${{ steps.get-job-url.outputs.result }}"
+
       - name: Update PR Check
         uses: LouisBrunner/checks-action@v2.0.0
         with:
