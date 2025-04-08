@@ -1,8 +1,6 @@
 name: Docs Build Trigger
 
 on:
-  pull_request:
-    types: [opened, synchronize]
   issue_comment:
     types: [created]
   workflow_dispatch:
@@ -90,69 +88,20 @@ jobs:
   report-status:
     needs: [determine-target, trigger-artifact-build]
     runs-on: ubuntu-latest
-    permissions:
-      checks: write
-      actions: read
     steps:
-      - name: Create Initial Check Run
-        uses: actions/github-script@v7
-        id: create-check
+      - name: Wait for Artifact Build Checks
+        id: wait-checks
+        uses: poseidon/wait-for-status-checks@v0.6.0
         with:
-          script: |
-            const check = await github.rest.checks.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: "📚 Documentation Build",
-              head_sha: "${{ github.event.pull_request.head.sha }}",
-              status: "in_progress",
-              output: {
-                title: "Build in progress",
-                summary: "Waiting for reusable workflow to complete..."
-              }
-            });
-            return check.data.id;
+          token: ${{ secrets.GITHUB_TOKEN }}
+          match_pattern: "build_docs.yml"
 
-      - name: Wait for Reusable Workflow
-        uses: actions/github-script@v7
+      - name: Update PR Check
+        uses: LouisBrunner/checks-action@v2.0.0
         with:
-          script: |
-            const { data: runs } = await github.rest.actions.listWorkflowRuns({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'build_docs.yml',
-              head_sha: "${{ github.event.pull_request.head.sha }}",
-              event: 'workflow_call',
-              per_page: 1
-            });
-
-            const runId = runs.workflow_runs[0].id;
-            let status = 'queued';
-            
-            while (status !== 'completed') {
-              await new Promise(resolve => setTimeout(resolve, 10000));
-              const { data: run } = await github.rest.actions.getWorkflowRun({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                run_id: runId
-              });
-              status = run.status;
-            }
-
-            return run.conclusion;
-
-      - name: Update Check Run
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.checks.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              check_run_id: ${{ steps.create-check.outputs.result }},
-              status: "completed",
-              conclusion: "${{ steps.wait.outputs.result }}",
-              output: {
-                title: "Build completed",
-                summary: "View reusable workflow logs",
-                text: "Documentation build finished with status: ${{ steps.wait.outputs.result }}"
-              }
-            });
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: "📚 Documentation Build"
+          status: "completed"
+          conclusion: ${{ needs.trigger-artifact-build.result || 'neutral' }}
+          sha: ${{ github.event.pull_request.head.sha }}
+          details_url: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
