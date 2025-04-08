@@ -44,6 +44,35 @@ jobs:
           # ensure version metadata is proper
           fetch-depth: 0
 
+
+
+      - name: Get PR SHA
+        id: sha
+        uses: actions/github-script@v6
+        with:
+          result-encoding: string
+          script: |
+            const { owner, repo, number } = context.issue;
+            const pr = await github.rest.pulls.get({
+            owner,
+            repo,
+            pull_number: number,
+            });
+            return pr.data.head.sha 
+            
+      - name: Create Pending Status Check
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.repos.createCommitStatus({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            sha: "${{ steps.sha.outputs.result }}", 
+            state: "pending",
+            target_url: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            description: "Running",
+            });
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
@@ -83,3 +112,31 @@ jobs:
         with:
           name: docs
           path: docs/docs/_build/html
+
+      - name: Create Unsuccessful Status Check
+        if: ${{ steps.test.outcome }} == 'failure'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.repos.createCommitStatus({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            sha: "${{ steps.sha.outputs.result }}", 
+            state: "failure",
+            target_url: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            description: "Failed",
+            }); 
+            
+      - name: Create Successful Status Check
+        if: ${{ steps.test.outcome }} == 'success'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.repos.createCommitStatus({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            sha: "${{ steps.sha.outputs.result }}", 
+            state: "success",
+            target_url: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            description: "Passed",
+            });

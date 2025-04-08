@@ -86,13 +86,3 @@ jobs:
     uses: ./.github/workflows/build_docs.yml
     with:
       make_target: ${{ needs.determine-target.outputs.target }}
-
-  enforce-checks:
-    needs: trigger-artifact-build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Wait for Artifact Build Check
-        uses: poseidon/wait-for-status-checks@v0.6.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          match_pattern: "build_docs.yml"  # Match reusable workflow check name
