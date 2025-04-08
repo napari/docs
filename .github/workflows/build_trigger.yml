@@ -121,16 +121,16 @@ jobs:
 
             return job.html_url;
 
-      - name: Debug Job URL
-        run: |
-          echo "Job URL: ${{ steps.get-job-url.outputs.result }}"
-
-      - name: Update PR Check
-        uses: LouisBrunner/checks-action@v2.0.0
+      - name: Update PR Check with Job URL
+        uses: actions/github-script@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          name: "📚 Docs Artifact Build"
-          status: "completed"
-          conclusion: ${{ needs.trigger-artifact-build.result || 'neutral' }}
-          sha: ${{ github.event.pull_request.head.sha }}
-          details_url: ${{ steps.get-job-url.outputs.result }}
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: "${{ github.event.pull_request.head.sha }}",
+              state: "${{ needs.trigger-artifact-build.result || 'pending' }}",
+              target_url: "${{ steps.get-job-url.outputs.result }}",
+              context: "📚 Documentation Build",
+              description: "View artifact build logs"
+            });
