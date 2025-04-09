@@ -15,6 +15,7 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - [@brisvag](https://github.com/brisvag)
 - [Lucy Liu](https://github.com/napari/napari/commits?author=lucyleeow) - [@lucyleeow](https://github.com/lucyleeow)
 - [Melissa Weber Mendonça](https://github.com/napari/napari/commits?author=melissawm) - [@melissawm](https://github.com/melissawm)
+- [Tim Monko](https://github.com/napari/napari/commits?author:timmonko) - [@TimMonko](https://github.com/TimMonko)
 - [Wouter-Michiel Vierdag](https://github.com/napari/napari/commits?author=melonora) - [@melonora](https://github.com/melonora)
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - [@psobolewskiPhD](https://github.com/psobolewskiPhD)
 
