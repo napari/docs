@@ -121,6 +121,10 @@ jobs:
 
             return encodeURI(job.html_url);
 
+      - name: Debug Target URL
+        run: |
+          echo "URL: ${{ steps.get-job-url.outputs.result }}"
+          
       - name: Update PR Check with Job URL
         uses: actions/github-script@v7
         env:
