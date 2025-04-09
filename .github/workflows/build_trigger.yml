@@ -119,15 +119,14 @@ jobs:
               throw new Error(`Job "build-and-upload" not found. Available jobs: ${jobs.jobs.map(j => j.name).join(', ')}`);
             }
 
-            const cleanUrl = job.html_url.replace(/['"]+/g, '');
-            core.setOutput('result', cleanUrl);
+            core.setOutput('url', job.html_url);
           
       - name: Update PR Check with Job URL
         uses: actions/github-script@v7
         env:
           SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           STATE: ${{ needs.trigger-artifact-build.result || 'pending' }}
-          TARGET_URL: ${{ steps.get-job-url.outputs.result }}
+          TARGET_URL: ${{ steps.get-job-url.outputs.url }}
         with:
           script: |
             const targetUrl = String(process.env.TARGET_URL).trim();
