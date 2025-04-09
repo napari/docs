@@ -54,12 +54,12 @@ In depth guides to build a plugin for napari.
 
 :::
 
-:::{grid-item-card} Virtual environments and useful tools
-:link: virtual-environments-and-useful-tools
+:::{grid-item-card} Best practices
+:link: best-practices
 :link-type: ref
 
-Workshop on virtual environments and useful tools for plugin development.
-
+Set of important best practices to have in mind when building a plugin.
+:::
 ::::
 
 ::::{grid} 2
@@ -71,6 +71,16 @@ How to test your plugin works and how to publish it,
 along with some tips for making your plugin easy to find.
 :::
 
+:::{grid-item-card} Virtual environments and useful tools
+:link: virtual-environments-and-useful-tools
+:link-type: ref
+
+Workshop on virtual environments and useful tools for plugin development.
+:::
+
+::::
+
+::::{grid}
 :::{grid-item-card} Technical references
 :link: plugin-technical-references
 :link-type: ref
