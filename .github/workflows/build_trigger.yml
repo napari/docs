@@ -119,7 +119,7 @@ jobs:
               throw new Error(`Job "build-and-upload" not found. Available jobs: ${jobs.jobs.map(j => j.name).join(', ')}`);
             }
 
-            return job.html_url.replace(/"/g, '');
+            return encodeURI(job.html_url);
 
       - name: Update PR Check with Job URL
         uses: actions/github-script@v7
