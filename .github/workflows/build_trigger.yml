@@ -125,6 +125,8 @@ jobs:
       - name: Update PR Check with Job URL
         uses: actions/github-script@v7
         env:
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          STATE: ${{ needs.trigger-artifact-build.result || 'pending' }}
           TARGET_URL: ${{ steps.get-job-url.outputs.result }}
         with:
           script: |
@@ -132,8 +134,8 @@ jobs:
             await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              sha: ${{ github.event.pull_request.head.sha || github.sha }},
-              state: ${{ needs.trigger-artifact-build.result || 'pending' }},
+              sha: process.env.SHA,
+              state: process.env.STATE,
               target_url: targetUrl,
               context: "Docs Artifact Build",
               description: "View artifact build logs"
