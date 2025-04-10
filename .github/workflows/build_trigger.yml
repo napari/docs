@@ -81,7 +81,6 @@ jobs:
             "https://circleci.com/api/v2/project/gh/psobolewskiPhD/napari-docs/pipeline"
 
   trigger-artifact-build:
-    name: Build & Upload Artifact
     needs: determine-target
     uses: ./.github/workflows/build_docs.yml
     with:
@@ -117,7 +116,7 @@ jobs:
             
             const job = jobs.jobs.find(j => j.name === 'Build & Upload Artifact');
             if (!job) {
-              throw new Error(`Job "build-and-upload" not found. Available jobs: ${jobs.jobs.map(j => j.name).join(', ')}`);
+              throw new Error(`Job not found. Available jobs: ${jobs.jobs.map(j => j.name).join(', ')}`);
             }
 
             core.setOutput('url', job.html_url);
