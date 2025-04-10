@@ -114,7 +114,7 @@ jobs:
               run_id: runId
             });
             
-            const job = jobs.jobs.find(j => j.name === 'Build & Upload Artifact');
+            const job = jobs.jobs.find(j => j.name === 'trigger-artifact-build / Build & Upload Artifact');
             if (!job) {
               throw new Error(`Job not found. Available jobs: ${jobs.jobs.map(j => j.name).join(', ')}`);
             }
