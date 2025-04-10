@@ -81,6 +81,7 @@ jobs:
             "https://circleci.com/api/v2/project/gh/psobolewskiPhD/napari-docs/pipeline"
 
   trigger-artifact-build:
+    name: Build & Upload Artifact
     needs: determine-target
     uses: ./.github/workflows/build_docs.yml
     with:
@@ -98,7 +99,7 @@ jobs:
             const { data: runs } = await github.rest.actions.listWorkflowRuns({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'build_docs.yml',
+              workflow_id: 'build_trigger.yml',
               head_sha: `${{ github.event.pull_request.head.sha }}`,
               per_page: 1
             });
