@@ -117,14 +117,9 @@ and are available to tests stored in
 ## Running tests
 
 To run our test suite locally, run `pytest` on the command line.
-When running tests, you will want to have development and testing dependencies installed
-in your environment:
+When running tests, use a
+[napari development installation](https://napari.org/stable/developers/contributing/dev_install.html#setting-up-a-development-installation).
 
-```sh
-python -m pip install -e .[dev, testing]
-```
-
-placing ".[dev, testing]" in quotes if you are running z-shell.
 
 ### Run GUI tests locally
 
