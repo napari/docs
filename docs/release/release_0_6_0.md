@@ -83,8 +83,8 @@ like:
   See an example of this in action in
   {ref}`sphx_glr_gallery_xarray-latlon-timeseries.py`.
 
-2. By right clicking on the dimension toggle in the viewer, and setting the
-  axis orientations using the drop-down menus
+2. **Through the UI:** By right clicking on the dimension toggle in the viewer,
+  and setting the axis orientations using the drop-down menus
   ([#7686](https://github.com/napari/napari/pull/7686)), which in 3D will
   further indicate whether the resulting coordinate frame is [right-handed or
   left-handed](https://en.wikipedia.org/wiki/Right-hand_rule)
@@ -92,11 +92,15 @@ like:
 
   ![axis orientation dialog](https://github.com/user-attachments/assets/f73898ec-9156-4f73-ab7f-ee2a7cc17fe1)
 
-3. If you want to use a specific axis orientation consistently, you can set the
-  default orientation on startup by changing the relevant settings
+3. **Through the startup settings:** If you want to use a specific axis
+  orientation consistently, you can set the default orientation on startup by
+  changing the relevant settings
   ([#7787](https://github.com/napari/napari/pull/7787):
 
   ![napari settings panel with axis orientation options highlighted](https://github.com/user-attachments/assets/f5032320-8b03-4ff7-9cb7-8b182ab232af)
+
+  To restore the orientation from napari 0.5.6 and earlier, change the Depth
+  axis setting to "away" (ie depth axis points away from you).
 
 ### Command palette 🎨
 
@@ -144,10 +148,12 @@ behavior. ([#7627](https://github.com/napari/napari/pull/7627))
 
 During the 0.6.x series, if some plugin functionality is broken by the
 automatic conversion, you can turn off this conversion in the plugin
-preferences. However, this option will go away in 0.7.0, which we anticipate to
-happen sometime in July. Therefore, if you encounter conversion issues in a
-plugin you rely on, please contact the plugin authors to encourage them to
-migrate their plugin to the npe2 system.
+preferences. However, the option to turn not convert npe1 plugins will be
+removed in 0.7.0, and npe1 plugins will *only* work through automatic
+conversion. We anticipate 0.7.0 will be released in the second half of 2025.
+
+If you encounter conversion issues in a plugin you rely on, please contact the
+plugin authors to encourage them to migrate their plugin to the npe2 system.
 
 If you are a plugin author and your plugin is not yet npe2-compatible, please
 see our [npe2 migration guide](npe2-migration-guide), and, if you encounter any
