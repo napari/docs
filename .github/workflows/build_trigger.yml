@@ -136,6 +136,6 @@ jobs:
               sha: process.env.SHA,
               state: process.env.STATE,
               target_url: targetUrl,
-              context: "Docs Artifact Build",
+              context: "Triggered Docs Artifact Build",
               description: "View artifact build logs"
             });
