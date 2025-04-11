@@ -395,6 +395,7 @@ compatible with napari going forward.
 - Remove deprecated interpolation argument from add_image ([#7793](https://github.com/napari/napari/pull/7793))
 - Remove deprecated type kwarg from Events ([#7794](https://github.com/napari/napari/pull/7794))
 - [pre-commit.ci] pre-commit autoupdate ([#7798](https://github.com/napari/napari/pull/7798))
+- Update camera orientation tooltips for GUI preferences and camera widget ([#7813](https://github.com/napari/napari/pull/7813))
 - Add codespell support (config, workflow to detect/not fix) and make it fix few typos ([docs#587](https://github.com/napari/docs/pull/587))
 - Update CircleCI config.yml to use napari docs and gallery dependency groups ([docs#590](https://github.com/napari/docs/pull/590))
 - Update build_and_deploy.yml to use napari docs dependency group ([docs#591](https://github.com/napari/docs/pull/591))
