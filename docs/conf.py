@@ -62,6 +62,7 @@ extensions = [
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
     "myst_nb",
+    "sphinxext.opengraph",
 ]
 
 # -- HTML Theme ------------------------------------------------------------
@@ -206,6 +207,14 @@ tags_extension = ["md", "rst"]
 panels_add_bootstrap_css = False
 pygments_style = "solarized-dark"
 suppress_warnings = ["myst.header", "etoc.toctree", "config.cache"]
+
+# OpenGraph configuration for link previews
+ogp_site_url = "https://napari.org/"
+ogp_image = "_static/images/logo.png"
+ogp_use_first_image = True
+ogp_description_length = 200
+ogp_type = "website"
+ogp_site_name = "napari"
 
 # glob-style patterns to exclude from docs build source files
 exclude_patterns = [
