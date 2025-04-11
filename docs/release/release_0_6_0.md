@@ -19,7 +19,7 @@ For more information, examples, and documentation, please visit our website: htt
 ### Summary
 
 - Updated viewer handedness ✋
-- Command pallette 🎨
+- Command palette 🎨
 - Display polygons with holes
 - Transition to npe2 plugin engine by default
 - Many other GUI improvements
@@ -118,7 +118,7 @@ palette!
 
 ⚠️ *In 0.6.0a1 and earlier, this only works when installing
 PartSegCore-compiled-backend and toggling the "use compiled triangulation"
-option in the advanced preferences. In 0.6.0 it will work wiht all
+option in the advanced preferences. In 0.6.0 it will work with all
 triangulation backends.* ⚠️
 
 Finally, napari Shapes layers can now display polygons with holes in them,
