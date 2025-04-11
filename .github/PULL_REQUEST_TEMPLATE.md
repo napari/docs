@@ -25,11 +25,13 @@ When you submit this PR, jobs that preview the documentation will be kicked off.
 By default, they will use the `slimfast` build (`make` target), which is fast, because
 it doesn't build any content from outside the `docs` repository and doesn't run notebook cells.
 You can trigger other builds by commenting on the PR with:
+
 @napari-bot make <target>
+
 where <target> can be:
 html : a full build, just like the deployment to napari.org
 html-noplot : a full build, but without the gallery examples from `napari/napari`
-docs : only the content from `napari/docs`, with notebook code cells rendered
-slimfast : the default, only the content from `napari/docs`, without code cells
-slimgallery : `slimfast`, but with the gallery examples from `napari/napari`
+docs : only the content from `napari/docs`, with notebook code cells executed
+slimfast : the default, only the content from `napari/docs`, without code cell execution
+slimgallery : `slimfast`, but with the gallery examples from `napari/napari` built
 -->
