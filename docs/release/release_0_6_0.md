@@ -1,10 +1,6 @@
 # napari 0.6.0
-⚠️ *Note: these release notes are still in draft while 0.6.0 is in release candidate testing.* ⚠️
 
-Friday, Apr 11, 2025
-
-
-*Thu, Apr 10, 2025*
+*Fri, Apr 11, 2025*
 
 🚧 *These notes are under construction while in pre-release* 🚧
 
@@ -100,7 +96,7 @@ like:
   ![napari settings panel with axis orientation options highlighted](https://github.com/user-attachments/assets/f5032320-8b03-4ff7-9cb7-8b182ab232af)
 
   To restore the orientation from napari 0.5.6 and earlier, change the Depth
-  axis setting to "away" (ie depth axis points away from you).
+  axis setting to "away" (i.e. depth axis points away from you).
 
 ### Command palette 🎨
 
@@ -148,16 +144,18 @@ behavior. ([#7627](https://github.com/napari/napari/pull/7627))
 
 During the 0.6.x series, if some plugin functionality is broken by the
 automatic conversion, you can turn off this conversion in the plugin
-preferences. However, the option to turn not convert npe1 plugins will be
+preferences. However, the option to not convert npe1 plugins will be
 removed in 0.7.0, and npe1 plugins will *only* work through automatic
 conversion. We anticipate 0.7.0 will be released in the second half of 2025.
 
 If you encounter conversion issues in a plugin you rely on, please contact the
 plugin authors to encourage them to migrate their plugin to the npe2 system.
 
-If you are a plugin author and your plugin is not yet npe2-compatible, please
-see our [npe2 migration guide](npe2-migration-guide), and, if you encounter any
-issues, get in touch in our [Plugins Zulip chat
+For more details on this change and how it affects plugins, see the [detailed
+guide](adapted-plugin-guide). If you are a plugin author and your plugin is
+not yet npe2-compatible, please see our [npe2 migration
+guide](npe2-migration-guide), and, if you encounter any issues, get in touch in
+our [Plugins Zulip chat
 channel](https://napari.zulipchat.com/#narrow/channel/309872-plugins) or by
 coming to one of our [community meetings](meeting-schedule).
 
@@ -412,9 +410,9 @@ compatible with napari going forward.
 
 (+) denotes first-time contributors 🥳
 
-- [andrew sweet](https://github.com/napari/napari/commits?author=andy-sweet) - @andy-sweet
+- [Andy Sweet](https://github.com/napari/napari/commits?author=andy-sweet) - @andy-sweet
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) ([docs](https://github.com/napari/docs/commits?author=willingc))  - @willingc
-- [clement caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal
+- [Clement Caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal
 - [Constantin Aronssohn](https://github.com/napari/docs/commits?author=cnstt) - @cnstt
 - [Daniel Althviz Moré](https://github.com/napari/napari/commits?author=dalthviz) - @dalthviz
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) ([docs](https://github.com/napari/docs/commits?author=DragaDoncila))  - @DragaDoncila
@@ -437,7 +435,7 @@ compatible with napari going forward.
 
 (+) denotes first-time contributors 🥳
 
-- [andrew sweet](https://github.com/napari/napari/commits?author=andy-sweet) - @andy-sweet
+- [Andy Sweet](https://github.com/napari/napari/commits?author=andy-sweet) - @andy-sweet
 - [Ashley Anderson](https://github.com/napari/docs/commits?author=aganders3) - @aganders3
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) ([docs](https://github.com/napari/docs/commits?author=willingc))  - @willingc
 - [Constantin Aronssohn](https://github.com/napari/docs/commits?author=cnstt) - @cnstt
