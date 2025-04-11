@@ -23,7 +23,7 @@ If workflow, documentation build or deployment change:
 <!-- Previewing the Documentation Build
 When you submit this PR, jobs that preview the documentation will be kicked off.
 By default, they will use the `slimfast` build (`make` target), which is fast, because
-it doesn't build any content ourside the `docs` repository and doesn't run notebook cells.
+it doesn't build any content from outside the `docs` repository and doesn't run notebook cells.
 You can trigger other builds by commenting on the PR with:
 @napari-bot make <target>
 where <target> can be:
