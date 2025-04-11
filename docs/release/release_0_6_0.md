@@ -185,7 +185,7 @@ You'll notice the main napari GUI is subtly (or not so subtly) different in
 For developers: napari now depends on Python 3.10+ and Pydantic v2.2.
 
 We've supported both pydantic 1 and 2 since 0.4.19, but we're now ready to take
-advantage of performance and API improvements of Pydantic 2. If your library
+advantage of performance and API improvements in Pydantic 2. If your library
 depends on Pydantic 1.x, now would be a good time to upgrade, or it will not be
 compatible with napari going forward.
 ([#7589](https://github.com/napari/napari/pull/7589))
