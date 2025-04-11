@@ -319,6 +319,7 @@ compatible with napari going forward.
 - Add missing magicgui imports ([docs#655](https://github.com/napari/docs/pull/655))
 - Surface plugin best practices ([docs#656](https://github.com/napari/docs/pull/656))
 - Add Tim Monko to core developers list ([docs#662](https://github.com/napari/docs/pull/662))
+- Update 0.6.0 release notes with more complete highlights and more PRs ([docs#665](https://github.com/napari/docs/pull/665))
 
 ## Other Pull Requests
 
