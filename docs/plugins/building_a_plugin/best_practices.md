@@ -1,5 +1,4 @@
 (best-practices)=
-
 # Best practices
 
 There are a number of good and bad practices that may not be immediately obvious
@@ -8,42 +7,65 @@ affect the ability to install or use your plugin effectively.
 
 
 (best-practices-no-qt-backend)=
-
-## Don't include `PySide2` or `PyQt5` in your plugin's dependencies.
+## Don't include `napari[all]`, `PySide2`, `PyQt5` or `PyQt6` in your plugin's dependencies.
 
 *This is important!*
 
 Napari supports *both* PyQt and PySide backends for Qt.  It is up to the
 end-user to choose which one they want. If they installed napari with `pip
-install napari[all]`, then the `[all]` extra will (currently) install `PyQt5`
-for them from pypi.  If they installed via `conda install napari`, then they'll
-have `PyQt5`, but via anaconda cloud instead of pypi. Lastly, they may have
-installed napari with PySide2.
+install napari[all]`, then this includes `PyQt5` from PyPI as the default backend.
+If they installed via `conda install napari pyqt`, then they'll have `PyQt5`,
+but from conda-forge instead of PyPI. Meanwhile, the napari bundle has PySide2.
+But users are also free to install PyQt6, which is fully supported, or the 
+experimental PySide6 backend.
 
-Here's what can go wrong if you *also* declare one of these backends in the
-`install_requires` section of your plugin metadata:
+Here's what can go wrong if you *also* declare one of these backends **or napari[all]**
+in the `dependencies`/`install_requires` section of your plugin metadata:
 
-- If they installed via `conda install napari` and then they install your plugin
-  via `pip` (or via the builtin plugin installer, which currently uses `pip`),
-  then there *will* be a binary incompatibility between their conda `pyqt`
-  installation, and the new pip "`PyQt5`" installation. *This will very likely
+- If they installed via `conda install napari pyqt` and then they install your plugin
+  via `pip` (or vice versa) then there *will* be a binary incompatibility between the 
+  conda `pyqt` installation, and the `PyQt5` installation from PyPI. *This will very likely
   lead to a broken environment, forcing the user to re-create their entire
   environment and re-install napari*. This is an unfortunate consequence of
-  [package naming
-  decisions](https://github.com/ContinuumIO/anaconda-issues/issues/1554), and
-  it's not something napari can fix.
-- Alternatively, they may end up with *both* PyQt and PySide in their
-  environment, and while that's not always guaranteed to break things, it can
-  lead to unexpected and difficult to debug problems.
+  [package naming decisions](https://github.com/ContinuumIO/anaconda-issues/issues/1554),
+  and it's not something napari can fix.
+- Alternatively, they may end up with some combination of *both* PyQt5, PyQt6, PySide2,
+  and PySide6 in their environment: the Qt backend they had installed and the one your
+  plugin installed as a dependency. This is will not *always* to break things, but
+  it will lead to unexpected and difficult to debug problems. 
+- Both of the above cases are most likely to happen with the built-in GUI napari plugin manager,
+  which will install your plugin plus the base dependencies. As a result, this frequently 
+  occurs with the bundle app. Trying to fix these issues is almost impossible for GUI centric
+  users, leaving them the only recourse of re-installing.
 
 - **Don't import from PyQt5 or PySide2 in your plugin: use `qtpy`.**
 
     If you use `from PyQt5 import QtCore` (or similar) in your plugin, but the
     end-user has chosen to use `PySide2` for their Qt backend — or vice versa —
     then your plugin will fail to import.  Instead use `from qtpy import
-    QtCore`.  `qtpy` is a [Qt compatibility
-    layer](https://github.com/spyder-ide/qtpy) that will import from whatever
-    backend is installed in the environment.
+    QtCore`.  `qtpy` is a [Qt compatibility layer](https://github.com/spyder-ide/qtpy)
+    that will import from whatever backend is installed in the environment.
+
+````{tip}
+1. You can still include a specific Qt backend in optional `dev` or `testing` dependencies!
+Just *don't* include a specific Qt backend (or `napari[all]`, which currently includes PyQt5)
+in your base dependencies.
+2. You can include an optional `all` dependency on `napari[all]` to mimic the simple,
+command line installation in a fresh environment. In `pyproject.toml` this would be:
+
+    ```
+    [project.optional-dependencies]
+    all = [napari["all]"]
+    ```
+
+    And then your plugin could be installed with napari and the default Qt backend using:
+    ```bash
+    pip install my_plugin[all]
+    ```
+    Meanwhile, the napari plugin manager will still just install your plugin without the Qt
+    dependency.  
+
+````
 
 ## Try not to depend on packages that require C compilation if these packages do not offer wheels
 
@@ -89,87 +111,23 @@ will run into difficulties installing your plugin:
 
 - *How do I know if one of my dependencies uses C Extensions?*
 
-  There's no one right way, but more often than not, if a package uses C
-  extensions, the `setup()` function in their `setup.py` file will use the
+  First, look for the presence of C or C++ in the "Languages" side-bar
+  of the repository. Otherwise, there's no one right way, but more often than not, 
+  if a package uses C extensions, then their `setup.py` file will use the
   [`ext_modules`
   argument](https://docs.python.org/3.11/distutils/setupscript.html#describing-extension-modules).
-  (for example, [see here in
-  pytorch](https://github.com/pytorch/pytorch/blob/master/setup.py#L914))
+    
 
 ````{admonition} What about conda?
 **conda** also distributes & installs pre-compiled packages, though they aren't
-wheels.  While this is definitely a fine way to install binary dependencies in a
-reliable way, the built-in napari plugin installer doesn't currently work with
-conda.  If your dependency is only available on conda, but does not offer
-wheels,you *may* guide your users in using conda to install your package or one
-of your dependencies.  Just know that it may not work with the built-in plugin
-installer.
+wheels.  We encourage you to make your plugins available on conda-forge, which
+is a fine way to handle binary dependencies in a reliable way. The built-in 
+[napari plugin manager](https://napari.org/napari-plugin-manager) currently
+supports installing plugins from both PyPI and conda-forge, with the default matching
+the source of the napari installation.
 ````
-
-
-## Don't import heavy dependencies at the top of your module
-
-````{note}
-This point will be less relevant when we move to the second generation
-[manifest-based plugin
-declaration](https://github.com/napari/napari/issues/3115), but it's still a
-good idea to delay importing your plugin-specific dependencies and modules until
-*after* your hookspec has been called.  This helps napari stay quick and
-responsive at startup.
-````
-
-
-
-Consider the following example plugin:
-
-```ini
-[options.entry_points]
-napari.plugin =
-  plugin-name = mypackage.napari_plugin
-```
-
-In this example, `my_heavy_dependency_like_tensorflow` will be imported
-*immediately* when napari is launched, and we search the entry_point
-`mypackage.napari_plugin` for decorated hook specifications.
-
-```py
-# mypackage/napari_plugin.py
-from napari_plugin_engine import napari_hook_specification
-from qtpy.QtWidgets import QWidget
-from my_heavy_dependency_like_tensorflow import something_amazing
-
-class MyWidget(QWidget):
-    def do_something_amazing(self):
-        return something_amazing()
-
-@napari_hook_specification
-def napari_experimental_provide_dock_widget():
-    return MyWidget
-```
-
-This can deterioate the end-user experience, and make napari feel slugish. Best
-practice is to delay heavy imports until right before they are used.  The
-following slight modification will help napari load much faster:
-
-```py
-# mypackage/napari_plugin.py
-from napari_plugin_engine import napari_hook_specification
-from qtpy.QtWidgets import QWidget
-
-class MyWidget(QWidget):
-    def do_something_amazing(self):
-        # import has been moved here, will happen only after the user
-        # has opened and used this widget.
-        from my_heavy_dependency_like_tensorflow import something_amazing
-
-        return something_amazing()
-```
-
-(again, the second gen napari plugin engine will help improve this situation,
-but it's still a good idea!)
 
 (best_practice_napari_type)=
-
 ## Don't require `napari` if not necessary
 
 It's good practice to not depend on `napari` if not strictly necessary.
@@ -204,7 +162,7 @@ It's always good practice to clean up resources like open file handles and
 databases.  As a napari plugin it's particularly important to do this (and
 especially for Windows users).  If someone tries to use the built-in plugin
 manager to *uninstall* your plugin, open file handles and resources may cause
-the process to fail or even leave your plugin in an "installed-but-unuseable"
+the process to fail or even leave your plugin in an "installed-but-unusable"
 state.
 
 Don't do this:
@@ -224,8 +182,6 @@ using a context manager, but manually otherwise):
 with open("some_data_in_my_plugin.json") as data_file:
     data = json.load(data_file)
 ```
-
-
 
 ## Write extensive tests for your plugin!
 
@@ -420,3 +376,64 @@ Others will prevent it entirely... Be mindful and check the requirements before 
 If you are vendoring other projects, please add an acknowledgement in your README.
 The license details in your project metadata should also include this information!
 ```
+
+## Outdated, npe1 only: Don't import heavy dependencies at the top of your module
+
+````{note}
+This point will be less relevant when we move to the second generation
+[manifest-based plugin
+declaration](https://github.com/napari/napari/issues/3115), but it's still a
+good idea to delay importing your plugin-specific dependencies and modules until
+*after* your hookspec has been called.  This helps napari stay quick and
+responsive at startup.
+````
+
+
+
+Consider the following example plugin:
+
+```ini
+[options.entry_points]
+napari.plugin =
+  plugin-name = mypackage.napari_plugin
+```
+
+In this example, `my_heavy_dependency_like_tensorflow` will be imported
+*immediately* when napari is launched, and we search the entry_point
+`mypackage.napari_plugin` for decorated hook specifications.
+
+```py
+# mypackage/napari_plugin.py
+from napari_plugin_engine import napari_hook_specification
+from qtpy.QtWidgets import QWidget
+from my_heavy_dependency_like_tensorflow import something_amazing
+
+class MyWidget(QWidget):
+    def do_something_amazing(self):
+        return something_amazing()
+
+@napari_hook_specification
+def napari_experimental_provide_dock_widget():
+    return MyWidget
+```
+
+This can deterioate the end-user experience, and make napari feel slugish. Best
+practice is to delay heavy imports until right before they are used.  The
+following slight modification will help napari load much faster:
+
+```py
+# mypackage/napari_plugin.py
+from napari_plugin_engine import napari_hook_specification
+from qtpy.QtWidgets import QWidget
+
+class MyWidget(QWidget):
+    def do_something_amazing(self):
+        # import has been moved here, will happen only after the user
+        # has opened and used this widget.
+        from my_heavy_dependency_like_tensorflow import something_amazing
+
+        return something_amazing()
+```
+
+(again, the second gen napari plugin engine will help improve this situation,
+but it's still a good idea!)
