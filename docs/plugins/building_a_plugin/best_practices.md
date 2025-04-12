@@ -120,8 +120,9 @@ will run into difficulties installing your plugin:
 
 ````{admonition} What about conda?
 **conda** also distributes & installs pre-compiled packages, though they aren't
-wheels.  We encourage you to make your plugins available on conda-forge, which
-is a fine way to handle binary dependencies in a reliable way. The built-in 
+wheels.  We encourage you to make your plugins 
+[available on conda-forge](deploying-to-conda-forge), which
+is a great way to handle binary dependencies in a reliable way. The built-in 
 [napari plugin manager](https://napari.org/napari-plugin-manager) currently
 supports installing plugins from both PyPI and conda-forge, with the default matching
 the source of the napari installation.
