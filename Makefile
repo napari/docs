@@ -1,4 +1,4 @@
-.PHONY: clean clean-gallery
+.PHONY: clean clean-gallery clean-prep clean-full
 
 SPHINXOPTS =
 
@@ -18,9 +18,16 @@ clean:
 	rm -rf $(docs_dir)/_build/
 	rm -rf $(docs_dir)/api/napari*.rst
 
+clean-prep: clean
+	rm -rf $(docs_dir)/guides/preferences.md
+	rm -rf $(docs_dir)/developers/architecture/ui_sections/*ui.md
+	rm -rf $(doc_dir)/plugins/_npe2*.md
+
 clean-gallery:
 	rm -rf $(docs_dir)/gallery/*
 	rm -rf $(docs_dir)/_tags
+
+clean-full: clean-prep clean-gallery
 
 prep-docs:
 	python $(docs_dir)/_scripts/prep_docs.py
