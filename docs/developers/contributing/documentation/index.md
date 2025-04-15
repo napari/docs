@@ -43,7 +43,7 @@ or [editing an existing file](https://docs.github.com/en/repositories/working-wi
 on the [napari/docs](https://github.com/napari/docs) GitHub repository.
 It's best if you first [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) the [napari/docs](https://github.com/napari/docs) repository to your own GitHub account, create a [feature branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch), upload/create/edit files through the GitHub web interface, and then [open a pull request from your fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) back to [napari-docs](https://github.com/napari/docs).
 
-When you submit your PR, a number of jobs will be kicked off, including preview rendering builds of 
+When you submit your PR, a number of jobs will be kicked off, including generation of a preview of 
 the documentation. By default, they will use the `slimfast` build ("make target"), which is fast, because
 it doesn't build any content from outside the `docs` repository and doesn't execute notebook cells.
 This is great for seeing the copy and formatting, but if you want to preview other elements,
@@ -61,10 +61,10 @@ where `<target>` can be:
 For more information about these targets see the ["building locally"](build_docs_locally) section 
 of the documentation, including the part on [specialized builds](#building-what-you-need).  
 
-Once the jobs complete—should be fast by default!—you will also be able to [preview the documentation](doc_view_ci) by
+Once the jobs complete you will also be able to [preview the documentation](doc_view_ci) by
 using the `Check the rendered docs here!` action at the bottom of your PR, which will go to a 
 preview website on [CircleCI](https://circleci.com/). Alternatively, you can download a zip file 
-of [the build artifact](#download-documentation-artifact). For a build triggered by a comment, use
+of [the build artifact](#download-documentation-artifact) and open the html files directly in your browser. For a build triggered by a comment, use
 the "Triggered Docs Artifact Build" link.
 
 If needed, a member of the maintenance team will help with updating the [napari.org](https://napari.org/dev) 
