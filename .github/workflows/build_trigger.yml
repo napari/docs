@@ -1,4 +1,4 @@
-name: Docs Build Trigger
+name: Trigger target build of docs
 
 on:
   issue_comment:
