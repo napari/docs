@@ -5,7 +5,7 @@
 # https://github.com/napari/napari/blob/main/.github/workflows/deploy_docs.yml when a
 # commit to `main` occurs in `napari/napari`
 
-name: Build & Deploy PR Docs
+name: Full Build & Deploy of Docs
 # this does a full build of the docs for deployment
 on:
   push:
