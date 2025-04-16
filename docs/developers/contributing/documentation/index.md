@@ -43,10 +43,10 @@ or [editing an existing file](https://docs.github.com/en/repositories/working-wi
 on the [napari/docs](https://github.com/napari/docs) GitHub repository.
 It's best if you first [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) the [napari/docs](https://github.com/napari/docs) repository to your own GitHub account, create a [feature branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch), upload/create/edit files through the GitHub web interface, and then [open a pull request from your fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) back to [napari-docs](https://github.com/napari/docs).
 
-When you submit your PR, a number of jobs will be kicked off, including generation of a preview of 
-the documentation. By default, they will use the `slimfast` build ("make target"), which is fast, because
-it doesn't build any content from outside the `docs` repository and doesn't execute notebook cells.
-This is great for seeing the copy and formatting, but if you want to preview other elements,
+When you submit your PR, CI will kick off several jobs, including generation of a preview of 
+the documentation. By default, CI will use the `slimfast` build ("make target"), which
+doesn't build any content from outside the `docs` repository or run any `docs` notebook cells.
+This is great for seeing the copy and formatting. If you want to preview other elements,
 you can trigger more complete builds by commenting on the PR with:
 ```
 @napari-bot make <target>
