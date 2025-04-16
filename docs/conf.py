@@ -210,7 +210,7 @@ suppress_warnings = ["myst.header", "etoc.toctree", "config.cache"]
 
 # OpenGraph configuration for link previews
 ogp_site_url = "https://napari.org/"
-ogp_image = "dev/_static/images/opengraph_image.jpg"
+ogp_image = "dev/_static/images/opengraph_image.png"
 ogp_use_first_image = False
 ogp_description_length = 300
 ogp_type = "website"
