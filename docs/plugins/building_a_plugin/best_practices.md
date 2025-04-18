@@ -38,14 +38,6 @@ in the `dependencies`/`install_requires` section of your plugin metadata:
   occurs with the bundle app. Trying to fix these issues is almost impossible for GUI centric
   users, leaving them the only recourse of re-installing.
 
-## Don't import from any specific Qt backend (e.g. PyQt5, PySide2, etc.) in your plugin: use `qtpy`
-
-    If you use `from PyQt5 import QtCore` (or similar) in your plugin, but the
-    end-user has chosen to use `PySide2` for their Qt backend — or vice versa —
-    then your plugin will fail to import.  Instead use `from qtpy import
-    QtCore`.  `qtpy` is a [Qt compatibility layer](https://github.com/spyder-ide/qtpy)
-    that will import from whatever backend is installed in the environment.
-
 ````{tip}
 1. You can still include a specific Qt backend in optional `dev` or `testing` dependencies!
 Just *don't* include a specific Qt backend (or `napari[all]`, which currently includes PyQt5)
@@ -66,6 +58,15 @@ command line installation in a fresh environment. In `pyproject.toml` this would
     dependency.  
 
 ````
+
+## Don't import from any specific Qt backend (e.g. PyQt5, PySide2, etc.) in your plugin: use `qtpy`
+
+    If you use `from PyQt5 import QtCore` (or similar) in your plugin, but the
+    end-user has chosen to use `PySide2` for their Qt backend — or vice versa —
+    then your plugin will fail to import.  Instead use `from qtpy import
+    QtCore`.  `qtpy` is a [Qt compatibility layer](https://github.com/spyder-ide/qtpy)
+    that will import from whatever backend is installed in the environment.
+
 
 ## Try not to depend on packages that require C compilation if these packages do not offer wheels
 
