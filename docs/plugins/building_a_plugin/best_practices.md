@@ -1,5 +1,5 @@
 (best-practices)=
-# Best practices
+# Best practices for plugin developers
 
 There are a number of good and bad practices that may not be immediately obvious
 when developing a plugin.  This page covers some known practices that could
@@ -7,16 +7,16 @@ affect the ability to install or use your plugin effectively.
 
 
 (best-practices-no-qt-backend)=
-## Don't include `napari[all]`, `PySide2`, `PyQt5` or `PyQt6` in your plugin's dependencies.
+## Don't include `napari[all]`, `PySide2`, `PyQt5` or `PyQt6` in your plugin's default dependencies.
 
-*This is important!*
+*This is important! Avoid including any form of Qt in your plugin's dependencies!*
 
 Napari supports *both* PyQt and PySide backends for Qt.  It is up to the
 end-user to choose which one they want. If they installed napari with `pip
 install napari[all]`, then this includes `PyQt5` from PyPI as the default backend.
 If they installed via `conda install napari pyqt`, then they'll have `PyQt5`,
-but from conda-forge instead of PyPI. Meanwhile, the napari bundle has PySide2.
-But users are also free to install PyQt6, which is fully supported, or the 
+but from conda-forge instead of PyPI. Meanwhile, the napari bundle installs with PySide2.
+Users are also free to install PyQt6, which is fully supported, or the 
 experimental PySide6 backend.
 
 Here's what can go wrong if you *also* declare one of these backends **or napari[all]**
@@ -38,7 +38,7 @@ in the `dependencies`/`install_requires` section of your plugin metadata:
   occurs with the bundle app. Trying to fix these issues is almost impossible for GUI centric
   users, leaving them the only recourse of re-installing.
 
-- **Don't import from PyQt5 or PySide2 in your plugin: use `qtpy`.**
+## Don't import from any specific Qt backend (e.g. PyQt5, PySide2, etc.) in your plugin: use `qtpy`
 
     If you use `from PyQt5 import QtCore` (or similar) in your plugin, but the
     end-user has chosen to use `PySide2` for their Qt backend — or vice versa —
