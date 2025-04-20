@@ -41,7 +41,7 @@ jobs:
           # Check out to '/home/runner/work/docs/docs/napari'
           path: napari
           repository: napari/napari
-          # ensure version metadata is proper
+          # fetch history ensure napari version metadata is read properly
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
