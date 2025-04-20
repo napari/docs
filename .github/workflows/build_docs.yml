@@ -32,14 +32,14 @@ jobs:
       - name: Clone docs repo
         uses: actions/checkout@v4
         with:
-          # place in '/home/runner/work/docs/docs/docs'
-          path: docs  # place in a named directory
+          # Check out to  '/home/runner/work/docs/docs/docs'
+          path: docs
 
       - name: Clone main repo
         uses: actions/checkout@v4
         with:
-          # place in '/home/runner/work/docs/docs/napari'
-          path: napari  # place in a named directory
+          # Check out to '/home/runner/work/docs/docs/napari'
+          path: napari
           repository: napari/napari
           # ensure version metadata is proper
           fetch-depth: 0
@@ -59,7 +59,7 @@ jobs:
         env:
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
 
-      - name: Testing
+      - name: Check napari can be imported
         run: |
           python -c 'import napari; print(napari.__version__)'
           python -c 'import napari.layers; print(napari.layers.__doc__)'
