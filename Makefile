@@ -71,14 +71,14 @@ html-noplot-live: prep-stubs
 # full build, no gallery
 # will not remove existing gallery files
 html-noplot: clean prep-docs
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -WT --keep-going -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 # just napari/docs
 # no generation from prep_docs scripts, no gallery
 # does run notebook cells
 # will not remove existing gallery files
 docs: clean prep-stubs
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS) 
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -WT --keep-going -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS) 
 
 # live variant of `docs`
 docs-live: prep-stubs
@@ -96,11 +96,11 @@ docs-live: prep-stubs
 # no notebook execution, no generation from prep_docs, no gallery
 # will note remove existing gallery files
 slim: clean prep-stubs
-	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -WT --keep-going -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 # slim, but uses -j auto to parallelize the build
 slimfast: clean prep-stubs
-	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) -j auto $(SPHINXOPTS)
+	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -WT --keep-going -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) -j auto $(SPHINXOPTS)
 
 # slimfast, but uses sphinx-autobuild to rebuild changed files
 # this will run an initial build, because it's fast
@@ -121,7 +121,7 @@ slimfast-live: clean prep-stubs
 # does not remove existing gallery files
 slimgallery: clean clean-gallery prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
-	sphinx-build -M html docs/ docs/_build -T --keep-going \
+	sphinx-build -M html docs/ docs/_build -WT --keep-going \
 	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
 	$(SPHINXOPTS)
 
@@ -166,7 +166,7 @@ slimgallery-%:
 # runs slimgallery with a single example
 build-specific-example: clean clean-gallery prep-stubs
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
-	sphinx-build -M html docs/ docs/_build -T --keep-going \
+	sphinx-build -M html docs/ docs/_build -WT --keep-going \
 	-D sphinx_gallery_conf.filename_pattern=$(EXAMPLE_NAME)".py" \
 	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
 	-j auto \
