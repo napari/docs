@@ -1,21 +1,26 @@
+# Python CircleCI 2.1 configuration file
+#
 # As much as possible, this file should be kept in sync with:
 # https://github.com/napari/napari/blob/main/.circleci/config.yaml
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.1/configuration-reference
+#
+# Check for more details: https://circleci.com/docs/2.1/configuration-reference
 version: 2.1
+
 # Orbs are reusable packages of CircleCI configuration that you may share across projects.
 # See: https://circleci.com/docs/2.1/orb-intro/
 orbs:
   python: circleci/python@3.0.0
+
+# parameterize the make target used for build, passed in from build_trigger.yml action
 parameters:
   make_target:
     type: string
     default: "slimfast"
+
 jobs:
   build-docs:
     docker:
-      # A list of available CircleCI Docker convenience images are available here: https://circleci.com/developer/images/image/cimg/python
-      - image: cimg/python:3.10.16
+      - image: cimg/python:3.10.17
     steps:
       - checkout:
           path: docs
@@ -28,21 +33,19 @@ jobs:
       - run:
           name: Setup virtual environment
           command: |
-            python -m venv venv
-            . venv/bin/activate
-            python -m pip install --upgrade pip
-
+            uv venv
+            . .venv/bin/activate
       - run:
           name: Install napari-dev
           command: |
-            . venv/bin/activate
-            python -m pip install -e "napari/[pyqt5,docs]"
+            . .venv/bin/activate
+            uv pip install -e "napari/[pyqt5,docs]"
           environment:
             PIP_CONSTRAINT: napari/resources/constraints/constraints_py3.10_docs.txt
       - run:
           name: Build docs
           command: |
-            . venv/bin/activate
+            . .venv/bin/activate
             cd docs
             xvfb-run --auto-servernum make << pipeline.parameters.make_target >>
           environment:
