@@ -11,6 +11,12 @@ version: 2.1
 orbs:
   python: circleci/python@3.0.0
 
+# parameterize the make target used for build, passed in from build_trigger.yml action
+parameters:
+  make_target:
+    type: string
+    default: "slimfast"
+
 jobs:
   build-docs:
     docker:
@@ -41,7 +47,7 @@ jobs:
           command: |
             . .venv/bin/activate
             cd docs
-            xvfb-run --auto-servernum make html
+            xvfb-run --auto-servernum make << pipeline.parameters.make_target >>
           environment:
             PIP_CONSTRAINT: ../napari/resources/constraints/constraints_py3.10_docs.txt
       - store_artifacts:
