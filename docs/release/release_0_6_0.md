@@ -188,6 +188,8 @@ You'll notice the main napari GUI is subtly (or not so subtly) different in
   ([#7673](https://github.com/napari/napari/pull/7673))
 - If you switch from 2D to 3D view and back again, your 3D viewing angle will
   be preserved ([#7765](https://github.com/napari/napari/pull/7765))
+- Notice some weird behavior? Our new log handler and viewer might help! Access
+  it with Help > Show logs. ([#6900](https://github.com/napari/napari/pull/6900))
 
 ### Other stuff
 
@@ -200,7 +202,6 @@ advantage of performance and API improvements in Pydantic 2. If your library
 depends on Pydantic 1.x, now would be a good time to upgrade, or it will not be
 compatible with napari going forward.
 
-
 If you were dreading 0.6.0 because you were relying on `_qt_viewer` features,
 worry not: we have again postponed that deprecation while we add the required
 APIs. 😅 ([#7730](https://github.com/napari/napari/pull/7730))
@@ -210,8 +211,6 @@ daunting, it's now easier than ever, because our default documentation preview
 build is now much faster! You can propose changes from the GitHub UI and see
 the rendered results in only two minutes!
 ([napari/docs#669](https://github.com/napari/docs/pull/669))
-
-- Add a custom log handler and GUI viewer with filters ([#6900](https://github.com/napari/napari/pull/6900))
 
 ## New Features
 
