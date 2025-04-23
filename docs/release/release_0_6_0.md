@@ -134,7 +134,7 @@ of triangles, which is what GPUs are good at drawing.
 ([#7747](https://github.com/napari/napari/pull/7747)) To use the new backends,
 install the relevant package (for example, `bermuda`,
 `partsegcore-compiled-backend`, or `numba`), then go to Settings > Experimental
-|> triangulation backend. (If you use `napari[all]`, you will have bermuda
+\> triangulation backend. (If you use `napari[all]`, you will have bermuda
 installed and it will be used automatically, as the default option is "fastest
 available".)
 
