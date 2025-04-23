@@ -460,9 +460,9 @@ the rendered results in only two minutes!
 
 (+) denotes first-time contributors 🥳
 
-- [andrew sweet](https://github.com/napari/napari/commits?author=andy-sweet) - @andy-sweet
+- [Andrew Sweet](https://github.com/napari/napari/commits?author=andy-sweet) - @andy-sweet
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) ([docs](https://github.com/napari/docs/commits?author=willingc))  - @willingc
-- [clement caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal
+- [Clement Caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal
 - [Constantin Aronssohn](https://github.com/napari/napari/commits?author=cnstt) ([docs](https://github.com/napari/docs/commits?author=cnstt))  - @cnstt
 - [Daniel Althviz Moré](https://github.com/napari/napari/commits?author=dalthviz) - @dalthviz
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) ([docs](https://github.com/napari/docs/commits?author=DragaDoncila))  - @DragaDoncila
@@ -473,10 +473,10 @@ the rendered results in only two minutes!
 - [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) ([docs](https://github.com/napari/docs/commits?author=jni))  - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
 - [Lukasz Migas](https://github.com/napari/napari/commits?author=lukasz-migas) - @lukasz-migas
-- [M Bussonnier](https://github.com/napari/napari/commits?author=Carreau) - @Carreau
+- [Matthias Bussonnier](https://github.com/napari/napari/commits?author=Carreau) - @Carreau
 - [Melissa Weber Mendonça](https://github.com/napari/napari/commits?author=melissawm) ([docs](https://github.com/napari/docs/commits?author=melissawm))  - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
-- [sfmig](https://github.com/napari/napari/commits?author=sfmig) - @sfmig +
+- [Sofi Milano](https://github.com/napari/napari/commits?author=sfmig) - @sfmig +
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wouter-Michiel Vierdag](https://github.com/napari/docs/commits?author=melonora) - @melonora
 - [Yaroslav Halchenko](https://github.com/napari/docs/commits?author=yarikoptic) - @yarikoptic +
@@ -486,7 +486,7 @@ the rendered results in only two minutes!
 
 (+) denotes first-time contributors 🥳
 
-- [andrew sweet](https://github.com/napari/napari/commits?author=andy-sweet) - @andy-sweet
+- [Andy Sweet](https://github.com/napari/napari/commits?author=andy-sweet) - @andy-sweet
 - [Ashley Anderson](https://github.com/napari/docs/commits?author=aganders3) - @aganders3
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) ([docs](https://github.com/napari/docs/commits?author=willingc))  - @willingc
 - [Constantin Aronssohn](https://github.com/napari/napari/commits?author=cnstt) ([docs](https://github.com/napari/docs/commits?author=cnstt))  - @cnstt
