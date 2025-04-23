@@ -43,10 +43,33 @@ or [editing an existing file](https://docs.github.com/en/repositories/working-wi
 on the [napari/docs](https://github.com/napari/docs) GitHub repository.
 It's best if you first [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) the [napari/docs](https://github.com/napari/docs) repository to your own GitHub account, create a [feature branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch), upload/create/edit files through the GitHub web interface, and then [open a pull request from your fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) back to [napari-docs](https://github.com/napari/docs).
 
-You will also be able to [preview the documentation](doc_view_ci) as it would appear on [napari.org](https://napari.org/dev) by
-using the `Check the rendered docs here!` action at the bottom of your PR which will go to a preview site on [CircleCI](https://circleci.com/).
-A member of the maintenance
-team will help with updating the [napari.org](https://napari.org/dev) table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](update-toc)) and making sure your documentation has built correctly.
+When you submit your PR, CI will kick off several jobs, including generation of a preview of 
+the documentation. By default, CI will use the `slimfast` build ("make target"), which
+doesn't build any content from outside the `docs` repository or run any `docs` notebook cells.
+This is great for seeing the copy and formatting. If you want to preview other elements,
+you can trigger more complete builds by commenting on the PR with:
+```
+@napari-bot make <target>
+```
+where `<target>` can be:
+- `html` : a full build, just like napari.org live
+- `html-noplot` : a full build, but without the gallery examples from `napari/napari`
+- `docs` : only the content from `napari/docs`, with notebook code cells executed
+- `slimfast` : the default, only the content from `napari/docs`, without code cell execution
+- `slimgallery` : `slimfast`, but also builds the gallery examples from `napari/napari` 
+
+For more information about these targets see the ["building locally"](build_docs_locally) section 
+of the documentation, including the part on [specialized builds](#building-what-you-need).  
+
+Once the jobs complete you will also be able to [preview the documentation](doc_view_ci) by
+using the `Check the rendered docs here!` action at the bottom of your PR, which will go to a 
+preview website on [CircleCI](https://circleci.com/). Alternatively, you can download a zip file 
+of [the build artifact](#download-documentation-artifact) and open the html files directly in your browser. For a build triggered by a comment, use
+the "Triggered Docs Artifact Build" link.
+
+If needed, a member of the maintenance team will help with updating the [napari.org](https://napari.org/dev) 
+table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](update-toc))
+and making sure your documentation has built correctly.
 
 (prerequisites)=
 ## Prerequisites for a local setup to contribute to the napari documentation
