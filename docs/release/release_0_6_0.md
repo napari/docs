@@ -428,7 +428,7 @@ the rendered results in only two minutes!
 - Remove deprecated type kwarg from Events ([#7794](https://github.com/napari/napari/pull/7794))
 - [pre-commit.ci] pre-commit autoupdate ([#7798](https://github.com/napari/napari/pull/7798))
 - Prevent from triggering notification animation in tests ([#7802](https://github.com/napari/napari/pull/7802))
-- Print contend of stderr and stdout in update dependecies workflow ([#7817](https://github.com/napari/napari/pull/7817))
+- Print contents of stderr and stdout in update dependencies workflow ([#7817](https://github.com/napari/napari/pull/7817))
 - Fix newline in message when fail to push to repository in update constraints ([#7818](https://github.com/napari/napari/pull/7818))
 - Use napari-bot repository as source of "Update constraints" PRs ([#7820](https://github.com/napari/napari/pull/7820))
 - Use proper token in update dependencies workflow ([#7821](https://github.com/napari/napari/pull/7821))
