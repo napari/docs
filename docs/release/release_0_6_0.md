@@ -357,6 +357,7 @@ the rendered results in only two minutes!
 - Update plugin best practices ([docs#668](https://github.com/napari/docs/pull/668))
 - Update 0.6.0 release notes some more ([docs#677](https://github.com/napari/docs/pull/677))
 - Add command palette to the Quick start guide and Viewer tutorial ([docs#683](https://github.com/napari/docs/pull/683))
+- More 0.6.0 release note updates ([docs#686](https://github.com/napari/docs/pull/686))
 
 ## Other Pull Requests
 
