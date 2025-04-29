@@ -93,6 +93,16 @@ napari
 
 +++
 
+```{tip}
+Starting with release 0.6.0, napari has a command palette that can be opened with
+the keyboard shortcut {kbd}`Command/Ctrl+Shift+P`. Once open, start typing the
+name of the action you want to use. You can keep typing to refine or use the arrow
+keys to change the selection. Once you have the action you want highlighted, press
+{kbd}`Enter` to run the action.
+
+![a screen recording showing the command palette in action to open Cells 3D example and toggle 3D viewer mode](https://github.com/user-attachments/assets/a412c3d1-8d29-43a2-87a4-391f2ccec57e)
+```
+
 ### Open an image
 
 napari natively supports tiff and many other formats supported by [skimage.io.imread](https://scikit-image.org/docs/dev/api/skimage.io.html) as input image file format.
