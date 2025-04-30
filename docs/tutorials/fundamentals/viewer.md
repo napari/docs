@@ -149,9 +149,9 @@ The **canvas** is in the center of the viewer and contains the visual display of
 ```{raw} html
 <figure>
   <video width="100%" controls autoplay loop muted playsinline>
-    <source src="../../_static/images/viewer_pan_zoom.webm" type="video/webm" />
-    <source src="../../_static/images/viewer_pan_zoom.mp4" type="video/mp4" />
-    <img src="../../_static/images/viewer_pan_zoom.png"
+    <source src="../../_static/images/viewer-pan-zoom.webm" type="video/webm" />
+    <source src="../../_static/images/viewer-pan-zoom.mp4" type="video/mp4" />
+    <img src="../../_static/images/viewer-pan-zoom.jpg"
       title="Your browser does not support the video tag"
       alt="Demo of pan and zoom functionality in napari."
     >
