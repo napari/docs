@@ -104,18 +104,18 @@ fig.tight_layout()
 fig.show()
 ```
 
-The issue of speed was partly resolved in napari x.y.z when Martin Weigert
+The issue of speed was partly resolved in napari 0.4.16 when Martin Weigert
 added the option to use *triangle*, a triangulation library written in C.
 However, triangle provided no error checking of input data, and some datasets
 could crash napari altogether. Also, triangle is distributed under a custom,
 non-standard license, which means that we are not allowed to distribute it
 with napari, and notably not in the bundled application.
 
-Starting in napari x.y.z, funded by a grant to the SpatialData project by CZI,
+Starting in napari 0.5.3, funded by a grant to the SpatialData project by CZI,
 PhD student Grzegorz Bokota started making dramatic improvements to napari's
-triangulation capabilities, first by reducing array allocations and
-implementing key operations in numba-accelerated functions, then by simplifying
-triangulation of simple shapes like circles and ellipses, and finally by
+triangulation capabilities, first by simplifying triangulation of simple shapes
+like circles and ellipses, then by reducing array allocations and
+implementing key operations in numba-accelerated functions, and finally by
 creating custom triangulation libraries in C++ (PartSegCore-compiled-backend)
 and Rust (bermuda). For complex shapes, these speedups added up to a 200-fold
 acceleration, all while improving robustness to malformed data. (blog1, blog2)
