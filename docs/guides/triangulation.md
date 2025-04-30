@@ -103,7 +103,6 @@ axes[1, 1].set_title('bermuda triangulation')
 fig.tight_layout()
 fig.show()
 ```
-[figure: polygon, then triangulation using Vispy, triangle, bermuda]
 
 The issue of speed was partly resolved in napari x.y.z when Martin Weigert
 added the option to use *triangle*, a triangulation library written in C.
