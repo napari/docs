@@ -28,7 +28,7 @@ slow, and that it could not account for complicated shapes like polygons with
 holes in them.
 
 ```{code-cell} python
-:tags: [hide-input]
+:tags: [hide-input,remove-stdout,remove-stderr]
 import numpy as np
 import matplotlib.pyplot as plt
 from vispy.geometry.triangulation import Triangulation
