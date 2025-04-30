@@ -116,6 +116,9 @@ The image below has the areas of the viewer labeled:
 :::{admonition} Tip: Right click advanced option indicator
 :class: tip
 If you see a button with a chevron mark in the lower right corner, it means you can click it with the right mouse button to bring up more advanced options!
+
+![buttons with right click indicators](../../_static/images/button-right-click-indicator.png)
+
 :::
 
 We'll go through each of these in the next sections.
