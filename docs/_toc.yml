@@ -66,6 +66,7 @@ subtrees:
           - file: guides/event_loop
           - file: guides/threading
           - file: guides/3D_interactivity
+          - file: guides/triangulation
           - file: guides/rendering
           - file: guides/performance
           - file: guides/preferences
