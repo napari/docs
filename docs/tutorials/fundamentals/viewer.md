@@ -156,6 +156,13 @@ The **canvas** is in the center of the viewer and contains the visual display of
       alt="Demo of pan and zoom functionality in napari."
     >
   </video>
+
+  <caption>
+  <a href="https://noirlab.edu/public/images/noirlab2501a">Data source.<a>
+    Credit: Dark Energy Survey/DOE/FNAL/DECam/CTIO/NOIRLab/NSF/AURA <br>
+    Image processing: R. Colombari & M. Zamani (NSF NOIRLab)
+  </caption>
+
 </figure>
 ```
 
