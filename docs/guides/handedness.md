@@ -150,6 +150,12 @@ viewer.camera.orientation = ('away', 'down', 'right')
 nbscreenshot(viewer)
 ```
 
+```{code-cell} python
+:tags: [remove-cell]
+
+viewer.close()
+```
+
 The camera controls, accessible by right-clicking the 2D/3D toggle button,
 will display whether your current axis orientations form a [right-handed or a
 left-handed coordinate frame][wiki-right-hand-rule].
