@@ -439,7 +439,7 @@ nbscreenshot(viewer, alt_text="A rotated 3D view")
 As of napari 0.6.0, the default orientation of the "depth" 3D axis has flipped.
 This means that the coordinate frame has gone from being left-handed to right-
 handed, a mirror image of the former default. For more information see
-[Axis directions, data, and handedness](handedness).
+[Axis directions, data, and handedness](handedness-guide).
 ```
 
 Note that if you want to drag the canvas/rendering itself, instead of rotating the view, you have to hold down the
