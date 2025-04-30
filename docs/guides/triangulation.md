@@ -118,7 +118,9 @@ like circles and ellipses, then by reducing array allocations and
 implementing key operations in numba-accelerated functions, and finally by
 creating custom triangulation libraries in C++ (PartSegCore-compiled-backend)
 and Rust (bermuda). For complex shapes, these speedups added up to a 200-fold
-acceleration, all while improving robustness to malformed data. (blog1, blog2)
+acceleration, all while improving robustness to malformed data. You can read
+more about this in
+[our blog](https://napari.org/island-dispatch/blog/triangles_speedup_beta.html).
 
 ## Usage
 
