@@ -29,7 +29,7 @@ This tutorial will teach you about the **napari** viewer, including how to use i
 As discussed in the [getting started](launch) tutorial, the napari viewer can be launched from the command-line, a python script, an IPython console, or a Jupyter notebook. All four methods launch the same viewer, and anything related to interacting with the viewer on the screen applies equally to all of them. We will use the syntax for running the code inside a jupyter notebook with each code block below pasted into its own cell, but if you'd like to use a python script instead, simply copy and paste the code blocks into scripts with [`napari.run()`](https://napari.org/stable/api/napari.html#napari.run) as the final line (this starts an event loop which will
 open an interactive viewer) and run them.
 
-```{tip}
+````{tip}
 As of release 0.6.0, napari has a command palette that can be opened with
 the keyboard shortcut {kbd}`Command/Ctrl+Shift+P`. Once open, you can use
 the arrow keys to scroll through the available actions or you can start typing
@@ -37,8 +37,20 @@ the name of the action you want to use to refine the list. You can keep typing
 to refine or use the arrow keys to change the selection at any time. Once
 you have the action you want highlighted, press {kbd}`Enter` to run the action.
 
-![a screen recording showing the command palette in action to open Cells 3D example and toggle 3D viewer mode](https://github.com/user-attachments/assets/a412c3d1-8d29-43a2-87a4-391f2ccec57e)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/command-palette.webm" type="video/webm" />
+    <source src="../../_static/images/command-palette.mp4" type="video/mp4" />
+    <img src="../../_static/images/command-palette.png"
+      title="Your browser does not support the video tag"
+      alt="a screen recording showing the command palette in action to open Cells 3D example and toggle 3D viewer mode"
+    >
+  </video>
+
+</figure>
 ```
+````
 
 **Note:** There is also an IPython console available in napari, when napari is launched from the terminal, from a Python script, or when you use the napari bundled app. You can open it with the IPython console button (far left viewer button) or with the menu option **Window** > **console**. You can use this console to programmatically interact with an open viewer using the API methods illustrated in this tutorial.
 
