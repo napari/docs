@@ -119,22 +119,19 @@ hand along the helix, it will move in the direction of your thumb — and the
 opposite is true of your left-hand, or of the mirror image of this DNA.
 
 ```{code-cell} python
-bond_vec = np.load('../data/1bna-bonds.npz')['bonds']
+:tags: [remove-stdout,remove-stderr]
+from vispy.io import read_mesh
+vertices, faces, _, _ = read_mesh('../data/1BNA.obj.gz')
 
 viewer = napari.Viewer(ndisplay=3)
-layer = viewer.add_vectors(
-        bond_vec,
-        edge_width=10,
-        edge_color='white',
-        vector_style='line',
-        )
+layer = viewer.add_surface((vertices, faces), name='1BNA')
 ```
 
 ```{code-cell} python
 :tags: [remove-input]
 
-viewer.camera.angles = (92, 0, 0)
-viewer.camera.zoom = 0.16
+viewer.camera.angles = (90, 0, 90)
+viewer.camera.zoom = 16
 viewer.axes.visible = True
 
 nbscreenshot(viewer)
