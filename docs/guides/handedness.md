@@ -105,7 +105,7 @@ button in the viewer.
 
 viewer.close()
 ```
-(3D-handedness) = 
+(3D-handedness)= 
 ## 3D data, 3D axis orientation, and handedness
 
 The situation is slightly more subtle in 3D. Just like in 2D, flipping an axis
