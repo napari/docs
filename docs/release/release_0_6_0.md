@@ -1,8 +1,6 @@
 # napari 0.6.0
 
-*Wed, Apr 30, 2025*
-
-🚧 *These notes are under construction while in pre-release* 🚧
+*Thu, May 01, 2025*
 
 We’re happy to announce the release of napari 0.6.0! The right-handed release! This release features major changes so read on to see how they might affect you!
 
@@ -286,6 +284,8 @@ the rendered results in only two minutes!
 - [bugfix] ensure erasing and fill work with swap and preserve labels ([#7816](https://github.com/napari/napari/pull/7816))
 - fix `ScalarField._get_value_3d` to return information about data level for multiscale ([#7849](https://github.com/napari/napari/pull/7849))
 - Use  weak reference to slider in `AnimationThread` ([#7866](https://github.com/napari/napari/pull/7866))
+- Patch `CONDA_EXE` environment variable to valid conda path ([#7869](https://github.com/napari/napari/pull/7869))
+- Compare slice_key array instead of value for use with 4+D data ([#7879](https://github.com/napari/napari/pull/7879))
 
 ## API Changes
 
@@ -314,6 +314,7 @@ the rendered results in only two minutes!
 - Add sphinx opengraph dependency to docs for better social media preview ([#7814](https://github.com/napari/napari/pull/7814))
 - Gallery: use colors from the South African flag to draw SA ([#7859](https://github.com/napari/napari/pull/7859))
 - Update CITATION.cff for 0.6.0 ([#7860](https://github.com/napari/napari/pull/7860))
+- Add Constantin Aronssohn to citation.cff ([#7873](https://github.com/napari/napari/pull/7873))
 - Update finding and installing plugin docs ([docs#541](https://github.com/napari/docs/pull/541))
 - Rename Gallery to Examples ([docs#560](https://github.com/napari/docs/pull/560))
 - Update BlueSky link to our actual account (not masto bridge) ([docs#564](https://github.com/napari/docs/pull/564))
@@ -358,6 +359,12 @@ the rendered results in only two minutes!
 - Update 0.6.0 release notes some more ([docs#677](https://github.com/napari/docs/pull/677))
 - Add command palette to the Quick start guide and Viewer tutorial ([docs#683](https://github.com/napari/docs/pull/683))
 - More 0.6.0 release note updates ([docs#686](https://github.com/napari/docs/pull/686))
+- Add triangulation guide ([docs#688](https://github.com/napari/docs/pull/688))
+- Update button screenshots in viewer tutorial ([docs#690](https://github.com/napari/docs/pull/690))
+- Add image highlighting right-click indicators in viewer tutorial ([docs#691](https://github.com/napari/docs/pull/691))
+- Update pan-zoom video with new UI, better data, and better framerate ([docs#692](https://github.com/napari/docs/pull/692))
+- Add handedness guide and link from viewer tutorial ([docs#695](https://github.com/napari/docs/pull/695))
+- Final release notes for 0.6.0 ([docs#696](https://github.com/napari/docs/pull/696))
 
 ## Other Pull Requests
 
@@ -448,6 +455,8 @@ the rendered results in only two minutes!
 - [maint, enh] Add experimental settings status to napari --info ([#7857](https://github.com/napari/napari/pull/7857))
 - Update napari-sphinx-theme constraint to 0.7.0 ([#7861](https://github.com/napari/napari/pull/7861))
 - [pre-commit.ci] pre-commit autoupdate ([#7867](https://github.com/napari/napari/pull/7867))
+- [Maint] Update dockerfile for napari 0.6.0 ([#7872](https://github.com/napari/napari/pull/7872))
+- Add bermuda and triangle to docs dependencies ([#7875](https://github.com/napari/napari/pull/7875))
 - Add codespell support (config, workflow to detect/not fix) and make it fix few typos ([docs#587](https://github.com/napari/docs/pull/587))
 - Update CircleCI config.yml to use napari docs and gallery dependency groups ([docs#590](https://github.com/napari/docs/pull/590))
 - Update build_and_deploy.yml to use napari docs dependency group ([docs#591](https://github.com/napari/docs/pull/591))
@@ -463,6 +472,7 @@ the rendered results in only two minutes!
 - [bugfix] fix prep_docs logic to ensure npe2 files are written, but not over-written ([docs#671](https://github.com/napari/docs/pull/671))
 - Update circleci cimg base to 3.10.17 which includes uv ([docs#673](https://github.com/napari/docs/pull/673))
 - Update Makefile to use -WT --keep-going for CI make targets ([docs#675](https://github.com/napari/docs/pull/675))
+- Always upload build artifacts in build_docs.yml workflow ([docs#694](https://github.com/napari/docs/pull/694))
 
 
 ## 20 authors added to this release (alphabetical)
