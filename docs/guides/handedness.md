@@ -124,7 +124,7 @@ from vispy.io import read_mesh
 vertices, faces, _, _ = read_mesh('../data/1BNA.obj.gz')
 
 viewer = napari.Viewer(ndisplay=3)
-layer = viewer.add_surface((vertices, faces), name='1BNA')
+layer = viewer.add_surface((vertices, faces), name='1BNA', shading='smooth')
 ```
 
 ```{code-cell} python
