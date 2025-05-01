@@ -364,6 +364,7 @@ the rendered results in only two minutes!
 - Add image highlighting right-click indicators in viewer tutorial ([docs#691](https://github.com/napari/docs/pull/691))
 - Update pan-zoom video with new UI, better data, and better framerate ([docs#692](https://github.com/napari/docs/pull/692))
 - Add handedness guide and link from viewer tutorial ([docs#695](https://github.com/napari/docs/pull/695))
+- Final release notes for 0.6.0 ([docs#696](https://github.com/napari/docs/pull/696))
 
 ## Other Pull Requests
 
