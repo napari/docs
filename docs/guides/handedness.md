@@ -160,12 +160,14 @@ nbscreenshot(viewer)
 viewer.close()
 ```
 
+```{tip}
 The camera controls, accessible by right-clicking the 2D/3D toggle button,
 will display whether your current axis orientations form a [right-handed or a
 left-handed coordinate frame][wiki-right-hand-rule].
 
 ![camera controls, with a "right handed reference frame" icon highlighted
   next to the axis orientation boxes](../_static/images/handedness.png)
+```
 
 [ptolemy]: https://en.wikipedia.org/wiki/History_of_cartography#Ptolemy
 [1bna]: https://www.rcsb.org/structure/1BNA
