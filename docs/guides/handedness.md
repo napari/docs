@@ -22,7 +22,7 @@ In 2D, the first axis is the *vertical* axis and points down, and the second
 axis is the *horizontal* axis and points right. This matches the convention
 expected when displaying NumPy arrays, for example.
 
-In 3D, an additional *depth* axis is *pre-*pended to the other two. 
+In 3D, an additional *depth* axis is *pre*pended to the other two. 
 ```{important}
 In versions 0.5.6 and earlier, it pointed *away* from the camera, while in versions 0.6.0
 it points *towards* the camera. This affects how 3D images and models are rendered, see
