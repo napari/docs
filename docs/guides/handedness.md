@@ -22,9 +22,12 @@ In 2D, the first axis is the *vertical* axis and points down, and the second
 axis is the *horizontal* axis and points right. This matches the convention
 expected when displaying NumPy arrays, for example.
 
-In 3D, an additional *depth* axis is *pre-*pended to the other two. In versions
-0.5.6 and earlier, it pointed *away* from the camera, while in versions 0.6.0
-it points *towards* the camera.
+In 3D, an additional *depth* axis is *pre-*pended to the other two. 
+```{important}
+In versions 0.5.6 and earlier, it pointed *away* from the camera, while in versions 0.6.0
+it points *towards* the camera. This affects how 3D images and models are rendered, see
+[3D data, 3D axis orientation, and handedness](3D-handedness).
+```
 
 ## Displaying 2D data
 
@@ -102,7 +105,7 @@ button in the viewer.
 
 viewer.close()
 ```
-
+(3D-handedness) = 
 ## 3D data, 3D axis orientation, and handedness
 
 The situation is slightly more subtle in 3D. Just like in 2D, flipping an axis
@@ -137,8 +140,9 @@ viewer.axes.visible = True
 nbscreenshot(viewer)
 ```
 
-If we flip one of the axes, we will get the mirror image of the DNA, which
-will be physically inaccurate:
+Starting with napari 0.6.0, using the default orientations, the above image will correctly represent
+a right-handed helix. However, if we flip one of the axes (as they were in napari prior to 0.6.0), 
+we will get the mirror image of the DNA, which will be physically inaccurate:
 
 ```{code-cell} python
 viewer.camera.orientation = ('away', 'down', 'right')
