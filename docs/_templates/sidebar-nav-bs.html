@@ -19,19 +19,19 @@
     </p>
     <ul class="nav bd-sidenav">
       <li class="toctree-l1">
-          <a class="reference internal" href="community/meeting_schedule.html">Community calendar</a>
+          <a class="reference internal" href="{{ pathto(community/meeting_schedule.html, 1) }}">Community calendar</a>
       </li>
       <li class="toctree-l1">
           <a class="reference external" href="https://napari.zulipchat.com/">Community chat</a>
       </li>
       <li class="toctree-l1">
-          <a class="reference internal" href="troubleshooting.html">Troubleshooting</a>
+          <a class="reference internal" href="{{ pathto(troubleshooting.html) }}">Troubleshooting</a>
       </li>
       <li class="toctree-l1">
           {% if version == "dev" %}
-          <a class="reference internal" href="{{ 'release/index.html' }}">Release notes</a>
+          <a class="reference internal" href="{{ pathto('release/index.html') }}">Release notes</a>
           {% else %}
-          <a class="reference internal" href="{{ 'release/release_' + version.replace('.', '_') + '.html' }}">Latest release notes</a>
+          <a class="reference internal" href="{{ pathto('release/release_' + version.replace('.', '_') + '.html') }}">Latest release notes</a>
           {% endif %}
       </li>
       <li class="toctree-l1">
