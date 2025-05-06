@@ -78,7 +78,7 @@ jobs:
                 "make_target": "'"$MAKE_TARGET"'"
               }
             }' \
-            "https://circleci.com/api/v2/project/gh/psobolewskiPhD/napari-docs/pipeline"
+            "https://circleci.com/api/v2/project/gh/napari/docs/pipeline"
 
   trigger-artifact-build:
     needs: determine-target
