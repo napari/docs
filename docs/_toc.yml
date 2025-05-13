@@ -66,6 +66,8 @@ subtrees:
           - file: guides/event_loop
           - file: guides/threading
           - file: guides/3D_interactivity
+          - file: guides/handedness
+          - file: guides/triangulation
           - file: guides/rendering
           - file: guides/performance
           - file: guides/preferences
@@ -79,6 +81,7 @@ subtrees:
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_6_1
           - file: release/release_0_6_0
           - file: release/release_0_5_6
           - file: release/release_0_5_5
