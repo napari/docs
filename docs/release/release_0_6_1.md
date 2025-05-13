@@ -43,7 +43,7 @@ which among other things gives us the HiLo colormap!
 
 - Add codespell support (config, workflow to detect/not fix) and make it fix few typos ([#7619](https://github.com/napari/napari/pull/7619))
 - Remove outdated QSS styling elements ([#7655](https://github.com/napari/napari/pull/7655))
-- Add docs contraints for python 3.12 ([#7714](https://github.com/napari/napari/pull/7714))
+- Add docs constraints for python 3.12 ([#7714](https://github.com/napari/napari/pull/7714))
 - Update `hypothesis`, `ipython`, `numpy`, `pillow`, `pydantic` ([#7823](https://github.com/napari/napari/pull/7823))
 - Update builtins read extensions ([#7826](https://github.com/napari/napari/pull/7826))
 - Skip tests that are failing because of Qt bug ([#7884](https://github.com/napari/napari/pull/7884))
