@@ -3,8 +3,7 @@
 # Release guide
 
 This guide documents `napari`'s release process as of 0.6.0.
-Most required tools mentioned here are in [`napari-release-tools`](https://github.com/napari/napari-release-tools);
-and preparing a release will be easiest with a local clone.
+Most required tools mentioned here are in https://github.com/napari/napari-release-tools.
 
 ## Timeline
 
@@ -33,7 +32,6 @@ Note: the `--pre` in the above commands will install prereleases of napari and a
 The release will be coordinated by a release manager whose responsibilities include the following.
 
 ### Step 1: Preparing for the release
-
 - Look through currently open PRs and get a sense of what would be good to merge before the first release candidate. Set milestones appropriately;
 - Ensure `conda-recipe/meta.yaml` in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements);
 - Create a zulip thread in [the release channel](https://napari.zulipchat.com/#narrow/stream/215289-release) letting people know the release candidate is coming and pointing out PRs that would be nice to merge before release.
@@ -43,10 +41,8 @@ At this stage, bug fixes and features that are close to landing should be priori
 ### Step 2: Generating release notes
 
 - Add a header and highlights section to the [`additional notes`](https://github.com/napari/napari-release-tools/tree/main/additional_notes) folder for the given release. Use the [highlight label](https://github.com/napari/napari/pulls?q=sort%3Aupdated-desc+is%3Apr+is%3Aopen+label%3Ahighlight) for the relevant milestone to note which PRs to comment on.
-  There should be a direct link to each PR with the highlight label; these PRs will automatically be removed from the generated release notes when linked properly.
-- Generate release notes with the [`generate_release_notes.py` script from napari/napari-release-tools](https://github.com/napari/napari-release-tools/blob/main/generate_release_notes.py). These release notes will be generated with `header.md` and `highlights.md` files in the `additional_notes` folder.
-This includes all PRs with the given milestone, so ensure that the milestones are modified accordingly.
-- Make a PR to napari/docs with the release notes, making sure to add the new document to the [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml). See an example of such a PR: [https://github.com/napari/docs/pull/485](https://github.com/napari/docs/pull/485)
+- Generate release notes with the [`generate_release_notes.py` script from napari/napari-release-tools](https://github.com/napari/napari-release-tools/blob/main/generate_release_notes.py);
+- make a PR with the release notes, making sure to add the new document to the [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml). See an example of such a PR: [https://github.com/napari/docs/pull/485](https://github.com/napari/docs/pull/485)
 
 At this point the release manager should ideally be the only person merging PRs on the repo for the next few days before the release.
 
@@ -54,7 +50,7 @@ At this point the release manager should ideally be the only person merging PRs 
 
 - Merge any remaining PRs and update release notes accordingly;
 - Merge release notes;
-- Make the release candidate and announce on zulip; <-- redundant??>
+- Make the release candidate and announce on zulip;
 - Announce to release stream on zulip that the first release candidate is available for testing.
 
 ### Step 4: Testing the prerelease
