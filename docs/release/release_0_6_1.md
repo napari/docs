@@ -12,17 +12,21 @@ For more information, examples, and documentation, please visit our website: htt
 
 ## Highlights
 
-- HiLo 👋 colormaps!
+### The HiLo👋 Colormap!
 
-napari now depends on VisPy 0.15.0 ([#7846](https://github.com/napari/napari/pull/7846))
-which among other things gives us the HiLo colormap!
+Introducing the HiLo colormap to napari! 🎨
+This much-loved colormap (LUT) is like grayscale, except it displays values at or above the maximum contrast limit as red 🔴 and values at or below the minimum contrast limit as blue 🔵.
+In the scientific imaging world, the HiLo colormap is often used to assess overexposed (saturated) ☀️ and underexposed (dark) 🌑 regions in images.
+Enjoy this animation of the HiLo colormap in action! 👇
+![HiLo colormap animation](https://github.com/user-attachments/assets/b77e98b4-3f9c-437a-b169-2444544ee454)
+
+The HiLo colormap is now available as a result of the dependency bump to VisPy 0.15.0 [#7846](https://github.com/napari/napari/pull/7846), which will unlock even more great new features in the coming napari releases.
 
 ## New Features
 
 - Add inheritance of spatial data for functional plugin that return layer data.  ([#6986](https://github.com/napari/napari/pull/6986))
 - Bump to vispy 0.15 and update Colormap model ([#7846](https://github.com/napari/napari/pull/7846))
 - Add multiplicative blending ([#7868](https://github.com/napari/napari/pull/7868))
-- Features table widget as builtin ([#7877](https://github.com/napari/napari/pull/7877))
 
 ## Improvements
 
@@ -41,10 +45,10 @@ which among other things gives us the HiLo colormap!
 - Update the version switcher for 0.6.0 ([docs#697](https://github.com/napari/docs/pull/697))
 - Update conf.py to try to fix opengraph image for dev and future deployments ([docs#700](https://github.com/napari/docs/pull/700))
 - Update sidebar-nav-bs.html to try to fix links ([docs#702](https://github.com/napari/docs/pull/702))
+- Draft release notes for 0.6.1 ([docs#704](https://github.com/napari/docs/pull/704))
 
 ## Other Pull Requests
 
-- Add codespell support (config, workflow to detect/not fix) and make it fix few typos ([#7619](https://github.com/napari/napari/pull/7619))
 - Remove outdated QSS styling elements ([#7655](https://github.com/napari/napari/pull/7655))
 - Add docs constraints for python 3.12 ([#7714](https://github.com/napari/napari/pull/7714))
 - Update `hypothesis`, `ipython`, `numpy`, `pillow`, `pydantic` ([#7823](https://github.com/napari/napari/pull/7823))
@@ -58,12 +62,14 @@ which among other things gives us the HiLo colormap!
 - Add information about installed plugins to info dialog ([#7899](https://github.com/napari/napari/pull/7899))
 - Surface original error when a selected plugin fails to read file. ([#7901](https://github.com/napari/napari/pull/7901))
 - Update `hypothesis`, `matplotlib`, `psygnal`, `scipy`, `tifffile`, `virtualenv` ([#7906](https://github.com/napari/napari/pull/7906))
+- Add cron check to update reader extensions ([#7907](https://github.com/napari/napari/pull/7907))
 - Change @brisvag affiliation ([#7909](https://github.com/napari/napari/pull/7909))
 - [pre-commit.ci] pre-commit autoupdate ([#7910](https://github.com/napari/napari/pull/7910))
+- Rename action by add missed word separator ([#7913](https://github.com/napari/napari/pull/7913))
 - Update build_trigger.yml to fix Circle pipeline ([docs#701](https://github.com/napari/docs/pull/701))
 
 
-## 5 authors added to this release (alphabetical)
+## 6 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -72,19 +78,18 @@ which among other things gives us the HiLo colormap!
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
 - [Peter Sobolewski](https://github.com/napari/docs/commits?author=psobolewskiPhD) - @psobolewskiPhD
+- [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 
 
-## 9 reviewers added to this release (alphabetical)
+## 7 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
-- [Carol Willing](https://github.com/napari/docs/commits?author=willingc) - @willingc
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - @DragaDoncila
 - [Genevieve Buckley](https://github.com/napari/docs/commits?author=GenevieveBuckley) - @GenevieveBuckley
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
 - [Peter Sobolewski](https://github.com/napari/docs/commits?author=psobolewskiPhD) - @psobolewskiPhD
-- [Tim Monko](https://github.com/napari/docs/commits?author=TimMonko) - @TimMonko
-- [Yaroslav Halchenko](https://github.com/napari/docs/commits?author=yarikoptic) - @yarikoptic
+- [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 
