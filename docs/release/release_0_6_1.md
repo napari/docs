@@ -1,10 +1,10 @@
 # napari 0.6.1
-
 ⚠️ *Note: these release notes are still in draft while 0.6.1 is in release candidate testing.* ⚠️
 
 *Wed, May 14, 2025*
 
-We’re happy to announce the release of napari 0.6.1. This is a quick follow-up to 0.6.0 with a few bug fixes and new features.
+We’re happy to announce the release of napari 0.6.1!
+This release is a follow-up to 0.6.0, with a few bug fixes and new features.
 
 napari is a fast, interactive, multi-dimensional image viewer for Python. It’s designed for exploring, annotating, and analyzing multi-dimensional images. It’s built on Qt (for the GUI), VisPy (for performant GPU-based rendering), and the scientific Python stack (NumPy, SciPy, and friends).
 
@@ -15,12 +15,12 @@ For more information, examples, and documentation, please visit our website: htt
 ### The HiLo👋 Colormap!
 
 Introducing the HiLo colormap to napari! 🎨
-This much-loved colormap (LUT) is like grayscale, except it displays values at or above the maximum contrast limit as red 🔴 and values at or below the minimum contrast limit as blue 🔵.
+This much-loved colormap (LUT) visualizes the maximum contrast limit as red 🔴 and the minimum contrast limit as blue 🔵.
 In the scientific imaging world, the HiLo colormap is often used to assess overexposed (saturated) ☀️ and underexposed (dark) 🌑 regions in images.
 Enjoy this animation of the HiLo colormap in action! 👇
 ![HiLo colormap animation](https://github.com/user-attachments/assets/b77e98b4-3f9c-437a-b169-2444544ee454)
 
-The HiLo colormap is now available as a result of the dependency bump to VisPy 0.15.0 [#7846](https://github.com/napari/napari/pull/7846), which will unlock even more great new features in the coming napari releases.
+The HiLo colormap is now available as a result of the dependency bump to VisPy 0.15.0 [#7846](https://github.com/napari/napari/pull/7846), and will soon unlock some great new features in the coming napari releases.
 
 ## New Features
 
@@ -38,7 +38,7 @@ The HiLo colormap is now available as a result of the dependency bump to VisPy 0
 - Refresh extent on async slicing ([#7853](https://github.com/napari/napari/pull/7853))
 - Do not expose vispy BaseColormaps ([#7858](https://github.com/napari/napari/pull/7858))
 - Properly determine dtype for view of Labels ([#7883](https://github.com/napari/napari/pull/7883))
-- Fix scalebar color toggle with theme change ([#7898](https://github.com/napari/napari/pull/7898))
+- Prevent Shapes corruption when drawing tiny polygons with lasso ([#7914](https://github.com/napari/napari/pull/7914))
 
 ## Documentation
 
@@ -46,11 +46,12 @@ The HiLo colormap is now available as a result of the dependency bump to VisPy 0
 - Update conf.py to try to fix opengraph image for dev and future deployments ([docs#700](https://github.com/napari/docs/pull/700))
 - Update sidebar-nav-bs.html to try to fix links ([docs#702](https://github.com/napari/docs/pull/702))
 - Draft release notes for 0.6.1 ([docs#704](https://github.com/napari/docs/pull/704))
+- release 0.6.1 notes update ([docs#706](https://github.com/napari/docs/pull/706))
+- Fix release notes header for 0.6.1 ([docs#707](https://github.com/napari/docs/pull/707))
 
 ## Other Pull Requests
 
 - Remove outdated QSS styling elements ([#7655](https://github.com/napari/napari/pull/7655))
-- Add docs constraints for python 3.12 ([#7714](https://github.com/napari/napari/pull/7714))
 - Update `hypothesis`, `ipython`, `numpy`, `pillow`, `pydantic` ([#7823](https://github.com/napari/napari/pull/7823))
 - Update builtins read extensions ([#7826](https://github.com/napari/napari/pull/7826))
 - Skip tests that are failing because of Qt bug ([#7884](https://github.com/napari/napari/pull/7884))
@@ -62,7 +63,6 @@ The HiLo colormap is now available as a result of the dependency bump to VisPy 0
 - Add information about installed plugins to info dialog ([#7899](https://github.com/napari/napari/pull/7899))
 - Surface original error when a selected plugin fails to read file. ([#7901](https://github.com/napari/napari/pull/7901))
 - Update `hypothesis`, `matplotlib`, `psygnal`, `scipy`, `tifffile`, `virtualenv` ([#7906](https://github.com/napari/napari/pull/7906))
-- Add cron check to update reader extensions ([#7907](https://github.com/napari/napari/pull/7907))
 - Change @brisvag affiliation ([#7909](https://github.com/napari/napari/pull/7909))
 - [pre-commit.ci] pre-commit autoupdate ([#7910](https://github.com/napari/napari/pull/7910))
 - Rename action by add missed word separator ([#7913](https://github.com/napari/napari/pull/7913))
