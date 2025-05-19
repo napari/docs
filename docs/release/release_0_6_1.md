@@ -58,6 +58,7 @@ Have you ever tried to use the `dims` pop-up widget (accessed by right clicking 
 - Fix release notes header for 0.6.1 ([docs#707](https://github.com/napari/docs/pull/707))
 - Update release notes for 0.6.1 ([docs#708](https://github.com/napari/docs/pull/708))
 - Update viewer.md to mention that you can rename axes using the roll dims popup ([docs#709](https://github.com/napari/docs/pull/709))
+- 0.6.1 full release notes ([docs#712](https://github.com/napari/docs/pull/712))
 
 ## Other Pull Requests
 
