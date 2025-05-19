@@ -1,6 +1,6 @@
 # napari 0.6.1
 
-*Tues, May 20, 2025*
+*Tue, May 20, 2025*
 
 We’re happy to announce the release of napari 0.6.1! This release is a follow-up to 0.6.0, with a few bug fixes and new features.
 
