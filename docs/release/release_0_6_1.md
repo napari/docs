@@ -1,10 +1,8 @@
 # napari 0.6.1
-⚠️ *Note: these release notes are still in draft while 0.6.1 is in release candidate testing.* ⚠️
 
-*Wed, May 14, 2025*
+*Tues, May 20, 2025*
 
-We’re happy to announce the release of napari 0.6.1!
-This release is a follow-up to 0.6.0, with a few bug fixes and new features.
+We’re happy to announce the release of napari 0.6.1! This release is a follow-up to 0.6.0, with a few bug fixes and new features.
 
 napari is a fast, interactive, multi-dimensional image viewer for Python. It’s designed for exploring, annotating, and analyzing multi-dimensional images. It’s built on Qt (for the GUI), VisPy (for performant GPU-based rendering), and the scientific Python stack (NumPy, SciPy, and friends).
 
@@ -14,14 +12,18 @@ For more information, examples, and documentation, please visit our website: htt
 
 ### The HiLo👋 Colormap!
 
-Introducing the HiLo colormap to napari! 🎨
-This much-loved colormap (LUT) is like grayscale, except it displays values at or above the maximum contrast limit as red 🔴
-and values at or below the minimum contrast limit as blue 🔵.
-In the scientific imaging world, the HiLo colormap is often used to assess overexposed (saturated) ☀️ and underexposed (dark) 🌑 regions in images.
+Introducing the HiLo colormap to napari! 🎨 This much-loved colormap (LUT) is like grayscale, except it displays values at or above the maximum contrast limit as red 🔴 and values at or below the minimum contrast limit as blue 🔵. In the scientific imaging world, the HiLo colormap is often used to assess overexposed (saturated) ☀️ and underexposed (dark) 🌑 regions in images.
 Enjoy this animation of the HiLo colormap in action! 👇
 ![HiLo colormap animation](https://github.com/user-attachments/assets/b77e98b4-3f9c-437a-b169-2444544ee454)
 
-The HiLo colormap is now available as a result of the dependency bump to VisPy 0.15.0 [#7846](https://github.com/napari/napari/pull/7846), which will soon unlock even more great new features in the coming napari releases.
+The HiLo colormap is now available as a result of the dependency bump to VisPy 0.15.0 [(#7846)](https://github.com/napari/napari/pull/7846), which will soon unlock even more great new features in the coming napari releases.
+
+### The `dims` widget shines brighter! ✨
+
+Have you ever tried to use the `dims` pop-up widget (accessed by right clicking on the third viewer button) and found it to not work as excpected? As part of our bugfixes [#7937](https://github.com/napari/napari/pull/7937) , the `dims` widget will continue to interact as expected. The widget is now available in 3D view!
+❓Did you know that the `dims` widget allows you to rename the axis labels of your data?
+![dims popup widget](https://github.com/user-attachments/assets/3b38462b-8fe2-47b2-be02-66a714d18d8f)
+
 
 ## New Features
 
@@ -33,6 +35,7 @@ The HiLo colormap is now available as a result of the dependency bump to VisPy 0
 
 - Copy units from layer to layer ([#7727](https://github.com/napari/napari/pull/7727))
 - Check return value is valid LayerDataTuple ([#7851](https://github.com/napari/napari/pull/7851))
+- Fix broken dims order popup and add to 3D ([#7937](https://github.com/napari/napari/pull/7937))
 
 ## Bug Fixes
 
@@ -40,6 +43,10 @@ The HiLo colormap is now available as a result of the dependency bump to VisPy 0
 - Do not expose vispy BaseColormaps ([#7858](https://github.com/napari/napari/pull/7858))
 - Properly determine dtype for view of Labels ([#7883](https://github.com/napari/napari/pull/7883))
 - Prevent Shapes corruption when drawing tiny polygons with lasso ([#7914](https://github.com/napari/napari/pull/7914))
+- Better refresh extent on async slicing ([#7925](https://github.com/napari/napari/pull/7925))
+- Fix async refresh extent ([#7929](https://github.com/napari/napari/pull/7929))
+- Mark key events as handled when processed ([#7933](https://github.com/napari/napari/pull/7933))
+- Fix broken dims order popup and add to 3D ([#7937](https://github.com/napari/napari/pull/7937))
 
 ## Documentation
 
@@ -49,6 +56,8 @@ The HiLo colormap is now available as a result of the dependency bump to VisPy 0
 - Draft release notes for 0.6.1 ([docs#704](https://github.com/napari/docs/pull/704))
 - release 0.6.1 notes update ([docs#706](https://github.com/napari/docs/pull/706))
 - Fix release notes header for 0.6.1 ([docs#707](https://github.com/napari/docs/pull/707))
+- Update release notes for 0.6.1 ([docs#708](https://github.com/napari/docs/pull/708))
+- Update viewer.md to mention that you can rename axes using the roll dims popup ([docs#709](https://github.com/napari/docs/pull/709))
 
 ## Other Pull Requests
 
