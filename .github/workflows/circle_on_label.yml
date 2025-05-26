@@ -1,3 +1,5 @@
+name: Trigger CircleCI on Label
+
 on:
   pull_request:
     types:
@@ -7,7 +9,7 @@ on:
 
 jobs:
   trigger-circleci:
-    if: ${{ github.event.label.name == 'ready-to-merge' && github.event_name == 'pull_request' }}
+    if: contains(github.event.pull_request.labels.*.name, 'ready-to-merge')
     runs-on: ubuntu-latest
     steps:
       - name: Run CircleCI pipeline
