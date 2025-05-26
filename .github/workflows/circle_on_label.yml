@@ -4,8 +4,6 @@ on:
   pull_request:
     types:
       - labeled
-    paths:
-      - ".github/workflows/circle_on_label.yml"
 
 jobs:
   trigger-circleci:
