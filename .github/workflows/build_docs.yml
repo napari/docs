@@ -18,6 +18,10 @@ on:
         description: "Enter make target: html html-noplot docs slimfast slimgallery"
         type: string
         default: "slimfast"
+      pr_ref:
+        description: "PR branch reference"
+        type: string
+        required: false
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -33,6 +37,7 @@ jobs:
         with:
           # Check out to  '/home/runner/work/docs/docs/docs'
           path: docs
+          ref: ${{ inputs.pr_ref || github.ref }}
 
       - name: Clone main repo
         uses: actions/checkout@v4
