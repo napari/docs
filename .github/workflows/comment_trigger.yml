@@ -75,15 +75,11 @@ jobs:
     needs: determine-target
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PR branch
-        if: needs.determine-target.outputs.pr_ref
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.determine-target.outputs.pr_ref || github.ref }}
       - name: Run CircleCI pipeline
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.2.0
         with:
           GHA_Meta: ${{ needs.determine-target.outputs.target }}
+          target-branch: ${{ needs.determine-target.outputs.pr_ref || github.ref_name }}
         env:
           CCI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
 
