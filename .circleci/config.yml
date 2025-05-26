@@ -20,10 +20,6 @@ parameters:
   GHA_Meta:
     type: string
     default: ""
-  # parameterize the make target used for build, passed in from build_trigger.yml action
-  make_target:
-    type: string
-    default: "slimfast"
 
 # Orbs are reusable packages of CircleCI configuration that you may share across projects.
 # See: https://circleci.com/docs/2.1/orb-intro/
@@ -34,6 +30,10 @@ jobs:
   build-docs:
     docker:
       - image: cimg/python:3.10.17
+    parameters: # job level setting of make target
+      make_target:
+        type: string
+        default: slimfast
     steps:
       - checkout:
           path: docs
@@ -60,7 +60,7 @@ jobs:
           command: |
             . .venv/bin/activate
             cd docs
-            xvfb-run --auto-servernum make << pipeline.parameters.make_target >>
+            xvfb-run --auto-servernum make << parameters.make_target >>
           environment:
             PIP_CONSTRAINT: ../napari/resources/constraints/constraints_py3.10_docs.txt
       - store_artifacts:
@@ -77,4 +77,5 @@ workflows:
     when:
       equal: ["ready-to-merge", << pipeline.parameters.GHA_Meta >>]
     jobs:
-      - build-docs
+      - build-docs:
+          make_target: "html"
