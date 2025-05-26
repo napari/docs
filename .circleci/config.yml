@@ -78,5 +78,4 @@ workflows:
       equal: ["label-triggered", << pipeline.parameters.GHA_Meta >>]
     jobs:
       - build-docs:
-          parameters:
-            make_target: "html"
+          make_target: "html"
