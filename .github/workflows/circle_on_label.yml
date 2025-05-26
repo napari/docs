@@ -1,0 +1,18 @@
+on:
+  pull_request:
+    types:
+      - labeled
+    paths:
+      - ".github/workflows/circle_on_label.yml"
+
+jobs:
+  trigger-circleci:
+    if: ${{ github.event.label.name == 'ready-to-merge' && github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run CircleCI pipeline
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1
+        with:
+          GHA_Meta: "html"
+        env:
+          CCI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
