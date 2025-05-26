@@ -70,14 +70,21 @@ jobs:
           paths:
             - docs/docs/_build/html/
 workflows:
+  # default trigger on push, don't double up with actions
   build-docs:
     when:
       not: << pipeline.parameters.GHA_Meta >>
     jobs:
       - build-docs
-  triggered-by-label:
+  # triggered by comment to PR with make target
+  triggered-by-issue-comment:
     when:
-      equal: ["ready-to-merge", << pipeline.parameters.GHA_Meta >>]
+      or:
+        - equal: ["slimfast", << pipeline.parameters.GHA_Meta >>]
+        - equal: ["slimgallery", << pipeline.parameters.GHA_Meta >>]
+        - equal: ["docs", << pipeline.parameters.GHA_Meta >>]
+        - equal: ["html", << pipeline.parameters.GHA_Meta >>]
+        - equal: ["html-noplot", << pipeline.parameters.GHA_Meta >>]
     jobs:
       - build-docs:
-          make_target: "html"
+          make_target: << pipeline.parameters.GHA_Meta >>
