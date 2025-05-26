@@ -13,6 +13,7 @@ jobs:
       - name: Run CircleCI pipeline
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.2.0
         with:
-          GHA_Meta: "label-triggered"
+          GHA_Meta: "ready-to-merge"
+          make_target: "html"
         env:
           CCI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}

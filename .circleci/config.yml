@@ -75,7 +75,6 @@ workflows:
       - build-docs
   triggered-by-label:
     when:
-      equal: ["label-triggered", << pipeline.parameters.GHA_Meta >>]
+      equal: ["ready-to-merge", << pipeline.parameters.GHA_Meta >>]
     jobs:
-      - build-docs:
-          make_target: "html"
+      - build-docs
