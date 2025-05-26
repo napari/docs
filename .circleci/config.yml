@@ -71,6 +71,8 @@ jobs:
             - docs/docs/_build/html/
 workflows:
   build-docs:
+    when:
+      not: << pipeline.parameters.GHA_Meta >>
     jobs:
       - build-docs
   triggered-by-label:
