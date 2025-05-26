@@ -13,6 +13,6 @@ jobs:
       - name: Run CircleCI pipeline
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1
         with:
-          GHA_Meta: "html"
+          GHA_Meta: "label-triggered"
         env:
           CCI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}

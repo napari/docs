@@ -6,16 +6,29 @@
 # Check for more details: https://circleci.com/docs/2.1/configuration-reference
 version: 2.1
 
+# these are required by https://github.com/CircleCI-Public/trigger-circleci-pipeline-action
+parameters:
+  GHA_Actor:
+    type: string
+    default: ""
+  GHA_Action:
+    type: string
+    default: ""
+  GHA_Event:
+    type: string
+    default: ""
+  GHA_Meta:
+    type: string
+    default: ""
+  # parameterize the make target used for build, passed in from build_trigger.yml action
+  make_target:
+    type: string
+    default: "slimfast"
+
 # Orbs are reusable packages of CircleCI configuration that you may share across projects.
 # See: https://circleci.com/docs/2.1/orb-intro/
 orbs:
   python: circleci/python@3.0.0
-
-# parameterize the make target used for build, passed in from build_trigger.yml action
-parameters:
-  make_target:
-    type: string
-    default: "slimfast"
 
 jobs:
   build-docs:
@@ -60,3 +73,10 @@ workflows:
   build-docs:
     jobs:
       - build-docs
+  triggered-by-label:
+    when:
+      equal: ["label-triggered", << pipeline.parameters.GHA_Meta >>]
+    jobs:
+      - build-docs:
+          parameters:
+            make_target: "html"
