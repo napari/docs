@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run CircleCI pipeline
-        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.2.0
         with:
           GHA_Meta: "label-triggered"
         env:
