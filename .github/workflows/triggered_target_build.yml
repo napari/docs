@@ -1,4 +1,7 @@
 name: Trigger target build of docs
+# this workflow is triggered by a comment on a PR or manually via workflow_dispatch
+# It allows you to specify a make target for building the docs for a branch/PR
+# This is a one-time-run, it does not run on every push to the PR branch.
 
 on:
   issue_comment:
@@ -98,7 +101,7 @@ jobs:
   report-status:
     needs: [determine-target, trigger-artifact-build]
     runs-on: ubuntu-latest
-    if: always() && needs.determine-target.outputs.pr_sha && needs.trigger-artifact-build.result != 'skipped'
+    if: always() && github.event_name == 'issue_comment' && needs.trigger-artifact-build.result != 'skipped'
     steps:
       - name: Set commit status
         uses: myrotvorets/set-commit-status-action@master
