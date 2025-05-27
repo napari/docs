@@ -98,7 +98,7 @@ jobs:
   report-status:
     needs: [determine-target, trigger-artifact-build]
     runs-on: ubuntu-latest
-    if: always() && github.event_name == 'issue_comment'
+    if: always() && github.event_name == 'issue_comment' && needs.trigger-artifact-build.result != 'skipped'
     steps:
       - name: Set commit status
         uses: myrotvorets/set-commit-status-action@master
