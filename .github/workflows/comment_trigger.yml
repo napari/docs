@@ -108,4 +108,4 @@ jobs:
           status: ${{ needs.trigger-artifact-build.result }}
           context: "Full Artifact Build"
           description: ${{ needs.trigger-artifact-build.result == 'success' && 'Documentation built successfully' || 'Documentation build failed' }}
-          target_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          targetUrl: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
