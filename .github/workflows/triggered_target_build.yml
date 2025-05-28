@@ -48,13 +48,15 @@ jobs:
 
       - name: Determine make target from comment or input
         id: determine-make-target
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
         run: |
           ALLOWED_TARGETS="html html-noplot docs slimfast slimgallery"
 
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             TARGET="${{ github.event.inputs.make_target }}"
           else
-            TARGET=$(echo "${{ github.event.comment.body }}" | grep -oP '(?<=@napari-bot make\s)\w+' || echo "slimfast")
+            TARGET=$(echo "$COMMENT_BODY" | grep -oP '(?<=@napari-bot make\s)\w+' || echo "slimfast")
           fi
 
           if ! echo "$ALLOWED_TARGETS" | grep -qw "$TARGET"; then
