@@ -508,11 +508,26 @@ The fourth button transposes the displayed dimensions.
 
 ### Grid button
 
-The fifth button, the grid button, toggles between the default layer mode and grid mode. When clicked, it displays each layer of the image in a series of tiles. The question icons can be hovered for more information about each setting.
+The fifth button, the grid button, toggles between the default layer mode and grid mode. When clicked, it distributes the layers in a grid of cells. Each cell is a small interactive canvas whose camera is linked with all the others.
 
-1. Grid stride: By default, 1, placing one layer in each tile. The value determines the number of layers overlaid in each tile. Negative values reverse the order in which layers are displayed in the grid.
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/grid-mode.webm" type="video/webm" />
+    <source src="../../_static/images/grid-mode.mp4" type="video/mp4" />
+    <img src="../../_static/images/grid-mode.png"
+      title="Your browser does not support the video tag"
+      alt="a screen recording showing the the Cells 3D example toggling between normal mode and grid mode"
+    >
+  </video>
+</figure>
+```
+
+The distribution of the layers in the grid can be altered according to the settings below, accessible by right-clicking the button (or programmatically through `viewer.grid`). The question icons can be hovered for more information about each setting.
+
+1. Grid stride: By default, 1, placing one layer in each view. The value determines the number of layers overlaid in each view. Negative values reverse the order in which layers are displayed in the grid.
 2. Grid width/height: By default, -1, which automatically determines the grid layout.
-3. Grid spacing: Changes the spacing between the tiles as a proportion of the average height and width of the largest layer. Positive values add distance between layers creating a 'figure panel' like appearance. Negative values result in overlap, which is useful if layers have translucent blending, allowing visualization of many layers close together.
+3. Grid spacing: Adds some spacing between each cell in pixels.
 
 ![image: Grid Mode Widget](../../_static/images/grid-widget.png)
 
