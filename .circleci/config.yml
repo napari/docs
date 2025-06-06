@@ -6,21 +6,40 @@
 # Check for more details: https://circleci.com/docs/2.1/configuration-reference
 version: 2.1
 
+# in addition to the default circleCI triggering, we have a GitHub Action:
+# .github/triggered_target_build.yml 
+# This Action has a job that uses CircleCI-Public/trigger-circleci-pipeline-action.
+# This allows triggering a CircleCI pipeline from any event on GitHub with GitHub Actions.
+# Right now we are using comments on PRs to trigger the workflow "triggered-by-pr-comment"
+# See: https://github.com/CircleCI-Public/trigger-circleci-pipeline-action/blob/main/README.md
+parameters:
+  GHA_Actor:
+    type: string
+    default: ""
+  GHA_Action:
+    type: string
+    default: ""
+  GHA_Event:
+    type: string
+    default: ""
+  GHA_Meta:
+    type: string
+    default: ""
+
 # Orbs are reusable packages of CircleCI configuration that you may share across projects.
 # See: https://circleci.com/docs/2.1/orb-intro/
 orbs:
   python: circleci/python@3.0.0
 
-# parameterize the make target used for build, passed in from build_trigger.yml action
-parameters:
-  make_target:
-    type: string
-    default: "slimfast"
-
 jobs:
   build-docs:
     docker:
       - image: cimg/python:3.10.17
+    parameters:
+      # Set make target for the job
+      make_target:
+        type: string
+        default: slimfast
     steps:
       - checkout:
           path: docs
@@ -47,7 +66,7 @@ jobs:
           command: |
             . .venv/bin/activate
             cd docs
-            xvfb-run --auto-servernum make << pipeline.parameters.make_target >>
+            xvfb-run --auto-servernum make << parameters.make_target >>
           environment:
             PIP_CONSTRAINT: ../napari/resources/constraints/constraints_py3.10_docs.txt
       - store_artifacts:
@@ -58,5 +77,24 @@ jobs:
             - docs/docs/_build/html/
 workflows:
   build-docs:
+    # this workflow is triggered automatically by default
+    # so we want to prevent it from triggering when triggering
+    # via CircleCI-Public/trigger-circleci-pipeline-action
+    # which always passes the GHA_Meta parameter
+    # this prevents double triggers
+    when:
+      not: << pipeline.parameters.GHA_Meta >>
     jobs:
       - build-docs
+  # Run this workflow when a PR comment triggers a docs build for `make` target
+  triggered-by-pr-comment:
+    when:
+      or:
+        - equal: ["slimfast", << pipeline.parameters.GHA_Meta >>]
+        - equal: ["slimgallery", << pipeline.parameters.GHA_Meta >>]
+        - equal: ["docs", << pipeline.parameters.GHA_Meta >>]
+        - equal: ["html", << pipeline.parameters.GHA_Meta >>]
+        - equal: ["html-noplot", << pipeline.parameters.GHA_Meta >>]
+    jobs:
+      - build-docs:
+          make_target: << pipeline.parameters.GHA_Meta >>
