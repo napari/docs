@@ -1,8 +1,8 @@
 name: Trigger target build of docs
-# this workflow is triggered by a comment on a PR or manually via workflow_dispatch
-# It allows you to specify a make target for building the docs for a branch/PR
-# When triggered by a comment, it will run on the PR branch and report status on the PR
-# # This is a one-time-run, it does not run on every push to the PR branch
+# This workflow can be started either by commenting on a pull request or by using workflow_dispatch manually.
+# You can specify a `make` target to build the documentation for a specific branch or pull request.
+# If started by a comment, the workflow runs on the PR branch and updates the PR status.
+# Note: This workflow runs only once per trigger and does not execute on every push to the PR branch.
 
 on:
   issue_comment:

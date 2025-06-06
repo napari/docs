@@ -30,7 +30,8 @@ jobs:
   build-docs:
     docker:
       - image: cimg/python:3.10.17
-    parameters: # job level setting of make target
+    parameters:
+      # Set make target for the job
       make_target:
         type: string
         default: slimfast
@@ -76,8 +77,8 @@ workflows:
       not: << pipeline.parameters.GHA_Meta >>
     jobs:
       - build-docs
-  # triggered by comment to PR with make target
-  triggered-by-issue-comment:
+  # Run this workflow when a PR comment triggers a docs build for `make` target
+  triggered-by-pr-comment:
     when:
       or:
         - equal: ["slimfast", << pipeline.parameters.GHA_Meta >>]
