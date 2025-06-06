@@ -71,8 +71,12 @@ jobs:
           paths:
             - docs/docs/_build/html/
 workflows:
-  # default trigger on push, don't double up with actions
   build-docs:
+    # this workflow is triggered automatically by default
+    # so we want to prevent it from triggering when triggering
+    # via CircleCI-Public/trigger-circleci-pipeline-action
+    # which always passes the GHA_Meta parameter
+    # this prevents double triggers
     when:
       not: << pipeline.parameters.GHA_Meta >>
     jobs:
