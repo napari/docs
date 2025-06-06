@@ -52,13 +52,18 @@ have shown they can be trusted to maintain napari with care. Becoming a
 core developer allows contributors to merge approved pull requests, cast votes
 for and against merging a pull-request, and be involved in deciding major
 changes to the API, and thereby more easily carry on with their project related
-activities. Core developers appear as organization members on the napari
-[GitHub organization](https://github.com/orgs/napari/people) and are on our
-[@napari/core-devs](https://github.com/orgs/napari/teams/core-devs) GitHub team. Core
-developers are expected to review code contributions while adhering to the
+activities.
+
+Core developers are expected to review code contributions while adhering to the
 [core developer guide](core-dev-guide). New core developers can be nominated
 by any existing core developer, and for details on that process see our core
-developer guide. For a full list of core developers see our [About Us](team) page.
+developer guide. Core developers can choose to step down from their role and 
+become "emeritus" core developers if they are no longer involved with the project,
+or feel they do not have sufficient time to dedicate to their role. Emeritus core
+developers can request or be invited to become active core developers at
+a later date and with consensus from currently active core developers. 
+
+For a full list of core developers see our [About Us](team) page.
 
 ### Steering council
 
@@ -95,8 +100,8 @@ then admission to the SC by consensus. During that time deadlocked votes of the 
 be postponed until the new member has joined and another vote can be held. The IFP seat
 is elected by the IFP Advisory Council.
 
-The SC may be contacted at `napari-steering-council@googlegroups.com`.
-Or via the [@napari/steering-council](https://github.com/orgs/napari/teams/steering-council) GitHub team. For a list of the current SC see our [About Us](team) page.
+The SC may be contacted at `napari-steering-council@googlegroups.com`. For a list of the current 
+SC see our [About Us](team) page.
 
 ### Institutional and funding partners
 
