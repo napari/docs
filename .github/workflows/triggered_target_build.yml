@@ -3,6 +3,8 @@ name: Trigger target build of docs
 # You can specify a `make` target to build the documentation for a specific branch or pull request.
 # If started by a comment, the workflow runs on the PR branch and updates the PR status.
 # Note: This workflow runs only once per trigger and does not execute on every push to the PR branch.
+# This workflow triggers both the CircleCI doc build, using CircleCI-Public/trigger-circleci-pipeline-action.
+# as well as an artifact build using the reusable workflow: .github/build_docs.yml
 
 on:
   issue_comment:

@@ -6,7 +6,12 @@
 # Check for more details: https://circleci.com/docs/2.1/configuration-reference
 version: 2.1
 
-# these are required by https://github.com/CircleCI-Public/trigger-circleci-pipeline-action
+# in addition to the default circleCI triggering, we have a GitHub Action:
+# .github/triggered_target_build.yml 
+# This Action has a job that uses CircleCI-Public/trigger-circleci-pipeline-action.
+# This allows triggering a CircleCI pipeline from any event on GitHub with GitHub Actions.
+# Right now we are using comments on PRs to trigger the workflow "triggered-by-pr-comment"
+# See: https://github.com/CircleCI-Public/trigger-circleci-pipeline-action/blob/main/README.md
 parameters:
   GHA_Actor:
     type: string
