@@ -63,7 +63,7 @@ or feel they do not have sufficient time to dedicate to their role. Emeritus cor
 developers can request or be invited to become active core developers at
 a later date and with consensus from currently active core developers. 
 
-For a full list of core developers see our [About Us](team) page.
+For a full list of core developers see our [About the project and team](team) page.
 
 ### Steering council
 
@@ -101,7 +101,7 @@ be postponed until the new member has joined and another vote can be held. The I
 is elected by the IFP Advisory Council.
 
 The SC may be contacted at `napari-steering-council@googlegroups.com`. For a list of the current 
-SC see our [About Us](team) page.
+SC see our [About the project and team](team) page.
 
 ### Institutional and funding partners
 
