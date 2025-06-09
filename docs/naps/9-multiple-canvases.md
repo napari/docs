@@ -1,6 +1,5 @@
 (nap-9)=
-
- # NAP-9 — Multiple Canvases
+# NAP-9 — Multiple Viewports
 
 ```{eval-rst}
 :Authors: Ashley Anderson <aandersoniii@chanzuckerberg.com>, Wouter-Michiel Vierdag, Lorenzo Gaifas
@@ -10,27 +9,34 @@
 ```
 
 ## Definitions
+```{note}
+This NAP was previously discussed as *Multiple Canvases*, but due to the confusing nomenclature we're shifting to using *Viewport* for a (hopefully) clearer distinction from the canvas and viewer.
+```
 
 In order to facilitate discussion - this NAP will use the following definitions.
 
 *Viewer* - Currently maps basically 1:1 to the napari application main window, including canvas(es), dims sliders, layer list, layer controls, and dock widgets. Related is the `ViewerModel`, a class in napari that maintains the state of the Viewer.
 
-*Canvas* - The main napari data view (2D rectangle) where 2D or 3D slice data is displayed, and additional data views displayed within a single Viewer window. This NAP is in part an attempt to formaize this concept, and as noted proposes a related `CanvasModel` class in napari to hold the state of a Canvas.
+*Canvas* - Currently usually used to refer to the central widget of the napari Viewer which renders the data from the current slice, as well as keeping track of all the visualisation scenegraph from vispy and various other napari-vispy interfaces.
 
-*Layer* - The base unit of the napari image data model. A `ViewerModel` maintains an ordered list of Layers that it may display on its Canvas.
+*Viewport* - New term introduced by this NAP in order to formalize and disentangle the previous notions of *Canvas* and *Viewer*. This NAP introduces a `Viewport` class in napari with its own `Layerlist`, `Dims`, and `Camera`.
 
-*Layer Slice* - A subset of data from a Layer, reduced to 2D or 3D (via slicing) for visualization. This again is a general concept that this NAP proposes to formalize as a napari class (or set of classes paired with the Layer types).
+*Layer* - The base unit of the napari image data model. Currently, a `ViewerModel` maintains an ordered list of `Layers` that it may display on its `Canvas`.
 
-*Visual* - The corresponding visual representation of a Layer Slice displayed on a Canvas. The specific visual is determined by the Layer (and Layer Slice) type.
+*Layer Slice* - A subset of data from a Layer, reduced to 2D or 3D (via slicing and projecting) for visualization. This concept was introduced in [NAP-4](https://napari.org/stable/naps/4-async-slicing.html) as part of the async slicing work, and was already implemented for most layer types in subsequent PRs (`Image`, `Labels`, `Points`, and `Vectors`).
 
-Note that [VisPy](https://vispy.org/) (the current backend for all napari visuals) has its own specific definitions for some of these or related concepts, such as [`Canvas`](https://vispy.org/api/vispy.app.canvas.html#module-vispy.app.canvas) and [`ViewBox`](https://vispy.org/api/vispy.scene.widgets.viewbox.html#module-vispy.scene.widgets.viewbox). Where necessary to refer to these concepts in this NAP (or discussion), such concepts will be qualified accordingly (for example: "a VisPy Canvas").
+Note that [VisPy](https://vispy.org/) (the only current rendering backend in napari) has its own specific definitions for some of these or related concepts, such as [`Canvas`](https://vispy.org/api/vispy.app.canvas.html#module-vispy.app.canvas) and [`ViewBox`](https://vispy.org/api/vispy.scene.widgets.viewbox.html#module-vispy.scene.widgets.viewbox). Where necessary to refer to these concepts in this NAP (or discussion), such concepts will be qualified accordingly (for example: "a VisPy Canvas").
 
 ## Abstract
+Current napari architecture supports a single canvas/viewport per viewer. Simultaneously showing multiple views of the same (or different) data generally necessitates opening an entirely new napari viewer window or low-level work with Qt widgets and private napari APIs. This wastes resources (primarily memory) and complicates interaction.
+This NAP establishes a plan to implement a builtin system for opening, visualizing and interacting with multiple viewports within a single viewer.
 
-Current napari architecture supports a single canvas (viewbox) per viewer (window). Simultaneously showing multiple views of the same data generally necessitates opening an entirely new napari viewer window or low-level work with Qt widgets and private napari APIs. This wastes resources (primarily memory) and complicates interaction.
+We propose to achieve this in two parts that can be implemented independently:
+1. Splitting of part of the current `ViewerModel` into a new `Viewport` model holding a `Layerlist`, a `Dims`, and a `Camera`. `ViewerModel` will hold a list of `Viewports`, allowing for multiple independent views.
+2. Completion of the async `LayerSlice` work for each layer type, and subsequent complete separation of layer slicing state from the layer models. This will allow to reuse layer objects between different viewports.
 
 ## Motivation and Scope
-The ability to view n-D data from multiple perspectives (or different data from the *same* perspective -- for example side-by-side segmentations) is a common feature request, and has proved useful in many other tools for data exploration and analysis. Here is a sampling of issues requesting support and discussing potential implementations:
+The ability to view n-D data from multiple perspectives (orthoview), or different data from the *same* perspective (for example side-by-side segmentationsjkj) is a common feature request, and has proved useful in many other tools for data exploration and analysis. Here is a sampling of issues requesting support and discussing potential implementations:
 
 * [#5348](https://github.com/napari/napari/issues/5348) Multicanvas viewer
 * [#2338](https://github.com/napari/napari/issues/2338) Multicanvas API Thoughts
@@ -49,51 +55,117 @@ Providing native support in napari would allow developers to more easily create 
 
 ### Out of Scope
 * Improvements to VisPy to support multiple views of the same `SceneGraph` (sharing data, saving VRAM) - for relevant discussion start with [vispy/#1992](https://github.com/vispy/vispy/issues/1992).
-* For now, canvas arrangement (for example: tiling behavior) will be handled in the view only (left to Qt or custom Qt widgets). Making this state (de)serializable is out of scope for this project, but may be relevant when implementing a “savable viewer state” feature.
-* Normalizing slice data for different layer types, though this may benefit in the course of this work.
-* Specific UI implementations will be explored as part of this work, but I expect UX and UI will be formalized later (possibly in a separate NAP).
+* For now, canvas arrangement (for example: tiling behavior) will be handled in the viewer only (left to Qt or custom Qt widgets). Making this state (de)serializable is out of scope for this project, but may be relevant when implementing a “savable viewer state” feature.
+* Normalizing slice data for different layer types to a uniform protocol/system, though this may benefit in the course of this work.
+* Specific UI implementations will be explored as part of this work, but UX and UI will likely be formalized later. Since this NAP was first drafted, a lot of work and discussion a on UX and UI has already been carried on in [#5348](https://github.com/napari/napari/issues/5348), which may be in
 * Supporting alternative frontend (Qt) and backend (Vispy) frameworks. While this work should not make such tasks more difficult in the future, explicit consideration is out-of-scope until further progress is made in these areas.
 * [Non-goals also in NAP-3](https://napari.org/dev/naps/3-spaces.html#non-goals) are related but also considered out-of-scope here
-    * Separation of rendering information from the Layer(Data) model
-    * Window state restoration
+    * Separation of rendering information (e.g: colormap) from the data (e.g: features) which currently both live on the layer model
+    * Window state restoration and "workspaces" (see [#4227](https://github.com/napari/napari/issues/4227) for further discussion)
 
-## Detailed Description
-
-### Requirements
+## Requirements
 * The application data model (`ViewerModel` + Layers) shall support multiple canvases.
 * The application shall natively display multiple canvases simultaneously.
     * There shall be a minimum of one canvas (current status) per viewer.
-* All canvases shall share a common layer list and (unsliced) layer data.
 * Each canvas shall have independent:
-    * Data slicing
-    * Camera (zoom, center)
-    * Dimensionality (2D/3D display)
-    * Layer visibility
+    * Layer list (necessary for visualizing different data)
+    * Camera (necessary for viewing data from different POV)
+    * Dims model (necessary for viewing different slices/dimensions of the data)
 * The implementation should minimize changes to the existing public API.
 * The napari application (`ViewerModel`) shall maintain a concept of a single “active” (currently focused) canvas.
     * Alternatively, there could be a “main” canvas that does not change (“main” and “active” could even be simultaneously supported).
     * There will be no possibility of a viewer with no canvases.
-* Users shall be able to add, remove, and (maybe[^maybe-rearrange]) rearrange canvases.
+* Users shall be able to add, remove, and (eventually[^maybe-rearrange]) rearrange canvases.
+
 
 [^maybe-rearrange]: Exact UI/UX may is yet to be decided, see [UI Architecture](#ui-design-and-architecture) for some discussion.
 
-### Design Considerations & Decisions
+## Design Considerations & Decisions
 Part of this design document is intended to capture the desired behavior and prevent scope creep. At the extreme “multiple canvases” can be achieved with “multiple viewers”. Therefore we need to draw a line somewhere to differentiate a “canvas” from a “viewer”. [^napari-lite]
-
-> TODO: add rough CanvasModel definition here [name=Ashley A]
 
 [^napari-lite]: A lightweight "canvas" might be relevant to the implementation of ["napari-lite"](https://github.com/napari/napari/issues/5940).
 
 An important consideration is to minimize breaking changes to the public napari API. While napari is still pre-1.0, there is already a healthy developing ecosystem of plugins, scripts, and users. Changes to the API may be necessary and should be made if they constitute improvements, but should be minimized and well documented.
 
-The concept of an "active" canvas will work in service of minimizing API changes. This will allow existing APIs on the main Viewer/ViewerModel to remain and simply delegate to the active canvas.
-
 In addition to maintaining the model-view-controller (MVC) architecture of napari, this proposal aims to maintain or improve decoupling of the UI framework (currently Qt), the visualization library (currently VisPy), and the napari core code.
 
-> TODO: add a list open questions and key decisions here [name=Ashley A]
-> * selection state
+## Related Work
+See other image viewers for examples for multiple canvases (mostly demonstrating orthogonal views):
+* [3D Slicer](https://www.slicer.org/)
+* [Orthogonal views in ImageJ and Imaris](https://www.youtube.com/watch?v=94d8sHMP_w8)
+* [OHIF/Cornerstone.js](https://www.cornerstonejs.org/live-examples/crosshairs)
+* [neuroglancer](https://neuroglancer-demo.appspot.com/#!%7B%22dimensions%22:%7B%22x%22:%5B8e-9%2C%22m%22%5D%2C%22y%22:%5B8e-9%2C%22m%22%5D%2C%22z%22:%5B8e-9%2C%22m%22%5D%7D%2C%22position%22:%5B2914.500732421875%2C3088.243408203125%2C4045%5D%2C%22crossSectionScale%22:3.762185354999915%2C%22projectionOrientation%22:%5B0.31435418128967285%2C0.8142172694206238%2C0.4843378961086273%2C-0.06040274351835251%5D%2C%22projectionScale%22:4593.980956070107%2C%22layers%22:%5B%7B%22type%22:%22image%22%2C%22source%22:%22precomputed://gs://neuroglancer-public-data/flyem_fib-25/image%22%2C%22tab%22:%22source%22%2C%22name%22:%22image%22%7D%2C%7B%22type%22:%22segmentation%22%2C%22source%22:%22precomputed://gs://neuroglancer-public-data/flyem_fib-25/ground_truth%22%2C%22tab%22:%22source%22%2C%22segments%22:%5B%2221894%22%2C%2222060%22%2C%22158571%22%2C%2224436%22%2C%222515%22%5D%2C%22name%22:%22ground-truth%22%7D%5D%2C%22showSlices%22:false%2C%22layout%22:%224panel%22%7D)
 
-### Architecture
+## Implementation
+
+### Part 1: Viewport model
+
+* Introduce a minimally disruptive `_viewports` attribute on the ViewerModel, and implement a `Viewport` model to hold a `Layerlist`, a `Dims`, and a `Camera` (as well as some related concepts and models).
+* using a `SelectableEventedList` for `_viewports` lets us easily introduce the concept of an `active` Viewport. This, together with some simple dispatch of current viewer elements to the active viewport, will make this part of the implementation a drop-in replacement.
+* At this stage, only the active viewport will be displayed. This will leave the GUI identical to before. When a new viewport becomes active, the contents of the QtViewer and vispy canvas are simply swapped to be linked with the new layerlist, camera, and dims.
+* Similarly, existing events and event callbacks will connected to the active canvas only.
+* Add APIs to add, remove and select viewports
+
+Currently, the `ViewerModel` (when stripped down to its barebones) contains the following fields and functionality:
+
+The concept of an "active" canvas will work in service of minimizing API changes. This will allow existing APIs on the main Viewer/ViewerModel to remain and simply delegate to the active canvas.
+
+Additionally, by providing access to the components of the active canvas through the `ViewerModel`, we can also seamplessly transition to a multicanvas system without breaking any high level API.
+
+```py
+
+class ViewerModel:
+    camera: Camera
+    cursor: Cursor
+    dims: Dims
+    grid: GridCanvas
+    layers: LayerList
+    help: str
+    status: Union[str, dict]
+    tooltip: Tooltip
+    theme: str = Field(default_factory=_current_theme)
+    title: str = 'napari'
+    _overlays: EventedDict[str, Overlay]
+    _layer_slicer: _LayerSlicer = PrivateAttr(default_factory=_LayerSlicer)
+```
+
+
+With this NAP and the above considerations, we expect to separate the above components roughly as follows:
+
+```py
+class CanvasModel:
+    camera: Camera
+    cursor: Cursor
+    dims: Dims
+    grid: GridCanvas
+    layers: LayerList
+    _overlays: EventedDict[str, Overlay]
+    _layer_slicer: _LayerSlicer = PrivateAttr(default_factory=_LayerSlicer)
+
+class ViewerModel:
+    _canvases: SelectableEventedList[Canvas]
+    help: str
+    status: Union[str, dict]
+    tooltip: Tooltip
+    theme: str = Field(default_factory=_current_theme)
+    title: str = 'napari'
+
+    @property
+    def camera(self):
+        return self._canvases.active.camera
+
+    @property
+    def 
+
+    [...]
+```
+
+### Part 2: Decouple slicing state from layer models
+
+* following the existing implementations, ass LayerSlice classes for each layer type.
+* move *all* layer slicing state from `Layer`s to the `Viewport`s. This includes base attributes like `_slice_input`, `_data_slice` and so on, as well as layer-specific properties and methods such as all the `Points._view_*` attributes.
+
+#### Architecture
 napari architecture is based on the MVC pattern. The model layer comprises a `ViewerModel` and a list of Layer models (subclasses of a base `Layer`). There are seven layer types, each with a corresponding view type. Currently models and views are paired 1:1, and the correlation is stored in a map (`layer_to_visual`) on the `VispyCanvas`. Figure 1 shows the class relationships for the base model types and the Image layer types (for brevity - other layer types have similar connectivity).
 
 ```{figure} _static/multicanvas-napari-architecture-today.png
@@ -112,7 +184,7 @@ Figure 2 shows proposed changes (in orange) to the architecture to support multi
 * `ViewerModel` will own a *list* of `CanvasModel` objects
 * `QtViewer` will own a *list* of `VispyCanvas` objects
 * `VispyLayer` subclasses will hold references to their `Layer` (for rendering information) as well as a `LayerSlice` (for data)
-* The LayerSlicer will need to update the sync and async callbacks[^async-only] to pass a canvas parameter where the resulting sliced data will be stored, rather than storing it on the layer itself. Slice task cancellation logic will need to be revisited accordingly.
+* The LayerSlicer will need to update the sync and async callbacks to pass a canvas parameter where the resulting sliced data will be stored, rather than storing it on the layer itself. Slice task cancellation logic will need to be revisited accordingly.
     * async callback: `LayerSlicer._on_slice_done`
     * sync callback: `Layer._slice_dims`
 * Callbacks (interaction, events) will need to be specifically connected to individual `CanvasModel` objects where relevant (dims, camera) rather than the `ViewerModel`.
@@ -162,7 +234,8 @@ Slice state for each layer is currently stored on the Layer model. Again, see [N
 > Also - the various `_<Layer>SliceResponse` classes introduced by async slicing may already fill much of this role. Another option to consider here is to codify a protocol ([`typing.Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)) for these classes. Even this protocol may not be necessary - early prototypes use these classes as-is with minimal modifications.
 > [name=Ashley A]
 
-### UI Design and Architecture
+### Part 3: GUI and UX
+
 Specific UI design and architecture remains to be determined. This will be explored as part of step 4 in the [Implementation Plan](#implementation). UI design needs additional refinement and exploration, and this is expected to continue after basic/core implementation propsed in this NAP is complete. UI changes may also be described in a separate NAP along with a discussion of convenience functions and affordances for common operations. Some placeholder or experimental code will be used in the meantime as a prototype implementation.
 
 Some open questions here are (for example):
@@ -183,45 +256,7 @@ Beyond showing a grid of canvases, it would be nice for individual canvases to b
 Here are some Qt classes that may provide a sound base for multicanvas UI implementation:
 * `QDockWidget`, with the main window being modified to allow dock widget nesting (`dockNestingEnabled`). This may require the fewest modifications to the existing Qt viewer. Allowing widgets to be undocked would make this extremely flexible, but possibly also confusing.
 * `QMdiArea` (“multiple document interface”) satisfies most of these requirements, and should be customizable to satisfy them all. This would offer extreme flexibility of layout.
-* `GridLayout` would likely provide a quite simple but otherwise inflexible solution. For example this may make independent resizing of canvases difficult.
-
-## Related Work
-See other image viewers for examples for multiple canvases (mostly demonstrating orthogonal views):
-* [3D Slicer](https://www.slicer.org/)
-* [Orthogonal views in ImageJ and Imaris](https://www.youtube.com/watch?v=94d8sHMP_w8)
-* [OHIF/Cornerstone.js](https://www.cornerstonejs.org/live-examples/crosshairs)
-* [neuroglancer](https://neuroglancer-demo.appspot.com/#!%7B%22dimensions%22:%7B%22x%22:%5B8e-9%2C%22m%22%5D%2C%22y%22:%5B8e-9%2C%22m%22%5D%2C%22z%22:%5B8e-9%2C%22m%22%5D%7D%2C%22position%22:%5B2914.500732421875%2C3088.243408203125%2C4045%5D%2C%22crossSectionScale%22:3.762185354999915%2C%22projectionOrientation%22:%5B0.31435418128967285%2C0.8142172694206238%2C0.4843378961086273%2C-0.06040274351835251%5D%2C%22projectionScale%22:4593.980956070107%2C%22layers%22:%5B%7B%22type%22:%22image%22%2C%22source%22:%22precomputed://gs://neuroglancer-public-data/flyem_fib-25/image%22%2C%22tab%22:%22source%22%2C%22name%22:%22image%22%7D%2C%7B%22type%22:%22segmentation%22%2C%22source%22:%22precomputed://gs://neuroglancer-public-data/flyem_fib-25/ground_truth%22%2C%22tab%22:%22source%22%2C%22segments%22:%5B%2221894%22%2C%2222060%22%2C%22158571%22%2C%2224436%22%2C%222515%22%5D%2C%22name%22:%22ground-truth%22%7D%5D%2C%22showSlices%22:false%2C%22layout%22:%224panel%22%7D)
-
-## Implementation
-
-1. Introduce minimally disruptive `_canvases` attribute on the ViewerModel
-    * Just a list (`EventedList`) of `CanvasModel` objects
-    * One canvas is “active”, relevant properties on ViewerModel (`camera`, `dims`) are delegated to the active canvas
-        * "active" canvas is just index 0 (alternatively: use `SelectableEventedList`)
-    * Only the active canvas is shown (minimal modifications to `QtViewer` and `VispyCanvas`)
-    * A single `QtDims` view (slicing sliders) is shown, updates depending on the active canvas
-    * Adjust event callbacks such that interactions (slicing, camera movement, ndisplay toggle) only apply to the active canvas
-    * Add public APIs to add/remove/rotate (change active) `_canvases`
-
-2. Add Layer Slice classes to reduce data reslicing when switching between canvases
-    * Start with `Image` and `Labels` layers
-        * Move/modify/replace `set_view_slice` and `_update_slice_response` to set data on Layer Slice for associated canvas
-    * Modify `VispyCanvas`
-        * Get camera and dims information from associated `CanvasModel` instead of `Viewer`
-        * Obtain relevant data from Layer Slice instead of Layer
-    * Modify `ViewerModel` and `LayerSlicer` [^async-only]
-        * Submit `CanvasModel` (or an ID) to `LayerSlicer` instead of dims directly
-        * Emit `CanvasModel` (or an ID) and slice data from `LayerSlicer.ready` and/or `Layer.set_data` events
-        * `VispyCanvas` will subscribe to relevant events, set data if corresponding to its own `CanvasModel`. Other canvases may also be interested in this event for example to update cross-reference overlays.
-
-3. Update `QtViewer` and `VispyCanvas` to support multiple canvases
-    * Still only displaying one canvas at a time in the main widget
-    * Update main widget as `ViewerModel` “active” canvas changes, storing additional canvases and swapping them out as necessary
-
-4. Update `QtViewer` to show multiple canvases simultaneously
-    * This is exploratory work at the moment, see [UI Architecture](#ui-design-and-architecture) section below
-
-[^async-only]: Depending on the timeline and prototype implementation, it may be acceptable/preferable for multi-canvas feature to rely on (currently experimental) async slicing ([see NAP-4](https://napari.org/stable/naps/4-async-slicing.html)).
+* `GridLayout` would likely provide a quite simple but otherwise inflexible solution. For example this may make independent resizing of canvases difficult
 
 ## Backward Compatibility
 
@@ -229,15 +264,17 @@ Maintaining the proxy API on the viewer via the concepts of a main and/or active
 
 ## Future Work
 
-The goal of this NAP is to cover the main architectural changes to enable multi-canvas work. Future work is expected in 1) user experience, design, and GUI implementation details; and 2) consistent, ergonomic, and documented public APIs for advanced interaction with multiple canvases.
+The goal of this NAP is to cover the main architectural changes to enable multi-canvas work. Future work is expected in
+1. user experience, design, and GUI implementation details
+2. consistent, ergonomic, and documented public APIs for advanced interaction with multiple canvases.
+3. development of frequently requested features dependent on this work (e.g.: orthoview)
 
 ## Alternatives
 
 ### Users can open multiple napari viewers
-Using multiple napari viewers does not satisfy the core user needs for multiple canvases when processing or manipulating data. Multiple viewers also wastes system resources as viewers do not communicate or share memory.
+Using multiple napari viewers does not satisfy the core user needs for multiple canvases when processing or manipulating data. Multiple viewers also wastes system resources as viewers do not communicate or share memory, as well as wasting screen real estate by duplicating widgets unnecessarily.
 
 ### Leave multicanvas to plugins and custom widgets
-
 Unifying an implementation and (eventually) providing a stable multi-canvas API will save work for plugin authors, and allow more plugins to interoperate.
 
 ### Implement slices using shallow Layer copies
