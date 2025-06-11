@@ -100,6 +100,7 @@ See other image viewers for examples for multiple views (mostly demonstrating or
 
 ## Implementation
 
+(part-1-view-model)=
 ### Part 1: View model
 
 * Introduce a minimally disruptive `_views` attribute on the ViewerModel, and implement a `View` model to hold a `Layerlist`, a `Dims`, and a `Camera` (as well as some related concepts and models).
@@ -165,7 +166,15 @@ Discuss whether the LayerSlicer should be singleton on the viewer or one per vie
 An alternative implementation could maintain a single centralized `LayerList`, with `Views` only having control over layer visibility. See [#Alternative single LayerList](#single-layerlist) for pros and cons.
 :::
 
+(part-2-decouple-slicing-state)=
 ### Part 2: Decouple slicing state from layer models
+
+:::{important}
+The following assumes that we work from the top down. However, this refactoring work is *very large*, encompassing a large portion of the layer code.
+
+Therefore, it might be better to simple rewrite the layer classes from the ground up (as has been discussed and suggested in many other occasions).
+If that option were to be chosen, a new NAP will likely be in order.
+:::
 
 * following the existing implementations, add `SliceResponse` classes for each layer type (currently remaining: `Shapes`, `Surface`, `Tracks`).
 * move *all* layer slicing state from `Layer`s to the `SliceResponse` objects living in the `View`s. This includes base attributes like `_slice_input`, `_data_slice` and so on, as well as layer-specific properties and methods such as all the `Points._view_*` attributes. One way of handling this is to add a (private?) mapping of layers to slice responses on the `View`, which is updated by the `LayerSlicer` when slicing occurs:
@@ -237,7 +246,7 @@ A question mark is next to attributes and methods that need particular discussio
 | | `_vertex_size `
 | | `_rotation_handle_length `
 
-(gui-and-ux)=
+(part-3-gui-and-ux)=
 ### Part 3: GUI and UX
 
 In this last step we want to unlock the ability to visualize multiple views *at the same time*. This requires changes to our `_qt` and `_vispy` modules (and any other potential future backend for GUI and rendering).
@@ -305,6 +314,8 @@ From the user perspective this makes it a bit easier to keep track of layers (as
 On the flip side, this makes working with large layerlists and several views more cumbersome from the GUI as the layerlist gets more crowded.
 
 On the implementation side, this would require deprecating `Layer.visible` since layer visibility would now be a property of the `View`. This might accessible via something like a set of indices `View.visible_layers = {0, 1}`. This could be completely transparent via the GUI, but would be significantly more cumbersome programmatically.
+
+A significant advantage of using multiple layerlists over a single one is that it allows us to proceed with [part 1](#part-1-view-model) (and potentially [part 3](#part-3-gui-and-ux) without depending on [part 2](#part-2-decouple-slicing-state), by initially disallowing layers to live in myultiple views (and thus having multiple slicing states).
 
 :::{admonition} TODO
 discuss other differences
