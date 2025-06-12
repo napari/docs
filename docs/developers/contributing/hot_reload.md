@@ -1,4 +1,4 @@
-(napari-translations)=
+(napari-hot-reload)=
 
 # Hot Reloading in Development Mode
 
