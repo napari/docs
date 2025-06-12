@@ -198,6 +198,7 @@ subtrees:
         - entries:
           - file: developers/contributing/dev_install
           - file: developers/contributing/testing
+          - file: developers/contributing/hot_reload
           - file: developers/contributing/translations
           - file: developers/contributing/performance/index
             subtrees:
