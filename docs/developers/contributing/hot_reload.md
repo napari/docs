@@ -1,10 +1,10 @@
 (napari-hot-reload)=
 
-# Hot Reloading in Development Mode
+# Hot reloading in development mode
 
 When working on napari itself or developing plugins, manually restarting the application after every code change can quickly become tedious. To speed up the development cycle, napari supports **hot-reloading**, allowing you to reload code changes on the fly without closing and reopening the app.
 
-## What is Hot Reloading?
+## What is hot reloading?
 
 Hot reloading enables napari to automatically reload Python modules during runtime, making development significantly more efficient. With this feature enabled, you can:
 
@@ -43,7 +43,7 @@ Under the hood, this feature uses [qtreload](https://github.com/lukasz-migas/qtr
 </figure>
 ```
 
-## How to Enable Hot Reloading
+## How to enable hot reloading
 
 Hot relaoding is enabled when napari is launched in **developer mode**. You can activate developer mode in one of two ways:
 
@@ -68,7 +68,7 @@ napari
 
 This is especially useful if you prefer to use your own Python scripts to launch napari.
 
-## Hot Reloading Your Plugin
+## Hot reloading your plugin
 
 By default, hot reloading only applies to the napari core libraries (napari and napari-builtins). IF you're working on a plugin and want your changes. to reload as well, you'll need to explicitly include it when launching napari.
 
@@ -98,12 +98,12 @@ napari
 ```
 
 ```{admonition} Plugin/module installation
-:class: tip
+:class: warning
 
 Your plugin/module must already be installed in the environment (e.g. via `pip install -e .` for this to work).
 ```
 
-## How It Works
+## How it works
 
 The `qtreload` system monitors changes to registered modules and reloads them using Python’s import machinery. It watches for changes to the `.py` and `.qss`.
 
