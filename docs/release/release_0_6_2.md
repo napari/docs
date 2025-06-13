@@ -72,6 +72,7 @@ https://napari.org.
 - Add initial documentation about widget communication ([docs#721](https://github.com/napari/docs/pull/721))
 - Update installation.md to link to conda getting started not miniconda ([docs#726](https://github.com/napari/docs/pull/726))
 - Update governance docs ([docs#729](https://github.com/napari/docs/pull/729))
+- Initial release notes for alpha of 0.6.2 ([docs#734](https://github.com/napari/docs/pull/734))
 
 ## Other Pull Requests
 
