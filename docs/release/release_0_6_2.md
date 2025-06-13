@@ -96,7 +96,7 @@ https://napari.org.
 - [maintenance] Use Wandalen/wretry.action to auto-retry fail in --pre tests ([#7986](https://github.com/napari/napari/pull/7986))
 - Update `hypothesis`, `ipython`, `jsonschema`, `tifffile` ([#7987](https://github.com/napari/napari/pull/7987))
 - [pre-commit.ci] pre-commit autoupdate ([#7988](https://github.com/napari/napari/pull/7988))
-- Stop status thread on Keyboard Interuption (Ctrl+C) ([#7994](https://github.com/napari/napari/pull/7994))
+- Stop status thread on Keyboard Interruption (Ctrl+C) ([#7994](https://github.com/napari/napari/pull/7994))
 - Update `hypothesis`, `magicgui`, `pandas`, `pyqt6`, `pytest`, `pytest-pretty` ([#8000](https://github.com/napari/napari/pull/8000))
 - Update pyproject.toml to fix coverage paths (alt) ([#8001](https://github.com/napari/napari/pull/8001))
 - [Maintenance] Remove redundant initialization in Points layer and restructure for clarity ([#8005](https://github.com/napari/napari/pull/8005))
