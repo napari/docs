@@ -104,7 +104,7 @@ The napari viewer currently has a [grid mode](https://napari.org/stable/tutorial
 
 This feature has some theoretical and functional overlap with the multi-view described in this NAP, but with a few key differences:
 - grid mode allows *no* control over individual viewbox size and placement except through grid shape and stride. Viewboxes cannot be reordered, removed, or added.
-- grid mode does not create views with independend dims and cameras. The same `Camera` and `Dims` are used to control all viewboxes.
+- grid mode does not create views with independent dims and cameras. The same `Camera` and `Dims` are used to control all viewboxes.
 - grid mode does not have fine-grained control of which layers are displayed in which viewbox. Layers are simply distributed based on the order of the layerlist and according to the stride.
 
 These limitations dramatically simplify the usability of grid mode (one button click is usually all that's needed for most use cases). On the other hand, multi-view as described in this NAP offers greater control over every aspect described above, at the cost of a more complicate API and GUI accessibility.
