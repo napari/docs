@@ -77,7 +77,7 @@ Providing native support in napari would allow developers to more easily create 
 * The application shall natively display multiple views simultaneously.
     * There shall be a minimum of one view (current status) per viewer.
 * Each view shall have independent:
-    * Layer list - or layellist "subview" (see [#Alternative single LayerList](#single-layerlist) for details) (necessary for visualizing different data)
+    * Layer list - or layerlist "subview" (see [#Alternative single LayerList](#single-layerlist) for details) (necessary for visualizing different data)
     * Camera (necessary for viewing data from different POV)
     * Dims model (necessary for viewing different slices/dimensions of the data)
 * The implementation should minimize changes to the existing public API.
@@ -97,6 +97,19 @@ Part of this design document is intended to capture the desired behavior and pre
 An important consideration is to minimize breaking changes to the public napari API. While napari is still pre-1.0, there is already a healthy developing ecosystem of plugins, scripts, and users. Changes to the API may be necessary and should be made if they constitute improvements, but should be minimized and well documented.
 
 In addition to maintaining the model-view-controller (MVC) architecture of napari, this proposal aims to maintain or improve decoupling of the UI framework (currently Qt), the visualization library (currently VisPy), and the napari core code.
+
+### Grid mode vs Multi-View
+
+The napari viewer currently has a [grid mode](https://napari.org/stable/tutorials/fundamentals/viewer.html#grid-button) that can be activated to distribute all layers in a rectangular grid of vispy `ViewBox`es according to a few simple parameters (mainly shape and stride) (as of time of writing, the viewbox-based implementation in [#7870](https://github.com/napari/napari/pull/7870) is not yet merged, but will be soon).
+
+This feature has some theoretical and functional overlap with the multi-view described in this NAP, but with a few key differences:
+- grid mode allows *no* control over individual viewbox size and placement except through grid shape and stride. Viewboxes cannot be reordered, removed, or added.
+- grid mode does not create views with independend dims and cameras. The same `Camera` and `Dims` are used to control all viewboxes.
+- grid mode does not have fine-grained control of which layers are displayed in which viewbox. Layers are simply distributed based on the order of the layerlist and according to the stride.
+
+These limitations dramatically simplify the usability of grid mode (one button click is usually all that's needed for most use cases). On the other hand, multi-view as described in this NAP offers greater control over every aspect described above, at the cost of a more complicate API and GUI accessibility.
+
+In this NAP, we assume that grid mode and multiple views remain separate features. For discussion about why (and whether they should instead be merged into a single feature) see [#Alternative: Multi-View grid mode](#multi-view-grid-mode).
 
 ## Related Work
 See other image viewers for examples for multiple views (mostly demonstrating orthogonal views):
@@ -328,6 +341,24 @@ A significant advantage of using multiple layerlists over a single one is that i
 :::{admonition} TODO
 discuss other differences
 :::
+
+### Multi-View grid mode
+Grid mode is currently distinct from multi-view. However, the two could be merged by implementing grid-mode as a one-button activation of a preset multi view (similar to how we plan to implement ortho-view). This would require the following:
+
+- Generate and NxM grid of views based on the grid shape and stride
+- link all view `Camera`s together
+- link all view `Dims` together
+- distribute layers in the various view layerlists according to stride
+- add callbacks so that modifying stride and grid shape will redistribute layers
+- add callbacks so adding/removing/reordering layers causes Views to change accordingly. This can only be done if the [single layerlist alternative](#single-layerlist) is used, otherwise users will have to manually access individual layerlists.
+- potentially allow destroying all views when clicking the grid mode button again (this might break any manual modifications made by the user)
+- potentially hide all unnecessary controls, such as redundant dims, redundant layerlist, etc, which  (depending on UI implementation) might take up precious screen real estate
+
+It's unclear/undecided how the above should behave if at any point the user "breaks" the assumptions of the grid mode (e.g: reorders views manually, unlinks dims, then adds new layers, etc).
+
+While this alternative unified two code branches into a single one, the downsides for grid mode users are significant. With separate features, users of grid-mode who want more control can easily move to a multiview approach when needed, while retaining the one-click simplicity of grid mode.
+
+Additionally, differently from this NAP's proposal, the implementation described above would disallow enabling grid mode in a canvas while retaining other canvases in "normal" mode. Refer to [#5348](https://github.com/napari/napari/issues/5348) for extensive discussion about this.
 
 ### Users can open multiple napari viewers
 Using multiple napari viewers does not satisfy the core user needs for multiple views when processing or manipulating data. Multiple viewers also wastes system resources as viewers do not communicate or share memory, as well as wasting screen real estate by duplicating widgets unnecessarily.
