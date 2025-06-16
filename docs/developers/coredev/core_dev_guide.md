@@ -209,7 +209,10 @@ While it is expected that most votes will be unanimous, a two-thirds majority of
 the cast votes is enough.
 
 Core developers can choose to become emeritus core developers and suspend
-their approval and voting rights until they become active again.
+their approval and voting rights until they become active again. Emeritus core
+developers can request **or** be invited to become active core developers at
+a later date, and active core developers will vote on this status-change as
+above. 
 
 ## Contribute to this guide (!)
 
