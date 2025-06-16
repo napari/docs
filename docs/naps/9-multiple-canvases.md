@@ -39,7 +39,7 @@ Current napari architecture supports a single canvas/camera/view per viewer. Sim
 This NAP establishes a plan to implement a builtin system for opening, visualizing and interacting with multiple views within a single viewer.
 
 We propose to achieve this in two parts that can be implemented independently:
-1. Splitting of part of the current `ViewerModel` into a new `View` model holding a `Layerlist`, a `Dims`, and a `Camera`. `ViewerModel` will hold a list of `Views`, allowing for multiple independent views.
+1. Splitting of part of the current `ViewerModel` into a new `View` model holding a `Layerlist`, a `Dims`, and a `Camera`. `ViewerModel` will hold a `list`/`Sequence` of `Views`, allowing for multiple independent views.
 2. Completion of the async `LayerSlicer` and `SliceRequest`/`SliceResponse` work for each layer type, and subsequent complete separation of layer slicing state from the layer models. This will allow to reuse layer objects between different views.
 
 ## Motivation and Scope
@@ -77,7 +77,7 @@ Providing native support in napari would allow developers to more easily create 
 * The application shall natively display multiple views simultaneously.
     * There shall be a minimum of one view (current status) per viewer.
 * Each view shall have independent:
-    * Layer list (necessary for visualizing different data)
+    * Layer list - or layellist "subview" (see [#Alternative single LayerList](#single-layerlist) for details) (necessary for visualizing different data)
     * Camera (necessary for viewing data from different POV)
     * Dims model (necessary for viewing different slices/dimensions of the data)
 * The implementation should minimize changes to the existing public API.
