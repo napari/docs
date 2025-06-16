@@ -25,7 +25,14 @@ In order to facilitate discussion - this NAP will use the following definitions.
 
 *Layer Slice* - A subset of data from a Layer, reduced to 2D or 3D (via slicing and projecting) for visualization. This concept was introduced in [NAP-4](https://napari.org/stable/naps/4-async-slicing.html) as part of the async slicing work, and was already implemented for most layer types in subsequent PRs (`Image`, `Labels`, `Points`, and `Vectors`).
 
-Note that [VisPy](https://vispy.org/) (the only current rendering backend in napari) has its own specific definitions for some of these or related concepts, such as [`Canvas`](https://vispy.org/api/vispy.app.canvas.html#module-vispy.app.canvas) and [`ViewBox`](https://vispy.org/api/vispy.scene.widgets.viewbox.html#module-vispy.scene.widgets.viewbox). Where necessary to refer to these concepts in this NAP (or discussion), such concepts will be qualified accordingly (for example: "a VisPy Canvas").
+:::{warning}
+[VisPy](https://vispy.org/) (the only current rendering backend in napari) has its own specific definitions for some of these or related concepts, such as:
+- [`Canvas`](https://vispy.org/api/vispy.app.canvas.html#module-vispy.app.canvas): the whole surface on which things can be rendered (and which can be embedded in the GUI as we do in napari)
+- [`ViewBox`](https://vispy.org/api/vispy.scene.widgets.viewbox.html#module-vispy.scene.widgets.viewbox): a rectangular portion of a canvas where a Scene can be visualised
+- [`Scene`](https://vispy.org/api/vispy.scene.html#module-vispy.scene): a collection of renderable objects and cameras that the canvas can use to render inside a ViewBox. In vispy, scenes are tree-like structures called scenegraphs composed by Nodes.
+
+Where necessary to refer to these concepts in this NAP (or discussion), such concepts will be qualified accordingly (for example: "a VisPy Canvas")
+:::
 
 ## Abstract
 Current napari architecture supports a single canvas/camera/view per viewer. Simultaneously showing multiple views of the same (or different) data generally necessitates opening an entirely new napari viewer window or low-level work with Qt widgets and private napari APIs. This wastes resources (primarily memory) and complicates interaction.
