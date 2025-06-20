@@ -54,12 +54,13 @@ For clearly intentional breaches, report those to the Code of Conduct committee 
 You can report issues to the napari Code of Conduct committee, at napari-conduct@googlegroups.com . Currently, the committee consists of:
 
 * [Juan Nunez-Iglesias](https://github.com/jni) (chair)
-* [Nicholas Sofroniew](https://github.com/sofroniewn)
-* [Kira Evans](https://github.com/kne42)
+* [Draga Doncila Pop](https://github.com/DragaDoncila)
+* [Peter Sobolewski](https://github.com/psobolewskiPhD)
+* [Tim Monko](https://github.com/TimMonko)
 
 If your report involves any members of the committee, or if they feel they have a conflict of interest in handling it, then they will recuse themselves from considering your report. Alternatively, if for any reason you feel uncomfortable making a report to the committee, then you can also contact:
 
-* [Charlotte Weaver](https://github.com/csweaver) at charlottesweaver@gmail.com
+* [Carol Willing](https://github.com/willingc) at willingc@gmail.com
 
 ## Incident reporting resolution & Code of Conduct enforcement
 

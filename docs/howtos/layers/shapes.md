@@ -28,6 +28,15 @@ array corresponds to one shape, specified by N points in D coordinates. You can
 adjust the position, size, face color, edge color, and opacity of all the shapes
 independently, both programmatically and from the GUI.
 
+```{tip}
+To draw Shapes to the screen, napari has to first break them up into triangles.
+It turns out that there's lots of ways to do this, and some are faster than
+others, and some are more robust to funky data (like self-intersecting shapes)
+than others. If you're encountering issues, you can adjust the triangulation
+method in Settings > Experimental > Triangulation backend. For more details,
+see our [triangulation guide](triangulation-in-depth).
+```
+
 ## Controlling the `shapes` layer using the GUI
 
 Before we start talking about all the controls on the GUI, here is an overview
