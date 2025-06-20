@@ -11,25 +11,20 @@ calling the `add_plugin_dock_widget` method will return the existing widget inst
 If the desired widget is absent, it will be created and added to the viewer.
 `add_plugin_dock_widget` is the most convenient way to access a plugin widget that is required by your plugin.
 
-## Access a widget by name with `viewer.window.get_dock_widget`
+## Access a widget by name with `viewer.window.dock_widgets`
 
-If access a target widget, but without creating it, use the `get_dock_widget` method.
-The `get_dock_widget` method returns a docked widget by its name.
+If access a target widget, but without creating it, use the `dock_widgets` property.
+The `dock_widgets` provide access to read-only mapping of all docked widgets in the viewer.
 
-This method returns the `QtViewerDockWidget` associated with the widget, or `None` if the widget is not found or does not exist.
+This method returns the widget itself, not the `QtViewerDockWidget` wrapper.
 
-To access the target widget, you can use the `inner_widget` method of the `QtViewerDockWidget`.
-
-This method allows accessing non-plugin widgets added to viewer using the `add_dock_widget` method.
-
-
-*The `get_dock_widget` and `inner_widget` were added in napari 0.6.2.*
+*The `dock_widgets` property was added in napari 0.6.2.*
 
 
 ## Widget name 
 
 When widget is added to the viewer as plugin contribution (by using a menu or `add_plugin_dock_widget`), it is assigned a name.
-The name is created by concatenating the widget `display_name` from the plugin manifest and the plugin name in parenthesis, like this: `"Widget name (plugin_name)"`. Note: this is the same name that is shown in the napari menus and the title bar of the widget.
+The name is created by concatenating the widget `display_name` from the plugin manifest and the plugin name in parentheses, like this: `"Widget name (plugin_name)"`. Note: this is the same name that is shown in the napari menus and the title bar of the widget.
 
 ```{important}
 We don't recommend using the `viewer.window._dock_widgets` attribute to access `QtViewerDockWidget` widgets. This is a private, internal API and may stop working on any release. Please use the above described public API instead.
@@ -38,7 +33,7 @@ We don't recommend using the `viewer.window._dock_widgets` attribute to access `
 
 ## Shared state between widgets
 
-If you need for multiple widgets to share state, you can use a shared global object.
+If you need for multiple widgets to share a state, you can use a shared global object.
 
 ```python 
 
