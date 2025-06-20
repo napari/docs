@@ -1,25 +1,24 @@
 (widget-communication)=
 
-# Accessing docked widgets
+## Widget communication
 
-Sometimes more complex workflows require access to other docked widgets, sometimes from other plugins, created by other developers.
+Sometimes complex workflows require access to other docked widgets, information from other plugins, which may be created by other developers.
 
-## Accessing plugin widgets `viewer.window.add_plugin_dock_widget`
+## Access another plugin widget with `viewer.window.add_plugin_dock_widget`
 
-If a plugin widget is already docked in the viewer, 
+If a desired plugin widget is already docked in the viewer, 
 calling the `add_plugin_dock_widget` method will return the existing widget instance.
+If the desired widget is absent, it will be created and added to the viewer.
+`add_plugin_dock_widget` is the most convenient way to access a plugin widget that is required by your plugin.
 
-This is the most convenient way to access a plugin widget that is required by your plugin.
-Because if the widget is absent, it will be created and added to the viewer.
+## Access a widget by name with `viewer.window.get_dock_widget`
 
-## Accessing widget by name `viewer.window.get_dock_widget`
+If access a target widget, but without creating it, use the `get_dock_widget` method.
+The `get_dock_widget` method returns a docked widget by its name.
 
-If you need to access a widget, but without creating it, you can use the `get_dock_widget` method.
-The `get_dock_widget` method allows you to retrieve a docked widget by its name.
+This method returns the `QtViewerDockWidget` associated with the widget, or `None` if the widget is not found or does not exist.
 
-This method returns the `QtViewerDockWidget` associated with the widget, or `None` if the widget is not found.
-
-To access the original widget, you can use the `inner_widget` method of the `QtViewerDockWidget`.
+To access the target widget, you can use the `inner_widget` method of the `QtViewerDockWidget`.
 
 This method allows accessing non-plugin widgets added to viewer using the `add_dock_widget` method.
 
@@ -30,17 +29,16 @@ This method allows accessing non-plugin widgets added to viewer using the `add_d
 ## Widget name 
 
 When widget is added to the viewer as plugin contribution (by using a menu or `add_plugin_dock_widget`), it is assigned a name.
-The name is created by concatenating the widget name and the plugin name in brackets, like this: `"widget_name (plugin_name)"`.
+The name is created by concatenating the widget `display_name` from the plugin manifest and the plugin name in parenthesis, like this: `"Widget name (plugin_name)"`. Note: this is the same name that is shown in the napari menus and the title bar of the widget.
 
-### Warnings 
-
-Many plugins use the `viewer.window._dock_widgets` attribute to access `QtViewerDockWidget` widgets.
-It is an internal API and may stop working on any release 
+```{important}
+We don't recommend using the `viewer.window._dock_widgets` attribute to access `QtViewerDockWidget` widgets. This is a private, internal API and may stop working on any release. Please use the above described public API instead.
+```
 
 
 ## Shared state between widgets
 
-If you need for multiple widgets to share the state, you can use a shared global object.
+If you need for multiple widgets to share state, you can use a shared global object.
 
 ```python 
 
@@ -85,7 +83,7 @@ def get_global_state(viewer):
     return GLOBAL_STATE[viewer]
 ```
 
-To store state between sessions, you can enhance the `get_global_state` to load state from drive or database.
+To store state between sessions, you can enhance the `get_global_state` to load state from persistent storage, such as a drive or database.
 To get a location for storing the state, you can use the `get_settings().config_path` to have a path per napari installation.
 Or you can use [`appdirs.user_config_dir`](https://pypi.org/project/appdirs/)
 
@@ -136,7 +134,7 @@ def get_global_state():
 
 
 def save_global_state(event):
-    """Save the global state to a file."""    # Serialize the state to a file
+    """Save the global state by serializing it to a file."""
     save_path = get_save_path()
     state = event.source  # The source of the event is the global state object
     save_path.parent.mkdir(parents=True, exist_ok=True)  # Ensure the directory exists
