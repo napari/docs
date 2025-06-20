@@ -94,7 +94,7 @@ jobs:
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.2.0
         with:
           GHA_Meta: ${{ needs.determine-make-target.outputs.target }}
-          target-branch: ${{ needs.determine-make-target.outputs.pr_ref || github.ref_name }}
+          target-branch: ${{ github.event_name == 'issue_comment' && format('pull/{0}/head', github.event.issue.number) || github.ref_name }}
         env:
           CCI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
 
