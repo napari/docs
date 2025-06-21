@@ -35,7 +35,7 @@ It requires:
 - the ability to install python packages via [pip](https://pypi.org/project/pip/) OR [conda-forge](https://conda-forge.org/docs/user/introduction.html)
 
 You may also want:
-- an environment manager like [conda](https://docs.conda.io/en/latest/miniconda.html) or
+- an environment manager like [conda](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html) or
 [venv](https://docs.python.org/3/library/venv.html) **(Highly recommended)**
 
 ```{note}
