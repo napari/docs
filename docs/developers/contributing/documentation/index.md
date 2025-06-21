@@ -635,7 +635,7 @@ Once you have written and previewed your document, it's time to open a pull requ
 If you are simply contributing one file (e.g., a tutorial or how-to page) you
 can use the [GitHub web interface to open your pull request](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository). Ensure your
 document is added to the correct folder based on its content (see the
-[list above](#before-you-start) for common locations).
+[list above](#organization-of-the-documentation) for common locations).
 
 To open a pull request via git and the command line, follow [this guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github).
 You can also reach out to us on [zulip](https://napari.zulipchat.com/#narrow/stream/212875-general) for assistance!
