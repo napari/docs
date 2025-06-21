@@ -5,19 +5,23 @@ name: Build PR Docs
 on:
   pull_request:
     branches:
-        - main
+      - main
   workflow_dispatch:
     inputs:
       make_target:
         description: "Enter make target: html html-noplot docs slimfast slimgallery"
         type: string
-        default: 'slimfast'
+        default: "slimfast"
   workflow_call:
     inputs:
       make_target:
         description: "Enter make target: html html-noplot docs slimfast slimgallery"
         type: string
-        default: 'slimfast'
+        default: "slimfast"
+      pr_number:
+        description: "PR number"
+        type: string
+        required: false
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -33,6 +37,8 @@ jobs:
         with:
           # Check out to  '/home/runner/work/docs/docs/docs'
           path: docs
+          ref: ${{ inputs.pr_number && format('refs/pull/{0}/merge', inputs.pr_number) || github.ref }}
+
 
       - name: Clone main repo
         uses: actions/checkout@v4
@@ -70,7 +76,7 @@ jobs:
           GOOGLE_CALENDAR_API_KEY: ${{ secrets.GOOGLE_CALENDAR_API_KEY }}
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
         with:
-          run:  make -C docs ${{ github.event_name == 'pull_request' && 'slimfast' || inputs.make_target }}
+          run: make -C docs ${{ inputs.make_target || 'slimfast' }}
           # skipping setup stops the action from running the default (tiling) window manager
           # the window manager is not necessary for docs builds at this time and it was causing
           # problems with screenshots (https://github.com/napari/docs/issues/285)
