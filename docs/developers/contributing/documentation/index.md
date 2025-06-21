@@ -1,14 +1,14 @@
 (contributing-docs)=
 # Contributing Documentation
 
-This guide will teach you how to submit your contributions to napari's documentation.
+This guide will teach you how to contribute to napari's documentation.
 
-In general, contributing requires:
+To begin contributing, you will need:
 
 - Some familiarity with [`git`](https://git-scm.com).
 - A [GitHub](https://github.com) account.
 
-There are two ways you can approach your contribution:
+Choose an approach to contributing:
 
 1. [**Contributing without a local setup**](#contributing-to-the-napari-documentation-without-a-local-setup): This is a simpler approach that allows you
    to make small changes to the documentation without needing to set up a local
@@ -19,14 +19,14 @@ There are two ways you can approach your contribution:
    changes _before_ submitting them. This approach requires a local setup of the
    napari and docs repositories.
 
-## Before you start
+## Ask for guidance
 
-If you'd like to contribute a brand new document to our usage section, it might
-be worth [opening an issue](https://github.com/napari/docs/issues/new/choose)
-on our repository first to discuss the content you'd like to see and get some
+If you'd like to contribute a brand new document to our usage section, it's
+worth [opening an issue](https://github.com/napari/docs/issues/new/choose)
+on our repository to discuss the content you'd like to see and get some
 early feedback from the community. The napari team can also suggest what type of
 document would be best suited, and whether there are already existing documents
-that could be expanded to include the content you think is lacking.
+that could be expanded to include your proposed content.
 
 ### Organization of the documentation
 
@@ -508,7 +508,7 @@ will open a browser preview and auto-rebuild any pages you edit.
 See [the `-live` builds note](live-builds).
 ````
 
-````{dropdown} napari gallery of examples only
+````{dropdown} napari/docs and napari gallery of examples
 **If you are working on the napari examples and want to build the whole examples
 gallery, but not other external content nor the `docs` notebook cell outputs**, 
 then you can use:
@@ -524,7 +524,7 @@ These builds will build the documentation with the entire gallery. The [`-live`
 variant](live-builds) will will open a browser preview and auto-rebuild any pages you edit.
 ````
 
-````{dropdown} Single example in the gallery
+````{dropdown} napari/docs and a single example in the gallery
 **If you want to work on a single example Python script in the napari repository
 `examples` directory**, you can build the documentation with just a chosen example by
 specifying it by name. For example, to build the `vortex.py` example, run:
