@@ -1,52 +1,8 @@
 # **Napari Roadmap**
 
-## April 10, 2025
+## June 22, 2025
 
-[**Project vision and foundation	1**](#project-vision-and-foundation)
-
-[Vision	2](#vision)
-
-[Founding principles	2](#founding-principles)
-
-[Mission and purpose	2](#mission-and-purpose)
-
-[**Roadmap strategy	3**](#roadmap-strategy)
-
-[Approach and philosophy	3](#approach-and-philosophy)
-
-[Potential challenges	3](#potential-challenges)
-
-[Risk mitigation strategies	4](#risk-mitigation-strategies)
-
-[**Roadmap focus areas	4**](#roadmap-focus-areas)
-
-[Core technology	4](#core-technology)
-
-[User experience	5](#user-experience)
-
-[Project sustainability and community	5](#project-sustainability-and-community)
-
-[**Strategic deliverables	5**](#strategic-deliverables)
-
-[Core technology	5](#core-technology-1)
-
-[API evolution	6](#api-evolution)
-
-[Core library	6](#core-library)
-
-[Performance	7](#performance)
-
-[User experience	7](#user-experience-1)
-
-[Project sustainability and community	8](#project-sustainability-and-community-1)
-
-[**Timeline	8**](#timeline)
-
-[2025	8](#2025)
-
-[2026 milestones and beyond	9](#2026-milestones-and-beyond)
-
-# **Project vision and foundation** {#project-vision-and-foundation}
+# **Project vision and foundation**
 
 [napari](https://napari.org/) is a fast, interactive, multi-dimensional image viewer for Python. It's designed for browsing, annotating, analyzing, and processing large multi-dimensional images.
 
@@ -70,7 +26,7 @@ The napari team came together around a shared vision for a Python-based image vi
 
 * provides native 2D and 3D views.
 
-## Mission and purpose {#mission-and-purpose}
+## Mission and purpose
 
 napari aims to be the multi-dimensional image viewer for Python and to provide GUI access to a plugin ecosystem of image analysis tools for scientists to use in their daily work. We hope to accomplish this by:
 
@@ -88,9 +44,9 @@ napari aims to be the multi-dimensional image viewer for Python and to provide G
 
 Our documentation provides more information about [napari's mission and values](https://napari.org/stable/community/mission_and_values.html).
 
-# **Roadmap strategy** {#roadmap-strategy}
+# **Roadmap strategy**
 
-## Approach and philosophy {#approach-and-philosophy}
+## Approach and philosophy
 
 **This roadmap is a living document** that the team adapts as needed to meet changing priorities, technology shifts, and scientific opportunities. napari's roadmap focuses on expanded core functionality, performance improvements, new features, and compatibility with other scientific tools. 
 
@@ -100,7 +56,7 @@ This roadmap **is not a detailed project plan** with milestones and assignments.
 
 We welcome **input from the community** about needs and priorities. This document will be publicly posted and be easily discoverable from the napari website.
 
-## Potential challenges {#potential-challenges}
+## Potential challenges
 
 Common risks associated with roadmaps are:
 
@@ -112,7 +68,7 @@ Common risks associated with roadmaps are:
 
 * **Estimation Difficulties:** Accurately estimating project timelines and resource requirements is challenging.
 
-## Risk mitigation strategies {#risk-mitigation-strategies}
+## Risk mitigation strategies
 
 These practices reduce risk and increase the likelihood of completing strategic deliverables:
 
@@ -126,9 +82,9 @@ These practices reduce risk and increase the likelihood of completing strategic 
 
 * **Visible Refactoring Plan:** Establish a clear plan for refactoring efforts and track progress beyond individual issues and pull requests.
 
-# **Roadmap focus areas** {#roadmap-focus-areas}
+# **Roadmap focus areas**
 
-## Core technology {#core-technology}
+## Core technology
 
 * **API (Code interface):** The interface to the external scientific Python world, enabling extensibility, customization, and integration into pipelines and workflows.
 
@@ -138,13 +94,13 @@ These practices reduce risk and increase the likelihood of completing strategic 
 
 * **Evolution:** Ongoing development and improvement of the core components.
 
-## User experience {#user-experience}
+## User experience
 
 * **User Interfaces and Interaction Modes:** The bundled application (using Qt), new applications (NapariLite, browser, WebAssembly), notebook, and programmatic use cases.
 
 * **Plugin Ecosystem:** The engine for extensibility, input/output plugins, domain-specific functionality, and discoverability of plugins.
 
-## Project sustainability and community {#project-sustainability-and-community}
+## Project sustainability and community
 
 * **Bug Fixes:** Addressing reported issues and ensuring software stability.
 
@@ -154,11 +110,11 @@ These practices reduce risk and increase the likelihood of completing strategic 
 
 * **Community Engagement:** Fostering communication, outreach, and collaboration through conferences and core team meetings.
 
-# **Strategic deliverables** {#strategic-deliverables}
+# **Strategic deliverables**
 
 This section provides a roadmap of strategic deliverables for these three project focus areas: Core, UX, and Project Health. These items are not ordered by priority.
 
-## Core technology {#core-technology-1}
+## Core technology
 
 Since its first commit in 2018, napari has grown organically as functionality was added and improved by a growing community of scientists. Now over 175 contributors have added to the napari code base. However, during this growth, we have accumulated significant technical debt, both in internal architecture and in API inconsistencies.
 
@@ -166,7 +122,7 @@ Since 2020, CZI has helped napari by conducting user surveys. Although responden
 
 This roadmap outlines our plans to simplify the napari code base to allow greater flexibility, improve the API's consistency and ease of use, and improve rendering performance.
 
-### API evolution  {#api-evolution}
+### API evolution
 
 ***The napari core public API should enable support of new visualization libraries and enable research teams to develop domain-specific front-end user interfaces.***
 
@@ -176,7 +132,7 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 
 * Identify where **decoupling of existing code from Vispy and Qt** is needed to support the core API
 
-### Core library {#core-library}
+### Core library
 
 **The napari core library aims to be a foundation for cutting-edge visualization for research.**
 
@@ -206,7 +162,7 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 
 *Benefits: Web browser application support, composable user interfaces, efficient data pipeline, experimentation tools, and scripting for automated workflows.*
 
-### Performance {#performance}
+### Performance
 
 ***As data size and volume increase, napari must remain blazing fast.***
 
@@ -226,7 +182,7 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 
 * Improve performance when **slicing layers**. [\#4795](https://github.com/napari/napari/issues/4795), [\#5957](https://github.com/napari/napari/issues/5957)
 
-## User experience {#user-experience-1}
+## User experience
 
 * Improve application **GUI**.
 
@@ -250,7 +206,7 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 
 * Create a **highly performant, minimal functionality viewer** (**napari-lite, ndv,** or similar) [\#5940](https://github.com/napari/napari/issues/5940)
 
-## Project sustainability and community {#project-sustainability-and-community-1}
+## Project sustainability and community
 
 This section lists high-priority items for documentation, issue/pr management, community engagement, project health, and day-to-day sustaining work:
 
@@ -282,11 +238,11 @@ This section lists high-priority items for documentation, issue/pr management, c
 
   * Build a suite of high quality reusable workshop and tutorial materials
 
-# **Timeline** {#timeline}
+# **Timeline**
 
 The timeline includes ideas that we have firm commitments to deliver. Over time, this section will cover priorities for the current year, the following year, and the next three to five years.
 
-## 2025 {#2025}
+## 2025
 
 The following items are active priorities for the project:
 
@@ -305,6 +261,6 @@ Our next priorities are:
 * Performance under core library   
 * Additional performance optimization and memory management.
 
-## 2026 milestones and beyond {#2026-milestones-and-beyond}
+## 2026 milestones and beyond
 
 This section will list commitments for 2026 and beyond. 
