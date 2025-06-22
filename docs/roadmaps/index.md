@@ -5,9 +5,6 @@
 The [**napari global roadmap**](active_roadmap.md) is a living document, and we revisit it every three months. It contains a summary of our vision, our mission and values, and our key focus areas
 for the project. It also details strategic deliverables and key priorities for each focus area within a horizon of 3-5 years.
 
-As a companion to the roadmap, we manage a [Github Project board](https://github.com/orgs/napari/projects/24/views/2?pane=info) that contains more technical details, issues and Pull-Requests
-for tracking progress towards the roadmap deliverables.
-
 ## For contributors
 
 If a particular roadmap item is important to you and you want to help make it happen sooner, please [chat with us](https://napari.zulipchat.com/)! You can help by [contributing code or documentation](https://napari.org/dev/developers/index.html)
