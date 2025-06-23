@@ -13,8 +13,8 @@ If the desired widget is absent, it will be created and added to the viewer.
 
 ## Access a widget by name with `viewer.window.dock_widgets`
 
-If access a target widget, but without creating it, use the `dock_widgets` property.
-The `dock_widgets` provide access to read-only mapping of all docked widgets in the viewer.
+If the goal is to access a target widget, without creating a widget, use the `dock_widgets` property.
+The `dock_widgets` property provides access to a read-only mapping of all docked widgets in the viewer.
 
 This method returns the widget itself, not the `QtViewerDockWidget` wrapper.
 
@@ -23,7 +23,7 @@ This method returns the widget itself, not the `QtViewerDockWidget` wrapper.
 
 ## Widget name 
 
-When widget is added to the viewer as plugin contribution (by using a menu or `add_plugin_dock_widget`), it is assigned a name.
+When a widget is added to the viewer via a plugin contribution (by using a menu or `add_plugin_dock_widget`), it is assigned a name.
 The name is created by concatenating the widget `display_name` from the plugin manifest and the plugin name in parentheses, like this: `"Widget name (plugin_name)"`. Note: this is the same name that is shown in the napari menus and the title bar of the widget.
 
 ```{important}
@@ -33,7 +33,7 @@ We don't recommend using the `viewer.window._dock_widgets` attribute to access `
 
 ## Shared state between widgets
 
-If you need for multiple widgets to share a state, you can use a shared global object.
+If you have a need for multiple widgets to share a state, you can use a shared global object.
 
 ```python 
 
