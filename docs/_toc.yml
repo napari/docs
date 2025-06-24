@@ -251,6 +251,7 @@ subtrees:
       - file: roadmaps/index
         subtrees:
         - entries:
+          - file: roadmaps/active_roadmap
           - file: roadmaps/0_4
           - file: roadmaps/0_3_retrospective
           - file: roadmaps/0_3
