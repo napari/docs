@@ -1,7 +1,7 @@
 # napari 0.6.2
 ⚠️ *Note: these release notes are still in draft while 0.6.2 is in release candidate testing.* ⚠️
 
-*Wed, Jun 25, 2025*
+*Thurs, Jun 26, 2025*
 
 We’re happy to announce the release of napari 0.6.2!
 
@@ -13,9 +13,9 @@ For more information, examples, and documentation, please visit our website: htt
 
 ### The amazing new Grid mode! 🗺️
 
-The visualization of Grid mode has been redone from the ground up! This new Grid mode [(#7870)](https://github.com/napari/napari/pull/7870) now puts each layer into its own view (a VisPy Viewbox) with cameras linked together. Now, you can pan and zoom one view, and all other views in the grid will follow along. Layers are no longer awkwardly transformed into the same world space and displayed in a grid, only to make comparing the details of each a challenge. 
+The visualization of Grid mode has been redone from the ground up! This new Grid mode [(#7870)](https://github.com/napari/napari/pull/7870) now puts each layer into its own view (a VisPy Viewbox) with cameras linked together. Now, you can pan and zoom one view, and all other views in the grid will follow along. Layers are no longer awkwardly transformed into the same world space and displayed in a grid, only to make comparing the details of each a challenge.
 
-Grid based exploration is now fluid, fast, and intuitive, especially when working with large images and 3D+ data! The mouse can even be used over one View, while updating the data, such as a label or shape annotation, in the selected layer of a different view. The usual napari overlays can now also be added to each grid, instead of just the canvas (eg. `viewer.scale_bar.gridded = True`). 
+Grid based exploration is now fluid, fast, and intuitive, especially when working with large images and 3D+ data! The mouse can even be used over one View, while updating the data, such as a label or shape annotation, in the selected layer of a different view. The usual napari overlays can now also be added to each grid, instead of just the canvas (eg. `viewer.scale_bar.gridded = True`).
 
 Grid mode spacing now works proportionally to the layer extents (i.e. [0,1), as in 0.6.0) or as a pixel value (1,1500] and will automatically adjust if needed.
 
@@ -23,13 +23,17 @@ Grid mode spacing now works proportionally to the layer extents (i.e. [0,1), as 
 
 ### The Features Table Widget is now a napari builtin! 📊
 
-The features table from [napari-properties-viewer](https://github.com/kevinyamauchi/napari-properties-viewer) is now a builtin widget in napari [(#7877)](https://github.com/napari/napari/pull/7877) *and* greatly improved! This widget allows you to view (and even edit) the properties of Points, Shapes, and Labels layers in a table widget. The widget can be opened from the `Layers` menu -> `Visualize` -> `Features table widget (napari builtins)` or from the command palette.  You can also save the properties table to a CSV file. Check out the [Features table widget](https://napari.org/dev/gallery/features_table_widget.html) example to learn more.
+The features table from [napari-properties-viewer](https://github.com/kevinyamauchi/napari-properties-viewer) is now a builtin widget in napari [(#7877)](https://github.com/napari/napari/pull/7877) *and* greatly improved! This widget allows you to view and edit the properties of Points, Shapes, and Labels layers in a table widget.
+
+The widget can be opened from the `Layers` menu -> `Visualize` -> `Features table widget (napari builtins)` or from the command palette.  You can also save the properties table to a CSV file. Check out the [Features table widget](https://napari.org/dev/gallery/features_table_widget.html) example to learn more.
 
 ![Features table widget in napari](https://github.com/user-attachments/assets/2c218f05-6510-4192-b5c8-fb6d135e4863)
 
 ### Community developments! 📅
 
-We are excited to share our new [active roadmap](https://napari.org/stable/roadmaps/active_roadmap.html) which is a living document that will be updated as we continue to develop napari. This document is intended to help the community understand the priorities of the napari team and to help us all work together to make napari better. We are also now including all napari related events in the [community calendar](https://napari.org/stable/community/meeting_schedule.html) and as an [image.sc post](https://forum.image.sc/t/napari-community-meetings-and-events/113689), including conferences, tutorials, sprints, virtual seminars, and more. If you have an event you would like to add, please reach out to us!
+We are excited to share our new [active roadmap](https://napari.org/stable/roadmaps/active_roadmap.html) which is a living document that will be updated as we continue to develop napari. This document is intended to help the community understand the priorities of the napari team and to help us all work together to make napari better. 
+
+We are also now including all napari related events in the [community calendar](https://napari.org/stable/community/meeting_schedule.html) and as an [image.sc post](https://forum.image.sc/t/napari-community-meetings-and-events/113689), including conferences, tutorials, sprints, virtual seminars, and more. If you have an event you would like to add, please reach out to us!
 
 ### Some great features for contributors! 🛠️
 
@@ -39,6 +43,7 @@ We are excited to share our new [active roadmap](https://napari.org/stable/roadm
 
 ## New Features
 
+- Grid mode using vispy ViewBox and linked cameras ([#7870](https://github.com/napari/napari/pull/7870))
 - Features table widget as builtin ([#7877](https://github.com/napari/napari/pull/7877))
 - Add 'zoom-box' to the viewer ([#8004](https://github.com/napari/napari/pull/8004))
 
@@ -91,6 +96,7 @@ We are excited to share our new [active roadmap](https://napari.org/stable/roadm
 - Initial release notes for alpha of 0.6.2 ([docs#734](https://github.com/napari/docs/pull/734))
 - Add active roadmap document ([docs#735](https://github.com/napari/docs/pull/735))
 - Use darker blue for community meetings in napari calendar ([docs#736](https://github.com/napari/docs/pull/736))
+- Add draft of 0.6.2 release notes ([docs#743](https://github.com/napari/docs/pull/743))
 
 ## Other Pull Requests
 
@@ -147,7 +153,7 @@ We are excited to share our new [active roadmap](https://napari.org/stable/roadm
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 
 
-## 12 reviewers added to this release (alphabetical)
+## 13 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -161,6 +167,7 @@ We are excited to share our new [active roadmap](https://napari.org/stable/roadm
 - [Lukasz Migas](https://github.com/napari/napari/commits?author=lukasz-migas) - @lukasz-migas
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
+- [Rahul Kumar](https://github.com/napari/napari/commits?author=rahul713rk) - @rahul713rk +
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wouter-Michiel Vierdag](https://github.com/napari/docs/commits?author=melonora) - @melonora
 
