@@ -14,7 +14,6 @@ jobs:
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.2.0
         with:
           GHA_Meta: "ready-to-merge"
-          target-branch: ${{ github.event.pull_request.head.ref }}
         env:
           CCI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
 
