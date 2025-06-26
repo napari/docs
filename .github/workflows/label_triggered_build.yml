@@ -28,7 +28,7 @@ jobs:
     # so to get the status of the artifact build, we need a separate job
     needs: trigger-full-artifact-build
     runs-on: ubuntu-latest
-    if: always()
+    if: always() && needs.trigger-artifact-build.result != 'skipped'
     steps:
       - name: Set build job status
         uses: myrotvorets/set-commit-status-action@master
