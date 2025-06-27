@@ -7,7 +7,7 @@
 version: 2.1
 
 # in addition to the default circleCI triggering, we have a GitHub Action:
-# .github/triggered_target_build.yml 
+# .github/triggered_target_build.yml
 # This Action has a job that uses CircleCI-Public/trigger-circleci-pipeline-action.
 # This allows triggering a CircleCI pipeline from any event on GitHub with GitHub Actions.
 # Right now we are using comments on PRs to trigger the workflow "triggered-by-pr-comment"
@@ -98,3 +98,9 @@ workflows:
     jobs:
       - build-docs:
           make_target: << pipeline.parameters.GHA_Meta >>
+  triggered-by-label:
+    when:
+      equal: ["ready-to-merge", << pipeline.parameters.GHA_Meta >>]
+    jobs:
+      - build-docs:
+          make_target: "html"
