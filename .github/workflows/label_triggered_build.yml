@@ -1,4 +1,4 @@
-name: Trigger Full Build on ready-to-merge label
+name: Trigger Full Build on ready to merge label
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   trigger-full-circleci-build:
-    if: contains(github.event.pull_request.labels.*.name, 'ready-to-merge')
+    if: contains(github.event.pull_request.labels.*.name, 'ready to merge')
     runs-on: ubuntu-latest
     steps:
       - name: Run CircleCI pipeline
@@ -18,7 +18,7 @@ jobs:
           CCI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
 
   trigger-full-artifact-build:
-    if: contains(github.event.pull_request.labels.*.name, 'ready-to-merge')
+    if: contains(github.event.pull_request.labels.*.name, 'ready to merge')
     uses: ./.github/workflows/build_docs.yml
     with:
       make_target: "html"
