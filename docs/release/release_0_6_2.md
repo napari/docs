@@ -1,7 +1,7 @@
 # napari 0.6.2
 ⚠️ *Note: these release notes are still in draft while 0.6.2 is in release candidate testing.* ⚠️
 
-*Thurs, Jun 26, 2025*
+*Mon, Jun 30, 2025*
 
 We’re happy to announce the release of napari 0.6.2!
 
@@ -41,6 +41,10 @@ We are also now including all napari related events in the [community calendar](
 2. **The organization of the napari repo has been updated by moving into a `src/` directory [(#7952)](https://github.com/napari/napari/pull/7952).** This is modern best practice in Python projects (and what has long been standard in our [napari-plugin-template](https://github.com/napari/napari-plugin-template)) to avoid issues with relative imports and *should* now always result in importing the napari version installed in the current environment. For developers, especially of pull requests prior to this release, you may have many merge conflicts to resolve. Please ping the napari team if you would like help resolving these conflicts.
 3. **There is now public API to access widgets docked in the viewer [(#7965)](https://github.com/napari/napari/pull/7965).** Check out the new documentation on the napari website to learn more about using this API to [communicate between widgets](https://napari.org/dev/plugins/advanced_topics/widget_communication.html). If you previously used `viewer.window._dock_widgets`, you should now use `viewer.window.dock_widgets`.
 
+- Add 'zoom-box' to the viewer ([#8004](https://github.com/napari/napari/pull/8004))
+- "Reverse" ordering of layers in grid mode, now matching LayerList index ([#8044](https://github.com/napari/napari/pull/8044))
+- Reverse canvas grid order ([#8053](https://github.com/napari/napari/pull/8053))
+
 ## New Features
 
 - Grid mode using vispy ViewBox and linked cameras ([#7870](https://github.com/napari/napari/pull/7870))
@@ -76,6 +80,7 @@ We are also now including all napari related events in the [community calendar](
 - Fix angles not showing correctly in UI ([#8013](https://github.com/napari/napari/pull/8013))
 - Bugfix: ensure multiscale images can be merged using contextual action ([#8025](https://github.com/napari/napari/pull/8025))
 - Fix Shapes layer to work with Features Table ([#8048](https://github.com/napari/napari/pull/8048))
+- Fix grid stride layering ([#8057](https://github.com/napari/napari/pull/8057))
 
 ## Build Tools
 
@@ -85,28 +90,29 @@ We are also now including all napari related events in the [community calendar](
 
 - Update README to use `imshow` and add example to generate image ([#7989](https://github.com/napari/napari/pull/7989))
 - Update docstring in `mouse_drag_callback.py` ([#8019](https://github.com/napari/napari/pull/8019))
+- Add information about conda version and downloads to badges ([#8054](https://github.com/napari/napari/pull/8054))
 - Update version switcher for 0.6.1 ([docs#713](https://github.com/napari/docs/pull/713))
 - Update contributing docs page ([docs#715](https://github.com/napari/docs/pull/715))
 - Update code of conduct committee members ([docs#716](https://github.com/napari/docs/pull/716))
 - Add features table widget ([docs#718](https://github.com/napari/docs/pull/718))
 - Update docker build links ([docs#720](https://github.com/napari/docs/pull/720))
 - Add initial documentation about widget communication ([docs#721](https://github.com/napari/docs/pull/721))
+- update grid mode explanation and add video ([docs#725](https://github.com/napari/docs/pull/725))
 - Update installation.md to link to conda getting started not miniconda ([docs#726](https://github.com/napari/docs/pull/726))
 - Update governance docs ([docs#729](https://github.com/napari/docs/pull/729))
 - Initial release notes for alpha of 0.6.2 ([docs#734](https://github.com/napari/docs/pull/734))
 - Add active roadmap document ([docs#735](https://github.com/napari/docs/pull/735))
 - Use darker blue for community meetings in napari calendar ([docs#736](https://github.com/napari/docs/pull/736))
 - Add draft of 0.6.2 release notes ([docs#743](https://github.com/napari/docs/pull/743))
+- 0.6.2 release notes ([docs#744](https://github.com/napari/docs/pull/744))
 
 ## Other Pull Requests
 
 - Add docs constraints for python 3.12 ([#7714](https://github.com/napari/napari/pull/7714))
 - Include Qt PyPI server for pre-releases ([#7803](https://github.com/napari/napari/pull/7803))
 - Refactor layer overlays visuals from VispyLayer to VispyCanvas ([#7835](https://github.com/napari/napari/pull/7835))
-- Add cron check to update reader extensions ([#7907](https://github.com/napari/napari/pull/7907))
 - Update `dask`, `hypothesis`, `numpy`, `tensorstore`, `vispy` ([#7948](https://github.com/napari/napari/pull/7948))
 - [pre-commit.ci] pre-commit autoupdate ([#7951](https://github.com/napari/napari/pull/7951))
-- Add cron check to update reader extensions v2 ([#7957](https://github.com/napari/napari/pull/7957))
 - Restore image in Readme ([#7959](https://github.com/napari/napari/pull/7959))
 - Add cron check to update reader extensions v3 ([#7966](https://github.com/napari/napari/pull/7966))
 - Update `coverage`, `dask`, `fsspec`, `hypothesis`, `pydantic`, `tifffile`, `vispy` ([#7967](https://github.com/napari/napari/pull/7967))
@@ -126,12 +132,14 @@ We are also now including all napari related events in the [community calendar](
 - [Update] Added `remove` , `remove_selected` and `pop` in Shapes and Points ([#8031](https://github.com/napari/napari/pull/8031))
 - Update `hypothesis`, `pytest`, `superqt` ([#8036](https://github.com/napari/napari/pull/8036))
 - Stop benchmark reporting if benchmark action is skipped ([#8037](https://github.com/napari/napari/pull/8037))
-- Update `app-model`, `hypothesis`, `pygments`, `scipy` ([#8040](https://github.com/napari/napari/pull/8040))
 - Update `app-model` pin to >=0.4.0, update `hypothesis`, `pygments`, `scipy` ([#8041](https://github.com/napari/napari/pull/8041))
 - [pre-commit.ci] pre-commit autoupdate ([#8042](https://github.com/napari/napari/pull/8042))
+- Bump bermuda to 0.1.5 ([#8052](https://github.com/napari/napari/pull/8052))
+- Improve tooltips for Grid Stride ([#8058](https://github.com/napari/napari/pull/8058))
 - Fix comment and manual dispatch triggered build jobs ([docs#723](https://github.com/napari/docs/pull/723))
 - Test passing PR number instead of ref on triggered build ([docs#738](https://github.com/napari/docs/pull/738))
 - [maint] fix circleCI branch naming in trigger action ([docs#739](https://github.com/napari/docs/pull/739))
+- [Enh] When `ready-to-merge` is applied, do a full build of docs ([docs#745](https://github.com/napari/docs/pull/745))
 
 
 ## 13 authors added to this release (alphabetical)
