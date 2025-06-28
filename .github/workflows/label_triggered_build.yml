@@ -1,7 +1,7 @@
 name: Ready-to-merge Build
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - labeled
 
@@ -14,6 +14,7 @@ jobs:
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.2.0
         with:
           GHA_Meta: "ready-to-merge"
+          target-branch: ${{ github.event.pull_request.head.ref }}
         env:
           CCI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
 
@@ -35,6 +36,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ needs.full-artifact-build.result }}
+          sha: ${{ github.event.pull_request.head.sha }}
           context: "Docs Full Artifact Build"
           description: ${{ needs.full-artifact-build.result == 'success' && 'Full Docs built successfully' || 'Full Docs build failed' }}
           targetUrl: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
