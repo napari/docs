@@ -23,6 +23,7 @@ jobs:
     uses: ./.github/workflows/build_docs.yml
     with:
       make_target: "html"
+      pr_number: ${{ github.event.pull_request.number }}
 
   report-artifact-status:
     # reusable workflows can't be a step in a job
