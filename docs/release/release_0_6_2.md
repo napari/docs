@@ -1,5 +1,4 @@
 # napari 0.6.2
-⚠️ *Note: these release notes are still in draft while 0.6.2 is in release candidate testing.* ⚠️
 
 *Mon, Jun 30, 2025*
 
@@ -17,9 +16,13 @@ The visualization of Grid mode has been redone from the ground up! This new Grid
 
 Grid based exploration is now fluid, fast, and intuitive, especially when working with large images and 3D+ data! The mouse can even be used over one View, while updating the data, such as a label or shape annotation, in the selected layer of a different view. The usual napari overlays can now also be added to each grid, instead of just the canvas (eg. `viewer.scale_bar.gridded = True`).
 
-Grid mode spacing now works proportionally to the layer extents (i.e. [0,1), as in 0.6.0) or as a pixel value (1,1500] and will automatically adjust if needed.
+Grid mode spacing now works proportionally to the layer extents (i.e. [0,1), as in 0.6.0) or as a pixel value [1,1500) and will automatically adjust if needed.
 
-![new Grid mode in napari](https://github.com/user-attachments/assets/f49c38e0-2cce-4729-a2d1-7b9c0023574c)
+![new Grid mode in napari](https://private-user-images.githubusercontent.com/47310455/460360355-d25bb0b8-d46b-4544-ae3c-4dd3e5c9b234.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTEyMzQ0MDAsIm5iZiI6MTc1MTIzNDEwMCwicGF0aCI6Ii80NzMxMDQ1NS80NjAzNjAzNTUtZDI1YmIwYjgtZDQ2Yi00NTQ0LWFlM2MtNGRkM2U1YzliMjM0Lm1wND9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA2MjklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNjI5VDIxNTUwMFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTRkMTViZGE4MzUyMTM3ZGM0NDdhNDhlODk4YTJiY2YzMTRmYjYzODIyMTcwODFlMGNkMjkwYmExNDBhOGQxYjgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.8krYMuBCP7T4q1pkx8PTkrtxnDiN5L-n2IOMvAULD94)
+
+To coincide with this new Grid mode, we have chosen to reverse the ordering of layers in the grid [(#8053)](https://github.com/napari/napari/pull/8053). The first layer added to the viewer will now be at the top left of the grid, and the last layer added will be at the bottom right; new layers will be added to the bottom right of the grid. If you prefer the previous behavior, you can set the Grid Stride to `-1` in the Preferences dialog. 
+
+![Stride preference](https://private-user-images.githubusercontent.com/492549/459920737-528aebca-d623-4f9a-97f4-691329d2a2a7.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTEyMzI3ODgsIm5iZiI6MTc1MTIzMjQ4OCwicGF0aCI6Ii80OTI1NDkvNDU5OTIwNzM3LTUyOGFlYmNhLWQ2MjMtNGY5YS05N2Y0LTY5MTMyOWQyYTJhNy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNjI5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDYyOVQyMTI4MDhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wNTEzODk4NmU5Mjc4MDQwNWMzZjM3MTM0OWE1MDFkZmZkNzgwNTgxYjBjNmY5ZjUyMjhkODYyMDRkZWFmYzJkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.4j5kb91e7IH1joL8Vqn09Rk4ORuXeekE2nC7zmRo3Fo)
 
 ### The Features Table Widget is now a napari builtin! 📊
 
@@ -41,27 +44,24 @@ We are also now including all napari related events in the [community calendar](
 2. **The organization of the napari repo has been updated by moving into a `src/` directory [(#7952)](https://github.com/napari/napari/pull/7952).** This is modern best practice in Python projects (and what has long been standard in our [napari-plugin-template](https://github.com/napari/napari-plugin-template)) to avoid issues with relative imports and *should* now always result in importing the napari version installed in the current environment. For developers, especially of pull requests prior to this release, you may have many merge conflicts to resolve. Please ping the napari team if you would like help resolving these conflicts.
 3. **There is now public API to access widgets docked in the viewer [(#7965)](https://github.com/napari/napari/pull/7965).** Check out the new documentation on the napari website to learn more about using this API to [communicate between widgets](https://napari.org/dev/plugins/advanced_topics/widget_communication.html). If you previously used `viewer.window._dock_widgets`, you should now use `viewer.window.dock_widgets`.
 
-- Add 'zoom-box' to the viewer ([#8004](https://github.com/napari/napari/pull/8004))
-- "Reverse" ordering of layers in grid mode, now matching LayerList index ([#8044](https://github.com/napari/napari/pull/8044))
-- Reverse canvas grid order ([#8053](https://github.com/napari/napari/pull/8053))
 
 ## New Features
 
 - Grid mode using vispy ViewBox and linked cameras ([#7870](https://github.com/napari/napari/pull/7870))
 - Features table widget as builtin ([#7877](https://github.com/napari/napari/pull/7877))
-- Add 'zoom-box' to the viewer ([#8004](https://github.com/napari/napari/pull/8004))
 
 ## Improvements
 
+- add check if there is mix of local and non local installation ([#7745](https://github.com/napari/napari/pull/7745))
 - Reduce warmup of numba if non numba backend is selected ([#7917](https://github.com/napari/napari/pull/7917))
 - Optional rotation handle for selection box overlay + simplify inheritance for Vispy overlays ([#7958](https://github.com/napari/napari/pull/7958))
 - Add public API to get access to docked widgets ([#7965](https://github.com/napari/napari/pull/7965))
 - Allow to use ViewerModel as annotation of plugin constructor argument ([#8002](https://github.com/napari/napari/pull/8002))
-- speedup edge width set by use `batched_updates` context manager ([#8006](https://github.com/napari/napari/pull/8006))
 - Update [shapes]: 'make select_all_shapes' keybinding a toggle ([#8014](https://github.com/napari/napari/pull/8014))
 - Update[shortcuts]: add Ctrl/Cmd-A as secondary keybinding for select_all_shapes ([#8015](https://github.com/napari/napari/pull/8015))
-- "Reverse" ordering of layers in grid mode, now matching LayerList index ([#8044](https://github.com/napari/napari/pull/8044))
 - Fix Shapes layer to work with Features Table ([#8048](https://github.com/napari/napari/pull/8048))
+- Reverse canvas grid order ([#8053](https://github.com/napari/napari/pull/8053))
+- Improve tooltips for Grid attributes ([#8058](https://github.com/napari/napari/pull/8058))
 
 ## Performance
 
@@ -104,7 +104,7 @@ We are also now including all napari related events in the [community calendar](
 - Add active roadmap document ([docs#735](https://github.com/napari/docs/pull/735))
 - Use darker blue for community meetings in napari calendar ([docs#736](https://github.com/napari/docs/pull/736))
 - Add draft of 0.6.2 release notes ([docs#743](https://github.com/napari/docs/pull/743))
-- 0.6.2 release notes ([docs#744](https://github.com/napari/docs/pull/744))
+- 0.6.2rc1 release notes ([docs#744](https://github.com/napari/docs/pull/744))
 
 ## Other Pull Requests
 
@@ -129,17 +129,16 @@ We are also now including all napari related events in the [community calendar](
 - [Maintenance] Remove redundant initialization in Points layer and restructure for clarity ([#8005](https://github.com/napari/napari/pull/8005))
 - Fix numba fail of compile on GHA macOS runners ([#8018](https://github.com/napari/napari/pull/8018))
 - Update `certifi`, `coverage`, `hypothesis`, `pydantic`, `superqt`, `tifffile`, `xarray` ([#8029](https://github.com/napari/napari/pull/8029))
-- [Update] Added `remove` , `remove_selected` and `pop` in Shapes and Points ([#8031](https://github.com/napari/napari/pull/8031))
 - Update `hypothesis`, `pytest`, `superqt` ([#8036](https://github.com/napari/napari/pull/8036))
 - Stop benchmark reporting if benchmark action is skipped ([#8037](https://github.com/napari/napari/pull/8037))
 - Update `app-model` pin to >=0.4.0, update `hypothesis`, `pygments`, `scipy` ([#8041](https://github.com/napari/napari/pull/8041))
 - [pre-commit.ci] pre-commit autoupdate ([#8042](https://github.com/napari/napari/pull/8042))
 - Bump bermuda to 0.1.5 ([#8052](https://github.com/napari/napari/pull/8052))
-- Improve tooltips for Grid Stride ([#8058](https://github.com/napari/napari/pull/8058))
 - Fix comment and manual dispatch triggered build jobs ([docs#723](https://github.com/napari/docs/pull/723))
 - Test passing PR number instead of ref on triggered build ([docs#738](https://github.com/napari/docs/pull/738))
 - [maint] fix circleCI branch naming in trigger action ([docs#739](https://github.com/napari/docs/pull/739))
 - [Enh] When `ready-to-merge` is applied, do a full build of docs ([docs#745](https://github.com/napari/docs/pull/745))
+- Only build artifact on ready-to-merge label ([docs#749](https://github.com/napari/docs/pull/749))
 
 
 ## 13 authors added to this release (alphabetical)
@@ -161,7 +160,7 @@ We are also now including all napari related events in the [community calendar](
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 
 
-## 13 reviewers added to this release (alphabetical)
+## 11 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -172,10 +171,8 @@ We are also now including all napari related events in the [community calendar](
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo +
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
-- [Lukasz Migas](https://github.com/napari/napari/commits?author=lukasz-migas) - @lukasz-migas
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
-- [Rahul Kumar](https://github.com/napari/napari/commits?author=rahul713rk) - @rahul713rk +
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wouter-Michiel Vierdag](https://github.com/napari/docs/commits?author=melonora) - @melonora
 
