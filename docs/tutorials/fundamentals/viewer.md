@@ -517,7 +517,7 @@ The fifth button, the grid button, toggles between the default layer mode and gr
     <source src="../../_static/images/grid-mode.mp4" type="video/mp4" />
     <img src="../../_static/images/grid-mode.png"
       title="Your browser does not support the video tag"
-      alt="a screen recording showing the the Cells 3D example toggling between normal mode and grid mode"
+      alt="a screen recording showing the the Kidney example toggling between normal mode and grid mode"
     >
   </video>
 </figure>
@@ -527,7 +527,7 @@ The distribution of the layers in the grid can be altered according to the setti
 
 1. Grid stride: By default, 1, placing one layer in each view. The value determines the number of layers overlaid in each view. Negative values reverse the order in which layers are displayed in the grid.
 2. Grid width/height: By default, -1, which automatically determines the grid layout.
-3. Grid spacing: Adds some spacing between each cell in pixels.
+3. Grid spacing: The value will adjust the spacing between grid views either proportionally to the layer extents (i.e. [0,1)) or as a pixel value [1,1500) and will automatically adjust if needed.
 
 ![image: Grid Mode Widget](../../_static/images/grid-widget.png)
 
