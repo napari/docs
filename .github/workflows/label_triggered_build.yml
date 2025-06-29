@@ -6,17 +6,6 @@ on:
       - labeled
 
 jobs:
-  full-circleci-build:
-    if: contains(github.event.pull_request.labels.*.name, 'ready to merge')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run CircleCI pipeline
-        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.2.0
-        with:
-          GHA_Meta: "ready-to-merge"
-        env:
-          CCI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
-
   full-artifact-build:
     if: contains(github.event.pull_request.labels.*.name, 'ready to merge')
     uses: ./.github/workflows/build_docs.yml
