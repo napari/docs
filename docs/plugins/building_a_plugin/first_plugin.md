@@ -67,9 +67,9 @@ touch src/napari_hello/__init__.py src/napari_hello/napari.yaml pyproject.toml
 :::{tab-item} Windows
 
 ```bat
-copy /b src\napari_hello\__init__.py +,,
-copy /b src\napari_hello\napari.yaml +,,
-copy /b pyproject.toml +,,
+type nul > src\napari_hello\__init__.py
+type nul > src\napari_hello\napari.yaml
+type nul > pyproject.toml
 ```
 
 :::
