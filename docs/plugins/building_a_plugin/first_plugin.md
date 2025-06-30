@@ -78,7 +78,7 @@ type nul > pyproject.toml
 
 Your project should now look like this:
 
-```raw
+```text
 ~/napari-hello/
 ├── src/
 │   └── napari_hello/
