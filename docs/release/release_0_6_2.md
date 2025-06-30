@@ -18,7 +18,7 @@ Grid based exploration is now fluid, fast, and intuitive, especially when workin
 
 Grid mode spacing now works proportionally to the layer extents (i.e. [0,1), as in 0.6.0) or as a pixel value [1,1500) and will automatically adjust if needed.
 
-![grid mode](https://github.com/user-attachments/assets/d25bb0b8-d46b-4544-ae3c-4dd3e5c9b234)
+![grid mode](https://github.com/user-attachments/assets/fbcb216c-666b-43a6-bf25-aad82d5e9d92)
 
 To coincide with this new Grid mode, we have chosen to reverse the ordering of layers in the grid [(#8053)](https://github.com/napari/napari/pull/8053). The first layer added to the viewer will now be at the top left of the grid, and the last layer added will be at the bottom right; new layers will be added to the bottom right of the grid. If you prefer the previous behavior, you can set the Grid Stride to `-1` in the Preferences dialog. 
 
