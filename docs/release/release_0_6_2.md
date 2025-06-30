@@ -1,6 +1,6 @@
 # napari 0.6.2
 
-*Mon, Jun 30, 2025*
+*Tue, Jul 01, 2025*
 
 We’re happy to announce the release of napari 0.6.2!
 
@@ -52,7 +52,7 @@ We are also now including all napari related events in the [community calendar](
 
 ## Improvements
 
-- add check if there is mix of local and non local installation ([#7745](https://github.com/napari/napari/pull/7745))
+- Add check if there is mix of local and non local installation ([#7745](https://github.com/napari/napari/pull/7745))
 - Reduce warmup of numba if non numba backend is selected ([#7917](https://github.com/napari/napari/pull/7917))
 - Optional rotation handle for selection box overlay + simplify inheritance for Vispy overlays ([#7958](https://github.com/napari/napari/pull/7958))
 - Add public API to get access to docked widgets ([#7965](https://github.com/napari/napari/pull/7965))
@@ -91,6 +91,7 @@ We are also now including all napari related events in the [community calendar](
 - Update README to use `imshow` and add example to generate image ([#7989](https://github.com/napari/napari/pull/7989))
 - Update docstring in `mouse_drag_callback.py` ([#8019](https://github.com/napari/napari/pull/8019))
 - Add information about conda version and downloads to badges ([#8054](https://github.com/napari/napari/pull/8054))
+- Add links to napari troubleshooting documentation ([#8061](https://github.com/napari/napari/pull/8061))
 - Update version switcher for 0.6.1 ([docs#713](https://github.com/napari/docs/pull/713))
 - Update contributing docs page ([docs#715](https://github.com/napari/docs/pull/715))
 - Update code of conduct committee members ([docs#716](https://github.com/napari/docs/pull/716))
@@ -106,6 +107,7 @@ We are also now including all napari related events in the [community calendar](
 - Add draft of 0.6.2 release notes ([docs#743](https://github.com/napari/docs/pull/743))
 - 0.6.2rc1 release notes ([docs#744](https://github.com/napari/docs/pull/744))
 - Final 0.6.2 Release Notes ([docs#751](https://github.com/napari/docs/pull/751))
+- Add troubleshooting section about mixed local and non local installations ([docs#752](https://github.com/napari/docs/pull/752))
 
 ## Other Pull Requests
 
@@ -135,6 +137,7 @@ We are also now including all napari related events in the [community calendar](
 - Update `app-model` pin to >=0.4.0, update `hypothesis`, `pygments`, `scipy` ([#8041](https://github.com/napari/napari/pull/8041))
 - [pre-commit.ci] pre-commit autoupdate ([#8042](https://github.com/napari/napari/pull/8042))
 - Bump bermuda to 0.1.5 ([#8052](https://github.com/napari/napari/pull/8052))
+- Update `hypothesis`, `lxml`, `numpydoc` ([#8060](https://github.com/napari/napari/pull/8060))
 - Fix comment and manual dispatch triggered build jobs ([docs#723](https://github.com/napari/docs/pull/723))
 - Test passing PR number instead of ref on triggered build ([docs#738](https://github.com/napari/docs/pull/738))
 - [maint] fix circleCI branch naming in trigger action ([docs#739](https://github.com/napari/docs/pull/739))
