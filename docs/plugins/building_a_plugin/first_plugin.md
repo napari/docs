@@ -283,6 +283,21 @@ Once napari starts, select `napari-hello: Hello World` from the
 
 % ![hello-example](../images/hello.png)
 
+## 5. (Optional) Build your plugin for distribution
+
+You can build a distributable package using the
+[`build`](https://pypa-build.readthedocs.io/en/latest/) tool.
+
+```sh
+python -m build
+```
+
+This will create a `dist/` folder containing `.whl` and `.tar.gz` files,
+which you can upload to [PyPI](https://pypi.org/) or share with others.
+
+However, you may wish to automate distribution of your plugin using Github,
+see below and the [Testing and Publishing](plugin-test-deploy) guide for more details.
+
 ## Get going quickly with the napari plugin template
 
 Now that you've learned all of the critical steps for creating a plugin,
