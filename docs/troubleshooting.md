@@ -76,3 +76,24 @@ permissions. Try setting `NUMBA_CACHE_DIR` to an user-accessible location.
 
 See [napari#7288](https://github.com/napari/napari/issues/7288).
 
+### Mixed napari installations
+
+Since napari 0.6.2 we have added a check for the mix of [editable](https://setuptools.pypa.io/en/latest/userguide/development_mode.html) and non-editable napari installations in the same environment.
+It means the situation when you install napari using `pip isntall -e path/to/napari` while still some napari related files are 
+present in regular installation directory (called `site-packages`).
+
+Because of how importin in python works, it often leads to a crash on startup or unexpected behavior when 
+these two installations are from, even slightly, different versions of napari.
+
+If you meet an exception starting from `RuntimeError: Mix of local and non local installation detected.` you have two options: 
+
+1. Recreate your environment and install napari from scratch. It is the safest option. 
+   But you need to know which packages you need to install in your environment. You may use `pip freeze` to get the list of packages installed in your environment.
+2. Remove the non-editable napari installation from your environment. 
+   In the exception message you will see the path to the non-editable installation. 
+   For example `Path to a napari directory: /home/czaki/.pyenv/versions/3.12.9/envs/napari_3.12/lib/python3.12/site-packages/napari.`
+   You can fix it by manually deleting the directory.
+   In some rare situations it still may not fix the environment, and you may need to recreate it.
+
+
+
