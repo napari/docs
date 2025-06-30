@@ -1,0 +1,123 @@
+name: Trigger target build of docs
+# This workflow can be started either by commenting on a pull request or by using workflow_dispatch manually.
+# You can specify a `make` target to build the documentation for a specific branch or pull request.
+# If started by a comment, the workflow runs on the PR branch and updates the PR status.
+# Note: This workflow runs only once per trigger and does not execute on every push to the PR branch.
+# This workflow triggers both the CircleCI doc build, using CircleCI-Public/trigger-circleci-pipeline-action.
+# as well as an artifact build using the reusable workflow: .github/build_docs.yml
+
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      make_target:
+        description: "Enter make target: html html-noplot docs slimfast slimgallery"
+        type: string
+        default: "slimfast"
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  statuses: write
+
+jobs:
+  determine-make-target:
+    runs-on: ubuntu-latest
+    outputs:
+      target: ${{ steps.determine-make-target.outputs.target }}
+      pr_ref: ${{ steps.get-pr-info.outputs.pr_ref }}
+      pr_sha: ${{ steps.get-pr-info.outputs.pr_sha }}
+      pr_number: ${{ steps.get-pr-info.outputs.pr_number }}
+    if: |
+      (github.event_name == 'issue_comment' &&
+        github.event.issue.pull_request != '' &&
+        contains(github.event.comment.body, '@napari-bot make')) ||
+      github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Add eyes reaction
+        # If triggered by comment, show that workflow has started
+        if: github.event_name == 'issue_comment'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'eyes'
+            });
+
+      - name: Determine make target from comment or input
+        id: determine-make-target
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+        run: |
+          ALLOWED_TARGETS="html html-noplot docs slimfast slimgallery"
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TARGET="${{ github.event.inputs.make_target }}"
+          else
+            TARGET=$(echo "$COMMENT_BODY" | grep -oP '(?<=@napari-bot make\s)\w+' || echo "slimfast")
+          fi
+
+          if ! echo "$ALLOWED_TARGETS" | grep -qw "$TARGET"; then
+            echo "::error::Invalid target '$TARGET'. Allowed: $ALLOWED_TARGETS"
+            exit 1
+          fi
+
+          echo "target=$TARGET" >> "$GITHUB_OUTPUT"
+
+      - name: Get PR details
+        # issue_comment is run from the main branch context so
+        # extract PR number and branch name from issue_comment event
+        if: github.event_name == 'issue_comment'
+        id: get-pr-info
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            core.setOutput('pr_ref', pr.data.head.ref);
+            core.setOutput('pr_sha', pr.data.head.sha);
+            core.setOutput('pr_number', context.issue.number);
+
+  trigger-circleci:
+    needs: determine-make-target
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run CircleCI pipeline
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.2.0
+        with:
+          GHA_Meta: ${{ needs.determine-make-target.outputs.target }}
+          target-branch: ${{ github.event_name == 'issue_comment' && format('pull/{0}/head', github.event.issue.number) || github.ref_name }}
+        env:
+          CCI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
+
+  trigger-artifact-build:
+    needs: determine-make-target
+    uses: ./.github/workflows/build_docs.yml
+    with:
+      make_target: ${{ needs.determine-make-target.outputs.target }}
+      pr_number: ${{ needs.determine-make-target.outputs.pr_number }}
+
+  report-artifact-status:
+    # reusable workflows can't be a step in a job
+    # so to get the status of the artifact build, we need a separate job
+    needs: [determine-make-target, trigger-artifact-build]
+    runs-on: ubuntu-latest
+    if: always() && github.event_name == 'issue_comment' && needs.trigger-artifact-build.result != 'skipped'
+    steps:
+      - name: Set build job status
+        uses: myrotvorets/set-commit-status-action@master
+        with:
+          sha: ${{ needs.determine-make-target.outputs.pr_sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ needs.trigger-artifact-build.result }}
+          context: "Docs Artifact Build: ${{ needs.determine-make-target.outputs.target }}"
+          description: ${{ needs.trigger-artifact-build.result == 'success' && 'Documentation built successfully' || 'Documentation build failed' }}
+          targetUrl: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

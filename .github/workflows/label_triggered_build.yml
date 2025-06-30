@@ -1,0 +1,29 @@
+name: Ready-to-merge Build
+
+on:
+  pull_request:
+    types:
+      - labeled
+
+jobs:
+  full-artifact-build:
+    if: contains(github.event.pull_request.labels.*.name, 'ready to merge')
+    uses: ./.github/workflows/build_docs.yml
+    with:
+      make_target: "html"
+
+  report-artifact-status:
+    # reusable workflows can't be a step in a job
+    # so to get the status of the artifact build, we need a separate job
+    needs: full-artifact-build
+    runs-on: ubuntu-latest
+    if: always() && needs.full-artifact-build.result != 'skipped'
+    steps:
+      - name: Set build job status
+        uses: myrotvorets/set-commit-status-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ needs.full-artifact-build.result }}
+          context: "Docs Full Artifact Build"
+          description: ${{ needs.full-artifact-build.result == 'success' && 'Full Docs built successfully' || 'Full Docs build failed' }}
+          targetUrl: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
