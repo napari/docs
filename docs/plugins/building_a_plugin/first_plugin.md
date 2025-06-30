@@ -296,7 +296,7 @@ This will create a `dist/` folder containing `.whl` and `.tar.gz` files,
 which you can upload to [PyPI](https://pypi.org/) or share with others.
 
 However, you may wish to automate distribution of your plugin using Github,
-see below and the [Testing and Publishing](plugin-test-deploy) guide for more details.
+see below and the [Publishing](plugin-deploy) guide for more details.
 
 ## Get going quickly with the napari plugin template
 
