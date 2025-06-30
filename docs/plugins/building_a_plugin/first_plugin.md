@@ -78,7 +78,7 @@ type nul > pyproject.toml
 
 Your project should now look like this:
 
-```
+```raw
 ~/napari-hello/
 ├── src/
 │   └── napari_hello/
@@ -264,13 +264,17 @@ napari-hello = "napari_hello:napari.yaml"
 ## 4. Install your plugin and try it out!
 
 With that, we're ready to go.  Let's install our package in the environment
-and then run napari.  Note: we're using `python -m pip install -e .` here to install our
+and then run napari. Note: we're using `python -m pip install -e .` here to install our
 package (in the current working directory) in ["editable" mode][editable_mode].
 This means that changes we make to our package during development will be
 detected when we re-run napari, without having to run `python -m pip install` again.
+In a fresh environment, when you try to run napari, there will be no Qt bindings
+installed. To do so, you can install the default Qt bindings with
+`pip install napari[pyqt]`. Importantly, your plugin should not depend on a specific Qt backend, read about plugin [Best Practices](best-practices) to learn more.
 
 ```sh
 python -m pip install -e .
+python -m pip install napari[pyqt]
 napari
 ```
 
