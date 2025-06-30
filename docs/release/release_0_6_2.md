@@ -1,5 +1,4 @@
 # napari 0.6.2
-⚠️ *Note: these release notes are still in draft while 0.6.2 is in release candidate testing.* ⚠️
 
 *Mon, Jun 30, 2025*
 
