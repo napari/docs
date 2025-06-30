@@ -79,10 +79,10 @@ See [napari#7288](https://github.com/napari/napari/issues/7288).
 ### Mixed napari installations
 
 Since napari 0.6.2 we have added a check for the mix of [editable](https://setuptools.pypa.io/en/latest/userguide/development_mode.html) and non-editable napari installations in the same environment.
-It means the situation when you install napari using `pip isntall -e path/to/napari` while still some napari related files are 
+It means the situation when you install napari using `pip install -e path/to/napari` while still some napari related files are 
 present in regular installation directory (called `site-packages`).
 
-Because of how importin in python works, it often leads to a crash on startup or unexpected behavior when 
+Because of how importing in python works, it often leads to a crash on startup or unexpected behavior when 
 these two installations are from, even slightly, different versions of napari.
 
 If you meet an exception starting from `RuntimeError: Mix of local and non local installation detected.` you have two options: 
