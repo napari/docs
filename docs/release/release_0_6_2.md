@@ -1,4 +1,5 @@
 # napari 0.6.2
+⚠️ *Note: these release notes are still in draft while 0.6.2 is in release candidate testing.* ⚠️
 
 *Mon, Jun 30, 2025*
 
@@ -18,11 +19,22 @@ Grid based exploration is now fluid, fast, and intuitive, especially when workin
 
 Grid mode spacing now works proportionally to the layer extents (i.e. [0,1), as in 0.6.0) or as a pixel value [1,1500) and will automatically adjust if needed.
 
-![new Grid mode in napari](https://private-user-images.githubusercontent.com/47310455/460360355-d25bb0b8-d46b-4544-ae3c-4dd3e5c9b234.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTEyMzQ0MDAsIm5iZiI6MTc1MTIzNDEwMCwicGF0aCI6Ii80NzMxMDQ1NS80NjAzNjAzNTUtZDI1YmIwYjgtZDQ2Yi00NTQ0LWFlM2MtNGRkM2U1YzliMjM0Lm1wND9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA2MjklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNjI5VDIxNTUwMFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTRkMTViZGE4MzUyMTM3ZGM0NDdhNDhlODk4YTJiY2YzMTRmYjYzODIyMTcwODFlMGNkMjkwYmExNDBhOGQxYjgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.8krYMuBCP7T4q1pkx8PTkrtxnDiN5L-n2IOMvAULD94)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/grid-mode.webm" type="video/webm" />
+    <source src="../../_static/images/grid-mode.mp4" type="video/mp4" />
+    <img src="../../_static/images/grid-mode.png"
+      title="Your browser does not support the video tag"
+      alt="a screen recording showing the the Kidney example toggling between normal mode and grid mode"
+    >
+  </video>
+</figure>
+```
 
 To coincide with this new Grid mode, we have chosen to reverse the ordering of layers in the grid [(#8053)](https://github.com/napari/napari/pull/8053). The first layer added to the viewer will now be at the top left of the grid, and the last layer added will be at the bottom right; new layers will be added to the bottom right of the grid. If you prefer the previous behavior, you can set the Grid Stride to `-1` in the Preferences dialog. 
 
-![Stride preference](https://private-user-images.githubusercontent.com/492549/459920737-528aebca-d623-4f9a-97f4-691329d2a2a7.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTEyMzI3ODgsIm5iZiI6MTc1MTIzMjQ4OCwicGF0aCI6Ii80OTI1NDkvNDU5OTIwNzM3LTUyOGFlYmNhLWQ2MjMtNGY5YS05N2Y0LTY5MTMyOWQyYTJhNy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNjI5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDYyOVQyMTI4MDhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wNTEzODk4NmU5Mjc4MDQwNWMzZjM3MTM0OWE1MDFkZmZkNzgwNTgxYjBjNmY5ZjUyMjhkODYyMDRkZWFmYzJkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.4j5kb91e7IH1joL8Vqn09Rk4ORuXeekE2nC7zmRo3Fo)
+![Stride preference](https://github.com/user-attachments/assets/528aebca-d623-4f9a-97f4-691329d2a2a7)
 
 ### The Features Table Widget is now a napari builtin! 📊
 
@@ -105,6 +117,7 @@ We are also now including all napari related events in the [community calendar](
 - Use darker blue for community meetings in napari calendar ([docs#736](https://github.com/napari/docs/pull/736))
 - Add draft of 0.6.2 release notes ([docs#743](https://github.com/napari/docs/pull/743))
 - 0.6.2rc1 release notes ([docs#744](https://github.com/napari/docs/pull/744))
+- Final 0.6.2 Release Notes ([docs#751](https://github.com/napari/docs/pull/751))
 
 ## Other Pull Requests
 
@@ -150,7 +163,7 @@ We are also now including all napari related events in the [community calendar](
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) ([docs](https://github.com/napari/docs/commits?author=DragaDoncila))  - @DragaDoncila
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo +
-- [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
+- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) ([docs](https://github.com/napari/docs/commits?author=jni))  - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
 - [Lukasz Migas](https://github.com/napari/napari/commits?author=lukasz-migas) - @lukasz-migas
 - [Maximilian Mayrhauser](https://github.com/napari/napari/commits?author=Llewi) - @Llewi +
@@ -169,7 +182,7 @@ We are also now including all napari related events in the [community calendar](
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) ([docs](https://github.com/napari/docs/commits?author=DragaDoncila))  - @DragaDoncila
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo +
-- [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
+- [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) ([docs](https://github.com/napari/docs/commits?author=jni))  - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
