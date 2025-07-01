@@ -217,8 +217,8 @@ Lastly, we need to make a few changes to `pyproject.toml`.
 
 2. We need to instruct setuptools to *include* that `napari.yaml` file
    when it bundles our package for distribution, by adding
-   **`include-package-data = True`** to  `[tool.setuptools]` section and point
-   package-data to `yaml` files.
+   **`include-package-data = True`** to the `[tool.setuptools]` section and pointing
+   `package-data` to all `yaml` files.
 
 3. In order for napari to find our plugin when it's installed, we need to
    add an **entry point** for `napari.manifest` in the `[project.entry-points]` section.
