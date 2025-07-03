@@ -36,6 +36,7 @@ def main(stubs=False):
             "plugins/_npe2_sample_data_guide.md": "(sample-data-contribution-guide)=\n",
             "plugins/_npe2_readers_guide.md": "(readers-contribution-guide)=\n",
             "plugins/_npe2_widgets_guide.md": "(widgets-contribution-guide)=\n",
+            "plugins/_npe2_menus_guide.md": "(menus-contribution-guide)=\n",
             "plugins/_npe2_manifest.md": "# Manifest Reference\n",
             "plugins/_npe2_writers_guide.md": "(writers-contribution-guide)=\n",
             "plugins/_npe2_contributions.md": "# Contributions Reference\n(contributions-themes)=\n(contributions-commands)=\n(contributions-widgets)=\n(contributions-readers)=\n(contributions-writers)=\n(contributions-sample-data)=\n(layer-type-constraints)=\n",
