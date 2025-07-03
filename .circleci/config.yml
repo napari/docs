@@ -98,9 +98,3 @@ workflows:
     jobs:
       - build-docs:
           make_target: << pipeline.parameters.GHA_Meta >>
-  triggered-by-label:
-    when:
-      equal: ["ready-to-merge", << pipeline.parameters.GHA_Meta >>]
-    jobs:
-      - build-docs:
-          make_target: "html"
