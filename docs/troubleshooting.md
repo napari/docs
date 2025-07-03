@@ -80,7 +80,7 @@ See [napari#7288](https://github.com/napari/napari/issues/7288).
 
 Since napari 0.6.2 we have added a check for the mix of [editable](https://setuptools.pypa.io/en/latest/userguide/development_mode.html) and non-editable napari installations in the same environment.
 This occurs when you install napari using `pip install -e path/to/napari` while napari related files are still 
-present in the typical conda installation directory (called `site-packages`).
+present in the typical Python package installation directory (called `site-packages`).
 
 Because of how importing in python works, two installations from even slightly different versions of napari
 will often lead to a crash on startup or other unexpected behavior
