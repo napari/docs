@@ -59,7 +59,7 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             TARGET="${{ github.event.inputs.make_target }}"
           else
-            TARGET=$(echo "$COMMENT_BODY" | grep -oP '(?<=@napari-bot make\s)\w+' || echo "slimfast")
+            TARGET=$(echo "$COMMENT_BODY" | grep -oP '(?<=@napari-bot make\s)[\w-]+' || echo "slimfast")
           fi
 
           if ! echo "$ALLOWED_TARGETS" | grep -qw "$TARGET"; then
