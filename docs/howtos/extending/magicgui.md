@@ -280,8 +280,8 @@ from magicgui.widgets import Container, create_widget
 
 class ImageWidget(Container):
     def __init__(self, viewer: "napari.viewer.Viewer"):
-        super().__init__()
-        self._viewer = viewer
+        super().__init__() # This initializes the magicgui.Container class such that widgets can be added to it.
+        self._viewer = viewer # Enables widgets to reference the attached viewer.
         # use create_widget to generate widgets from type annotations
         self._image_layer_combo = create_widget(
             label="Image", annotation="napari.layers.Image"
