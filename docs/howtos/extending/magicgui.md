@@ -288,8 +288,6 @@ class ImageWidget(Container):
         )
         # append the child widget to the container
         self.append(self._image_layer_combo)
-
-
 ```
 
 Here's a complete example:
