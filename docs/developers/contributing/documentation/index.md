@@ -452,17 +452,39 @@ Note: using `-j4` will parallelize the build over 4 cores and can result in cras
 
 ````
 
-````{tip}
-If you have [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml)
-installed on your system, you can also run a "headless GUI" build by using the
-`docs-xvfb` command:
+````{admonition} Headless GUI builds
+:class: tip
 
-```bash
-make docs-xvfb
-```
+If you are running a full build, you can run it in a "headless GUI"
+mode, which will prevent napari windows from popping up during the build.
 
-This will prevent all but the first napari window from being shown during the docs
-build.
+1. If you are using X11 as your display server and you have
+   [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml)
+   installed on your system, you can use the `docs-xvfb` command:
+
+   ```bash
+   make docs-xvfb
+   ```
+
+   This will prevent all but the first napari window from being shown during the docs
+   build.
+
+2. If you are using Wayland as your display server, and you have `xwfb-run` installed
+   on your system (part of the [xwayland-run utilities](https://gitlab.freedesktop.org/ofourdan/xwayland-runcan),
+   you can use the `docs-xwfb` command:
+
+   ```bash
+   make docs-xwfb
+   ```
+
+   Note that you may have to install the `xwayland-run` package manually so that it
+   uses the correct Python environment you are using to build the docs. You can do that
+   by cloning the sources from [the xwayland-run GitLab repository](https://gitlab.freedesktop.org/ofourdan/xwayland-run) and running:
+
+   ```bash
+   meson setup -Dcompositor=weston --prefix=/path/to/env/ -Dpython.install_env=prefix . build
+   meson install -C build
+   ```
 ````
 
 (building-what-you-need)=
