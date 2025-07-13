@@ -129,10 +129,10 @@ as soon as we add the 'camera' image.
 
 ```{code-cell} python
 :tags: [remove-output]
+import napari
+from magicgui import magicgui
 from skimage import data
 from skimage.util import img_as_float
-
-import napari
 
 @magicgui(
     threshold={"widget_type": "FloatSlider", "max": 1}, auto_call=True
@@ -189,6 +189,7 @@ For example, the threshold widget [shown above](returning-napari-types-data)
 could be provided as a napari plugin as follows:
 
 ```python
+import napari
 from magicgui import magic_factory
 
 @magic_factory(auto_call=True, threshold={'max': 2 ** 16})
@@ -261,6 +262,7 @@ Using `Image` annotation in a {func}`@magic_factory <magicgui.magic_factory>`
 decorated function:
 
 ```python
+from magicgui import magicgui
 from napari.layers import Image
 
 @magicgui
@@ -273,16 +275,19 @@ def my_widget(image: Image):
 Using `Image`  annotation in `create_widget`:
 
 ```python
+import napari
 from magicgui.widgets import Container, create_widget
 
 class ImageWidget(Container):
     def __init__(self, viewer: "napari.viewer.Viewer"):
-        super().__init__()
-        self._viewer = viewer
+        super().__init__() # This initializes the magicgui.Container class such that widgets can be added to it.
+        self._viewer = viewer # Enables widgets to reference the attached viewer.
         # use create_widget to generate widgets from type annotations
         self._image_layer_combo = create_widget(
             label="Image", annotation="napari.layers.Image"
         )
+        # append the child widget to the container
+        self.append(self._image_layer_combo)
 ```
 
 Here's a complete example:
@@ -291,6 +296,7 @@ Here's a complete example:
 :tags: [remove-output]
 import napari
 import numpy as np
+from magicgui import magicgui
 from napari.layers import Image
 
 @magicgui(image={'label': 'Pick an Image'})
@@ -319,6 +325,7 @@ user to pick from *all* layers in the layer list, annotate your parameter as
 {class}`~napari.layers.Layer`.
 
 ```python
+from magicgui import magicgui
 from napari.layers import Layer
 
 @magicgui
@@ -343,8 +350,9 @@ from {mod}`napari.types` to indicate that you only want the data attribute from
 the layer (where `<LayerType>` is one of the available layer types).
 
 ```python
-from napari.types import ImageData
 import numpy as np
+from magicgui import magicgui
+from napari.types import ImageData
 
 @magicgui
 def my_widget(array: ImageData):
@@ -366,6 +374,7 @@ in which the widget is docked, you can annotate one of your parameters as a
 
 ```python
 from napari import Viewer
+from magicgui import magicgui
 
 @magicgui
 def my_widget(viewer: Viewer):
@@ -393,7 +402,7 @@ functions to add layers to napari from your `magicgui` function:
 - any of the `<LayerType>Data` types from {mod}`napari.types`, such as
   {attr}`napari.types.ImageData` or  {attr}`napari.types.LabelsData`
 - {attr}`napari.types.LayerDataTuple`
-- `List`s of {class}`napari.layers.Layer` or {attr}`napari.types.LayerDataTuple`
+- `list`s of {class}`napari.layers.Layer` or {attr}`napari.types.LayerDataTuple`
 
 The consequence of each type is described below:
 
@@ -405,8 +414,9 @@ from the function should be added to the viewer.  The object returned from the
 function must be an actual {class}`~napari.layers.Layer` instance.
 
 ```python
-from napari.layers import Image
 import numpy as np
+from magicgui import magicgui
+from napari.layers import Image
 
 @magicgui
 def my_widget(ny: int=64, nx: int=64) -> Image:
@@ -417,6 +427,11 @@ Here's a complete example
 
 ```{code-cell} python
 :tags: [remove-output]
+import napari
+import numpy as np
+from magicgui import magicgui
+from napari.layers import Image
+
 @magicgui(call_button='Add Image')
 def my_widget(ny: int=64, nx: int=64) -> Image:
   return Image(np.random.rand(ny, nx), name='My Image')
@@ -444,23 +459,23 @@ function is called.  To update an existing layer, you must use the
 `LayerDataTuple` approach described below
 ```
 
-#### Returning `List[napari.layers.Layer]`
+#### Returning `list[napari.layers.Layer]`
 
 You can create multiple layers by returning a list of
 {class}`~napari.layers.Layer`.
 
 ```python
-from typing import List
+from magicgui import magicgui
 
 @magicgui
-def make_points(...) -> List[napari.layers.Layer]:
+def make_points(...) -> list[napari.layers.Layer]:
   ...
 ```
 
 ```{note}
-Note: the `List[]` syntax here is optional from the perspective of napari.  You
+Note: the `list[]` syntax here is optional from the perspective of napari.  You
 can return either a single Layer or a list of Layers and they will all be added
-to the viewer as long as you annotate with either `List[napari.layers.Layer]` or
+to the viewer as long as you annotate with either `list[napari.layers.Layer]` or
 `napari.layers.Layer`.  If you want your code to be properly typed, however,
 your return type must match your return annotation.
 ```
@@ -483,7 +498,10 @@ annotation [described above](annotating-as-napari-types-data):
 
 ```{code-cell} python
 :tags: [remove-output]
+import numpy as np
+import napari
 from napari.types import LabelsData, ImageData
+from magicgui import magicgui
 
 @magicgui(call_button='Run Threshold')
 def threshold(image: ImageData, threshold: int = 75) -> LabelsData:
@@ -530,6 +548,8 @@ following three forms:
 The following are all valid {attr}`napari.types.LayerDataTuple` examples:
 
 ```python
+import numpy as np
+
 # an image array
 (np.random.rand(64, 64),)
 
@@ -548,7 +568,9 @@ a `magicgui` function:
 
 ```{code-cell} python
 :tags: [remove-output]
-import napari.types
+import numpy as np
+import napari
+from magicgui import magicgui
 
 @magicgui(call_button='Make Points')
 def make_points(n_points=40) -> napari.types.LayerDataTuple:
@@ -571,23 +593,23 @@ viewer.window._qt_window.resize(1225, 900)
 nbscreenshot(viewer, alt_text="A magicgui widget returning a LayerDataTuple")
 ```
 
-#### Returning `List[napari.types.LayerDataTuple]`
+#### Returning `list[napari.types.LayerDataTuple]`
 
 You can also create multiple layers by returning a list of
 {attr}`~napari.types.LayerDataTuple`.
 
 ```python
-from typing import List
+from magicgui import magicgui
 
 @magicgui
-def make_points(...) -> List[napari.types.LayerDataTuple]:
+def make_points(...) -> list[napari.types.LayerDataTuple]:
   ...
 ```
 
 ```{note}
-Note: the `List[]` syntax here is optional from the perspective of napari.  You
+Note: the `list[]` syntax here is optional from the perspective of napari.  You
 can return either a single tuple or a list of tuples and they will all be added
-to the viewer as long as you annotate with either `List[napari.types.LayerDataTuple]`
+to the viewer as long as you annotate with either `list[napari.types.LayerDataTuple]`
 or `napari.types.LayerDataTuple`.  If you want your code to be properly typed, however,
 your return type must match your return annotation.
 ```
@@ -602,6 +624,9 @@ time the function is called:
 
 ```{code-cell} python
 :tags: [remove-output]
+import napari
+import numpy as np
+from magicgui import magicgui
 
 @magicgui(call_button='Make Points', n_points={'max': 200})
 def make_points(n_points=40) -> napari.types.LayerDataTuple:
@@ -663,9 +688,8 @@ Subclassing {class}`~magicgui.widgets.FunctionGui` however, gives you access to 
 custom elements.
 
 ```python
-from magicgui.widgets import FunctionGui
-
 import napari
+from magicgui.widgets import FunctionGui
 
 def my_function(...):
     ...
@@ -703,6 +727,7 @@ are connected to events but you can still use the convenient `magicgui` widget
 generation features as shown below.
 
 ```python
+import napari
 from magicgui.widgets import Container, create_widget
 
 class ImageThreshold(Container):
@@ -776,12 +801,11 @@ manually connect the `reset_choices` of the created widget with the
 with the current layers of the viewer:
 
 ```python
-import numpy
+import numpy as np
 import napari
+from napari.types import ImageData
 from magicgui.widgets import create_widget
 from qtpy.QtWidgets import QHBoxLayout, QPushButton, QWidget
-
-from napari.types import ImageData
 
 
 class ExampleLayerListWidget(QWidget):
@@ -816,8 +840,8 @@ class ExampleLayerListWidget(QWidget):
 
 # Create a `viewer`
 viewer = napari.Viewer()
-viewer.add_image(numpy.random.rand(20, 20), name="Layer 1")
-viewer.add_image(numpy.random.rand(40, 40), name="Layer 2")
+viewer.add_image(np.random.rand(20, 20), name="Layer 1")
+viewer.add_image(np.random.rand(40, 40), name="Layer 2")
 # Instantiate your widget
 my_widg = ExampleLayerListWidget(viewer)
 # Add widget to `viewer`

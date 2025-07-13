@@ -42,6 +42,12 @@ If you are using napari or interested in how napari could be used in your work, 
       events: {
           googleCalendarId: 'c_35r93ec6vtp8smhm7dv5uot0v4@group.calendar.google.com',
       },
+      eventDidMount: function (info) {
+        if (info.event.title.toLowerCase().includes('community') || info.event.title.toLowerCase().includes('working')) {
+          info.el.style.backgroundColor = 'var(--napari-primary-blue)';
+          info.el.style.borderColor = 'var(--napari-primary-blue)';
+        }
+      },
       eventClick: function (info) {
         info.jsEvent.preventDefault();
         var eventObj = info.event;

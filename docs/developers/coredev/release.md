@@ -2,50 +2,73 @@
 
 # Release guide
 
-This guide documents `napari`'s release process. Most required tools mentioned here are in https://github.com/napari/napari-release-tools
+This guide documents `napari`'s release process as of 0.6.0.
+Most required tools mentioned here are in https://github.com/napari/napari-release-tools.
 
-# Timeline
+## Timeline
 
-Currently, we are releasing a new napari version every 2-3 weeks. Release candidates are made available as a reasonableness check for 1-24h before the full release is published: since the release cadence is so high, any new bugs can be quickly rectified, and more quickly identified by making a full release.
+Currently, we are releasing a major version every six to twelve months.
+We plan minor napari version releases every 1-2 months.
+We will ship bug fix releases as needed.
 
-When major API changes and deprecations happen, we will provide longer release candidate cycles to ensure proper testing by the community.
+Prior to major and minor releases, we will have a release testing cycle with
+alpha prereleases and release candidates. All will be made available to the
+community for testing. The length of time between these prereleases will
+depend on the size of the release and feedback received. A conservative estimate
+is one week between each prerelease.
 
-The latest release candidate can be installed with
+:::{important}
+While the latest prerelease (alpha or release candidate) can be installed with `--pre`,
+this results in *all* dependencies being installed as prereleases. This has
+resulted in other dependencies breaking napari, so instead we recommend promoting
+installation of prereleases by specifying the version explicitly, e.g.:
 
-`python -m pip install --pre napari`
+`python -m pip install "napari[all]>=0.6.2a0"`
 
-# Release management
+`uv pip install "napari[all]>=0.6.2a0"`
+:::
+
+## Release management
+
 The release will be coordinated by a release manager whose responsibilities include the following.
 
-## One week before release
+### Step 1: Preparing for the release
+
+- Create a zulip thread in [the release channel](https://napari.zulipchat.com/#narrow/stream/215289-release)
+  letting people know the release candidate is coming and pointing out PRs that would be nice to merge before release.
 - Look through currently open PRs and get a sense of what would be good to merge before the first release candidate. Set milestones appropriately;
 - Ensure `conda-recipe/meta.yaml` in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements);
-- Create a zulip thread in [the release channel](https://napari.zulipchat.com/#narrow/stream/215289-release) letting people know the release candidate is coming and pointing out PRs that would be nice to merge before release.
 
-At this stage, bug fixes and features that are close to landing should be prioritized. The release manager will follow up with PR authors, reviewing and merging as needed. New features should wait until after release.
+At this stage, bug fixes and features that are close to landing should be prioritized.
+The release manager will follow up with PR authors, reviewing and merging as needed.
+New features should wait until after release.
 
-## 1-2 days before release
+### Step 2: Generating release notes
 
-- Add a header and highlights section to the [`additional notes`](https://github.com/napari/napari-release-tools/tree/main/additional_notes) folder for the given release. Use the [highlight label](https://github.com/napari/napari/pulls?q=sort%3Aupdated-desc+is%3Apr+is%3Aopen+label%3Ahighlight) for the relevant milestone to note which PRs to comment on.
+- Add a header and highlights section to the [`additional notes`](https://github.com/napari/napari-release-tools/tree/main/additional_notes) folder for the given release.
+  Use the [highlight label](https://github.com/napari/napari/pulls?q=sort%3Aupdated-desc+is%3Apr+is%3Aopen+label%3Ahighlight) for the relevant milestone to note which PRs to comment on.
 - Generate release notes with the [`generate_release_notes.py` script from napari/napari-release-tools](https://github.com/napari/napari-release-tools/blob/main/generate_release_notes.py);
-- make a PR with the release notes, making sure to add the new document to the [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml). See an example of such a PR: [https://github.com/napari/docs/pull/485](https://github.com/napari/docs/pull/485)
+- make a PR with the release notes, making sure to add the new document to the
+  [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml).
+  See an example of such a PR: [https://github.com/napari/docs/pull/485](https://github.com/napari/docs/pull/485)
 
 At this point the release manager should ideally be the only person merging PRs on the repo for the next few days before the release.
 
-## 1-0 days before release
+### Step 3: Making the prerelease
 
 - Merge any remaining PRs and update release notes accordingly;
 - Merge release notes;
 - Make the release candidate and announce on zulip;
 - Announce to release stream on zulip that the first release candidate is available for testing.
 
-## The day of release
+### Step 4: Testing the prerelease
+
 - Make sure final rc has been tested;
 - Ensure all PRs have been added to release notes;
 - Make sure docs are correctly deployed;
 - Make release and announce on zulip.
 
-# Release process
+## Release procedures
 
 Additional `release` dependencies (`python -m pip install -e .[release]`, from the `napari/napari` root folder) are required to complete the release process.
 
@@ -58,7 +81,7 @@ This likely has been done already, but if it has not, follow
 [this guide](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 to add it as a secret.
 
-## Determining the version
+### Determining the version
 
 The version of `napari` is automatically determined at install time by
 [`setuptools_scm`](https://github.com/pypa/setuptools_scm) from the latest
@@ -68,7 +91,7 @@ The version of `napari` is automatically determined at install time by
 the new version number. It is likely something like `X.Y.Z`. Before making a
 release though we need to generate the release notes.
 
-## Generating release notes
+### Generating release notes
 
 1. Grab the `generate_release_notes.py` script from the
    [napari/napari-release-tools](https://github.com/napari/napari-release-tools)
@@ -80,9 +103,16 @@ release though we need to generate the release notes.
    For example, to create release notes for the `0.5.4` release, use:
 
    ```bash
+   python generate_release_notes.py 0.5.4 --target-directory=/path/to/docs/release/
+   ```
+
+   While not frequently used, you may need to use 
+   [name_corrections.yaml](https://github.com/napari/napari-release-tools/blob/main/name_corrections.yaml).
+   To do so, include the `--correction-file` option with the path to the corrections file.
+
+  ```bash
    python generate_release_notes.py 0.5.4 --target-directory=/path/to/docs/release/ --correction-file /path/to/name_corrections.yaml
    ```
-   See [name_corrections.yaml](https://github.com/napari/napari-release-tools/blob/main/name_corrections.yaml).
 
 2. Scan the PR titles for highlights, deprecations, API changes,
    and bugfixes, and mention these in the relevant sections of the notes.
@@ -90,11 +120,14 @@ release though we need to generate the release notes.
    the affected functions, elaborating on the changes and their
    consequences. If possible, organize semantically close PRs in groups.
 
-3. Make sure the file name is of the form ``doc/release/release_<major>_<minor>_<release>.md``.
+3. Make sure the file name is of the form ``doc/release/release_<major>_<minor>_<release>.md``, e.g. `doc/release/release_0_5_4.md`.
 
-4. Make and merge a PR with these release notes before moving onto the next steps.
+4. **Important**: Make and merge a PR in `napari/docs` with these release notes before moving onto the next steps.
+   If these release notes are not merged, the release will fail because the
+   [`make_release.yml` workflow](https://github.com/napari/napari/blob/main/.github/workflows/make_release.yml)
+   will not be able to find the release notes file.
 
-## Update constraints files
+### Update constraints files
 
 `napari` uses a set of constraints files to prevent test failures due to dependency updates. This also allows for reproducible builds (see [](dev-installation)).
 These constraints files need to be updated at least weekly on Monday, and may also be triggered manually by a maintainer. You can find these files at
@@ -112,22 +145,34 @@ uv pip compile --python-version 3.11 --upgrade --output-file resources/constrain
 
 To see other examples, check out the [upgrade test constraints action](https://github.com/napari/napari/blob/main/.github/workflows/upgrade_test_constraints.yml).
 
-## Tagging the new release candidate
+### Tagging the new release candidate
 
 First we will generate a release candidate, which will contain the letters `rc`.
 Using release candidates allows us to test releases on PyPI without using up the actual
-release number.
+release number. You may instead wish to release an alpha candidate, much earlier
+in the release process, would would use `a` instead of `rc` in the tag name.
 
-You can tag the current source code as a release candidate with:
+You will likely want to tag upstream/main; first, fetch and checkout main. The `-s`
+option is used to sign the tag, but is optional if you do not have a key set up.
+It is also recommend to add a tag message containing the release notes, with the `-F` option.
+If you have the docs repo checked out next to the napari repo as `napari-docs`, you can do this as follows:
 
 ```bash
-git tag vX.Y.Zrc1 main
+git fetch upstream
+git checkout upstream/main
+git tag -s "vX.Y.Zrc0" -F ../napari-docs/release/release_X_Y_Z.md
+```
+
+If you would like to check that the tag is correct, you can use the `git show` command:
+
+```bash
+git show "vX.Y.Zrc0"
 ```
 
 If the tag is meant for a previous version of main, simply reference the specific commit:
 
 ```bash
-git tag vX.Y.Zrc1 abcde42
+git tag "vX.Y.Zrc0" abcde42
 ```
 
 Note here how we are using `rc` for release candidate to create a version of our release we can test
@@ -135,7 +180,7 @@ before making the real release.
 
 You can read more on tagging [here](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
 
-## Testing the release candidate
+### Testing the release candidate
 
 Our CI automatically makes a release, copying the release notes to the tag and uploading the distribution to PyPI.
 You can trigger this by pushing the new tag to `napari/napari`:
@@ -147,7 +192,7 @@ git push upstream --tags
 The release candidate can then be tested with
 
 ```bash
-python -m pip install --pre napari
+python -m pip install "napari[all]>=X.Y.Zrc0"
 ```
 
 It is recommended that the release candidate is tested in a virtual environment in order to isolate dependencies.
@@ -157,13 +202,13 @@ incrementing the number after `rc` on tag (e.g. `vX.Y.Zrc2`).
 
 Once you are satisfied with the release candidate it is time to generate the actual release.
 
-## Generating the actual release
+### Generating the actual release
 
 To generate the actual release you will now repeat the processes above but now dropping the `rc`.
 For example:
 
 ```bash
-git tag vX.Y.Z main
+git tag -s "vX.Y.Z" -F ../napari-docs/release/release_X_Y_Z.md
 git push upstream --tags
 ```
 
@@ -229,7 +274,9 @@ For more details, follow the instructions for
 
 Please make sure a correct build for the problematic release is available before (or shortly after) the `admin-requests` PR is merged!
 
-## Post release: update the documentation
+## Post release
+
+### Update documentation based on user feedback
 
 The [napari docs](https://napari.org) are versioned, meaning that each release has its own documentation, selected through the version switcher dropdown. Once you tag a new version in the `napari/napari` repo, the [`build_and_deploy.yml` workflow](https://github.com/napari/docs/blob/main/.github/workflows/build_and_deploy.yml) will automatically create a new folder for this version number in the `gh-pages` branch of the `napari/napari.github.io` repo.
 
@@ -246,5 +293,13 @@ git commit -m "Update stable symlink to X.Y.Z"
 git push
 ```
 
-2. In the `napari/docs` repo, update the [`docs/_static/version_switcher.json` file](https://github.com/napari/docs/blob/main/docs/_static/version_switcher.json) so that `stable` points to the right version. The active version switcher is read from the file in the `dev` folder, so this can be done as the last step in the process.
+2. In the `napari/docs` repo, update the [`docs/_static/version_switcher.json` file](https://github.com/napari/docs/blob/main/docs/_static/version_switcher.json)
+   so that `stable` points to the right version.
+   The active version switcher is read from the file in the `dev` folder, so this can be done as the last step in the process.
+   You can find an example in [this PR](https://github.com/napari/docs/pull/754).
 
+### Plan a bug release
+
+If any critical bugs are found in the release, a bug release should be planned.
+This will be a minor release with the bug fixes and no new features.
+The release manager should coordinate with the maintainers to ensure that the bug release is made in a timely manner.

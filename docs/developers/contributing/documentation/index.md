@@ -1,10 +1,34 @@
 (contributing-docs)=
 # Contributing Documentation
 
-This guide will teach you how to submit new documents to napari's usage
-documentation.
+This guide will teach you how to contribute to napari's documentation.
 
-## Organization of the documentation
+To begin contributing, you will need:
+
+- Some familiarity with [`git`](https://git-scm.com).
+- A [GitHub](https://github.com) account.
+
+Choose an approach to contributing:
+
+1. [**Contributing without a local setup**](#contributing-to-the-napari-documentation-without-a-local-setup): This is a simpler approach that allows you
+   to make small changes to the documentation without needing to set up a local
+   environment. This approach is useful for quick edits or if you are not familiar
+   with Git or the command line.
+1. [**Contributing with a local setup**](#contributing-to-the-napari-documentation-with-a-local-setup): This is the recommended approach if you are
+   making significant changes to the documentation, or if you want to preview your
+   changes _before_ submitting them. This approach requires a local setup of the
+   napari and docs repositories.
+
+## Ask for guidance
+
+If you'd like to contribute a brand new document to our usage section, it's
+worth [opening an issue](https://github.com/napari/docs/issues/new/choose)
+on our repository to discuss the content you'd like to see and get some
+early feedback from the community. The napari team can also suggest what type of
+document would be best suited, and whether there are already existing documents
+that could be expanded to include your proposed content.
+
+### Organization of the documentation
 
 The napari documentation is built from multiple sources that are organized into repositories:
 1. The main napari documentation is built from sources located at the
@@ -30,95 +54,9 @@ Docstrings are written in the [reStructuredText format](https://www.sphinx-doc.o
 and any modifications to them should be submitted to the [napari/napari](https://github.com/napari/napari) repository.
 6. Importantly, all of the dependencies for building the documentation are in the [the `pyproject.toml` of napari/napari](https://github.com/napari/napari/blob/main/pyproject.toml) under the optional dependencies `docs` and `gallery`.
 
-(contributing-without-local-setup)=
-## Contributing to the napari documentation without a local setup
+### What types of documents can I contribute?
 
-If you would like to see new documentation added to napari or want to see changes to existing documentation, but are not clear on these instructions or don't have the time to write it yourself, you can [open an issue](https://github.com/napari/docs/issues/new/choose).
-
-If you are adding new documentation or modifying existing documentation and would prefer a simpler workflow than the local setup guide described below,
-you can use the GitHub web interface to open your pull request
-by either [uploading file(s) from your computer](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository),
-[creating and editing a new file](https://docs.github.com/en/repositories/working-with-files/managing-files/creating-new-files)
-or [editing an existing file](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)
-on the [napari/docs](https://github.com/napari/docs) GitHub repository.
-It's best if you first [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) the [napari/docs](https://github.com/napari/docs) repository to your own GitHub account, create a [feature branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch), upload/create/edit files through the GitHub web interface, and then [open a pull request from your fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) back to [napari-docs](https://github.com/napari/docs).
-
-You will also be able to [preview the documentation](doc_view_ci) as it would appear on [napari.org](https://napari.org/dev) by
-using the `Check the rendered docs here!` action at the bottom of your PR which will go to a preview site on [CircleCI](https://circleci.com/).
-A member of the maintenance
-team will help with updating the [napari.org](https://napari.org/dev) table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](update-toc)) and making sure your documentation has built correctly.
-
-(prerequisites)=
-## Prerequisites for a local setup to contribute to the napari documentation
-
-Prerequisites depend on the type of contribution you wish to make. In general,
-you will require:
-
-- Some familiarity with [`git`](https://git-scm.com).
-- A [GitHub](https://github.com) account.
-
-```{note}
-The napari documentation is built using `make` which does not work on paths which contain spaces.
-It is important that you clone the `napari/docs` repository to a path that does not contain spaces.
-For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but \
-`C:\Users\my username\Documents\GitHub\napari-docs` is not.
-```
-
-You should first [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
-and then clone both the [napari/napari](https://github.com/napari/napari) and the [napari/docs](https://github.com/napari/docs) repositories to your
-machine. To clone these repositories, you can follow any of the options in the [GitHub guide to cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) (if you run into issues refer to [the troubleshooting guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/troubleshooting-cloning-errors)).
-We recommend installing the [GitHub CLI](https://docs.github.com/en/github-cli/github-cli/about-github-cli) as it is easy to set up repository access permissions from the GitHub CLI and it comes with additional upside, such as the ability to checkout pull requests.
-After installing the `GitHub CLI` you can run:
-
-```bash
-gh repo clone <your-username>/napari
-gh repo clone <your-username>/docs napari-docs
-```
-
-````{note}
-To reduce confusion and possible conflicts, the `docs` fork is being cloned into
-a local repository folder named `napari-docs`. Alternately, you could also
-rename the repository when forking `napari/docs` to `napari-docs` and then clone it via `gh repo clone <your-username>/napari-docs`.
-````
-
-Next, navigate to your local clone of the `napari/napari` repository:
-
-```bash
-cd napari
-```
-
-Because the API reference documentation (autogenerated from the napari code docstrings), the example gallery, and the documentation dependencies are sourced from the `napari/napari` repository, before you can build the documentation locally you will need to install from the `napari/napari` repository. You will need:
-
-- a clean virtual environment (e.g. `conda`)  with Python {{ python_version_range }}—remember to activate it!;
-- a from-source, editable installation of napari with the optional `docs` dependencies and a Qt backend. From the `napari/napari` repository directory run, for example:
-
-  ```bash
-  python -m pip install -e ".[pyqt, docs]"
-  ```
-  This will use the default Qt backend. For other options, see [the napari installation guide](../../../tutorials/fundamentals/installation.md#choosing-a-different-qt-backend).
-
-  ````{note}
-  You can combine the documentation dependencies with [a development installation of napari](dev-installation) by having both `dev` and `docs` in the dependencies, e.g. `[pyqt, dev, docs]`.
-  ````
-
-Once the installation is complete, you can proceed to the directory where you cloned the `napari/docs` repository:
-
-```bash
-cd ../napari-docs
-```
-
- Here you will be able to build the documentation, allowing you to preview your document locally as it would appear on `napari.org`.
-
-## 0. Before you start
-
-If you'd like to contribute a brand new document to our usage section, it might
-be worth [opening an issue](https://github.com/napari/docs/issues/new/choose)
-on our repository first to discuss the content you'd like to see and get some
-early feedback from the community. The napari team can also suggest what type of
-document would be best suited, and whether there are already existing documents
-that could be expanded to include the content you think is lacking.
-
-Go to your local `napari/docs` folder to find examples of documents you might
+Go to the [`napari/docs`](https://github.com/napari/docs) repo to find examples of documents you might
 want to contribute. The paths are listed in parentheses below.
 
 - [**Explanations**](explanations) (in [`napari/docs/guides`](https://github.com/napari/docs/tree/main/docs/guides)):
@@ -129,6 +67,9 @@ want to contribute. The paths are listed in parentheses below.
   simple step by step guides demonstrating the use of common features
 - [**Getting started**](getting-started) (in [`napari/docs/tutorials/fundamentals`](https://github.com/napari/docs/tree/main/docs/tutorials/fundamentals)):
   these documents are a mix of tutorials and how-tos covering the fundamentals of installing and working with napari for beginners
+
+The [**Examples gallery**](gallery) sources are in the [main `napari/napari` repository](https://github.com/napari/napari/tree/main/examples)
+and show code examples of how to use napari.
 
 ```{admonition} Plugin documentation
 :class: tip
@@ -144,9 +85,6 @@ script is run. See our
 [Makefile](https://github.com/napari/docs/blob/main/Makefile) for more details.
 ```
 
-The [**Examples gallery**](gallery) sources are in the [main `napari/napari` repository](https://github.com/napari/napari/tree/main/examples)
-and show code examples of how to use napari.
-
 ```{admonition} Got materials for a workshop?
 :class: tip
 
@@ -154,9 +92,7 @@ If you already have teaching materials e.g. recordings, slide decks or Jupyter n
 hosted somewhere, you can add links to these on our [napari workshops](workshops) page.
 ```
 
-(contributing-docs-step-one)=
-
-## 1. Write your documentation
+### Formats and templates
 
 Our goal is that all tutorials and how-tos are easily downloadable and
 executable by our users. This helps ensure that they are reproducible and makes
@@ -184,6 +120,121 @@ If you have an existing `.ipynb` Jupyter notebook that you'd like to contribute,
 `your-notebook.md`. Edit this file to include the relevant sections from the docs template.
 ```
 
+(contributing-without-local-setup)=
+## Contributing to the napari documentation without a local setup
+
+If you would like to see new documentation added to napari or want to see changes to existing documentation, but are not clear on these instructions or don't have the time to write it yourself, you can [open an issue](https://github.com/napari/docs/issues/new/choose).
+
+If you are adding new documentation or modifying existing documentation and would prefer a simpler workflow than the local setup guide described below,
+you can use the GitHub web interface to open your pull request
+by either [uploading file(s) from your computer](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository),
+[creating and editing a new file](https://docs.github.com/en/repositories/working-with-files/managing-files/creating-new-files)
+or [editing an existing file](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)
+on the [napari/docs](https://github.com/napari/docs) GitHub repository.
+It's best if you first [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) the [napari/docs](https://github.com/napari/docs) repository to your own GitHub account, create a [feature branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch), upload/create/edit files through the GitHub web interface, and then [open a pull request from your fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) back to [napari-docs](https://github.com/napari/docs).
+
+When you submit your PR, CI will kick off several jobs, including generation of a preview of 
+the documentation. By default, CI will use the `slimfast` build ("make target"), which
+doesn't build any content from outside the `docs` repository or run any `docs` notebook cells.
+This is great for seeing the copy and formatting. If you want to preview other elements,
+you can trigger more complete builds by commenting on the PR with:
+```
+@napari-bot make <target>
+```
+where `<target>` can be:
+- `html` : a full build, just like napari.org live
+- `html-noplot` : a full build, but without the gallery examples from `napari/napari`
+- `docs` : only the content from `napari/docs`, with notebook code cells executed
+- `slimfast` : the default, only the content from `napari/docs`, without code cell execution
+- `slimgallery` : `slimfast`, but also builds the gallery examples from `napari/napari` 
+
+For more information about these targets see the ["building locally"](build_docs_locally) section 
+of the documentation, including the part on [specialized builds](#building-what-you-need).  
+
+Once the jobs complete you will also be able to [preview the documentation](doc_view_ci) by
+using the `Check the rendered docs here!` action at the bottom of your PR, which will go to a 
+preview website on [CircleCI](https://circleci.com/). Alternatively, you can download a zip file 
+of [the build artifact](#download-documentation-artifact) and open the html files directly in your browser. For a build triggered by a comment, use
+the "Triggered Docs Artifact Build" link.
+
+If needed, a member of the maintenance team will help with updating the [napari.org](https://napari.org/dev) 
+table of contents where necessary (by placing a reference to your new file in [docs/_toc.yml](update-toc))
+and making sure your documentation has built correctly.
+
+## Contributing to the napari documentation with a local setup
+
+(prerequisites)=
+### 0. Prerequisites
+
+#### Fork and clone the napari and docs repositories
+
+You should first [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+and then clone both the [napari/napari](https://github.com/napari/napari) and the [napari/docs](https://github.com/napari/docs) repositories to your
+machine. To clone these repositories, you can follow any of the options in the [GitHub guide to cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) (if you run into issues refer to [the troubleshooting guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/troubleshooting-cloning-errors)).
+We recommend installing the [GitHub CLI](https://docs.github.com/en/github-cli/github-cli/about-github-cli) as it is easy to set up repository access permissions from the GitHub CLI and it comes with additional upside, such as the ability to checkout pull requests.
+After installing the `GitHub CLI` you can run:
+
+```bash
+gh repo clone <your-username>/napari
+gh repo clone <your-username>/docs napari-docs
+```
+
+````{note}
+To reduce confusion and possible conflicts, the `docs` fork is being cloned into
+a local repository folder named `napari-docs`. Alternately, you could also
+rename the repository when forking `napari/docs` to `napari-docs` and then clone it via `gh repo clone <your-username>/napari-docs`.
+````
+
+```{note}
+The napari documentation is built using `make` which does not work on paths which contain spaces.
+It is important that you clone the `napari/docs` repository to a path that does not contain spaces.
+For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but \
+`C:\Users\my username\Documents\GitHub\napari-docs` is not.
+```
+
+#### Set up a developer installation of napari for docs building
+
+Because the API reference documentation (autogenerated from the napari code docstrings), the example gallery, and the documentation dependencies are sourced from the `napari/napari` repository, before you can build the documentation locally you will need to install from the `napari/napari` repository.
+
+First, navigate to your local clone of the `napari/napari` repository:
+
+```bash
+cd napari
+```
+
+You will need:
+
+- a clean virtual environment (e.g. `conda`)  with Python {{ python_version_range }}—remember to activate it!;
+- a from-source, editable installation of napari with the optional `docs` dependencies and a Qt backend. From the `napari/napari` repository directory run, for example:
+
+  ```bash
+  python -m pip install -e ".[pyqt, docs]"
+  ```
+  This will use the default Qt backend. For other options, see [the napari installation guide](../../../tutorials/fundamentals/installation.md#choosing-a-different-qt-backend).
+
+  ````{note}
+  You can combine the documentation dependencies with [a development installation of napari](dev-installation) by having both `dev` and `docs` in the dependencies, e.g. `[pyqt, dev, docs]`.
+  ````
+
+Once the installation is complete, you can proceed to the directory where you cloned the `napari/docs` repository:
+
+```bash
+cd ../napari-docs
+```
+
+Here you will be able to build the documentation, allowing you to preview your document locally as it would appear on `napari.org`.
+
+(contributing-docs-step-one)=
+
+### 1. Write your documentation
+
+Depending on the type of contribution you are making, you may be able to skip
+some steps:
+
+* If you are amending an existing document you can skip straight
+  to [3. Preview your document](#3-preview-your-document)
+* For all other documentation changes, follow the steps below.
+
 ```{admonition} How to check for broken links
 :class: tip
 
@@ -193,20 +244,11 @@ If you have modified lots of document links, you can check that they all work by
 make linkcheck-files FILES=path/to/your/document.md
 ```
 
-### Next steps
-
-Depending on the type of contribution you are making, you may be able to skip
-some steps:
-
-* If you are amending an existing document you can skip straight
-  to [Step #3 - Preview your document](#3-preview-your-document)
-* For all other documentation changes, follow the steps below.
-
 (update-toc)=
-## 2. Update the table of contents (TOC)
+### 2. Update the table of contents (TOC)
 
 If you are adding a new documentation file, you will need to add your document
-to the correct folder based on its content (see the [list above](#0-before-you-start)
+to the correct folder based on its content (see the [list above](#organization-of-the-documentation)
 for common locations), and update `docs/_toc.yml`.
 
 If you're adding a document
@@ -267,7 +309,7 @@ subtrees:
         - file: tutorials/geosciences/geo_tutorial2     # added
 ```
 
-## 3. Preview your document
+### 3. Preview your document
 
 If your documentation change includes code, it is important that you ensure
 the code is working and executable. This is why you will need to have a
@@ -289,33 +331,64 @@ To see the markdown document structure and content change in real-time without b
 ```
 
 (build_docs_locally)=
+#### 3.1. Building locally
 
-### 3.1. Building locally
+To build the documentation locally we use the 
+[`make` tool](https://en.wikipedia.org/wiki/Make_(software)) to execute 
+[`sphinx`](https://www.sphinx-doc.org/en/master/) builds, as defined in the
+`Makefile` at the root of the `docs` repository.
 
-To build the documentation locally from scratch, run `make html` from the root
-of your local clone of the `napari/docs` repository (assuming you've installed
-napari with the [docs prerequisites](prerequisites)).
+Once the build is completed rendered HTML will be placed in `docs/_build/html`. 
+Find `index.html` in this folder and drag it into a browser to preview the 
+website with your new document.
 
-```bash
-make html
-```
-
-If the changes you have made to documentation don't involve changing the napari gallery,
-you can speed up this build by running `make html-noplot` instead. This will skip the
-gallery build, which involves launching up napari and rendering all the examples.
-
-```bash
-make html-noplot
-```
-
-The rendered HTML will be placed in `docs/_build/html`. Find `index.html` in this
-folder and drag it into a browser to preview the website with your new document.
 You can also run this Python one-liner to deploy a quick local server on
 [http://localhost:8000](http://localhost:8000):
 
 ```shell
 $ python3 -m http.server --directory docs/_build/html
 ```
+
+:::{note}
+The entire build process pulls together files from multiple sources and can be
+time consuming, with a full build taking upwards of 20 minutes. Additionally, 
+building the examples gallery, as well as executing notebook cells will 
+repeatedly launch `napari`, resulting in flashing windows. 
+
+As a result, there are several partial-build options available in addition to 
+a full build that only build certain parts of the full documentation build. 
+Depending on what you want to contribute, **you may never need to run the full 
+build locally**. For example, maybe you don't want to build the examples gallery 
+or you only want to edit copy and not run the notebook cells or only want to 
+edit a single napari example. See [Building what you need](#building-what-you-need)
+for details.
+:::
+
+##### Running a full build
+
+To run a full documentation build from scratch, matching what is deployed 
+at [napari.org](https://napari.org), run:
+
+```bash
+make html
+```
+from the root of your local clone of the `napari/docs` repository (assuming you've installed
+napari with the [docs prerequisites](prerequisites)). Note this can take upwards of 20 minutes
+and will repeatedly pop up napari viewers as examples and notebook cells are executed.
+
+If the changes you have made to documentation don't involve the gallery of napari examples,
+which are in the `examples` directory in the `napari` repository, you can speed up this 
+build by running:
+
+```bash
+make html-noplot
+```
+
+This will skip the gallery build, which involves launching up napari and rendering 
+all the examples, but it will still build all of the other content, including the
+[UI architecture diagrams](ui-sections), [events reference](events-reference), and
+[preferences](napari-preferences), which are generated from sources in the `napari`
+repository. This will also run all notebook cells.
 
 ````{note}
 The `make html` command above assumes you have a local clone of the
@@ -348,25 +421,35 @@ make html GALLERY_PATH=../../napari/examples
 ```
 
 ````
-
+(live-builds)=
 ````{admonition} Update documentation on file change
 :class: tip
-There's another `make` task you can use for live previews while editing docs:
-
-```shell
-$ make html-live
-# or for faster reloads:
-$ make html-live SPHINXOPTS="-j4"
-```
-
-The first run will take a bit longer and a few napari instances will pop up
-here and there, but the successive ones (triggered automatically every time
-you save a file under `docs/`) will be faster!
-The browser preview will open up automatically at `http://127.0.0.1`,
-no need for further action! Edit the documents at will, and the browser will
-auto-reload.
+We've provided several build variants with `-live` that will use
+[sphinx-autobuild](https://github.com/sphinx-doc/sphinx-autobuild).
+When using these `make` variants, when you save a file, re-builds 
+of the changed file will be triggered automatically and will be faster,
+because not everything will be built from scratch. Further, a browser preview 
+will open up automatically at `http://127.0.0.1`, no need for further action! 
+Edit the documents at will, and the browser will auto-reload.
 Once you are done with the live previews, you can exit via <kbd>Ctrl</kbd>+<kbd>C</kbd>
 on your terminal.
+
+For example, if you are not editing the gallery examples in the napari repository, 
+but otherwise want a full build, then you can use:
+
+```bash
+make html-noplot-live
+```
+The first run will be a full build (without the gallery) so a number of napari 
+instances will pop up, but then when re-building on save only edited files will
+be rebuilt.
+
+For faster reloads, you can try:
+```bash
+make html-live SPHINXOPTS="-j4"
+```
+Note: using `-j4` will parallelize the build over 4 cores and can result in crashes.
+
 ````
 
 ````{tip}
@@ -374,16 +457,125 @@ If you have [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml)
 installed on your system, you can also run a "headless GUI" build by using the
 `docs-xvfb` command:
 
-```shell
-$ make docs-xvfb
+```bash
+make docs-xvfb
 ```
 
 This will prevent all but the first napari window from being shown during the docs
 build.
 ````
 
+(building-what-you-need)=
+##### Building what you need
+
+````{dropdown} napari/docs and notebooks
+**If you only want to edit materials in the `docs` repository, including
+notebook code cell outputs (e.g. any of the tutorials), but you don't need any
+of the sources in `napari/napari` built**, then you can use the `docs` build variant. Run:
+
+```bash
+make docs
+```
+or 
+```bash
+make docs-live
+```
+Note that this will still execute the `docs` repository notebook code cells, 
+resulting in napari windows popping up repeatedly. The [`-live`
+variant](live-builds) will open a browser preview and auto-rebuild any pages you edit.
+````
+
+````{dropdown} napari/docs only
+**If you you only want to edit copy in the `docs` repository and don't need any
+of the sources in `napari/napari` built nor the notebook cell outputs**, then you can use one
+of the `slim` builds. Run:
+
+```bash
+make slim
+```
+or
+```bash
+make slimfast
+```
+or
+```bash
+make slimfast-live
+```
+These will not build any of the external content (such as the gallery) and will
+not execute code cells. `slimfast` will run the build in parallel, which can be
+significantly faster on multi-core machines (under a minute), while `slimfast-live`
+will open a browser preview and auto-rebuild any pages you edit. 
+See [the `-live` builds note](live-builds).
+````
+
+````{dropdown} napari/docs and napari gallery of examples
+**If you are working on the napari examples and want to build the whole examples
+gallery, but not other external content nor the `docs` notebook cell outputs**, 
+then you can use:
+
+```bash
+make slimgallery
+```
+or
+```bash
+make slimgallery-live
+```
+These builds will build the documentation with the entire gallery. The [`-live`
+variant](live-builds) will will open a browser preview and auto-rebuild any pages you edit.
+````
+
+````{dropdown} napari/docs and a single example in the gallery
+**If you want to work on a single example Python script in the napari repository
+`examples` directory**, you can build the documentation with just a chosen example by
+specifying it by name. For example, to build the `vortex.py` example, run:
+
+```bash
+make slimgallery-vortex
+```
+or
+```bash
+make slimgallery-live-vortex
+```
+This will only execute and build the single chosen example. The [`-live`
+variant](live-builds) will open a browser preview and auto-rebuild the single example or
+any other `docs` pages on edit, but it will not run any other code cells.
+````
+
+##### Additional utilities in the Makefile
+
+To clean up (delete) generated content, including auto-generated `.rst` and `.md` files,
+as well as the `html` files, you can use:
+
+```bash
+make clean
+```
+
+Running this is a good idea if you have not built the documentation in a long
+time and there may have been significant changes to the `docs` repository, e.g.
+changes to the table of contents or layout.
+
+To clean up the files generated for the examples gallery, you can use:
+
+```bash
+make clean-gallery
+```
+Running this is a good idea if you have not built the documentation in a long
+time and there may have been significant changes to the `napari` examples.
+
+To generate the source files from the napari repository, including the
+[UI architecture diagrams](ui-sections), [events reference](events-reference), and
+[preferences](napari-preferences), you can run:
+
+```bash
+make prep-docs
+```
+Note that this is can take upwards of 10 minutes! Run this if you are interested
+in building the external resources or editing the scripts that generate them in
+`docs/docs/_scripts`. In most cases `make prep-stubs` will suffice, which will 
+generate place-holder stub files for the external content.
+
 (doc_view_ci)=
-### 3.2. View in GitHub Pull Request
+#### 3.2. View in GitHub Pull Request
 
 Alternatively, when you submit your pull request, the
 [napari/docs](https://github.com/napari/docs) repository
@@ -403,14 +595,15 @@ When you submit a pull request to the [napari/napari](https://github.com/napari/
 repository, its continuous integration will only build the docs in CircleCI. Thus
 you will only be able to preview the documentation on CircleCI.
 
-#### Preview on CircleCI
+##### Preview on CircleCI
 
 Simply click on **Details** next to the `Check the rendered docs here!` at the bottom
 of your pull request:
 
 ![CircleCI check is highlighted](../../../_static/images/circleci-link.png)
 
-#### Download documentation artifact
+(download-documentation-artifact)=
+##### Download documentation artifact
 
 1. Click on **Details** next to
    `Build & Deploy PR Docs / Build & Upload Artifact (pull_request)`:
@@ -435,14 +628,14 @@ $ python3 -m http.server
 ```
 
 (docs_submit_pull_request)=
-## 4. Submit your pull request
+### 4. Submit your pull request
 
 Once you have written and previewed your document, it's time to open a pull request to [napari's docs repository](https://github.com/napari/docs) and contribute it to our codebase.
 
 If you are simply contributing one file (e.g., a tutorial or how-to page) you
 can use the [GitHub web interface to open your pull request](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository). Ensure your
 document is added to the correct folder based on its content (see the
-[list above](#0-before-you-start) for common locations).
+[list above](#organization-of-the-documentation) for common locations).
 
 To open a pull request via git and the command line, follow [this guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github).
 You can also reach out to us on [zulip](https://napari.zulipchat.com/#narrow/stream/212875-general) for assistance!

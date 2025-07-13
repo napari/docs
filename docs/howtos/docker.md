@@ -4,7 +4,9 @@
 
 ## Build
 
-Builds are available in the [GitHub Container Registry](https://github.com/orgs/napari/packages).
+Builds are available in the GitHub Container Registry:
+- [napari](https://github.com/napari/napari/pkgs/container/napari)
+- [napari-xpra](https://github.com/napari/napari/pkgs/container/napari-xpra)
 
 A dockerfile is added to napari root to allow build of a docker image using official napari release.
 It contains two targets built on top of Ubuntu 20.04:

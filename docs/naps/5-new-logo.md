@@ -5,9 +5,9 @@
 ```{eval-rst}
 :Author: Juan Nunez-Iglesias <jni@fastmail.com>
 :Created: 2022-09-08
-:Resolution: <url> (required for Accepted | Rejected | Withdrawn)
-:Resolved: <date resolved, in yyyy-mm-dd format>
-:Status: Draft
+:Resolution: https://github.com/napari/docs/pull/644
+:Resolved: 2025-03-26
+:Status: Withdrawn
 :Type: Standards Track
 :Version effective: 0.5
 ```

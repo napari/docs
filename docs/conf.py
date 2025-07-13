@@ -62,6 +62,7 @@ extensions = [
     "sphinx_gallery.gen_gallery",
     "sphinx_tags",
     "myst_nb",
+    "sphinxext.opengraph",
 ]
 
 # -- HTML Theme ------------------------------------------------------------
@@ -193,6 +194,8 @@ external_toc_path = "_toc.yml"
 external_toc_exclude_missing = False
 lexers["toml"] = TOMLLexer(startinline=True)
 napoleon_custom_sections = [("Events", "params_style")]
+# use an env var to control whether noteboos are executed
+nb_execution_mode = os.environ.get('NB_EXECUTION_MODE', 'auto')
 nb_output_stderr = "show"
 mermaid_d3_zoom = True
 mermaid_version = "11.4.1"
@@ -204,6 +207,19 @@ tags_extension = ["md", "rst"]
 panels_add_bootstrap_css = False
 pygments_style = "solarized-dark"
 suppress_warnings = ["myst.header", "etoc.toctree", "config.cache"]
+
+# OpenGraph configuration for link previews
+
+ogp_site_url = "https://napari.org/"
+ogp_image = "dev/_static/opengraph_image.png" 
+ogp_use_first_image = False
+ogp_description_length = 300
+ogp_type = "website"
+ogp_site_name = "napari"
+ogp_canonical_url = "https://napari.org/stable"
+ogp_social_cards = {
+    'image': '_static/logo.png',
+}
 
 # glob-style patterns to exclude from docs build source files
 exclude_patterns = [
