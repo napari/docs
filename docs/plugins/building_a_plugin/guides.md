@@ -20,6 +20,10 @@ field in a specific contribution, See the
 ```
 ----------------
 
+```{include} ../_npe2_menus_guide.md
+```
+----------------
+
 ```{include} ../_npe2_sample_data_guide.md
 ```
 ----------------

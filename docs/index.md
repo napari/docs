@@ -45,10 +45,27 @@ theme:
 
 # napari: a fast, interactive viewer for multi-dimensional images in Python
 
+::::{grid} 1 1 3 3
+
+:::{grid-item}
+:columns: 12 12 4 4
+
+- **view and explore** 2D, 3D, and higher-dimensional arrays on a canvas;
+- **overlay** derived data such as *points*, *polygons*, *segmentations*, and
+  more;
+- **annotate** and **edit** derived datasets, using standard data structures
+  such as NumPy or Zarr arrays, allowing you to
+- **seamlessly weave** exploration, computation, and annotation together in
+  imaging data analysis.
+:::
+
+:::{grid-item}
+:columns: 12 12 8 8
+
 ```{raw} html
 <figure>
 
-  <video width="90%" controls autoplay loop muted playsinline>
+  <video width="100%" controls autoplay loop muted playsinline>
     <source src="_static/images/tribolium.webm" type="video/webm" />
     <source src="_static/images/tribolium.mp4" type="video/mp4" />
     <img src="_static/images/tribolium.jpg"
@@ -60,15 +77,9 @@ theme:
 </figure>
 ```
 
-Napari is a Python library for n-dimensional image visualisation, annotation,
-and analysis. With napari you can:
-- **view and explore** 2D, 3D, and higher-dimensional arrays on a canvas;
-- **overlay** derived data such as *points*, *polygons*, *segmentations*, and
-  more;
-- **annotate** and **edit** derived datasets, using standard data structures
-  such as NumPy or Zarr arrays, allowing you to
-- **seamlessly weave** exploration, computation, and annotation together in
-  imaging data analysis.
+:::
+
+::::
 
 ::::{grid}
 
