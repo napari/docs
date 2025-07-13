@@ -57,8 +57,6 @@ theme:
     >
   </video>
 
-  <figcaption><pre>napari.imshow(image4d)</pre></figcaption>
-
 </figure>
 ```
 
@@ -121,4 +119,3 @@ napari is extensible! Find plugins, or develop your own!
 :::
 
 ::::
-
