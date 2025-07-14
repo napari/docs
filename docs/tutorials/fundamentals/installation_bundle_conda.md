@@ -13,39 +13,67 @@ jupyter:
     name: python3
 ---
 
-# How to install napari as a bundled app
+# How to install the napari app
 
 napari can be installed as a bundled app on [MacOS](#how-to-install-the-macos-bundle), [Windows](#how-to-install-the-windows-bundle), and [Linux](#how-to-install-the-linux-bundle) with a simple one click download and guided installation process. This installation method is best if you mainly want to use napari as a standalone GUI app. However, certain plugins may not be supported.
 
 ```{note}
-If you want to use napari from Python to programmatically interact with the app, please follow the [Python package installation guide](installation.md#install-as-python-package-recommended). This installation method is recommended to take full advantage of napari's features and to access additional plugins.
-```
-
-```{note}
-If you want to contribute code back into napari, please follow the [development installation instructions in the contributing guide](napari-contributing).
-```
-
-To start, visit the [latest napari release page](https://github.com/napari/napari/releases/latest) and go to the 'Assets' tab and download the file that corresponds to your operating system:
-
-- Windows users will want the `*-Windows-x86_64.exe` installer.
-- For macOS users, it depends on the processor. This can be checked by going to Apple menu > About This Mac.
-  - For Intel processors, download the `*-macOS-x86_64.pkg` installer
-  - For Apple processors, download the `*-macOS-arm64.pkg` installer.
-- Linux users will need to choose the `*-Linux-x86_64.sh` installer.
-
-![Cropped screenshot of the GitHub Releases page for napari version 0.4.15. The expanded assets tab shows a number of installers available for different operating systems and architectures. Yellow rectangles highlight the files that correspond to the conda-based installers described in this tutorial.](../../_static/images/bundle_02.png)
-
-```{note}
-If you are interested in an earlier version of napari, you may access those files by scrolling below the latest release on the [napari release page](https://github.com/napari/napari/releases). The instructions below will work for napari versions 0.4.15 and above.
+* If you want to use napari with a Python project, please follow the [Python package installation guide](installation.md#install-as-python-package-recommended).
+* If you want to contribute code back into napari, please follow the [development installation instructions in the contributing guide](napari-contributing).
 ```
 
 ## Prerequisites
 
 This installation method does not have any prerequisites.
 
-### How to install the macOS bundle
+## Download and install the napari app ({{ napari_version }}) for your operating system
 
-Once you have downloaded the appropriate macOS package file, you will have a file with a name like `napari-0.5.0-macOS-x86_64.pkg`. Double click this file to open the installer.
+::::{grid}
+
+:::{grid-item-card} macOS
+:link: macos-bundle
+:link-type: ref
+
+:::
+
+:::{grid-item-card} Windows
+:link: windows-bundle
+:link-type: ref
+:::
+
+
+
+:::{grid-item-card} Linux
+:link: linux-bundle
+:link-type: ref
+
+:::
+
+::::
+
+
+```{note}
+If you are interested in an earlier version of the napari app, you may access those files by scrolling below the latest release on the [napari release page](https://github.com/napari/napari/releases). Each release (0.4.15 and above) will have an "Assets" section with the installers for Windows, macOS, and Linux.
+```
+
+(macos-bundle)=
+
+## How to install the macOS bundle
+
+If you have not already, download the napari app ({{ napari_version }}) for your platform:
+
+```{admonition} macOS Apple Silicon (arm64)
+:class: admonition
+{{ '# [Download from GitHub](https://github.com/napari/napari/releases/tag/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
+```
+
+```{admonition} macOS Intel (x86)
+:class: admonition
+{{ '# [Download from GitHub](https://github.com/napari/napari/releases/tag/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
+```
+
+Once you have downloaded the appropriate macOS package file, you will have a file with a name like `napari-0.5.0-macOS-x86_64.pkg`, but the version number will be {{ napari_version }}.
+Double click this file to open the installer.
 
 ![Cropped screenshot of macOS desktop UI showing the icon of the PKG installer file, and an arrow pointing to the Welcome page in the opened PKG installer.](../../_static/images/bundle_04.png)
 
@@ -89,9 +117,19 @@ napari comes installed with sample images from scikit-image. Use the dropdown me
 
 Next check out our [tutorial on the viewer](viewer.md) or explore any of the pages under the [Usage tab](../../usage.md).
 
-### How to Install the Windows bundle
+(windows-bundle)=
 
-Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.5.0-Windows-x86_64.exe`. Double click this file to open the napari Setup.
+## How to install the Windows bundle
+
+If you have not already, download the napari app ({{ napari_version }}) for your platform:
+
+```{admonition} Windows (x86_64)
+:class: admonition
+{{ '# [Download from GitHub](https://github.com/napari/napari/releases/tag/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
+```
+
+Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.5.0-Windows-x86_64.exe`, but the version number will be {{ napari_version }}.
+Double click this file to open the napari Setup.
 
 ![Montage of the napari EXE installer icon with an arrow pointing to the Welcome page of the napari EXE installer on Windows.](../../_static/images/bundle_17.png)
 
@@ -121,9 +159,19 @@ napari comes installed with sample images from scikit-image. Use the dropdown me
 
 Next check out our [tutorial on the viewer](viewer.md) or explore any of the pages under the [Usage tab](../../usage.md).
 
-### How to Install the Linux bundle
+(linux-bundle)=
 
-Once you have downloaded the Linux SH file, you will have a file with a name like `napari-0.5.0-Linux-x86_64.sh`. Open a new terminal window, navigate to the downloads folder (usually `cd ~/Downloads`) and run the command `bash napari-*-Linux-x86_64.sh`.
+## How to install the Linux bundle
+
+If you have not already, download the napari app ({{ napari_version }}) for your platform:
+
+```{admonition} Linux (x86_64)
+:class: admonition
+{{ '# [Download from GitHub](https://github.com/napari/napari/releases/tag/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
+```
+
+Once you have downloaded the Linux SH file, you will have a file with a name like `napari-0.5.0-Linux-x86_64.sh`, but the version number will be {{ napari_version }}.
+Open a new terminal window, navigate to the downloads folder (usually `cd ~/Downloads`) and run the command `bash napari-*-Linux-x86_64.sh`.
 
 ![Montage of the SH installer icon on Ubuntu, with an arrow pointing to an open terminal instance with a pre-typed command that reads 'bash napari-0.4.14.dev73-Linux-x86_64.sh'.](../../_static/images/bundle_28.png)
 
