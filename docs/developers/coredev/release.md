@@ -118,7 +118,7 @@ These constraints files need to be updated at least weekly on Monday, and may al
 To get updated constraints for a PR, use `@napari-bot update constraints` in a PR comment, then follow the instruction added by the bot to the conversation.
 
 ````{admonition} Example
-To manually update the constraint files, you need to have the [`uv`](https://github.com/astral-sh/uv) and copy 
+To manually update the constraints files, you need to have the [`uv`](https://github.com/astral-sh/uv) tool installed, then copy 
 the command from the second line of a given constraints file. 
 For example:  
 
