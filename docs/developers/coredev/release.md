@@ -119,7 +119,7 @@ To get updated constraints for a PR, use `@napari-bot update constraints` in a P
 
 ````{admonition} Example
 To manually update the constraints files, you need to have the [`uv`](https://github.com/astral-sh/uv) tool installed, then copy 
-the command from the second line of a given constraints file. 
+and run the command from the second line of a given constraints file. 
 For example:  
 
 ```bash
