@@ -458,7 +458,7 @@ Note: using `-j4` will parallelize the build over 4 cores and can result in cras
 If you are running a full build, you can run it in a "headless GUI"
 mode, which will prevent napari windows from popping up during the build.
 
-1. If you are using X11 as your display server and you have
+1. If you are using **X11** as your display server and you have
    [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml)
    installed on your system, you can use the `docs-xvfb` command:
 
@@ -469,7 +469,7 @@ mode, which will prevent napari windows from popping up during the build.
    This will prevent all but the first napari window from being shown during the docs
    build.
 
-2. If you are using Wayland as your display server, and you have `xwfb-run` installed
+2. If you are using **Wayland** as your display server, and you have `xwfb-run` installed
    on your system (part of the [xwayland-run utilities](https://gitlab.freedesktop.org/ofourdan/xwayland-runcan),
    you can use the `docs-xwfb` command:
 
