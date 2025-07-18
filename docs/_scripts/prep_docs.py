@@ -1,7 +1,43 @@
-"""ALL pre-rendering and pre-preparation of docs should occur in this file.
+"""Master documentation preparation script for napari.
 
-Note: make no assumptions about the working directory
-from which this script will be called.
+This script coordinates all documentation generation tasks that need to run before
+the Sphinx build process. It serves as the central orchestrator for various
+documentation automation scripts, ensuring all dynamic content is generated and
+ready for the main documentation build.
+
+The script handles two modes:
+1. Full mode: Generates all documentation including cloning npe2 for plugin docs
+2. Stubs mode: Creates placeholder files for faster development builds
+
+This script is typically called by the Makefile during documentation builds and
+ensures all auto-generated content (plugin docs, preference docs, event tables,
+UI architecture docs) is created before Sphinx runs.
+
+Usage:
+    Full documentation generation::
+
+        $ python docs/_scripts/prep_docs.py
+
+    Fast stub generation for development::
+
+        $ python docs/_scripts/prep_docs.py --stubs
+
+Note:
+    Make no assumptions about the working directory from which this script
+    will be called. All paths are calculated relative to the script location.
+
+Attributes:
+    DOCS (Path): Absolute path to the docs directory
+    NPE (Path): Path where npe2 repository will be cloned
+
+Functions:
+    prep_npe2(): Clones npe2 repository and generates plugin documentation
+    main(stubs): Orchestrates all documentation preparation tasks
+
+Attribution
+-----------
+This docstring was drafted with the assistance of Claude Code.
+The output was reviewed and edited for accuracy and clarity.
 """
 import sys
 from pathlib import Path
