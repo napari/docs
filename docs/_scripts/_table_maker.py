@@ -1,3 +1,49 @@
+"""Table generation utilities for napari documentation.
+
+This module provides functionality to create formatted ASCII and Markdown tables
+for use in the napari documentation. It supports multiple border styles and
+customizable formatting options.
+
+The primary use case is generating well-formatted tables for event documentation,
+preferences documentation, and other tabular data that needs to be displayed in
+the napari documentation.
+
+Example:
+    Basic usage with markdown style (default)::
+
+        >>> from _table_maker import table_repr
+        >>> data = [
+        ...     ['Event', 'Description', 'Type'],
+        ...     ['theme', 'Theme changed', 'str'],
+        ...     ['title', 'Title changed', 'str']
+        ... ]
+        >>> print(table_repr(data, header=data[0], style='markdown'))
+
+    Using different border styles::
+
+        >>> # Double-line borders
+        >>> print(table_repr(data, style='double'))
+
+        >>> # Heavy borders
+        >>> print(table_repr(data, style='heavy'))
+
+        >>> # Light borders
+        >>> print(table_repr(data, style='light'))
+
+Attributes:
+    STYLES (dict): Dictionary of border style definitions. Each style contains:
+        - TOP: Characters for top border (left corner, separator, right corner, line)
+        - MID: Characters for middle borders (left, separator, right, line)
+        - BOT: Characters for bottom border (left corner, separator, right corner, line)
+        - V: Characters for vertical borders (outer, inner)
+
+Available styles:
+    - 'double': Double-line box drawing characters (╔═╤═╗)
+    - 'heavy': Heavy box drawing characters (┏━┯━┓)
+    - 'light': Light box drawing characters (┌─┬─┐)
+    - 'markdown': Markdown-compatible table format (| | |)
+"""
+
 import numpy as np
 
 STYLES = {

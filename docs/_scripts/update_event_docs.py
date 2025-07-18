@@ -1,3 +1,47 @@
+"""Generate event documentation for napari components.
+
+This module analyzes the napari codebase to automatically generate comprehensive
+documentation of all events available in the viewer, layer list, and individual
+layers. It creates markdown tables that document event names, descriptions,
+access patterns, and types.
+
+The script uses AST parsing to discover EmitterGroup definitions in the codebase
+and introspection to find events in EventedModel subclasses. It generates three
+main documentation files that are included in the napari guides.
+
+Generated Documentation:
+    - _viewer_events.md: Events available on the viewer model
+    - _layerlist_events.md: Events for the layer list and selection
+    - _layer_events.md: Events specific to each layer type
+
+The documentation includes:
+    - Event name and description
+    - How to access the event in code (e.g., `viewer.events.theme`)
+    - The type of value emitted by the event
+    - Whether events are common across layer types
+
+Usage:
+    Generate full event documentation::
+
+        $ python docs/_scripts/update_event_docs.py
+
+    Generate stub files for fast builds::
+
+        $ python docs/_scripts/update_event_docs.py --stubs
+
+Classes:
+    Ev: Dataclass representing an event with its metadata
+
+Functions:
+    iter_evented_model_events: Find events in EventedModel subclasses
+    iter_evented_container_events: Find events in containers like LayerList
+    iter_layer_events: Extract layer-specific events
+    walk_modules: Recursively walk through napari modules
+    class_doc_attrs: Extract attributes from class docstrings
+    merge_image_and_label_rows: Consolidate common events across layer types
+    main: Orchestrate event documentation generation
+"""
+
 import ast
 import inspect
 from dataclasses import dataclass

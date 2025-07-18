@@ -1,3 +1,69 @@
+"""Generate documentation for napari UI sections and their architecture.
+
+This module provides functionality to automatically generate documentation about
+napari's UI architecture, including dependency graphs and directory structures
+for various UI components. It helps developers understand the organization and
+relationships between different UI modules.
+
+Generated Content
+-----------------
+The module generates documentation files in `docs/developers/architecture/ui_sections/`:
+- `layer_list.md` - Layer list component documentation
+- `layer_controls.md` - Layer controls documentation
+- `application_status_bar.md` - Status bar documentation
+- `application_menus.md` - Menu system documentation
+- `viewer.md` - Main viewer documentation
+- `dialogs.md` - Dialog system documentation
+- `console.md` - Console component documentation
+
+Each generated file includes:
+- Module overview and purpose
+- Directory structure visualization
+- Dependency graph (showing internal module relationships)
+- Generated using seedir for directory trees and pydeps for dependency analysis
+
+Usage
+-----
+From command line:
+    # Generate full UI sections documentation
+    python update_ui_sections_docs.py
+
+    # Generate only stub documentation (for quick builds)
+    python update_ui_sections_docs.py --stubs
+
+From another script:
+    from update_ui_sections_docs import main
+    main(stubs=False)  # Generate full documentation
+
+Key Functions
+-------------
+generate_dependencies_graph(options)
+    Generates module dependency analysis using pydeps.
+
+generate_directory_layout(dependencies_graph, root_directory, output_file)
+    Creates a directory tree visualization from dependency graph.
+
+generate_mermaid_diagram(dependencies_graph, **kwargs)
+    Generates Mermaid flowchart diagram from dependency graph.
+
+generate_docs_ui_section_page(section_name, mermaid_diagram, directory_layout, output_file)
+    Creates the markdown page content for a UI section.
+
+generate_docs_ui_section(section_name, output_page, pydeps_args, mermaid_graph_base_properties)
+    Orchestrates the generation of all content for a UI section.
+
+main(stubs=False)
+    Main entry point that coordinates documentation generation.
+
+Notes
+-----
+- Dependency graphs exclude external packages to focus on internal structure
+- Directory trees are limited to 3 levels deep for readability
+- The pydeps package is used for dependency analysis
+- seedir is used for directory tree visualization
+- Stub mode creates minimal documentation for faster builds
+"""
+
 # ---- Standard library imports
 import json
 from pathlib import Path
