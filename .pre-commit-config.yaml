@@ -1,11 +1,37 @@
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
-    hooks:
-    -   id: trailing-whitespace
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: "v5.0.0"
+  hooks:
+    - id: check-added-large-files
+    - id: check-case-conflict
+    - id: check-merge-conflict
+    - id: check-symlinks
+    - id: check-yaml
+    - id: debug-statements
+    - id: end-of-file-fixer
+    - id: mixed-line-ending
+    - id: name-tests-test
+      args: ["--pytest-test-first"]
+    - id: requirements-txt-fixer
+    - id: trailing-whitespace
+      exclude: .*\.md
 
 - repo: https://github.com/codespell-project/codespell
   # Configuration for codespell is in .codespellrc
   rev: v2.4.0
   hooks:
   - id: codespell
+
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.12.3
+  hooks:
+    # Run the linter.
+    - id: ruff-check
+      types_or: [ python, pyi ]
+      args: [--fix]
+    # Run the formatter.
+    - id: ruff-format
+      types_or: [ python, pyi ]
+
+default_language_version:
+    python: python3.13
