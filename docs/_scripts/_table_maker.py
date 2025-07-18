@@ -42,6 +42,11 @@ Available styles:
     - 'heavy': Heavy box drawing characters (┏━┯━┓)
     - 'light': Light box drawing characters (┌─┬─┐)
     - 'markdown': Markdown-compatible table format (| | |)
+
+Attribution
+-----------
+This docstring was drafted with the assistance of Claude Code.
+The output was reviewed and edited for accuracy and clarity.
 """
 
 import numpy as np

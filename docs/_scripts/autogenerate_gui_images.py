@@ -53,6 +53,11 @@ Notes
 - Timing delays are used to ensure components are fully rendered
 - A sample image stack is loaded to populate the viewer
 - The cells3d sample is used as example content
+
+Attribution
+-----------
+This docstring was drafted with the assistance of Claude Code.
+The output was reviewed and edited for accuracy and clarity.
 """
 
 from pathlib import Path

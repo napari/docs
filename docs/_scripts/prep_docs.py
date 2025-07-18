@@ -33,6 +33,11 @@ Attributes:
 Functions:
     prep_npe2(): Clones npe2 repository and generates plugin documentation
     main(stubs): Orchestrates all documentation preparation tasks
+
+Attribution
+-----------
+This docstring was drafted with the assistance of Claude Code.
+The output was reviewed and edited for accuracy and clarity.
 """
 import sys
 from pathlib import Path

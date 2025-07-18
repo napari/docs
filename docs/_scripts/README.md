@@ -204,3 +204,10 @@ These scripts should be updated when:
 - Documentation structure changes
 
 Regular testing ensures the documentation stays synchronized with the codebase.
+
+---
+
+## Attribution
+
+This document was drafted with the assistance of Claude Code.
+The output was reviewed and edited for accuracy and clarity.

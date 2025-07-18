@@ -40,6 +40,11 @@ Functions:
     class_doc_attrs: Extract attributes from class docstrings
     merge_image_and_label_rows: Consolidate common events across layer types
     main: Orchestrate event documentation generation
+
+Attribution
+-----------
+This docstring was drafted with the assistance of Claude Code.
+The output was reviewed and edited for accuracy and clarity.
 """
 
 import ast

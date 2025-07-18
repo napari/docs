@@ -49,6 +49,11 @@ Notes
 - Documentation is generated from the NapariSettings model fields
 - Settings marked with `preferences_exclude` are documented but noted as not
   available in the UI
+
+Attribution
+-----------
+This docstring was drafted with the assistance of Claude Code.
+The output was reviewed and edited for accuracy and clarity.
 """
 
 from pathlib import Path

@@ -62,6 +62,11 @@ Notes
 - The pydeps package is used for dependency analysis
 - seedir is used for directory tree visualization
 - Stub mode creates minimal documentation for faster builds
+
+Attribution
+-----------
+This docstring was drafted with the assistance of Claude Code.
+The output was reviewed and edited for accuracy and clarity.
 """
 
 # ---- Standard library imports
