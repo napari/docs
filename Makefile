@@ -40,8 +40,13 @@ prep-stubs:
 docs-build: prep-docs
 	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build  -WT --keep-going -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
+# build docs with xvfb (headless X server)
 docs-xvfb: prep-docs
 	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -M html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+
+# build docs with xwfb (headless X server with Wayland support)
+docs-xwfb: prep-docs
+	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 xwfb-run -- sphinx-build -M html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 # full docs (re)build
 # cleans everything, starts from scratch

@@ -1,3 +1,4 @@
+(active-roadmap)=
 # Napari Roadmap
 
 Updated: **June 22, 2025**
