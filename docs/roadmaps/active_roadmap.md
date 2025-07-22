@@ -51,9 +51,9 @@ Our documentation provides more information about [napari's mission and values](
 
 ### Approach and philosophy
 
-**This roadmap is a living document** that the team adapts as needed to meet changing priorities, technology shifts, and scientific opportunities. napari's roadmap focuses on expanded core functionality, performance improvements, new features, and compatibility with other scientific tools. 
+**This roadmap is a living document** that the team adapts as needed to meet changing priorities, technology shifts, and scientific opportunities. napari's roadmap focuses on expanded core functionality, performance improvements, new features, and compatibility with other scientific tools.
 
-This roadmap **is a high-level view of the project's priorities**. It offers a compass for the core team, contributors, users, and funders to guide us as the project evolves. This roadmap is a relatively "jargon-free" view of essential efforts planned for napari's future. The roadmap should contain strategic deliverables to carry out the project's mission. 
+This roadmap **is a high-level view of the project's priorities**. It offers a compass for the core team, contributors, users, and funders to guide us as the project evolves. This roadmap is a relatively "jargon-free" view of essential efforts planned for napari's future. The roadmap should contain strategic deliverables to carry out the project's mission.
 
 This roadmap **is not a detailed project plan** with milestones and assignments. Project plans will be captured in GitHub issues and projects, and the work will be discussed in the project's workgroup meetings. Focusing on strategic deliverables makes the roadmap easier to understand and prioritize than a collection of issues in a project table.
 
@@ -129,7 +129,7 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 
 ***The napari core public API should enable support of new visualization libraries and enable research teams to develop domain-specific front-end user interfaces.***
 
-*Benefits: Timely support of new frontend frameworks and web assembly in the browser, unlock integration into existing research tools, and provide support for new visualization engines.* 
+*Benefits: Timely support of new frontend frameworks and web assembly in the browser, unlock integration into existing research tools, and provide support for new visualization engines.*
 
 * Create a new **napari core API specification** version to support **declarative visualization**, **viewer serialization**, and **front-end agnostic user interfaces**.
 
@@ -249,21 +249,21 @@ The timeline includes ideas that we have firm commitments to deliver. Over time,
 
 The following items are active priorities for the project:
 
-* Shape triangulation performance  
-* Hub-lite: a community built and managed alternative to the napari hub  
-* Modular canvas (API foundational work)  
-* Decoupling library from application design  
+* Shape triangulation performance
+* Hub-lite: a community built and managed alternative to the napari hub
+* Modular canvas (API foundational work)
+* Decoupling library from application design
 * Sustaining the project
 
 Our next priorities are:
 
-* Multi-canvas (foundational work)  
-* Improvements to the plugin manifest (technical design)  
-* Core functionality for grouping of layers  
-* Instanced rendering performance  
-* Performance under core library   
+* Multi-canvas (foundational work)
+* Improvements to the plugin manifest (technical design)
+* Core functionality for grouping of layers
+* Instanced rendering performance
+* Performance under core library
 * Additional performance optimization and memory management.
 
 ### 2026 milestones and beyond
 
-This section will list commitments for 2026 and beyond. 
+This section will list commitments for 2026 and beyond.
