@@ -11,7 +11,9 @@ napari has been adopted globally and across scientific disciplines. More informa
 
 ### Vision
 
-napari's vision is to make exploration, annotation, and analysis of multidimensional data seamless for both Python experts and non-Python users alike.
+napari's vision is to make exploration, annotation, and analysis of
+multidimensional image data seamless for both Python and non-Python
+users alike.
 
 ### Founding principles
 
