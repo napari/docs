@@ -93,27 +93,9 @@ napari
 
 +++
 
-````{tip}
-Starting with release 0.6.0, napari has a command palette that can be opened with
-the keyboard shortcut {kbd}`Command/Ctrl+Shift+P`. Once open, start typing the
-name of the action you want to use. You can keep typing to refine or use the arrow
-keys to change the selection. Once you have the action you want highlighted, press
-{kbd}`Enter` to run the action.
-
-```{raw} html
-<figure>
-  <video width="100%" controls autoplay loop muted playsinline>
-    <source src="../../_static/images/command-palette.webm" type="video/webm" />
-    <source src="../../_static/images/command-palette.mp4" type="video/mp4" />
-    <img src="../../_static/images/command-palette.png"
-      title="Your browser does not support the video tag"
-      alt="a screen recording showing the command palette in action to open Cells 3D example and toggle 3D viewer mode"
-    >
-  </video>
-
-</figure>
-```
-````
+:::{tip}
+Starting with release 0.6.0, you can use the [command palette](command-palette) to launch any command!
+:::
 
 ### Open an image
 
