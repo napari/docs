@@ -1,7 +1,7 @@
 # napari 0.6.3
 ⚠️ *Note: these release notes are still in draft while 0.6.3 is in release candidate testing.* ⚠️
 
-*Tue, Jul 22, 2025*
+*Wed, Jul 23, 2025*
 
 We’re happy to announce the release of napari 0.6.3!
 
@@ -11,11 +11,22 @@ For more information, examples, and documentation, please visit our website: htt
 
 ## Highlights
 
+### A Zoom with a View 🔍
 
-- Qt controls for thick slicing ([#6146](https://github.com/napari/napari/pull/6146))
-- Enable testing on recent PySide6  ([#7887](https://github.com/napari/napari/pull/7887))
-- Add 'zoom-box' to the viewer ([#8004](https://github.com/napari/napari/pull/8004))
-- Prevent Windows Access Violation with GPU resource cleanup on layer removal ([#8122](https://github.com/napari/napari/pull/8122))
+Pardon the play on words, but you can now zoom directly to a region of interest in the viewer by holding `Alt` and dragging with the mouse [(#8004)](https://github.com/napari/napari/pull/8004). The camera will pan and zoom to fit the selected region, making it much easier to focus on specific areas of your data. This feature works in both 2D and 3D views.
+
+### Fine Tuning Thick Slicing from the GUI 📏
+
+Thick slicing controls are now available in the GUI [(#6146)](https://github.com/napari/napari/pull/6146)! This allows you to project multiple slices together using different modes (sum, mean, max, and min) for better visualization of your multidimensional data. You can access the thickness controls by right-clicking on the dimension sliders to open a popup to change the margins either symmetrically or asymmetrical and projection mode settings are now available per layer in the layer controls widget.
+
+### Windows: Access ~~Denied~~ Fixed 🪟
+
+A critical Windows-specific bug that caused Access Violation errors has been resolved [(#8122)](https://github.com/napari/napari/pull/8122)! This longstanding issue would cause napari to stop displaying layers due to various events and often occured at seemingly non-reproducible times, and required a full restart of napari. The fix ensures proper cleanup and syncing of GPU resources, also reducing memory usage on all platforms. If you were an effected user, you may recall it as `Access Violation`, `0x000000000000001C` if triggered without a plugin, or `0x000000000000034C` if triggered with a plugin.
+
+### Improved PySide6 Support 🛠️
+
+Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/napari/pull/7887), resolving various compatibility issues and segfaults. This update enhances stability across platforms and prepares napari for the future as Qt5 approaches end-of-life.
+
 
 ## New Features
 
@@ -25,6 +36,7 @@ For more information, examples, and documentation, please visit our website: htt
 - Use information about units when calculate scale of layers when render ([#7889](https://github.com/napari/napari/pull/7889))
 - Add 'zoom-box' to the viewer ([#8004](https://github.com/napari/napari/pull/8004))
 - Add hot-reload for the devs ([#8007](https://github.com/napari/napari/pull/8007))
+- Add viewbox coordinates to events and Cursor ([#8130](https://github.com/napari/napari/pull/8130))
 
 ## Improvements
 
@@ -50,6 +62,10 @@ For more information, examples, and documentation, please visit our website: htt
 - Improve performance and memory usage of editing Shapes layer (#8006 again) ([#8109](https://github.com/napari/napari/pull/8109))
 - Prevent Windows Access Violation with GPU resource cleanup on layer removal ([#8122](https://github.com/napari/napari/pull/8122))
 
+## API Changes
+
+- Add viewbox coordinates to events and Cursor ([#8130](https://github.com/napari/napari/pull/8130))
+
 ## Documentation
 
 - Update docs constraints and pyprojecttoml for npe2 ([#8075](https://github.com/napari/napari/pull/8075))
@@ -60,7 +76,7 @@ For more information, examples, and documentation, please visit our website: htt
 - Added a try it out now section to README.md for using uv. ([#8107](https://github.com/napari/napari/pull/8107))
 - Update README wording about scikit-image example ([#8125](https://github.com/napari/napari/pull/8125))
 - Autogenerate images of parts of the viewer ([docs#621](https://github.com/napari/docs/pull/621))
-- Update instruction how to update contraints files ([docs#672](https://github.com/napari/docs/pull/672))
+- Update instructions on how to update constraints files ([docs#672](https://github.com/napari/docs/pull/672))
 - Updates to NAP-9: Multiple Views ([docs#730](https://github.com/napari/docs/pull/730))
 - Update guides.md to add menu contribution guide ([docs#747](https://github.com/napari/docs/pull/747))
 - Update building your first plugin guide ([docs#753](https://github.com/napari/docs/pull/753))
@@ -78,12 +94,15 @@ For more information, examples, and documentation, please visit our website: htt
 - Add instructions for headless docs build on Wayland ([docs#781](https://github.com/napari/docs/pull/781))
 - Add module docstrings to scripts ([docs#787](https://github.com/napari/docs/pull/787))
 - Update pre-commit config to add some python checkers ([docs#788](https://github.com/napari/docs/pull/788))
+- Group event docs in order ([docs#789](https://github.com/napari/docs/pull/789))
+- Add 0.6.3 release notes draft for release candidate ([docs#792](https://github.com/napari/docs/pull/792))
+- Add "useful features" page ([docs#796](https://github.com/napari/docs/pull/796))
+- Add introductory paragraph to starting an event loop api doc ([docs#797](https://github.com/napari/docs/pull/797))
 
 ## Other Pull Requests
 
 - Add codespell support (config, workflow to detect/not fix) and make it fix few typos ([#7619](https://github.com/napari/napari/pull/7619))
 - Move export ROI and export figure implementations into `QtViewer` ([#7950](https://github.com/napari/napari/pull/7950))
-- Clipping planes control widget ([#7993](https://github.com/napari/napari/pull/7993))
 - [pre-commit.ci] pre-commit autoupdate ([#8062](https://github.com/napari/napari/pull/8062))
 - Block the recent pytest-qt version on python 3.10 to keep PySide2 support in testing. ([#8067](https://github.com/napari/napari/pull/8067))
 - Add configurable suffix for test artifacts ([#8069](https://github.com/napari/napari/pull/8069))
@@ -101,10 +120,11 @@ For more information, examples, and documentation, please visit our website: htt
 - Improve stability of tests by ensuring cleaning of QtViewer instances ([#8113](https://github.com/napari/napari/pull/8113))
 - Do not crash test with leaked graph if test failed ([#8123](https://github.com/napari/napari/pull/8123))
 - [pre-commit.ci] pre-commit autoupdate ([#8124](https://github.com/napari/napari/pull/8124))
+- Cleanup of `test_qt_utils.py` ([#8129](https://github.com/napari/napari/pull/8129))
 - Update triggered_target_build.yml regex to ensure we match on hyphen ([docs#764](https://github.com/napari/docs/pull/764))
 
 
-## 12 authors added to this release (alphabetical)
+## 13 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -115,6 +135,7 @@ For more information, examples, and documentation, please visit our website: htt
 - [Ian Coccimiglio](https://github.com/napari/docs/commits?author=ian-coccimiglio) - @ian-coccimiglio +
 - [Kanai Potts](https://github.com/napari/napari/commits?author=8bitbiscuit) - @8bitbiscuit +
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
+- [Lukasz Migas](https://github.com/napari/napari/commits?author=lukasz-migas) - @lukasz-migas
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
 - [Rahul Kumar](https://github.com/napari/napari/commits?author=rahul713rk) - @rahul713rk
@@ -122,10 +143,11 @@ For more information, examples, and documentation, please visit our website: htt
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 
 
-## 18 reviewers added to this release (alphabetical)
+## 19 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
+- [andrew sweet](https://github.com/napari/docs/commits?author=andy-sweet) - @andy-sweet
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) ([docs](https://github.com/napari/docs/commits?author=willingc))  - @willingc
 - [Constantin Aronssohn](https://github.com/napari/docs/commits?author=cnstt) - @cnstt
 - [Daniel Althviz Moré](https://github.com/napari/docs/commits?author=dalthviz) - @dalthviz
@@ -136,7 +158,7 @@ For more information, examples, and documentation, please visit our website: htt
 - [jaime rodraguez-guerra](https://github.com/napari/docs/commits?author=jaimergp) - @jaimergp
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
-- [Lukasz Migas](https://github.com/napari/docs/commits?author=lukasz-migas) - @lukasz-migas
+- [Lukasz Migas](https://github.com/napari/napari/commits?author=lukasz-migas) - @lukasz-migas
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
 - [Rahul Kumar](https://github.com/napari/napari/commits?author=rahul713rk) - @rahul713rk
