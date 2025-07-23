@@ -262,5 +262,6 @@ subtrees:
       entries:
       - file: api/modules
       - file: api/event_loop
-      - file: api/view_layer
+      - file: api/viewer
       - file: api/misc
+      - file: api/deprecated
