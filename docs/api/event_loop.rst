@@ -1,5 +1,5 @@
-Starting the Event Loop
------------------------
+napari.run() - Start the Event Loop
+-----------------------------------
 
 The `napari` module provides a function `run` to start the user interface's event loop.
 Currently, napari's user interface uses the Qt library.
