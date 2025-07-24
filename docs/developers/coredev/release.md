@@ -136,10 +136,12 @@ These constraints files need to be updated at least weekly on Monday, and may al
 To get updated constraints for a PR, use `@napari-bot update constraints` in a PR comment, then follow the instruction added by the bot to the conversation.
 
 ````{admonition} Example
-To update the docs constraints file, assuming you have the `napari/napari` repo and `napari/docs` repo cloned next to each other, you can install [uv](https://astral.sh/blog/uv) and run the following command from the root of the `napari` repo:
+To manually update the constraints files, you need to have the [`uv`](https://github.com/astral-sh/uv) tool installed, then copy 
+and run the command from the second line of a given constraints file. 
+For example:  
 
 ```bash
-uv pip compile --python-version 3.11 --upgrade --output-file resources/constraints/constraints_py3.11_docs.txt pyproject.toml resources/constraints/version_denylist.txt resources/constraints/version_denylist_examples.txt ../docs/requirements.txt resources/constraints/pydantic_le_2.txt --extra pyqt5 --extra pyqt6 --extra pyside2 --extra pyside6_experimental --extra testing --extra testing_extra --extra optional
+uv pip compile --python-version 3.12 --output-file resources/constraints/constraints_py3.12.txt pyproject.toml resources/constraints/version_denylist.txt --extra pyqt6 --extra pyside2 --extra pyside6_experimental --extra testing --extra testing_extra --extra optional
 ```
 ````
 

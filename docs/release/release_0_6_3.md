@@ -1,7 +1,7 @@
 # napari 0.6.3
 ⚠️ *Note: these release notes are still in draft while 0.6.3 is in release candidate testing.* ⚠️
 
-*Tue, Jul 22, 2025*
+*Wed, Jul 23, 2025*
 
 We’re happy to announce the release of napari 0.6.3!
 
