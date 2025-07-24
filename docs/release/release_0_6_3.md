@@ -1,7 +1,7 @@
 # napari 0.6.3
 ⚠️ *Note: these release notes are still in draft while 0.6.3 is in release candidate testing.* ⚠️
 
-*Wed, Jul 23, 2025*
+*Tue, Jul 22, 2025*
 
 We’re happy to announce the release of napari 0.6.3!
 
@@ -25,8 +25,7 @@ A critical Windows-specific bug that caused Access Violation errors has been res
 
 ### Improved PySide6 Support 🛠️
 
-Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/napari/pull/7887), resolving various compatibility issues and segfaults. This update enhances stability across platforms and prepares napari for the future as Qt5 approaches end-of-life.
-
+Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/napari/pull/7887). We encourage plugin developers to test against PySide6, as that we will drop PySide2 as support ends with Python 3.10. If you are a plugin developer, or otherwise depend on napari and PySide2, please reach out on Zulip or Github.
 
 ## New Features
 
@@ -37,6 +36,7 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Add 'zoom-box' to the viewer ([#8004](https://github.com/napari/napari/pull/8004))
 - Add hot-reload for the devs ([#8007](https://github.com/napari/napari/pull/8007))
 - Add viewbox coordinates to events and Cursor ([#8130](https://github.com/napari/napari/pull/8130))
+- feat: Add option to execute python code by drag'n'drop script to viewer ([#8135](https://github.com/napari/napari/pull/8135))
 
 ## Improvements
 
@@ -75,6 +75,7 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - New example for affine transformations in 3D using meshio and stl ([#8103](https://github.com/napari/napari/pull/8103))
 - Added a try it out now section to README.md for using uv. ([#8107](https://github.com/napari/napari/pull/8107))
 - Update README wording about scikit-image example ([#8125](https://github.com/napari/napari/pull/8125))
+- Add example for grid mode. ([#8131](https://github.com/napari/napari/pull/8131))
 - Autogenerate images of parts of the viewer ([docs#621](https://github.com/napari/docs/pull/621))
 - Update instructions on how to update constraints files ([docs#672](https://github.com/napari/docs/pull/672))
 - Updates to NAP-9: Multiple Views ([docs#730](https://github.com/napari/docs/pull/730))
@@ -96,8 +97,11 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Update pre-commit config to add some python checkers ([docs#788](https://github.com/napari/docs/pull/788))
 - Group event docs in order ([docs#789](https://github.com/napari/docs/pull/789))
 - Add 0.6.3 release notes draft for release candidate ([docs#792](https://github.com/napari/docs/pull/792))
+- Add docs for thick slicing ([docs#794](https://github.com/napari/docs/pull/794))
 - Add "useful features" page ([docs#796](https://github.com/napari/docs/pull/796))
 - Add introductory paragraph to starting an event loop api doc ([docs#797](https://github.com/napari/docs/pull/797))
+- Update title of event loop api page for discoverability of napari.run ([docs#799](https://github.com/napari/docs/pull/799))
+- Improve API docs for view_* pending removal in 0.7 ([docs#800](https://github.com/napari/docs/pull/800))
 
 ## Other Pull Requests
 
@@ -121,6 +125,8 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Do not crash test with leaked graph if test failed ([#8123](https://github.com/napari/napari/pull/8123))
 - [pre-commit.ci] pre-commit autoupdate ([#8124](https://github.com/napari/napari/pull/8124))
 - Cleanup of `test_qt_utils.py` ([#8129](https://github.com/napari/napari/pull/8129))
+- Small fix to shapes measurement ([#8133](https://github.com/napari/napari/pull/8133))
+- Update Citation file for 0.6.1 through 0.6.3 ([#8138](https://github.com/napari/napari/pull/8138))
 - Update triggered_target_build.yml regex to ensure we match on hyphen ([docs#764](https://github.com/napari/docs/pull/764))
 
 
