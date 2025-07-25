@@ -12,9 +12,12 @@ kernelspec:
   name: python3
 ---
 (features)=
-# Useful features
+# Features
 
-+++
+This page highlights a few napari features that are useful in many scenarios and might be easily overlooked.
+The [command palette](command-palette) is great to avoid clicking around menus to find _that_ specific command.
+The [measurement tool](measure-tool) allows for quick distance and area measurements.
+For layers with `features`, the [features table widge](features-table-widget) provides a simple graphical interface for editing and interaction with the feature table.
 
 (command-palette)=
 ## Command Palette
@@ -40,6 +43,7 @@ keys to change the selection. Once you have the action you want highlighted, pre
 ```
 ...
 
+(measure-tool)=
 ## Measure distances and areas
 
 When using a `Shapes` layer to annotate features of interest, we can enable the `shape measurement` tool to obtain a live measurement of the perimeters and areas of the available shapes. This can be used also to measure distances, by tracing a `Line` between two points.
