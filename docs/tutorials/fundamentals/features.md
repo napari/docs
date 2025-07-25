@@ -22,11 +22,12 @@ For layers with `features`, the [features table widge](features-table-widget) pr
 (command-palette)=
 ## Command Palette
 
-Starting from version 0.6.0, napari has a command palette that can be opened with
-the keyboard shortcut {kbd}`Command/Ctrl+Shift+P`. Once open, start typing part of the
-name of the action you want to use. You can keep typing to refine or use the arrow
-keys to change the selection. Once you have the action you want highlighted, press
-{kbd}`Enter` to run the action.
+napari has a **command palette** that can be opened with
+the keyboard shortcut {kbd}`Command/Ctrl+Shift+P`. As you type
+the action's name, the command palette will dynamically suggest matching actions.
+You can continue typing to refine suggestions or use the arrow
+keys to make a selection. Once you have the action you want highlighted, press
+{kbd}`Enter` to run the action. *Added in version 0.6.0.*
 
 ```{raw} html
 <figure>
@@ -46,18 +47,18 @@ keys to change the selection. Once you have the action you want highlighted, pre
 (measure-tool)=
 ## Measure distances and areas
 
-When using a `Shapes` layer to annotate features of interest, we can enable the `shape measurement` tool to obtain a live measurement of the perimeters and areas of the available shapes. This can be used also to measure distances, by tracing a `Line` between two points.
+When using a `Shapes` layer to annotate features of interest, the **Shape Measurement Tool** is used to obtain a live measurement of the available shapes, including perimeter and area. You can also measure distances by tracing a `Line` between two points.
 
-This feature can be enabled by clicking on `Layers->Measure->Toggle shape dimensions measurement (napari builltins)` while a `Shapes` layer is selected. As with all other commands, this can also be toggled via the [command palette](command-palette) by searching for the above command name.
+This tool can be enabled by clicking on `Layers->Measure->Toggle shape dimensions measurement (napari builltins)` while a `Shapes` layer is selected. As with all other commands, this can also be enabled using the [command palette](command-palette) by searching for "shape measurement".
 
 ![image: Shape measurement tool enabled](../../_static/images/shape-measure.png).
 
-The measurements are displayed on the canvas and updated live, but they are also accessible through the layer's features table via `layer.features['_area']` and `layer.features['_perimeter']`.
+The measurements are displayed on the canvas and updated live, and they are also accessible through the layer's features table via `layer.features['_area']` and `layer.features['_perimeter']`.
 
 (features-table-widget)=
 ## Features table widget
 
-The features table widget can be used to visualize, edit, select or save the contents of the `features` table of any layer that supports features (e.g: `Points.features`).
+The **Features Table Widget** can be used to visualize, edit, select, or save the contents of the `features` table of any layer that supports features (e.g., `Points.features`).
 
 ![image: Features Table Widget](../../_static/images/features_table_widget.png).
 
