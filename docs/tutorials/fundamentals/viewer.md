@@ -362,9 +362,34 @@ And to change the current position of the sliders use:
 viewer.dims.current_step = (3, 255, 255)
 ```
 The length of the `current_step` tuple corresponds to the number of dimensions. Note that in this example, the last two dimensions are *displayed* (don't have a slider) and thus changing the last two elements of the tuple will have no effect [until the axes order is changed](#roll-dimensions).
+The same information but in *world coordinates* (i.e., including
+scale and translate transformations) is accessible via `viewer.dims.point`.
 
-Lastly, `viewer.dims.point` contains the position in world coordinates (i.e., including
-scale and translate transformations).
+By default napari will only show a slice of the data: that which is located *exactly* at this position. However, it is possible to visualize data from a thicker dimensional slice by modifying `viewer.dims.thickness`. This will use each layer's `projection_mode` to visualize the space around `viewer.dims.point`.  Alternately, you can set `viewer.dims.margin_left` and `viewer.dims.margin_right` to explicitly set the range of data around `viewer.dims.point` to be projected. Finally, you can use the corresponding `margin_left_step` and `margin_right_step` properties to work in "slider coordinates".
+
+
+```{code-cell} python
+:tags: [remove-output]
+import numpy as np
+from skimage import data
+
+import napari
+
+viewer, (membranes, nuclei) = napari.imshow(data.cells3d(), channel_axis=1)
+
+viewer.dims.thickness_step = (10, 1, 1)
+
+# average for membranes, but no projection for nuclei (margins are ignored)
+membranes.projection_mode = 'mean'
+nuclei.projection_mode = 'none'
+```
+
+```{code-cell} python
+:tags: [hide-input]
+nbscreenshot(viewer, alt_text="A slice through a 2-channel (membranes and nuclei) fluorescence image of cells, which the membranes averaged over 10 z-slices.")
+```
+
+The margins can also be controlled from the GUI by right-clicking the corresponding dimension slider.
 
 ### Scroll buttons
 
