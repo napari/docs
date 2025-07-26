@@ -365,9 +365,8 @@ The length of the `current_step` tuple corresponds to the number of dimensions. 
 The same information but in *world coordinates* (i.e., including
 scale and translate transformations) is accessible via `viewer.dims.point`.
 
-While by default napari will only show data located *exactly* at this position, it is possible to visualize data from a thicker dimensional slice by modifying `viewer.dims.margin_left` and `viewer.dims.margin_right`, or `viewer.dims.thickness` to change both symmetrically (or the corresponding `*_step` properties to work in "slider coordinates").
+By default napari will only show a slice of the data: that which is located *exactly* at this position. However, it is possible to visualize data from a thicker dimensional slice by modifying `viewer.dims.thickness`. This will use each layer's `projection_mode` to visualize the space around `viewer.dims.point`.  Alternately, you can set `viewer.dims.margin_left` and `viewer.dims.margin_right` to explicitly set the range of data around `viewer.dims.point` to be projected. Finally, you can use the corresponding `margin_left_step` and `margin_right_step` properties to work in "slider coordinates".
 
-When margins are non-zero, data is included from before (left) or after (right) the `viewer.dims.point` location, and for each layer it will be projected onto the visible space based on the `projection_mode` of that layer:
 
 ```{code-cell} python
 :tags: [remove-output]
