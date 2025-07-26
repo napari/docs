@@ -14,6 +14,7 @@ subtrees:
           - file: tutorials/fundamentals/installation_bundle_conda
           - file: tutorials/fundamentals/getting_started
           - file: tutorials/fundamentals/viewer
+          - file: tutorials/fundamentals/features
           - file: guides/layers
       - file: tutorials/index
         subtrees:

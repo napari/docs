@@ -313,15 +313,8 @@ of the points (e.g., face color or border color).
 To see the points features in action, please see the
 [Point annotation tutorial](annotating-points).
 
-You can also use the builtin Features Table Widget to select, visualize, edit,
+You can also use the builtin [Features Table Widget](features-table-widget) to select, visualize, edit,
 or save the contents of the `features` table.
-
-![image: Features Table Widget](../../_static/images/features_table_widget.png).
-
-To open it, go to `Layer -> Visualize -> Features Table Widget` or press
-{kbd}`Command/Ctrl+Shift+P` to open the command palette and search for "features".
-To see it in action, see the {ref}`sphx_glr_gallery_features_table_widget.py` gallery example.
-
 
 ### Non-editable mode
 
