@@ -63,8 +63,6 @@ subtrees:
       - file: guides/index
         subtrees:
         - entries:
-          - file: guides/event_loop
-          - file: guides/threading
           - file: guides/3D_interactivity
           - file: guides/handedness
           - file: guides/triangulation
@@ -72,6 +70,8 @@ subtrees:
           - file: guides/performance
           - file: guides/preferences
           - file: guides/contexts_expressions
+          - file: guides/event_loop
+          - file: guides/threading
           - file: guides/events_reference
       - file: further-resources/glossary
       - file: further-resources/napari-workshops
@@ -262,5 +262,6 @@ subtrees:
       entries:
       - file: api/modules
       - file: api/event_loop
-      - file: api/view_layer
+      - file: api/viewer
       - file: api/misc
+      - file: api/deprecated
