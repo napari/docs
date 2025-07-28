@@ -27,7 +27,6 @@ A critical Windows-specific bug that caused Access Violation errors has been res
 
 Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/napari/pull/7887). We encourage plugin developers to test against PySide6, as a fully supported backend going forward. Additionally, this change will enable us to drop PySide2 along side Python 3.10, in the near future. If you are a plugin developer or otherwise depend on napari and PySide2, please reach out on Zulip or Github.
 
-
 ## New Features
 
 - Qt controls for thick slicing ([#6146](https://github.com/napari/napari/pull/6146))
