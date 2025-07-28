@@ -1,7 +1,7 @@
 # napari 0.6.3
 ⚠️ *Note: these release notes are still in draft while 0.6.3 is in release candidate testing.* ⚠️
 
-*Tue, Jul 22, 2025*
+*Wed, Jul 30, 2025*
 
 We’re happy to announce the release of napari 0.6.3!
 
@@ -25,16 +25,14 @@ A critical Windows-specific bug that caused Access Violation errors has been res
 
 ### Improved PySide6 Support 🛠️
 
-Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/napari/pull/7887). We encourage plugin developers to test against PySide6, as that we will drop PySide2 as support ends with Python 3.10. If you are a plugin developer, or otherwise depend on napari and PySide2, please reach out on Zulip or Github.
+Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/napari/pull/7887). We encourage plugin developers to test against PySide6, as a fully supported backend going forward. Additionally, this change will enable us to drop PySide2 along side Python 3.10, in the near future. If you are a plugin developer or otherwise depend on napari and PySide2, please reach out on Zulip or Github.
+
 
 ## New Features
 
 - Qt controls for thick slicing ([#6146](https://github.com/napari/napari/pull/6146))
 - Add automatic area and perimeter measurement for shapes + action ([#7262](https://github.com/napari/napari/pull/7262))
-- Tiling canvas overlays ([#7836](https://github.com/napari/napari/pull/7836))
-- Use information about units when calculate scale of layers when render ([#7889](https://github.com/napari/napari/pull/7889))
 - Add 'zoom-box' to the viewer ([#8004](https://github.com/napari/napari/pull/8004))
-- Add hot-reload for the devs ([#8007](https://github.com/napari/napari/pull/8007))
 - Add viewbox coordinates to events and Cursor ([#8130](https://github.com/napari/napari/pull/8130))
 - feat: Add option to execute python code by drag'n'drop script to viewer ([#8135](https://github.com/napari/napari/pull/8135))
 
@@ -44,10 +42,9 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Enable testing on recent PySide6  ([#7887](https://github.com/napari/napari/pull/7887))
 - Implement pasting spatial information into higher dimensions ([#7973](https://github.com/napari/napari/pull/7973))
 - Improve performance and memory usage of editing Shapes layer  ([#8006](https://github.com/napari/napari/pull/8006))
-- [Update] Added `remove` and `remove_selected` in Shapes and Points ([#8031](https://github.com/napari/napari/pull/8031))
 - Colorblind friendly image sample of kidney and lily ([#8090](https://github.com/napari/napari/pull/8090))
-- Add Features using Features Table widget ([#8093](https://github.com/napari/napari/pull/8093))
 - Added fixed seed and tested the value. ([#8097](https://github.com/napari/napari/pull/8097))
+- Add alpha to split rgba into channels and remerge image. ([#8112](https://github.com/napari/napari/pull/8112))
 - Add keybinding (CtrlCmd-up/down) to select layer above/below ([#8119](https://github.com/napari/napari/pull/8119))
 
 ## Performance
@@ -57,10 +54,12 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 ## Bug Fixes
 
 - ensure sync when taking a screenshot ([#8064](https://github.com/napari/napari/pull/8064))
-- Set the dimensions of the label equal to the maximum value of the layers world ([#8098](https://github.com/napari/napari/pull/8098))
 - Updated code to use current symbol and border width for new points. ([#8102](https://github.com/napari/napari/pull/8102))
 - Improve performance and memory usage of editing Shapes layer (#8006 again) ([#8109](https://github.com/napari/napari/pull/8109))
+- Add alpha to split rgba into channels and remerge image. ([#8112](https://github.com/napari/napari/pull/8112))
 - Prevent Windows Access Violation with GPU resource cleanup on layer removal ([#8122](https://github.com/napari/napari/pull/8122))
+- Only use scale to transform margins in thick slices ([#8137](https://github.com/napari/napari/pull/8137))
+- Fix scalebar behaviour at high/low zoom ([#8144](https://github.com/napari/napari/pull/8144))
 
 ## API Changes
 
@@ -98,19 +97,19 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Group event docs in order ([docs#789](https://github.com/napari/docs/pull/789))
 - Add 0.6.3 release notes draft for release candidate ([docs#792](https://github.com/napari/docs/pull/792))
 - Add docs for thick slicing ([docs#794](https://github.com/napari/docs/pull/794))
+- Minor roadmap update ([docs#795](https://github.com/napari/docs/pull/795))
 - Add "useful features" page ([docs#796](https://github.com/napari/docs/pull/796))
 - Add introductory paragraph to starting an event loop api doc ([docs#797](https://github.com/napari/docs/pull/797))
 - Update title of event loop api page for discoverability of napari.run ([docs#799](https://github.com/napari/docs/pull/799))
 - Improve API docs for view_* pending removal in 0.7 ([docs#800](https://github.com/napari/docs/pull/800))
+- Update 0.6.3 release notes ([docs#803](https://github.com/napari/docs/pull/803))
 
 ## Other Pull Requests
 
-- Add codespell support (config, workflow to detect/not fix) and make it fix few typos ([#7619](https://github.com/napari/napari/pull/7619))
 - Move export ROI and export figure implementations into `QtViewer` ([#7950](https://github.com/napari/napari/pull/7950))
 - [pre-commit.ci] pre-commit autoupdate ([#8062](https://github.com/napari/napari/pull/8062))
 - Block the recent pytest-qt version on python 3.10 to keep PySide2 support in testing. ([#8067](https://github.com/napari/napari/pull/8067))
 - Add configurable suffix for test artifacts ([#8069](https://github.com/napari/napari/pull/8069))
-- [Update] Added `pop` for `Points` and `Shapes` ([#8072](https://github.com/napari/napari/pull/8072))
 - Update `coverage`, `hypothesis`, `ipython`, `pillow`, `psygnal`, `pytest-qt`, `tensorstore`, `xarray` ([#8073](https://github.com/napari/napari/pull/8073))
 - [pre-commit.ci] pre-commit autoupdate ([#8074](https://github.com/napari/napari/pull/8074))
 - Move non-qt file actions from qactions module ([#8076](https://github.com/napari/napari/pull/8076))
@@ -120,17 +119,17 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Remove dotenv from dev dependencies ([#8089](https://github.com/napari/napari/pull/8089))
 - Add deprecation warning for view_<layer_type> functions ([#8092](https://github.com/napari/napari/pull/8092))
 - Revert #8006 Improve performance and memory usage of editing Shapes layer ([#8104](https://github.com/napari/napari/pull/8104))
-- Example from SciPy 2025 tutorial; image warping ([#8111](https://github.com/napari/napari/pull/8111))
 - Improve stability of tests by ensuring cleaning of QtViewer instances ([#8113](https://github.com/napari/napari/pull/8113))
 - Do not crash test with leaked graph if test failed ([#8123](https://github.com/napari/napari/pull/8123))
 - [pre-commit.ci] pre-commit autoupdate ([#8124](https://github.com/napari/napari/pull/8124))
 - Cleanup of `test_qt_utils.py` ([#8129](https://github.com/napari/napari/pull/8129))
 - Small fix to shapes measurement ([#8133](https://github.com/napari/napari/pull/8133))
 - Update Citation file for 0.6.1 through 0.6.3 ([#8138](https://github.com/napari/napari/pull/8138))
+- Slightly increase pip test workflow timeout ([#8143](https://github.com/napari/napari/pull/8143))
 - Update triggered_target_build.yml regex to ensure we match on hyphen ([docs#764](https://github.com/napari/docs/pull/764))
 
 
-## 13 authors added to this release (alphabetical)
+## 14 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -139,6 +138,7 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - [Filippo Balzaretti](https://github.com/napari/napari/commits?author=FilBalza) ([docs](https://github.com/napari/docs/commits?author=FilBalza))  - @FilBalza +
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Ian Coccimiglio](https://github.com/napari/docs/commits?author=ian-coccimiglio) - @ian-coccimiglio +
+- [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Kanai Potts](https://github.com/napari/napari/commits?author=8bitbiscuit) - @8bitbiscuit +
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
 - [Lukasz Migas](https://github.com/napari/napari/commits?author=lukasz-migas) - @lukasz-migas
@@ -149,7 +149,7 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 
 
-## 19 reviewers added to this release (alphabetical)
+## 18 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -171,5 +171,4 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - [rwkozar](https://github.com/napari/napari/commits?author=rwkozar) - @rwkozar
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wouter-Michiel Vierdag](https://github.com/napari/docs/commits?author=melonora) - @melonora
-- [Yaroslav Halchenko](https://github.com/napari/docs/commits?author=yarikoptic) - @yarikoptic
 
