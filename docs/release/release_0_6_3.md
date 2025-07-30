@@ -1,7 +1,6 @@
 # napari 0.6.3
-⚠️ *Note: these release notes are still in draft while 0.6.3 is in release candidate testing.* ⚠️
 
-*Wed, Jul 30, 2025*
+*Thu, Jul 31, 2025*
 
 We’re happy to announce the release of napari 0.6.3!
 
@@ -15,9 +14,19 @@ For more information, examples, and documentation, please visit our website: htt
 
 Pardon the play on words, but you can now zoom directly to a region of interest in the viewer by holding `Alt` and dragging with the mouse [(#8004)](https://github.com/napari/napari/pull/8004). The camera will pan and zoom to fit the selected region, making it much easier to focus on specific areas of your data. This feature works in both 2D and 3D views.
 
+![GIF Displaying Alt-Drag Zoom Box Behavior](https://github.com/user-attachments/assets/f32ea020-28e2-4059-90b9-491bdd4a962b)
+
 ### Fine Tuning Thick Slicing from the GUI 📏
 
 Thick slicing controls are now available in the GUI [(#6146)](https://github.com/napari/napari/pull/6146)! This allows you to project multiple slices together using different modes (sum, mean, max, and min) for better visualization of your multidimensional data. You can access the thickness controls by right-clicking on the dimension sliders to open a popup to change the margins either symmetrically or asymmetrical and projection mode settings are now available per layer in the layer controls widget.
+
+![GIF Displaying Thick Slicing GUI Controls](https://github.com/user-attachments/assets/f61636d6-8540-4c33-9abc-1e065c5f9d38)
+
+### Run Scripts by Dragging and Dropping into the Viewer 🖱️
+
+Scripts can now be run by dragging and dropping them into the viewer [(#8135)](https://github.com/napari/napari/pull/8135)! This is particularly useful for running [napari examples](https://napari.org/stable/gallery.html#gallery) without having to use the command line; you can even run these scripts from the bundled install! This works by adding a `.py` reader to napari's builtins.
+
+![Image Depicting a User dragging a script into the viewer](https://github.com/user-attachments/assets/af4edaa3-fd77-4697-85ea-4f2eb662f5ec)
 
 ### Windows: Access ~~Denied~~ Fixed 🪟
 
@@ -26,6 +35,7 @@ A critical Windows-specific bug that caused Access Violation errors has been res
 ### Improved PySide6 Support 🛠️
 
 Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/napari/pull/7887). We encourage plugin developers to test against PySide6, as a fully supported backend going forward. Additionally, this change will enable us to drop PySide2 along side Python 3.10, in the near future. If you are a plugin developer or otherwise depend on napari and PySide2, please reach out on Zulip or Github.
+
 
 ## New Features
 
@@ -45,6 +55,7 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Added fixed seed and tested the value. ([#8097](https://github.com/napari/napari/pull/8097))
 - Add alpha to split rgba into channels and remerge image. ([#8112](https://github.com/napari/napari/pull/8112))
 - Add keybinding (CtrlCmd-up/down) to select layer above/below ([#8119](https://github.com/napari/napari/pull/8119))
+- Do not calculate projection on slices of thickness 1 ([#8157](https://github.com/napari/napari/pull/8157))
 
 ## Performance
 
@@ -59,6 +70,9 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Prevent Windows Access Violation with GPU resource cleanup on layer removal ([#8122](https://github.com/napari/napari/pull/8122))
 - Only use scale to transform margins in thick slices ([#8137](https://github.com/napari/napari/pull/8137))
 - Fix scalebar behaviour at high/low zoom ([#8144](https://github.com/napari/napari/pull/8144))
+- Ensure contrast limits are computed on original dtype with projected thick slices ([#8149](https://github.com/napari/napari/pull/8149))
+- Fix multiscale clim estimation by using full visible data, not first row ([#8152](https://github.com/napari/napari/pull/8152))
+- Remove `np.asarray(self.cursor._view_direction)` that retun unbound array ([#8172](https://github.com/napari/napari/pull/8172))
 
 ## API Changes
 
@@ -74,6 +88,7 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Added a try it out now section to README.md for using uv. ([#8107](https://github.com/napari/napari/pull/8107))
 - Update README wording about scikit-image example ([#8125](https://github.com/napari/napari/pull/8125))
 - Add example for grid mode. ([#8131](https://github.com/napari/napari/pull/8131))
+- Update xarray_nD_image_.py to use xarray tag ([#8167](https://github.com/napari/napari/pull/8167))
 - Autogenerate images of parts of the viewer ([docs#621](https://github.com/napari/docs/pull/621))
 - Update instructions on how to update constraints files ([docs#672](https://github.com/napari/docs/pull/672))
 - Updates to NAP-9: Multiple Views ([docs#730](https://github.com/napari/docs/pull/730))
@@ -97,11 +112,12 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Add 0.6.3 release notes draft for release candidate ([docs#792](https://github.com/napari/docs/pull/792))
 - Add docs for thick slicing ([docs#794](https://github.com/napari/docs/pull/794))
 - Minor roadmap update ([docs#795](https://github.com/napari/docs/pull/795))
-- Add "useful features" page ([docs#796](https://github.com/napari/docs/pull/796))
+- Add "feature highlights" page ([docs#796](https://github.com/napari/docs/pull/796))
 - Add introductory paragraph to starting an event loop api doc ([docs#797](https://github.com/napari/docs/pull/797))
 - Update title of event loop api page for discoverability of napari.run ([docs#799](https://github.com/napari/docs/pull/799))
 - Improve API docs for view_* pending removal in 0.7 ([docs#800](https://github.com/napari/docs/pull/800))
 - Update 0.6.3 release notes ([docs#803](https://github.com/napari/docs/pull/803))
+- Drag and drop python scripts ([docs#805](https://github.com/napari/docs/pull/805))
 
 ## Other Pull Requests
 
@@ -125,10 +141,16 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Small fix to shapes measurement ([#8133](https://github.com/napari/napari/pull/8133))
 - Update Citation file for 0.6.1 through 0.6.3 ([#8138](https://github.com/napari/napari/pull/8138))
 - Slightly increase pip test workflow timeout ([#8143](https://github.com/napari/napari/pull/8143))
+- Use `pytest-rerunfailures` for flaky `test_toggle_fullscreen_from_maximized` test ([#8151](https://github.com/napari/napari/pull/8151))
+- [pre-commit.ci] pre-commit autoupdate ([#8158](https://github.com/napari/napari/pull/8158))
+- Move scalar field _slice machinery to proper module and update naming ([#8164](https://github.com/napari/napari/pull/8164))
+- Fix reporting python version in benchmark bug reports ([#8169](https://github.com/napari/napari/pull/8169))
+- Clean benchmark logs by using the non-deprecated layer-adding method ([#8170](https://github.com/napari/napari/pull/8170))
 - Update triggered_target_build.yml regex to ensure we match on hyphen ([docs#764](https://github.com/napari/docs/pull/764))
+- Pin Github Actions actions to their hashes ([docs#804](https://github.com/napari/docs/pull/804))
 
 
-## 14 authors added to this release (alphabetical)
+## 15 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -137,6 +159,7 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - [Filippo Balzaretti](https://github.com/napari/napari/commits?author=FilBalza) ([docs](https://github.com/napari/docs/commits?author=FilBalza))  - @FilBalza +
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Ian Coccimiglio](https://github.com/napari/docs/commits?author=ian-coccimiglio) - @ian-coccimiglio +
+- [jaime rodraguez-guerra](https://github.com/napari/docs/commits?author=jaimergp) - @jaimergp
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Kanai Potts](https://github.com/napari/napari/commits?author=8bitbiscuit) - @8bitbiscuit +
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
