@@ -72,7 +72,7 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Fix scalebar behaviour at high/low zoom ([#8144](https://github.com/napari/napari/pull/8144))
 - Ensure contrast limits are computed on original dtype with projected thick slices ([#8149](https://github.com/napari/napari/pull/8149))
 - Fix multiscale clim estimation by using full visible data, not first row ([#8152](https://github.com/napari/napari/pull/8152))
-- Remove `np.asarray(self.cursor._view_direction)` that retun unbound array ([#8172](https://github.com/napari/napari/pull/8172))
+- Remove `np.asarray(self.cursor._view_direction)` that return unbound array ([#8172](https://github.com/napari/napari/pull/8172))
 
 ## API Changes
 
