@@ -11,8 +11,8 @@ kernelspec:
   language: python
   name: python3
 ---
-(features)=
-# Features
+(feature-highlights)=
+# Feature highlights
 
 This page highlights a few napari features that are useful in many scenarios and might be easily overlooked.
 The [command palette](command-palette) is great to avoid clicking around menus to find _that_ specific command.
