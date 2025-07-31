@@ -131,7 +131,7 @@ html_theme_options = {
     "secondary_sidebar_items": ["page-toc"],
     "pygments_light_style": "napari",
     "pygments_dark_style": "napari",
-    "announcement": "https://raw.githubusercontent.com/napari/docs/refs/heads/main/docs/_static/announcement.html",
+    "announcement": "https://raw.githubusercontent.com/napari/docs/refs/heads/main/docs/_templates/announcement.html",
     "back_to_top_button": False,
     "analytics": {
         # The domain you'd like to use for this analytics instance
