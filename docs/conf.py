@@ -20,7 +20,7 @@ from urllib.parse import urlparse, urlunparse
 
 from jinja2.filters import FILTERS
 from packaging.version import parse as parse_version
-from pygments.lexers import TOMLLexer
+from pygments.lexers.configs import TOMLLexer
 from sphinx_gallery import gen_rst
 from sphinx_gallery import scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
@@ -54,7 +54,6 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinxcontrib.mermaid",
-    #    "sphinx_comments",
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx_external_toc",
@@ -75,10 +74,15 @@ html_sourcelink_suffix = ""
 # Define the json_url for our version switcher.
 json_url = "https://napari.org/dev/_static/version_switcher.json"
 
+# Check version and set version_match which is used by the version switcher
 if version == "dev":
     version_match = "dev"
+    # Use the local json file in dev mode
+    json_url = "_static/version_switcher.json"
 else:
     version_match = str(release)
+    # Define the json_url for our version switcher.
+    json_url = "https://napari.org/dev/_static/version_switcher.json"
 
 # Path to static files, images, favicons, logos, css, and extra templates
 html_static_path = ["_static"]
@@ -121,12 +125,13 @@ html_theme_options = {
         "json_url": json_url,
         "version_match": version_match,
     },
+    "show_version_warning_banner": True,
     "navbar_persistent": [],
     "header_links_before_dropdown": 6,
     "secondary_sidebar_items": ["page-toc"],
     "pygments_light_style": "napari",
     "pygments_dark_style": "napari",
-    "announcement": "",
+    "announcement": "https://raw.githubusercontent.com/napari/docs/refs/heads/main/docs/_templates/announcement.html",
     "back_to_top_button": False,
     "analytics": {
         # The domain you'd like to use for this analytics instance
@@ -136,7 +141,6 @@ html_theme_options = {
     },
     "footer_start": ["napari-footer-links"],
     "footer_end": ["napari-copyright"],
-    "show_version_warning_banner": True,
 }
 
 # sidebar content
@@ -167,8 +171,8 @@ intersphinx_mapping = {
         "https://pyapp-kit.github.io/magicgui/objects.inv",
     ],
     "app-model": [
-        "http://app-model.readthedocs.io/en/latest/",
-        "http://app-model.readthedocs.io/en/latest/objects.inv",
+        "https://app-model.readthedocs.io/en/latest/",
+        "https://app-model.readthedocs.io/en/latest/objects.inv",
     ],
     "vispy": [
         "https://vispy.org/",
@@ -231,7 +235,7 @@ exclude_patterns = [
     "plugins/_*.md",
     "plugins/building_a_plugin/_layer_data_guide.md",
     "gallery/index.rst",
-    "_scripts/README.md"
+    "_scripts/README.md",
 ]
 
 # -- Versions and switcher -------------------------------------------------
