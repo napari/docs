@@ -1,6 +1,7 @@
 # napari 0.6.3
+⚠️ *Note: these release notes are still in draft while 0.6.3 is in release candidate testing.* ⚠️
 
-*Thu, Jul 31, 2025*
+*Wed, Jul 30, 2025*
 
 We’re happy to announce the release of napari 0.6.3!
 
@@ -56,6 +57,7 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Add alpha to split rgba into channels and remerge image. ([#8112](https://github.com/napari/napari/pull/8112))
 - Add keybinding (CtrlCmd-up/down) to select layer above/below ([#8119](https://github.com/napari/napari/pull/8119))
 - Do not calculate projection on slices of thickness 1 ([#8157](https://github.com/napari/napari/pull/8157))
+- Add variables from drag and drop to console ([#8174](https://github.com/napari/napari/pull/8174))
 
 ## Performance
 
@@ -118,6 +120,8 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Improve API docs for view_* pending removal in 0.7 ([docs#800](https://github.com/napari/docs/pull/800))
 - Update 0.6.3 release notes ([docs#803](https://github.com/napari/docs/pull/803))
 - Drag and drop python scripts ([docs#805](https://github.com/napari/docs/pull/805))
+- Add Carol Willing to list of core developers in documentation ([docs#806](https://github.com/napari/docs/pull/806))
+- Update announcement and version switcher ([docs#807](https://github.com/napari/docs/pull/807))
 
 ## Other Pull Requests
 
@@ -146,6 +150,7 @@ Napari now has improved support for PySide6 [(#7887)](https://github.com/napari/
 - Move scalar field _slice machinery to proper module and update naming ([#8164](https://github.com/napari/napari/pull/8164))
 - Fix reporting python version in benchmark bug reports ([#8169](https://github.com/napari/napari/pull/8169))
 - Clean benchmark logs by using the non-deprecated layer-adding method ([#8170](https://github.com/napari/napari/pull/8170))
+- Update list of affiliation of Grzegorz Bokota ([#8179](https://github.com/napari/napari/pull/8179))
 - Update triggered_target_build.yml regex to ensure we match on hyphen ([docs#764](https://github.com/napari/docs/pull/764))
 - Pin Github Actions actions to their hashes ([docs#804](https://github.com/napari/docs/pull/804))
 
