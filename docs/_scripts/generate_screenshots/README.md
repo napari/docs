@@ -5,6 +5,9 @@ and videos from pre-recorded interactions with napari. It uses `pyautogui` and
 `pynput` to record the screen and mouse interactions, exports the results to a
 json file, and then generates screenshots and videos based on this data.
 
+NOTE: Make sure the Qt version on your system is compatible with the PyQt version
+you are using.
+
 ## Usage
 
 To use these scripts, follow these steps:
@@ -12,10 +15,14 @@ To use these scripts, follow these steps:
    ```bash
    pip install pyautogui pynput
    ```
-2. **Launch napari**: Start napari in a separate terminal or environment. Ensure it is running and ready to accept interactions.
-3. **Record Interactions**: Use the `record.py` script to record your interactions with napari. This will create a JSON file containing the recorded mouse and keyboard events.
-4. **Convert to Screenshots**: Use the `convert.py` script to convert the recorded interactions into screenshots. This will generate a series of PNG files in the `screenshots` directory.
-5. The conversion will be saved as `play.py`. Run python play.py to play back the actions
+2. **Install napari**: You probably want to have a [development installation of napari](hhttps://napari.org/stable/developers/contributing/dev_install.html).
+3. **Record Interactions**: Use the `record_interactions.py` script to record your interactions with napari. This will
+   a. Open a napari window,
+   b. Record mouse and keyboard actions,
+   c. Save the recorded actions to a JSON file named `recording.json`,
+   d. Convert the recorded actions into a Python script named `play.py`.
+   You can use `python record_interactions.py --help` to see the available options for naming output files.
+4. Run python `play.py` to play back the actions.
 
 ## Attribution
 
