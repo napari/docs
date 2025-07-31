@@ -65,3 +65,9 @@ The **Features Table Widget** can be used to visualize, edit, select, or save th
 To open it, go to `Layer -> Visualize -> Features Table Widget` or press
 {kbd}`Command/Ctrl+Shift+P` to open the [command palette](command-palette) and search for "features".
 To see it in action, see the {ref}`sphx_glr_gallery_features_table_widget.py` gallery example.
+
+## Running python scripts with napari
+
+Images and other data files are not the only thing that napari can read! You can also run any python script in napari by [drag'n'dropping](https://github.com/napari/napari/blob/main/examples/drag_and_drop_python_code.py) the script onto the viewer. When a script is opened with napari the first viewer instance created by the script will be replaced with the current existing viewer.
+
+This feature is especially useful for quickly testing or distributing code snippets without needing to leave the viewer or touch the console.
