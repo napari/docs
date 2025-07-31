@@ -20,7 +20,7 @@ from urllib.parse import urlparse, urlunparse
 
 from jinja2.filters import FILTERS
 from packaging.version import parse as parse_version
-from pygments.lexers import TOMLLexer
+from pygments.lexers.configs import TOMLLexer
 from sphinx_gallery import gen_rst
 from sphinx_gallery import scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
@@ -54,7 +54,6 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinxcontrib.mermaid",
-    #    "sphinx_comments",
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx_external_toc",
@@ -126,7 +125,7 @@ html_theme_options = {
     "secondary_sidebar_items": ["page-toc"],
     "pygments_light_style": "napari",
     "pygments_dark_style": "napari",
-    "announcement": "",
+    "announcement": "https://raw.githubusercontent.com/napari/docs/refs/heads/main/docs/_static/announcement.html",
     "back_to_top_button": False,
     "analytics": {
         # The domain you'd like to use for this analytics instance
@@ -231,7 +230,7 @@ exclude_patterns = [
     "plugins/_*.md",
     "plugins/building_a_plugin/_layer_data_guide.md",
     "gallery/index.rst",
-    "_scripts/README.md"
+    "_scripts/README.md",
 ]
 
 # -- Versions and switcher -------------------------------------------------
