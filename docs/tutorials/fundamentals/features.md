@@ -68,6 +68,6 @@ To see it in action, see the {ref}`sphx_glr_gallery_features_table_widget.py` ga
 
 ## Running python scripts with napari
 
-Images and other data files are not the only thing that napari can read! You can also run any python script in napari by using the console command `napari my_script.py` or even by [drag'n'dropping](https://github.com/napari/napari/blob/main/examples/drag_and_drop_python_code.py) the script onto the viewer. When a script is opened with napari the first viewer instance created by teh script will be replaced with the current existing viewer.
+Images and other data files are not the only thing that napari can read! You can also run any python script in napari by [drag'n'dropping](https://github.com/napari/napari/blob/main/examples/drag_and_drop_python_code.py) the script onto the viewer. When a script is opened with napari the first viewer instance created by the script will be replaced with the current existing viewer.
 
 This feature is especially useful for quickly testing or distributing code snippets without needing to leave the viewer or touch the console.
