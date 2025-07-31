@@ -7,8 +7,8 @@
 	{
 		"name": "stable (0.6.2)",
 		"version": "0.6.2",
-		"preferred": true,
-		"url": "https://napari.org/stable/"
+		"url": "https://napari.org/stable/",
+		"preferred": true
 	},
 	{
 		"name": "0.6.1",
