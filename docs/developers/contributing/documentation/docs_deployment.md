@@ -16,6 +16,8 @@ repos provide logic for the deployment pipeline:
 - [`napari/napari`](https://github.com/napari/napari)
 - [`napari/napari.github.io`](https://github.com/napari/napari.github.io)
 
+The files served to the web are found in the `gh-pages` branch of the `napari/napari.github.io` repo.
+
 ## Site deployment pipeline
 
 ### From source files to html artifact ([`napari/docs`](https://github.com/napari/docs))
