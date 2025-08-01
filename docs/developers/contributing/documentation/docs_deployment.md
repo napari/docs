@@ -40,20 +40,16 @@ It uses the `napari/napari-sphinx-theme` to scaffold structure and styling.
     (and consequently triggers a new deployment of the `napari.org`
     website.)
 
-<!-- TODO: why do the files differ? -->
-
 ```{note}
 The html artifact files created by the `build_and_deploy.yml` workflow are not
 identical to the html files built by the `napari/napari` workflows.
 ```
-## From html artifact to deployment trigger ([`napari/napari`](https://github.com/napari/napari))
+### From html artifact to deployment trigger ([`napari/napari`](https://github.com/napari/napari))
 
 **Workflow file:** [`build_docs.yml`](https://github.com/napari/napari/blob/main/.github/workflows/build_docs.yml)
 - **job:** `build-and-upload`
 - Pulls in sources from `napari/docs` and builds docs locally. Uploads
-  artifacts
-  <!-- List artifacts -->
-  to this repository (`napari/napari`).
+  artifacts to this repository (`napari/napari`).
 - Any push to a branch named 'docs*' or tag named 'v*', to `napari/napari`
   triggers this workflow. The artifact can be used to check the documentation
   but is not used for docs deployment.
@@ -68,7 +64,7 @@ identical to the html files built by the `napari/napari` workflows.
   `napari.org` website). When the commit is tagged, the `build_and_deploy.yml`
   workflow will deploy to the version folder e.g., '{{ napari_version }}/'.
 
-## From deployment trigger to a live site [`napari/napari.github.io`](https://github.com/napari/napari.github.io)
+### From deployment trigger to a live site [`napari/napari.github.io`](https://github.com/napari/napari.github.io)
 
 - Contains built documentation files (.html) for all versions in the
   `gh-pages` branch. Auto-deploys to `gh-pages` on every commit (which in
@@ -81,7 +77,7 @@ identical to the html files built by the `napari/napari` workflows.
   both the landing page of the website and the developer documentation,
   including the contributing guide, are always up to date.
 
-### Unversioned pages
+## Unversioned pages
 
 The website and documentation is designed to support the concept of
 **unversioned pages**. These pages will display the same content for any
