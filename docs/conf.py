@@ -71,9 +71,6 @@ html_theme = "napari_sphinx_theme"
 html_title = "napari"
 html_sourcelink_suffix = ""
 
-# Define the json_url for our version switcher.
-json_url = "https://napari.org/dev/_static/version_switcher.json"
-
 # Check version and set version_match which is used by the version switcher
 if version == "dev":
     version_match = "dev"
@@ -131,7 +128,7 @@ html_theme_options = {
     "secondary_sidebar_items": ["page-toc"],
     "pygments_light_style": "napari",
     "pygments_dark_style": "napari",
-    "announcement": "https://raw.githubusercontent.com/napari/docs/refs/heads/main/docs/_templates/announcement.html",
+    "announcement": "",
     "back_to_top_button": False,
     "analytics": {
         # The domain you'd like to use for this analytics instance
