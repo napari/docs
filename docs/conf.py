@@ -236,6 +236,7 @@ exclude_patterns = [
     "plugins/building_a_plugin/_layer_data_guide.md",
     "gallery/index.rst",
     "_scripts/README.md",
+    "_scripts/generate_screenshots/README.md",
 ]
 
 # -- Versions and switcher -------------------------------------------------

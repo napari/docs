@@ -15,7 +15,7 @@ To use these scripts, follow these steps:
    ```bash
    pip install pyautogui pynput
    ```
-2. **Install napari**: You probably want to have a [development installation of napari](hhttps://napari.org/stable/developers/contributing/dev_install.html).
+2. **Install napari**: You probably want to have a [development installation of napari](https://napari.org/stable/developers/contributing/dev_install.html).
 3. **Record Interactions**: Use the `record_interactions.py` script to record your interactions with napari. This will
    a. Open a napari window,
    b. Record mouse and keyboard actions,
