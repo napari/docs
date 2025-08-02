@@ -29,28 +29,9 @@ This tutorial will teach you about the **napari** viewer, including how to use i
 As discussed in the [getting started](launch) tutorial, the napari viewer can be launched from the command-line, a python script, an IPython console, or a Jupyter notebook. All four methods launch the same viewer, and anything related to interacting with the viewer on the screen applies equally to all of them. We will use the syntax for running the code inside a jupyter notebook with each code block below pasted into its own cell, but if you'd like to use a python script instead, simply copy and paste the code blocks into scripts with [`napari.run()`](https://napari.org/stable/api/napari.html#napari.run) as the final line (this starts an event loop which will
 open an interactive viewer) and run them.
 
-````{tip}
-As of release 0.6.0, napari has a command palette that can be opened with
-the keyboard shortcut {kbd}`Command/Ctrl+Shift+P`. Once open, you can use
-the arrow keys to scroll through the available actions or you can start typing
-the name of the action you want to use to refine the list. You can keep typing
-to refine or use the arrow keys to change the selection at any time. Once
-you have the action you want highlighted, press {kbd}`Enter` to run the action.
-
-```{raw} html
-<figure>
-  <video width="100%" controls autoplay loop muted playsinline>
-    <source src="../../_static/images/command-palette.webm" type="video/webm" />
-    <source src="../../_static/images/command-palette.mp4" type="video/mp4" />
-    <img src="../../_static/images/command-palette.png"
-      title="Your browser does not support the video tag"
-      alt="a screen recording showing the command palette in action to open Cells 3D example and toggle 3D viewer mode"
-    >
-  </video>
-
-</figure>
-```
-````
+:::{tip}
+Starting with release 0.6.0, you can use the [command palette](command-palette) to launch any command. :art:
+:::
 
 **Note:** There is also an IPython console available in napari, when napari is launched from the terminal, from a Python script, or when you use the napari bundled app. You can open it with the IPython console button (far left viewer button) or with the menu option **Window** > **console**. You can use this console to programmatically interact with an open viewer using the API methods illustrated in this tutorial.
 
@@ -362,9 +343,34 @@ And to change the current position of the sliders use:
 viewer.dims.current_step = (3, 255, 255)
 ```
 The length of the `current_step` tuple corresponds to the number of dimensions. Note that in this example, the last two dimensions are *displayed* (don't have a slider) and thus changing the last two elements of the tuple will have no effect [until the axes order is changed](#roll-dimensions).
+The same information but in *world coordinates* (i.e., including
+scale and translate transformations) is accessible via `viewer.dims.point`.
 
-Lastly, `viewer.dims.point` contains the position in world coordinates (i.e., including
-scale and translate transformations).
+By default napari will only show a slice of the data: that which is located *exactly* at this position. However, it is possible to visualize data from a thicker dimensional slice by modifying `viewer.dims.thickness`. This will use each layer's `projection_mode` to visualize the space around `viewer.dims.point`.  Alternately, you can set `viewer.dims.margin_left` and `viewer.dims.margin_right` to explicitly set the range of data around `viewer.dims.point` to be projected. Finally, you can use the corresponding `margin_left_step` and `margin_right_step` properties to work in "slider coordinates".
+
+
+```{code-cell} python
+:tags: [remove-output]
+import numpy as np
+from skimage import data
+
+import napari
+
+viewer, (membranes, nuclei) = napari.imshow(data.cells3d(), channel_axis=1)
+
+viewer.dims.thickness_step = (10, 1, 1)
+
+# average for membranes, but no projection for nuclei (margins are ignored)
+membranes.projection_mode = 'mean'
+nuclei.projection_mode = 'none'
+```
+
+```{code-cell} python
+:tags: [hide-input]
+nbscreenshot(viewer, alt_text="A slice through a 2-channel (membranes and nuclei) fluorescence image of cells, which the membranes averaged over 10 z-slices.")
+```
+
+The margins can also be controlled from the GUI by right-clicking the corresponding dimension slider.
 
 ### Scroll buttons
 

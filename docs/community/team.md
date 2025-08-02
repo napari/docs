@@ -17,6 +17,7 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - [@psobolewskiPhD](https://github.com/psobolewskiPhD)
 - [Tim Monko](https://github.com/napari/napari/commits?author:timmonko) - [@TimMonko](https://github.com/TimMonko)
 - [Wouter-Michiel Vierdag](https://github.com/napari/napari/commits?author=melonora) - [@melonora](https://github.com/melonora)
+- [Carol Willing](https://github.com/napari/napari/commits?author=willingc) - [@willingc](https://github.com/willingc)
 
 
 ## Emeritus Core Developers

@@ -39,7 +39,7 @@ jobs:
       - name: Add eyes reaction
         # If triggered by comment, show that workflow has started
         if: github.event_name == 'issue_comment'
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
           script: |
             await github.rest.reactions.createForIssueComment({
@@ -59,7 +59,7 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             TARGET="${{ github.event.inputs.make_target }}"
           else
-            TARGET=$(echo "$COMMENT_BODY" | grep -oP '(?<=@napari-bot make\s)\w+' || echo "slimfast")
+            TARGET=$(echo "$COMMENT_BODY" | grep -oP '(?<=@napari-bot make\s)[\w-]+' || echo "slimfast")
           fi
 
           if ! echo "$ALLOWED_TARGETS" | grep -qw "$TARGET"; then
@@ -74,7 +74,7 @@ jobs:
         # extract PR number and branch name from issue_comment event
         if: github.event_name == 'issue_comment'
         id: get-pr-info
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
           script: |
             const pr = await github.rest.pulls.get({
@@ -91,7 +91,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run CircleCI pipeline
-        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.2.0
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@a81cd720792a6088debd7f182b552845abb86f1b # v1.2.0
         with:
           GHA_Meta: ${{ needs.determine-make-target.outputs.target }}
           target-branch: ${{ github.event_name == 'issue_comment' && format('pull/{0}/head', github.event.issue.number) || github.ref_name }}
@@ -113,7 +113,7 @@ jobs:
     if: always() && github.event_name == 'issue_comment' && needs.trigger-artifact-build.result != 'skipped'
     steps:
       - name: Set build job status
-        uses: myrotvorets/set-commit-status-action@master
+        uses: myrotvorets/set-commit-status-action@3730c0a348a2ace3c110851bed53331bc6406e9f # v2.0.1
         with:
           sha: ${{ needs.determine-make-target.outputs.pr_sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
