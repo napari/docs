@@ -62,12 +62,12 @@ Download the napari app ({{ napari_version }}) for your platform:
 
 ```{admonition} macOS Apple Silicon (arm64)
 :class: admonition
-{{ '# [Download from GitHub](https://github.com/napari/napari/releases/tag/vNAPARI_VER/napari-NAPARI_VER-macOS-arm64.pkg)'.replace('NAPARI_VER', napari_version) }}
+{{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-arm64.pkg)'.replace('NAPARI_VER', napari_version) }}
 ```
 
 ```{admonition} macOS Intel (x86)
 :class: admonition
-{{ '# [Download from GitHub](https://github.com/napari/napari/releases/tag/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.pkg)'.replace('NAPARI_VER', napari_version) }}
+{{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.pkg)'.replace('NAPARI_VER', napari_version) }}
 ```
 
 Once you have downloaded the appropriate macOS package file, you will have a file with a name like `napari-0.5.0-macOS-x86_64.pkg`, but the version number will be {{ napari_version }}.
@@ -119,7 +119,7 @@ Download the napari app ({{ napari_version }}) for your platform:
 
 ```{admonition} Windows (x86_64)
 :class: admonition
-{{ '# [Download from GitHub](https://github.com/napari/napari/releases/tag/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
+{{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
 ```
 
 Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.5.0-Windows-x86_64.exe`, but the version number will be {{ napari_version }}.
@@ -161,7 +161,7 @@ Download the napari app ({{ napari_version }}) for your platform:
 
 ```{admonition} Linux (x86_64)
 :class: admonition
-{{ '# [Download from GitHub](https://github.com/napari/napari/releases/tag/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.sh)'.replace('NAPARI_VER', napari_version) }}
+{{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.sh)'.replace('NAPARI_VER', napari_version) }}
 ```
 
 Once you have downloaded the Linux SH file, you will have a file with a name like `napari-0.5.0-Linux-x86_64.sh`, but the version number will be {{ napari_version }}.
