@@ -28,6 +28,8 @@ This installation method does not have any prerequisites.
 
 ## Download and install the napari app ({{ napari_version }}) for your operating system
 
+Click the tile below to jump to the installation instructions for your operating system.
+
 ::::{grid}
 
 :::{grid-item-card} macOS
