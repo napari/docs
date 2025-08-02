@@ -15,7 +15,7 @@ jupyter:
 
 # How to install the napari app
 
-napari can be installed as a bundled app on [MacOS](#how-to-install-the-macos-bundle), [Windows](#how-to-install-the-windows-bundle), and [Linux](#how-to-install-the-linux-bundle) with a simple one click download and guided installation process. This installation method is best if you mainly want to use napari as a standalone GUI app. However, certain plugins may not be supported.
+napari can be installed as a bundled app on [MacOS](#macos-bundle), [Windows](#windows-bundle), and [Linux](#linux-bundle) with a simple one click download and guided installation process. This installation method is best if you mainly want to use napari as a standalone GUI app. However, certain plugins may not be supported.
 
 ```{note}
 * If you want to use napari within a Python project, please follow the [Python package installation guide](installation.md#install-as-python-package-recommended).
