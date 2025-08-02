@@ -18,7 +18,7 @@ jupyter:
 napari can be installed as a bundled app on [MacOS](#how-to-install-the-macos-bundle), [Windows](#how-to-install-the-windows-bundle), and [Linux](#how-to-install-the-linux-bundle) with a simple one click download and guided installation process. This installation method is best if you mainly want to use napari as a standalone GUI app. However, certain plugins may not be supported.
 
 ```{note}
-* If you want to use napari with a Python project, please follow the [Python package installation guide](installation.md#install-as-python-package-recommended).
+* If you want to use napari within a Python project, please follow the [Python package installation guide](installation.md#install-as-python-package-recommended).
 * If you want to contribute code back into napari, please follow the [development installation instructions in the contributing guide](napari-contributing).
 ```
 
@@ -33,7 +33,6 @@ This installation method does not have any prerequisites.
 :::{grid-item-card} macOS
 :link: macos-bundle
 :link-type: ref
-
 :::
 
 :::{grid-item-card} Windows
@@ -41,26 +40,23 @@ This installation method does not have any prerequisites.
 :link-type: ref
 :::
 
-
-
 :::{grid-item-card} Linux
 :link: linux-bundle
 :link-type: ref
-
 :::
 
 ::::
 
 
 ```{note}
-If you are interested in an earlier version of the napari app, you may access those files by scrolling below the latest release on the [napari release page](https://github.com/napari/napari/releases). Each release (0.4.15 and above) will have an "Assets" section with the installers for Windows, macOS, and Linux.
+If you are interested in an earlier version of the napari app, you may access those files by scrolling below the latest release on the [napari GitHub release page](https://github.com/napari/napari/releases). Each release (0.4.15 and above) will have an "Assets" section with the installers for Windows, macOS, and Linux.
 ```
 
 (macos-bundle)=
 
 ## How to install the macOS bundle
 
-If you have not already, download the napari app ({{ napari_version }}) for your platform:
+Download the napari app ({{ napari_version }}) for your platform:
 
 ```{admonition} macOS Apple Silicon (arm64)
 :class: admonition
@@ -105,13 +101,9 @@ After finishing with no errors, a new page with the text "The installation was s
 
 ![Cropped screenshot of the final page of the PKG installer, Summary, reporting "The installation was successful" with a green check mark icon. A blue Close button is available.](../../_static/images/bundle_11.png)
 
-Click Close to finish. You can now get started using napari! Use Launchpad to open the application.
+Click Close to finish. You can now get started using napari like any macOS application! You can use Launchpad to open it or find it using the Finder, under 🏠 [User directory] > Applications.
 
 ![Montage of two cropped screenshots. On the left, the macOS finder icon and the Launchpad icon, highlighted with a red circle. On the right, the opened launchpad UI showing a 4x4 grid of applications icon, with napari appearing in the bottom right corner.](../../_static/images/bundle_13.png)
-
-```{note}
-The first time you open napari you must use the Launchpad, but in subsequent uses, the napari application should show up in Spotlight search ({kbd}`⌘+spacebar`). The application shortcut will also be available in Finder, under 🏠 [User directory] > Applications.
-```
 
 napari comes installed with sample images from scikit-image. Use the dropdown menu File > Open Sample > napari to open a sample image, or open one of your own images using File > Open or dragging and dropping your image onto the canvas.
 
@@ -121,7 +113,7 @@ Next check out our [tutorial on the viewer](viewer.md) or explore any of the pag
 
 ## How to install the Windows bundle
 
-If you have not already, download the napari app ({{ napari_version }}) for your platform:
+Download the napari app ({{ napari_version }}) for your platform:
 
 ```{admonition} Windows (x86_64)
 :class: admonition
@@ -163,7 +155,7 @@ Next check out our [tutorial on the viewer](viewer.md) or explore any of the pag
 
 ## How to install the Linux bundle
 
-If you have not already, download the napari app ({{ napari_version }}) for your platform:
+Download the napari app ({{ napari_version }}) for your platform:
 
 ```{admonition} Linux (x86_64)
 :class: admonition
