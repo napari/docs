@@ -56,7 +56,7 @@ If you are interested in an earlier version of the napari app, you may access th
 
 (macos-bundle)=
 
-## How to install the macOS bundle
+## How to install the macOS app
 
 Download the napari app ({{ napari_version }}) for your platform:
 
@@ -113,7 +113,7 @@ Next check out our [tutorial on the viewer](viewer.md) or explore any of the pag
 
 (windows-bundle)=
 
-## How to install the Windows bundle
+## How to install the Windows app
 
 Download the napari app ({{ napari_version }}) for your platform:
 
@@ -155,7 +155,7 @@ Next check out our [tutorial on the viewer](viewer.md) or explore any of the pag
 
 (linux-bundle)=
 
-## How to install the Linux bundle
+## How to install the Linux app
 
 Download the napari app ({{ napari_version }}) for your platform:
 
