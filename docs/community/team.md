@@ -1,8 +1,8 @@
 # About the project and team
 
-napari is a consensus-based community project. Anyone with an interest in the project can join the community, contribute to the project design, and participate in the decision making process. You can learn more about how the project is run by reading our [governance model](napari-governance). This page lists our current and emeritus [core developers](governance.md#core-developers). Core developers are community members that have demonstrated a sustained commitment to the project through ongoing contributions and that they can maintain napari with care.
+napari is a consensus-based community project. Anyone with an interest in the project can join the community, contribute to the project design, and participate in the decision making process. You can learn more about how the project is run by reading our [governance model](napari-governance). This page lists our current and emeritus [core team members](governance.md#core-developers). Core team members are community members that have demonstrated a sustained commitment to the project through ongoing contributions and that they can maintain napari with care. We also list our current and emeritus steering council members. Finally, the project currently has a number of paid team members in various roles supported by grants. They are listed below under the [Contracted Roles](#contracted-roles) section 
 
-## Current Core Developers
+## Current Core Team Members
 
 - [Ashley Anderson](https://github.com/napari/napari/commits?author=aganders3) - [@aganders3](https://github.com/aganders3)
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)
@@ -20,7 +20,7 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) - [@willingc](https://github.com/willingc)
 
 
-## Emeritus Core Developers
+## Emeritus Core Team Members
 
 - [Ahmet Can Solak](https://github.com/napari/napari/commits?author=AhmetCanSolak) - [@AhmetCanSolak](https://github.com/AhmetCanSolak)
 - [Alister Burt](https://github.com/napari/napari/commits?author=alisterburt) - [@alisterburt](https://github.com/alisterburt)
@@ -46,6 +46,12 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Nicholas Sofroniew](https://github.com/napari/napari/commits?author=sofroniewn) - [@sofroniewn](https://github.com/sofroniewn)
 - [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - [@tlambert03](https://github.com/tlambert03)
 
+# Contracted Roles
+
+- Developers-in-Residence: Grezgorz Bokota, Lorenzo Gaifas, Draga Doncila Pop
+- Community Managers: Tim Monko, Lorenzo Gaifas
+- Operations Manager: Draga Doncila Pop
+
 ## Project history
 
 The napari project began in the spring of 2018. It was born out of the shared need for fast n-dimensional image viewing in Python by project co-founders Loïc Royer, from the Chan Zuckerberg Biohub (CZ Biohub), and Juan Nunez-Iglesias, from Monash University. Since then it has grown rapidly to now also provide a graphical user interface to a plugin ecosystem of image analysis tools for scientists to use in their daily work.
@@ -56,7 +62,7 @@ Early development on the project was led by Kira Evans, first as an intern with 
 
 You can read a full history of the project’s founding and early development in this [blog post](https://ilovesymposia.com/2019/10/24/introducing-napari-a-fast-n-dimensional-image-viewer-in-python/) from Juan.
 
-Over time, napari has grown to over 80 direct contributors. Talley Lambert, from Harvard Medical School, began contributing around the time of Juan's blog post, and has been a critical driver of napari's development ever since. We have core developers located in three continents and three biweekly community calls spread across the day to try to accommodate users and contributors in any time zone.
+Over time, napari has grown to over 80 direct contributors. Talley Lambert, from Harvard Medical School, began contributing around the time of Juan's blog post, and has been a critical driver of napari's development ever since. We have core team members located in three continents and three biweekly community calls spread across the day to try to accommodate users and contributors in any time zone.
 
 Read more about napari’s [mission and values](https://napari.org/stable/community/mission_and_values.html), how to get started as a [contributor](https://napari.org/stable/developers/contributing.html) or join us in our [zulip chat](https://napari.zulipchat.com/login/) for a more synchronous conversation. You can also follow us on [mastodon](https://fosstodon.org/@napari).
 

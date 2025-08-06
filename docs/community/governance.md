@@ -44,30 +44,41 @@ can directly help to shape its future.
 
 Contributors are encouraged to read the [contributing guide](napari-contributing).
 
-### Core developers
+### Core Team Members
 
-Core developers are community members that have demonstrated continued
+```{note}
+We used to refer to core team members as core developers. However, we felt
+that this title did not accurately reflect the broad range of contributions
+we value from our community. We have therefore updated the title to be more
+inclusive.
+
+Some historical artifacts e.g. our google mailing group and our GitHub team
+cannot be renamed. Additionally, NAPs and release notes have not been retroactively
+updated to reflect the new role title.
+```
+
+Core team members are community members that have demonstrated continued
 commitment to the project through ongoing contributions. They
 have shown they can be trusted to maintain napari with care. Becoming a
-core developer allows contributors to merge approved pull requests, cast votes
+core team member allows contributors to merge approved pull requests, cast votes
 for and against merging a pull-request, and be involved in deciding major
 changes to the API, and thereby more easily carry on with their project related
 activities.
 
-Core developers are expected to review code contributions while adhering to the
-[core developer guide](core-dev-guide). New core developers can be nominated
-by any existing core developer, and for details on that process see our core
-developer guide. Core developers can choose to step down from their role and 
-become "emeritus" core developers if they are no longer involved with the project,
+Core team members are expected to review code contributions while adhering to the
+[core team member guide](core-dev-guide). New core team memebrs can be nominated
+by any existing core team member, and for details on that process see our core
+team member guide. Core team members can choose to step down from their role and 
+become "emeritus" core team members if they are no longer involved with the project,
 or feel they do not have sufficient time to dedicate to their role. Emeritus core
-developers can request or be invited to become active core developers at
-a later date and with consensus from currently active core developers. 
+team members can request or be invited to become active core team members at
+a later date and with consensus from currently active core team members. 
 
-For a full list of core developers see our [About the project and team](team) page.
+For a full list of core team members see our [About the project and team](team) page.
 
 ### Steering council
 
-The Steering Council (SC) members are primarily core developers who have additional
+The Steering Council (SC) members are primarily core team members who have additional
 responsibilities to ensure the smooth running of the project. SC members are
 expected to participate in strategic planning, approve changes to the
 governance model, and make decisions about funding granted to the project
@@ -75,7 +86,7 @@ itself. (Funding to community members is theirs to pursue and manage). The
 purpose of the SC is to ensure smooth progress from the big-picture
 perspective. Changes that impact the full project require analysis informed by
 long experience with both the project and the larger ecosystem. When the core
-developer community (including the SC members) fails to reach such a consensus
+team member community (including the SC members) fails to reach such a consensus
 in a reasonable timeframe, the SC is the entity that resolves the issue.
 
 Members of the SC also have the "owner" role within the [napari GitHub organization](https://github.com/napari)
@@ -89,11 +100,11 @@ diversity of voices. All deadlocked votes of the SC will be postponed until
 there is an odd number of members and another vote can be held. A majority of the
 SC will not be employed by the same entity. One seat on the SC is reserved
 for a member elected by the [Institutional and Funding Partner Advisory Council](#institutional-and-funding-partners),
-as detailed below. This member need not be an existing core developer.
+as detailed below. This member need not be an existing core team member.
 
 The SC membership, including the Institutional and Funding Partner (IFP) seat, is revisited every January.
 SC members who do not actively engage with the SC duties are expected to resign. New members for
-vacant spots are added by nomination by a core developer. Nominees should have demonstrated
+vacant spots are added by nomination by a core team member. Nominees should have demonstrated
 long-term, continued commitment to the project and its [mission and values](mission-and-values). A
 nomination will result in discussion that cannot take more than a month and
 then admission to the SC by consensus. During that time deadlocked votes of the SC will
@@ -107,7 +118,7 @@ SC see our [About the project and team](team) page.
 
 The SC is the primary leadership body for napari. No outside institution,
 individual or legal entity has the ability to own or control the project
-other than by participating in napari as contributors, core developers, and
+other than by participating in napari as contributors, core team members, and
 SC members. However, because institutions can be an important source of
 funding and contributions for the project, it is important to formally
 acknowledge institutional participation in the project. We call institutions
@@ -156,15 +167,15 @@ Decisions about the future of the project are made through discussion with all
 members of the community. All non-sensitive project management discussion takes
 place on the [issue tracker](https://github.com/napari/napari/issues) and project
 [zulip](https://napari.zulipchat.com/) community chat channel. Occasionally,
-sensitive discussion may occur on a private core developer mailing list
+sensitive discussion may occur on a private core team member mailing list
 `napari-core-devs@googlegroups.com` or private chat channel.
 
 Decisions should be made in accordance with the [mission and values](mission-and-values)
 of the napari project.
 
 napari uses a “consensus seeking” process for making decisions. The group
-tries to find a resolution that has no open objections among core developers.
-Core developers are expected to distinguish between fundamental objections to a
+tries to find a resolution that has no open objections among core team members.
+Core team members are expected to distinguish between fundamental objections to a
 proposal and minor perceived flaws that they can live with, and not hold up the
 decision-making process for the latter.  If no option can be found without
 objections, the decision is escalated to the SC, which will itself use
@@ -172,20 +183,20 @@ consensus seeking to come to a resolution. In the unlikely event that there is
 still a deadlock, the proposal will move forward if it has the support of a
 simple majority of the SC.
 
-Decisions (in addition to adding core developers and SC membership as above)
+Decisions (in addition to adding core team members and SC membership as above)
 are made according to the following rules:
 
 - **Minor documentation changes**, such as typo fixes, or addition / correction of a
-  sentence, require approval by a core developer *and* no disagreement or requested
-  changes by a core developer on the issue or pull request page (lazy
-  consensus). Core developers are expected to give “reasonable time” to others
+  sentence, require approval by a core team member *and* no disagreement or requested
+  changes by a core team member on the issue or pull request page (lazy
+  consensus). Core team members are expected to give “reasonable time” to others
   to give their opinion on the pull request if they’re not confident others
   would agree.
 
 - **Code changes and major documentation changes** require agreement by *one*
-  core developer *and* no disagreement or requested changes by a core developer
+  core team member *and* no disagreement or requested changes by a core team member
   on the issue or pull-request page (lazy consensus). For all changes of this type,
-  core developers are expected to give “reasonable time” after approval and before
+  core team members are expected to give “reasonable time” after approval and before
   merging for others to weigh in on the pull request in its final state.
 
 - **Changes to the API principles** require a dedicated issue on our
@@ -195,9 +206,9 @@ are made according to the following rules:
 - **Changes to this governance model or our mission, vision, and values**
   require a  dedicated issue on our [issue tracker](https://github.com/napari/napari/issues)
   and follow the decision-making process outlined above,
-  *unless* there is unanimous agreement from core developers on the change in
+  *unless* there is unanimous agreement from core team members on the change in
   which case it can move forward faster.
 
 If an objection is raised on a lazy consensus, the proposer can appeal to the
-community and core developers and the change can be approved or rejected by
+community and core team members and the change can be approved or rejected by
 escalating to the SC.
