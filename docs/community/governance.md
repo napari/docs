@@ -66,7 +66,7 @@ changes to the API, and thereby more easily carry on with their project related
 activities.
 
 Core team members are expected to review code contributions while adhering to the
-[core team member guide](core-dev-guide). New core team memebrs can be nominated
+[core team member guide](core-dev-guide). New core team members can be nominated
 by any existing core team member, and for details on that process see our core
 team member guide. Core team members can choose to step down from their role and 
 become "emeritus" core team members if they are no longer involved with the project,
