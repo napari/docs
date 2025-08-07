@@ -3,7 +3,7 @@
 
 This document is meant to help guide decisions about the future of `napari`, be it in terms of
 whether to accept new functionality, changes to the styling of the code or graphical user interface (GUI),
-or whether to take on new dependencies, among other things. It serves as a point of reference for [core developers](core-dev-guide) actively working on the project, and an introduction for
+or whether to take on new dependencies, among other things. It serves as a point of reference for [core team members](core-dev-guide) actively working on the project, and an introduction for
 newcomers who want to learn a little more about where the project is going and what the team's
 values are. You can also learn more about how the project is managed by looking at our [governance model](napari-governance).
 
@@ -43,7 +43,7 @@ napari aims to be the **multi-dimensional image viewer for Python** and to **pro
 (our-values)=
 ## Our values
 
-- We are **inclusive**. We welcome and mentor newcomers who are making their first contribution and strive to grow our most dedicated contributors into [core developers](core-dev-guide). We have a [Code of Conduct](napari-coc) to make napari
+- We are **inclusive**. We welcome and mentor newcomers who are making their first contribution and strive to grow our most dedicated contributors into [core team members](core-dev-guide). We have a [Code of Conduct](napari-coc) to make napari
 a welcoming place for all.
 
 - We are **community-driven**. We respond to feature requests and proposals on our [issue tracker](https://github.com/napari/napari/issues), making decisions that are driven by our users’ requirements, not by the whims of the core team.
@@ -58,7 +58,7 @@ a welcoming place for all.
 
 - We value **simple, readable implementations**. Readable code that is easy to understand, for newcomers and maintainers alike, makes it easier to contribute new code as well as prevent bugs.
 
-- We value **education and documentation**. All functions should have docstrings, preferably with examples, and major functionality should be explained in our [tutorials](https://napari.org/tutorials). Core developers can take an active role in finishing documentation examples.
+- We value **education and documentation**. All functions should have docstrings, preferably with examples, and major functionality should be explained in our [tutorials](https://napari.org/tutorials). Core team members can take an active role in finishing documentation examples.
 
 - We **minimize [magic](https://en.wikipedia.org/wiki/Magic_(programming))** and always provide a way for users to opt out of magical behaviour and guessing by providing explicit ways to control functionality. We support NumPy array like objects and we prefer to educate users rather than make decisions on their behalf. This does not preclude the use of sensible defaults.
 

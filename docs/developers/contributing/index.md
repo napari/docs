@@ -75,13 +75,13 @@ You can then make a
 Continuous integration will provide initial feedback on your PR by running the
 tests and code quality checks. Please correct any errors found by the automated tests.
 
-Core developers and community members will review your suggested changes and
+Core team members and community members will review your suggested changes and
 provide feedback. Your next step would be to make any necessary updates to
 your PR.
 
 ### Acceptance of the pull request
 
-After a core developer approves your PR, the PR will be merged into the main codebase.
+After a core team member approves your PR, the PR will be merged into the main codebase.
 
 ## Contribution guides
 

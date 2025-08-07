@@ -26,11 +26,11 @@ Resources for contributors
 - [](architecture-index)
 :::
 
-:::{grid-item-card} Core developer guides
+:::{grid-item-card} Core team member guides
 
-Resources for core developers, including information for onboarding new core developers
+Resources for core team members, including information for onboarding new core team members
 
-- [Core Developer guide](core-dev-guide)
+- [Core team member guide](core-dev-guide)
 - [Maintenance](napari-maintenance)
 - [Release guide](napari-release)
 - [Deploying documentation](docs-deployment)

@@ -16,7 +16,7 @@ If you have organized a napari workshop and would like to see it featured here
 in this page, you can
 [send a Pull Request](contributing-docs-step-one) to the
 [napari/docs repository](https://github.com/napari/docs)
-or contact the core developers on [zulip chat](https://napari.zulipchat.com/login/).
+or contact the core team members on [zulip chat](https://napari.zulipchat.com/login/).
 ```
 
 ## Workshops
