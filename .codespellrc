@@ -1,7 +1,4 @@
 [codespell]
 # Ref: https://github.com/codespell-project/codespell#using-a-config-file
-skip = .git*,*.svg,*.css,.codespellrc,*.ai
-check-hidden = true
-# lines with é -- non-English; names
-ignore-regex = (.*[àéç].*|\b(Tung|Tru|Ganes)\b)
-ignore-words-list = nd,ontop,recuse
+skip = *.ai,*.css,*.ipynb,*.py,*.svg,.git*,./ruff_cache/,./.venv_*,gallery,.codespellrc,EULA.md
+ignore-words = .codespell/ignore-words.txt
