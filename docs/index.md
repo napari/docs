@@ -130,3 +130,36 @@ napari is extensible! Find plugins, or develop your own!
 :::
 
 ::::
+
+## funding
+
+napari is a fiscally sponsored project of [NumFOCUS], a US-based non-profit
+supporting open science and open source scientific software.
+
+We gratefully acknowledge funding support from the [Chan Zuckerberg
+Initiative][CZI] (CZI) and [NumFOCUS].
+
+::::{grid}
+
+
+:::{grid-item}
+
+<a href="https://chanzuckerberg.com">
+  <img src="_static/images/czi-logo.png" width=200 alt="CZI logo" />
+</a>
+:::
+
+:::{grid-item}
+<a href="https://numfocus.org">
+  <img src="_static/images/nf-logo.png" width=200 alt="NumFOCUS logo" />
+</a>
+:::
+
+:::{grid-item-card} YOUR LOGO HERE
+:link: funding
+:link-type: ref
+
+::::
+
+[NumFOCUS]: https://numfocus.org
+[CZI]: https://chanzuckerberg.com

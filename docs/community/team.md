@@ -60,6 +60,7 @@ Over time, napari has grown to over 80 direct contributors. Talley Lambert, from
 
 Read more about napari’s [mission and values](https://napari.org/stable/community/mission_and_values.html), how to get started as a [contributor](https://napari.org/stable/developers/contributing.html) or join us in our [zulip chat](https://napari.zulipchat.com/login/) for a more synchronous conversation. You can also follow us on [mastodon](https://fosstodon.org/@napari).
 
+(funding)=
 ## Institutional and funding Partners
 
 - [Chan Zuckerberg Initiative Foundation.](https://chanzuckerberg.com/science) Representative [Kyle I. S. Harrington](https://github.com/kephale).
