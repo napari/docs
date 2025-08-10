@@ -56,9 +56,21 @@ Early development on the project was led by Kira Evans, first as an intern with 
 
 You can read a full history of the project’s founding and early development in this [blog post](https://ilovesymposia.com/2019/10/24/introducing-napari-a-fast-n-dimensional-image-viewer-in-python/) from Juan.
 
-Over time, napari has grown to over 80 direct contributors. Talley Lambert, from Harvard Medical School, began contributing around the time of Juan's blog post, and has been a critical driver of napari's development ever since. We have core developers located in three continents and three biweekly community calls spread across the day to try to accommodate users and contributors in any time zone.
+Over time, napari has grown to over 180 direct contributors. Talley Lambert,
+from Harvard Medical School, began contributing around the time of Juan's blog
+post, and has been a critical driver of napari's development, including
+development of its first and second (current) plugin systems.
 
-Read more about napari’s [mission and values](https://napari.org/stable/community/mission_and_values.html), how to get started as a [contributor](https://napari.org/stable/developers/contributing.html) or join us in our [zulip chat](https://napari.zulipchat.com/login/) for a more synchronous conversation. You can also follow us on [mastodon](https://fosstodon.org/@napari).
+We have now have core team members located in four continents and three
+fortnightly community calls spread across the day to accommodate users
+and contributors in any time zone.
+
+Read more about napari’s [mission and values](mission-and-values), how to get
+started as a [contributor](napari-contributing) or join us in our
+[publc chat room](https://napari.zulipchat.com/login/). You can also follow us
+on [mastodon](https://fosstodon.org/@napari),
+[Bluesky](http://bsky.app/profile/napari.org), or
+[LinkedIn](https://www.linkedin.com/company/napari).
 
 (funding)=
 ## Institutional and funding Partners
