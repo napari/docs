@@ -73,17 +73,47 @@ on [mastodon](https://fosstodon.org/@napari),
 [LinkedIn](https://www.linkedin.com/company/napari).
 
 (funding)=
-## Institutional and funding Partners
+## Institutional and funding partners
 
-- [Chan Zuckerberg Initiative Foundation.](https://chanzuckerberg.com/science) Representative [Kyle I. S. Harrington](https://github.com/kephale).
+napari is developed by a global community of scientists, with many working as
+volunteers, improving napari for their own use while sharing their work with
+the world. We appreciate their efforts!
 
-    - The napari project and community have been generously supported by the [CZI Science Imaging Program.](https://chanzuckerberg.com/science/programs-resources/imaging/)
-    - Since late 2018, Juan Nunez-Iglesias has been supported by a CZI Imaging Software Fellowship.
-    - The CZI Imaging Tech Team, under the leadership of Nicholas Sofroniew and engineering management of Justine Larsen, has been making direct engineering and design contributions to improve and expand napari.
-    - The CZI Imaging Tech Team has supported [Quansight Labs](https://labs.quansight.org) and independent contractors to improve and expand napari.
-    - The CZI Imaging Tech Team, through an effort led by Justin Kiggins, has created [napari-hub.org](https://www.napari-hub.org/), a site to make discovering and sharing napari plugins easier.
-    - CZI has launched a [grant program](https://chanzuckerberg.com/rfa/napari-plugin-grants/) to help accelerate the napari plugin developer community.
+We have also received generous direct funding and in-kind support that
+enables us to develop faster:
 
-The current representative of the Institutional and Funding Partner Advisory Council on the napari steering council is Kyle I. S. Harrington.
+- The [Chan Zuckerberg Initiative] has long supported napari in numerous ways
+  (listed in reverse chronological order):
+
+  - CZI is currently supporting napari with [two grants][sustainability]
+    focused on the long-term sustainability of the project (2022-2025 and
+    2025-2028).
+  - CZI is matching funds donated to the project up to $100,000.
+  - The CZI Imaging Tech team, in an effort led by Justin Kiggins, developed
+    and maintained the original version of [napari-hub], which helps users
+    discover napari plugins (2021-2025).
+  - CZI funded [two grant rounds][napari-plugin-grants] to support the napari
+    community in developing and maintaining plugins (2021, 2022).
+  - The CZI Imaging Tech team, led by Nick Sofroniew and Justine Larsen,
+    contributed development and design effort for the project (2019-2023) and
+    funded contributors at [Quansight Labs](https://labs.quansight.org)
+    to work for the project (2021-2023).
+  - napari co-founder Juan Nunez-Iglesias has been supported by a
+    CZI Imaging Software Fellowship (2018-2025)
+
+- [NumFOCUS] serves as the fiscal home of the napari project. As part of this
+  fiscal sponsorship, NumFOCUS provides Small Development Grants for napari,
+  funding current efforts to improve handling of physical units.
+
+As described in our [governance](governance) document, project supporters are
+represented by a seat on the napari steering council. The current
+representative of the napari Institutional and Funding Partners is Kyle I. S.
+Harrington (CZI).
 
 If you or your organization are interested in also supporting the napari project and becoming an Institutional and Funding Partner, please email the napari steering council at `napari-steering-council@googlegroups.com`.
+
+[Chan Zuckerberg Initiative]: https://chanzuckerberg.com/science
+[sustainability]: https://chanzuckerberg.com/science/programs-resources/imaging/napari/seeding-sustainability-for-the-napari-project/
+[napari-hub]: https://napari-hub.org
+[napari-plugin-grants]: https://chanzuckerberg.com/rfa/napari-plugin-grants/
+[NumFOCUS]: https://numfocus.org
