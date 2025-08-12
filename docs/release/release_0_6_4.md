@@ -45,7 +45,7 @@ As a follow-up to the ability to drag-n-drop scripts into the napari window from
 - [pre-commit.ci] pre-commit autoupdate ([#8204](https://github.com/napari/napari/pull/8204))
 - Pin `pytest-qt` for python 3.10 to fix pyapp-kit projects tests ([#8205](https://github.com/napari/napari/pull/8205))
 - Retry second fullscreen test ([#8206](https://github.com/napari/napari/pull/8206))
-- Fix script for checking for updated dependecies. ([#8207](https://github.com/napari/napari/pull/8207))
+- Fix script for checking for updated dependencies. ([#8207](https://github.com/napari/napari/pull/8207))
 - Update Version Switcher to 0.6.3 ([docs#808](https://github.com/napari/docs/pull/808))
 - ci(dependabot): bump napari/napari from 0.6.2 to 0.6.3 in the github-actions group ([docs#810](https://github.com/napari/docs/pull/810))
 
