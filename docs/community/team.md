@@ -67,7 +67,7 @@ and contributors in any time zone.
 
 Read more about napari’s [mission and values](mission-and-values), how to get
 started as a [contributor](napari-contributing) or join us in our
-[publc chat room](https://napari.zulipchat.com/login/). You can also follow us
+[public chat room](https://napari.zulipchat.com/login/). You can also follow us
 on [mastodon](https://fosstodon.org/@napari),
 [Bluesky](http://bsky.app/profile/napari.org), or
 [LinkedIn](https://www.linkedin.com/company/napari).
