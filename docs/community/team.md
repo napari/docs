@@ -46,12 +46,20 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Nicholas Sofroniew](https://github.com/napari/napari/commits?author=sofroniewn) - [@sofroniewn](https://github.com/sofroniewn)
 - [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - [@tlambert03](https://github.com/tlambert03)
 
-# Contracted Roles
+# Team Roles
+
+To best serve napari's development, operations, and community, several team roles are contracted. Currently contracted roles are listed below:
 
 - Developers-in-Residence: Grezgorz Bokota, Lorenzo Gaifas, Draga Doncila Pop
 - Community Managers: Tim Monko, Lorenzo Gaifas
 - Operations Manager: Draga Doncila Pop
 - Release Manager: Rotating role. For current release manager see the Zulip [#release](https://napari.zulipchat.com/#narrow/channel/215289-release) channel.
+
+We are also contracting with [Quansight](https://quansight.com/) for some key maintenance items:
+
+- [Melissa Weber Mendonça](https://github.com/melissawm) is working on auto-generating videos and screenshots for our documentation and other documentation maintenance & improvements
+- [Jaime Rodríguez-Guerra](https://github.com/jaimergp) is working on maintaining and improving our bundled application and the `napari-plugin-manager`
+- [Daniel Althviz Moré](https://github.com/dalthviz) is working on refactoring our layer controls implementation, improving the `napari-plugin-manager`, and migrating our application model to `app-model`
 
 ## Project history
 
