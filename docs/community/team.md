@@ -51,6 +51,7 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - Developers-in-Residence: Grezgorz Bokota, Lorenzo Gaifas, Draga Doncila Pop
 - Community Managers: Tim Monko, Lorenzo Gaifas
 - Operations Manager: Draga Doncila Pop
+- Release Manager: Rotating role. For current release manager see the Zulip [#release](https://napari.zulipchat.com/#narrow/channel/215289-release) channel.
 
 ## Project history
 

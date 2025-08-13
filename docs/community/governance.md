@@ -44,7 +44,7 @@ can directly help to shape its future.
 
 Contributors are encouraged to read the [contributing guide](napari-contributing).
 
-### Core Team Members
+### Core team members
 
 ```{note}
 We used to refer to core team members as core developers. However, we felt
