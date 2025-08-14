@@ -1,7 +1,6 @@
 # napari 0.6.4
-⚠️ *Note: these release notes are still in draft while 0.6.4 is in release candidate testing.* ⚠️
 
-*Tue, Aug 12, 2025*
+*Fri, Aug 15, 2025*
 
 We’re happy to announce the release of napari 0.6.4!
 
@@ -15,7 +14,6 @@ For more information, examples, and documentation, please visit our website: htt
 
 As a follow-up to the ability to drag-n-drop scripts into the napari window from 0.6.3, you can now run scripts directly from the command line using the `napari` command and the path to the script ([#8185](https://github.com/napari/napari/pull/8185) and [#8187](https://github.com/napari/napari/pull/8187)). For example `napari examples/magic_immage_arithmetic.py` will open napari and run the local script.
 
-
 ## Improvements
 
 - Remove old path handle in napari start ([#8185](https://github.com/napari/napari/pull/8185))
@@ -25,6 +23,7 @@ As a follow-up to the ability to drag-n-drop scripts into the napari window from
 
 - Set focus after toggling dockwidget via `DockWidgetToggleAction` ([#8182](https://github.com/napari/napari/pull/8182))
 - Fix feature table widget sorting and editing of floats ([#8190](https://github.com/napari/napari/pull/8190))
+- Add check if selected label is out of data range. ([#8202](https://github.com/napari/napari/pull/8202))
 - Explicit copy of layers data for balls example ([#8203](https://github.com/napari/napari/pull/8203))
 
 ## Documentation
@@ -33,6 +32,7 @@ As a follow-up to the ability to drag-n-drop scripts into the napari window from
 - Simplify installation guide & better highlight bundle ([docs#814](https://github.com/napari/docs/pull/814))
 - Update codespell config and minor corrections ([docs#816](https://github.com/napari/docs/pull/816))
 - Add contracted roles to team page and rename core dev -> core TM ([docs#817](https://github.com/napari/docs/pull/817))
+- Pre-release notes for 0.6.4 ([docs#820](https://github.com/napari/docs/pull/820))
 
 ## Other Pull Requests
 
@@ -46,6 +46,9 @@ As a follow-up to the ability to drag-n-drop scripts into the napari window from
 - Pin `pytest-qt` for python 3.10 to fix pyapp-kit projects tests ([#8205](https://github.com/napari/napari/pull/8205))
 - Retry second fullscreen test ([#8206](https://github.com/napari/napari/pull/8206))
 - Fix script for checking for updated dependencies. ([#8207](https://github.com/napari/napari/pull/8207))
+- Add option to load script from a remote location ([#8208](https://github.com/napari/napari/pull/8208))
+- Update `certifi`, `coverage`, `hypothesis`, `matplotlib`, `psygnal`, `pytest-rerunfailures`, `rich`, `scipy`, `superqt`, `virtualenv`, `wrapt` ([#8209](https://github.com/napari/napari/pull/8209))
+- Bump `superqt` min version ([#8212](https://github.com/napari/napari/pull/8212))
 - Update Version Switcher to 0.6.3 ([docs#808](https://github.com/napari/docs/pull/808))
 - ci(dependabot): bump napari/napari from 0.6.2 to 0.6.3 in the github-actions group ([docs#810](https://github.com/napari/docs/pull/810))
 
@@ -64,11 +67,12 @@ As a follow-up to the ability to drag-n-drop scripts into the napari window from
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 
 
-## 7 reviewers added to this release (alphabetical)
+## 8 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Carol Willing](https://github.com/napari/docs/commits?author=willingc) - @willingc
+- [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
