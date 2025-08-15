@@ -87,7 +87,7 @@ documentation version and offers the reader the
 most up-to-date and consistent information, such as community norms, project
 roadmaps, and governance.
 These pages do add a bit more complexity as there is a need to move and copy files
-so they are the same across version. The `unversioned_pages.yml` action
+so they are the same across version. The [`unversioned_pages.yml` action](https://github.com/napari/napari.github.io/blob/gh-pages/.github/workflows/unversioned_pages.yml)
 does this work.
 
 ## CircleCI for tests and previews
