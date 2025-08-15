@@ -275,7 +275,7 @@ recommend that you use the following fixtures when needing a widget or
 {class}`~napari.Viewer` in a test.
 
 :::{seealso}
-Grzegorz Bokota, a napari core developer, has written an excellent blog post on
+Grzegorz Bokota, a napari core team member, has written an excellent blog post on
 [preventing segfaults in test suite that has Qt Tests](https://czaki.github.io/blog/2024/09/16/preventing-segfaults-in-test-suite-that-has-qt-tests/).
 :::
 

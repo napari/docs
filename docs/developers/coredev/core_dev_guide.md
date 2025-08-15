@@ -1,12 +1,12 @@
 (core-dev-guide)=
-# Core Developer guide
+# Core team member guide
 
-Welcome, new core developer!  The core team appreciate the quality of
+Welcome, new core team member!  The core team appreciate the quality of
 your work, and enjoy working with you; we have therefore invited you
 to join us.  Thank you for your numerous contributions to the project
 so far.
 
-You can see a list of all the current core developers on our
+You can see a list of all the current core team members on our
 [@napari/core-devs](https://github.com/orgs/napari/teams/core-devs)
 GitHub team. You should now be on that list too.
 
@@ -21,14 +21,14 @@ guidelines for how to do that.
 
 ## All contributors are treated the same
 
-As a core developer, you gain the ability to merge or approve
+As a core team member, you gain the ability to merge or approve
 other contributors' pull requests.  Much like nuclear launch keys, it
 is a shared power: you must merge *only after* another core has
 approved the pull request, *and* after you yourself have carefully
 reviewed it.  (See [Reviewing](#reviewing) and especially
 [Merge Only Changes You Understand](#merge-only-changes-you-understand) below.)
 It should also be considered best practice to leave a reasonable (24hr) time window
-after approval before merge to ensure that other core developers have a reasonable
+after approval before merge to ensure that other core team members have a reasonable
 chance to weigh in.
 
 We are also an international community, with contributors from many different time zones,
@@ -46,7 +46,7 @@ to ensure a clean git history.
 
 You should also continue to make your own pull requests as before and in accordance
 with the [general contributor guide](napari-contributing). These pull requests still
-require the approval of another core developer before they can be merged.
+require the approval of another core team member before they can be merged.
 
 ## Reviewing
 
@@ -65,7 +65,7 @@ contributor, point them to our development guide, or other GitHub
 workflow tutorials around the web. Do not assume that they know how
 GitHub works (many don't realize that adding a commit
 automatically updates a pull request, for example). Gentle, polite, kind
-encouragement can make the difference between a new core developer and
+encouragement can make the difference between a new core team member and
 an abandoned pull request.
 
 When reviewing, focus on the following:
@@ -137,7 +137,7 @@ contributor's work away!
 
 *Long-term maintainability* is an important concern.  Code doesn't
 merely have to *work*, but should be *understood* by multiple core
-developers.  Changes will have to be made in the future, and the
+team members.  Changes will have to be made in the future, and the
 original contributor may have moved on.
 
 Therefore, *do not merge a code change unless you understand it*. Ask
@@ -193,7 +193,7 @@ Where possible we prefer to point people towards asynchronous forms of communica
 like forum posts and github issues instead of realtime chat options as they are easier
 for a global community to consume.
 
-We also have a private mailing list for core developers
+We also have a private mailing list for core team members
 `napari-core-devs@googlegroups.com` which is sparingly used for discussions
 that are required to be private, such as voting on new core members.
 
@@ -208,18 +208,18 @@ community values. After nomination voting will happen on a private mailing list.
 While it is expected that most votes will be unanimous, a two-thirds majority of
 the cast votes is enough.
 
-Core developers can choose to become emeritus core developers and suspend
+Core team members can choose to become emeritus core team members and suspend
 their approval and voting rights until they become active again. Emeritus core
-developers can request **or** be invited to become active core developers at
-a later date, and active core developers will vote on this status-change as
+team members can request **or** be invited to become active core team members at
+a later date, and active core team members will vote on this status-change as
 above. 
 
 ## Contribute to this guide (!)
 
-This guide reflects the experience of the current core developers.  We
+This guide reflects the experience of the current core team members.  We
 may well have missed things that, by now, have become second
 nature—things that you, as a new team member, will spot more easily.
-Please ask the other core developers if you have any questions, and
+Please ask the other core team members if you have any questions, and
 submit a pull request with insights gained.
 
 ## Conclusion
