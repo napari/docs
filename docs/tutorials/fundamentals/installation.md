@@ -48,9 +48,10 @@ You may also want:
 New to Python or uncertain about conda, pip, and virtual environments?
 Here are some resources we recommend:
 
+
+- [Talley Lambert's "Getting started running Python" slides](https://hms-iac.github.io/bobiac/content/02_getting_started_with_python/getting_started_with_python.html#slides)
 - [Scientific Python: Getting started with Python for science](https://lectures.scientific-python.org/intro/index.html)
-- [Talley Lambert's Python environments workshop](https://hackmd.io/@talley/SJB_lObBi)
-- [Carpentries GIT workshop](https://swcarpentry.github.io/git-novice) (for those interested in contributing)
+- [Detailed comparison of Python environment management tools](https://www.nijho.lt/post/python-environments/)
 ```
 
 Python package distributions of napari can be installed via `pip`, `conda-forge`, or from source.
