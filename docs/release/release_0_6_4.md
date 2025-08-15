@@ -21,7 +21,7 @@ If you have `uv` you can even run a script without installing napari by using `u
 
 ### Toggling the napari console now places focus on the console
 
-Toggling the napari console (with the keyboard (`Cmd/Ctrl+Shift+C`), GUI, or command pallete) will now transfer focus on the console, allowing you to immediately start typing commands without needing to click into the console first ([#8182](https://github.com/napari/napari/pull/8182)). We have found this to be a very useful feature for a keyboard-centric workflow combining the power of the command palette and console together.
+Toggling the napari console (with the keyboard (`Cmd/Ctrl+Shift+C`), GUI, or command pallete) will now transfer focus on the console, allowing you to immediately start typing commands without needing to click into the console first ([#8182](https://github.com/napari/napari/pull/8182)). We have found this to be a very useful feature for a keyboard-centric workflow combining the power of the command pallete and console together.
 
 ## Improvements
 
