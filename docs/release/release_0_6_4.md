@@ -1,6 +1,7 @@
 # napari 0.6.4
+⚠️ *Note: these release notes are still in draft while 0.6.4 is in release candidate testing.* ⚠️
 
-*Sat, Aug 16, 2025*
+*Fri, Aug 15, 2025*
 
 We’re happy to announce the release of napari 0.6.4!
 
@@ -20,7 +21,7 @@ If you have `uv` you can even run a script without installing napari by using `u
 
 ### Toggling the napari console now places focus on the console
 
-Toggling the napari console (with the keyboard (`Cmd/Ctrl+Shift+C`), GUI, or command palette) will now transfer focus on the console, allowing you to immediately start typing commands without needing to click into the console first ([#8182](https://github.com/napari/napari/pull/8182)). We have found this to be a very useful feature for a keyboard-centric workflow combining the power of the command palette and console together.
+Toggling the napari console (with the keyboard (`Cmd/Ctrl+Shift+C`), GUI, or command pallete) will now transfer focus on the console, allowing you to immediately start typing commands without needing to click into the console first ([#8182](https://github.com/napari/napari/pull/8182)). We have found this to be a very useful feature for a keyboard-centric workflow combining the power of the command palette and console together.
 
 ## Improvements
 
@@ -39,6 +40,7 @@ Toggling the napari console (with the keyboard (`Cmd/Ctrl+Shift+C`), GUI, or com
 ## Documentation
 
 - Reorganize bundle instructions page to make it easier to navigate and provide download links ([docs#813](https://github.com/napari/docs/pull/813))
+- Simplify installation guide & better highlight bundle ([docs#814](https://github.com/napari/docs/pull/814))
 - Update codespell config and minor corrections ([docs#816](https://github.com/napari/docs/pull/816))
 - Add contracted roles to team page and rename core dev -> core TM ([docs#817](https://github.com/napari/docs/pull/817))
 - Pre-release notes for 0.6.4 ([docs#820](https://github.com/napari/docs/pull/820))
