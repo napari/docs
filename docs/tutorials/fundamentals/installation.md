@@ -18,8 +18,10 @@ kernelspec:
 
 This guide will teach you how to do a clean install of **napari** and launch the viewer.
 
-```{note}
-If you want to contribute code back into napari, you should follow the [development installation instructions in the contributing guide](dev-installation) instead.
+If you're already familiar with Python, napari can be installed from PyPI or conda-forge using your favorite virtual environment and package manager. Otherwise, keep reading for instructions on how to install napari as a Python package.
+
+```{tip}
+If you just want to get started quickly with napari as an app, check out our [napari app installation instructions](installation_bundle_conda.md).
 ```
 
 (install-python-package)=
@@ -30,6 +32,10 @@ This installation method allows you to use napari from Python to programmaticall
 interact with the app. It is the best way to install napari and make full use of
 all its features.
 
+```{note}
+If you want to contribute code back into napari, you should follow the [development installation instructions in the contributing guide](dev-installation) instead.
+```
+
 It requires:
 - [Python {{ python_version_range }}](https://www.python.org/downloads/)
 - the ability to install python packages via [pip](https://pypi.org/project/pip/) OR [conda-forge](https://conda-forge.org/docs/user/introduction.html)
@@ -39,14 +45,13 @@ You may also want:
 [venv](https://docs.python.org/3/library/venv.html) **(Highly recommended)**
 
 ```{note}
-New to Python or uncertain about conda, pip and virtual environments? You can use our
-[Bundled App](#install-as-a-bundled-app) to get started or first look at some
-resources we recommend:
+New to Python or uncertain about conda, pip, and virtual environments?
+Here are some resources we recommend:
 
+
+- [Talley Lambert's "Getting started running Python" slides](https://hms-iac.github.io/bobiac/content/02_getting_started_with_python/getting_started_with_python.html#slides)
 - [Scientific Python: Getting started with Python for science](https://lectures.scientific-python.org/intro/index.html)
-- [Talley Lambert's Python environments workshop](https://hackmd.io/@talley/SJB_lObBi)
-- [Carpentries GIT workshop](https://swcarpentry.github.io/git-novice) (for those interested in contributing)
-
+- [Detailed comparison of Python environment management tools](https://www.nijho.lt/post/python-environments/)
 ```
 
 Python package distributions of napari can be installed via `pip`, `conda-forge`, or from source.
@@ -140,8 +145,7 @@ python -m pip install "git+https://github.com/napari/napari.git#egg=napari[all]"
 ::::::
 
 
-<!-- #region -->
-### Checking it worked
+## Checking it worked
 
 After installation you should be able to launch napari from the command line by
 simply running
@@ -173,6 +177,8 @@ measures may further delay launches—even after the first launch.
 You can check the napari version, to ensure it's what you expect, for example
 the current release {{ napari_version }}, using the command: `napari --version` .
 
+## Advanced installation options
+
 ### Choosing a different Qt backend
 
 (choosing-qt-backend)=
@@ -188,7 +194,7 @@ running napari will result in an error message asking you to install one of
 them.
 
 Running `python -m pip install "napari[all]"` will install the default framework, which is currently
-PyQt5--but this could change in the future. 
+PyQt5--but this could change in the future.
 
 To install napari with a specific framework, you can use:
 
@@ -231,27 +237,6 @@ For example, if you would like to install napari with PyQt6 on python 3.10:
 ```sh
 pip install napari[pyqt6, optional] -c constraints_py3.10.txt
 ```
-
-## Install as a bundled app
-
-napari can also be installed as a bundled app on each of the major platforms,
-macOS, Windows, and Linux with a simple one-click download and installation
-process. You might want to install napari as a bundled app if you are unfamiliar
-with installing Python packages or if you were unable to get the installation
-process described above working. The bundled app version of napari is the same
-version that you can get through the above described processes, and can still be
-extended with napari plugins installed directly via the app.
-
-To access the cross platform bundles you can visit our [release
-page](https://github.com/napari/napari/releases) and scroll to the release you
-are interested in. For example, the bundles for napari {{ napari_version }} can be
-accessed {{ '[here](https://github.com/napari/napari/releases/tag/vNAPARI_VER)'.replace('NAPARI_VER', napari_version) }}.
-To get to the download link, just scroll all the way to bottom of the page and
-expand the `Assets` section. You can then download the appropriate file for your platform.
-
-Check {doc}`installation_bundle_conda` for more detailed instructions.
-
-<!-- #endregion -->
 
 ## Next steps
 
