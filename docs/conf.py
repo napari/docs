@@ -74,12 +74,14 @@ html_sourcelink_suffix = ""
 # Check version and set version_match which is used by the version switcher
 if version == "dev":
     version_match = "dev"
-    # Use the local json file in dev mode
-    json_url = "_static/version_switcher.json"
 else:
     version_match = str(release)
-    # Define the json_url for our version switcher.
-    json_url = "https://napari.org/dev/_static/version_switcher.json"
+
+# Define the json_url for our version switcher. When developing locally, you
+# can change this to match the local version i.e. "_static/version_switcher.json"
+# However, this must be the absolute URL for deployed versions. See
+# https://github.com/napari/napari.github.io/issues/427 for details.
+json_url = "https://napari.org/dev/_static/version_switcher.json"
 
 # Path to static files, images, favicons, logos, css, and extra templates
 html_static_path = ["_static"]
