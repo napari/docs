@@ -17,7 +17,7 @@ Please read our [contributing guide](https://napari.org/dev/developers/contribut
 ### quickstart: local setup
 * __Check the prerequisites__
     1. Create a clean Python (>=3.10) environment (e.g., with conda).
-    1. In that environment, create an editable `napari` installation with the `docs` dependency group and a Qt backend. For example, after first forking and cloning the main `napari` project if you've not previously done so, run `python -m pip install -e ".[pyqt, docs]"` from your `napari/napari` clone directory. This will use the default Qt backend.
+    1. In that environment, create an editable `napari` installation with the `docs` dependency group and a Qt backend. For example, after first forking and cloning the main `napari` project if you've not previously done so, run `python -m pip install -e ".[pyqt]" --group docs` from your `napari/napari` clone directory. This will use the default Qt backend.
     1. Fork *this* repository, `napari/docs`, and then clone your fork to your local machine. NB: you may want to name your fork e.g. `napari-docs` rather than just `docs`.
 * __Build__ locally
     * If you're building on Windows, a few extra steps are required; you can follow [this guide](https://napari.org/dev/developers/contributing/documentation/index.html#building-the-documentation-on-windows).
