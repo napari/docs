@@ -185,12 +185,15 @@ os.environ['NAPARI_APPLICATION_CONFIRM_CLOSE_WINDOW'] = 'False'
 ```
 
 Or, depending on your shell, you can persist environment variables for a shell session
-using the `export` command (e.g. `bash`, `zsh`) or persist between shell sessions by editing your
-shell configuration file (`~/.bashrc` or `~/.zshrc`).
+using the `export` command (e.g. `bash`, `zsh`):
 
 ```bash
 export NAPARI_APPLICATION_CONFIRM_CLOSE_WINDOW=False
 ```
+
+ Or, to persist between shell sessions, add the above command to your
+ shell configuration file e.g `~/.bashrc` or `~/.zshrc`.
+
 
 """
 

@@ -122,7 +122,7 @@ The main menu consists of the **File**, **View**, **Layers**, **Plugins**, **Win
 
 * **File** has the options to open files, folders, and samples, save layers and screenshots, copy screenshots to clipboard and, in the Windows and Linux versions, preferences. Additionally, you can make a new `Image` layer from an image (or URL to an image) copied to your Clipboard (keybinding {kbd}`Command/Ctrl+N`). The `New Layer` submenu allows you to create new, blank, `Labels`, `Points` or `Shapes` layers, identical to those created by the buttons above the layer list. Plugins can also contribute custom new layer creators to this menu.
 
-    All the options on the **File** menu are relatively self-explanatory except **Preferences** on the Windows and Linux versions of napari. **Preferences** allows you to personalize napari to some degree. To learn more about the **Preferences** menu, see our [Preferences guide for developers](napari-preferences).
+    All the options on the **File** menu are relatively self-explanatory except **Preferences** on the Windows and Linux versions of napari. **Preferences** opens a dialog that allows you to personalize napari settings. To learn more about this, see our [guide to napari Preferences](napari-preferences).
 
     **Note:** In macOS, **Preferences** is under the napari menu.
 
