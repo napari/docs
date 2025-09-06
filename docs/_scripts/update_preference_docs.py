@@ -128,7 +128,7 @@ accessed in the **napari** menu.
 
 The settings are grouped by sections that are accessible in a list on the left side of the dialog.
 
-{%- for section, section_data in sections.items() %}
+{% for section, section_data in sections.items() %}
 
 ## {{ section_data["title"] }} Settings
 
@@ -147,13 +147,26 @@ The settings are grouped by sections that are accessible in a list on the left s
 * <small>Access programmatically with `SETTINGS.{{ section }}.{{ fields["field"] }}`.</small>
 * <small>Environmental variable: `NAPARI_{{ section.upper() }}_{{ fields["field"].upper() }}`</small>
 * <small>Type: `{{ fields["type"] }}`</small>
-* <small>Default: `{{ fields["default"] }}`</small>
+
+{% if section == "shortcuts" and fields["default"] is mapping -%}
+**Default Shortcuts**
+
+| Action | Shortcut |
+|--------|----------|
+{%- for key, value in fields["default"].items() %}
+| {{ key }} | {{ value }} |
+{%- endfor %}
+
+{% else -%}
+* <small>Default: `{{ fields["default"] }}`.</small>
+{%- endif %}
+
 {%     endif %}
 {%   endfor %}
 
 :::
 
-{%- endfor %}
+{% endfor %}
 
 ## Reset settings to defaults using the Preferences dialog
 
@@ -267,7 +280,7 @@ def create_preferences_docs():
                     "field": n,
                     "title": f.field_info.title,
                     "description": f.field_info.description,
-                    "default": repr(f.get_default()),
+                    "default": f.get_default() if title.lower() == "shortcuts" else repr(f.get_default()),
                     "ui": n not in excluded,
                     "type": repr(f._type_display()).replace('.typing', ''),
                 }
