@@ -124,7 +124,7 @@ settings section descriptions below.
 ## The Preferences dialog
 
 napari provides a Preferences dialog to manage the settings using a graphical user interface (GUI).
-Importantly, this dialog also allows you to customize napari keybindings.
+Importantly, this dialog also allows you to customize napari keyboard shortcuts (keybindings).
 
 On Windows and Linux, the Preferences dialog can be accessed in the **File** menu. On macOS, it can be
 accessed in the **napari** menu.
