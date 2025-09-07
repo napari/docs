@@ -84,6 +84,8 @@ different versions), the napari in each environment will have its own set of sto
 So, for example, you could an environment where napari always uses the Light theme and another one
 where napari always uses the Dark theme.
 
+A wide range of settings are available, organized into sections, and described in more detail below.
+
 ### Where settings are stored
 
 Settings are stored in a `settings.yaml` file and napari uses [`appdirs`](https://github.com/ActiveState/appdirs)
@@ -122,6 +124,7 @@ settings section descriptions below.
 ## The Preferences dialog
 
 napari provides a Preferences dialog to manage the settings using a graphical user interface (GUI).
+Importantly, this dialog also allows you to customize napari keybindings.
 
 On Windows and Linux, the Preferences dialog can be accessed in the **File** menu. On macOS, it can be
 accessed in the **napari** menu.
