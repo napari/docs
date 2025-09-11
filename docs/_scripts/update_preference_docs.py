@@ -90,7 +90,7 @@ A wide range of settings are available, organized into sections, and described i
 
 Settings are stored in a `settings.yaml` file and napari uses [`appdirs`](https://github.com/ActiveState/appdirs)
 to determine the save location: the platform-specific user configuration directory.
-You can check where a napari installation has stored settings by checking the output of:
+You can check where a napari installation has stored settings by looking for "Settings path" in the output of:
 
 ```bash
 napari --info
