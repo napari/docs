@@ -81,7 +81,7 @@ PREFERENCES_TEMPLATE = """(napari-preferences)=
 napari provides persistent settings that are stored on a *per environment basis*.
 This means that if you have multiple Python environments, each with a napari installation (e.g.
 different versions), the napari in each environment will have its own set of stored preferences.
-So, for example, you could an environment where napari always uses the Light theme and another one
+So, for example, you could have an environment where napari always uses the Light theme and another one
 where napari always uses the Dark theme.
 
 A wide range of settings are available, organized into sections, and described in more detail below.
