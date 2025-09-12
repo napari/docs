@@ -139,26 +139,27 @@ supporting open science and open source scientific software.
 We gratefully acknowledge funding support from the [Chan Zuckerberg
 Initiative][CZI] (CZI) and [NumFOCUS].
 
-::::{grid}
+::::{grid} 1 1 3 3
+:gutter: 2
 
+:::{grid-item-card}
+:text-align: center
 
-:::{grid-item}
-
-<a href="https://chanzuckerberg.com">
-  <img src="_static/images/czi-logo.png" width=200 alt="CZI logo" />
-</a>
+[![CZI logo](_static/images/czi-logo.png){width="200"}](https://chanzuckerberg.com)
 :::
 
-:::{grid-item}
-<a href="https://numfocus.org">
-  <img src="_static/images/nf-logo.png" width=200 alt="NumFOCUS logo" />
-</a>
+:::{grid-item-card}
+:text-align: center
+
+[![NumFOCUS logo](_static/images/nf-logo.png){width="200"}](https://numfocus.org)
 :::
 
 :::{grid-item-card} YOUR LOGO HERE
+:text-align: center
 :link: funding
 :link-type: ref
-
+:::
+  
 ::::
 
 [NumFOCUS]: https://numfocus.org
