@@ -145,14 +145,14 @@ Initiative][CZI] (CZI) and [NumFOCUS].
 :text-align: center
 :class-body: d-flex align-items-center justify-content-center
 
-[![CZI logo](_static/images/czi-logo.png){width="200"}](https://chanzuckerberg.com)
+[![CZI logo](_static/images/czi-logo.png)](https://chanzuckerberg.com)
 :::
 
 :::{grid-item-card}
 :text-align: center
 :class-body: d-flex align-items-center justify-content-center
 
-[![NumFOCUS logo](_static/images/nf-logo.png){width="200"}](https://numfocus.org)
+[![NumFOCUS logo](_static/images/nf-logo.png)](https://numfocus.org)
 :::
 
 :::{grid-item-card} YOUR LOGO HERE
