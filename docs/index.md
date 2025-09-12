@@ -159,7 +159,7 @@ Initiative][CZI] (CZI) and [NumFOCUS].
 [![NumFOCUS logo](_static/images/nf-logo.png)](https://numfocus.org)
 :::
 
-:::{grid-item-card} YOUR LOGO HERE
+:::{grid-item-card} ADD YOUR LOGO HERE
 :text-align: center
 :class-body: d-flex align-items-center justify-content-center
 :link: funding
