@@ -12,7 +12,6 @@ individual extension documentation for more information on specific settings.
 import logging
 import os
 import re
-import sys
 from datetime import datetime
 from importlib import import_module
 from importlib.metadata import distribution
