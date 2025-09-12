@@ -72,13 +72,7 @@ RELEASE_INDEX_TEMPLATE = """(release-notes)=
 
 # Release Notes
 
-```{admonition} How to use this page
-:class: tip
-
-- Browse releases organized by time periods below
-- Each section shows highlights from recent releases
-- Click on version links to view complete release notes
-```
+Each section shows the highlights from recent releases. Click on the version links to view the complete release notes.
 
 *Last updated: {{ last_updated }}*
 
