@@ -133,6 +133,10 @@ napari is extensible! Find plugins, or develop your own!
 
 ## funding
 
+If you like napari and want to support our [mission](mission-and-values),
+please consider a [donation](https://numfocus.org/donate-to-napari) to our
+efforts.
+
 napari is a fiscally sponsored project of [NumFOCUS], a US-based non-profit
 supporting open science and open source scientific software.
 
