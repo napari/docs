@@ -91,21 +91,19 @@ Latest features and improvements:
 {% endif %}
 
 {% if earlier_this_year %}
-## Earlier This Year (3-6 Months Ago)
+## Releases from 3-6 Months Ago
 
 {{ earlier_content }}
 {% endif %}
 
 {% if this_year %}
-## Earlier This Year (6-12 Months Ago)
+## Releases from 6-12 Months Ago
 
 {{ this_year_content }}
 {% endif %}
 
 {% if older %}
 ## Older Releases
-
-Major releases from the past:
 
 {{ older_content }}
 {% endif %}
@@ -206,8 +204,8 @@ def generate_release_list(releases: List[Dict]) -> str:
             # Show first few lines as preview
             first_lines = release['highlights'].split('\n')[:2]
             preview = ' '.join(first_lines).strip()
-            if len(preview) > 100:
-                preview = preview[:100] + "..."
+            if len(preview) > 150:
+                preview = preview[:150] + "..."
             if preview:
                 content += f" - {preview}"
         
@@ -223,35 +221,31 @@ def parse_releases() -> List[Dict]:
     
     # Parse all release files
     for release_file in RELEASE_PATH.glob('release_*.md'):
-        try:
-            with open(release_file, 'r', encoding='utf-8') as f:
-                content = f.read()
+        with open(release_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        version = extract_version_from_filename(release_file.name)
+        release_date = extract_date_from_release(content)
+        highlights = extract_highlights(content)
+        
+        # Extract title
+        title_match = re.search(r'^# (.+)$', content, re.MULTILINE)
+        title = title_match.group(1) if title_match else f"napari {version}"
+        
+        if highlights:  # Include releases with highlights (even without dates)
+            release_info = {
+                'version': version,
+                'title': title,
+                'date': release_date,
+                'highlights': highlights,  # Full highlights section as-is
+                'filename': release_file.stem,
+            }
             
-            version = extract_version_from_filename(release_file.name)
-            release_date = extract_date_from_release(content)
-            highlights = extract_highlights(content)
-            
-            # Extract title
-            title_match = re.search(r'^# (.+)$', content, re.MULTILINE)
-            title = title_match.group(1) if title_match else f"napari {version}"
-            
-            if highlights:  # Include releases with highlights (even without dates)
-                release_info = {
-                    'version': version,
-                    'title': title,
-                    'date': release_date,
-                    'highlights': highlights,  # Full highlights section as-is
-                    'filename': release_file.stem,
-                }
-                
-                if release_date:
-                    releases_with_dates.append(release_info)
-                else:
-                    releases_without_dates.append(release_info)
-                
-        except Exception as e:
-            print(f"Warning: Error parsing {release_file}: {e}")
-    
+            if release_date:
+                releases_with_dates.append(release_info)
+            else:
+                releases_without_dates.append(release_info)
+
     # Sort releases with dates by date (newest first)
     releases_with_dates.sort(key=lambda x: x['date'], reverse=True)
     
@@ -265,9 +259,9 @@ def parse_releases() -> List[Dict]:
             return tuple(parts)
         except:
             return (0, 0, 0)
-    
+
     releases_without_dates.sort(key=version_key, reverse=True)
-    
+
     # Return dated releases first, then undated ones
     return releases_with_dates + releases_without_dates
 
@@ -277,10 +271,6 @@ def create_whats_new_docs():
     
     # Parse all releases
     releases = parse_releases()
-    
-    if not releases:
-        print("Warning: No releases with dates and highlights found")
-        return
     
     # Group releases by time periods
     now = datetime.now()
@@ -311,7 +301,7 @@ def create_whats_new_docs():
         'this_year': this_year,
         'this_year_content': generate_release_dropdowns(this_year) if this_year else "",
         'older': older,
-        'older_content': generate_release_list(older[:10]) if older else "",  # Show last 10 older releases
+        'older_content': generate_release_list(older) if older else "",  # Show all older releases
     }
     
     # Generate the page content
@@ -320,8 +310,6 @@ def create_whats_new_docs():
     # Write the file
     output_file = RELEASE_PATH / "whats-new.md"
     output_file.write_text(text, encoding='utf-8')
-    
-    print(f"Generated what's new page with {len(releases)} releases")
 
 
 def main(stubs=False):
