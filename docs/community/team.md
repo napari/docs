@@ -100,9 +100,10 @@ enables us to develop faster:
 - The [Chan Zuckerberg Initiative] has long supported napari in numerous ways
   (listed in reverse chronological order):
 
-  - CZI is currently supporting napari with [two grants][sustainability]
-    focused on the long-term sustainability of the project (2022-2025 and
-    2025-2028).
+  - CZI is currently supporting napari with a grant for scaffolding
+    sustainability of the project (2025-2028, $1.7m)
+  - CZI is currently supporting napari with a grant to seed [sustainability]
+    of the project (2022-2025, $200,0000).
   - CZI is matching funds donated to the project up to $100,000.
   - The CZI Imaging Tech team, in an effort led by Justin Kiggins, developed
     and maintained the original version of [napari-hub], which helps users
