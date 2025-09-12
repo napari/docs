@@ -22,13 +22,13 @@ Usage
 -----
 From command line:
     # Generate full documentation
-    python update_whats_new_docs.py
+    python update_release_docs.py
 
     # Generate only stub documentation (for quick builds)
-    python update_whats_new_docs.py --stubs
+    python update_release_docs.py --stubs
 
 From another script:
-    from update_whats_new_docs import main
+    from update_release_docs import main
     main(stubs=False)  # Generate full documentation
 
 Key Functions
@@ -68,7 +68,9 @@ DOCS = Path(__file__).parent.parent.absolute()
 RELEASE_PATH = DOCS / "release"
 
 # MyST template for the release notes index page
-RELEASE_INDEX_TEMPLATE = """# Release Notes
+RELEASE_INDEX_TEMPLATE = """(release-notes)=
+
+# Release Notes
 
 ```{admonition} How to use this page
 :class: tip
