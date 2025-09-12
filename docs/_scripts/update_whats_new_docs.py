@@ -195,8 +195,12 @@ def generate_release_list(releases: List[Dict]) -> str:
     content = ""
     
     for release in releases:
-        date_str = release['date'].strftime("%B %Y")
-        content += f"- **[{release['title']}]({release['filename']})** ({date_str})"
+        if release['date']:
+            date_str = release['date'].strftime("%B %Y")
+            content += f"- **[{release['title']}]({release['filename']})** ({date_str})"
+        else:
+            # For releases without dates, just show the title
+            content += f"- **[{release['title']}]({release['filename']})**"
         
         if release['highlights']:
             # Show first few lines as preview
@@ -214,7 +218,8 @@ def generate_release_list(releases: List[Dict]) -> str:
 
 def parse_releases() -> List[Dict]:
     """Parse all release files and extract information."""
-    releases = []
+    releases_with_dates = []
+    releases_without_dates = []
     
     # Parse all release files
     for release_file in RELEASE_PATH.glob('release_*.md'):
@@ -230,22 +235,41 @@ def parse_releases() -> List[Dict]:
             title_match = re.search(r'^# (.+)$', content, re.MULTILINE)
             title = title_match.group(1) if title_match else f"napari {version}"
             
-            if release_date and highlights:  # Only include releases with dates and highlights
-                releases.append({
+            if highlights:  # Include releases with highlights (even without dates)
+                release_info = {
                     'version': version,
                     'title': title,
                     'date': release_date,
                     'highlights': highlights,  # Full highlights section as-is
                     'filename': release_file.stem,
-                })
+                }
+                
+                if release_date:
+                    releases_with_dates.append(release_info)
+                else:
+                    releases_without_dates.append(release_info)
                 
         except Exception as e:
             print(f"Warning: Error parsing {release_file}: {e}")
     
-    # Sort by date (newest first)
-    releases.sort(key=lambda x: x['date'], reverse=True)
+    # Sort releases with dates by date (newest first)
+    releases_with_dates.sort(key=lambda x: x['date'], reverse=True)
     
-    return releases
+    # Sort releases without dates by version (attempt semantic sorting, newest first)
+    def version_key(release):
+        try:
+            parts = [int(x) for x in release['version'].split('.')]
+            # Pad to ensure consistent comparison
+            while len(parts) < 3:
+                parts.append(0)
+            return tuple(parts)
+        except:
+            return (0, 0, 0)
+    
+    releases_without_dates.sort(key=version_key, reverse=True)
+    
+    # Return dated releases first, then undated ones
+    return releases_with_dates + releases_without_dates
 
 
 def create_whats_new_docs():
@@ -264,10 +288,18 @@ def create_whats_new_docs():
     six_months_ago = now - timedelta(days=180)
     one_year_ago = now - timedelta(days=365)
     
-    recent = [r for r in releases if r['date'] >= three_months_ago]
-    earlier_this_year = [r for r in releases if six_months_ago <= r['date'] < three_months_ago]
-    this_year = [r for r in releases if one_year_ago <= r['date'] < six_months_ago]
-    older = [r for r in releases if r['date'] < one_year_ago]
+    # Separate releases with and without dates
+    dated_releases = [r for r in releases if r['date'] is not None]
+    undated_releases = [r for r in releases if r['date'] is None]
+    
+    # Group dated releases by time periods
+    recent = [r for r in dated_releases if r['date'] >= three_months_ago]
+    earlier_this_year = [r for r in dated_releases if six_months_ago <= r['date'] < three_months_ago]
+    this_year = [r for r in dated_releases if one_year_ago <= r['date'] < six_months_ago]
+    older_dated = [r for r in dated_releases if r['date'] < one_year_ago]
+    
+    # Combine older dated releases with undated releases for the "Older Releases" section
+    older = older_dated + undated_releases
     
     # Generate content for each section
     template_vars = {
