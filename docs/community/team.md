@@ -1,8 +1,8 @@
 # About the project and team
 
-napari is a consensus-based community project. Anyone with an interest in the project can join the community, contribute to the project design, and participate in the decision making process. You can learn more about how the project is run by reading our [governance model](napari-governance). This page lists our current and emeritus [core developers](governance.md#core-developers). Core developers are community members that have demonstrated a sustained commitment to the project through ongoing contributions and that they can maintain napari with care.
+napari is a consensus-based community project. Anyone with an interest in the project can join the community, contribute to the project design, and participate in the decision making process. You can learn more about how the project is run by reading our [governance model](napari-governance). This page lists our current and emeritus [core team members](governance.md#core-team-members). Core team members are community members that have demonstrated a sustained commitment to the project through ongoing contributions and that they can maintain napari with care. We also list our current and emeritus steering council members. Finally, the project currently has a number of paid team members in various roles supported by grants. They are listed below under the [Team Roles](#team-roles) section 
 
-## Current Core Developers
+## Current Core Team Members
 
 - [Ashley Anderson](https://github.com/napari/napari/commits?author=aganders3) - [@aganders3](https://github.com/aganders3)
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)
@@ -20,7 +20,7 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) - [@willingc](https://github.com/willingc)
 
 
-## Emeritus Core Developers
+## Emeritus Core Team Members
 
 - [Ahmet Can Solak](https://github.com/napari/napari/commits?author=AhmetCanSolak) - [@AhmetCanSolak](https://github.com/AhmetCanSolak)
 - [Alister Burt](https://github.com/napari/napari/commits?author=alisterburt) - [@alisterburt](https://github.com/alisterburt)
@@ -45,6 +45,21 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Loic Royer](https://github.com/napari/napari/commits?author=royerloic) - [@royerloic](https://github.com/royerloic)
 - [Nicholas Sofroniew](https://github.com/napari/napari/commits?author=sofroniewn) - [@sofroniewn](https://github.com/sofroniewn)
 - [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - [@tlambert03](https://github.com/tlambert03)
+
+# Team Roles
+
+To best serve napari's development, operations, and community, several team roles are contracted. Currently contracted roles are listed below:
+
+- Developers-in-Residence: Grezgorz Bokota, Lorenzo Gaifas, Draga Doncila Pop
+- Community Managers: Tim Monko, Lorenzo Gaifas
+- Operations Manager: Draga Doncila Pop
+- Release Manager: Rotating role. For current release manager see the Zulip [#release](https://napari.zulipchat.com/#narrow/channel/215289-release) channel.
+
+We are also contracting with [Quansight](https://quansight.com/) for some key maintenance items:
+
+- [Melissa Weber Mendonça](https://github.com/melissawm) is working on auto-generating videos and screenshots for our documentation and other documentation maintenance & improvements
+- [Jaime Rodríguez-Guerra](https://github.com/jaimergp) is working on maintaining and improving our bundled application and the `napari-plugin-manager`
+- [Daniel Althviz Moré](https://github.com/dalthviz) is working on refactoring our layer controls implementation, improving the `napari-plugin-manager`, and migrating our application model to `app-model`
 
 ## Project history
 

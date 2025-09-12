@@ -28,15 +28,17 @@ jobs:
   build-and-upload:
     name: Build & Upload Artifact
     runs-on: ubuntu-latest
+    env:
+      XDG_CACHE_HOME: ${{ github.workspace }}/.cache
     steps:
       - name: Clone docs repo
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           # place in '/home/runner/work/docs/docs/docs'
           path: docs  # place in a named directory
 
       - name: Clone main repo
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           # place in '/home/runner/work/docs/docs/napari'
           path: napari  # place in a named directory
@@ -49,6 +51,15 @@ jobs:
           python-version: "3.10"
           cache-dependency-path: |
             napari/pyproject.toml
+
+      - name: Cache pooch downloads
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
+        with:
+          path: |
+            ${{ github.workspace }}/.cache/scikit-image
+            ${{ github.workspace }}/.cache/napari-*
+            ${{ github.workspace }}/.cache/pooch
+          key: pooch
 
       - uses: tlambert03/setup-qt-libs@19e4ef2d781d81f5f067182e228b54ec90d23b76 # v1.8
 
@@ -99,7 +110,7 @@ jobs:
     # Working directory: '/home/runner/work/docs/docs'
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
         with:
           name: html
           # Downloads to '/home/runner/work/docs/docs/html'
