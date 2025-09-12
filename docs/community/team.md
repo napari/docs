@@ -76,7 +76,7 @@ from Harvard Medical School, began contributing around the time of Juan's blog
 post, and has been a critical driver of napari's development, including
 development of its first and second (current) plugin systems.
 
-We have now have core team members located in four continents and three
+We now have core team members located in four continents and three
 fortnightly community calls spread across the day to accommodate users
 and contributors in any time zone.
 
