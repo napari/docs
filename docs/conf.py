@@ -19,9 +19,6 @@ from importlib.metadata import distribution
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
-# Add local extensions to path
-sys.path.insert(0, os.path.abspath('_ext'))
-
 from jinja2.filters import FILTERS
 from packaging.version import parse as parse_version
 from pygments.lexers.configs import TOMLLexer
@@ -66,7 +63,6 @@ extensions = [
     "sphinx_tags",
     "myst_nb",
     "sphinxext.opengraph",
-    "whats_new_generator",
 ]
 
 # -- HTML Theme ------------------------------------------------------------
