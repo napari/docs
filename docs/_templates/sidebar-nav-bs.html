@@ -28,11 +28,7 @@
           <a class="reference internal" href="{{ pathto('troubleshooting.html', 1) }}">Troubleshooting</a>
       </li>
       <li class="toctree-l1">
-          {% if version == "dev" %}
           <a class="reference internal" href="{{ pathto('release/index.html', 1) }}">Release notes</a>
-          {% else %}
-          <a class="reference internal" href="{{ pathto('release/release_' + version.replace('.', '_') + '.html', 1) }}">Latest release notes</a>
-          {% endif %}
       </li>
       <li class="toctree-l1">
           <a class="reference internal" href="{{ pathto('roadmaps/active_roadmap.html', 1) }}">Roadmap</a>
