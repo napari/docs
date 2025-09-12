@@ -140,7 +140,6 @@ We gratefully acknowledge funding support from the [Chan Zuckerberg
 Initiative][CZI] (CZI) and [NumFOCUS].
 
 ::::{grid} 1 1 3 3
-:gutter: 2
 
 :::{grid-item-card}
 :text-align: center
