@@ -44,10 +44,10 @@ def extract_date_from_release(content: str) -> Optional[datetime]:
     return None
 
 
-def extract_highlights(content: str) -> List[str]:
-    """Extract highlights section from markdown content."""
+def extract_highlights(content: str) -> str:
+    """Extract highlights section from markdown content, preserving structure."""
     lines = content.split('\n')
-    highlights = []
+    highlights_lines = []
     in_highlights = False
     
     for line in lines:
@@ -57,18 +57,12 @@ def extract_highlights(content: str) -> List[str]:
         elif in_highlights and line.startswith('## '):
             # End of highlights section
             break
-        elif in_highlights and line.strip():
-            if line.startswith('- ') or line.startswith('* '):
-                # Bullet point highlight
-                highlights.append(line.strip()[2:])
-            elif line.startswith('### '):
-                # Subsection in highlights
-                highlights.append(line.strip()[4:])
-            elif not line.startswith(' ') and not line.startswith('\t'):
-                # Regular paragraph text
-                highlights.append(line.strip())
+        elif in_highlights:
+            # Keep the original formatting including headers
+            highlights_lines.append(line)
     
-    return [h for h in highlights if h and not h.startswith('#')]
+    # Join back into a single string, preserving original formatting
+    return '\n'.join(highlights_lines).strip()
 
 
 def extract_version_from_filename(filename: str) -> str:
@@ -111,9 +105,8 @@ def generate_whats_new_page(app: Sphinx) -> None:
                     'version': version,
                     'title': title,
                     'date': release_date,
-                    'highlights': highlights[:3],  # Top 3 highlights
+                    'highlights': highlights,  # Full highlights section as-is
                     'filename': release_file.stem,
-                    'has_more': len(highlights) > 3
                 })
                 
         except Exception as e:
@@ -147,9 +140,7 @@ def generate_myst_content(releases: List[Dict]) -> str:
     this_year = [r for r in releases if one_year_ago <= r['date'] < six_months_ago]
     older = [r for r in releases if r['date'] < one_year_ago]
     
-    content = f"""---
-title: "What's New Since You Last Checked"
----
+    content = f"""(whats-new-browser)=
 
 # What's New Since You Last Checked
 
@@ -197,38 +188,34 @@ Welcome to napari's automatically-generated release summary! This page is update
 
 For a complete chronological list of all napari releases with full details:
 
-**[📋 View All Release Notes →](index)**
+[View All Release Notes](./index.md)
 ```
 """
-    
+
     return content
 
 
 def generate_release_tabs(releases: List[Dict]) -> str:
-    """Generate tab-set for releases."""
+    """Generate dropdown sections for releases."""
     if not releases:
         return ""
     
-    content = "````{tab-set}\n\n"
+    content = ""
     
-    for release in releases[:6]:  # Max 6 tabs to avoid clutter
+    for release in releases[:6]:  # Max 6 releases to avoid clutter
         date_str = release['date'].strftime("%B %Y")
-        content += f"```{{tab-item}} {release['title']} ({date_str})\n"
         
-        for highlight in release['highlights']:
-            if highlight.startswith('### '):
-                # Format subsection as bold
-                content += f"**{highlight[4:]}**\n"
-            else:
-                content += f"- {highlight}\n"
+        # Use dropdown/details instead of tabs
+        content += f"````{{dropdown}} {release['title']} ({date_str})\n"
+        content += ":open:\n\n"
         
-        if release['has_more']:
-            content += f"\n*...and more improvements!*\n"
+        # Add the full highlights content
+        if release['highlights']:
+            highlights = release['highlights'].strip()
+            content += f"{highlights}\n\n"
         
-        content += f"\n[View full release notes →]({release['filename']})\n"
-        content += "```\n\n"
-    
-    content += "````"
+        content += f"[View full release notes →]({release['filename']})\n\n"
+        content += "````\n\n"
     
     return content
 
@@ -242,11 +229,13 @@ def generate_release_list(releases: List[Dict]) -> str:
         content += f"- **[{release['title']}]({release['filename']})** ({date_str})"
         
         if release['highlights']:
-            # Show first highlight as preview
-            first_highlight = release['highlights'][0]
-            if len(first_highlight) > 100:
-                first_highlight = first_highlight[:100] + "..."
-            content += f" - {first_highlight}"
+            # Show first few lines as preview
+            first_lines = release['highlights'].split('\n')[:2]
+            preview = ' '.join(first_lines).strip()
+            if len(preview) > 100:
+                preview = preview[:100] + "..."
+            if preview:
+                content += f" - {preview}"
         
         content += "\n"
     
