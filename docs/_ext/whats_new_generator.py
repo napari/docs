@@ -80,10 +80,6 @@ def generate_whats_new_page(app: Sphinx) -> None:
     docs_dir = Path(app.srcdir)
     release_dir = docs_dir / "release"
     
-    if not release_dir.exists():
-        logger.warning("Release directory not found, skipping what's new generation")
-        return
-    
     releases = []
     
     # Parse all release files
@@ -140,19 +136,16 @@ def generate_myst_content(releases: List[Dict]) -> str:
     this_year = [r for r in releases if one_year_ago <= r['date'] < six_months_ago]
     older = [r for r in releases if r['date'] < one_year_ago]
     
-    content = f"""(whats-new-browser)=
+    content = f"""(whats-new)=
 
-# What's New Since You Last Checked
-
-Welcome to napari's automatically-generated release summary! This page is updated whenever new releases are published.
+# What's New
 
 ```{{admonition}} How to use this page
 :class: tip
 
 - Browse releases organized by time periods below
-- Each section shows key highlights from recent releases
+- Each section shows highlights from recent releases
 - Click on version links to view complete release notes
-- Use your browser's search (Ctrl/Cmd+F) to find specific features
 ```
 
 *Last updated: {now.strftime("%B %d, %Y")}*
@@ -180,26 +173,12 @@ Welcome to napari's automatically-generated release summary! This page is update
         content += "Major releases from the past:\n\n"
         content += generate_release_list(older[:10])  # Show last 10 older releases
         content += "\n\n"
-    
-    content += """## Browse All Releases
-
-```{admonition} Complete Release History
-:class: note
-
-For a complete chronological list of all napari releases with full details:
-
-[View All Release Notes](./index.md)
-```
-"""
 
     return content
 
 
 def generate_release_tabs(releases: List[Dict]) -> str:
-    """Generate dropdown sections for releases."""
-    if not releases:
-        return ""
-    
+    """Generate dropdown sections for releases."""  
     content = ""
     
     for release in releases[:6]:  # Max 6 releases to avoid clutter
