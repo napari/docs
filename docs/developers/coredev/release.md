@@ -34,9 +34,17 @@ Most required tools mentioned here are in https://github.com/napari/napari-relea
   - [ ] PyPI
   - [ ] napari.org
 
-### Stable release
+### Stable Release Prep
 
 - [ ] Triage remaining PRs and Issues. At this stage, bug fixes and remaining (testable) features are prioritized.
+- [ ] Make new PR to `napari/docs` with changes to release notes.
+- [ ] Ensure [`conda-recipe/recipe.yaml`](https://github.com/napari/packaging/blob/main/conda-recipe/recipe.yaml) in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements).
+- [ ] Ensure that `contraints` files are up to date. Usually initiated by `@napari-bot` within a day of changes to dependencies and otherwise regularly scheduled.
+
+### Create Stable Release 
+
+- [ ] Do a final build, push, and merge of release notes to `napari/docs`.
+
 
 
 ## Timeline
@@ -90,7 +98,7 @@ At this point the release manager should ideally be the only person merging PRs 
 ### Step 3: Making the prerelease
 
 - Merge any remaining PRs and update release notes accordingly;
-- Ensure `conda-recipe/meta.yaml` in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements);
+- Ensure [`conda-recipe/recipe.yaml`](https://github.com/napari/packaging/blob/main/conda-recipe/recipe.yaml) in `napari/packaging`  is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements);
 - Merge release notes;
 - Make the release candidate and announce on zulip;
 - Announce to release stream on zulip that the first release candidate is available for testing.
