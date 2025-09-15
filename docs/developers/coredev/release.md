@@ -154,7 +154,7 @@ release though we need to generate the release notes.
    repo. Make a list of merges, contributors, and reviewers by running
    ``python generate_release_notes.py -h`` and following that file's usage.
    For each release generate the list to include everything since the last release for which there
-   are release notes (which should just be the last release). To substitute GitHub handles for author names, use the `--correction-file` option.
+   are release notes (which should just be the last release).
 
    For example, to create release notes for the `0.5.4` release, use:
 
