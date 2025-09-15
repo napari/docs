@@ -235,7 +235,7 @@ Our CI automatically makes a release, copying the release notes to the tag and u
 You can trigger this by pushing the new tag to `napari/napari`:
 
 ```bash
-git push upstream --tags
+git push upstream vX.Y.Zrc0 --tags
 ```
 
 The release candidate can then be tested with
@@ -330,16 +330,7 @@ The [napari docs](https://napari.org) are versioned, meaning that each release h
 
 Next, you need to do the following:
 
-1. In the `napari/napari.github.io` repo, update the `stable` symlink in the `gh-pages` branch to point to the new version. This can be done by running the following commands in the `napari/napari.github.io` repo:
-
-```bash
-git checkout gh-pages
-rm stable
-ln -s X.Y.Z stable
-git add stable
-git commit -m "Update stable symlink to X.Y.Z"
-git push
-```
+1. In the `napari/napari.github.io` repo, update the `stable` symlink in the `gh-pages` branch to point to the new version. This can be done by manually triggering this [stable symlink action](https://github.com/napari/napari.github.io/actions/workflows/symlink-stable.yml). Enter X.Y.Z into the trigger box; do not include `v` as a prefix.
 
 2. In the `napari/docs` repo, update the [`docs/_static/version_switcher.json` file](https://github.com/napari/docs/blob/main/docs/_static/version_switcher.json)
    so that `stable` points to the right version.
