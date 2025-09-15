@@ -9,7 +9,7 @@ Most required tools mentioned here are in https://github.com/napari/napari-relea
 
 ### Early management
 
-- [ ] Make a new Zulip thread in the [releases channel](napari.zulipchat.com/releases)
+- [ ] Make a new Zulip thread in the [release channel](https://napari.zulipchat.com/#narrow/stream/215289-release)
 - [ ] Manage Github release Milestone
   - [ ] Set rc0 as the first due date of the milestone at least 3 days before. Given a typical release cycle, a week prior is recommended.
     - *Note the Milestone date is on [Line Island Time (LINT)](https://www.timeanddate.com/time/zone/@4030926) where the village of napari is located.*
@@ -101,6 +101,7 @@ New features should wait until after release.
 
 - Add a header and highlights section to the [`additional notes`](https://github.com/napari/napari-release-tools/tree/main/additional_notes) folder for the given release.
   Use the [highlight label](https://github.com/napari/napari/pulls?q=sort%3Aupdated-desc+is%3Apr+is%3Aopen+label%3Ahighlight) for the relevant milestone to note which PRs to comment on.
+  To add images or GIFs (the only supported animated format), add the file as a comment to appropriate PR.  You should link to the public GitHub link for that file and not the private assets version.
 - Generate release notes with the [`generate_release_notes.py` script from napari/napari-release-tools](https://github.com/napari/napari-release-tools/blob/main/generate_release_notes.py);
 - make a PR with the release notes, making sure to add the new document to the
   [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml).
@@ -125,7 +126,7 @@ At this point the release manager should ideally be the only person merging PRs 
 
 ## Release procedures
 
-Additional `release` dependencies (`python -m pip install -e .[release]`, from the `napari/napari` root folder) are required to complete the release process.
+The `release` dependency group (`python -m pip install -e . --group release`, from the `napari/napari` root folder) are required to complete the release process.
 
 > [`MANIFEST.in`](https://github.com/napari/napari/blob/main/MANIFEST.in) determines which non-Python files are included.
 > Make sure to check that all necessary ones are listed before beginning the release process.
@@ -143,7 +144,7 @@ The version of `napari` is automatically determined at install time by
 [`git` tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) beginning with
 `v`. Thus, you'll need to tag the
 [reference](https://git-scm.com/book/en/v2/Git-Internals-Git-References) with
-the new version number. It is likely something like `X.Y.Z`. Before making a
+the new version number. It is likely something like `vX.Y.Z`. Before making a
 release though we need to generate the release notes.
 
 ### Generating release notes
