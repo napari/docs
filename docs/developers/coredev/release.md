@@ -51,9 +51,14 @@ Most required tools mentioned here are in https://github.com/napari/napari-relea
   - [ ] `napari/docs` and `napari/napari.github.io`
   - [ ] PyPI
   - [ ] Conda-forge [`napari-feedstock`](https://github.com/conda-forge/napari-feedstock). *Note: Conda-forge bots will automatically make a PR, usually within 12 hours.*
-  - [ ] 
+- [ ] Update symlink in `napari/napari.github.io` using the [action](https://github.com/napari/napari.github.io/actions/workflows/symlink-stable.yml).
+- [ ] Update the `version_switcher.json` in `napari/docs`. (e.g. [this PR](https://github.com/napari/docs/pull/826))
 
+### Announce new release
 
+- [ ] Announce in General on Zulip
+- [ ] Edit the pre-release [image.sc](https://forum.image.sc) thread by updating the title and original post description to be the stable instructions, add final highlights, and post a reply to bump the thread.
+- [ ] Post on Bluesky, fosstodon, and LinkedIn
 
 ## Timeline
 
