@@ -71,7 +71,6 @@ The release will be coordinated by a release manager whose responsibilities incl
 - Create a zulip thread in [the release channel](https://napari.zulipchat.com/#narrow/stream/215289-release)
   letting people know the release candidate is coming and pointing out PRs that would be nice to merge before release.
 - Look through currently open PRs and get a sense of what would be good to merge before the first release candidate. Set milestones appropriately;
-- Ensure `conda-recipe/meta.yaml` in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements);
 
 At this stage, bug fixes and features that are close to landing should be prioritized.
 The release manager will follow up with PR authors, reviewing and merging as needed.
@@ -91,6 +90,7 @@ At this point the release manager should ideally be the only person merging PRs 
 ### Step 3: Making the prerelease
 
 - Merge any remaining PRs and update release notes accordingly;
+- Ensure `conda-recipe/meta.yaml` in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements);
 - Merge release notes;
 - Make the release candidate and announce on zulip;
 - Announce to release stream on zulip that the first release candidate is available for testing.
