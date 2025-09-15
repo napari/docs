@@ -130,14 +130,6 @@ release though we need to generate the release notes.
    python generate_release_notes.py 0.5.4 --target-directory=/path/to/docs/release/
    ```
 
-   While not frequently used, you may need to use 
-   [name_corrections.yaml](https://github.com/napari/napari-release-tools/blob/main/name_corrections.yaml).
-   To do so, include the `--correction-file` option with the path to the corrections file.
-
-  ```bash
-   python generate_release_notes.py 0.5.4 --target-directory=/path/to/docs/release/ --correction-file /path/to/name_corrections.yaml
-   ```
-
 2. Scan the PR titles for highlights, deprecations, API changes,
    and bugfixes, and mention these in the relevant sections of the notes.
    Try to present the information in an expressive way by mentioning
