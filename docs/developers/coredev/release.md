@@ -2,8 +2,32 @@
 
 # Release guide
 
-This guide documents `napari`'s release process as of 0.6.0.
+This guide documents `napari`'s release process as of 0.6.4.
 Most required tools mentioned here are in https://github.com/napari/napari-release-tools.
+
+## Release Checklist
+
+### Early management
+
+- [ ] Make a new Zulip thread in the [releases channel](napari.zulipchat.com/releases)
+- [ ] Manage Github release Milestone
+  - [ ] Set rc0 as the first due date of the milestone at least 3 days before. Given a typical release cycle, a week prior is recommended.
+    - *Note the Milestone date is on [Line Island Time (LINT)](https://www.timeanddate.com/time/zone/@4030926) where the village of napari is located.*
+  - [ ] Add the Zulip release thread to the milestone description
+
+### Triage the Milestone
+
+- [ ] Triage the milestone throughout the release cycle.
+  - [ ] Add PRs of interest to highlights. These help the manager keep track of important PRs that often require extra team attention.
+  - [ ] Move PRs and issues that won't make it in the current release to the next milestone. Add a note to PRs (and issues) from community members describing the actions the release manager is taking and provide actionable comments.
+
+### Create Release Notes
+
+*You may wish to make an alpha release at any point in the release cycle. However, you must make at least an empty release file to attach to the tag, otherwise the release will fail.*
+
+Release notes are created via [`napari-release-tools/generate_release_notes.py`](https://github.com/napari/napari-release-tools/blob/main/generate_release_notes.py). 
+- [ ] 
+
 
 ## Timeline
 
