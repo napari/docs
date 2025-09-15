@@ -21,12 +21,22 @@ Most required tools mentioned here are in https://github.com/napari/napari-relea
   - [ ] Add PRs of interest to highlights. These help the manager keep track of important PRs that often require extra team attention.
   - [ ] Move PRs and issues that won't make it in the current release to the next milestone. Add a note to PRs (and issues) from community members describing the actions the release manager is taking and provide actionable comments.
 
-### Create Release Notes
+### Create Pre-release
 
-*You may wish to make an alpha release at any point in the release cycle. However, you must make at least an empty release file to attach to the tag, otherwise the release will fail.*
+*You may wish to make an alpha release at any point in the release cycle. However, you must make at least an empty release file to attach to the tag and merge it to `napari/docs`, otherwise the release will fail.*
 
-Release notes are created via [`napari-release-tools/generate_release_notes.py`](https://github.com/napari/napari-release-tools/blob/main/generate_release_notes.py). 
-- [ ] 
+- [ ] Communicate in Zulip release thread that pre-release is approaching.
+- [ ] Create a draft of release notes and make PR to `napari/docs`.
+  - [ ] Merge release notes to `napari/docs`
+- [ ] Tag pre-release with release notes file and push to `napari/napari`
+- [ ] Announce release candidate on Zulip in Release (and General, for meso or larger releases) and [forum.image.sc](https://forum.image.sc/announcements)
+- [ ] Check for proper deployment
+  - [ ] PyPI
+  - [ ] napari.org
+
+### Stable release
+
+- [ ] Triage remaining PRs and Issues. At this stage, bug fixes and remaining (testable) features are prioritized.
 
 
 ## Timeline
