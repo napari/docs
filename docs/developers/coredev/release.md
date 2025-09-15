@@ -41,9 +41,17 @@ Most required tools mentioned here are in https://github.com/napari/napari-relea
 - [ ] Ensure [`conda-recipe/recipe.yaml`](https://github.com/napari/packaging/blob/main/conda-recipe/recipe.yaml) in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements).
 - [ ] Ensure that `contraints` files are up to date. Usually initiated by `@napari-bot` within a day of changes to dependencies and otherwise regularly scheduled.
 
-### Create Stable Release 
+### Create Stable Release
 
 - [ ] Do a final build, push, and merge of release notes to `napari/docs`.
+- [ ] Ensure `napari/docs` successfully deploys
+- [ ] Checkout `napari/napari:main` and tag with release notes file.
+- [ ] Push created tag to `napari/napari`. This triggers the deployment actions.
+- [ ] Check that deployment is successful
+  - [ ] `napari/docs` and `napari/napari.github.io`
+  - [ ] PyPI
+  - [ ] Conda-forge [`napari-feedstock`](https://github.com/conda-forge/napari-feedstock). *Note: Conda-forge bots will automatically make a PR, usually within 12 hours.*
+  - [ ] 
 
 
 
@@ -259,8 +267,7 @@ For a more complete description of the napari packaging infrastructure, see {ref
 
 ### New releases
 
-Once the PyPI release is available, the `conda-forge` bots will submit a PR to `conda-forge/napari-feedstock` within a few hours.
-Merging that PR to `main` will trigger the `conda-forge` release.
+Once the PyPI release is available, the `conda-forge` bots will submit a PR to `conda-forge/napari-feedstock` within about twelves hours. The release manager may not have push/merge rights to the feedstock, so ask a recipe maintainer for assistance. Merging the bot PR to `main` will trigger the `conda-forge` release.
 Accounting for the build times and the CDN sync, this means that the `conda-forge` packages will be available 30-60 mins after the PR is merged.
 
 Before merging, please pay special attention to these aspects:
