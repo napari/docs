@@ -156,6 +156,19 @@ release though we need to generate the release notes.
    For each release generate the list to include everything since the last release for which there
    are release notes (which should just be the last release).
 
+   Prior to generating release notes, you will need to set your GitHub token environment variable:
+   On Linux or MacOS:
+
+   ```bash
+   export GH_TOKEN='<your-gh-api-token>'
+   ```
+
+   or on Windows:
+
+   ```bash
+   set GH_TOKEN=<your-gh-api-token>
+   ```
+
    For example, to create release notes for the `0.5.4` release, use:
 
    ```bash
