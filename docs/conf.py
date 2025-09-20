@@ -151,7 +151,7 @@ html_sidebars = {
 # html context is passed into the template engine’s context for all pages.
 html_context = {
     # use Light theme only, don't auto switch (default)
-    "default_mode": "light",
+    "default_mode": "auto",
     # add release version to context
     "release": release,
     "version": version,
