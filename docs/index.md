@@ -1,4 +1,5 @@
 ---
+html_theme.sidebar_secondary.remove: true
 theme:
   metaDescription: napari is a fast multi-dimensional image viewer for Python. It can help you **explore** any image-like data, be it 2D, 3D, or even higher-dimensional. It can also help you **overlay** downstream or **associated data**, such as point coordinates or segmentations, which you can use to **annotate** and **proofread** your image data.
   quickLinks:
