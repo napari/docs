@@ -14,7 +14,7 @@ The first step in managing a release is to create a new Issue in napari/napari w
 As of 0.6.5, napari has officially adopted [EffVer](https://effver.org) for versioning, from the previous semantic versioning.
 While in pre-1.0 state, the current convention is `0.MACRO.MESO` and once we release v1.0.0 will henceforth be in `MACRO.MESO.MICRO` versioning.
 This is similar to previous Semantic Versioning schema of `MAJOR.MINOR.BUGFIX`, but allows features and bugfixes to live harmoniously in any version.
-Instead, the version number implies to users the amount of effort required to adopt the newest version from signficant effort (`MACRO`) to no expected effort (`MICRO`).
+Instead, the version number implies to users the amount of effort required to adopt the newest version from significant effort (`MACRO`) to no expected effort (`MICRO`).
 Our current policy permits deprecations in `MACRO` and `MESO` releases only.
 
 ## Timeline
@@ -232,7 +232,7 @@ git tag -s "vX.Y.Z" -F ../napari-docs/release/release_X_Y_Z.md
 git push upstream --tags
 ```
 
-Once the new tag is pushed, the [`make_release.yml` workflow](https://github.com/napari/napari/blob/main/.github/workflows/make_release.yml) will be triggered, using the [PyPI Publish action](https://github.com/pypa/gh-action-pypi-publish) to publish the new napari version to PyPI using [Trusted Publishers](https://docs.pypi.org/trusted-publishers/).
+Once the new tag is pushed, the [`make_release.yml` workflow](https://github.com/napari/napari/blob/main/.github/workflows/make_release.yml) will be triggered, 3using the [PyPI Publish action](https://github.com/pypa/gh-action-pypi-publish) to publish the new napari version to PyPI using [Trusted Publishers](https://docs.pypi.org/trusted-publishers/).
 
 ## conda-forge packages
 
