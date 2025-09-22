@@ -39,8 +39,8 @@ Our current policy permits deprecations in `MACRO` and `MESO` releases only.
 - [ ] Tag pre-release with release notes file and push to `napari/napari`
 - [ ] Announce release candidate on Zulip in Release (and General, for meso or larger releases) and [forum.image.sc](https://forum.image.sc/announcements)
 - [ ] Check for proper deployment
-  - [ ] PyPI
-  - [ ] napari.org
+  - [ ] [PyPI](https://pypi.org/project/napari/#history)
+  - [ ] [napari.org](https://napari.org/dev/)
 
 ### Stable Release Prep
 
