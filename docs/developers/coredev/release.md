@@ -5,6 +5,10 @@
 This guide documents `napari`'s release process as of 0.6.4.
 Most required tools mentioned here are in https://github.com/napari/napari-release-tools.
 
+:::{important}
+The first step in managing a release is to create a new Issue in napari/napari with the `release` template.
+:::
+
 ## EffVer: (Intended) Effort Versioning
 
 As of 0.6.5, napari has officially adopted [EffVer](https://effver.org) for versioning, from the previous semantic versioning.
@@ -18,8 +22,8 @@ Our current policy permits deprecations in `MACRO` and `MESO` releases only.
 ### Early management
 
 - [ ] Make a new Zulip thread in the [release channel](https://napari.zulipchat.com/#narrow/stream/215289-release)
-- [ ] Manage Github release Milestone
-  - [ ] Set rc0 as the first due date of the milestone at least 3 days before. Given a typical release cycle, a week prior is recommended.
+- [ ] Create milestone in `napari/napari` and `napari/docs` for the new release.
+  - [ ] Set date of milestone to the expected release date for rc0, at least 3 days before the actual release date. Given a typical release cycle, a week prior is recommended.
     - *Note the Milestone date is on [Line Island Time (LINT)](https://www.timeanddate.com/time/zone/@4030926) where the village of napari is located.*
   - [ ] Add the Zulip release thread to the milestone description
 
