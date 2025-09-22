@@ -44,6 +44,7 @@ Our current policy permits deprecations in `MACRO` and `MESO` releases only.
 
 ### Stable Release Prep
 
+- [ ] Make a PR requesting any new contributors to add their information to [CITATION.cff](https://github.com/napari/napari/blob/main/CITATION.cff) ([PR example](https://github.com/napari/napari/pull/8138)).
 - [ ] Triage remaining PRs and Issues. At this stage, bug fixes and remaining (testable) features are prioritized.
 - [ ] Make new PR to `napari/docs` with changes to release notes.
 - [ ] Ensure [`conda-recipe/recipe.yaml`](https://github.com/napari/packaging/blob/main/conda-recipe/recipe.yaml) in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements).
