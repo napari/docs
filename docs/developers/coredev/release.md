@@ -19,11 +19,11 @@ Our current policy permits deprecations in `MACRO` and `MESO` releases only.
 
 ## Timeline
 
-Currently, we are releasing a major version every six to twelve months.
-We plan minor napari version releases every 1-2 months.
+Currently, we are releasing a macro version every six to twelve months.
+We plan meso napari version releases every 1-2 months.
 We will ship bug fix releases as needed.
 
-Prior to major and minor releases, we will have a release testing cycle with
+Prior to macro and meso releases, we will have a release testing cycle with
 alpha prereleases and release candidates. All will be made available to the
 community for testing. The length of time between these prereleases will
 depend on the size of the release and feedback received. A conservative estimate
@@ -138,7 +138,7 @@ release though we need to generate the release notes.
    the affected functions, elaborating on the changes and their
    consequences. If possible, organize semantically close PRs in groups.
 
-3. Make sure the file name is of the form ``doc/release/release_<major>_<minor>_<release>.md``, e.g. `doc/release/release_0_5_4.md`.
+3. Make sure the file name is of the form ``doc/release/release_<macro>_<meso>_<micro>.md``, e.g. `doc/release/release_0_5_4.md`.
 
 4. **Important**: Make and merge a PR in `napari/docs` with these release notes before moving onto the next steps.
    If these release notes are not merged, the release will fail because the
@@ -311,5 +311,5 @@ Next, you need to do the following:
 ### Plan a bug release
 
 If any critical bugs are found in the release, a bug release should be planned.
-This will be a minor release with the bug fixes and no new features.
+This will be a micro release with the bug fixes and few or no new features.
 The release manager should coordinate with the maintainers to ensure that the bug release is made in a timely manner.
