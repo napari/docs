@@ -48,11 +48,11 @@ Our current policy permits deprecations in `MACRO` and `MESO` releases only.
 
 ### Stable Release Prep
 
-- [ ] Make a PR requesting any new contributors to add their information to [CITATION.cff](https://github.com/napari/napari/blob/main/CITATION.cff) ([PR example](https://github.com/napari/napari/pull/8138)).
+- [ ] Make a PR requesting any new contributors add their information to [CITATION.cff](https://github.com/napari/napari/blob/main/CITATION.cff) ([PR example](https://github.com/napari/napari/pull/8138)).
 - [ ] Triage remaining PRs and Issues. At this stage, bug fixes and remaining (testable) features are prioritized.
 - [ ] Make new PR to `napari/docs` with changes to release notes.
 - [ ] Ensure [`conda-recipe/recipe.yaml`](https://github.com/napari/packaging/blob/main/conda-recipe/recipe.yaml) in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements).
-- [ ] Ensure that `contraints` files are up to date. Usually initiated by `@napari-bot` within a day of changes to dependencies and otherwise regularly scheduled.
+- [ ] Ensure that [`contraints`](https://github.com/napari/napari/tree/main/resources/constraints) files are up to date. Usually initiated by `@napari-bot` within a day of changes to dependencies and otherwise regularly scheduled.
 
 ### Create Stable Release
 
@@ -71,7 +71,7 @@ Our current policy permits deprecations in `MACRO` and `MESO` releases only.
 
 - [ ] Announce in General on Zulip
 - [ ] Edit the pre-release [image.sc](https://forum.image.sc) thread by updating the title and original post description to be the stable instructions, add final highlights, and post a reply to bump the thread.
-- [ ] Post on Bluesky, fosstodon, and LinkedIn
+- [ ] Post on [bluesky](https://bsky.app/profile/napari.org), [fosstodon](https://fosstodon.org/@napari), and [LinkedIn](https://www.linkedin.com/company/napari)
 
 ## Timeline
 
