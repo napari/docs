@@ -84,7 +84,7 @@ or loading a specific plugin every time napari starts.
 This feature is intended only for users. Plugin are not allowed to modify this setting.
 ```
 
-As other settings, value of this field could be overridden by setting the
+As other settings, the value of this field can be overridden by setting the
 `NAPARI_APPLICATION_STARTUP_SCRIPT` environment variable to the path of the script to run at startup.
 Setting it to an empty string will disable the startup script.
 
