@@ -74,8 +74,8 @@ This feature is especially useful for quickly testing or distributing code snipp
 
 ## Startup script
 
-Since napari 0.6.5 it is possible to set a script that will be run every time napari starts.
-This can be done by providing a script path in a Settings » Application » Startup script.
+Since napari 0.6.5 it is possible to provide a script that will be run every time napari starts.
+This can be done by providing a script path in Settings » Application » Startup script.
 This can be useful, for example, for adding a 
 [custom colormap](https://github.com/napari/napari/blob/main/examples/dev/settings_startup_script.py)
 or loading a specific plugin every time napari starts.
