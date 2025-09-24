@@ -34,7 +34,7 @@ orbs:
 jobs:
   build-docs:
     docker:
-      - image: cimg/python:3.10.17
+      - image: cimg/python:3.12.6
     environment:
       XDG_CACHE_HOME: /home/circleci/.cache
     parameters:
@@ -65,7 +65,7 @@ jobs:
             . .venv/bin/activate
             uv pip install -e "napari/[pyqt5,docs]"
           environment:
-            PIP_CONSTRAINT: napari/resources/constraints/constraints_py3.10_docs.txt
+            PIP_CONSTRAINT: napari/resources/constraints/constraints_py3.12_docs.txt
       - run:
           name: Build docs
           command: |
@@ -73,7 +73,7 @@ jobs:
             cd docs
             xvfb-run --auto-servernum make << parameters.make_target >>
           environment:
-            PIP_CONSTRAINT: ../napari/resources/constraints/constraints_py3.10_docs.txt
+            PIP_CONSTRAINT: ../napari/resources/constraints/constraints_py3.12_docs.txt
       - store_artifacts:
           path: docs/docs/_build/html/
       - save_cache:

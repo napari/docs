@@ -53,7 +53,7 @@ jobs:
 
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: "3.10"
+          python-version: "3.12"
           cache-dependency-path: |
             napari/pyproject.toml
 
@@ -73,7 +73,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install "napari/[pyqt5, docs]"
         env:
-          PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
+          PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.12_docs.txt
 
       - name: Check napari can be imported
         run: |
@@ -85,7 +85,7 @@ jobs:
         env:
           GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
           GOOGLE_CALENDAR_API_KEY: ${{ secrets.GOOGLE_CALENDAR_API_KEY }}
-          PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
+          PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.12_docs.txt
         with:
           run: make -C docs ${{ inputs.make_target || 'slimfast' }}
           # skipping setup stops the action from running the default (tiling) window manager
