@@ -34,7 +34,7 @@ orbs:
 jobs:
   build-docs:
     docker:
-      - image: cimg/python:3.12.6
+      - image: cimg/python:3.12.11
     environment:
       XDG_CACHE_HOME: /home/circleci/.cache
     parameters:
