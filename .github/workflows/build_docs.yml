@@ -73,7 +73,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install "napari/[pyqt5, docs]"
         env:
-          PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
+          PIP_CONSTRAINT: ${{ github.workspace }}/docs/constraints_py3.10_docs_b8e9b95.txt
 
       - name: Check napari can be imported
         run: |
@@ -85,7 +85,7 @@ jobs:
         env:
           GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
           GOOGLE_CALENDAR_API_KEY: ${{ secrets.GOOGLE_CALENDAR_API_KEY }}
-          PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.10_docs.txt
+          PIP_CONSTRAINT: ${{ github.workspace }}/docs/constraints_py3.10_docs_b8e9b95.txt
         with:
           run: make -C docs ${{ inputs.make_target || 'slimfast' }}
           # skipping setup stops the action from running the default (tiling) window manager
