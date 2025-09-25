@@ -189,8 +189,14 @@ You can also find the environmentvariable names for each setting in the descript
 
 You can override settings for a single napari session by setting environment variables at launch:
 
+
+On Mac and Linux:
 ```
 NAPARI_APPLICATION_CONFIRM_CLOSE_WINDOW=False napari
+```
+On Windows:
+```
+set NAPARI_APPLICATION_CONFIRM_CLOSE_WINDOW=False && napari
 ```
 
 Or programatically in a script/notebook:
