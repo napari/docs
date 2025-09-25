@@ -113,9 +113,9 @@ jobs:
     uses: napari/shared-workflows/.github/workflows/build_docs.yml@build_docs
     secrets: inherit
     with:
-      main-repo: ${{ github.repository }}
-      main-ref: ${{ github.sha }}
-      docs-repo: napari/docs
+      main-repo: "napari/napari"
+      main-ref: "main"
+      docs-repo: ${{ github.repository }}
       docs-ref: ${{ needs.determine-make-target.outputs.docs_ref }}
       make_target: ${{ needs.determine-make-target.outputs.target }}
 
