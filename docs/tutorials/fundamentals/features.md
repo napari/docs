@@ -77,3 +77,22 @@ napari https://github.com/napari/napari/blob/main/examples/add_3D_image.py
 ```
 
 This feature is especially useful for quickly testing or distributing code snippets without needing to leave the viewer or touch the console.
+
+## Startup script
+
+Since napari 0.6.5 it is possible to provide a script that will be run every time napari starts.
+This can be done by providing a script path in Settings » Application » Startup script.
+This can be useful, for example, for adding a 
+[custom colormap](https://github.com/napari/napari/blob/main/examples/dev/settings_startup_script.py)
+or loading a specific plugin every time napari starts.
+
+```{note}
+This feature is intended only for users. Plugin are not allowed to modify this setting.
+```
+
+As with other settings, the value of this field can be overridden by setting the
+`NAPARI_APPLICATION_STARTUP_SCRIPT` environment variable to the path of the script to run at startup.
+Setting it to an empty string will disable the startup script.
+
+
+ 
