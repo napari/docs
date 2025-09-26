@@ -3,7 +3,6 @@
 
 *Fri, Sep 26, 2025*
 
-
 We're happy to announce the release of napari 0.6.5!
 napari is a fast, interactive, multi-dimensional image viewer for Python.
 It's designed for browsing, annotating, and analyzing large multi-dimensional
@@ -13,9 +12,7 @@ rendering), and the scientific Python stack (numpy, scipy).
 For more information, examples, and documentation, please visit our website,
 https://napari.org.
 
-
 napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this is a **Meso** release containing awesome new features, but some effort may be needed when updating previous projects to use this version.
-
 
 ## Highlights
 
@@ -54,14 +51,14 @@ for layer in layers:
 
 ![Image depicting the napari viewer in grid mode with scale bars and color bars enabled](https://private-user-images.githubusercontent.com/23482191/494350517-622b2d36-11a7-4c55-9550-c82ddebc2fda.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTg4ODU5NzksIm5iZiI6MTc1ODg4NTY3OSwicGF0aCI6Ii8yMzQ4MjE5MS80OTQzNTA1MTctNjIyYjJkMzYtMTFhNy00YzU1LTk1NTAtYzgyZGRlYmMyZmRhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA5MjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwOTI2VDExMjExOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPThjODA3ZmExZTY4NzA3NzQ3YzQ3MGY2NzM1MDg4MmFhYWM2ZTA0MjIyMDBlMTE1Y2NjMGYxMmFiYzZlMGVmNTEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.-xXGxQm1VvTSJMQj0t2IReHhjbT-lSt8oxobpru7Px0)
 
-### Task manager will now try to save your unfinished work
-We added a new task manager ([#8211](https://github.com/napari/napari/pull/8211)) which automatically register any running `thread_worker`, showing a confirmation dialog if you attempt to close napari while a task is running.
+### Task manager will now try to prevent losing unfinished work
+We added a new task manager ([#8211](https://github.com/napari/napari/pull/8211)) which automatically registers any running `thread_worker`, showing a confirmation dialog if you attempt to close napari while a task is running.
 
 ### New `remove()` and `pop()` methods for Points and Shapes
 Points and Shapes can now be easily removed, not just added :P ([#8031](https://github.com/napari/napari/pull/8031) and [#8072](https://github.com/napari/napari/pull/8072)).
 
 ### A new and updated guide on napari Preferences
-Our documentation on the napari Preferences has received a major overhaul! [Check it out here](preferences).
+Our documentation on the napari Preferences has received a major overhaul! [Check it out here](https://napari.org/stable/guides/preferences.html#preferences)!
 
 TODO: does this link work?
 
@@ -121,6 +118,7 @@ TODO: does this link work?
 - Add documentation for startup script. ([docs#846](https://github.com/napari/docs/pull/846))
 - Add some info about running python scripts via cli ([docs#847](https://github.com/napari/docs/pull/847))
 - Add note about workers registration as tasks and close confirmation dialog when closing napari GUI via close button ([docs#851](https://github.com/napari/docs/pull/851))
+- Release notes v0.6.5 ([docs#853](https://github.com/napari/docs/pull/853))
 
 ## Other Pull Requests
 
@@ -177,6 +175,7 @@ TODO: does this link work?
 - [Rahul Kumar](https://github.com/napari/napari/commits?author=rahul713rk) - @rahul713rk
 - [rwkozar](https://github.com/napari/napari/commits?author=rwkozar) - @rwkozar
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
+
 
 
 ## 16 reviewers added to this release (alphabetical)
