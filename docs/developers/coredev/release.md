@@ -49,7 +49,6 @@ The release will be coordinated by a release manager whose responsibilities incl
 - Create a zulip thread in [the release channel](https://napari.zulipchat.com/#narrow/stream/215289-release)
   letting people know the release candidate is coming and pointing out PRs that would be nice to merge before release.
 - Look through currently open PRs and get a sense of what would be good to merge before the first release candidate. Set milestones appropriately;
-- Ensure [`conda-recipe/recipe.yaml`](https://github.com/napari/packaging/blob/main/conda-recipe/recipe.yaml) in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements);
 
 At this stage, bug fixes and features that are close to landing should be prioritized.
 The release manager will follow up with PR authors, reviewing and merging as needed.
@@ -59,7 +58,9 @@ New features should wait until after release.
 
 - Add a header and highlights section to the [`additional notes`](https://github.com/napari/napari-release-tools/tree/main/additional_notes) folder for the given release.
   Use the [highlight label](https://github.com/napari/napari/pulls?q=sort%3Aupdated-desc+is%3Apr+is%3Aopen+label%3Ahighlight) for the relevant milestone to note which PRs to comment on.
-  To add images or GIFs, add the file as a comment to appropriate PR. You should link to the public GitHub link for that file and not the private assets version.
+  To add images or GIFs and have them display in both the napari docs and the github release notes, add the file as a comment to the appropriate PR. 
+  You then need to link to the public GitHub asset for that file (obtained via editing the comment and getting the original link) and not the private assets version (which is the link of the previewed image).
+  The public link starts with `https://github.com/user-attachments/assets/...` whereas the private link starts with `https://private-user-images.githubusercontent.com/...`.
 - Generate release notes with the [`generate_release_notes.py` script from napari/napari-release-tools](https://github.com/napari/napari-release-tools/blob/main/generate_release_notes.py);
 - Make a PR with the release notes, making sure to add the new document to the
   [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml).
