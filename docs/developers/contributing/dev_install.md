@@ -84,7 +84,7 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
 
     ```{note}
     In all of the above cases, you may wish to include the `optional` extra (optional dependency),
-    in addition to `dev`, by using `pip install -e . --group dev --group optional`, for example.
+    in addition to `dev`, by using `pip install -e ".[optional]" --group dev`, for example.
     The `optional` dependency group includes `numba` and other performance packages that are
     included with the typical end-user `napari[all]` installation.
     ```
