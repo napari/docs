@@ -52,7 +52,7 @@ for layer in layers:
     layer.color_bar.visible = True
 ```
 
-TODO: image here
+![Image depicting the napari viewer in grid mode with scale bars and color bars enabled](https://private-user-images.githubusercontent.com/23482191/494350517-622b2d36-11a7-4c55-9550-c82ddebc2fda.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTg4ODU5NzksIm5iZiI6MTc1ODg4NTY3OSwicGF0aCI6Ii8yMzQ4MjE5MS80OTQzNTA1MTctNjIyYjJkMzYtMTFhNy00YzU1LTk1NTAtYzgyZGRlYmMyZmRhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA5MjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwOTI2VDExMjExOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPThjODA3ZmExZTY4NzA3NzQ3YzQ3MGY2NzM1MDg4MmFhYWM2ZTA0MjIyMDBlMTE1Y2NjMGYxMmFiYzZlMGVmNTEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.-xXGxQm1VvTSJMQj0t2IReHhjbT-lSt8oxobpru7Px0)
 
 ### Task manager will now try to save your unfinished work
 We added a new task manager ([#8211](https://github.com/napari/napari/pull/8211)) which automatically register any running `thread_worker`, showing a confirmation dialog if you attempt to close napari while a task is running.
