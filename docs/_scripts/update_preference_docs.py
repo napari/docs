@@ -76,7 +76,37 @@ PREFERENCES_TEMPLATE = """(napari-preferences)=
 
 # Preferences
 
-Starting with version 0.4.6, napari provides persistent settings.
+## napari settings
+
+napari provides persistent settings that are stored on a *per environment basis*.
+This means that if you have multiple Python environments, each with a napari installation (e.g.
+different versions), the napari in each environment will have its own set of stored preferences.
+So, for example, you could have an environment where napari always uses the Light theme and another one
+where napari always uses the Dark theme.
+
+A wide range of settings are available, organized into sections, and described in more detail below.
+
+### Where settings are stored
+
+Settings are stored in a `settings.yaml` file and napari uses [`appdirs`](https://github.com/ActiveState/appdirs)
+to determine the save location: the platform-specific user configuration directory.
+You can check where a napari installation has stored settings by looking for "Settings path" in the output of:
+
+```bash
+napari --info
+```
+
+## Resetting settings to defaults using the command line (CLI)
+
+Sometimes, for example due to a version change, an issue with the stored settings can prevent
+napari from launching or cause other issues. In those cases, it can be useful to reset the settings
+to the defaults from the command line. To reset all napari settings to the default values:
+
+```bash
+napari --reset
+```
+
+## Programmatic access to the settings
 
 Settings are managed by getting the global settings object and modifying settings:
 
@@ -88,57 +118,104 @@ settings = get_settings()
 settings.appearance.theme = 'dark'
 ```
 
-## Reset to defaults via CLI
+You can get more information about individual settings, their types, and default values in each of the
+settings section descriptions below.
 
-To reset all napari settings to the default values:
+## The Preferences dialog
 
-```bash
-napari --reset
-```
+napari provides a Preferences dialog to manage the settings using a graphical user interface (GUI).
+Importantly, this dialog also allows you to customize napari keyboard shortcuts (keybindings).
 
-## The preferences dialog
+On Windows and Linux, the Preferences dialog can be accessed in the **File** menu. On macOS, it can be
+accessed in the **napari** menu.
 
-Starting with version 0.4.6, napari provides a preferences dialog to manage
-some of the provided options.
+The settings are grouped by sections that are accessible in a list on the left side of the dialog.
 
-{%- for section, section_data in sections.items() %}
+{% for section, section_data in sections.items() %}
 
-### {{ section_data["title"] }}
-
-![{{ section }}]({{ images_path }}/preferences-{{ section }}.png)
-
-{% endfor%}
-
-### Reset to defaults via UI
-
-To reset the preferences click on the `Restore defaults` button and continue
-by clicking on `Restore`.
-
-![{{ reset }}]({{ images_path }}/preferences-reset.png)
-
-## Sections
-
-The settings are grouped by sections and napari core provides the following:
-
-{%- for section, section_data in sections.items() %}
-
-### {{ section_data["title"]|upper }}
+## {{ section_data["title"] }} Settings
 
 {{ section_data["description"] }}
 
+![{{ section }}]({{ images_path }}/preferences-{{ section }}.png)
+
+:::{dropdown} More details on the individual {{ section_data["title"] }} settings
+
 {%   for fields in section_data["fields"] %}
-#### {{ fields["title"] }}
+{%     if fields["ui"] %}
+##### {{ fields["title"] }}
 
 *{{ fields["description"] }}*
 
 * <small>Access programmatically with `SETTINGS.{{ section }}.{{ fields["field"] }}`.</small>
-* <small>Type: `{{ fields["type"] }}`.</small>
+* <small>Environmental variable: `NAPARI_{{ section.upper() }}_{{ fields["field"].upper() }}`</small>
+* <small>Type: `{{ fields["type"] }}`</small>
+
+{% if section == "shortcuts" and fields["default"] is mapping -%}
+**Default Shortcuts**
+
+| Action | Shortcut |
+|--------|----------|
+{%- for key, value in fields["default"].items() %}
+| {{ key }} | {{ value }} |
+{%- endfor %}
+
+{% else -%}
 * <small>Default: `{{ fields["default"] }}`.</small>
-{% if fields["ui"] %}* <small>UI: This setting can be configured via the preferences dialog.</small>{% endif %}
-{%-   endfor -%}
+{%- endif %}
+
+{%     endif %}
+{%   endfor %}
+
+:::
+
 {% endfor %}
 
-**Support for plugin specific settings will be provided in an upcoming release.**
+## Reset settings to defaults using the Preferences dialog
+
+To reset the preferences click on the `Restore defaults` button and continue
+by clicking on `Restore Defaults`.
+
+![{{ reset }}]({{ images_path }}/preferences-reset.png)
+
+## Overriding settings
+
+napari settings can also be overridden by using *environment variables*.
+The variable names follow a pattern: they start with `NAPARI`,
+followed by the Preference section name, yielding, for example, `NAPARI_APPLICATION`, followed by the setting
+name, yielding, for example, `NAPARI_APPLICATION_CONFIRM_CLOSE_WINDOW`.
+(This specific setting controls whether napari will prompt you to confirm closing the application.)
+You can also find the environmentvariable names for each setting in the descriptions for each of the Preference sections above.
+
+You can override settings for a single napari session by setting environment variables at launch:
+
+
+On Mac and Linux:
+```
+NAPARI_APPLICATION_CONFIRM_CLOSE_WINDOW=False napari
+```
+On Windows:
+```
+set NAPARI_APPLICATION_CONFIRM_CLOSE_WINDOW=False && napari
+```
+
+Or programatically in a script/notebook:
+
+```python
+import os
+os.environ['NAPARI_APPLICATION_CONFIRM_CLOSE_WINDOW'] = 'False'
+```
+
+Or, depending on your shell, you can persist environment variables for a shell session
+using the `export` command (e.g. `bash`, `zsh`):
+
+```bash
+export NAPARI_APPLICATION_CONFIRM_CLOSE_WINDOW=False
+```
+
+ Or, to persist between shell sessions, add the above command to your
+ shell configuration file e.g `~/.bashrc` or `~/.zshrc`.
+
 
 """
 
@@ -212,7 +289,7 @@ def create_preferences_docs():
                     "field": n,
                     "title": f.field_info.title,
                     "description": f.field_info.description,
-                    "default": repr(f.get_default()),
+                    "default": f.get_default() if title.lower() == "shortcuts" else repr(f.get_default()),
                     "ui": n not in excluded,
                     "type": repr(f._type_display()).replace('.typing', ''),
                 }
