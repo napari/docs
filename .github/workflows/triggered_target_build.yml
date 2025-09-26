@@ -110,7 +110,7 @@ jobs:
 
   trigger-artifact-build:
     needs: determine-make-target
-    uses: napari/shared-workflows/.github/workflows/build_docs.yml@build_docs
+    uses: napari/shared-workflows/.github/workflows/build_docs.yml
     secrets: inherit
     with:
       main-repo: "napari/napari"
