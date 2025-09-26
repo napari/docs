@@ -8,7 +8,7 @@ on:
 jobs:
   full-artifact-build:
     if: contains(github.event.pull_request.labels.*.name, 'ready to merge')
-    uses: napari/shared-workflows/.github/workflows/build_docs.yml
+    uses: napari/shared-workflows/.github/workflows/build_docs.yml@main
     secrets: inherit
     with:
       main-repo: "napari/napari"

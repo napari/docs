@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   artifact-build:
-    uses: napari/shared-workflows/.github/workflows/build_docs.yml
+    uses: napari/shared-workflows/.github/workflows/build_docs.yml@main
     secrets: inherit
     with:
       main-repo: "napari/napari"
