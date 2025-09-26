@@ -119,7 +119,7 @@ html_theme_options = {
     ],
     "github_url": "https://github.com/napari/napari",
     "navbar_start": ["navbar-logo", "navbar-project"],
-    "navbar_end": ["version-switcher", "navbar-icon-links"],
+    "navbar_end": ["version-switcher", "navbar-icon-links", "theme-switcher"],
     "switcher": {
         "json_url": json_url,
         "version_match": version_match,
@@ -129,7 +129,7 @@ html_theme_options = {
     "header_links_before_dropdown": 6,
     "secondary_sidebar_items": ["page-toc"],
     "pygments_light_style": "napari",
-    "pygments_dark_style": "napari",
+    "pygments_dark_style": "dracula",
     "announcement": "",
     "back_to_top_button": False,
     "analytics": {
@@ -151,7 +151,7 @@ html_sidebars = {
 # html context is passed into the template engine’s context for all pages.
 html_context = {
     # use Light theme only, don't auto switch (default)
-    "default_mode": "light",
+    "default_mode": "auto",
     # add release version to context
     "release": release,
     "version": version,
