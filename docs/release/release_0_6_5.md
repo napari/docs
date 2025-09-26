@@ -19,15 +19,10 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 ### Define a startup script for custom launch behaviour
 Do you have a code snippet that you always find yourself running after you launch napari? No more! You can now put this code in a script and set its path in the new `startup script` setting ([#8188](https://github.com/napari/napari/pull/8188)), and it will be executed every time napari opens. It's just a python script, so sky's the limit :) We found it particularly useful for adding custom colormaps, setting up the scale bar *just right*, or automatically launching our favourite plugin on startup.
 
-TODO: image here
-
-### Multilayer features table widget
-If you have multiple layers with similar feature tables (such as points or shapes annotations from different processing pipelines), you may want to easily compare these features between different layers. Following up on the recent addition of the [Features Table Widget](features-table-widget), you can now select multiple layers while the widget is active, and their features tables will be automatically joined into a single table ([#8189](https://github.com/napari/napari/pull/8189))!
-
-TODO: image here
+![Screenshot of the application settings menu highlighting the field for the startup script path](https://github.com/user-attachments/assets/7b0e5e5c-252b-45a0-ae76-aac88e488cbc)
 
 ### Automatically tiled overlays and ColorBar overlay
-Canvas overlays such as `scale_bar`, `text_overlay`, and `color_bar` overlay are now automatically tiling ([#7836](https://github.com/napari/napari/pull/7836)), preventing annoying overlap and making them easier to use without having to manage positioning. Wait, `color_bar` overlay you said? You heard it right! This is a new overlay ([#7832](https://github.com/napari/napari/pull/7832))that shows a color bar legend, and it works with any layer which uses a colormap. All of this works seamlessly with multiple overlays and even grid mode:
+Canvas overlays such as `scale_bar`, `text_overlay`, and `colorbar` overlay are now automatically tiling ([#7836](https://github.com/napari/napari/pull/7836)), preventing annoying overlap and making them easier to use without having to manage positioning. Wait, `colorbar` overlay you said? You heard it right! This is a new overlay ([#7832](https://github.com/napari/napari/pull/7832))that shows a color bar legend, and it works with any layer which uses a colormap. All of this works seamlessly with multiple overlays and even grid mode:
 
 ```py
 import napari
@@ -46,10 +41,10 @@ layers = viewer.open_sample('napari', 'lily')
 
 # enable color bars
 for layer in layers:
-    layer.color_bar.visible = True
+    layer.colorbar.visible = True
 ```
 
-![Image depicting the napari viewer in grid mode with scale bars and color bars enabled](https://private-user-images.githubusercontent.com/23482191/494350517-622b2d36-11a7-4c55-9550-c82ddebc2fda.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTg4ODU5NzksIm5iZiI6MTc1ODg4NTY3OSwicGF0aCI6Ii8yMzQ4MjE5MS80OTQzNTA1MTctNjIyYjJkMzYtMTFhNy00YzU1LTk1NTAtYzgyZGRlYmMyZmRhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA5MjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwOTI2VDExMjExOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPThjODA3ZmExZTY4NzA3NzQ3YzQ3MGY2NzM1MDg4MmFhYWM2ZTA0MjIyMDBlMTE1Y2NjMGYxMmFiYzZlMGVmNTEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.-xXGxQm1VvTSJMQj0t2IReHhjbT-lSt8oxobpru7Px0)
+![Image depicting the napari viewer in grid mode with scale bars and color bars enabled](https://github.com/user-attachments/assets/622b2d36-11a7-4c55-9550-c82ddebc2fda)
 
 ### Task manager will now try to prevent losing unfinished work
 We added a new task manager ([#8211](https://github.com/napari/napari/pull/8211)) which automatically registers any running `thread_worker`, showing a confirmation dialog if you attempt to close napari while a task is running.
@@ -68,10 +63,10 @@ TODO: does this link work?
 
 ## New Features
 
+- Add color bar overlay ([#7832](https://github.com/napari/napari/pull/7832))
 - Tiling canvas overlays ([#7836](https://github.com/napari/napari/pull/7836))
 - Add `pop()` for `Points` and `Shapes` ([#8072](https://github.com/napari/napari/pull/8072))
 - add option to define startup script in settings ([#8188](https://github.com/napari/napari/pull/8188))
-- Multilayer features table ([#8189](https://github.com/napari/napari/pull/8189))
 - use `Selection` class in shapes layer ([#8297](https://github.com/napari/napari/pull/8297))
 
 ## Improvements
@@ -99,13 +94,11 @@ TODO: does this link work?
 - Better handling of remote zarr ([#8268](https://github.com/napari/napari/pull/8268))
 - Use custom logger formatting to most of argument to string ([#8305](https://github.com/napari/napari/pull/8305))
 
-## API Changes
-
-- Expose force_sync context manager ([#7908](https://github.com/napari/napari/pull/7908))
-
 ## Documentation
 
 - Use EffVer ([#8243](https://github.com/napari/napari/pull/8243))
+- Use shared workflows for build docs ([#8308](https://github.com/napari/napari/pull/8308))
+- Bump napari-sphinx-theme in deps and constraints ([#8315](https://github.com/napari/napari/pull/8315))
 - Add funding information to the home page ([docs#818](https://github.com/napari/docs/pull/818))
 - Update version switcher for 0.6.4 ([docs#826](https://github.com/napari/docs/pull/826))
 - Fix version switcher URL to prevent problems with unversioned pages ([docs#827](https://github.com/napari/docs/pull/827))
@@ -114,6 +107,7 @@ TODO: does this link work?
 - Fix @jaimergp's last name ([docs#835](https://github.com/napari/docs/pull/835))
 - Auto generate release index with highlights and timeline ([docs#838](https://github.com/napari/docs/pull/838))
 - Add EffVer to release guide and link to checklist template ([docs#839](https://github.com/napari/docs/pull/839))
+- Enable dark mode for website ([docs#840](https://github.com/napari/docs/pull/840))
 - Add draft of 0.6.5 release notes ([docs#845](https://github.com/napari/docs/pull/845))
 - Add documentation for startup script. ([docs#846](https://github.com/napari/docs/pull/846))
 - Add some info about running python scripts via cli ([docs#847](https://github.com/napari/docs/pull/847))
@@ -158,15 +152,17 @@ TODO: does this link work?
 - add docs/release/index.md to gitignore ([docs#843](https://github.com/napari/docs/pull/843))
 - Add Jaime Rodríguez-Guerra to core-team ([docs#844](https://github.com/napari/docs/pull/844))
 - Bump python to 3.12 for build docs workflows ([docs#848](https://github.com/napari/docs/pull/848))
+- Use shared workflow for build docs ([docs#850](https://github.com/napari/docs/pull/850))
 
 
-## 11 authors added to this release (alphabetical)
+## 12 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Daniel Althviz Moré](https://github.com/napari/napari/commits?author=dalthviz) ([docs](https://github.com/napari/docs/commits?author=dalthviz))  - @dalthviz
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jaime Rodríguez-Guerra](https://github.com/napari/napari/commits?author=jaimergp) ([docs](https://github.com/napari/docs/commits?author=jaimergp))  - @jaimergp
+- [Johannes Soltwedel](https://github.com/napari/napari/commits?author=jo-mueller) - @jo-mueller
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Kanai Potts](https://github.com/napari/napari/commits?author=8bitbiscuit) - @8bitbiscuit
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
@@ -176,9 +172,7 @@ TODO: does this link work?
 - [rwkozar](https://github.com/napari/napari/commits?author=rwkozar) - @rwkozar
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 
-
-
-## 16 reviewers added to this release (alphabetical)
+## 15 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -189,10 +183,9 @@ TODO: does this link work?
 - [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jaime Rodríguez-Guerra](https://github.com/napari/napari/commits?author=jaimergp) ([docs](https://github.com/napari/docs/commits?author=jaimergp))  - @jaimergp
-- [Johannes Soltwedel](https://github.com/napari/docs/commits?author=jo-mueller) - @jo-mueller
+- [Johannes Soltwedel](https://github.com/napari/napari/commits?author=jo-mueller) - @jo-mueller
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
-- [Marcelo Zoccoler](https://github.com/napari/docs/commits?author=zoccoler) - @zoccoler
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
 - [Rahul Kumar](https://github.com/napari/napari/commits?author=rahul713rk) - @rahul713rk
