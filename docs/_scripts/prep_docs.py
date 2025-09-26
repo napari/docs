@@ -88,11 +88,13 @@ def main(stubs=False):
         __import__('update_preference_docs').main(stubs=True)
         __import__('update_event_docs').main(stubs=True)
         __import__('update_ui_sections_docs').main(stubs=True)
+        __import__('update_release_docs').main(stubs=False)
     else:
         prep_npe2()
         __import__('update_preference_docs').main()
         __import__('update_event_docs').main()
         __import__('update_ui_sections_docs').main()
+        __import__('update_release_docs').main()
 
 
 if __name__ == "__main__":
