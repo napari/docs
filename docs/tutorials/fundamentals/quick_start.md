@@ -94,7 +94,7 @@ napari
 +++
 
 :::{tip}
-Starting with release 0.6.0, you can use the [command palette](command-palette) to launch any command. :art:
+Starting with release 0.6.0, you can use the [command palette](command-palette) to launch any command. 🎨
 :::
 
 ### Open an image
@@ -213,6 +213,9 @@ viewer.close_all()
 ```
 
 ### Next steps
+
+- napari provides a variety of settings that can be adjusted to customize the user experience, including theme and keyboard shortcuts (keybindings). To learn more, see our guide to the [**Preferences** dialog](napari-preferences).
+
 - napari provides the flexibility to handle multi-dimensional data. Try opening 3D or higher dimensional images, and switch to 3D view.
 
 ![ndisplay](../../_static/images/ndisplay.png)
