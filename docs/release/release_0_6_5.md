@@ -101,6 +101,7 @@ A note for our contributors and plugin developers: we transferred our dev-relate
 - Use EffVer ([#8243](https://github.com/napari/napari/pull/8243))
 - Use shared workflows for build docs ([#8308](https://github.com/napari/napari/pull/8308))
 - Bump napari-sphinx-theme in deps and constraints ([#8315](https://github.com/napari/napari/pull/8315))
+- Update release notes 0.6.5 for full release ([docs#855](https://github.com/napari/docs/pull/855))
 - Add funding information to the home page ([docs#818](https://github.com/napari/docs/pull/818))
 - Update version switcher for 0.6.4 ([docs#826](https://github.com/napari/docs/pull/826))
 - Fix version switcher URL to prevent problems with unversioned pages ([docs#827](https://github.com/napari/docs/pull/827))
