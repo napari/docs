@@ -79,6 +79,7 @@ A note for our contributors and plugin developers: we transferred our dev-relate
 - Add `remove()` in Shapes and Points ([#8031](https://github.com/napari/napari/pull/8031))
 - Example from SciPy 2025 tutorial; image warping ([#8111](https://github.com/napari/napari/pull/8111))
 - Add a tasks manager status for plugins actions and napari processes ([#8211](https://github.com/napari/napari/pull/8211))
+- Use single settings path for all `uv tool run` ([#8250](https://github.com/napari/napari/pull/8250))
 - Add "Hide completed" checkbox to Tracks layer for improved visualization ([#8253](https://github.com/napari/napari/pull/8253))
 - Handle affine layer metadata when splitting RGB images ([#8256](https://github.com/napari/napari/pull/8256))
 - Update the Shapes select_all_shapes action to allow selection in all modes and add notification of number ([#8292](https://github.com/napari/napari/pull/8292))
@@ -105,7 +106,7 @@ A note for our contributors and plugin developers: we transferred our dev-relate
 - Use EffVer ([#8243](https://github.com/napari/napari/pull/8243))
 - Use shared workflows for build docs ([#8308](https://github.com/napari/napari/pull/8308))
 - Bump napari-sphinx-theme in deps and constraints ([#8315](https://github.com/napari/napari/pull/8315))
-- Add overlays to docs ([docs#857](https://github.com/napari/docs/pull/857))
+- Update release notes 0.6.5 for full release ([docs#855](https://github.com/napari/docs/pull/855))
 - Add funding information to the home page ([docs#818](https://github.com/napari/docs/pull/818))
 - Update version switcher for 0.6.4 ([docs#826](https://github.com/napari/docs/pull/826))
 - Fix version switcher URL to prevent problems with unversioned pages ([docs#827](https://github.com/napari/docs/pull/827))
@@ -121,7 +122,7 @@ A note for our contributors and plugin developers: we transferred our dev-relate
 - Add note about workers registration as tasks and close confirmation dialog when closing napari GUI via close button ([docs#851](https://github.com/napari/docs/pull/851))
 - Release notes v0.6.5 ([docs#853](https://github.com/napari/docs/pull/853))
 - Re-add palette shortcut to viewer guide ([docs#854](https://github.com/napari/docs/pull/854))
-- Update release notes 0.6.5 for full release ([docs#855](https://github.com/napari/docs/pull/855))
+- Add overlays to docs ([docs#857](https://github.com/napari/docs/pull/857))
 
 ## Other Pull Requests
 
