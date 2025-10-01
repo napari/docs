@@ -19,7 +19,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 This a sizeable release containing a few new exciting features and a lot of bugfixes.
 
 ### EffVer and no more _alpha_
-It is our first release officially following the [EffVer versioning scheme](https://effver.org/). We also took this occasion to (finally!) remove the `Alpha` qualifier from the project ([#8288](https://github.com/napari/napari/pull/8288)), to better reflect the reality of the extensive production use of napari. Note that these changes are just formally bringing up to date the state of the project: our development continues as before!
+It is our first release officially following the [EffVer versioning scheme](https://effver.org/). We also took this occasion to (finally!) remove the `Alpha` qualifier from the project ([#8288](https://github.com/napari/napari/pull/8288)), to better reflect the reality of the extensive use of napari in production. Note that these changes are just formally bringing up to date the state of the project: our development continues as before!
 
 ### Define a startup script for custom launch behaviour
 Do you have a code snippet that you always find yourself running after you launch napari? No more! You can now put this code in a script and set its path in the new `startup script` setting ([#8188](https://github.com/napari/napari/pull/8188)), and it will be executed every time napari opens. It's just a python script, so sky's the limit :) We found it particularly useful for adding custom colormaps, setting up the scale bar *just right*, or automatically launching our favourite plugin on startup.
@@ -50,18 +50,21 @@ for layer in layers:
 
 ![Image depicting the napari viewer in grid mode with scale bars and color bars enabled](https://github.com/user-attachments/assets/622b2d36-11a7-4c55-9550-c82ddebc2fda)
 
+Alternatively, you may also activate the `colorbar` (and other layer-related overlays such as `bounding_box`) from the graphical interface by right clicking on selected layers in the layerlist and toggling the relative entries in the **Visualization** submenu ([#8319](https://github.com/napari/napari/pull/8319)).
+
 ### Task manager will now try to prevent losing unfinished work
 We added a new task manager ([#8211](https://github.com/napari/napari/pull/8211)) which automatically registers any running `thread_worker`, showing a confirmation dialog if you attempt to close napari while a task is running.
 
 ### New *remove* and *pop* methods for Points and Shapes
 Points and Shapes can now be easily removed, not just added :P ([#8031](https://github.com/napari/napari/pull/8031) and [#8072](https://github.com/napari/napari/pull/8072)).
 
-### A few shiny new updates to our website
-[napari.org](https://napari.org/) can now be visited in *dark mode* ([docs#840](https://github.com/napari/docs/pull/840))! You could try out this new relaxing colorscheme while exploring the new overhauled [Preferences documentation](https://napari.org/stable/guides/preferences.html#preferences) section 😉. ([docs#834](https://github.com/napari/docs/pull/834)).
+### A few shiny new updates to our website and documentation
+[napari.org](https://napari.org/) can now be visited in *dark mode* ([docs#840](https://github.com/napari/docs/pull/840))! You could try out this new relaxing colorscheme while exploring the new overhauled [Preferences documentation](https://napari.org/stable/guides/preferences.html#preferences) section 😉 ([docs#834](https://github.com/napari/docs/pull/834)).
+There's also new sections on [viewer overlays](https://napari.org/stable/tutorials/fundamentals/viewer.html#viewer-overlays) and [layer overlays](https://napari.org/stable/guides/layers.html#layer-overlays), to better explain how to use these old and new tools.
 Our [release notes page](https://napari.org/dev/release/index.html) also received a glow-up ([docs#838](https://github.com/napari/docs/pull/838)), displaying past release highlights in collapsible boxes in the timeline. This should make it easier to quickly catch up when updating across multiple releases!
 
 ### Extra dependencies for development moved to dependency groups
-A note for our contributors and plugin developers: we transferred our dev-related extra dependencies to the new python dependency groups ([#8227](https://github.com/napari/napari/pull/8227)). The installation is therefore slightly different, for example: `pip install napari --group testing` instead of `pip install napari[testing]`.
+A note for our contributors and plugin developers: we transferred our dev-related extra dependencies to the new python dependency groups ([#8227](https://github.com/napari/napari/pull/8227)). The installation is therefore slightly different, for example: `pip install napari --group testing` instead of `pip install napari[testing]`. The previous method will continue to work, but we will likely remove the old `optional-dependences` approach in a future release.
 
 
 ## New Features
@@ -80,6 +83,8 @@ A note for our contributors and plugin developers: we transferred our dev-relate
 - Add "Hide completed" checkbox to Tracks layer for improved visualization ([#8253](https://github.com/napari/napari/pull/8253))
 - Handle affine layer metadata when splitting RGB images ([#8256](https://github.com/napari/napari/pull/8256))
 - Update the Shapes select_all_shapes action to allow selection in all modes and add notification of number ([#8292](https://github.com/napari/napari/pull/8292))
+- Implement toggling colorbar and bounding box in layerlist context menu ([#8319](https://github.com/napari/napari/pull/8319))
+- Add warning for big stride when toggling grid mode ([#8320](https://github.com/napari/napari/pull/8320))
 
 ## Bug Fixes
 
@@ -101,7 +106,7 @@ A note for our contributors and plugin developers: we transferred our dev-relate
 - Use EffVer ([#8243](https://github.com/napari/napari/pull/8243))
 - Use shared workflows for build docs ([#8308](https://github.com/napari/napari/pull/8308))
 - Bump napari-sphinx-theme in deps and constraints ([#8315](https://github.com/napari/napari/pull/8315))
-- Update release notes 0.6.5 for full release ([docs#855](https://github.com/napari/docs/pull/855))
+- Add overlays to docs ([docs#857](https://github.com/napari/docs/pull/857))
 - Add funding information to the home page ([docs#818](https://github.com/napari/docs/pull/818))
 - Update version switcher for 0.6.4 ([docs#826](https://github.com/napari/docs/pull/826))
 - Fix version switcher URL to prevent problems with unversioned pages ([docs#827](https://github.com/napari/docs/pull/827))
@@ -117,6 +122,7 @@ A note for our contributors and plugin developers: we transferred our dev-relate
 - Add note about workers registration as tasks and close confirmation dialog when closing napari GUI via close button ([docs#851](https://github.com/napari/docs/pull/851))
 - Release notes v0.6.5 ([docs#853](https://github.com/napari/docs/pull/853))
 - Re-add palette shortcut to viewer guide ([docs#854](https://github.com/napari/docs/pull/854))
+- Update release notes 0.6.5 for full release ([docs#855](https://github.com/napari/docs/pull/855))
 
 ## Other Pull Requests
 
@@ -150,7 +156,6 @@ A note for our contributors and plugin developers: we transferred our dev-relate
 - Fix constraints generation  ([#8309](https://github.com/napari/napari/pull/8309))
 - CI: Fix `github.rest.issues.removeLabel` call ([#8311](https://github.com/napari/napari/pull/8311))
 - Fix little typos ([#8316](https://github.com/napari/napari/pull/8316))
-- Update citation file for 0.6.5 ([#8318](https://github.com/napari/napari/pull/8318))
 - Add pooch cache for build docs ([docs#830](https://github.com/napari/docs/pull/830))
 - ci(dependabot): bump the github-actions group with 3 updates ([docs#831](https://github.com/napari/docs/pull/831))
 - add docs/release/index.md to gitignore ([docs#843](https://github.com/napari/docs/pull/843))
