@@ -116,6 +116,8 @@ Following the same pattern as [viewer overlays](viewer-overlays), layers offer s
 - Bounding box (scene overlay, accessible via `layer.bounding_box`): displays a bounding box around the data
 - Color bar (canvas overlay, accessible via `layer.colorbar` on layers with a `colormap` attribute): displays a colorbar legend with tickmarks, automatically synced with contrast limits
 
+These overlays can be also toggled from the graphical interface by right-clicking on selected layers in the layerlist, and clicking their respective menu entry under **Visualisation**.
+
 ## 3D rendering
 
 All our layers can be rendered in both 2D and 3D mode, and one of our viewer

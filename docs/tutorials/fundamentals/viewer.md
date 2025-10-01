@@ -565,7 +565,11 @@ The viewer gives access to a few such overlays:
 - Axes (scene overlay, accessible via `viewer.axes`): displays basis axes at the origin.
 - Text Overlay (canvas overlay, accessible via `viewer.text_overlay`): displays arbitrary text on the canvas.
 
-Similarly to the viewer, layers [also have some overlays](layer-overlays) that can be used to display layer-specific information.
+These overlays can also be accessed via graphical interface through the **View** menu and their respective submenus.
+
+:::{tip}
+Similarly to the viewer, layers [also have some overlays](layer-overlays) that can be used to display layer-specific information!
+:::
 
 ## Right-click menu
 
