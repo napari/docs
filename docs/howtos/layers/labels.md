@@ -414,7 +414,7 @@ cause the undo history to be reset.
 ### A simple example
 
 Create a new viewer and add a labels image in one go using the
-{meth}`napari.view_labels` method. If you already have an existing viewer, you
+`viewer.add_labels` method. If you already have an existing viewer, you
 can add a `Labels` image to it using `viewer.add_labels`. The API for both
 methods is the same. In these examples we'll mainly use `add_labels` to overlay
 a `Labels` layer onto on image.
@@ -441,7 +441,7 @@ cleared = remove_small_objects(clear_border(bw), 20)
 label_image = label(cleared)
 
 # create the viewer and add the coins image
-viewer = napari.view_image(coins, name='coins')
+viewer, _ = napari.imshow(coins, name='coins')
 # add the labels
 labels_layer = viewer.add_labels(label_image, name='segmentation')
 ```
@@ -460,15 +460,16 @@ nbscreenshot(viewer, alt_text="Segmentation of coins in an image, displayed usin
 viewer.close()
 ```
 
-### Arguments of `view_labels` and `add_labels`
+### Arguments of `add_labels`
 
-{meth}`~napari.view_layers.view_labels` and {meth}`~napari.Viewer.add_labels`
-accept the same layer-creation parameters.
+{meth}`~napari.Viewer.add_labels`
+accepts the following layer-creation parameters.
 
 ```{code-cell} python
 :tags: [hide-output]
 
-help(napari.view_labels)
+# help on add_labels is available via the Viewer class
+help(napari.Viewer.add_labels)
 ```
 
 ### Labels data
@@ -534,7 +535,7 @@ from skimage import data
 from scipy import ndimage as ndi
 
 blobs = data.binary_blobs(length=128, volume_fraction=0.1, n_dim=3)
-viewer = napari.view_image(blobs.astype(float), name='blobs')
+viewer, _ = napari.imshow(blobs.astype(float), name='blobs')
 labeled = ndi.label(blobs)[0]
 labels_layer = viewer.add_labels(labeled, name='blob ID')
 viewer.dims.ndisplay = 3

@@ -218,7 +218,7 @@ layer:
 ### A simple example
 
 You can create a new viewer and add a set of points in one go using the
-{meth}`napari.view_points` method, or if you already have an existing viewer,
+`viewer.add_points` method, or if you already have an existing viewer,
 you can add points to it using `viewer.add_points`. The API of both methods is
 the same. In these examples we'll mainly use `add_points` to overlay points onto
 on an existing image.
@@ -238,7 +238,7 @@ import napari
 import numpy as np
 from skimage import data
 
-viewer = napari.view_image(data.astronaut(), rgb=True)
+viewer, _ = napari.imshow(data.astronaut(), rgb=True)
 points = np.array([[100, 100], [200, 200], [300, 100]])
 
 points_layer = viewer.add_points(points, size=30)
@@ -258,15 +258,16 @@ nbscreenshot(viewer, alt_text="3 points overlaid on an astronaut image")
 viewer.close()
 ```
 
-### Arguments of `view_points` and `add_points`
+### Arguments of `add_points`
 
-{meth}`~napari.view_layers.view_points` and {meth}`~napari.Viewer.add_points`
-accept the same layer-creation parameters.
+{meth}`~napari.Viewer.add_points`
+accepts the following layer-creation parameters.
 
 ```{code-cell} python
 :tags: [hide-output]
 
-help(napari.view_points)
+# help on add_points is available via the Viewer class
+help(napari.Viewer.add_points)
 ```
 
 ### Points data
@@ -403,7 +404,7 @@ To do the same for a face color, substitute `face_color` for `border_color` in t
 example snippet below.
 
 ```{code-cell} python
-viewer = napari.view_image(data.astronaut(), rgb=True)
+viewer, _ = napari.imshow(data.astronaut(), rgb=True)
 points = np.array([[100, 100], [200, 200], [300, 100]])
 point_features = {
     'good_point': [True, True, False],
@@ -448,7 +449,7 @@ colormap on a feature. To do the same for a border color, substitute `face` for
 `border`.
 
 ```{code-cell} python
-viewer = napari.view_image(data.astronaut(), rgb=True)
+viewer, _ = napari.imshow(data.astronaut(), rgb=True)
 points = np.array([[100, 100], [200, 200], [300, 100]])
 point_features = {
     'good_point': [True, True, False],

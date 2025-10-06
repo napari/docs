@@ -341,7 +341,7 @@ are used. i.e. You can't remove a vertex before you have created a shape.
 ### A simple example
 
 You can create a new viewer and add a list of shapes in one go using the
-{meth}`napari.view_shapes` method, or if you already have an existing viewer,
+`viewer.add_shapes` method, or if you already have an existing viewer,
 you can add shapes to it using `viewer.add_shapes`. The API of both methods is
 the same. In these examples we'll mainly use `add_shapes` to overlay shapes onto
 an existing image.
@@ -369,7 +369,7 @@ building = np.array([[310, 382], [229, 381], [209, 401], [221, 411],
 polygons = [triangle, person, building]
 
 # add the image
-viewer = napari.view_image(data.camera(), name='photographer')
+viewer, _ = napari.imshow(data.camera(), name='photographer')
 
 # add the polygons
 shapes_layer = viewer.add_shapes(
@@ -395,15 +395,16 @@ nbscreenshot(viewer, alt_text="Shapes overlaid on image")
 viewer.close()
 ```
 
-### Arguments of `view_shapes` and `add_shapes`
+### Arguments of `add_shapes`
 
-{meth}`~napari.view_layers.view_shapes` and {meth}`~napari.Viewer.add_shapes`
-accept the same layer-creation parameters.
+{meth}`~napari.Viewer.add_shapes`
+accepts the following layer-creation parameters.
 
 ```{code-cell} python
 :tags: [hide-output]
 
-help(napari.view_shapes)
+# help on add_shapes is available via the Viewer class
+help(napari.Viewer.add_shapes)
 ```
 
 ### Shapes data
@@ -465,7 +466,7 @@ import numpy as np
 from skimage import data
 
 # add the image
-viewer = napari.view_image(data.camera(), name='photographer')
+viewer, _ = napari.imshow(data.camera(), name='photographer')
 
 # create a triangle
 triangle = np.array([[11, 13], [111, 113], [22, 246]])
@@ -513,7 +514,7 @@ import numpy as np
 from skimage import data
 
 # add the image
-viewer = napari.view_image(data.camera(), name='photographer')
+viewer, _ = napari.imshow(data.camera(), name='photographer')
 
 # create some ellipses
 ellipse = np.array([[59, 222], [110, 289], [170, 243], [119, 176]])
