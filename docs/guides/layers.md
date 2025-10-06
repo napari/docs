@@ -188,7 +188,7 @@ existing layer using the `scale` as a keyword argument or property respectively.
 
 ```python
 # scaling while creating the image layer
-napari.view_image(retina, name='retina', scale=[1,10,1,1])
+viewer, layer = napari.imshow(retina, name='retina', scale=[1,10,1,1])
 # scaling an existing layer
 viewer.layers['retina'].scale = [1,10,1,1]
 ```
