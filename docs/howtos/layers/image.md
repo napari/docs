@@ -112,7 +112,7 @@ import napari
 from skimage import data
 
 cells = data.cells3d()[30, 1]  # grab some data
-viewer, layer = napari.imshow(cells, colormap='magma')
+viewer, _ = napari.imshow(cells, colormap='magma')
 ```
 
 ```{code-cell} python

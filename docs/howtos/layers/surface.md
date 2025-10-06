@@ -39,8 +39,8 @@ colormap.
 
 ## A simple example
 
-You can create a new viewer and add a surface using the
-{meth}`~napari.Viewer.add_surface` method. In these examples we'll mainly use `viewer.add_surface`.
+You can create a new viewer with `napari.Viewer()` and add a surface using the
+{meth}`~napari.Viewer.add_surface` method.
 
 A simple example of viewing a surface follows. You can copy and paste these
 statements into the napari console to see how they work:
@@ -54,10 +54,8 @@ faces = np.array([[0, 1, 2], [1, 2, 3]])
 values = np.linspace(0, 1, len(vertices))
 surface = (vertices, faces, values)
 
-```python
 viewer = napari.Viewer()
 viewer.add_surface(surface)  # add the surface
-```
 ```
 
 ```{code-cell} python
@@ -110,9 +108,7 @@ controls are available in the viewer:
 ```{code-cell} python
 :tags: [hide-output]
 
-```python
-# help(napari.Viewer.add_surface)  # see the add_surface method
-```
+help(napari.Viewer.add_surface)
 ```
 
 ## Surface data

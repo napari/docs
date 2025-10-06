@@ -413,10 +413,8 @@ cause the undo history to be reset.
 ## Controlling the `labels` layer from the console
 ### A simple example
 
-Create a new viewer and add a labels image in one go using the
-`viewer.add_labels` method. If you already have an existing viewer, you
-can add a `Labels` image to it using `viewer.add_labels`. The API for both
-methods is the same. In these examples we'll mainly use `add_labels` to overlay
+Create a new viewer with `napari.Viewer()` and then add a labels image in one go using the {meth}`~napari.Viewer.add_labels` method.
+In these examples we'll mainly use `add_labels` to overlay
 a `Labels` layer onto on image.
 
 In this example of instance segmentation, we will find and segment each of the
@@ -468,7 +466,6 @@ accepts the following layer-creation parameters.
 ```{code-cell} python
 :tags: [hide-output]
 
-# help on add_labels is available via the Viewer class
 help(napari.Viewer.add_labels)
 ```
 

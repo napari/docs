@@ -36,9 +36,9 @@ the console or from the GUI.
 
 ## A simple example
 
-You can create a new viewer and add vectors using the
-{meth}`~napari.Viewer.add_vectors` method. In these examples we'll mainly use `add_vectors` to overlay vectors
-onto an existing image.
+You can create a new viewer with `napari.Viewer()` and add vectors using the
+{meth}`~napari.Viewer.add_vectors` method.
+In these examples we'll mainly use `add_vectors` to overlay vectors onto an existing image.
 
 In this example, we will overlay vectors on the image of a photographer:
 
@@ -155,9 +155,7 @@ both 2D and 3D:
 ```{code-cell} python
 :tags: [hide-output]
 
-```python
-# help(napari.Viewer.add_vectors)  # see the add_vectors method
-```
+help(napari.Viewer.add_vectors)
 ```
 
 ### Changing vector length, width, and color

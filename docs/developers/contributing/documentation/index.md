@@ -775,7 +775,7 @@ from skimage import data
 import napari
 
 # create the viewer with an image
-viewer, _ = napari.imshow(data.astronaut(), rgb=True)
+viewer, layer = napari.imshow(data.astronaut(), rgb=True)
 
 if __name__ == '__main__':
     napari.run()

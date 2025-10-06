@@ -340,11 +340,9 @@ are used. i.e. You can't remove a vertex before you have created a shape.
 ## Controlling the shapes layer programmatically
 ### A simple example
 
-You can create a new viewer and add a list of shapes in one go using the
-`viewer.add_shapes` method, or if you already have an existing viewer,
-you can add shapes to it using `viewer.add_shapes`. The API of both methods is
-the same. In these examples we'll mainly use `add_shapes` to overlay shapes onto
-an existing image.
+You can create a new viewer with `napari.Viewer()` and add a list of shapes with the
+`viewer.add_shapes` method.
+In these examples we'll mainly use `add_shapes` to overlay shapes onto an existing image.
 
 In this example, we will overlay shapes on the image of a photographer:
 
@@ -403,7 +401,6 @@ accepts the following layer-creation parameters.
 ```{code-cell} python
 :tags: [hide-output]
 
-# help on add_shapes is available via the Viewer class
 help(napari.Viewer.add_shapes)
 ```
 

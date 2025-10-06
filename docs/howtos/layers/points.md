@@ -217,11 +217,8 @@ layer:
 ## Controlling the `points` layer programmatically
 ### A simple example
 
-You can create a new viewer and add a set of points in one go using the
-`viewer.add_points` method, or if you already have an existing viewer,
-you can add points to it using `viewer.add_points`. The API of both methods is
-the same. In these examples we'll mainly use `add_points` to overlay points onto
-on an existing image.
+You can create a new viewer with `napari.Viewer()` and add a set of points with the `viewer.add_points` method.
+In these examples we'll mainly use `add_points` to overlay points onto an existing image.
 
 Each data point can have annotations associated with it using the
 `Points.features` table. These features can be used to set the face and
@@ -266,7 +263,6 @@ accepts the following layer-creation parameters.
 ```{code-cell} python
 :tags: [hide-output]
 
-# help on add_points is available via the Viewer class
 help(napari.Viewer.add_points)
 ```
 

@@ -39,7 +39,7 @@ class/type.
 
 ## A simple example
 
-You can create a new viewer and add a set of tracks using using {meth}`viewer.add_tracks<napari.Viewer.add_tracks>`.
+You can create a new viewer with `napari.Viewer()` and add a set of tracks using using {meth}`viewer.add_tracks<napari.Viewer.add_tracks>`.
 
 In this example, we will overlay some tracks on an image from the Hubble space
 telescope:
@@ -219,7 +219,7 @@ other high dimensional data.
 ## Changing track width
 
 We can specify the width of the tracks in pixels. The track width can be
-specified via the `tail_width` keyword argument in the {meth}`viewer.add_tracks<napari.Viewer.add_tracks>` method. 
+specified via the `tail_width` keyword argument in the {meth}`viewer.add_tracks<napari.Viewer.add_tracks>` method.
 From a layer that has already been constructed,
 we can set the track width via the `layer.tail_width` property.
 
