@@ -23,6 +23,10 @@ This a small bugfix release, following up the changes in 0.6.5.
 
 - Fix invisible zoom box ([#8344](https://github.com/napari/napari/pull/8344))
 
+## Documentation
+
+- Add release notes for v0.6.6 ([docs#866](https://github.com/napari/docs/pull/866))
+
 ## Other Pull Requests
 
 - Add a new `attr_to_settr` utility function and simplify layer control widgets layer to widget setup ([#8274](https://github.com/napari/napari/pull/8274))
