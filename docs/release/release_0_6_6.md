@@ -26,6 +26,9 @@ This a small bugfix release, following up the changes in 0.6.5.
 ## Documentation
 
 - Add release notes for v0.6.6 ([docs#866](https://github.com/napari/docs/pull/866))
+- Add info about manual trigger of conda update to release guide ([docs#859](https://github.com/napari/docs/pull/859))
+- Fix version switcher for 0.6.5 ([docs#861](https://github.com/napari/docs/pull/861))
+- Remove trailing comma in version switcher json ([docs#862](https://github.com/napari/docs/pull/862))
 
 ## Other Pull Requests
 
@@ -33,23 +36,27 @@ This a small bugfix release, following up the changes in 0.6.5.
 - ci(dependabot): bump the actions group with 9 updates ([#8324](https://github.com/napari/napari/pull/8324))
 - Delay settings import to avoid circular import ([#8327](https://github.com/napari/napari/pull/8327))
 - Add info about conda forge manual trigger to release checklist ([#8328](https://github.com/napari/napari/pull/8328))
+- Add sponsor badge and reorganize badges into groups ([#8343](https://github.com/napari/napari/pull/8343))
 
 
-## 3 authors added to this release (alphabetical)
+## 5 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Daniel Althviz Moré](https://github.com/napari/napari/commits?author=dalthviz) - @dalthviz
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
-- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
+- [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
+- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
+- [Tim Monko](https://github.com/napari/docs/commits?author=TimMonko) - @TimMonko
 
-## 6 reviewers added to this release (alphabetical)
+## 7 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Carol Willing](https://github.com/napari/docs/commits?author=willingc) - @willingc
 - [Daniel Althviz Moré](https://github.com/napari/napari/commits?author=dalthviz) - @dalthviz
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
-- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
+- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
+- [Peter Sobolewski](https://github.com/napari/docs/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Tim Monko](https://github.com/napari/docs/commits?author=TimMonko) - @TimMonko
