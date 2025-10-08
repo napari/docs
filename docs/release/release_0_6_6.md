@@ -14,6 +14,11 @@ https://napari.org.
 
 napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this is a **Meso** release containing awesome new features, but some effort may be needed when updating previous projects to use this version.
 
+## Highlights
+
+This a small bugfix release, following up the changes in 0.6.5.
+
+
 ## Bug Fixes
 
 - Fix invisible zoom box ([#8344](https://github.com/napari/napari/pull/8344))
