@@ -82,6 +82,7 @@ subtrees:
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_6_6
           - file: release/release_0_6_5
           - file: release/release_0_6_4
           - file: release/release_0_6_3
