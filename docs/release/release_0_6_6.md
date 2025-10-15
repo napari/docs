@@ -29,6 +29,10 @@ When using the [napari bundle](https://napari.org/stable/tutorials/fundamentals/
 PS: Since we did quite a few changes behind the scenes on this new version of the bundle, you might experience some issues. Don't hesitate to open an issue or contact us on zulip if you do!
 
 
+## Improvements
+
+- Update menuinst configuration with file type associations ([#8359](https://github.com/napari/napari/pull/8359))
+
 ## Bug Fixes
 
 - Fix shape selection in a single plane when shapes are on multiple planes ([#8335](https://github.com/napari/napari/pull/8335))
@@ -36,11 +40,11 @@ PS: Since we did quite a few changes behind the scenes on this new version of th
 
 ## Documentation
 
+- Update release notes v0.6.6 ([docs#868](https://github.com/napari/docs/pull/868))
 - Add info about manual trigger of conda update to release guide ([docs#859](https://github.com/napari/docs/pull/859))
 - Fix version switcher for 0.6.5 ([docs#861](https://github.com/napari/docs/pull/861))
 - Remove trailing comma in version switcher json ([docs#862](https://github.com/napari/docs/pull/862))
 - Add release notes for v0.6.6 ([docs#866](https://github.com/napari/docs/pull/866))
-- Update release notes v0.6.6 ([docs#868](https://github.com/napari/docs/pull/868))
 
 ## Other Pull Requests
 
@@ -52,15 +56,15 @@ PS: Since we did quite a few changes behind the scenes on this new version of th
 - Add sponsor badge and reorganize badges into groups ([#8343](https://github.com/napari/napari/pull/8343))
 - Fix vispy error traceback ([#8346](https://github.com/napari/napari/pull/8346))
 - Migrate license settings to modern standards ([#8350](https://github.com/napari/napari/pull/8350))
-- Update menuinst configuration with file type associations ([#8359](https://github.com/napari/napari/pull/8359))
 
 
-## 6 authors added to this release (alphabetical)
+## 7 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Daniel Althviz Moré](https://github.com/napari/napari/commits?author=dalthviz) - @dalthviz
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
+- [Jaime Rodríguez-Guerra](https://github.com/napari/napari/commits?author=jaimergp) - @jaimergp
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
