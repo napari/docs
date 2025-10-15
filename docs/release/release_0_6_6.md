@@ -1,7 +1,6 @@
 # napari 0.6.6
-⚠️ *Note: these release notes are still in draft while 0.6.6 is in release candidate testing.* ⚠️
 
-*Fri, Oct 10, 2025*
+*Wed, Oct 15, 2025*
 
 We're happy to announce the release of napari 0.6.6!
 napari is a fast, interactive, multi-dimensional image viewer for Python.
@@ -28,7 +27,6 @@ When using the [napari bundle](https://napari.org/stable/tutorials/fundamentals/
 ![image showing a context menu with the the `open with > napari` option available](https://github.com/user-attachments/assets/f13d58e5-ce2d-460a-b92e-2f23ecc8d438)
 
 PS: Since we did quite a few changes behind the scenes on this new version of the bundle, you might experience some issues. Don't hesitate to open an issue or contact us on zulip if you do!
-
 
 ## Bug Fixes
 
