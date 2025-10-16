@@ -45,11 +45,12 @@ PS: Since we did quite a few changes behind the scenes on this new version of th
 
 ## Documentation
 
+- Update release notes v0.6.6 ([docs#868](https://github.com/napari/docs/pull/868))
 - Add info about manual trigger of conda update to release guide ([docs#859](https://github.com/napari/docs/pull/859))
 - Fix version switcher for 0.6.5 ([docs#861](https://github.com/napari/docs/pull/861))
 - Remove trailing comma in version switcher json ([docs#862](https://github.com/napari/docs/pull/862))
 - Add release notes for v0.6.6 ([docs#866](https://github.com/napari/docs/pull/866))
-- Update release notes v0.6.6 ([docs#868](https://github.com/napari/docs/pull/868))
+- Update release notes v0.6.6, the revenge ([docs#869](https://github.com/napari/docs/pull/869))
 
 ## Other Pull Requests
 
