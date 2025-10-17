@@ -165,6 +165,8 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 
 * Implement core functionality needed to enable **grouping of layers**. [\#5950](https://github.com/napari/napari/issues/5950)
 
+* Add general-purpose spatial graph layer for displaying, slicing and editing graph-like data, such as tracks. [\#4274](https://github.com/napari/napari/issues/4274), [\#5861](https://github.com/napari/napari/pull/5861)
+
 *Benefits: Web browser application support, composable user interfaces, efficient data pipeline, experimentation tools, and scripting for automated workflows.*
 
 #### Performance
