@@ -2,16 +2,16 @@
 
 # Hot reloading in development mode
 
-When working on napari itself or developing plugins, manually restarting the application after every code change can quickly become tedious. To speed up the development cycle, napari supports **hot-reloading**, allowing you to reload code changes on the fly without closing and reopening the app.
+When working on napari or developing plugins, manually restarting the application after every code change can quickly become tedious. To speed up the development cycle, napari supports **hot-reloading** code changes without closing and reopening the app.
 
 ## What is hot reloading?
 
-Hot reloading enables napari to automatically reload Python modules during runtime, making development significantly more efficient. With this feature enabled, you can:
+Hot reloading automatically reloads Python modules during runtime, making napari development significantly more efficient. With this feature enabled, you can:
 
 * Make changes to the napari or napari-builtins source code
-* Or make changes to **your** plugin source code (use `--dev_module YOUR_PLUGIN_NAME` to add to list of watched modules)
-* Instantly see those changes reflected in the running app
-* Avoid repetitive app restarts
+* Make changes to **your** plugin source code (use `--dev_module YOUR_PLUGIN_NAME` to add to list of watched modules)
+* See changes reflected instantly in the running app
+* Avoid repetitive, manual app restarts
 
 Under the hood, this feature uses [qtreload](https://github.com/lukasz-migas/qtreload) a module reloader tailored for Qt-based Python applications.
 
@@ -45,7 +45,7 @@ Under the hood, this feature uses [qtreload](https://github.com/lukasz-migas/qtr
 
 ## How to enable hot reloading
 
-Hot relaoding is enabled when napari is launched in **developer mode**. You can activate developer mode in one of two ways:
+Hot reloading is enabled when napari is launched in **developer mode**. You can activate developer mode in one of two ways:
 
 ### Option 1: Command Line Flag
 
@@ -70,7 +70,7 @@ This is especially useful if you prefer to use your own Python scripts to launch
 
 ## Hot reloading your plugin
 
-By default, hot reloading only applies to the napari core libraries (napari and napari-builtins). IF you're working on a plugin and want your changes. to reload as well, you'll need to explicitly include it when launching napari.
+By default, hot reloading only applies to the napari core libraries (napari and napari-builtins). If you're working on a plugin and want your changes to hot reload as well, you'll need to explicitly include your plugin when launching napari.
 
 ### Option 1: Command Line Flag
 Use the --dev_module flag to specify additional modules to reload:
@@ -105,7 +105,7 @@ Your plugin/module must already be installed in the environment (e.g. via `pip i
 
 ## How it works
 
-The `qtreload` system monitors changes to registered modules and reloads them using Python’s import machinery. It watches for changes to the `.py` and `.qss`.
+The `qtreload` system monitors changes to registered modules and reloads them using Python’s import machinery. It watches for changes to `.py` and `.qss` files.
 
 When `.py` file changes, it reloads the file. Here are some useful rules to keep in mind:
 
@@ -114,7 +114,7 @@ When `.py` file changes, it reloads the file. Here are some useful rules to keep
 * If you've **added** a new property, that property will be added to the class/object.
 * If you've **edited** a property, that change might not be reflected
 * If you've **edited** UI, that change will only take effect if you close and reopen the widget that was changed (so main windows will not be changed but if you edit a container for a layer type and then remove and add that layer, the change **will** be reflected)
-* code within the `__init__.py` file cannot be reloaded (sorry)
-* new files are not actively watched - you can manually reload the list of files
+* code within the `__init__.py` file cannot be reloaded
+* new files are not actively watched---you can manually reload the list of files
 
-When `.qss` file changes, it emits an event which is handled by the application - in napari's case, it simply reloads the stylesheet and applies it to the entire application.
+When `.qss` file changes, it emits an event which is handled by the application. In the case of napari, it simply reloads the stylesheet and applies it to the entire application.
