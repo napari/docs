@@ -108,7 +108,17 @@ For example, the image below shows an image with the blending set to `additive`.
 
 ![napari viewer with an image of a cell. Layer controls are open in the left sidebar with the blending set to additive.](../_static/images/blending.png)
 
-## 3D rendering of images
+(layer-overlays)=
+## Layer overlays
+
+Following the same pattern as [viewer overlays](viewer-overlays), layers offer some extra visualisations as overlays:
+
+- Bounding box (scene overlay, accessible via `layer.bounding_box`): displays a bounding box around the data
+- Color bar (canvas overlay, accessible via `layer.colorbar` on layers with a `colormap` attribute): displays a colorbar legend with tickmarks, automatically synced with contrast limits
+
+These overlays can be also toggled from the graphical interface by right-clicking on selected layers in the layerlist, and clicking their respective menu entry under **Visualisation**.
+
+## 3D rendering
 
 All our layers can be rendered in both 2D and 3D mode, and one of our viewer
 buttons can toggle between each mode. The number of dimensions sliders will be 2
@@ -178,9 +188,11 @@ existing layer using the `scale` as a keyword argument or property respectively.
 
 ```python
 # scaling while creating the image layer
-napari.view_image(retina, name='retina', scale=[1,10,1,1])
-# scaling an existing layer
+viewer, layer = napari.imshow(retina, name='retina', scale=[1,10,1,1])
+# scaling an existing layer by accessing from the layer list
 viewer.layers['retina'].scale = [1,10,1,1]
+# alternatively using the returned layer variable
+layer.scale = [1,10,1,1]
 ```
 
 ```{raw} html

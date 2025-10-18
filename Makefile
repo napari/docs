@@ -1,4 +1,4 @@
-.PHONY: clean clean-gallery clean-prep clean-full
+.PHONY: clean clean-gallery clean-prep clean-full spellcheck
 
 SPHINXOPTS =
 
@@ -40,8 +40,13 @@ prep-stubs:
 docs-build: prep-docs
 	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build  -WT --keep-going -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
+# build docs with xvfb (headless X server)
 docs-xvfb: prep-docs
 	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 xvfb-run --auto-servernum sphinx-build -M html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+
+# build docs with xwfb (headless X server with Wayland support)
+docs-xwfb: prep-docs
+	NAPARI_CONFIG="" NAPARI_APPLICATION_IPY_INTERACTIVE=0 xwfb-run -- sphinx-build -M html docs/ docs/_build -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 # full docs (re)build
 # cleans everything, starts from scratch
@@ -78,7 +83,7 @@ html-noplot: clean prep-docs
 # does run notebook cells
 # will not remove existing gallery files
 docs: clean prep-stubs
-	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -WT --keep-going -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS) 
+	NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -WT --keep-going -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
 
 # live variant of `docs`
 docs-live: prep-stubs
@@ -204,3 +209,6 @@ fallback-videos:
 
 fallback-videos-clean:
 	rm -f docs/_static/images/*.mp4
+
+spellcheck:
+	pre-commit run --all-files codespell

@@ -14,6 +14,7 @@ subtrees:
           - file: tutorials/fundamentals/installation_bundle_conda
           - file: tutorials/fundamentals/getting_started
           - file: tutorials/fundamentals/viewer
+          - file: tutorials/fundamentals/features
           - file: guides/layers
       - file: tutorials/index
         subtrees:
@@ -63,8 +64,6 @@ subtrees:
       - file: guides/index
         subtrees:
         - entries:
-          - file: guides/event_loop
-          - file: guides/threading
           - file: guides/3D_interactivity
           - file: guides/handedness
           - file: guides/triangulation
@@ -72,6 +71,8 @@ subtrees:
           - file: guides/performance
           - file: guides/preferences
           - file: guides/contexts_expressions
+          - file: guides/event_loop
+          - file: guides/threading
           - file: guides/events_reference
       - file: further-resources/glossary
       - file: further-resources/napari-workshops
@@ -81,6 +82,11 @@ subtrees:
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_6_6
+          - file: release/release_0_6_5
+          - file: release/release_0_6_4
+          - file: release/release_0_6_3
+          - file: release/release_0_6_2
           - file: release/release_0_6_1
           - file: release/release_0_6_0
           - file: release/release_0_5_6
@@ -172,6 +178,7 @@ subtrees:
           - file: plugins/advanced_topics/npe2_migration_guide
           - file: plugins/advanced_topics/adapted_plugin_guide
           - file: plugins/advanced_topics/npe1
+          - file: plugins/advanced_topics/widget_communication
       - file: plugins/technical_references/index
         subtrees:
         - entries:
@@ -250,6 +257,7 @@ subtrees:
       - file: roadmaps/index
         subtrees:
         - entries:
+          - file: roadmaps/active_roadmap
           - file: roadmaps/0_4
           - file: roadmaps/0_3_retrospective
           - file: roadmaps/0_3
@@ -259,5 +267,6 @@ subtrees:
       entries:
       - file: api/modules
       - file: api/event_loop
-      - file: api/view_layer
+      - file: api/viewer
       - file: api/misc
+      - file: api/deprecated

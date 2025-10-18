@@ -6,31 +6,39 @@ to napari.
 
 napari has a [Code of Conduct](napari-coc) that should be honored by everyone who participates in the `napari` community.
 
-- [](contact): how to contact us.
-- [](roadmaps): convey the general direction for napari development and possible work plans
-- [napari Workshop](https://napari.org/napari-workshop-template/home.html): create and deploy your own napari workshop materials
+The [](active-roadmap) highlights the general direction for napari development and possible work plans, but you are free to contribute in any way you like.
 
-- **Contributor guides**: resources for contributors:
-  - [Contributing guide](napari-contributing)
-    - [Development installation](dev-installation)
-    - [Testing](napari-testing)
-    - [Translations](napari-translations)
-    - [Performance](performance)
-      - [Profiling](napari-profiling)
-      - [Benchmarks](napari-benchmarks)
-    - [Contributing documentation](contributing-docs)
-  - [](architecture-index)
+If you are looking to create and deploy your own napari workshop material, check out the [napari Workshop Template](https://napari.org/napari-workshop-template/home.html).
 
-- **Core developer guides**: resources for core developers, including information for
-  onboarding new core developers:
-  - [Core Developer guide](core-dev-guide)
-  - [Maintenance](napari-maintenance)
-  - [Release guide](napari-release)
-  - [Deploying documentation](docs-deployment)
-  - [Packaging](napari-packaging)
+::::{grid} 2
+:::{grid-item-card} Contributor guides
+
+Resources for contributors
+
+- [Contributing guide](napari-contributing)
+  - [Development installation](dev-installation)
+  - [Testing](napari-testing)
+  - [Translations](napari-translations)
+  - [Performance](performance)
+    - [Profiling](napari-profiling)
+    - [Benchmarks](napari-benchmarks)
+  - [Contributing documentation](contributing-docs)
+- [](architecture-index)
+:::
+
+:::{grid-item-card} Core team member guides
+
+Resources for core team members, including information for onboarding new core team members
+
+- [Core team member guide](core-dev-guide)
+- [Maintenance](napari-maintenance)
+- [Release guide](napari-release)
+- [Deploying documentation](docs-deployment)
+- [Packaging](napari-packaging)
+:::
+::::
 
 (contact)=
-
 ## Contact
 
 There are a number of ways to contact the napari community:

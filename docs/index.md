@@ -1,4 +1,5 @@
 ---
+html_theme.sidebar_secondary.remove: true
 theme:
   metaDescription: napari is a fast multi-dimensional image viewer for Python. It can help you **explore** any image-like data, be it 2D, 3D, or even higher-dimensional. It can also help you **overlay** downstream or **associated data**, such as point coordinates or segmentations, which you can use to **annotate** and **proofread** your image data.
   quickLinks:
@@ -45,10 +46,27 @@ theme:
 
 # napari: a fast, interactive viewer for multi-dimensional images in Python
 
+::::{grid} 1 1 3 3
+
+:::{grid-item}
+:columns: 12 12 4 4
+
+- **view and explore** 2D, 3D, and higher-dimensional arrays on a canvas;
+- **overlay** derived data such as *points*, *polygons*, *segmentations*, and
+  more;
+- **annotate** and **edit** derived datasets, using standard data structures
+  such as NumPy or Zarr arrays, allowing you to
+- **seamlessly weave** exploration, computation, and annotation together in
+  imaging data analysis.
+:::
+
+:::{grid-item}
+:columns: 12 12 8 8
+
 ```{raw} html
 <figure>
 
-  <video width="90%" controls autoplay loop muted playsinline>
+  <video width="100%" controls autoplay loop muted playsinline>
     <source src="_static/images/tribolium.webm" type="video/webm" />
     <source src="_static/images/tribolium.mp4" type="video/mp4" />
     <img src="_static/images/tribolium.jpg"
@@ -57,20 +75,12 @@ theme:
     >
   </video>
 
-  <figcaption><pre>napari.imshow(image4d)</pre></figcaption>
-
 </figure>
 ```
 
-Napari is a Python library for n-dimensional image visualisation, annotation,
-and analysis. With napari you can:
-- **view and explore** 2D, 3D, and higher-dimensional arrays on a canvas;
-- **overlay** derived data such as *points*, *polygons*, *segmentations*, and
-  more;
-- **annotate** and **edit** derived datasets, using standard data structures
-  such as NumPy or Zarr arrays, allowing you to
-- **seamlessly weave** exploration, computation, and annotation together in
-  imaging data analysis.
+:::
+
+::::
 
 ::::{grid}
 
@@ -122,3 +132,42 @@ napari is extensible! Find plugins, or develop your own!
 
 ::::
 
+## funding
+
+If you like napari and want to support our [mission](mission-and-values),
+please consider a [donation](https://numfocus.org/donate-to-napari) to our
+efforts.
+
+napari is a fiscally sponsored project of [NumFOCUS], a US-based non-profit
+supporting open science and open source scientific software.
+
+We gratefully acknowledge funding support from the [Chan Zuckerberg
+Initiative][CZI] (CZI) and [NumFOCUS].
+
+::::{grid} 1 1 3 3
+
+:::{grid-item-card}
+:text-align: center
+:class-body: d-flex align-items-center justify-content-center
+
+[![CZI logo](_static/images/czi-logo.png)](https://chanzuckerberg.com)
+:::
+
+:::{grid-item-card}
+:text-align: center
+:class-body: d-flex align-items-center justify-content-center
+
+[![NumFOCUS logo](_static/images/nf-logo.png)](https://numfocus.org)
+:::
+
+:::{grid-item-card} ADD YOUR LOGO HERE
+:text-align: center
+:class-body: d-flex align-items-center justify-content-center
+:link: funding
+:link-type: ref
+:::
+  
+::::
+
+[NumFOCUS]: https://numfocus.org
+[CZI]: https://chanzuckerberg.com

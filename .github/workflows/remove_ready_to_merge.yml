@@ -12,4 +12,4 @@ permissions:
 jobs:
   remove_label:
     name: Remove ready to merge label
-    uses: napari/napari/.github/workflows/remove_ready_to_merge.yml@main
+    uses: napari/napari/.github/workflows/remove_ready_to_merge.yml@8aa6ea45b0fce8ff2a9506d75b55a93fc8ac9589 # v0.6.4

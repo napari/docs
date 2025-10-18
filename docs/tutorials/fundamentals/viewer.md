@@ -29,28 +29,9 @@ This tutorial will teach you about the **napari** viewer, including how to use i
 As discussed in the [getting started](launch) tutorial, the napari viewer can be launched from the command-line, a python script, an IPython console, or a Jupyter notebook. All four methods launch the same viewer, and anything related to interacting with the viewer on the screen applies equally to all of them. We will use the syntax for running the code inside a jupyter notebook with each code block below pasted into its own cell, but if you'd like to use a python script instead, simply copy and paste the code blocks into scripts with [`napari.run()`](https://napari.org/stable/api/napari.html#napari.run) as the final line (this starts an event loop which will
 open an interactive viewer) and run them.
 
-````{tip}
-As of release 0.6.0, napari has a command palette that can be opened with
-the keyboard shortcut {kbd}`Command/Ctrl+Shift+P`. Once open, you can use
-the arrow keys to scroll through the available actions or you can start typing
-the name of the action you want to use to refine the list. You can keep typing
-to refine or use the arrow keys to change the selection at any time. Once
-you have the action you want highlighted, press {kbd}`Enter` to run the action.
-
-```{raw} html
-<figure>
-  <video width="100%" controls autoplay loop muted playsinline>
-    <source src="../../_static/images/command-palette.webm" type="video/webm" />
-    <source src="../../_static/images/command-palette.mp4" type="video/mp4" />
-    <img src="../../_static/images/command-palette.png"
-      title="Your browser does not support the video tag"
-      alt="a screen recording showing the command palette in action to open Cells 3D example and toggle 3D viewer mode"
-    >
-  </video>
-
-</figure>
-```
-````
+:::{tip}
+Starting with release 0.6.0, you can use the [command palette](command-palette) to launch any command via {kbd}`Command/Ctrl+Shift+P`. :art:
+:::
 
 **Note:** There is also an IPython console available in napari, when napari is launched from the terminal, from a Python script, or when you use the napari bundled app. You can open it with the IPython console button (far left viewer button) or with the menu option **Window** > **console**. You can use this console to programmatically interact with an open viewer using the API methods illustrated in this tutorial.
 
@@ -141,9 +122,11 @@ The main menu consists of the **File**, **View**, **Layers**, **Plugins**, **Win
 
 * **File** has the options to open files, folders, and samples, save layers and screenshots, copy screenshots to clipboard and, in the Windows and Linux versions, preferences. Additionally, you can make a new `Image` layer from an image (or URL to an image) copied to your Clipboard (keybinding {kbd}`Command/Ctrl+N`). The `New Layer` submenu allows you to create new, blank, `Labels`, `Points` or `Shapes` layers, identical to those created by the buttons above the layer list. Plugins can also contribute custom new layer creators to this menu.
 
-    All the options on the **File** menu are relatively self-explanatory except **Preferences** on the Windows and Linux versions of napari. **Preferences** allows you to personalize napari to some degree. To learn more about the **Preferences** menu, see our [Preferences guide for developers](napari-preferences).
-
-    **Note:** In macOS, **Preferences** is under the napari menu.
+  :::{tip}
+  **Preferences** opens a dialog that allows you to personalize napari settings, including keyboard shortcuts
+  (keybindings). To learn more about this, see our [guide to napari Preferences](napari-preferences).
+  **Note:** On macOS, the **Preferences** menu item is under the `napari` menu.
+  :::
 
 * **View** allows you to toggle full screen, the menu bar, play, display axes, the scale bar, tooltips, and the activity dock.
 * **Layers** contains actions and commands designed to act on existing layers, or generate new ones. The menu is mostly
@@ -293,7 +276,7 @@ viewer.add_points()
 
 Once added, either in the GUI or via the console, these layers become accessible in the layers list section of the GUI and at `viewer.layers`. For example, an empty Points layer created using the code snippet above can be accessed using `viewer.layers['Points']`.
 
-Layers can be deleted by selecting them and clicking on the `delete` button with the trash icon (or using the keybinding as set in the Preferences).
+Layers can be deleted by selecting them and clicking on the `delete` button with the trash icon (or using the keybinding as set in the [**Preferences** dialog](napari-preferences)).
 
 In the console a layer at index `i` can be removed by:
 
@@ -362,9 +345,34 @@ And to change the current position of the sliders use:
 viewer.dims.current_step = (3, 255, 255)
 ```
 The length of the `current_step` tuple corresponds to the number of dimensions. Note that in this example, the last two dimensions are *displayed* (don't have a slider) and thus changing the last two elements of the tuple will have no effect [until the axes order is changed](#roll-dimensions).
+The same information but in *world coordinates* (i.e., including
+scale and translate transformations) is accessible via `viewer.dims.point`.
 
-Lastly, `viewer.dims.point` contains the position in world coordinates (i.e., including
-scale and translate transformations).
+By default napari will only show a slice of the data: that which is located *exactly* at this position. However, it is possible to visualize data from a thicker dimensional slice by modifying `viewer.dims.thickness`. This will use each layer's `projection_mode` to visualize the space around `viewer.dims.point`.  Alternately, you can set `viewer.dims.margin_left` and `viewer.dims.margin_right` to explicitly set the range of data around `viewer.dims.point` to be projected. Finally, you can use the corresponding `margin_left_step` and `margin_right_step` properties to work in "slider coordinates".
+
+
+```{code-cell} python
+:tags: [remove-output]
+import numpy as np
+from skimage import data
+
+import napari
+
+viewer, (membranes, nuclei) = napari.imshow(data.cells3d(), channel_axis=1)
+
+viewer.dims.thickness_step = (10, 1, 1)
+
+# average for membranes, but no projection for nuclei (margins are ignored)
+membranes.projection_mode = 'mean'
+nuclei.projection_mode = 'none'
+```
+
+```{code-cell} python
+:tags: [hide-input]
+nbscreenshot(viewer, alt_text="A slice through a 2-channel (membranes and nuclei) fluorescence image of cells, which the membranes averaged over 10 z-slices.")
+```
+
+The margins can also be controlled from the GUI by right-clicking the corresponding dimension slider.
 
 ### Scroll buttons
 
@@ -508,11 +516,26 @@ The fourth button transposes the displayed dimensions.
 
 ### Grid button
 
-The fifth button, the grid button, toggles between the default layer mode and grid mode. When clicked, it displays each layer of the image in a series of tiles. The question icons can be hovered for more information about each setting.
+The fifth button, the grid button, toggles between the default layer mode and grid mode. When clicked, it distributes the layers in a grid of cells. Each cell is a small interactive canvas whose camera is linked with all the others.
 
-1. Grid stride: By default, 1, placing one layer in each tile. The value determines the number of layers overlaid in each tile. Negative values reverse the order in which layers are displayed in the grid.
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../../_static/images/grid-mode.webm" type="video/webm" />
+    <source src="../../_static/images/grid-mode.mp4" type="video/mp4" />
+    <img src="../../_static/images/grid-mode.png"
+      title="Your browser does not support the video tag"
+      alt="a screen recording showing the the Kidney example toggling between normal mode and grid mode"
+    >
+  </video>
+</figure>
+```
+
+The distribution of the layers in the grid can be altered according to the settings below, accessible by right-clicking the button (or programmatically through `viewer.grid`). The question icons can be hovered for more information about each setting.
+
+1. Grid stride: By default, 1, placing one layer in each view. The value determines the number of layers overlaid in each view. Negative values reverse the order in which layers are displayed in the grid.
 2. Grid width/height: By default, -1, which automatically determines the grid layout.
-3. Grid spacing: Changes the spacing between the tiles as a proportion of the average height and width of the largest layer. Positive values add distance between layers creating a 'figure panel' like appearance. Negative values result in overlap, which is useful if layers have translucent blending, allowing visualization of many layers close together.
+3. Grid spacing: The value will adjust the spacing between grid views either proportionally to the layer extents (i.e. [0,1)) or as a pixel value [1,1500) and will automatically adjust if needed.
 
 ![image: Grid Mode Widget](../../_static/images/grid-widget.png)
 
@@ -529,6 +552,24 @@ At the very bottom of the GUI there is a status bar that contains useful updates
 On the left side of the status bar there is a message about the position of the mouse and the values of any images or the indices of any `Points` that are currently hovered over, depending on which layer is selected. When there are buttons in the layer controls panel, the status bar displays information about the layer controls button you are clicking. The buttons are not available for every layer type.
 
 The right side of the status bar contains some helpful tips depending on which layer and tools are currently selected.
+
+(viewer-overlays)=
+## Viewer overlays
+
+Overlays provide additional information about the render state and the data, displayed on the canvas itself.
+In napari there are two main types: canvas overlays - which are locked in position on the screen and hover over the rendered canvas - and scene overlays - which are located somewhere in world coordinates and follow the camera and dims just like layers. Canvas overlays can be positioned in various locations on the canvas (e.g: `top_left`, `bottom_center`), and will automatically tile if multiple are present at the same location.
+
+The viewer gives access to a few such overlays:
+
+- Scale bar (canvas overlay, accessible via `viewer.scale_bar`): you may set its unit, length, and other parameters.
+- Axes (scene overlay, accessible via `viewer.axes`): displays basis axes at the origin.
+- Text Overlay (canvas overlay, accessible via `viewer.text_overlay`): displays arbitrary text on the canvas.
+
+These overlays can also be accessed via graphical interface through the **View** menu and their respective submenus.
+
+:::{tip}
+Similarly to the viewer, layers [also have some overlays](layer-overlays) that can be used to display layer-specific information!
+:::
 
 ## Right-click menu
 
@@ -599,7 +640,7 @@ nbscreenshot(viewer, alt_text="A napari viewer changed to light theme")
 viewer.theme = 'dark'
 ```
 
-You can also change the theme using the "Toggle theme" keyboard shortcut, by default {kbd}`Command/Control+Shift+T`. Note that changing the theme using this shortcut will only change the *current* viewer theme. If you wish to make the change permanent for all viewers, make sure to also change your settings in the **Appearance** tab of the **Preferences** menu.
+You can also change the theme using the "Toggle theme" keyboard shortcut, by default {kbd}`Command/Control+Shift+T`. Note that changing the theme using this shortcut will only change the *current* viewer theme. If you wish to make the change permanent for all viewers, make sure to also change your settings in the **Appearance** tab of the [**Preferences** dialog](napari-preferences).
 
 Adding your own custom theme isn't too hard but it requires creating your own color `palette` and rebuilding the icons. It's also possible for [plugins to contribute a theme](contributions-themes). If people want more themes, we're happy to add them or you can look at our [contributing guidelines](napari-contributing) for more information about building the icons and add one yourself!
 
@@ -607,7 +648,8 @@ Adding your own custom theme isn't too hard but it requires creating your own co
 
 ## Custom keybinding
 
-napari provides a number of built-in keyboard shortcuts, which you can access and change in **Preferences**>**Shortcuts**.
+napari provides a number of built-in keyboard shortcuts, which you can access and change in the **Shortcuts** section
+of the [**Preferences** dialog](napari-preferences).
 
 **Note:** **Preferences** is under the **File** menu on Windows and Linux, and under **napari** on macOS.)
 
