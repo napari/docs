@@ -19,6 +19,14 @@ on:
         description: 'The directory to deploy the docs to'
         required: true
         default: 'dev'
+      napari_ref:
+        description: 'The napari/napari ref to build the docs against'
+        required: true
+        default: 'main'
+      docs_ref:
+        description: 'The napari/docs ref to build'
+        required: false
+        default: ''
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -31,9 +39,9 @@ jobs:
     secrets: inherit
     with:
       main-repo: "napari/napari"
-      main-ref: "main"
+      main-ref: ${{ github.event.inputs.napari_ref || 'main' }}
       docs-repo: ${{ github.repository }}
-      docs-ref: ${{ github.ref }}
+      docs-ref: ${{ github.event.inputs.docs_ref || github.ref }}
       make_target: "html"
 
   deploy:
