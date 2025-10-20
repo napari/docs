@@ -1,0 +1,15 @@
+[workspace]
+authors = ["napari developers"]
+channels = ["conda-forge"]
+name = "napari-docs"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[dependencies]
+python = "<3.14"
+
+[pypi-dependencies]
+napari = { git = "https://github.com/napari/napari.git", branch = "main", extras = ["dev", "pyqt", "docs"] }
+
+[tasks]
+slimfast = "make slimfast"
