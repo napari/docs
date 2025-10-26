@@ -15,17 +15,29 @@ docs_dir := $(current_dir)docs
 clean:
 	echo clean
 	echo $(current_dir)
+ifeq ($(OS),Windows_NT)
+	@python -c "import shutil, pathlib, glob; shutil.rmtree('$(docs_dir)/_build', ignore_errors=True); [pathlib.Path(f).unlink(missing_ok=True) for f in glob.glob('$(docs_dir)/api/napari*.rst')]"
+else
 	rm -rf $(docs_dir)/_build/
 	rm -rf $(docs_dir)/api/napari*.rst
+endif
 
 clean-prep: clean
+ifeq ($(OS),Windows_NT)
+	@python -c "import pathlib, glob; pathlib.Path('$(docs_dir)/guides/preferences.md').unlink(missing_ok=True); [pathlib.Path(f).unlink(missing_ok=True) for f in glob.glob('$(docs_dir)/developers/architecture/ui_sections/*ui.md')]; [pathlib.Path(f).unlink(missing_ok=True) for f in glob.glob('$(docs_dir)/plugins/_npe2*.md')]"
+else
 	rm -rf $(docs_dir)/guides/preferences.md
 	rm -rf $(docs_dir)/developers/architecture/ui_sections/*ui.md
 	rm -rf $(doc_dir)/plugins/_npe2*.md
+endif
 
 clean-gallery:
+ifeq ($(OS),Windows_NT)
+	@python -c "import shutil, pathlib; [pathlib.Path(f).unlink(missing_ok=True) for f in pathlib.Path('$(docs_dir)/gallery').glob('*') if f.is_file()]; shutil.rmtree('$(docs_dir)/_tags', ignore_errors=True)"
+else
 	rm -rf $(docs_dir)/gallery/*
 	rm -rf $(docs_dir)/_tags
+endif
 
 clean-full: clean-prep clean-gallery
 
@@ -101,16 +113,27 @@ docs-live: prep-stubs
 # no notebook execution, no generation from prep_docs, no gallery
 # will note remove existing gallery files
 slim: clean prep-stubs
+ifeq ($(OS),Windows_NT)
+	set NB_EXECUTION_MODE=off&& set NAPARI_APPLICATION_IPY_INTERACTIVE=0&& sphinx-build -M html docs/ docs/_build -WT --keep-going -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+else
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -WT --keep-going -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) $(SPHINXOPTS)
+endif
 
 # slim, but uses -j auto to parallelize the build
 slimfast: clean prep-stubs
+ifeq ($(OS),Windows_NT)
+	set NB_EXECUTION_MODE=off&& set NAPARI_APPLICATION_IPY_INTERACTIVE=0&& sphinx-build -M html docs/ docs/_build -WT --keep-going -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) -j auto $(SPHINXOPTS)
+else
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 sphinx-build -M html docs/ docs/_build -WT --keep-going -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) -j auto $(SPHINXOPTS)
+endif
 
 # slimfast, but uses sphinx-autobuild to rebuild changed files
 # this will run an initial build, because it's fast
 # will not remove existing gallery files
 slimfast-live: clean prep-stubs
+ifeq ($(OS),Windows_NT)
+	set NB_EXECUTION_MODE=off&& set NAPARI_APPLICATION_IPY_INTERACTIVE=0&& sphinx-autobuild -M html docs/ docs/_build -D plot_gallery=0 -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) --ignore $(docs_dir)"/_tags/*" --ignore $(docs_dir)"/api/napari*.rst" --ignore $(docs_dir)"/gallery/*" --ignore $(docs_dir)"/jupyter_execute/*" --open-browser --port=0 -j auto $(SPHINXOPTS)
+else
 	NB_EXECUTION_MODE=off NAPARI_APPLICATION_IPY_INTERACTIVE=0 \
 	sphinx-autobuild -M html docs/ docs/_build -D plot_gallery=0 \
 	-D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH) \
@@ -121,6 +144,7 @@ slimfast-live: clean prep-stubs
 	--open-browser \
 	--port=0 \
 	-j auto $(SPHINXOPTS)
+endif
 
 # slim, but with all gallery examples
 # does not remove existing gallery files

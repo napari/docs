@@ -1,0 +1,23 @@
+
+[workspace]
+authors = ["napari developers"]
+channels = ["conda-forge"]
+name = "napari-docs"
+
+# Uncomment the appropriate line below for your OS:
+# platforms = ["win-64"]      # Windows
+platforms = ["linux-64"]    # Linux
+# platforms = ["osx-64"]      # macOS Intel
+# platforms = ["osx-arm64"]   # macOS Apple Silicon
+
+version = "0.1.0"
+
+[dependencies]
+python = "3.13.*"
+make = "*"
+
+[pypi-dependencies]
+napari = { git = "https://github.com/napari/napari.git", branch = "main", extras = ["dev", "pyqt", "docs"] }
+
+[tasks]
+slimfast = "make slimfast"

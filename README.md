@@ -15,6 +15,9 @@ Alternatively, our CI setup provides a preview link that shows your changes.
 Please read our [contributing guide](https://napari.org/dev/developers/contributing/documentation/index.html) for more comprehensive information about contributing documentation.
 
 ### quickstart: local setup
+
+#### Option 1: Manual setup
+
 * __Check the prerequisites__
     1. Create a clean Python (>=3.10) environment (e.g., with conda).
     1. In that environment, create an editable `napari` installation with the `docs` [dependency group](https://packaging.python.org/en/latest/specifications/dependency-groups/) and a Qt backend. For example, after first forking and cloning the main `napari` project if you've not previously done so, run `python -m pip install -e ".[pyqt]" --group docs` from your `napari/napari` clone directory. This will use the default Qt backend.
@@ -31,6 +34,77 @@ Please read our [contributing guide](https://napari.org/dev/developers/contribut
 
 These steps should set you up to build and preview your docs contributions on your local machine.
 For more detailed instructions and tips, please visit the relevant sections of our [contribution guide](https://napari.org/dev/developers/contributing/documentation/index.html).
+
+#### Option 2: Using pixi (for slimfast builds only)
+
+
+[Pixi](https://pixi.sh) provides a simple, cross-platform way to quickly build the documentation using the `slimfast` target without manually installing dependencies or cloning the napari source repository.
+
+**Note: This option only supports `make slimfast` builds. For full builds with the gallery (`make html`) or other build options, use Option 1.**
+
+1. **Install pixi** (if not already installed):
+   ```bash
+   # Windows (PowerShell)
+   iwr -useb https://pixi.sh/install.ps1 | iex
+   
+   # macOS/Linux
+   curl -fsSL https://pixi.sh/install.sh | bash
+   ```
+   
+   **Important:** After installation, you need to add pixi to your PATH:
+   
+   - **Windows**: Restart your PowerShell terminal, or run:
+     ```powershell
+     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+     ```
+   
+   - **macOS/Linux**: Restart your terminal, or run:
+     ```bash
+     # For bash
+     source ~/.bashrc
+     
+     # For zsh (macOS default since Catalina)
+     source ~/.zshrc
+     
+     # For fish shell
+     fish_add_path ~/.pixi/bin
+     ```
+     
+     **Note:** If you're using fish shell and pixi was just installed, you may need to manually add it to your PATH with the command above.
+   
+   Verify pixi is available by running: `pixi --version`
+
+2. **Clone this repository**:
+   ```bash
+   git clone https://github.com/napari/docs.git napari-docs
+   cd napari-docs
+   ```
+
+3. **Configure platform (REQUIRED):** In `pixi.toml`, set only ONE platform for your OS:
+   ```toml
+   platforms = ["win-64"]      # Windows
+   platforms = ["linux-64"]    # Linux
+   platforms = ["osx-64"]      # macOS Intel
+   platforms = ["osx-arm64"]   # macOS Apple Silicon
+   ```
+   Only one platform should be present in the array at a time.
+
+4. **Install dependencies**:
+   ```bash
+   pixi install
+   ```
+
+5. **Build the docs** (slimfast only):
+   ```bash
+   pixi run slimfast
+   ```
+
+6. **Preview**: Open `docs/_build/html/index.html` in your browser.
+
+**Notes:**
+- The `pixi.toml` must be single-platform to avoid lock file issues
+- After changing platforms in step 3, run `pixi install` to create the environment
+- The Makefile includes cross-platform support, so builds work on Windows, Linux, and macOS
 
 ## code of conduct
 
