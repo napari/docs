@@ -11,7 +11,9 @@ kernelspec:
   language: python
   name: python3
 ---
+
 (napari-quick-start)=
+
 # Quick start
 
 +++
@@ -47,6 +49,7 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 ### Installation
 
 - Download the napari {{ napari_version }} bundled app for a simple installation:
+
   - Linux: {{ '[`napari-NAPARI_VER-Linux-x86_64.sh`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.sh)'.replace('NAPARI_VER', napari_version) }}.
   - macOS (Intel): {{ '[`napari-NAPARI_VER-macOS-x86_64.pkg`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.pkg)'.replace('NAPARI_VER', napari_version) }}.
   - macOS (Apple Silicon): {{ '[`napari-NAPARI_VER-macOS-arm64.pkg`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-arm64.pkg)'.replace('NAPARI_VER', napari_version) }}.
@@ -55,18 +58,17 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 
 - For those familiar with Python:
 
-    napari can be installed on most macOS (Intel x86), Linux, and Windows systems with Python {{ python_version_range }} using pip.
+  napari can be installed on most macOS (Intel x86), Linux, and Windows systems with Python {{ python_version_range }} using pip.
 
-    First, create a clean virtual environment:
+  First, create a clean virtual environment:
 
-    {{ conda_create_env }}
+  {{ conda_create_env }}
 
-    Once in napari-env,
+  Once in napari-env,
 
-    ```python
-    python -m pip install 'napari[all]'
-    ```
-
+  ```python
+  python -m pip install 'napari[all]'
+  ```
 
 If you run into any issues, please visit the more detailed [installation guide](napari-installation), or [report an issue on GitHub](https://github.com/napari/napari/issues/new/choose)!
 
@@ -80,22 +82,23 @@ Here we will be mainly focused on the GUI application.
 
 - From command line:
 
-    Once installed, run
+  Once installed, run
+
 ```bash
 napari
 ```
 
 - If you installed the bundled app:
 
-    Click on the app icon to open it.
+  Click on the app icon to open it.
 
-    *Note: macOS users might need to right click on the app icon and select "Open" to bypass the security check. You can also go to System Settings > Privacy & Security and click on "Open Anyway".*
+  *Note: macOS users might need to right click on the app icon and select "Open" to bypass the security check. You can also go to System Settings > Privacy & Security and click on "Open Anyway".*
 
 +++
 
-:::{tip}
+```{tip}
 Starting with release 0.6.0, you can use the [command palette](command-palette) to launch any command. 🎨
-:::
+```
 
 ### Open an image
 
@@ -120,15 +123,21 @@ For demo purpose, we will use a sample image that comes with napari.
 ```python
 from skimage import data
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> a4633b8 (Code)
 viewer.add_image(data.cell(), name='cell')
+=======
+
+viewer.add_image(data.cell(), name="cell")
+>>>>>>> fe58254 (Remove colon fence syntax)
 ```
 
 ```{code-cell} ipython3
-:tags: [remove-input]
-
+---
+tags: [remove-input]
+---
 import napari
 from napari.utils import nbscreenshot
 
@@ -154,8 +163,9 @@ viewer.layers['cell'].colormap = 'yellow'
 ```
 
 ```{code-cell} ipython3
-:tags: [remove-input]
-
+---
+tags: [remove-input]
+---
 viewer.layers['cell'].colormap = "yellow"
 nbscreenshot(viewer, alt_text="image of singular cell with yellow tint")
 ```
@@ -203,8 +213,13 @@ In IPython console, type
 ```python
 from skimage.measure import regionprops
 
+<<<<<<< HEAD
 props = regionprops(viewer.layers['Labels'].data)
 print('the cell area is: ', props[0].area)
+=======
+props = regionprops(viewer.layers["Labels"].data)
+print("the cell area is: ", props[0].area)
+>>>>>>> fe58254 (Remove colon fence syntax)
 ```
 
 Alternatively, try [this plugin](https://www.napari-hub.org/plugins/napari-skimage-regionprops) to have the result in a table form.
@@ -212,8 +227,9 @@ Alternatively, try [this plugin](https://www.napari-hub.org/plugins/napari-skima
 **Note:** the area reported by `regionprops` is the number of pixels. Check pixel size and convert the reported number to physical units.
 
 ```{code-cell} ipython3
-:tags: [remove-cell]
-
+---
+tags: [remove-cell]
+---
 viewer.close_all()
 ```
 
