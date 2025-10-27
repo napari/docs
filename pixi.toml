@@ -4,12 +4,7 @@ authors = ["napari developers"]
 channels = ["conda-forge"]
 name = "napari-docs"
 
-# Uncomment the appropriate line below for your OS:
-# platforms = ["win-64"]      # Windows
-platforms = ["linux-64"]    # Linux
-# platforms = ["osx-64"]      # macOS Intel
-# platforms = ["osx-arm64"]   # macOS Apple Silicon
-
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]  # All platforms
 version = "0.1.0"
 
 [dependencies]
