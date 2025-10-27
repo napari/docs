@@ -67,6 +67,7 @@ def _handle_remove_readonly(func, path, exc):
 
 
 
+
 def prep_npe2():
     #   some plugin docs live in npe2 for testing purposes
     # NOTE: If you manually edited the npe2 directory you would want to uncomment the next lines
@@ -81,13 +82,13 @@ def prep_npe2():
     if NPE.exists():
         shutil.rmtree(NPE, ignore_errors=False, onerror=_handle_remove_readonly)
 
-    check_call(f"git clone https://github.com/napari/npe2 {NPE}".split())
+    check_call(f'git clone https://github.com/napari/npe2 {NPE}'.split())
     if not parse(npe2_version).is_devrelease:
         check_call(
-            f"git -c advice.detachedHead=false checkout tags/v{npe2_version}".split(),
+            f'git -c advice.detachedHead=false checkout tags/v{npe2_version}'.split(),
             cwd=NPE,
         )
-    check_call([sys.executable, f"{NPE}/_docs/render.py", DOCS / "plugins"])
+    check_call([sys.executable, f'{NPE}/_docs/render.py', DOCS / 'plugins'])
     shutil.rmtree(NPE, ignore_errors=False, onerror=_handle_remove_readonly)
 
 

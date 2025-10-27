@@ -124,6 +124,9 @@ For demo purpose, we will use a sample image that comes with napari.
 from skimage import data
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6acb000 (Lint all markdown files)
 =======
 
 >>>>>>> a4633b8 (Code)
@@ -214,12 +217,17 @@ In IPython console, type
 from skimage.measure import regionprops
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 props = regionprops(viewer.layers['Labels'].data)
 print('the cell area is: ', props[0].area)
 =======
 props = regionprops(viewer.layers["Labels"].data)
 print("the cell area is: ", props[0].area)
 >>>>>>> fe58254 (Remove colon fence syntax)
+=======
+props = regionprops(viewer.layers['Labels'].data)
+print('the cell area is: ', props[0].area)
+>>>>>>> 6acb000 (Lint all markdown files)
 ```
 
 Alternatively, try [this plugin](https://www.napari-hub.org/plugins/napari-skimage-regionprops) to have the result in a table form.

@@ -167,7 +167,7 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 
 - Implement core functionality needed to enable **grouping of layers**. [#5950](https://github.com/napari/napari/issues/5950)
 
-* Add general-purpose spatial graph layer for displaying, slicing and editing graph-like data, such as tracks. [\#4274](https://github.com/napari/napari/issues/4274), [\#5861](https://github.com/napari/napari/pull/5861)
+- Add general-purpose spatial graph layer for displaying, slicing and editing graph-like data, such as tracks. [#4274](https://github.com/napari/napari/issues/4274), [#5861](https://github.com/napari/napari/pull/5861)
 
 *Benefits: Web browser application support, composable user interfaces, efficient data pipeline, experimentation tools, and scripting for automated workflows.*
 
@@ -208,8 +208,8 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 - Implement **"napari headless is Just Python"** vision so napari can run anywhere that Python can. [#5958](https://github.com/napari/napari/issues/5958)
 
 - Improvements to the plugin manifest 
-  - Add high-impact features to existing manifest to enable user workflows e.g. reading hooks [#8032](https://github.com/napari/napari/issues/8032), directory reading patterns [npe2/\#155](https://github.com/napari/npe2/issues/155), and context-dependent command/menu items
-  - Design & implement a **new version of the plugin manifest** that addresses current pain points, deduplicates parts of the specification, and includes richer contribution types [\#6227](https://github.com/napari/napari/issues/6227)
+  - Add high-impact features to existing manifest to enable user workflows e.g. reading hooks [#8032](https://github.com/napari/napari/issues/8032), directory reading patterns [npe2/#155](https://github.com/napari/npe2/issues/155), and context-dependent command/menu items
+  - Design & implement a **new version of the plugin manifest** that addresses current pain points, deduplicates parts of the specification, and includes richer contribution types [#6227](https://github.com/napari/napari/issues/6227)
 
 - Add support for **composable plugin workflows**. Enable data, including layers and non-layers, to be streamed from one plugin to another. [#5965](https://github.com/napari/napari/issues/5965)
 
@@ -266,12 +266,13 @@ The following items are active priorities for the project:
 
 The following items were completed recently:
 
-* Shape triangulation performance
-* Hub-lite: a community built and managed alternative to the napari hub
+- Shape triangulation performance
+- Hub-lite: a community built and managed alternative to the napari hub
 
 Our next priorities are:
 
 - Multi-canvas (foundational work)
+- Improvements to the plugin manifest (technical design)
 - Core functionality for grouping of layers
 - Instanced rendering performance
 - Performance under core library

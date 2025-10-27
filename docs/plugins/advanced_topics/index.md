@@ -21,7 +21,7 @@ Some plugin developers may find more **in-depth, technical information** helpful
 A reference for the `npe2` manifest file, which is used to define the plugin and its contributions.
 ```
 
-```{grid-item-card} `npe2` contributions reference
+```{grid-item-card} npe2 contributions reference
 :link: contributions-ref
 :link-type: ref
 
@@ -44,7 +44,7 @@ We encourage first generation plugin authors to migrate their plugin to the `npe
 These documents provide background on the first generation plugin system which is now deprecated.
 ```
 
-```{grid-item-card} Migration guide to `npe2`
+```{grid-item-card} Migration guide to npe2
 :link: npe2-migration-guide
 :link-type: ref
 Have a plugin written for the first generation plugin system? This guide will help you migrate to the `npe2` plugin system.
