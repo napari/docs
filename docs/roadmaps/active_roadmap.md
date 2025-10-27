@@ -1,7 +1,7 @@
 (active-roadmap)=
 # Napari Roadmap
 
-Updated: **October 17, 2025**
+Updated: **October 27, 2025**
 
 ## Project vision and foundation
 
