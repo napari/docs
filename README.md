@@ -80,7 +80,7 @@ For more detailed instructions and tips, please visit the relevant sections of o
    cd napari-docs
    ```
 
-3. **Install dependencies**:
+3. **Install dependencies** (should automatically run for your platform):
    ```bash
    pixi install
    ```
