@@ -119,6 +119,10 @@ For demo purpose, we will use a sample image that comes with napari.
 
 ```python
 from skimage import data
+<<<<<<< HEAD
+=======
+
+>>>>>>> a4633b8 (Code)
 viewer.add_image(data.cell(), name='cell')
 ```
 
@@ -146,7 +150,7 @@ The layer controls panel at the upper left of the viewer allows you to adjust co
 To change the image display through the [API](api), in IPython console, type
 
 ```python
-viewer.layers['cell'].colormap = "yellow"
+viewer.layers['cell'].colormap = 'yellow'
 ```
 
 ```{code-cell} ipython3
@@ -198,8 +202,9 @@ In IPython console, type
 
 ```python
 from skimage.measure import regionprops
+
 props = regionprops(viewer.layers['Labels'].data)
-print("the cell area is: ", props[0].area)
+print('the cell area is: ', props[0].area)
 ```
 
 Alternatively, try [this plugin](https://www.napari-hub.org/plugins/napari-skimage-regionprops) to have the result in a table form.
