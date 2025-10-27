@@ -37,10 +37,9 @@ For more detailed instructions and tips, please visit the relevant sections of o
 
 #### Option 2: Using pixi (for slimfast builds only)
 
-
 [Pixi](https://pixi.sh) provides a simple, cross-platform way to quickly build the documentation using the `slimfast` target without manually installing dependencies or cloning the napari source repository.
 
-**Note: This option only supports `make slimfast` builds. For full builds with the gallery (`make html`) or other build options, use Option 1.**
+**Note: This option only supports `make slimfast` builds, and it will clone the main napari repo from the main branch on GitHub into the pixi environment. For docstring changes, full builds with the gallery (`make html`), or other build options, use Option 1.**
 
 1. **[Install pixi](https://pixi.sh/dev/installation/)** (if not already installed):
    ```bash
@@ -63,7 +62,7 @@ For more detailed instructions and tips, please visit the relevant sections of o
      # For bash
      source ~/.bashrc
      
-     # For zsh (macOS default since Catalina)
+     # For zsh (macOS default since version 10.15 Catalina)
      source ~/.zshrc
      
      # For fish shell
@@ -95,7 +94,7 @@ For more detailed instructions and tips, please visit the relevant sections of o
 
 **Notes:**
 - The `pixi.toml` is multi-platform; no manual platform selection is required and it should “just work” on Windows, Linux, and macOS.
-- If you switch OS/architecture or update pixi, simply run `pixi install` again to refresh the environment.
+- If you update pixi, run `pixi install` again to refresh the environment.
 - The Makefile includes cross-platform support, so builds work consistently across platforms.
 
 ## code of conduct
