@@ -80,31 +80,22 @@ For more detailed instructions and tips, please visit the relevant sections of o
    cd napari-docs
    ```
 
-3. **Configure platform (REQUIRED):** In `pixi.toml`, set only ONE platform for your OS:
-   ```toml
-   platforms = ["win-64"]      # Windows
-   platforms = ["linux-64"]    # Linux
-   platforms = ["osx-64"]      # macOS Intel
-   platforms = ["osx-arm64"]   # macOS Apple Silicon
-   ```
-   Only one platform should be present in the array at a time.
-
-4. **Install dependencies**:
+3. **Install dependencies**:
    ```bash
    pixi install
    ```
 
-5. **Build the docs** (slimfast only):
+4. **Build the docs** (slimfast only):
    ```bash
    pixi run slimfast
    ```
 
-6. **Preview**: Open `docs/_build/html/index.html` in your browser.
+5. **Preview**: Open `docs/_build/html/index.html` in your browser.
 
 **Notes:**
-- The `pixi.toml` must be single-platform to avoid lock file issues
-- After changing platforms in step 3, run `pixi install` to create the environment
-- The Makefile includes cross-platform support, so builds work on Windows, Linux, and macOS
+- The `pixi.toml` is multi-platform; no manual platform selection is required and it should “just work” on Windows, Linux, and macOS.
+- If you switch OS/architecture or update pixi, simply run `pixi install` again to refresh the environment.
+- The Makefile includes cross-platform support, so builds work consistently across platforms.
 
 ## code of conduct
 
