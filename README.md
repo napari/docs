@@ -40,7 +40,7 @@ For more detailed instructions and tips, please visit the relevant sections of o
 
 [Pixi](https://pixi.sh) provides a simple, cross-platform way to quickly build the documentation using the `slimfast` target without manually installing dependencies or cloning the napari source repository.
 
-**Note: This option only supports `make slimfast` builds. For full builds with the gallery (`make html`) or other build options, use Option 1.**
+**Note: This option only supports `make slimfast` builds, and it will clone the main napari repo from the main branch on GitHub into the pixi environment. For docstring changes, full builds with the gallery (`make html`), or other build options, use Option 1.**
 
 1. **Install pixi** (if not already installed):
    ```bash
