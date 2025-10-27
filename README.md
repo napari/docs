@@ -35,11 +35,11 @@ Please read our [contributing guide](https://napari.org/dev/developers/contribut
 These steps should set you up to build and preview your docs contributions on your local machine.
 For more detailed instructions and tips, please visit the relevant sections of our [contribution guide](https://napari.org/dev/developers/contributing/documentation/index.html).
 
-#### Option 2: Using pixi (for slimfast builds only)
+#### Option 2: Using pixi
 
-[Pixi](https://pixi.sh) provides a simple, cross-platform way to quickly build the documentation using the `slimfast` target without manually installing dependencies or cloning the napari source repository.
+[Pixi](https://pixi.sh) provides a simple, cross-platform way to quickly build the documentation without manually installing dependencies or cloning the napari source repository.
 
-**Note: This option only supports `make slimfast` builds, and it will clone the main napari repo from the main branch on GitHub into the pixi environment. For docstring changes, full builds with the gallery (`make html`), or other build options, use Option 1.**
+**Note: This option will clone the main napari repo from the main branch on GitHub into the pixi environment. For docstring changes in your local napari clone, use Option 1.**
 
 1. **[Install pixi](https://pixi.sh/dev/installation/)** (if not already installed):
    ```bash
@@ -80,22 +80,39 @@ For more detailed instructions and tips, please visit the relevant sections of o
    cd napari-docs
    ```
 
-4. **Install dependencies** (should automatically run for your platform):
+4. **Install dependencies** (automatically detects your platform):
    ```bash
    pixi install
    ```
 
-5. **Build the docs** (slimfast only):
+5. **Build the docs** using one of these commands:
    ```bash
+   # Fast, parallel build (recommended for development)
    pixi run slimfast
+   
+   # Full build with example gallery
+   pixi run html
+   
+   # Full build without gallery
+   pixi run html-noplot
+   
+   # Auto-rebuild on file changes
+   pixi run slimfast-live
+   ```
+   
+   For more build options, see `pixi task list`.
+
+6. **Preview**: Open `docs/_build/html/index.html` in your browser, or run:
+   ```bash
+   python3 -m http.server --directory docs/_build/html
    ```
 
-6. **Preview**: Open `docs/_build/html/index.html` in your browser.
-
 **Notes:**
-- The `pixi.toml` is multi-platform; no manual platform selection is required and it should “just work” on Windows, Linux, and macOS.
+- pixi requires `make` to be installed on your computer. 
+- The `pixi.toml` is multi-platform for Windows, Linux, MacOS (both Intel and Apple Silicon).
+- All build targets have cross-platform support in the Makefile.
+- To clean build artifacts, run: `pixi run clean`
 - If you update pixi, run `pixi install` again to refresh the environment.
-- The Makefile includes cross-platform support, so builds work consistently across platforms.
 
 ## code of conduct
 
