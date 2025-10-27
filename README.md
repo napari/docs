@@ -42,7 +42,7 @@ For more detailed instructions and tips, please visit the relevant sections of o
 
 **Note: This option only supports `make slimfast` builds. For full builds with the gallery (`make html`) or other build options, use Option 1.**
 
-1. **Install pixi** (if not already installed):
+1. **[Install pixi](https://pixi.sh/dev/installation/)** (if not already installed):
    ```bash
    # Windows (PowerShell)
    iwr -useb https://pixi.sh/install.ps1 | iex
@@ -69,28 +69,29 @@ For more detailed instructions and tips, please visit the relevant sections of o
      # For fish shell
      fish_add_path ~/.pixi/bin
      ```
-     
-     **Note:** If you're using fish shell and pixi was just installed, you may need to manually add it to your PATH with the command above.
    
-   Verify pixi is available by running: `pixi --version`
+2. **Verify pixi is properly installed** 
+   ```bash
+   pixi --version
+   ```
 
-2. **Clone this repository**:
+3. **Clone this repository**:
    ```bash
    git clone https://github.com/napari/docs.git napari-docs
    cd napari-docs
    ```
 
-3. **Install dependencies** (should automatically run for your platform):
+4. **Install dependencies** (should automatically run for your platform):
    ```bash
    pixi install
    ```
 
-4. **Build the docs** (slimfast only):
+5. **Build the docs** (slimfast only):
    ```bash
    pixi run slimfast
    ```
 
-5. **Preview**: Open `docs/_build/html/index.html` in your browser.
+6. **Preview**: Open `docs/_build/html/index.html` in your browser.
 
 **Notes:**
 - The `pixi.toml` is multi-platform; no manual platform selection is required and it should “just work” on Windows, Linux, and macOS.
