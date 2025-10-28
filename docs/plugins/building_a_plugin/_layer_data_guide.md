@@ -1,9 +1,10 @@
 (layer-data-tuples)=
+
 ## The LayerData tuple
 
 When transferring data to and from plugins, napari does not pass `Layer` objects
 directly. Instead, it passes (mostly) pure-python and array-like types,
-deconstructed into a {class}`tuple` that we refer to as a `LayerData` tuple.  This type shows
+deconstructed into a {class}`tuple` that we refer to as a `LayerData` tuple. This type shows
 up often in plugins and is explained here.
 
 Note that when writing your own plugin, type annotations are optional,
@@ -21,12 +22,12 @@ We describe these below.
 A `LayerData` tuple is a tuple of length 1, 2, or 3 whose items, in order, are:
 
 1. The `data` object that would be used for `layer.data` (such as a numpy array
-for the `Image` layer)
-2. *(Optional).* A {class}`dict` of layer attributes, suitable for passing as
-keyword arguments to the corresponding layer constructor (e.g. `{'opacity': 0.7}`)
-3. *(Optional).* A lower case {class}`str` indicating the layer type (e.g.`'image'`,
-`'labels'`, etc...).  If not provided (i.e. if the tuple is only of length 2), the
-layer type is assumed to be `'image`'.
+   for the `Image` layer)
+1. *(Optional).* A {class}`dict` of layer attributes, suitable for passing as
+   keyword arguments to the corresponding layer constructor (e.g. `{'opacity': 0.7}`)
+1. *(Optional).* A lower case {class}`str` indicating the layer type (e.g.`'image'`,
+   `'labels'`, etc...). If not provided (i.e. if the tuple is only of length 2), the
+   layer type is assumed to be `'image`'.
 
 ### Formal type definition
 
@@ -42,7 +43,7 @@ where ...
 from typing import Literal, Protocol, Sequence
 
 LayerTypeName = Literal[
-    "image", "labels", "points", "shapes", "surface", "tracks", "vectors"
+    'image', 'labels', 'points', 'shapes', 'surface', 'tracks', 'vectors'
 ]
 LayerProps = Dict
 DataType = Union[ArrayLike, Sequence[ArrayLike]]
@@ -55,8 +56,10 @@ class ArrayLike(Protocol):
     shape: Tuple[int, ...]
     ndim: int
     dtype: np.dtype
+
     def __array__(self) -> np.ndarray: ...
     def __getitem__(self, key) -> ArrayLike: ...
+
 
 # the main point is that we're more concerned with structural
 # typing than literal array types (e.g. numpy, dask, xarray, etc...)
@@ -68,6 +71,7 @@ Assume that `data` is a numpy array:
 
 ```python
 import numpy as np
+
 data = np.random.rand(64, 64)
 ```
 
@@ -134,4 +138,5 @@ To add a `LayerData` tuple to the napari viewer, use :meth:`Layer.create`:
 >>> viewer = napari.current_viewer()
 >>> viewer.add_layer(napari.layers.Layer.create(*image_layer_data))
 ```
+
 The only attribute that can't be passed to `napari.layers.Layer.create` that is otherwise valid for a `LayerData` tuple is 'channel_axis'.

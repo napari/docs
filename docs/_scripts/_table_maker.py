@@ -52,29 +52,29 @@ The output was reviewed and edited for accuracy and clarity.
 import numpy as np
 
 STYLES = {
-    "double": {
-        "TOP": ("╔", "╤", "╗", "═"),
-        "MID": ("╟", "┼", "╢", "─"),
-        "BOT": ("╚", "╧", "╝", "═"),
-        "V": ("║", "│"),
+    'double': {
+        'TOP': ('╔', '╤', '╗', '═'),
+        'MID': ('╟', '┼', '╢', '─'),
+        'BOT': ('╚', '╧', '╝', '═'),
+        'V': ('║', '│'),
     },
-    "heavy": {
-        "TOP": ("┏", "┯", "┓", "━"),
-        "MID": ("┠", "┼", "┨", "─"),
-        "BOT": ("┗", "┷", "┛", "━"),
-        "V": ("┃", "│"),
+    'heavy': {
+        'TOP': ('┏', '┯', '┓', '━'),
+        'MID': ('┠', '┼', '┨', '─'),
+        'BOT': ('┗', '┷', '┛', '━'),
+        'V': ('┃', '│'),
     },
-    "light": {
-        "TOP": ("┌", "┬", "┐", "─"),
-        "MID": ("├", "┼", "┤", "─"),
-        "BOT": ("└", "┴", "┘", "─"),
-        "V": ("│", "│"),
+    'light': {
+        'TOP': ('┌', '┬', '┐', '─'),
+        'MID': ('├', '┼', '┤', '─'),
+        'BOT': ('└', '┴', '┘', '─'),
+        'V': ('│', '│'),
     },
-    "markdown": {
-        "TOP": (" ", " ", " ", " "),
-        "MID": ("|", "|", "|", "-"),
-        "BOT": (" ", " ", " ", " "),
-        "V": ("|", "|"),
+    'markdown': {
+        'TOP': (' ', ' ', ' ', ' '),
+        'MID': ('|', '|', '|', '-'),
+        'BOT': (' ', ' ', ' ', ' '),
+        'V': ('|', '|'),
     },
 }
 
@@ -86,22 +86,22 @@ def table_repr(
     header=None,
     cell_width=None,
     divide_rows=True,
-    style="markdown",
+    style='markdown',
 ):
     """Pretty string repr of a 2D table."""
     try:
         nrows = len(data)
     except TypeError:
-        raise TypeError("data must be a collection")
+        raise TypeError('data must be a collection')
     if not nrows:
-        return ""
+        return ''
 
     try:
         ncols = ncols or len(data[0])
     except TypeError:
-        raise TypeError("data must be a collection")
+        raise TypeError('data must be a collection')
     except IndexError:
-        raise IndexError("data must be a 2D collection of collections")
+        raise IndexError('data must be a 2D collection of collections')
 
     _widths = list(data)
     if header:
@@ -110,16 +110,14 @@ def table_repr(
     cell_widths = _widths.max(0).tolist()
 
     _style = STYLES[style]
-    TOP, MID, BOT, V = _style["TOP"], _style["MID"], _style["BOT"], _style["V"]
+    TOP, MID, BOT, V = _style['TOP'], _style['MID'], _style['BOT'], _style['V']
 
-    pad = " " * padding
-    cell_templates = [
-        (pad + "{{:{0}}}" + pad).format(max(cw, 5)) for cw in cell_widths
-    ]
+    pad = ' ' * padding
+    cell_templates = [(pad + '{{:{0}}}' + pad).format(max(cw, 5)) for cw in cell_widths]
     row_template = V[0] + V[1].join(cell_templates) + V[0]
 
     def _border(left, sep, right, line):
-        _cells = [len(ct.format("")) * line for ct in cell_templates]
+        _cells = [len(ct.format('')) * line for ct in cell_templates]
         return left + sep.join(_cells) + right
 
     body = [_border(*TOP)]
@@ -134,4 +132,4 @@ def table_repr(
             body.append(_border(*MID))
 
     body.append(_border(*BOT))
-    return "\n".join(body)
+    return '\n'.join(body)

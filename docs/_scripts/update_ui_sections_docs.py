@@ -73,25 +73,25 @@ The output was reviewed and edited for accuracy and clarity.
 import json
 from pathlib import Path
 
+import seedir as sd
+from napari._qt import dialogs, qt_viewer
+from napari._qt._qapp_model import qactions
+
 # ---- Napari imports
 from napari._qt.containers import qt_layer_list
 from napari._qt.layer_controls import qt_layer_controls_container
 from napari._qt.widgets import qt_viewer_status_bar
-from napari._qt._qapp_model import qactions
-from napari._qt import qt_viewer
-from napari._qt import dialogs
 from napari_console import qt_console
 
 # ---- Third-party imports
 from pydeps import cli, colors, dot, py2depgraph
 from pydeps.pydeps import depgraph_to_dotsrc
 from pydeps.target import Target
-import seedir as sd
 
 # ---- General constants
 # Docs paths
 DOCS = Path(__file__).parent.parent
-UI_SECTIONS_DOCS_ROOT_PATH = DOCS / "developers" / "architecture" / "ui_sections"
+UI_SECTIONS_DOCS_ROOT_PATH = DOCS / 'developers' / 'architecture' / 'ui_sections'
 
 # Napari and Napari UI sections modules paths
 NAPARI_ROOT_DIRECTORY_PATH = Path(qt_layer_list.__file__).parent.parent.parent
@@ -128,16 +128,16 @@ def generate_dependencies_graph(options):
         It can return `None` depending on the options passed.
 
     """
-    colors.START_COLOR = options["start_color"]
-    target = Target(options["fname"])
+    colors.START_COLOR = options['start_color']
+    target = Target(options['fname'])
     with target.chdir_work():
         dep_graph = py2depgraph.py2dep(target, **options)
     dot_src = depgraph_to_dotsrc(target, dep_graph, **options)
     graph_content = None
-    if not options["no_output"]:
-        graph_content = dot.call_graphviz_dot(dot_src, options["format"])
-        if options["output"]:
-            output_file = Path(options["output"])
+    if not options['no_output']:
+        graph_content = dot.call_graphviz_dot(dot_src, options['format'])
+        if options['output']:
+            output_file = Path(options['output'])
             output_file.parent.mkdir(exist_ok=True, parents=True)
             output_file.write_bytes(graph_content)
     return dep_graph, dot_src, graph_content
@@ -172,43 +172,43 @@ def generate_directory_layout(
     dependencies_dict = json.loads(str(dependencies_graph))
     files_to_include = []
     for dependency in dependencies_dict.values():
-        if dependency["path"]:
-            files_to_include.append(Path(dependency["path"]))
+        if dependency['path']:
+            files_to_include.append(Path(dependency['path']))
 
     def directory_layout_mask(item):
         item_path = Path(item)
         if item in files_to_include:
             return True
-        elif item_path.is_dir():
+        if item_path.is_dir():
             for file_to_include in files_to_include:
                 if Path(file_to_include).is_relative_to(item_path):
                     return True
         else:
             return False
 
-    directory_layout_content = "```\n"
+    directory_layout_content = '```\n'
     directory_layout_content += (
         sd.seedir(
             path=root_directory,
-            style="lines",
+            style='lines',
             printout=False,
             mask=directory_layout_mask,
         )
-        + "\n"
+        + '\n'
     )
-    directory_layout_content += "```\n"
+    directory_layout_content += '```\n'
 
     if output_file:
         output_file = Path(output_file)
         output_file.parent.mkdir(exist_ok=True, parents=True)
-        output_file.write_text(directory_layout_content, encoding="utf-8")
+        output_file.write_text(directory_layout_content, encoding='utf-8')
 
     return directory_layout_content
 
 
 def generate_mermaid_diagram(
     dependencies_graph,
-    graph_orientation="LR",
+    graph_orientation='LR',
     graph_node_default_style=None,
     graph_node_external_style=None,
     graph_link_default_style=None,
@@ -263,40 +263,33 @@ def generate_mermaid_diagram(
 
     """
     dependencies_dict = json.loads(str(dependencies_graph))
-    mermaid_diagram_content = "```{mermaid}\n"
-    mermaid_diagram_content += f"graph {graph_orientation or 'LR'}\n"
+    mermaid_diagram_content = '```{mermaid}\n'
+    mermaid_diagram_content += f'graph {graph_orientation or "LR"}\n'
     if graph_title:
-        mermaid_diagram_content += f"\taccTitle: {graph_title}\n"
+        mermaid_diagram_content += f'\taccTitle: {graph_title}\n'
     if graph_description:
-        mermaid_diagram_content += f"\taccDescr: {graph_description}\n"
+        mermaid_diagram_content += f'\taccDescr: {graph_description}\n'
     external_nodes = []
     subgraphs = {}
     for dependency in dependencies_dict.values():
-        dep_name = dependency["name"]
-        mermaid_diagram_content += f"\t{dep_name}({dep_name})\n"
-        if "imports" in dependency:
-            dep_imports = dependency["imports"]
+        dep_name = dependency['name']
+        mermaid_diagram_content += f'\t{dep_name}({dep_name})\n'
+        if 'imports' in dependency:
+            dep_imports = dependency['imports']
             for dep_import_name in dep_imports:
-                if (
-                    dep_import_name != dep_name
-                    and dep_import_name not in dep_name
-                ):
-                    mermaid_diagram_content += (
-                        f"\t{dep_name} --> {dep_import_name}\n"
-                    )
-        if graph_urls_prefix and dependency["path"]:
-            module_path = Path(dependency["path"])
+                if dep_import_name != dep_name and dep_import_name not in dep_name:
+                    mermaid_diagram_content += f'\t{dep_name} --> {dep_import_name}\n'
+        if graph_urls_prefix and dependency['path']:
+            module_path = Path(dependency['path'])
             # Check if module is outside napari, like
             # a plugin such as `napari_console`
             if module_path.is_relative_to(NAPARI_ROOT_DIRECTORY_PATH):
                 module_relative_path = module_path.relative_to(
                     NAPARI_ROOT_DIRECTORY_PATH
                 ).as_posix()
-                module_url = f"{graph_urls_prefix}{module_relative_path}"
-                mermaid_diagram_content += (
-                    f'\tclick {dep_name} "{module_url}" _blank\n'
-                )
-                dep_name_parent = ".".join(dep_name.split(".")[:-1])
+                module_url = f'{graph_urls_prefix}{module_relative_path}'
+                mermaid_diagram_content += f'\tclick {dep_name} "{module_url}" _blank\n'
+                dep_name_parent = '.'.join(dep_name.split('.')[:-1])
                 if dep_name_parent not in subgraphs:
                     subgraphs[dep_name_parent] = [dep_name]
                 else:
@@ -305,43 +298,33 @@ def generate_mermaid_diagram(
                 external_nodes.append(dep_name)
 
     for subgraph_key, subgraph_value in subgraphs.items():
-        mermaid_diagram_content += (
-            f"\tsubgraph module.{subgraph_key}[{subgraph_key}]\n"
-        )
+        mermaid_diagram_content += f'\tsubgraph module.{subgraph_key}[{subgraph_key}]\n'
         for dep_subgraph_name in subgraph_value:
-            mermaid_diagram_content += f"\t\t {dep_subgraph_name}\n"
-        mermaid_diagram_content += "\tend\n"
-        mermaid_diagram_content += f"\tclass module.{subgraph_key} subgraphs\n"
+            mermaid_diagram_content += f'\t\t {dep_subgraph_name}\n'
+        mermaid_diagram_content += '\tend\n'
+        mermaid_diagram_content += f'\tclass module.{subgraph_key} subgraphs\n'
 
     if external_nodes:
-        mermaid_diagram_content += (
-            "\tsubgraph module.external[external]\n"
-        )
+        mermaid_diagram_content += '\tsubgraph module.external[external]\n'
         for external_node in external_nodes:
-            mermaid_diagram_content += f"\t\t {external_node}\n"
-        mermaid_diagram_content += "\tend\n"
-        mermaid_diagram_content += "\tclass module.external subgraphs\n"
+            mermaid_diagram_content += f'\t\t {external_node}\n'
+        mermaid_diagram_content += '\tend\n'
+        mermaid_diagram_content += '\tclass module.external subgraphs\n'
 
     if subgraphs:
         mermaid_diagram_content += (
-            "\tclassDef subgraphs fill:white,strock:black,color:black;"
+            '\tclassDef subgraphs fill:white,strock:black,color:black;'
         )
     if graph_node_default_style:
-        mermaid_diagram_content += (
-            f"\tclassDef default {graph_node_default_style}\n"
-        )
+        mermaid_diagram_content += f'\tclassDef default {graph_node_default_style}\n'
     if graph_link_default_style:
-        mermaid_diagram_content += (
-            f"\tlinkStyle default {graph_link_default_style}\n"
-        )
+        mermaid_diagram_content += f'\tlinkStyle default {graph_link_default_style}\n'
     if graph_node_external_style:
-        mermaid_diagram_content += (
-            f"\tclassDef external {graph_node_external_style}\n"
-        )
+        mermaid_diagram_content += f'\tclassDef external {graph_node_external_style}\n'
         for external_dep in external_nodes:
-            mermaid_diagram_content += f"\tclass {external_dep} external\n"
+            mermaid_diagram_content += f'\tclass {external_dep} external\n'
 
-    mermaid_diagram_content += "```\n"
+    mermaid_diagram_content += '```\n'
 
     return mermaid_diagram_content
 
@@ -378,14 +361,16 @@ def generate_docs_ui_section_page(
         The UI section page content.
 
     """
-    page_content = f"## {section_name}\n"
-    page_content += "### Dependencies diagram (related `napari` modules)\n"
+    page_content = f'## {section_name}\n'
+    page_content += '### Dependencies diagram (related `napari` modules)\n'
     page_content += mermaid_diagram
-    page_content += "### Source code directory layout (related to modules inside `napari`)\n"
+    page_content += (
+        '### Source code directory layout (related to modules inside `napari`)\n'
+    )
     page_content += directory_layout
     if output_file:
         output_file.parent.mkdir(exist_ok=True, parents=True)
-        output_file.write_text(page_content, encoding="utf-8")
+        output_file.write_text(page_content, encoding='utf-8')
 
     return page_content
 
@@ -435,11 +420,11 @@ def generate_docs_ui_section(
         pydeps_graph,
     ) = generate_dependencies_graph(options)
     graph_title = (
-        f"Dependencies between modules in the napari {section_name} UI section"
+        f'Dependencies between modules in the napari {section_name} UI section'
     )
     graph_description = (
-        "Diagram showing the dependencies between the modules "
-        f"involved in the definition of the napari {section_name} UI section"
+        'Diagram showing the dependencies between the modules '
+        f'involved in the definition of the napari {section_name} UI section'
     )
     mermaid_graph = generate_mermaid_diagram(
         dep_graph,
@@ -461,48 +446,48 @@ def generate_docs_ui_section(
 def main(stubs=False):
     # General 'settings'
     mermaid_graph_base_settings = {
-        "graph_orientation": "LR",
-        "graph_node_default_style": "fill:#00c3ff,color:black;",
-        "graph_node_external_style": "fill:#ffa600,color:black;",
-        "graph_link_default_style": "stroke:#00c3ff",
-        "graph_urls_prefix": "https://github.com/napari/napari/tree/main/napari/",
+        'graph_orientation': 'LR',
+        'graph_node_default_style': 'fill:#00c3ff,color:black;',
+        'graph_node_external_style': 'fill:#ffa600,color:black;',
+        'graph_link_default_style': 'stroke:#00c3ff',
+        'graph_urls_prefix': 'https://github.com/napari/napari/tree/main/napari/',
     }
     ui_sections = []
 
     # ---- Layer list section parameters
-    layer_list_section_name = "Layers list"
-    layer_list_output_page = UI_SECTIONS_DOCS_ROOT_PATH / "layers_list_ui.md"
+    layer_list_section_name = 'Layers list'
+    layer_list_output_page = UI_SECTIONS_DOCS_ROOT_PATH / 'layers_list_ui.md'
     layer_list_pydeps_args = [
-        f"{LAYER_LIST_MODULE_PATH}",
-        "--exclude",
-        "*_qt.qt_event*",
-        "*_qt.containers.qt_tree*",
-        "*_qt.containers.qt_axis*",
-        "*components._viewer*",
-        "*components.viewer*",
-        "*components.dims*",
-        "*components.camera*",
-        "*components.LayerList",
+        f'{LAYER_LIST_MODULE_PATH}',
+        '--exclude',
+        '*_qt.qt_event*',
+        '*_qt.containers.qt_tree*',
+        '*_qt.containers.qt_axis*',
+        '*components._viewer*',
+        '*components.viewer*',
+        '*components.dims*',
+        '*components.camera*',
+        '*components.LayerList',
         # "napari.layers.*",
-        "--exclude-exact",
-        "napari._qt._qapp_model.qactions._debug",
-        "napari._qt._qapp_model.qactions._file",
-        "napari._qt._qapp_model.qactions._view",
-        "napari._qt._qapp_model.qactions._plugins",
-        "napari._qt._qapp_model.qactions._window",
-        "napari._qt._qapp_model.qactions._layers_actions",
-        "napari._qt._qapp_model.qactions._help",
-        "napari._qt.layer_controls",
-        "napari._qt.containers",
-        "napari.components",
-        "napari._qt",
-        "napari._qt._qapp_model.injection",
-        "--only",
-        "napari._qt",
-        "napari.components",
-        "napari.layers",
-        "--show-deps",
-        "--no-output",
+        '--exclude-exact',
+        'napari._qt._qapp_model.qactions._debug',
+        'napari._qt._qapp_model.qactions._file',
+        'napari._qt._qapp_model.qactions._view',
+        'napari._qt._qapp_model.qactions._plugins',
+        'napari._qt._qapp_model.qactions._window',
+        'napari._qt._qapp_model.qactions._layers_actions',
+        'napari._qt._qapp_model.qactions._help',
+        'napari._qt.layer_controls',
+        'napari._qt.containers',
+        'napari.components',
+        'napari._qt',
+        'napari._qt._qapp_model.injection',
+        '--only',
+        'napari._qt',
+        'napari.components',
+        'napari.layers',
+        '--show-deps',
+        '--no-output',
     ]
     ui_sections.append(
         (
@@ -514,37 +499,35 @@ def main(stubs=False):
     )
 
     # ---- Layer controls section parameters
-    layer_controls_section_name = "Layers controls"
-    layer_controls_output_page = (
-        UI_SECTIONS_DOCS_ROOT_PATH / "layers_controls_ui.md"
-    )
+    layer_controls_section_name = 'Layers controls'
+    layer_controls_output_page = UI_SECTIONS_DOCS_ROOT_PATH / 'layers_controls_ui.md'
     layer_controls_pydeps_args = [
-        f"{LAYER_CONTROLS_MODULE_PATH}",
-        "--exclude",
-        "*qt_event_loop",
-        "napari.layers.*",
-        "*components*",
-        "*qt_event_tracing*",
-        "*qt_event_filters*",
-        "*dialogs*",
-        "*app_model*",
-        "*utils",
-        "*status*",
-        "*thread*",
-        "*perf",
-        "*resources",
-        "*qplugins",
-        "--exclude-exact",
-        "napari._qt.widgets",
-        "--only",
-        "napari._qt",
-        "napari.components",
-        "napari.layers",
-        "napari.viewer",
-        "--max-bacon",
-        "3",
-        "--show-deps",
-        "--no-output",
+        f'{LAYER_CONTROLS_MODULE_PATH}',
+        '--exclude',
+        '*qt_event_loop',
+        'napari.layers.*',
+        '*components*',
+        '*qt_event_tracing*',
+        '*qt_event_filters*',
+        '*dialogs*',
+        '*app_model*',
+        '*utils',
+        '*status*',
+        '*thread*',
+        '*perf',
+        '*resources',
+        '*qplugins',
+        '--exclude-exact',
+        'napari._qt.widgets',
+        '--only',
+        'napari._qt',
+        'napari.components',
+        'napari.layers',
+        'napari.viewer',
+        '--max-bacon',
+        '3',
+        '--show-deps',
+        '--no-output',
     ]
     ui_sections.append(
         (
@@ -556,34 +539,34 @@ def main(stubs=False):
     )
 
     # ---- Application status bar section parameters
-    application_status_bar_section_name = "Application status bar"
+    application_status_bar_section_name = 'Application status bar'
     application_status_bar_output_page = (
-        UI_SECTIONS_DOCS_ROOT_PATH / "application_status_bar_ui.md"
+        UI_SECTIONS_DOCS_ROOT_PATH / 'application_status_bar_ui.md'
     )
     application_status_bar_pydeps_args = [
-        f"{APPLICATION_STATUS_BAR_MODULE_PATH}",
-        "--exclude",
-        "*qt_viewer_dock_widget",
-        "napari._qt._qapp_model*",
-        "*qt_event_loop",
-        "*_qplugins",
-        "*utils",
-        "*qt_resources*",
-        "*preferences_dialog",
-        "*screenshot_dialog",
-        "*qt_viewer",
-        "*confirm_close_dialog",
-        "*qt_notification",
-        "--exclude-exact",
-        "napari._qt.threads",
-        "napari._qt.widgets",
-        "napari._qt.dialogs",
-        "--only",
-        "napari._qt",
-        "napari.utils.progress",
-        "napari.viewer",
-        "--show-deps",
-        "--no-output",
+        f'{APPLICATION_STATUS_BAR_MODULE_PATH}',
+        '--exclude',
+        '*qt_viewer_dock_widget',
+        'napari._qt._qapp_model*',
+        '*qt_event_loop',
+        '*_qplugins',
+        '*utils',
+        '*qt_resources*',
+        '*preferences_dialog',
+        '*screenshot_dialog',
+        '*qt_viewer',
+        '*confirm_close_dialog',
+        '*qt_notification',
+        '--exclude-exact',
+        'napari._qt.threads',
+        'napari._qt.widgets',
+        'napari._qt.dialogs',
+        '--only',
+        'napari._qt',
+        'napari.utils.progress',
+        'napari.viewer',
+        '--show-deps',
+        '--no-output',
     ]
     ui_sections.append(
         (
@@ -595,46 +578,46 @@ def main(stubs=False):
     )
 
     # ---- Application menus section parameters
-    application_menus_section_name = "Application menus"
+    application_menus_section_name = 'Application menus'
     application_menus_output_page = (
-        UI_SECTIONS_DOCS_ROOT_PATH / "application_menus_ui.md"
+        UI_SECTIONS_DOCS_ROOT_PATH / 'application_menus_ui.md'
     )
     application_menus_pydeps_args = [
-        f"{APPLICATION_MENUS_MODULE_PATH}",
-        "--exclude",
-        "*qt_event_loop*",
-        "*utils*",
-        "*qt_resources*",
-        "*containers*",
-        "*experimental*",
-        "*perf*",
-        "*qt_welcome*",
-        "*qt_viewer_dock_widget*",
-        "*qt_viewer_status_bar*",
-        "*qt_dims*",
-        "*_qplugins*",
-        "*qt_event_filters*",
-        "*threads*",
-        "*layer_controls*",
-        "*qt_notification*",
-        "*qt_activity_dialog*",
-        "*qt_progress_bar",
-        "*qt_spinbox",
-        "*qt_splash_screen",
-        "*qt_tooltip",
-        "--exclude-exact",
-        "napari._qt.widgets",
-        "napari._qt.dialogs",
-        "napari._qt._qapp_model",
-        "napari._qt._qapp_model.injection",
-        "napari._qt._qapp_model._menus",
-        "--only",
-        "napari._qt",
-        "napari.viewer",
-        "--max-bacon",
-        "3",
-        "--show-deps",
-        "--no-output",
+        f'{APPLICATION_MENUS_MODULE_PATH}',
+        '--exclude',
+        '*qt_event_loop*',
+        '*utils*',
+        '*qt_resources*',
+        '*containers*',
+        '*experimental*',
+        '*perf*',
+        '*qt_welcome*',
+        '*qt_viewer_dock_widget*',
+        '*qt_viewer_status_bar*',
+        '*qt_dims*',
+        '*_qplugins*',
+        '*qt_event_filters*',
+        '*threads*',
+        '*layer_controls*',
+        '*qt_notification*',
+        '*qt_activity_dialog*',
+        '*qt_progress_bar',
+        '*qt_spinbox',
+        '*qt_splash_screen',
+        '*qt_tooltip',
+        '--exclude-exact',
+        'napari._qt.widgets',
+        'napari._qt.dialogs',
+        'napari._qt._qapp_model',
+        'napari._qt._qapp_model.injection',
+        'napari._qt._qapp_model._menus',
+        '--only',
+        'napari._qt',
+        'napari.viewer',
+        '--max-bacon',
+        '3',
+        '--show-deps',
+        '--no-output',
     ]
     ui_sections.append(
         (
@@ -646,36 +629,36 @@ def main(stubs=False):
     )
 
     # ---- Viewer section parameters
-    viewer_section_name = "Viewer"
-    viewer_output_page = UI_SECTIONS_DOCS_ROOT_PATH / "viewer_ui.md"
+    viewer_section_name = 'Viewer'
+    viewer_output_page = UI_SECTIONS_DOCS_ROOT_PATH / 'viewer_ui.md'
     viewer_pydeps_args = [
-        f"{VIEWER_MODULE_PATH}",
-        "--exclude",
-        "*experimental*",
-        "*perf*",
-        "*plugins*",
-        "*Dims",
-        "*_qt.qt_event*",
-        "napari.layers.*",
-        "napari._qt.containers.*",
-        "napari._qt.layer_controls.*",
-        "napari._qt.dialogs.*",
-        "--exclude-exact",
-        "napari._qt._qapp_model",
-        "napari._qt.menus",
-        "napari._qt.qt_resources",
-        "napari._qt.widgets",
-        "napari._qt.widgets.qt_splash_screen",
-        "napari.components",
-        "napari._qt",
-        "--only",
-        "napari._qt",
-        "napari.components",
-        "napari.layers",
-        "--max-bacon",
-        "3",
-        "--show-deps",
-        "--no-output",
+        f'{VIEWER_MODULE_PATH}',
+        '--exclude',
+        '*experimental*',
+        '*perf*',
+        '*plugins*',
+        '*Dims',
+        '*_qt.qt_event*',
+        'napari.layers.*',
+        'napari._qt.containers.*',
+        'napari._qt.layer_controls.*',
+        'napari._qt.dialogs.*',
+        '--exclude-exact',
+        'napari._qt._qapp_model',
+        'napari._qt.menus',
+        'napari._qt.qt_resources',
+        'napari._qt.widgets',
+        'napari._qt.widgets.qt_splash_screen',
+        'napari.components',
+        'napari._qt',
+        '--only',
+        'napari._qt',
+        'napari.components',
+        'napari.layers',
+        '--max-bacon',
+        '3',
+        '--show-deps',
+        '--no-output',
     ]
     ui_sections.append(
         (
@@ -687,49 +670,49 @@ def main(stubs=False):
     )
 
     # ---- Dialogs section parameters
-    dialogs_section_name = "Dialogs"
-    dialogs_output_page = UI_SECTIONS_DOCS_ROOT_PATH / "dialogs_ui.md"
+    dialogs_section_name = 'Dialogs'
+    dialogs_output_page = UI_SECTIONS_DOCS_ROOT_PATH / 'dialogs_ui.md'
     dialogs_pydeps_args = [
-        f"{DIALOGS_MODULE_PATH}",
-        "--exclude",
-        "*test*",
-        "*containers*",
-        "*experimental*",
-        "*layer_controls*",
-        "*perf*",
-        "*thread*",
-        "*qactions._window",
-        "*qactions._layerlist_context",
-        "*qactions._layers_actions",
-        "*qactions._view",
-        "*qactions._toggle_action",
-        "*splash*",
-        "*theme*",
-        "*keyboard*",
-        "*popup*",
-        "*event*",
-        "*dock_widget*",
-        "*welcome*",
-        "*viewer_buttons",
-        "*mode_buttons",
-        "*dict_table",
-        "*slider_compat",
-        "*size_preview",
-        "*darkdetect*",
-        "*resources*",
-        "--exclude-exact",
-        "napari._qt.dialogs",
-        "napari._vendor",
-        "napari._qt",
-        "napari._qt.widgets",
-        "napari._qt._qapp_model",
-        "napari._qt._qapp_model.injection",
-        "napari._qt._qplugins",
-        "--only",
-        "napari._qt",
-        "napari._vendor",
-        "--show-deps",
-        "--no-output",
+        f'{DIALOGS_MODULE_PATH}',
+        '--exclude',
+        '*test*',
+        '*containers*',
+        '*experimental*',
+        '*layer_controls*',
+        '*perf*',
+        '*thread*',
+        '*qactions._window',
+        '*qactions._layerlist_context',
+        '*qactions._layers_actions',
+        '*qactions._view',
+        '*qactions._toggle_action',
+        '*splash*',
+        '*theme*',
+        '*keyboard*',
+        '*popup*',
+        '*event*',
+        '*dock_widget*',
+        '*welcome*',
+        '*viewer_buttons',
+        '*mode_buttons',
+        '*dict_table',
+        '*slider_compat',
+        '*size_preview',
+        '*darkdetect*',
+        '*resources*',
+        '--exclude-exact',
+        'napari._qt.dialogs',
+        'napari._vendor',
+        'napari._qt',
+        'napari._qt.widgets',
+        'napari._qt._qapp_model',
+        'napari._qt._qapp_model.injection',
+        'napari._qt._qplugins',
+        '--only',
+        'napari._qt',
+        'napari._vendor',
+        '--show-deps',
+        '--no-output',
     ]
     ui_sections.append(
         (
@@ -741,22 +724,22 @@ def main(stubs=False):
     )
 
     # ---- Napari-console section parameters
-    console_section_name = "Console (napari-console)"
-    console_output_page = UI_SECTIONS_DOCS_ROOT_PATH / "console_ui.md"
+    console_section_name = 'Console (napari-console)'
+    console_output_page = UI_SECTIONS_DOCS_ROOT_PATH / 'console_ui.md'
     console_pydeps_args = [
-        f"{VIEWER_MODULE_PATH}",
-        "--only",
-        "napari.components._viewer_key_bindings",
-        "napari.components.viewer",
-        "napari.viewer",
-        "napari.utils.notifications",
-        "napari._qt.qt_viewer",
-        "napari._qt.widgets.qt_viewer_buttons",
-        "napari._qt._qapp_model.qactions._window",
-        "napari._qt.qt_main_window",
-        "napari_console",
-        "--show-deps",
-        "--no-output",
+        f'{VIEWER_MODULE_PATH}',
+        '--only',
+        'napari.components._viewer_key_bindings',
+        'napari.components.viewer',
+        'napari.viewer',
+        'napari.utils.notifications',
+        'napari._qt.qt_viewer',
+        'napari._qt.widgets.qt_viewer_buttons',
+        'napari._qt._qapp_model.qactions._window',
+        'napari._qt.qt_main_window',
+        'napari_console',
+        '--show-deps',
+        '--no-output',
     ]
     ui_sections.append(
         (
@@ -778,8 +761,8 @@ def main(stubs=False):
             if not output_page.exists():  # Avoid overwriting existing files
                 output_page.parent.mkdir(exist_ok=True, parents=True)
                 output_page.write_text(
-                    f"## {section_name}\nThis is a stub. The real file is autogenerated in a full build.",
-                    encoding="utf-8",
+                    f'## {section_name}\nThis is a stub. The real file is autogenerated in a full build.',
+                    encoding='utf-8',
                 )
         else:
             # Generate full content
@@ -791,14 +774,14 @@ def main(stubs=False):
             )
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import argparse
 
-    parser = argparse.ArgumentParser(description="Update UI sections docs.")
+    parser = argparse.ArgumentParser(description='Update UI sections docs.')
     parser.add_argument(
-        "--stubs",
-        action="store_true",
-        help="Generate stubs versions of the UI section docs.",
+        '--stubs',
+        action='store_true',
+        help='Generate stubs versions of the UI section docs.',
     )
     args = parser.parse_args()
 
