@@ -15,6 +15,9 @@ Alternatively, our CI setup provides a preview link that shows your changes.
 Please read our [contributing guide](https://napari.org/dev/developers/contributing/documentation/index.html) for more comprehensive information about contributing documentation.
 
 ### quickstart: local setup
+
+#### Option 1: Manual setup
+
 * __Check the prerequisites__
     1. Create a clean Python (>=3.10) environment (e.g., with conda).
     1. In that environment, create an editable `napari` installation with the `docs` [dependency group](https://packaging.python.org/en/latest/specifications/dependency-groups/) and a Qt backend. For example, after first forking and cloning the main `napari` project if you've not previously done so, run `python -m pip install -e ".[pyqt]" --group docs` from your `napari/napari` clone directory. This will use the default Qt backend.
@@ -31,6 +34,85 @@ Please read our [contributing guide](https://napari.org/dev/developers/contribut
 
 These steps should set you up to build and preview your docs contributions on your local machine.
 For more detailed instructions and tips, please visit the relevant sections of our [contribution guide](https://napari.org/dev/developers/contributing/documentation/index.html).
+
+#### Option 2: Using pixi
+
+[Pixi](https://pixi.sh) provides a simple, cross-platform way to quickly build the documentation without manually installing dependencies or cloning the napari source repository.
+
+**Note: This option will clone the main napari repo from the main branch on GitHub into the pixi environment. For docstring changes in your local napari clone, use Option 1.**
+
+1. **[Install pixi](https://pixi.sh/dev/installation/)** (if not already installed):
+   ```bash
+   # Windows (PowerShell)
+   iwr -useb https://pixi.sh/install.ps1 | iex
+   
+   # macOS/Linux
+   curl -fsSL https://pixi.sh/install.sh | bash
+   ```
+   
+   **Important:** After installation, you need to add pixi to your PATH:
+   
+   - **Windows**: Restart your PowerShell terminal, or run:
+     ```powershell
+     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+     ```
+   
+   - **macOS/Linux**: Restart your terminal, or run:
+     ```bash
+     # For bash
+     source ~/.bashrc
+     
+     # For zsh (macOS default since version 10.15 Catalina)
+     source ~/.zshrc
+     
+     # For fish shell
+     fish_add_path ~/.pixi/bin
+     ```
+   
+2. **Verify pixi is properly installed** 
+   ```bash
+   pixi --version
+   ```
+
+3. **Clone this repository**:
+   ```bash
+   git clone https://github.com/napari/docs.git napari-docs
+   cd napari-docs
+   ```
+
+4. **Install dependencies** (automatically detects your platform):
+   ```bash
+   pixi install
+   ```
+
+5. **Build the docs** using one of these commands:
+   ```bash
+   # Fast, parallel build (recommended for development)
+   pixi run slimfast
+   
+   # Full build with example gallery
+   pixi run html
+   
+   # Full build without gallery
+   pixi run html-noplot
+   
+   # Auto-rebuild on file changes
+   pixi run slimfast-live
+   ```
+   
+   For more build options, see `pixi task list`.
+
+6. **Preview**: Open `docs/_build/html/index.html` in your browser, or run:
+   ```bash
+   python3 -m http.server --directory docs/_build/html
+   ```
+
+**Notes:**
+- pixi requires `make` to be installed on your computer. 
+- The `pixi.toml` is multi-platform for Windows, Linux, MacOS (both Intel and Apple Silicon).
+- All build targets have cross-platform support in the Makefile.
+- To clean build artifacts, run: `pixi run clean`
+- If you update pixi, run `pixi install` again to refresh the environment.
 
 ## code of conduct
 

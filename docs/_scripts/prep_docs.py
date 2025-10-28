@@ -41,32 +41,54 @@ The output was reviewed and edited for accuracy and clarity.
 """
 
 import sys
+import stat
+import shutil
+from pathlib import Path
 from importlib.metadata import version
 from pathlib import Path
 
 from packaging.version import parse
 
 DOCS = Path(__file__).parent.parent.absolute()
-NPE = DOCS.parent.absolute() / 'npe2'
+NPE = DOCS.parent.absolute() / "npe2"
+
+
+def _handle_remove_readonly(func, path, exc):
+    """Handle removal of read-only files on Windows.
+
+    If the path disappeared between the existence check and removal attempt,
+    ignore the error to avoid flakiness on network/sync drives (e.g. Dropbox).
+    """
+    exc_type, exc_value, _ = exc
+    if isinstance(exc_value, FileNotFoundError):
+        return
+    Path(path).chmod(stat.S_IWRITE)
+    func(path)
+
 
 
 def prep_npe2():
     #   some plugin docs live in npe2 for testing purposes
-    if NPE.exists():
-        return
+    # NOTE: If you manually edited the npe2 directory you would want to uncomment the next lines
+    # in order to prevent overwriting your changes.
+    # if NPE.exists():
+    #     return
     from subprocess import check_call
 
     npe2_version = version('npe2')
 
-    check_call(f'rm -rf {NPE}'.split())
-    check_call(f'git clone https://github.com/napari/npe2 {NPE}'.split())
+    # Always delete the npe2 directory before cloning in a platform agnostic way
+    if NPE.exists():
+        shutil.rmtree(NPE, ignore_errors=False, onerror=_handle_remove_readonly)
+
+    check_call(f"git clone https://github.com/napari/npe2 {NPE}".split())
     if not parse(npe2_version).is_devrelease:
         check_call(
-            f'git -c advice.detachedHead=false checkout tags/v{npe2_version}'.split(),
+            f"git -c advice.detachedHead=false checkout tags/v{npe2_version}".split(),
             cwd=NPE,
         )
-    check_call([sys.executable, f'{NPE}/_docs/render.py', DOCS / 'plugins'])
-    check_call(f'rm -rf {NPE}'.split())
+    check_call([sys.executable, f"{NPE}/_docs/render.py", DOCS / "plugins"])
+    shutil.rmtree(NPE, ignore_errors=False, onerror=_handle_remove_readonly)
 
 
 def main(stubs=False):
@@ -90,16 +112,16 @@ def main(stubs=False):
                     encoding='utf-8',
                 )
         # Generate stub files from the other scripts
-        __import__('update_preference_docs').main(stubs=True)
-        __import__('update_event_docs').main(stubs=True)
-        __import__('update_ui_sections_docs').main(stubs=True)
-        __import__('update_release_docs').main(stubs=False)
+        __import__("update_preference_docs").main(stubs=True)
+        __import__("update_event_docs").main(stubs=True)
+        __import__("update_ui_sections_docs").main(stubs=True)
+        __import__("update_release_docs").main(stubs=False)
     else:
         prep_npe2()
-        __import__('update_preference_docs').main()
-        __import__('update_event_docs').main()
-        __import__('update_ui_sections_docs').main()
-        __import__('update_release_docs').main()
+        __import__("update_preference_docs").main()
+        __import__("update_event_docs").main()
+        __import__("update_ui_sections_docs").main()
+        __import__("update_release_docs").main()
 
 
 if __name__ == '__main__':

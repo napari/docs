@@ -1,0 +1,48 @@
+
+[workspace]
+authors = ["napari developers"]
+channels = ["conda-forge"]
+name = "napari-docs"
+
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]  # All platforms
+version = "0.1.0"
+
+[dependencies]
+python = "3.13.*"
+make = "*"
+
+[pypi-dependencies]
+napari = { git = "https://github.com/napari/napari.git", branch = "main", extras = ["dev", "pyqt", "docs"] }
+
+[tasks]
+# Clean tasks
+clean = "make clean"
+clean-gallery = "make clean-gallery"
+clean-prep = "make clean-prep"
+clean-full = "make clean-full"
+
+# Preparation tasks
+prep-docs = "make prep-docs"
+prep-stubs = "make prep-stubs"
+
+# Full builds
+html = "make html"
+html-noplot = "make html-noplot"
+docs-build = "make docs-build"
+
+# Slim builds (no notebook execution, no gallery)
+slim = "make slim"
+slimfast = "make slimfast"
+
+# Live builds (auto-rebuild on file changes)
+html-noplot-live = "make html-noplot-live"
+docs-live = "make docs-live"
+slimfast-live = "make slimfast-live"
+
+# Gallery builds
+slimgallery = "make slimgallery"
+slimgallery-live = "make slimgallery-live"
+
+# Utility tasks
+linkcheck-files = "make linkcheck-files"
+spellcheck = "make spellcheck"
