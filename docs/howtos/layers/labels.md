@@ -21,7 +21,7 @@ to manually segment images using the paintbrush and fill buckets. You will also
 understand how to add a labels image and edit it from the GUI and the
 console.
 
-For more information about layers, refer to [Layers at a glance](../../guides/layers).
+For more information about layers, refer to [Layers at a glance](layers-glance).
 
 ## When to use the `labels` layer
 

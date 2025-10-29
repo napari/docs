@@ -21,7 +21,7 @@ like `contrast limits`, `opacity`, `colormaps`, `blending` and `interpolation`.
 You will also understand how to add and manipulate a variety of different types
 of images both from the GUI and from the console.
 
-For more information about layers, refer to [Layers at a glance](../../guides/layers).
+For more information about layers, refer to [Layers at a glance](layers-glance).
 
 ## Controlling the `image` layer using the GUI
 
@@ -98,7 +98,7 @@ The GUI controls may be adjusted as follows:
   - `spline36`
 
   **Note:** There is a brief explation of [interpolation](layer-interpolation)
-  in [Layers at a glance](../../guides/layers).
+  in [Layers at a glance](layers-glance).
 
 ## Controlling the `image` layer from the console
 
