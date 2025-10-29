@@ -26,7 +26,7 @@ At its core, it provides critical viewer features out-of-the-box, such as suppor
 
 +++
 
-## What's covered here
+## What's covered in this page
 
 This tutorial is for napari first-timers to give them a quick glance of what napari does, and give it a try right away. We will cover:
 
@@ -43,7 +43,7 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 
 +++
 
-### Launch the napari GUI application
+## Launch the napari GUI application
 
 napari can be opened in one of [multiple ways](launch), depending on how it's used in your image analysis workflow.
 
@@ -68,7 +68,7 @@ napari
 Starting with release 0.6.0, you can use the [command palette](command-palette) to launch any command. 🎨
 :::
 
-### Open an image
+## Open an image
 
 napari natively supports tiff and many other formats supported by [skimage.io.imread](https://scikit-image.org/docs/dev/api/skimage.io.html) as input image file format.
 
@@ -110,7 +110,7 @@ nbscreenshot(viewer, alt_text="image of a single cell opened in napari viewer")
 Once you have a napari viewer open, you can also make a new `Image` layer from an image (or URL to an image) copied to your Clipboard using `File -> New Image from Clipboard` menu item (keybinding {kbd}`Command/Ctrl+N`).
 ```
 
-### Image display adjustment
+## Image display adjustment
 
 The layer controls panel at the upper left of the viewer allows you to adjust contrast, colormap, and other layer properties. These settings affect the visualization, but do not affect the underlying data.
 
@@ -127,7 +127,7 @@ viewer.layers['cell'].colormap = "yellow"
 nbscreenshot(viewer, alt_text="image of singular cell with yellow tint")
 ```
 
-### Manually label the cell
+## Manually label the cell
 
 To measure the area of the cell, we can use a labels layer and manually "paint" the cell.
 The labels layer allows you to record the segmentation result by assigning `background = 0`, and assigning each object with an integer.
@@ -161,7 +161,7 @@ Try [cellpose-napari](https://www.napari-hub.org/plugins/cellpose-napari) if you
 
 +++
 
-### Get the cell area measurement
+## Get the cell area measurement
 
 To analyze labels our layer, we can use [scikit-image](https://scikit-image.org/), a popular Python library that comes with your napari installation. [skimage.measure.regionprops](https://scikit-image.org/docs/dev/api/skimage.measure.html#skimage.measure.regionprops) provides a good set of features that can be extracted from labels, including area measurement.
 
@@ -183,7 +183,7 @@ Alternatively, try [this plugin](https://www.napari-hub.org/plugins/napari-skima
 viewer.close_all()
 ```
 
-### Next steps
+## Next steps
 
 - napari provides a variety of settings that can be adjusted to customize the user experience, including theme and keyboard shortcuts (keybindings). To learn more, see our guide to the [**Preferences** dialog](napari-preferences).
 

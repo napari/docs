@@ -14,7 +14,7 @@ kernelspec:
 
 (napari-installation)=
 
-# How to install napari
+# Install napari
 
 This guide will teach you how to do a clean install of **napari** and launch the viewer.
 

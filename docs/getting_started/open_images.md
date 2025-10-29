@@ -1,1 +1,1 @@
-# How to open images in napari
+# Open images in napari

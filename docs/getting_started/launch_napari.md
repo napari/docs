@@ -13,7 +13,7 @@ kernelspec:
 ---
 
 (launch)=
-# How to launch napari
+# Launch napari
 
 This tutorial assumes you have already installed napari.
 For help with installation see our [installation tutorial](napari-installation).
