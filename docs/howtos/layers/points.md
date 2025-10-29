@@ -27,7 +27,7 @@ displaying `points` over an image that have been found in an automated fashion,
 or manually annotating an image with `points`. You will also understand how to
 add a `points layer` and edit it from the GUI and from the console.
 
-For more information about layers, refer to [Layers at a glance](../../guides/layers).
+For more information about layers, refer to [Layers at a glance](layers-glance).
 
 ## When to use the `points` layer
 

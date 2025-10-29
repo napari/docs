@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 (napari-quick-start)=
-# Quick start
+# Quickstart
 
 +++
 
@@ -30,7 +30,6 @@ At its core, it provides critical viewer features out-of-the-box, such as suppor
 
 This tutorial is for napari first-timers to give them a quick glance of what napari does, and give it a try right away. We will cover:
 
-- Installation
 - Open napari
 - Open an image
 - Image display adjustment
@@ -44,35 +43,7 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 
 +++
 
-### Installation
-
-- Download the napari {{ napari_version }} bundled app for a simple installation:
-  - Linux: {{ '[`napari-NAPARI_VER-Linux-x86_64.sh`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.sh)'.replace('NAPARI_VER', napari_version) }}.
-  - macOS (Intel): {{ '[`napari-NAPARI_VER-macOS-x86_64.pkg`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.pkg)'.replace('NAPARI_VER', napari_version) }}.
-  - macOS (Apple Silicon): {{ '[`napari-NAPARI_VER-macOS-arm64.pkg`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-arm64.pkg)'.replace('NAPARI_VER', napari_version) }}.
-  - Windows: {{ '[`napari-NAPARI_VER-Windows-x86_64.exe`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}.
-  - Other artifacts can be found in the {{ '[the Releases page](https://github.com/napari/napari/releases/vNAPARI_VER)'.replace('NAPARI_VER', napari_version) }}, by the Assets section at the bottom.
-
-- For those familiar with Python:
-
-    napari can be installed on most macOS (Intel x86), Linux, and Windows systems with Python {{ python_version_range }} using pip.
-
-    First, create a clean virtual environment:
-
-    {{ conda_create_env }}
-
-    Once in napari-env,
-
-    ```python
-    python -m pip install 'napari[all]'
-    ```
-
-
-If you run into any issues, please visit the more detailed [installation guide](napari-installation), or [report an issue on GitHub](https://github.com/napari/napari/issues/new/choose)!
-
-+++
-
-### Open napari
+### Launch the napari GUI application
 
 napari can be opened in one of [multiple ways](launch), depending on how it's used in your image analysis workflow.
 
@@ -113,7 +84,7 @@ For demo purpose, we will use a sample image that comes with napari.
 
 1. Open napari IPython console
 
-![IPython console](../../_static/images/IPython.png)
+![IPython console](../_static/images/IPython.png)
 
 2. Type
 
@@ -218,7 +189,7 @@ viewer.close_all()
 
 - napari provides the flexibility to handle multi-dimensional data. Try opening 3D or higher dimensional images, and switch to 3D view.
 
-![ndisplay](../../_static/images/ndisplay.png)
+![ndisplay](../_static/images/ndisplay.png)
 
 - Test some [examples](https://github.com/napari/napari/tree/main/examples) to see how to add different layer types and add your own widgets to napari.
 

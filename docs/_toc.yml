@@ -5,17 +5,17 @@ subtrees:
     subtrees:
     - titlesonly: True
       entries:
-      - file: tutorials/start_index
+      - file: getting_started/start_index
         subtrees:
         - titlesonly: True
           entries:
-          - file: tutorials/fundamentals/quick_start
-          - file: tutorials/fundamentals/installation
-          - file: tutorials/fundamentals/installation_bundle_conda
-          - file: tutorials/fundamentals/getting_started
-          - file: tutorials/fundamentals/viewer
-          - file: tutorials/fundamentals/features
-          - file: guides/layers
+          - file: getting_started/installation
+          - file: getting_started/launch_napari
+          - file: getting_started/open_images
+          - file: getting_started/viewer
+          - file: getting_started/quick_start
+          - file: getting_started/features
+          - file: getting_started/layers
       - file: tutorials/index
         subtrees:
         - entries:
