@@ -149,7 +149,7 @@ where `<target>` can be:
 - `slimgallery` : `slimfast`, but also builds the gallery examples from `napari/napari` 
 
 For more information about these targets see the ["building locally"](build_docs_locally) section 
-of the documentation, including the part on [specialized builds](#building-what-you-need).  
+of the documentation, including the part on [specialized builds](building-what-you-need).  
 
 Once the jobs complete you will also be able to [preview the documentation](doc_view_ci) by
 using the `Check the rendered docs here!` action at the bottom of your PR, which will go to a 
@@ -163,8 +163,322 @@ and making sure your documentation has built correctly.
 
 ## Contributing to the napari documentation with a local setup
 
+```{attention}
+We now recommend using [`pixi`](https://pixi.sh) for local doc builds. It works natively on Windows, macOS, and Linux, and it will automatically clone the main `napari/napari` repository inside its environment. You might still prefer `make` for headless builds, or when adding gallery examples (which requires a full local napari clone). Follow this link for the [advanced `make` instructions](make-advanced).
+```
+
 (prerequisites)=
 ### 0. Prerequisites
+
+[Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) then clone the documentation repository [napari/docs](https://github.com/napari/docs) to your machine. To clone the repository, you can follow any of the options in the [GitHub guide to cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) (if you run into issues refer to [the troubleshooting guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/troubleshooting-cloning-errors)).
+We recommend installing the [GitHub CLI](https://docs.github.com/en/github-cli/github-cli/about-github-cli) as it is easy to set up repository access permissions from the GitHub CLI and it comes with additional upside, such as the ability to checkout pull requests.
+
+You can create a local cloned version of the documentation using one of these three options.
+   - [Fork on GitHub](https://github.com/napari/docs/fork) and clone using GitHub CLI (recommended):
+     ```bash
+     # Note you might have called your repo a different name other than "docs" - "napari-docs" is recommended
+     gh repo clone <your-username>/docs napari-docs
+     cd napari-docs
+     git remote add upstream https://github.com/napari/docs.git
+     ```
+   - Using GitHub CLI to fork and clone with one command:
+     ```bash
+     # Fork and Clone in one step (but uses default doc name)
+     gh repo fork napari/docs --clone --remote
+     cd docs
+     ```
+   - [Fork on GitHub](https://github.com/napari/docs/fork) and clone using Git directly (replace `<your-username>` with your GitHub handle):
+     ```bash
+     git clone https://github.com/<your-username>/docs.git napari-docs
+     cd napari-docs
+     git remote add upstream https://github.com/napari/docs.git
+     ```
+
+````{note}
+To reduce confusion and possible conflicts, the `docs` fork is being cloned into
+a local repository folder named `napari-docs`. Alternately, you could also
+rename the repository when forking `napari/docs` to `napari-docs` and then clone it via `gh repo clone <your-username>/napari-docs`.
+````
+
+```{note}
+The napari documentation is built using `make` which does not work on paths which contain spaces.
+It is important that you clone the `napari/docs` repository to a path that does not contain spaces.
+For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but \
+`C:\Users\my username\Documents\GitHub\napari-docs` is not.
+```
+
+````{dropdown} (Optional) Fork and clone napari/napari for gallery or API docstring edits
+
+```{admonition} Optional: needed only for example/docstring edits
+:class: note
+
+Most contributors can skip this. If you want to preview local changes to gallery examples or API docstrings, follow the [advanced make instructions](make-advanced). The `pixi` environment uses an internal fresh clone of `napari/napari` and does not pick up edits from your local fork.
+```
+
+If you plan to modify gallery examples or API docstrings, also fork and clone `napari/napari`:
+- GitHub CLI:
+  ```bash
+  gh repo fork napari/napari --clone --remote
+  cd napari
+  ```
+- Or Git:
+  ```bash
+  git clone https://github.com/<your-username>/napari.git
+  cd napari
+  git remote add upstream https://github.com/napari/napari.git
+  ```
+````
+
+### 1. Create `pixi` environment
+1. [Install `pixi`](https://pixi.sh/dev/installation/) and restart your terminal. Verify with:
+   ```bash
+   pixi --version
+   ```
+2. Inside your local `napari-docs` folder, run:
+    ```bash
+    pixi install
+    ```
+    ````{dropdown} TIP: Fixing "Failed to download and build napari
+    If you get
+    ```bash
+    unexpected panic during PyPI resolution: Failed to do lookahead resolution: Failed to download and build `napari @ git+https://github.com/napari/napari.git@main`
+    ```
+    please delete your PyPI cache that. You can see the path to the cache by running `pixi info`.
+    ````
+
+(contributing-docs-step-one)=
+### 2. Write your documentation
+
+Depending on the type of contribution you are making, you may be able to skip some steps:
+
+* If you are amending an existing document you can skip straight to [4. Preview your document](#4-preview-your-document)
+* For all other documentation changes, follow the steps below.
+
+````{admonition} How to check for broken links
+:class: tip
+
+If you have modified lots of document links, you can check that they all work by running `make linkcheck-files` in the `napari/docs` folder. However, this can take a long time to run, so if you have only modified links in a single document, you can run:
+
+```bash
+make linkcheck-files FILES=path/to/your/document.md
+```
+````
+
+(update-toc)=
+### 3. Update the table of contents (TOC)
+
+```{admonition} Optional: editing examples or docstrings?
+:class: note
+
+If you're changing gallery examples in `napari/napari` or API docstrings and want to preview those local edits, the default `pixi` environment won't pick them up. Use the [advanced make instructions](make-advanced) for that workflow. Most contributors can skip this.
+```
+
+If you are adding a new documentation file, add your document to the correct folder based on its content (see the [list above](#organization-of-the-documentation)) and update `docs/_toc.yml`.
+
+If you're adding a document to an existing group, simply add a new `- file:` entry in the appropriate spot. For example, if I wanted to add a `progress_bars.md` how to guide, I would place it in `docs/howtos` and update `_toc.yml` as below:
+
+```yaml
+- file: howtos/index
+subtrees:
+- titlesonly: True
+entries:
+- file: howtos/layers/index
+subtrees:
+- titlesonly: True
+    entries:
+    - file: howtos/layers/image
+    - file: howtos/layers/labels
+    - file: howtos/layers/points
+    - file: howtos/layers/shapes
+    - file: howtos/layers/surface
+    - file: howtos/layers/tracks
+    - file: howtos/layers/vectors
+- file: howtos/connecting_events
+- file: howtos/napari_imageJ
+- file: howtos/docker
+- file: howtos/perfmon
+- file: howtos/progress_bars # added
+```
+
+To create a new subheading, you need a `subtrees` entry. For example, if I wanted to add `geo_tutorial1.md` and `geo_tutorial2.md` to a new `geosciences` subheading in tutorials, I would place my documents in a new folder `docs/tutorials/geosciences`, together with an `index.md` that describes what these tutorials would be about, and then update `_toc.yml` as below:
+
+```yaml
+- file: tutorials/index
+subtrees:
+- entries:
+    - file: tutorials/annotation/index
+    subtrees:
+    - entries:
+        - file: tutorials/annotation/annotate_points
+    - file: tutorials/processing/index
+    subtrees:
+    - entries:
+        - file: tutorials/processing/dask
+    - file: tutorials/segmentation/index
+    subtrees:
+    - entries:
+        - file: tutorials/segmentation/annotate_segmentation
+    - file: tutorials/tracking/index
+    subtrees:
+    - entries:
+        - file: tutorials/tracking/cell_tracking
+    - file: tutorials/geosciences/index                 # added
+    subtrees:                                           # added
+    - entries:                                          # added
+        - file: tutorials/geosciences/geo_tutorial1     # added
+        - file: tutorials/geosciences/geo_tutorial2     # added
+```
+
+### 4. Preview your document
+
+If your documentation change includes code, it is important that you ensure the code is working and executable. [Examples](gallery) are automatically executed when the documentation is built and code problems can also be caught when previewing the built documentation.
+
+There are two ways you can build and preview the documentation website as it would appear on [napari.org](https://napari.org):
+
+* [building locally](build_docs_locally) - this requires more setup but will allow you
+  to more quickly check if your changes render correctly.
+* [view documentation in a GitHub pull request](doc_view_ci) - this requires no
+  setup but you will have to push each change as a commit to your pull request and wait
+  for the continuous integration workflow to finish building the documentation.
+
+```{tip}
+To see the markdown document structure and content change in real-time without building, you can use a MyST markdown preview tool like [VScode](https://code.visualstudio.com/) with the [MyST extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight) or [MyST live preview](https://myst-parser.readthedocs.io/en/latest/live-preview.html#). This can also help you to spot any markdown formatting errors that may have occurred. However, this MyST markdown preview will have some differences to the final built html documentation due to autogeneration, so it is still important to build and preview the documentation before submitting your pull request.
+```
+
+(build_docs_locally)=
+#### 4.1. Building locally
+
+To build the documentation locally, we recommend using [`pixi`](https://pixi.sh), which provides a simple cross-platform approach and automatically clones the [main napari repository](https://github.com/napari/napari) inside its environment.
+
+Once the build is completed, rendered HTML will be placed in `docs/_build/html`. Find `index.html` in this folder and drag it into a browser to preview the website with your new document. 
+
+You can also run this Python one-liner to deploy a quick local server on
+[http://localhost:8000](http://localhost:8000):
+
+```shell
+$ python3 -m http.server --directory docs/_build/html
+```
+
+```{note}
+The entire build process pulls together files from multiple sources and can be time consuming, with a full build taking upwards of 20 minutes. Additionally, building the examples gallery, as well as executing notebook cells, will repeatedly launch `napari`, resulting in flashing windows. 
+
+Depending on what you want to contribute, you may never need to run the full build locally. See [Running a full or partial build](building-what-you-need) for details.
+```
+
+(building-what-you-need)=
+##### Running a full or partial build
+
+- To run a **full documentation** (docs + gallery + notebooks) build from scratch, matching what is deployed 
+  at [napari.org](https://napari.org), run:
+  
+  ```bash
+  pixi run html
+  ```
+  
+  from the root of your local clone of the `napari/docs` repository. Note that this is slow and can take upwards of 20 minutes.
+
+- If the changes you have made to documentation don't involve the gallery of napari examples,
+  which are in the `examples` directory in the `napari` repository, you can speed up this 
+  build by running:
+  
+  ```bash
+  pixi run html-noplot
+  ```
+  
+  This will skip the gallery build but it will still build all of the other content, including the
+  [UI architecture diagrams](ui-sections), [events reference](events-reference), and
+  [preferences](napari-preferences), which are generated from sources in the `napari`
+  repository. This will also run all notebook cells.
+
+
+- If you only want to edit materials in the `docs` repository, including notebook code cell outputs (e.g. tutorials), but you don't need any of the sources in `napari/napari` built:
+
+  ```bash
+  pixi run docs
+  ```
+
+- If you only need to edit text in the `docs` repository — and neither build sources from `napari/napari` nor execute notebook cells — use the **fastest docs-only target**:
+  ```bash
+  make slim
+  ```
+  or
+  ```bash
+  pixi run slimfast
+  ```
+
+  `slim` is single-threaded and `slimfast` is multi-threaded, which should be faster on multi-core machines.
+
+(live-builds)=
+````{admonition} Update documentation on file change
+:class: tip
+Use `-live` variants to auto-build on save with a live browser preview at `http://127.0.0.1`.
+
+For example:
+
+```bash
+pixi run html-noplot-live
+```
+
+or
+
+```bash
+pixi run docs-live
+```
+Note that this will still execute the `docs` repository notebook code cells, 
+resulting in napari windows popping up repeatedly.
+
+or for quick docs-only iteration:
+
+```bash
+pixi run slimfast-live
+```
+These will not build any of the external content (such as the gallery) and will
+not execute code cells. `slimfast` will run the build in parallel, which can be
+significantly faster on multi-core machines (under a minute), while `slimfast-live`
+will open a browser preview and auto-rebuild any pages you edit. 
+The first run will be a full build of that target; subsequent rebuilds only process changed files.
+````
+
+##### Additional utilities
+
+- To clean up (delete) generated content, including auto-generated `.rst` and `.md` files, as well as the `html` files, you can use:
+
+  ```bash
+  pixi run clean
+  ```
+
+  Running this is a good idea if you have not built the documentation in a long
+  time and there may have been significant changes to the `docs` repository, e.g.
+  changes to the table of contents or layout.
+
+- To clean up the files generated for the examples gallery, you can use:
+
+  ```bash
+  pixi run clean-gallery
+  ```
+
+  Running this is a good idea if you have not built the documentation in a long
+  time and there may have been significant changes to the `napari` examples.
+
+- To generate the source files from the napari repository, including the
+[UI architecture diagrams](ui-sections), [events reference](events-reference), and
+[preferences](napari-preferences), you can run:
+  ```bash
+  pixi run prep-docs
+  ```
+  Note: this can take upwards of 10 minutes. In most cases `pixi run prep-stubs` will suffice to generate stub files.
+
+---
+
+(make-advanced)=
+:::{dropdown} Advanced: Using `make` for headless builds and gallery examples
+If you need to use `make` (e.g., for headless builds, or to add new gallery examples that require a full local napari clone), here's the full reference moved from the main flow.
+
+```{note}
+The `make` workflow requires local clones of both `napari/napari` and `napari/docs` (as siblings) and paths without spaces. For example, `C:\\Users\\myusername\\Documents\\GitHub\\napari-docs` is valid, but `C:\\Users\\my username\\Documents\\GitHub\\napari-docs` is not. Running `make` from a path containing spaces can cause destructive behavior.
+```
+
+### Make: Prerequisites 
 
 #### Fork and clone the napari and docs repositories
 
@@ -224,171 +538,18 @@ cd ../napari-docs
 
 Here you will be able to build the documentation, allowing you to preview your document locally as it would appear on `napari.org`.
 
-(contributing-docs-step-one)=
-
-### 1. Write your documentation
-
-Depending on the type of contribution you are making, you may be able to skip
-some steps:
-
-* If you are amending an existing document you can skip straight
-  to [3. Preview your document](#3-preview-your-document)
-* For all other documentation changes, follow the steps below.
-
-```{admonition} How to check for broken links
-:class: tip
-
-If you have modified lots of document links, you can check that they all work by running `make linkcheck-files` in the `napari/docs` folder. However, this can take a long time to run, so if you have only modified links in a single document, you can run:
-
-```bash
-make linkcheck-files FILES=path/to/your/document.md
-```
-
-(update-toc)=
-### 2. Update the table of contents (TOC)
-
-If you are adding a new documentation file, you will need to add your document
-to the correct folder based on its content (see the [list above](#organization-of-the-documentation)
-for common locations), and update `docs/_toc.yml`.
-
-If you're adding a document
-to an existing group, simply add a new `- file:` entry in the appropriate spot. For example, if I wanted to add
-a `progress_bars.md` how to guide, I would place it in `docs/howtos` and update `_toc.yml` as below:
-
-```yaml
-- file: howtos/index
-subtrees:
-- titlesonly: True
-entries:
-- file: howtos/layers/index
-subtrees:
-- titlesonly: True
-    entries:
-    - file: howtos/layers/image
-    - file: howtos/layers/labels
-    - file: howtos/layers/points
-    - file: howtos/layers/shapes
-    - file: howtos/layers/surface
-    - file: howtos/layers/tracks
-    - file: howtos/layers/vectors
-- file: howtos/connecting_events
-- file: howtos/napari_imageJ
-- file: howtos/docker
-- file: howtos/perfmon
-- file: howtos/progress_bars # added
-```
-
-To create a new subheading, you need a `subtrees` entry. For example, if I wanted to add `geo_tutorial1.md` and `geo_tutorial2.md`
-to a new `geosciences` subheading in tutorials, I would place my documents in a new folder `docs/tutorials/geosciences`,
-together with an `index.md` that describes what these tutorials would be about, and then update `_toc.yml` as below:
-
-```yaml
-- file: tutorials/index
-subtrees:
-- entries:
-    - file: tutorials/annotation/index
-    subtrees:
-    - entries:
-        - file: tutorials/annotation/annotate_points
-    - file: tutorials/processing/index
-    subtrees:
-    - entries:
-        - file: tutorials/processing/dask
-    - file: tutorials/segmentation/index
-    subtrees:
-    - entries:
-        - file: tutorials/segmentation/annotate_segmentation
-    - file: tutorials/tracking/index
-    subtrees:
-    - entries:
-        - file: tutorials/tracking/cell_tracking
-    - file: tutorials/geosciences/index                 # added
-    subtrees:                                           # added
-    - entries:                                          # added
-        - file: tutorials/geosciences/geo_tutorial1     # added
-        - file: tutorials/geosciences/geo_tutorial2     # added
-```
-
-### 3. Preview your document
-
-If your documentation change includes code, it is important that you ensure
-the code is working and executable. This is why you will need to have a
-development installation of napari installed. [Examples](gallery)
-are automatically executed when the documentation is built and code problems can
-also be caught when previewing the built documentation.
-
-There are two ways you can build and preview the documentation website as it would
-appear on [napari.org](https://napari.org):
-
-* [building locally](build_docs_locally) - this requires more setup but will allow you
-  to more quickly check if your changes render correctly.
-* [view documentation in a GitHub pull request](doc_view_ci) - this requires no
-  setup but you will have to push each change as a commit to your pull request and wait
-  for the continuous integration workflow to finish building the documentation.
-
-```{tip}
-To see the markdown document structure and content change in real-time without building, you can use a MyST markdown preview tool like [VScode](https://code.visualstudio.com/) with the [MyST extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight) or [MyST live preview](https://myst-parser.readthedocs.io/en/latest/live-preview.html#). This can also help you to spot any markdown formatting errors that may have occurred. However, this MyST markdown preview will have some differences to the final built html documentation due to autogeneration, so it is still important to build and preview the documentation before submitting your pull request.
-```
-
-(build_docs_locally)=
-#### 3.1. Building locally
-
-To build the documentation locally we use the 
-[`make` tool](https://en.wikipedia.org/wiki/Make_(software)) to execute 
-[`sphinx`](https://www.sphinx-doc.org/en/master/) builds, as defined in the
-`Makefile` at the root of the `docs` repository.
-
-Once the build is completed rendered HTML will be placed in `docs/_build/html`. 
-Find `index.html` in this folder and drag it into a browser to preview the 
-website with your new document.
-
-You can also run this Python one-liner to deploy a quick local server on
-[http://localhost:8000](http://localhost:8000):
-
-```shell
-$ python3 -m http.server --directory docs/_build/html
-```
-
-:::{note}
-The entire build process pulls together files from multiple sources and can be
-time consuming, with a full build taking upwards of 20 minutes. Additionally, 
-building the examples gallery, as well as executing notebook cells will 
-repeatedly launch `napari`, resulting in flashing windows. 
-
-As a result, there are several partial-build options available in addition to 
-a full build that only build certain parts of the full documentation build. 
-Depending on what you want to contribute, **you may never need to run the full 
-build locally**. For example, maybe you don't want to build the examples gallery 
-or you only want to edit copy and not run the notebook cells or only want to 
-edit a single napari example. See [Building what you need](#building-what-you-need)
-for details.
-:::
-
-##### Running a full build
-
-To run a full documentation build from scratch, matching what is deployed 
-at [napari.org](https://napari.org), run:
+###### Make: running a full build
 
 ```bash
 make html
 ```
-from the root of your local clone of the `napari/docs` repository (assuming you've installed
-napari with the [docs prerequisites](prerequisites)). Note this can take upwards of 20 minutes
-and will repeatedly pop up napari viewers as examples and notebook cells are executed.
+This matches what is deployed at napari.org and may take 20+ minutes, repeatedly opening napari windows as examples and notebook cells are executed.
 
-If the changes you have made to documentation don't involve the gallery of napari examples,
-which are in the `examples` directory in the `napari` repository, you can speed up this 
-build by running:
+If your changes don't involve the examples gallery from `napari/napari/examples`, you can skip the gallery:
 
 ```bash
 make html-noplot
 ```
-
-This will skip the gallery build, which involves launching up napari and rendering 
-all the examples, but it will still build all of the other content, including the
-[UI architecture diagrams](ui-sections), [events reference](events-reference), and
-[preferences](napari-preferences), which are generated from sources in the `napari`
-repository. This will also run all notebook cells.
 
 ````{note}
 The `make html` command above assumes you have a local clone of the
@@ -421,8 +582,8 @@ make html GALLERY_PATH=../../napari/examples
 ```
 
 ````
-(live-builds)=
-````{admonition} Update documentation on file change
+
+ ````{admonition} Update documentation on file change
 :class: tip
 We've provided several build variants with `-live` that will use
 [sphinx-autobuild](https://github.com/sphinx-doc/sphinx-autobuild).
@@ -487,31 +648,19 @@ mode, which will prevent napari windows from popping up during the build.
    ```
 ````
 
-(building-what-you-need)=
-##### Building what you need
+###### Make: building what you need
 
 ````{dropdown} napari/docs and notebooks
-**If you only want to edit materials in the `docs` repository, including
-notebook code cell outputs (e.g. any of the tutorials), but you don't need any
-of the sources in `napari/napari` built**, then you can use the `docs` build variant. Run:
-
 ```bash
 make docs
 ```
-or 
+or
 ```bash
 make docs-live
 ```
-Note that this will still execute the `docs` repository notebook code cells, 
-resulting in napari windows popping up repeatedly. The [`-live`
-variant](live-builds) will open a browser preview and auto-rebuild any pages you edit.
 ````
 
 ````{dropdown} napari/docs only
-**If you you only want to edit copy in the `docs` repository and don't need any
-of the sources in `napari/napari` built nor the notebook cell outputs**, then you can use one
-of the `slim` builds. Run:
-
 ```bash
 make slim
 ```
@@ -523,11 +672,6 @@ or
 ```bash
 make slimfast-live
 ```
-These will not build any of the external content (such as the gallery) and will
-not execute code cells. `slimfast` will run the build in parallel, which can be
-significantly faster on multi-core machines (under a minute), while `slimfast-live`
-will open a browser preview and auto-rebuild any pages you edit. 
-See [the `-live` builds note](live-builds).
 ````
 
 ````{dropdown} napari/docs and napari gallery of examples
@@ -563,38 +707,22 @@ variant](live-builds) will open a browser preview and auto-rebuild the single ex
 any other `docs` pages on edit, but it will not run any other code cells.
 ````
 
-##### Additional utilities in the Makefile
 
-To clean up (delete) generated content, including auto-generated `.rst` and `.md` files,
-as well as the `html` files, you can use:
+###### Make: utilities
 
 ```bash
 make clean
-```
-
-Running this is a good idea if you have not built the documentation in a long
-time and there may have been significant changes to the `docs` repository, e.g.
-changes to the table of contents or layout.
-
-To clean up the files generated for the examples gallery, you can use:
-
-```bash
 make clean-gallery
-```
-Running this is a good idea if you have not built the documentation in a long
-time and there may have been significant changes to the `napari` examples.
-
-To generate the source files from the napari repository, including the
-[UI architecture diagrams](ui-sections), [events reference](events-reference), and
-[preferences](napari-preferences), you can run:
-
-```bash
 make prep-docs
 ```
-Note that this is can take upwards of 10 minutes! Run this if you are interested
-in building the external resources or editing the scripts that generate them in
-`docs/docs/_scripts`. In most cases `make prep-stubs` will suffice, which will 
-generate place-holder stub files for the external content.
+
+###### Make on Windows (alternatives)
+
+`make` works natively on Windows (PowerShell, Command Prompt, or your terminal of choice). If you encounter issues, you can consider using Git Bash or WSL as alternatives.
+
+- Git Bash path: install `make` (e.g., Chocolatey `choco install make` or download from ezwinports), use Git Bash as your terminal, activate your Python environment, then run `make` targets from the `napari-docs` folder.
+- WSL path: install WSL (e.g., Ubuntu), set up a napari development environment, install `make`, and run `make` targets. For GUI forwarding issues, see notes about VcXsrv and environment variables.
+:::
 
 (doc_view_ci)=
 #### 3.2. View in GitHub Pull Request
@@ -606,10 +734,10 @@ and saves the artifact for you to preview or download.
 Note you will need to [](docs_submit_pull_request) first.
 You can then view it in one of two ways:
 
-* preview on your browser via [CircleCI](https://circleci.com/) in just one click -
+* preview on your browser via [CircleCI](https://circleci.com/) in just one click —
   this is the easiest method but in rare cases it may not match the documentation that
   is actually deployed to [napari.org](https://napari.org).
-* download the built documentation artifact and view it locally - this is more
+* download the built documentation artifact and view it locally — this is more
   complicated, but the built docs will always match what is deployed to
   [napari.org](https://napari.org).
 
@@ -662,89 +790,14 @@ document is added to the correct folder based on its content (see the
 To open a pull request via git and the command line, follow [this guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github).
 You can also reach out to us on [zulip](https://napari.zulipchat.com/#narrow/stream/212875-general) for assistance!
 
-Not sure where to place your document or update `_toc.yml`? Make a best guess and open the pull request - the napari team will
+Not sure where to place your document or update `_toc.yml`? Make a best guess and open the pull request — the napari team will
 help you edit your document and find the right spot!
 
 ## Building the documentation on Windows
 
-```{note}
-It is very important that you clone the `napari/docs` repository to a path that does not contain spaces.
-For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but \
-`C:\Users\my username\Documents\GitHub\napari-docs` is not.
-If you clone the napari-docs repository to a directory following the default Windows path naming convention, e.g. \
-`C:\Users\my username\Documents\GitHub\napari-docs` (note the space), and run the `make` commands to build the napari docs, it may remove unintended files from your computer as it will essentially run the command `rm -rf C:\Users`.
-This is because the napari documentation is built using `make` which does not work on paths which contain spaces.
-```
+Good news: `pixi` runs natively on Windows (PowerShell, Command Prompt, or your terminal of choice). No Git Bash or WSL is required. Just follow the [local pixi build instructions](build_docs_locally).
 
-The documentation build requires some Linux specific commands, so some extra steps are required to build the documentation on Windows. There are multiple tools for this, but [Git Bash](https://gitforwindows.org/) or [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) are recommended.
-
-### Git Bash
-
-First, you will need to install `make` on Windows:
-
-1. Install Chocolatey (a Windows package manager) by following the instructions [here](https://chocolatey.org/install).
-2. Install `make` with `choco install make`.
-
-Alternatively, you can download the latest `make` binary without guile from [ezwinports](https://sourceforge.net/projects/ezwinports/) and [add it to your PATH](https://learn.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)#to-add-a-path-to-the-path-environment-variable).
-
-Then install Git Bash and build the documentation:
-
-1. Install [Git Bash](https://gitforwindows.org/) (you should already have this if you use `git` on Windows).
-2. Activate your virtual environment in Git Bash.
-    - Conda environment: To have your conda environment available in Git Bash, launch Git Bash, then run `conda init bash` from anaconda prompt and restart Git Bash. The conda environment can then be activated from Git Bash with `conda activate <env_name>`.
-    - Virtualenv: To have your virtualenv available in Git Bash, launch Git Bash, then run `source <path_to_virtualenv>/Scripts/activate`.
-3. From Git Bash, `cd` to the napari docs repository and run `make html` or other `make` commands to build the documentation.
-
-```{tip}
-If you use Git Bash a lot, you may want to set conda to not initialize on bash by default to speed up the launch process. This can be done with `conda config --set auto_activate_base false`. You can then activate conda in Git Bash with `conda activate base`.
-```
-
-````{note}
-If you are using an IDE, it is likely that it will not use Git Bash by default. You may need to configure your IDE to use Git Bash as the default terminal for the napari docs. For example, in VS Code, you can set the default terminal to Git Bash for the napari docs repository by adding the following to your workspace settings:
-
-```json
-"terminal.integrated.defaultProfile.windows": "Git Bash"
-```
-
-````
-
-### Windows Subsystem for Linux (WSL)
-
-Alternatively, you can install WSL, which will allow you to run a Linux environment directly on Windows (without any virtual machines, etc.). You need to have Windows 10 version 2004 and higher or Windows 11. Then you can run scripts and command line utilities, as well as python and napari from for example Ubuntu on your Windows machine.
-
-1. Install the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install) and [choose a linux distribution](https://learn.microsoft.com/en-us/windows/wsl/install#change-the-default-linux-distribution-installed).
-We will use Ubuntu for this guide since it is the default WSL distribution, easy to install, and works well with [WSLg](https://github.com/microsoft/wslg). The default method to perform this installation is to run `wsl --install -d Ubuntu` from command prompt as an administrator but you can refer to the [guide](https://learn.microsoft.com/en-us/windows/wsl/install) for other installation methods.
-2. Restart your computer. On restart, you will be prompted to create a user account for WSL. This account is separate from your Windows account, but you can use the same username and password if you wish.
-3. [Open up the Ubuntu distribution](https://learn.microsoft.com/en-us/windows/wsl/install#ways-to-run-multiple-linux-distributions-with-wsl) via the `Ubuntu` command and run `sudo apt update && sudo apt upgrade` to update the distribution.
-4. Install a napari development environment in Ubuntu following the [contributor guide](dev-installation) and activate the virtual environment that napari was installed into.
-5. Install some common QT packages and OpenGL `sudo apt install -y libdbus-1-3 libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xinput0 libxcb-xfixes0 mesa-utils libglu1-mesa-dev freeglut3-dev mesa-common-dev '^libxcb.*-dev' libx11-xcb-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev`.
-6. You can test that all of this OpenGL setup is working by running `glxgears` from the Ubuntu terminal. You should see a window with some gears spinning.
-7. `sudo apt install fontconfig`.
-8. `pip install pyqt5-tools`.
-9. Fork the napari docs repository and clone it to the same parent folder as the napari repository (see [](prerequisites)). Then navigate to the napari docs folder via `cd napari-docs`.
-10. Install `make` with `sudo apt install make`.
-11. Run `make html` or other `make` commands to build the documentation.
-
-````{admonition} Route graphical output to Windows
-:class: tip
-
-By default, the graphical interface to `glxgears` or `napari` from WSL should be visible on Windows via `WSLg` without any configuration.
-However, if you are getting errors running `glxgears` or can't see the interface to graphical applications, then you may need to route the graphical output to Windows. To do this:
-
-1. Install an Xserver for Windows, [Vcxsrv](https://sourceforge.net/projects/vcxsrv/). When launching it, choose the options as default, except tick "disable access control".
-2. Export environment variables (you will need to do this for every new shell you open, unless you add them to your `.bashrc`):
-
-    ```bash
-    mkdir ~/temp
-
-    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-    export LIBGL_ALWAYS_INDIRECT=0
-    export XDG_RUNTIME_DIR=~/temp
-    export RUNLEVEL=3
-    ```
-3. Run `glxgears` from the Ubuntu terminal. You should see a window with some gears spinning.
-
-````
+If you prefer or need to use `make` (e.g., for headless builds), see the [advanced make instructions](#make-advanced) for complete Git Bash and WSL guidance and Windows-specific notes.
 
 (add-examples)=
 ## Adding examples to the [Gallery](gallery)
