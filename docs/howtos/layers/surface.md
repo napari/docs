@@ -21,7 +21,7 @@ contrast, opacity, colormaps and blending mode. You will also understand how to
 add and manipulate surfaces mostly from the console. There are a few slider
 controls that are available in the GUI.
 
-For more information about layers, refer to [Layers at a glance](../../guides/layers).
+For more information about layers, refer to [Layers at a glance](layers-glance).
 
 ```{note}
 Surface layers can be created only programmatically, i.e. in the console, or

@@ -13,8 +13,7 @@ kernelspec:
 ---
 
 (napari-quick-start)=
-
-# Quick start
+# Quickstart
 
 +++
 
@@ -28,11 +27,10 @@ At its core, it provides critical viewer features out-of-the-box, such as suppor
 
 +++
 
-## What's covered here
+## What's covered in this page
 
 This tutorial is for napari first-timers to give them a quick glance of what napari does, and give it a try right away. We will cover:
 
-- Installation
 - Open napari
 - Open an image
 - Image display adjustment
@@ -46,35 +44,7 @@ You will also see some examples of plugins. The core napari viewer focuses on do
 
 +++
 
-### Installation
-
-- Download the napari {{ napari_version }} bundled app for a simple installation:
-
-  - Linux: {{ '[`napari-NAPARI_VER-Linux-x86_64.sh`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.sh)'.replace('NAPARI_VER', napari_version) }}.
-  - macOS (Intel): {{ '[`napari-NAPARI_VER-macOS-x86_64.pkg`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.pkg)'.replace('NAPARI_VER', napari_version) }}.
-  - macOS (Apple Silicon): {{ '[`napari-NAPARI_VER-macOS-arm64.pkg`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-arm64.pkg)'.replace('NAPARI_VER', napari_version) }}.
-  - Windows: {{ '[`napari-NAPARI_VER-Windows-x86_64.exe`](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}.
-  - Other artifacts can be found in the {{ '[the Releases page](https://github.com/napari/napari/releases/vNAPARI_VER)'.replace('NAPARI_VER', napari_version) }}, by the Assets section at the bottom.
-
-- For those familiar with Python:
-
-  napari can be installed on most macOS (Intel x86), Linux, and Windows systems with Python {{ python_version_range }} using pip.
-
-  First, create a clean virtual environment:
-
-  {{ conda_create_env }}
-
-  Once in napari-env,
-
-  ```python
-  python -m pip install 'napari[all]'
-  ```
-
-If you run into any issues, please visit the more detailed [installation guide](napari-installation), or [report an issue on GitHub](https://github.com/napari/napari/issues/new/choose)!
-
-+++
-
-### Open napari
+## Launch the napari GUI application
 
 napari can be opened in one of [multiple ways](launch), depending on how it's used in your image analysis workflow.
 
@@ -100,7 +70,7 @@ napari
 Starting with release 0.6.0, you can use the [command palette](command-palette) to launch any command. 🎨
 ```
 
-### Open an image
+## Open an image
 
 napari natively supports tiff and many other formats supported by [skimage.io.imread](https://scikit-image.org/docs/dev/api/skimage.io.html) as input image file format.
 
@@ -116,7 +86,7 @@ For demo purpose, we will use a sample image that comes with napari.
 
 1. Open napari IPython console
 
-![IPython console](../../_static/images/IPython.png)
+![IPython console](../_static/images/IPython.png)
 
 2. Type
 
@@ -144,7 +114,7 @@ nbscreenshot(viewer, alt_text="image of a single cell opened in napari viewer")
 Once you have a napari viewer open, you can also make a new `Image` layer from an image (or URL to an image) copied to your Clipboard using `File -> New Image from Clipboard` menu item (keybinding {kbd}`Command/Ctrl+N`).
 ```
 
-### Image display adjustment
+## Image display adjustment
 
 The layer controls panel at the upper left of the viewer allows you to adjust contrast, colormap, and other layer properties. These settings affect the visualization, but do not affect the underlying data.
 
@@ -162,7 +132,7 @@ viewer.layers['cell'].colormap = "yellow"
 nbscreenshot(viewer, alt_text="image of singular cell with yellow tint")
 ```
 
-### Manually label the cell
+## Manually label the cell
 
 To measure the area of the cell, we can use a labels layer and manually "paint" the cell.
 The labels layer allows you to record the segmentation result by assigning `background = 0`, and assigning each object with an integer.
@@ -196,7 +166,7 @@ Try [cellpose-napari](https://www.napari-hub.org/plugins/cellpose-napari) if you
 
 +++
 
-### Get the cell area measurement
+## Get the cell area measurement
 
 To analyze labels our layer, we can use [scikit-image](https://scikit-image.org/), a popular Python library that comes with your napari installation. [skimage.measure.regionprops](https://scikit-image.org/docs/dev/api/skimage.measure.html#skimage.measure.regionprops) provides a good set of features that can be extracted from labels, including area measurement.
 
@@ -220,13 +190,13 @@ tags: [remove-cell]
 viewer.close_all()
 ```
 
-### Next steps
+## Next steps
 
 - napari provides a variety of settings that can be adjusted to customize the user experience, including theme and keyboard shortcuts (keybindings). To learn more, see our guide to the [**Preferences** dialog](napari-preferences).
 
 - napari provides the flexibility to handle multi-dimensional data. Try opening 3D or higher dimensional images, and switch to 3D view.
 
-![ndisplay](../../_static/images/ndisplay.png)
+![ndisplay](../_static/images/ndisplay.png)
 
 - Test some [examples](https://github.com/napari/napari/tree/main/examples) to see how to add different layer types and add your own widgets to napari.
 

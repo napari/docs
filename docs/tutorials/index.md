@@ -8,14 +8,14 @@ in contributing to napari then please check out [the Community page](community).
 
 ````{grid}
 ```{grid-item-card} Annotation
-:link: annotation
+:link: annotating-points
 :link-type: ref
 
 How to annotate images and videos using the napari points, labels, or shapes layers
 ```
 
 ```{grid-item-card} Processing
-:link: processing
+:link: dask-napari
 :link-type: ref
 
 Data processing with napari

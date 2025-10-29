@@ -1,3 +1,4 @@
+(segmentation)=
 # Annotating segmentation with text and bounding boxes
 
 In this tutorial, we will use napari to view and annotate a segmentation with bounding boxes and text labels. Here we perform a segmentation by setting an intensity threshold with Otsu's method, but this same approach could also be used to visualize the results of other image processing algorithms such as [object detection with neural networks](https://www.tensorflow.org/lite/examples/object_detection/overview).

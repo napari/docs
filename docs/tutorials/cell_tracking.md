@@ -1,3 +1,4 @@
+(tracking)=
 # Single cell tracking with napari
 
 In this application note, we will use napari (requires version 0.4.0 or greater) to visualize single cell tracking data using the `Tracks` layer. For an overview of the `Tracks` layer, please see the [tracks layer guide](layers-tracks).
