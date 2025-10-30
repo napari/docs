@@ -44,6 +44,7 @@ jobs:
         default: slimfast
     steps:
       - checkout:
+          method: blobless
           path: docs
       - restore_cache:
           keys:
