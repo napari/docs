@@ -198,60 +198,18 @@ You can create a local cloned version of the documentation using one of these th
 To reduce confusion and possible conflicts, the `docs` fork is being cloned into
 a local repository folder named `napari-docs`. Alternately, you could also
 rename the repository when forking `napari/docs` to `napari-docs` and then clone it via `gh repo clone <your-username>/napari-docs`.
-````
 
-```{note}
-The napari documentation is built using `make` which does not work on paths which contain spaces.
 It is important that you clone the `napari/docs` repository to a path that does not contain spaces.
-For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but \
+For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but\
 `C:\Users\my username\Documents\GitHub\napari-docs` is not.
-```
-
-````{dropdown} (Optional) Fork and clone napari/napari for gallery or API docstring edits
-
-```{admonition} Optional: needed only for example/docstring edits
-:class: note
-
-Most contributors can skip this. If you want to preview local changes to gallery examples or API docstrings, follow the [advanced make instructions](make-advanced). The `pixi` environment uses an internal fresh clone of `napari/napari` and does not pick up edits from your local fork.
-```
-
-If you plan to modify gallery examples or API docstrings, also fork and clone `napari/napari`:
-- GitHub CLI:
-  ```bash
-  gh repo fork napari/napari --clone --remote
-  cd napari
-  ```
-- Or Git:
-  ```bash
-  git clone https://github.com/<your-username>/napari.git
-  cd napari
-  git remote add upstream https://github.com/napari/napari.git
-  ```
 ````
-
-### 1. Create `pixi` environment
-1. [Install `pixi`](https://pixi.sh/dev/installation/) and restart your terminal. Verify with:
-   ```bash
-   pixi --version
-   ```
-2. Inside your local `napari-docs` folder, run:
-    ```bash
-    pixi install
-    ```
-    ````{dropdown} TIP: Fixing "Failed to download and build napari
-    If you get
-    ```bash
-    unexpected panic during PyPI resolution: Failed to do lookahead resolution: Failed to download and build `napari @ git+https://github.com/napari/napari.git@main`
-    ```
-    please delete your PyPI cache that. You can see the path to the cache by running `pixi info`.
-    ````
 
 (contributing-docs-step-one)=
-### 2. Write your documentation
+### 1. Write your documentation
 
 Depending on the type of contribution you are making, you may be able to skip some steps:
 
-* If you are amending an existing document you can skip straight to [4. Preview your document](#4-preview-your-document)
+* If you are amending an existing document you can skip straight to [Preview your document](preview-doc)
 * For all other documentation changes, follow the steps below.
 
 ````{admonition} How to check for broken links
@@ -265,7 +223,7 @@ make linkcheck-files FILES=path/to/your/document.md
 ````
 
 (update-toc)=
-### 3. Update the table of contents (TOC)
+### 2. Update the table of contents (TOC)
 
 ```{admonition} Optional: editing examples or docstrings?
 :class: note
@@ -329,7 +287,8 @@ subtrees:
         - file: tutorials/geosciences/geo_tutorial2     # added
 ```
 
-### 4. Preview your document
+(preview-doc)=
+### 3. Preview your document
 
 If your documentation change includes code, it is important that you ensure the code is working and executable. [Examples](gallery) are automatically executed when the documentation is built and code problems can also be caught when previewing the built documentation.
 
@@ -346,9 +305,32 @@ To see the markdown document structure and content change in real-time without b
 ```
 
 (build_docs_locally)=
-#### 4.1. Building locally
+#### 3.1. Building locally
 
 To build the documentation locally, we recommend using [`pixi`](https://pixi.sh), which provides a simple cross-platform approach and automatically clones the [main napari repository](https://github.com/napari/napari) inside its environment.
+
+
+1. [Install `pixi`](https://pixi.sh/dev/installation/) and restart your terminal. Verify with:
+    ```bash
+    pixi --version
+    ```
+    If you get an error such as command not found, then `pixi` is not properly installed.
+
+2. In your local `napari-docs` folder (see [Prerequisites](prerequisites)), install the environment:
+    ```bash
+    pixi install
+    ```
+    ````{dropdown} TIP: Fixing "Failed to download and build napari"
+    If you get
+    ```bash
+    unexpected panic during PyPI resolution: Failed to do lookahead resolution: Failed to download and build `napari @ git+https://github.com/napari/napari.git@main`
+    ```
+    delete your PyPI cache (see the cache path via `pixi info`) and try again.
+    ````
+3. You can test the installation by running a quick build (also see the [next section](building-what-you-need) for specialized builds):
+    ```bash
+    pixi run slimfast
+    ```
 
 Once the build is completed, rendered HTML will be placed in `docs/_build/html`. Find `index.html` in this folder and drag it into a browser to preview the website with your new document. 
 
@@ -399,7 +381,7 @@ Depending on what you want to contribute, you may never need to run the full bui
 
 - If you only need to edit text in the `docs` repository — and neither build sources from `napari/napari` nor execute notebook cells — use the **fastest docs-only target**:
   ```bash
-  make slim
+  pixi run slim
   ```
   or
   ```bash
@@ -472,11 +454,9 @@ The first run will be a full build of that target; subsequent rebuilds only proc
 
 (make-advanced)=
 :::{dropdown} Advanced: Using `make` for headless builds and gallery examples
+:color: primary
 If you need to use `make` (e.g., for headless builds, or to add new gallery examples that require a full local napari clone), here's the full reference moved from the main flow.
 
-```{note}
-The `make` workflow requires local clones of both `napari/napari` and `napari/docs` (as siblings) and paths without spaces. For example, `C:\\Users\\myusername\\Documents\\GitHub\\napari-docs` is valid, but `C:\\Users\\my username\\Documents\\GitHub\\napari-docs` is not. Running `make` from a path containing spaces can cause destructive behavior.
-```
 
 ### Make: Prerequisites 
 
@@ -497,12 +477,9 @@ gh repo clone <your-username>/docs napari-docs
 To reduce confusion and possible conflicts, the `docs` fork is being cloned into
 a local repository folder named `napari-docs`. Alternately, you could also
 rename the repository when forking `napari/docs` to `napari-docs` and then clone it via `gh repo clone <your-username>/napari-docs`.
-````
 
-```{note}
-The napari documentation is built using `make` which does not work on paths which contain spaces.
 It is important that you clone the `napari/docs` repository to a path that does not contain spaces.
-For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but \
+For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but\
 `C:\Users\my username\Documents\GitHub\napari-docs` is not.
 ```
 
@@ -797,7 +774,7 @@ help you edit your document and find the right spot!
 
 Good news: `pixi` runs natively on Windows (PowerShell, Command Prompt, or your terminal of choice). No Git Bash or WSL is required. Just follow the [local pixi build instructions](build_docs_locally).
 
-If you prefer or need to use `make` (e.g., for headless builds), see the [advanced make instructions](#make-advanced) for complete Git Bash and WSL guidance and Windows-specific notes.
+If you prefer or need to use `make` (e.g., for headless builds), see the [advanced make instructions](make-advanced) for complete Git Bash and WSL guidance and Windows-specific notes.
 
 (add-examples)=
 ## Adding examples to the [Gallery](gallery)
