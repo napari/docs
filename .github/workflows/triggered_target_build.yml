@@ -86,7 +86,7 @@ jobs:
             core.setOutput('pr_ref', pr.data.head.ref);
             core.setOutput('pr_sha', pr.data.head.sha);
             core.setOutput('pr_number', context.issue.number);
-      
+
       - name: Set docs ref
         id: set-docs-ref
         run: |
