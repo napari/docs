@@ -225,10 +225,6 @@ Depending on the type of contribution you are making, you may be able to skip so
 ````{admonition} How to check for broken links
 :class: tip
 
-````{admonition} How to check for broken links
----
-class: tip
----
 If you have modified lots of document links, you can check that they all work by running `make linkcheck-files` in the `napari/docs` folder. However, this can take a long time to run, so if you have only modified links in a single document, you can run:
 
 ```bash
