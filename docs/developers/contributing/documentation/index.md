@@ -493,7 +493,7 @@ rename the repository when forking `napari/docs` to `napari-docs` and then clone
 It is important that you clone the `napari/docs` repository to a path that does not contain spaces.
 For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but\
 `C:\Users\my username\Documents\GitHub\napari-docs` is not.
-```
+````
 
 #### Set up a developer installation of napari for docs building
 
