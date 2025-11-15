@@ -53,7 +53,7 @@ from collections.abc import Iterator
 from dataclasses import dataclass
 from pathlib import Path
 from types import ModuleType
-from typing import Dict, List, Optional, Type
+from typing import Iterator, Optional, Type
 
 import napari
 import numpy as np
@@ -97,7 +97,7 @@ class Ev:
         name = str(self.type_) if self.type_ else ''
         return name.replace('typing.', '')
 
-    def ev_model_row(self) -> List[str]:
+    def ev_model_row(self) -> list[str]:
         return [
             f'`{self.model.__name__}`',
             f'`{self.name}`',
@@ -106,7 +106,7 @@ class Ev:
             f'`{self.type_name()}`',
         ]
 
-    def layer_row(self) -> List[str]:
+    def layer_row(self) -> list[str]:
         return [
             f'`{self.model.__name__}`',
             f'`{self.name}`',
@@ -142,9 +142,11 @@ def iter_classes(module: ModuleType) -> Iterator[Type]:
             yield attr
 
 
-def class_doc_attrs(kls: Type) -> Dict[str, Parameter]:
+def class_doc_attrs(kls: Type) -> dict[str, Parameter]:
     docs = {p.name: ' '.join(p.desc) for p in ClassDoc(kls).get('Attributes')}
-    docs.update({p.name: ' '.join(p.desc) for p in ClassDoc(kls).get('Parameters')})
+    docs.update(
+        {p.name: ' '.join(p.desc) for p in ClassDoc(kls).get('Parameters')}
+    )
     return docs
 
 
@@ -187,14 +189,14 @@ def iter_evented_container_events(
 class BaseEmitterVisitor(ast.NodeVisitor):
     def __init__(self) -> None:
         super().__init__()
-        self._emitters: List[str] = []
+        self._emitters: list[str] = []
 
     def visit_Call(self, node: ast.Call):
         if getattr(node.func, 'id', None) == 'EmitterGroup':
             self._emitters.extend([name.arg for name in node.keywords])  # type: ignore
 
 
-def base_event_names() -> List[str]:
+def base_event_names() -> list[str]:
     from napari.layers.base import base
 
     root = ast.parse(Path(base.__file__).read_text())
@@ -209,7 +211,7 @@ def iter_layer_events() -> Iterator[Ev]:
     for name in basenames:
         yield Ev(name, layers.Layer, description=docs.get(name))
 
-    EXAMPLE_LAYERS: List[layers.Layer] = [
+    EXAMPLE_LAYERS: list[layers.Layer] = [
         layers.Image(np.random.random((2, 2))),
         layers.Labels(np.random.randint(20, size=(10, 15))),
         layers.Points(10 * np.random.random((10, 2))),
@@ -235,7 +237,7 @@ def iter_layer_events() -> Iterator[Ev]:
             yield Ev(name, lay.__class__, description=docs.get(name))
 
 
-def merge_image_and_label_rows(rows: List[List[str]]):
+def merge_image_and_label_rows(rows: list[list[str]]):
     """Merge events common to _ImageBase or IntensityVisualizationMixin."""
     # find events that are common across both Image, Labels and Surface layers.
     image_events = {r[1] for r in rows if r[0] == '`Image`'}
