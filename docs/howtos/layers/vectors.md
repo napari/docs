@@ -13,7 +13,7 @@ kernelspec:
 
 (layers-vectors)=
 
-# Using the `vectors` layer
+# Vectors
 
 In this document, you will learn about the `napari` `vectors` layer, including
 how to display many vectors simultaneously and adjust their properties.

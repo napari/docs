@@ -13,7 +13,7 @@ kernelspec:
 
 (layers-points)=
 
-# Using the `points` layer
+# Points
 
 ```{Admonition} DEPRECATED ATTRIBUTES
 ---

@@ -13,7 +13,7 @@ kernelspec:
 
 (layers-tracks)=
 
-# Using the `tracks` layer
+# Tracks
 
 In this document, you will learn about the `napari` `tracks` layer, including
 displaying tracks and defining relationships between tracks.

@@ -13,7 +13,7 @@ kernelspec:
 
 (layers-surface)=
 
-# Using the `surface` layer
+# Surface
 
 In this document, you will learn about the `napari` `surface` layer, including
 how to display surface data and edit the properties of surfaces like the
