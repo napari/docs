@@ -13,7 +13,7 @@ kernelspec:
 
 (layers-labels)=
 
-# Using the `labels` layer
+# Labels
 
 In this document, you will learn about the `napari` `Labels` layer, including
 using the layer to display the results of image segmentation analyses, and how

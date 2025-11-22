@@ -16,6 +16,17 @@ subtrees:
           - file: getting_started/viewer
           - file: getting_started/layers
           - file: getting_started/features
+      - file: howtos/layers/index
+        subtrees:
+        - titlesonly: True
+          entries:
+          - file: howtos/layers/image
+          - file: howtos/layers/labels
+          - file: howtos/layers/points
+          - file: howtos/layers/shapes
+          - file: howtos/layers/surface
+          - file: howtos/layers/tracks
+          - file: howtos/layers/vectors
       - file: tutorials/index
         subtrees:
         - entries:
@@ -27,17 +38,6 @@ subtrees:
         subtrees:
         - titlesonly: True
           entries:
-          - file: howtos/layers/index
-            subtrees:
-            - titlesonly: True
-              entries:
-              - file: howtos/layers/image
-              - file: howtos/layers/labels
-              - file: howtos/layers/points
-              - file: howtos/layers/shapes
-              - file: howtos/layers/surface
-              - file: howtos/layers/tracks
-              - file: howtos/layers/vectors
           - file: howtos/extending/index
             subtrees:
             - titlesonly: True

@@ -1,4 +1,5 @@
 (tracking)=
+
 # Single cell tracking with napari
 
 In this application note, we will use napari (requires version 0.4.0 or greater) to visualize single cell tracking data using the `Tracks` layer. For an overview of the `Tracks` layer, please see the [tracks layer guide](layers-tracks).
@@ -247,7 +248,7 @@ viewer.add_tracks(data, features=features, graph=graph)
 napari.run()
 ```
 
-![napari viewer with three layers: an image layer with cells, a points layer with detected cells and a tracks layer with the btrack results. The dimension slider under the canvas is close to the end of the stack, showing the tracks corresponding to each point colored by generation.](../../_static/images/tracks_btrack.png)
+![napari viewer with three layers: an image layer with cells, a points layer with detected cells and a tracks layer with the btrack results. The dimension slider under the canvas is close to the end of the stack, showing the tracks corresponding to each point colored by generation.](../_static/images/tracks_btrack.png)
 
 A notebook for this example can be found in the btrack examples directory ([`napari_btrack.ipynb`](https://github.com/quantumjot/btrack/blob/caa56fa82330e4b16b5d28150f9b60ed963165c7/examples/napari_btrack.ipynb))
 

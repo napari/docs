@@ -13,7 +13,7 @@ kernelspec:
 
 (layers-image)=
 
-# Using the `image` layer
+# Image
 
 In this document, you will learn how to use the `napari` `image` layer,
 including the types of images that can be displayed, and how to set properties
