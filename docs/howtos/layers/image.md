@@ -12,7 +12,6 @@ kernelspec:
 ---
 
 (layers-image)=
-
 # Image
 
 In this document, you will learn how to use the `napari` `image` layer,
