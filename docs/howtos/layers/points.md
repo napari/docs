@@ -12,7 +12,6 @@ kernelspec:
 ---
 
 (layers-points)=
-
 # Points
 
 ```{Admonition} DEPRECATED ATTRIBUTES

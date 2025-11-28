@@ -12,7 +12,6 @@ kernelspec:
 ---
 
 (layers-surface)=
-
 # Surface
 
 In this document, you will learn about the `napari` `surface` layer, including

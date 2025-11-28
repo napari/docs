@@ -1,5 +1,4 @@
 (layers-glance)=
-
 # Layers: bringing data into napari
 
 {class}`~napari.layers` are the basic viewable objects that can be added to a
