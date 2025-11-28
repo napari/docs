@@ -22,11 +22,11 @@ subtrees:
           entries:
           - file: howtos/layers/image
           - file: howtos/layers/labels
-          - file: howtos/layers/points
           - file: howtos/layers/shapes
-          - file: howtos/layers/surface
+          - file: howtos/layers/points
           - file: howtos/layers/tracks
           - file: howtos/layers/vectors
+          - file: howtos/layers/surface
       - file: tutorials/index
         subtrees:
         - entries:
