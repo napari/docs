@@ -1,6 +1,6 @@
 (tutorials)=
 
-# napari tutorials
+# Tutorials
 
 These tutorials will help you explore the main usage modes and methods of
 napari, and target people who want to use napari. If you are also interested
