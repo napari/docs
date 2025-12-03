@@ -1,4 +1,4 @@
-(tracking)=
+(cell-tracking)=
 
 # Single cell tracking with napari
 

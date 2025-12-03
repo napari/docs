@@ -31,7 +31,7 @@ Segmentation labeling with napari
 ```
 
 ```{grid-item-card} Tracking
-:link: tracking
+:link: cell-tracking
 :link-type: ref
 
 How to work with object tracking data and how to format it for display as a napari tracks layer.
