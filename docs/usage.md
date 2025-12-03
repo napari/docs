@@ -23,7 +23,7 @@ napari, as well as learn about its features and use cases.
 ````
 
 ````{grid}
-```{grid-item-card} Using layers
+```{grid-item-card} Layers guide
 :link: using-layers
 :link-type: ref
 
