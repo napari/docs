@@ -17,7 +17,7 @@ If the goal is to access a target widget, without creating a widget, use the `do
 The `dock_widgets` property provides access to a read-only mapping of all docked widgets in the viewer. You can list available widget names with `viewer.window.dock_widgets.keys()`.
 
 This public API returns the (inner) widget, not the `QtViewerDockWidget` wrapper.
-To control the dock widget itself, access the `QtViewerDockWidget` wrapper using the `.parent()` method on the returned `QWidget`, or `.native.parent()` for magicgui `Widget`.
+To access the `QtViewerDockWidget` wrapper, use the `.parent()` method on the returned `QWidget`, or `.native.parent()` for a magicgui `Widget`.
 For example, to programmatically show the "Home" dock widget:
 
 ```python
