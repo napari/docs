@@ -30,7 +30,7 @@ dock_widget.raise_()
 
 ```{important}
 Do not use `viewer.window._dock_widgets` to access `QtViewerDockWidget`.
-This is a private API that may be removed in any release.
+This is a private API that will be removed soon.
 ```
 
 *The `dock_widgets` property was added in napari 0.6.2.*
