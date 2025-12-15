@@ -94,7 +94,7 @@ More detail coming soon...
 - Reorg of the Usage section of the docs ([docs#881](https://github.com/napari/docs/pull/881))
 - Modernize type annotation to use builtins ([docs#883](https://github.com/napari/docs/pull/883))
 - Update dark mode colors ([docs#884](https://github.com/napari/docs/pull/884))
-- Remove outdated mentions about PySide2 in documentaion ([docs#889](https://github.com/napari/docs/pull/889))
+- Remove outdated mentions about PySide2 in documentation ([docs#889](https://github.com/napari/docs/pull/889))
 - Explain accessing dock widget wrappers ([docs#892](https://github.com/napari/docs/pull/892))
 
 ## Other Pull Requests
@@ -126,7 +126,7 @@ More detail coming soon...
 - Set custom font ([#8426](https://github.com/napari/napari/pull/8426))
 - Update `certifi`, `coverage`, `dask`, `fsspec`, `hypothesis`, `imageio`, `ipython`, `matplotlib`, `numpy`, `pandas`, `pillow`, `pint`, `psutil`, `psygnal`, `pydantic`, `pyqt6`, `pyside6`, `pytest`, `pytest-rerunfailures`, `pyyaml`, `rich`, `scipy`, `tensorstore`, `tifffile`, `toolz`, `virtualenv`, `wrapt`, `xarray` ([#8441](https://github.com/napari/napari/pull/8441))
 - [pre-commit.ci] pre-commit autoupdate ([#8442](https://github.com/napari/napari/pull/8442))
-- Stop updating python 3.10 docs contstraints ([#8444](https://github.com/napari/napari/pull/8444))
+- Stop updating python 3.10 docs constraints ([#8444](https://github.com/napari/napari/pull/8444))
 - Remove shim setting and warning dialog ([#8448](https://github.com/napari/napari/pull/8448))
 - Block problematic numba in docs constraints ([#8454](https://github.com/napari/napari/pull/8454))
 - Use new logos! ([#8457](https://github.com/napari/napari/pull/8457))
@@ -137,7 +137,7 @@ More detail coming soon...
 - Move Ashley Anderson citation to core team section ([#8467](https://github.com/napari/napari/pull/8467))
 - Change `exclude` to `extend-exclude` in ruff config ([#8468](https://github.com/napari/napari/pull/8468))
 - Fix constraints upgrade scripts ([#8473](https://github.com/napari/napari/pull/8473))
-- Fix coverage uplad in comprehensive tests ([#8474](https://github.com/napari/napari/pull/8474))
+- Fix coverage upload in comprehensive tests ([#8474](https://github.com/napari/napari/pull/8474))
 - Remove building of npe1 menu items for Plugins and Sample menus ([#8476](https://github.com/napari/napari/pull/8476))
 - First emit warning, then replace projection mode when convert image to labels ([#8481](https://github.com/napari/napari/pull/8481))
 - Finish typing utils.progress ([#8485](https://github.com/napari/napari/pull/8485))
