@@ -163,7 +163,7 @@ coming to one of our [community meetings](meeting-schedule).
 - Set custom font ([#8426](https://github.com/napari/napari/pull/8426))
 - Update `certifi`, `coverage`, `dask`, `fsspec`, `hypothesis`, `imageio`, `ipython`, `matplotlib`, `numpy`, `pandas`, `pillow`, `pint`, `psutil`, `psygnal`, `pydantic`, `pyqt6`, `pyside6`, `pytest`, `pytest-rerunfailures`, `pyyaml`, `rich`, `scipy`, `tensorstore`, `tifffile`, `toolz`, `virtualenv`, `wrapt`, `xarray` ([#8441](https://github.com/napari/napari/pull/8441))
 - [pre-commit.ci] pre-commit autoupdate ([#8442](https://github.com/napari/napari/pull/8442))
-- Stop updating python 3.10 docs contstraints ([#8444](https://github.com/napari/napari/pull/8444))
+- Stop updating python 3.10 docs constraints ([#8444](https://github.com/napari/napari/pull/8444))
 - Block problematic numba in docs constraints ([#8454](https://github.com/napari/napari/pull/8454))
 - Change link to getting started in Help menu ([#8455](https://github.com/napari/napari/pull/8455))
 - Update `coverage`, `dask`, `fsspec`, `hypothesis`, `ipython`, `matplotlib`, `pydantic`, `pyqt6`, `pyside6`, `pytest`, `tensorstore`, `tifffile`, `xarray` ([#8456](https://github.com/napari/napari/pull/8456))
