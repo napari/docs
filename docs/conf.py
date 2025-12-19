@@ -27,6 +27,9 @@ from sphinx.highlighting import lexers
 from sphinx.util import logging as sphinx_logging
 from sphinx_gallery import gen_rst, scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
+import pooch.core
+
+from napari.utils._examples_data import napari_choose_downloader
 
 # -- Version information ---------------------------------------------------
 
@@ -507,3 +510,5 @@ def setup(app):
         h for h in logger.handlers if isinstance(h, sphinx_logging.WarningStreamHandler)
     ]
     warning_handler.filters.insert(0, FilterSphinxWarnings(app))
+
+pooch.core.choose_downloader = napari_choose_downloader
