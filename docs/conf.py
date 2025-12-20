@@ -511,4 +511,5 @@ def setup(app):
     ]
     warning_handler.filters.insert(0, FilterSphinxWarnings(app))
 
-pooch.core.choose_downloader = napari_choose_downloader
+if: pooch.core.choose_downloader != napari_choose_downloader
+    pooch.core.choose_downloader = napari_choose_downloader
