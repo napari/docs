@@ -453,7 +453,21 @@ The console (when available) appears at the bottom of the viewer as shown below:
 ### Toggle 2D/3D button
 
 The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data.
-For example, run the following code:
+
+For example, open the "Cells (3D+2Ch)" sample from the `File -> Open Sample` menu. Now, by clicking the 2D/3D button,
+you can switch to viewing the 3D rendering.
+
+![Open Cells 3D+2Ch sample image](../_static/images/open_3d.png)
+
+![Toggle 3D mode for Cells image](../_static/images/toggle_3d_cells.png)
+
+![Cells 3D rendering](../_static/images/3d_cells.png)
+
+Note that the icon will change to the following, to indicate 3D mode:
+
+![image: 3D_button](../_static/images/3D-button.png)
+
+You can achieve the same result by running the following code in the console:
 
 ```{code-cell} python
 ---
@@ -464,19 +478,13 @@ from scipy import ndimage as ndi
 
 import napari
 
-
 blobs = data.binary_blobs(length=128, volume_fraction=0.1, n_dim=3)
 viewer, image_layer = napari.imshow(blobs.astype(float), name='blobs')
 labeled = ndi.label(blobs)[0]
 viewer.add_labels(labeled, name='blob ID')
 ```
 
-then, by clicking the 2D/3D button, you can switch to viewing the 3D rendering. Note that the icon will change to
-the following, to indicate 3D mode:
-
-![image: 3D_button](../_static/images/3D-button.png)
-
-This mode can be entered programmatically using:
+Then, enter 3D mode programmatically using:
 
 ```python
 viewer.dims.ndisplay = 3

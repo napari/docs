@@ -13,6 +13,7 @@ kernelspec:
 ---
 
 (napari-quick-start)=
+
 # Quickstart
 
 +++
@@ -36,6 +37,7 @@ This tutorial is for napari first-timers to give them a quick glance of what nap
 - Image display adjustment
 - Manually label the cell
 - Get the cell area measurement
+- Plugins
 - Next steps
 
 Along the way, you will see how to access napari functions from [Python code](api) and from GUI - though for different purposes, one method might be easier than another. This quick start guide will not cover ALL possible methods but only some ways to perform basic tasks. For the more complete guide, please visit [our usage guide](usage).
@@ -83,6 +85,14 @@ Once you have the proper plugin installed, use File > Open Files(s)
 and select the image file, or simply drag and drop the image into napari.
 
 For demo purpose, we will use a sample image that comes with napari.
+
+### Option 1: Using the GUI to open an image
+
+1. In napari, go to `File -> Open Sample -> napari built-ins -> Cell`
+
+![Open sample image](../_static/images/open_image.png)
+
+### Option 2: Using the napari console to open an image
 
 1. Open napari IPython console
 
@@ -189,6 +199,18 @@ tags: [remove-cell]
 ---
 viewer.close_all()
 ```
+
+## Plugins
+
+napari features a rich ecosystem of plugins which add functionality to the core napari viewer. Plugins can provide:
+
+- file readers/writers, including support for import and export of image and related data types;
+- support for working with specialized data formats;
+- domain-specific features and analysis tools, including microscopy, climate, geoscience, and more.
+
+Plugins can be installed as Python packages via pip or conda, or directly from within napari using the [napari plugin manager](https://napari.org/napari-plugin-manager/).
+
+To explore existing plugins, visit the [napari hub](https://napari-hub.org/). For more details, check out our documentation on [finding and installing plugins](https://napari.org/stable/plugins/start_using_plugins/finding_and_installing_plugins.html#finding-and-installing-plugins).
 
 ## Next steps
 
