@@ -4,12 +4,61 @@
 
 Each section shows the highlights from recent releases. Click on the version links to view the complete release notes.
 
-*Last updated: December 03, 2025*
+*Last updated: December 20, 2025*
 
 
 ## Recent Releases (Last 3 Months)
 
 Latest features and improvements:
+
+````{dropdown} napari 0.7.0 (January 2026)
+:open:
+
+More detail coming soon...
+
+### Transition to npe2 plugin engine 🔌
+
+In 0.6.0 we began the process of deprecating npe1 (napari-plugin-engine).
+In all 0.6.x releases, npe1 plugins were automatically converted to npe2 by default,
+and users could turn off the `use_npe2_adaptor` setting to continue using npe1 plugins
+without auto-conversion.
+
+In 0.7.0 this setting is being removed, and plugins will *only* continue to function if
+they can be auto-converted to npe2. Most plugins will be unaffected, but those that rely
+on import-time behaviour may not work as expected. If a plugin is relying on import-time
+behaviour, it may be able to replicate this using the new startup scripts functionality added
+in 0.6.5 ([#8188](https://github.com/napari/napari/pull/8188)).
+
+If you encounter conversion issues in a plugin you rely on, please contact the
+plugin authors to encourage them to migrate their plugin to the npe2 system.
+
+For more details on this change and how it affects plugins, see the [detailed
+guide](adapted-plugin-guide). If you are a plugin author and your plugin is not
+yet npe2-compatible, please see our [npe2 migration
+guide](npe2-migration-guide), and, if you encounter any issues, get in touch in
+our [Plugins Zulip chat
+channel](https://napari.zulipchat.com/#narrow/channel/309872-plugins) or by
+coming to one of our [community meetings](meeting-schedule).
+
+### Grid Overlay
+
+...
+
+
+- Add grid overlay ([#7827](https://github.com/napari/napari/pull/7827))
+- Multilayer features table ([#8189](https://github.com/napari/napari/pull/8189))
+- Fix camera angles‽ ([#8281](https://github.com/napari/napari/pull/8281))
+- Remove `numpydoc` as a base and testing dependency ([#8338](https://github.com/napari/napari/pull/8338))
+- (WIP) Histogram ([#8391](https://github.com/napari/napari/pull/8391))
+- Texture tiling ([#8395](https://github.com/napari/napari/pull/8395))
+- Fix overlay initialization and layer addition slowdown ([#8443](https://github.com/napari/napari/pull/8443))
+- Remove shim setting and warning dialog ([#8448](https://github.com/napari/napari/pull/8448))
+- Remove PySide2 support ([#8450](https://github.com/napari/napari/pull/8450))
+- Speed up the deletion of layers by deduplicating the function calls  ([#8479](https://github.com/napari/napari/pull/8479))
+
+[View full release notes →](release_0_7_0)
+
+````
 
 ````{dropdown} napari 0.6.6 (October 2025)
 :open:
@@ -354,7 +403,7 @@ available".)
 
 npe2 was introduced over four years ago, with napari 0.4.12. npe2 has paved the
 way for new plugin functionality, such as [adding menu
-items](nap-6-contributable-menus) and the command palette. We are now beginning
+items](https://napari.org/stable/naps/6-contributable-menus.html) and the command palette. We are now beginning
 the process of deprecating npe1 (napari-plugin-engine) plugins, which we need
 to do to continue to improve npe2 functionality, for example in file readers,
 which is currently very entangled with npe1 code.
@@ -373,9 +422,9 @@ If you encounter conversion issues in a plugin you rely on, please contact the
 plugin authors to encourage them to migrate their plugin to the npe2 system.
 
 For more details on this change and how it affects plugins, see the [detailed
-guide](adapted-plugin-guide). If you are a plugin author and your plugin is not
+guide](https://napari.org/stable/plugins/advanced_topics/adapted_plugin_guide.html). If you are a plugin author and your plugin is not
 yet npe2-compatible, please see our [npe2 migration
-guide](npe2-migration-guide), and, if you encounter any issues, get in touch in
+guide](https://napari.org/stable/plugins/advanced_topics/npe2_migration_guide.html), and, if you encounter any issues, get in touch in
 our [Plugins Zulip chat
 channel](https://napari.zulipchat.com/#narrow/channel/309872-plugins) or by
 coming to one of our [community meetings](meeting-schedule).
@@ -499,74 +548,12 @@ Read on for the full list of changes since 0.5.5.
 
 ````
 
-````{dropdown} napari 0.5.5 (December 2024)
-:open:
-
-This release continues the 0.5 tradition of churning out the bug fixes and
-enhancements, with 24 pull requests total in that category. If you are a user
-of oblique plane rendering, you'll appreciate
-[#7422](https://github.com/napari/napari/pull/7422), which fixes the plane
-calculation when data is anisotropic.
-
-And, did you have a hole in your heart where high-quality 3D labels rendering
-should have been? Check out
-[#7431](https://github.com/napari/napari/pull/7431), in which [Ashley
-Anderson](https://github.com/aganders3) has (again) improved the quality of 3D
-labels by filling the (apparent, but fictional) holes in labels at the borders
-of a volume. Before/after gif:
-
-![movie showing before and after of labels rendering at the borders of a
-volume](https://github.com/user-attachments/assets/728505be-d212-417b-a29e-7228761ffed3)
-
-Additionally, [Grzegorz Bokota](https://github.com/Czaki) has again sped up
-launch time for Shapes layers by porting all the edge triangulation code to
-numba ([#7268](https://github.com/napari/napari/pull/7268)). As part of that
-work he also created a fantastic developer example explaining how the edge
-triangulation works, which you can find at
-[examples/dev/triangle_edge.py](https://github.com/napari/napari/blob/b2edccd6e40e04467ccfeec0257c2160783f7187/examples/dev/triangle_edge.py).
-Give it a read and a play if you want to peek under the hood of the Shapes
-layer!
-
-```{raw} html
-<figure>
-  <video width="100%" controls autoplay loop muted playsinline>
-    <source src="../_static/images/triangle-edge.webm" type="video/webm" />
-    <source src="../_static/images/triangle-edge.mp4" type="video/mp4" />
-    <img src="../_static/images/triangle-edge.png"
-      title="Your browser does not support the video tag"
-      alt="napari viewer showing a shapes layer and associated layers depicting the triangulation of the elements of the Shapes layer."
-    >
-  </video>
-</figure>
-```
-
-Did you miss a napari error or warning while reading these notes? We don't
-blame you! Those missed notifications will be a thing of the past with
-[#7220](https://github.com/napari/napari/pull/7220), which will keep
-notifications open if the napari window is not in focus. Whew!
-
-Finally, for the zarrventurous among you, napari 0.5.5 is ready for zarr v3,
-coming soon to a PyPI near you!
-([#7215](https://github.com/napari/napari/pull/7215)) If you are using or
-testing the zarr 3.0.0 betas, try them with napari! We hope you'll be
-pleasantly surprised. 😊
-
-As always, we thank all the contributors to this napari release and all the
-previous ones! We welcome [Carol Willing](https://github.com/willingc) and
-[Tim Monko](https://github.com/TimMonko) to the list of contributors. Read on
-for all the changes in this version!
-
-Read on for all the changes in this version!
-
-[View full release notes →](release_0_5_5)
-
-````
-
 
 
 
 ## Older Releases
 
+- **[napari 0.5.5](release_0_5_5)** (December 2024) - This release continues the 0.5 tradition of churning out the bug fixes and enhancements, with 24 pull requests total in that category. If you are a us...
 - **[napari 0.5.4](release_0_5_4)** (September 2024) - Another release with a lot of bug fixes, but also some (more!) improvements to Shapes layer performance ([#7144](https://github.com/napari/napari/pull...
 - **[napari 0.5.3](release_0_5_3)** (August 2024) - This is primarily a bug-fix release, including fixes for a couple of nasty regressions in 0.5.0 ([#7184](https://github.com/napari/napari/pull/7184)) ...
 - **[napari 0.5.2](release_0_5_2)** (August 2024) - This is primarily a bug-fix release, but we snuck a couple of new features in there, including smoother, prettier, better rendering of Labels volumes ...
@@ -600,4 +587,3 @@ Read on for all the changes in this version!
 - **[napari 0.2.11](release_0_2_11)** - - Point face color and edge color are now settable as a property in a columnar   data table, mapped using a colormap (continuous values) or a color cy...
 - **[napari 0.2.9](release_0_2_9)** - - better support for surface timeseries (#831) - contrast limits slider popup on right click (#837)
 - **[napari 0.2.7](release_0_2_7)** - - Play button for animating axes now in the GUI - Threshold slider for much improved isosurface rendering
-
