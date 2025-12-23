@@ -71,6 +71,7 @@ The output was reviewed and edited for accuracy and clarity.
 
 # ---- Standard library imports
 import json
+import time
 from pathlib import Path
 
 import seedir as sd
@@ -756,6 +757,8 @@ def main(stubs=False):
         pydeps_args,
         mermaid_graph_base_settings,
     ) in ui_sections:
+        begin  = time.time()
+        print("generating docs for UI section:", section_name)
         if stubs:
             # Generate stubs content
             if not output_page.exists():  # Avoid overwriting existing files
@@ -772,6 +775,7 @@ def main(stubs=False):
                 pydeps_args,
                 mermaid_graph_base_settings,
             )
+        print("completed in %.2f seconds" % (time.time() - begin))
 
 
 if __name__ == '__main__':
