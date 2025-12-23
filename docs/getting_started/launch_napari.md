@@ -13,8 +13,7 @@ kernelspec:
 ---
 
 (launch)=
-
-# How to launch napari
+# Launch napari
 
 This tutorial assumes you have already installed napari.
 For help with installation see our [installation tutorial](napari-installation).
@@ -147,10 +146,10 @@ You can now run your script from the command line to launch the viewer with your
 python my_example_script.py
 ```
 
-The [examples gallery](../../gallery) consists of code examples which can be
+The [examples gallery](../gallery) consists of code examples which can be
 downloaded as `.py` (and `.ipynb` files) and run as above.
 
-![image: napari launched from a python script](../../_static/images/launch_script.png)
+![image: napari launched from a python script](../_static/images/launch_script.png)
 
 An advantage of launching `napari` from a python script
 is that you can preprocess your images and add multiple layers before displaying the viewer.
@@ -180,7 +179,7 @@ viewer, image_layer = napari.imshow(cells3d())
 loop](https://ipython.readthedocs.io/en/stable/config/eventloops.html#integrating-with-gui-event-loops)
 from IPython
 
-![image: napari launched from ipython](../../_static/images/launch_ipython.png)
+![image: napari launched from ipython](../_static/images/launch_ipython.png)
 
 An advantage of launching napari from an IPython console
 is that the you can continue to programmatically interact with the viewer from the IPython console,
@@ -197,7 +196,7 @@ You can also launch `napari` from a Jupyter notebook. The
 
 Below, we launch the [notebook example](https://github.com/napari/napari/blob/main/examples/notebook.ipynb) from a Jupyter notebook.
 
-![image: napari launched from a Jupyter notebook](../../_static/images/launch_jupyter.png)
+![image: napari launched from a Jupyter notebook](../_static/images/launch_jupyter.png)
 
 Similar to launching from the IPython console,
 an advantage of launching `napari` from a Jupyter notebook

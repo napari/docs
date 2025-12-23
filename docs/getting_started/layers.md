@@ -1,6 +1,5 @@
 (layers-glance)=
-
-# Layers at a glance
+# Layers: bringing data into napari
 
 {class}`~napari.layers` are the basic viewable objects that can be added to a
 viewer. **napari** supports seven main different layer types: `Image`, `Labels`,
