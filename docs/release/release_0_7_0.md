@@ -69,6 +69,7 @@ coming to one of our [community meetings](meeting-schedule).
 
 ## Improvements
 
+- perf: reallocate instead of clearing and repopulating set of selected points ([#6895](https://github.com/napari/napari/pull/6895))
 - Add a seed argument to built-in samples with random seeds ([#8317](https://github.com/napari/napari/pull/8317))
 - Enh: clarify Points selection keybinding behavior: select_in_slice not append by default, add new select_append_in_slice ([#8339](https://github.com/napari/napari/pull/8339))
 - Enh: Improve zarr reading by builtins ([#8355](https://github.com/napari/napari/pull/8355))
@@ -82,9 +83,11 @@ coming to one of our [community meetings](meeting-schedule).
 - Enh: Add label value to the labels tooltip ([#8495](https://github.com/napari/napari/pull/8495))
 - Use 10x10 pixels rect around mouse position to invalidate tooltip ([#8500](https://github.com/napari/napari/pull/8500))
 - Bump to vispy 0.16 ([#8501](https://github.com/napari/napari/pull/8501))
+- Avoid materializing property views when updating points highlight ([#8517](https://github.com/napari/napari/pull/8517))
 
 ## Performance
 
+- perf: reallocate instead of clearing and repopulating set of selected points ([#6895](https://github.com/napari/napari/pull/6895))
 - ENH: Speedup multiple shapes removal by concat'ing and np.deleting as a batch ([#8375](https://github.com/napari/napari/pull/8375))
 - Enh: simple speed up of Shapes `_extent_data` ([#8401](https://github.com/napari/napari/pull/8401))
 - Enh: performance optimizations to ShapeList outlines ([#8403](https://github.com/napari/napari/pull/8403))
@@ -98,6 +101,7 @@ coming to one of our [community meetings](meeting-schedule).
 - bugfix & refactor: Use events for shape multiselection ([#8332](https://github.com/napari/napari/pull/8332))
 - Fix conversion of vector images to coordinates of vectors ([#8366](https://github.com/napari/napari/pull/8366))
 - initialize label selection spinbox to a correct value ([#8382](https://github.com/napari/napari/pull/8382))
+- Bugfix: fix erratic Shape sorting ([#8408](https://github.com/napari/napari/pull/8408))
 - Bugfix: update magicgui layer combobox if a layer is renamed ([#8412](https://github.com/napari/napari/pull/8412))
 - bugfix: Ensure that edge_width is accounted for when using polygon lasso ([#8414](https://github.com/napari/napari/pull/8414))
 - Fix Shapes thumbnail z ordering ([#8417](https://github.com/napari/napari/pull/8417))
@@ -108,6 +112,7 @@ coming to one of our [community meetings](meeting-schedule).
 - Speed up the deletion of layers by deduplicating the function calls  ([#8479](https://github.com/napari/napari/pull/8479))
 - Bump to vispy 0.16 ([#8501](https://github.com/napari/napari/pull/8501))
 - Cap point highlight size ([#8504](https://github.com/napari/napari/pull/8504))
+- Bugfix: recurse through sub-fields when making connections in EventedSettings Config ([#8520](https://github.com/napari/napari/pull/8520))
 
 ## API Changes
 
@@ -130,9 +135,11 @@ coming to one of our [community meetings](meeting-schedule).
 - Reorg of the Usage section of the docs ([docs#881](https://github.com/napari/docs/pull/881))
 - Modernize type annotation to use builtins ([docs#883](https://github.com/napari/docs/pull/883))
 - Update dark mode colors ([docs#884](https://github.com/napari/docs/pull/884))
-- Remove outdated mentions about PySide2 in documentation ([docs#889](https://github.com/napari/docs/pull/889))
+- Remove outdated mentions about PySide2 in documentaion ([docs#889](https://github.com/napari/docs/pull/889))
 - Explain accessing dock widget wrappers ([docs#892](https://github.com/napari/docs/pull/892))
 - Add v0.7.0 release notes ([docs#893](https://github.com/napari/docs/pull/893))
+- Add npe1 deprecation info to release notes ([docs#894](https://github.com/napari/docs/pull/894))
+- Overwrite pooch downloader to fix Zenodo access problems ([docs#895](https://github.com/napari/docs/pull/895))
 
 ## Other Pull Requests
 
@@ -163,7 +170,7 @@ coming to one of our [community meetings](meeting-schedule).
 - Set custom font ([#8426](https://github.com/napari/napari/pull/8426))
 - Update `certifi`, `coverage`, `dask`, `fsspec`, `hypothesis`, `imageio`, `ipython`, `matplotlib`, `numpy`, `pandas`, `pillow`, `pint`, `psutil`, `psygnal`, `pydantic`, `pyqt6`, `pyside6`, `pytest`, `pytest-rerunfailures`, `pyyaml`, `rich`, `scipy`, `tensorstore`, `tifffile`, `toolz`, `virtualenv`, `wrapt`, `xarray` ([#8441](https://github.com/napari/napari/pull/8441))
 - [pre-commit.ci] pre-commit autoupdate ([#8442](https://github.com/napari/napari/pull/8442))
-- Stop updating python 3.10 docs constraints ([#8444](https://github.com/napari/napari/pull/8444))
+- Stop updating python 3.10 docs contstraints ([#8444](https://github.com/napari/napari/pull/8444))
 - Block problematic numba in docs constraints ([#8454](https://github.com/napari/napari/pull/8454))
 - Change link to getting started in Help menu ([#8455](https://github.com/napari/napari/pull/8455))
 - Update `coverage`, `dask`, `fsspec`, `hypothesis`, `ipython`, `matplotlib`, `pydantic`, `pyqt6`, `pyside6`, `pytest`, `tensorstore`, `tifffile`, `xarray` ([#8456](https://github.com/napari/napari/pull/8456))
@@ -175,7 +182,7 @@ coming to one of our [community meetings](meeting-schedule).
 - Move Ashley Anderson citation to core team section ([#8467](https://github.com/napari/napari/pull/8467))
 - Change `exclude` to `extend-exclude` in ruff config ([#8468](https://github.com/napari/napari/pull/8468))
 - Fix constraints upgrade scripts ([#8473](https://github.com/napari/napari/pull/8473))
-- Fix coverage upload in comprehensive tests ([#8474](https://github.com/napari/napari/pull/8474))
+- Fix coverage uplad in comprehensive tests ([#8474](https://github.com/napari/napari/pull/8474))
 - Remove building of npe1 menu items for Plugins and Sample menus ([#8476](https://github.com/napari/napari/pull/8476))
 - First emit warning, then replace projection mode when convert image to labels ([#8481](https://github.com/napari/napari/pull/8481))
 - Finish typing utils.progress ([#8485](https://github.com/napari/napari/pull/8485))
@@ -184,6 +191,10 @@ coming to one of our [community meetings](meeting-schedule).
 - [pre-commit.ci] pre-commit autoupdate ([#8491](https://github.com/napari/napari/pull/8491))
 - [pre-commit.ci] pre-commit autoupdate ([#8499](https://github.com/napari/napari/pull/8499))
 - Test on macos-15-intel without numba ([#8503](https://github.com/napari/napari/pull/8503))
+- Move constraints calculation to script, allow upgrade subset of packages ([#8505](https://github.com/napari/napari/pull/8505))
+- Workaround for Zenodo outage by downloading data from google drive.  ([#8508](https://github.com/napari/napari/pull/8508))
+- Fix overlay tests ([#8513](https://github.com/napari/napari/pull/8513))
+- [pre-commit.ci] pre-commit autoupdate ([#8519](https://github.com/napari/napari/pull/8519))
 - ci(dependabot): bump the github-actions group with 4 updates ([docs#856](https://github.com/napari/docs/pull/856))
 - Allow to redeploy docs after merge new commits to main branch ([docs#874](https://github.com/napari/docs/pull/874))
 - Add mdformat to pre-commit config ([docs#878](https://github.com/napari/docs/pull/878))
@@ -192,10 +203,11 @@ coming to one of our [community meetings](meeting-schedule).
 - ci(dependabot): bump the github-actions group with 3 updates ([docs#890](https://github.com/napari/docs/pull/890))
 
 
-## 14 authors added to this release (alphabetical)
+## 15 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
+- [Ashley Anderson](https://github.com/napari/napari/commits?author=aganders3) - @aganders3
 - [David Stansby](https://github.com/napari/napari/commits?author=dstansby) - @dstansby
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) ([docs](https://github.com/napari/docs/commits?author=DragaDoncila))  - @DragaDoncila
 - [Edward Andò](https://github.com/napari/napari/commits?author=edwardando) - @edwardando +
@@ -211,12 +223,13 @@ coming to one of our [community meetings](meeting-schedule).
 - [Yohsuke T. Fukai](https://github.com/napari/napari/commits?author=yfukai) - @yfukai +
 - [Zuzana Čočková](https://github.com/napari/napari/commits?author=cockovaz) - @cockovaz +
 
-## 20 reviewers added to this release (alphabetical)
+## 21 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
-- [Ashley Anderson](https://github.com/napari/docs/commits?author=aganders3) - @aganders3
+- [Ashley Anderson](https://github.com/napari/napari/commits?author=aganders3) - @aganders3
 - [Carol Willing](https://github.com/napari/docs/commits?author=willingc) - @willingc
+- [Daniel Zhang](https://github.com/napari/docs/commits?author=DanGonite57) - @DanGonite57
 - [David Stansby](https://github.com/napari/napari/commits?author=dstansby) - @dstansby
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) ([docs](https://github.com/napari/docs/commits?author=DragaDoncila))  - @DragaDoncila
 - [Edward Andò](https://github.com/napari/napari/commits?author=edwardando) - @edwardando +
