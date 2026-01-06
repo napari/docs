@@ -6,7 +6,7 @@ napari leverages the power of Python to enable fast and interactive browsing,
 annotation and analysis of large multi-dimensional images.
 
 ````{grid}
-```{grid-item-card} napari quick start
+```{grid-item-card} Quickstart
 :link: napari-quick-start
 :link-type: ref
 
