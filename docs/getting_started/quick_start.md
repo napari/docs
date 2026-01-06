@@ -189,7 +189,7 @@ props = regionprops(viewer.layers['Labels'].data)
 print('the cell area is: ', props[0].area)
 ```
 
-Alternatively, try [this plugin](https://www.napari-hub.org/plugins/napari-skimage-regionprops) to have the result in a table form.
+Alternatively, try [this plugin](https://napari-hub.org/plugins/napari-skimage.html) to use a GUI widget instead of the console.
 
 **Note:** the area reported by `regionprops` is the number of pixels. Check pixel size and convert the reported number to physical units.
 
