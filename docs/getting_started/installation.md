@@ -71,9 +71,9 @@ up a Python {{ python_version }} environment with `conda`:
 
 Choose one of the options below to install napari as a Python package.
 
-::::::\{tab-set}
+``````{tab-set}
 
-:::::\{tab-item} From conda-forge using conda
+`````{tab-item} From conda-forge using conda
 
 If you prefer to manage packages with conda, napari is available on the
 conda-forge channel. We also recommend this path for users of arm64 macOS machines
@@ -112,9 +112,9 @@ conda update -n base conda
 ```
 ````
 
-:::::
+`````
 
-:::::\{tab-item} From PyPI using pip
+`````{tab-item} From PyPI using pip
 
 napari can be installed from PyPI on most macOS, Linux, and Windows systems with Python
 {{ python_version_range }} using pip:
@@ -134,9 +134,9 @@ notation.)*
 
 *(See [Using constraints file](#using-constraints-files) for help installing older versions of napari)*
 
-:::::
+`````
 
-:::::\{tab-item} From the main branch on Github
+`````{tab-item} From the main branch on Github
 
 To install the latest version with yet to be released features from Github you can use pip:
 
@@ -144,8 +144,9 @@ To install the latest version with yet to be released features from Github you c
 python -m pip install "git+https://github.com/napari/napari.git#egg=napari[all]"
 ```
 
-:::::
-::::::
+`````
+
+``````
 
 ### Checking it worked
 
@@ -254,24 +255,24 @@ napari can be installed as a bundled app on [MacOS](#macos-bundle), [Windows](#w
 
 Click the tile below to jump to the installation instructions for your operating system.
 
-::::\{grid}
+````{grid}
 
-:::\{grid-item-card} macOS
+```{grid-item-card} macOS
 :link: macos-bundle
 :link-type: ref
-:::
+```
 
-:::\{grid-item-card} Windows
+```{grid-item-card} Windows
 :link: windows-bundle
 :link-type: ref
-:::
+```
 
-:::\{grid-item-card} Linux
+```{grid-item-card} Linux
 :link: linux-bundle
 :link-type: ref
-:::
+```
 
-::::
+````
 
 ```{note}
 If you are interested in an earlier version of the napari app, you may access those files by scrolling below the latest release on the [napari GitHub release page](https://github.com/napari/napari/releases). Each release (0.4.15 and above) will have an "Assets" section with the installers for Windows, macOS, and Linux.
@@ -436,13 +437,11 @@ To explore existing plugins, visit the [napari hub](https://napari-hub.org/). Fo
 
 ## Next steps
 
-- to start learning how to use napari, checkout our [getting started](launch) tutorial
-- if you are interested in
-  contributing to napari please check our [contributing
-  guidelines](napari-contributing)
-- if you are running into issues or bugs, please open a [new issue](https://github.com/napari/napari/issues/new/choose) on our [issue
-  tracker](https://github.com/napari/napari/issues)
-- if you want help using napari, we are a community partner on the [imagesc
+- To start learning how to use napari, checkout our [getting started](launch) tutorial
+- If you are interested in contributing to napari, please check our [contributing guidelines](napari-contributing)
+- If you are running into issues or bugs, please open a [new issue](https://github.com/napari/napari/issues/new/choose)
+  on our [issue tracker](https://github.com/napari/napari/issues)
+- If you want help using napari, we are a community partner on the [imagesc
   forum](https://forum.image.sc/tag/napari) and all usage support requests should
   be posted on the forum with the tag `napari`. We look forward to interacting
   with you there!
