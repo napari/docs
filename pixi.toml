@@ -7,12 +7,24 @@ name = "napari-docs"
 platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]  # All platforms
 version = "0.1.0"
 
-[dependencies]
+[feature.base.dependencies]
 python = "3.13.*"
 make = "*"
 
 [pypi-dependencies]
 napari = { git = "https://github.com/napari/napari.git", branch = "main", extras = ["dev", "pyqt", "docs"] }
+
+[feature.local-napari.pypi-dependencies]
+napari = { path = "../napari", editable = true, extras = ["dev", "pyqt", "docs"]}
+
+[feature.remote-napari.pypi-dependencies]
+napari = { git = "https://github.com/napari/napari.git", branch = "main", extras = ["dev", "pyqt", "docs"] }
+
+[environments]
+# The 'dev' environment uses the local feature
+local-napari = { features = ["local-napari", "base"], no-default-feature = true }
+
+default = { features = ["remote-napari", "base"], no-default-feature = true}
 
 [tasks]
 # Clean tasks
