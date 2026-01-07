@@ -11,9 +11,6 @@ version = "0.1.0"
 python = "3.13.*"
 make = "*"
 
-[pypi-dependencies]
-napari = { git = "https://github.com/napari/napari.git", branch = "main", extras = ["dev", "pyqt", "docs"] }
-
 [feature.local-napari.pypi-dependencies]
 napari = { path = "../napari", editable = true, extras = ["dev", "pyqt", "docs"]}
 
