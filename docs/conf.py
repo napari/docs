@@ -80,7 +80,7 @@ json_url = 'https://napari.org/dev/_static/version_switcher.json'
 
 # Path to static files, images, favicons, logos, css, and extra templates
 html_static_path = ['_static']
-html_logo = '_static/images/logo.png'
+html_logo = '_static/images/logo.svg'
 html_css_files = [
     'custom.css',
 ]
@@ -391,7 +391,7 @@ sphinx_gallery_conf = {
     'gallery_dirs': 'gallery',  # path to where to save gallery generated output
     'filename_pattern': '/*.py',
     'ignore_pattern': 'README.rst|/*_.py',
-    'default_thumb_file': Path(__file__).parent / '_static' / 'images' / 'logo.png',
+    'default_thumb_file': Path(__file__).parent / '_static' / 'images' / 'logo.svg',
     'plot_gallery': "'True'",  # https://github.com/sphinx-gallery/sphinx-gallery/pull/304/files
     'download_all_examples': False,
     'min_reported_time': 10,
