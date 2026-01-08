@@ -18,9 +18,11 @@ napari = { path = "../napari", editable = true, extras = ["dev", "pyqt", "docs"]
 napari = { git = "https://github.com/napari/napari.git", branch = "main", extras = ["dev", "pyqt", "docs"] }
 
 [environments]
-# The 'dev' environment uses the local feature
+# to run with local napari source code, that is cloned alongside the docs
+# e.g., pixi run -e local-napari html,
+# where `-e local-napari` specifies this environment
+# if no environment is specified, the default is used (remote-napari)
 local-napari = { features = ["local-napari", "base"], no-default-feature = true }
-
 default = { features = ["remote-napari", "base"], no-default-feature = true}
 
 [tasks]
