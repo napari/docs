@@ -7,12 +7,23 @@ name = "napari-docs"
 platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]  # All platforms
 version = "0.1.0"
 
-[dependencies]
+[feature.base.dependencies]
 python = "3.13.*"
 make = "*"
 
-[pypi-dependencies]
+[feature.local-napari.pypi-dependencies]
+napari = { path = "../napari", editable = true, extras = ["dev", "pyqt", "docs"]}
+
+[feature.remote-napari.pypi-dependencies]
 napari = { git = "https://github.com/napari/napari.git", branch = "main", extras = ["dev", "pyqt", "docs"] }
+
+[environments]
+# to run with local napari source code, that is cloned alongside the docs
+# e.g., pixi run -e local-napari html,
+# where `-e local-napari` specifies this environment
+# if no environment is specified, the default is used (remote-napari)
+local-napari = { features = ["local-napari", "base"], no-default-feature = true }
+default = { features = ["remote-napari", "base"], no-default-feature = true}
 
 [tasks]
 # Clean tasks
