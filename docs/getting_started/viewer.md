@@ -13,15 +13,13 @@ kernelspec:
 
 (viewer-tutorial)=
 
-# Viewer tutorial
+# Tour of the napari viewer
 
 +++
 
-Welcome to the tutorial on the **napari** viewer!
+This tour assumes you have already installed **napari** and know how to launch the viewer. For help with installation see our [installation](napari-installation) tutorial. For help launching the viewer see our [getting started](launch) tutorial.
 
-This tutorial assumes you have already installed **napari** and know how to launch the viewer. For help with installation see our [installation](napari-installation) tutorial. For help launching the viewer see our [getting started](launch) tutorial.
-
-This tutorial will teach you about the **napari** viewer, including how to use its graphical user interface (GUI) and how the data within it is organized. At the end of the tutorial, you should understand both the layout of the viewer on the screen and the data inside of it.
+This tour will teach you about the **napari** viewer, including how to use its graphical user interface (GUI) and how the data within it is organized. At the end, you should understand both the layout of the viewer on the screen and the data inside of it.
 
 +++
 
@@ -113,7 +111,7 @@ The viewer is organized into a few key areas which are explained in the next sec
 
 The image below has the areas of the viewer labeled:
 
-![image: viewer layout](../../_static/images/Viewer-with-arrows.png)
+![image: viewer layout](../_static/images/Viewer-with-arrows.png)
 
 ```{admonition} Tip: Right click advanced option indicator
 ---
@@ -121,7 +119,7 @@ class: tip
 ---
 If you see a button with a chevron mark in the lower right corner, it means you can click it with the right mouse button to bring up more advanced options!
 
-![buttons with right click indicators](../../_static/images/button-right-click-indicator.png)
+![buttons with right click indicators](../_static/images/button-right-click-indicator.png)
 ```
 
 We'll go through each of these in the next sections.
@@ -161,9 +159,9 @@ The **canvas** is in the center of the viewer and contains the visual display of
 ```{raw} html
 <figure>
   <video width="100%" controls autoplay loop muted playsinline>
-    <source src="../../_static/images/viewer-pan-zoom.webm" type="video/webm" />
-    <source src="../../_static/images/viewer-pan-zoom.mp4" type="video/mp4" />
-    <img src="../../_static/images/viewer-pan-zoom.jpg"
+    <source src="../_static/images/viewer-pan-zoom.webm" type="video/webm" />
+    <source src="../_static/images/viewer-pan-zoom.mp4" type="video/mp4" />
+    <img src="../_static/images/viewer-pan-zoom.jpg"
       title="Your browser does not support the video tag"
       alt="Demo of pan and zoom functionality in napari."
     >
@@ -433,7 +431,7 @@ Below the **layer list** is a row containing these buttons:
 - Grid display
 - Home
 
-![image: Viewer buttons](../../_static/images/viewer-buttons.png)
+![image: Viewer buttons](../_static/images/viewer-buttons.png)
 
 Each one is explained below.
 
@@ -448,14 +446,28 @@ The console (when available) appears at the bottom of the viewer as shown below:
 
 +++
 
-![image: console within napari](../../_static/images/console.png)
+![image: console within napari](../_static/images/console.png)
 
 +++
 
 ### Toggle 2D/3D button
 
 The second button from the left is the 2D/3D button which toggles between `2D` and `3D` renderings of the data.
-For example, run the following code:
+
+For example, open the "Cells (3D+2Ch)" sample from the `File -> Open Sample` menu. Now, by clicking the 2D/3D button,
+you can switch to viewing the 3D rendering.
+
+![Open Cells 3D+2Ch sample image](../_static/images/open_3d.png)
+
+![Toggle 3D mode for Cells image](../_static/images/toggle_3d_cells.png)
+
+![Cells 3D rendering](../_static/images/3d_cells.png)
+
+Note that the icon will change to the following, to indicate 3D mode:
+
+![image: 3D_button](../_static/images/3D-button.png)
+
+You can achieve the same result by running the following code in the console:
 
 ```{code-cell} python
 ---
@@ -466,19 +478,13 @@ from scipy import ndimage as ndi
 
 import napari
 
-
 blobs = data.binary_blobs(length=128, volume_fraction=0.1, n_dim=3)
 viewer, image_layer = napari.imshow(blobs.astype(float), name='blobs')
 labeled = ndi.label(blobs)[0]
 viewer.add_labels(labeled, name='blob ID')
 ```
 
-then, by clicking the 2D/3D button, you can switch to viewing the 3D rendering. Note that the icon will change to
-the following, to indicate 3D mode:
-
-![image: 3D_button](../../_static/images/3D-button.png)
-
-This mode can be entered programmatically using:
+Then, enter 3D mode programmatically using:
 
 ```python
 viewer.dims.ndisplay = 3
@@ -529,7 +535,7 @@ will then show you the `ZY` slice. You can also right-click this button to pop-u
 a widget that allows you to re-order the dimensions by drag-and-drop or lock a
 dimension, by clicking on the padlock icon:
 
-![image: roll dimensions widget with padlock icons](../../_static/images/dims_roll_lock_widget.png){ w=200px }
+![image: roll dimensions widget with padlock icons](../_static/images/dims_roll_lock_widget.png){ w=200px }
 
 Locking prevents a dimension from being rolled (reordered). This can be particularly
 useful, for example, with a `3D+time` dataset where you may want to fix the time dimension,
@@ -570,9 +576,9 @@ The fifth button, the grid button, toggles between the default layer mode and gr
 ```{raw} html
 <figure>
   <video width="100%" controls autoplay loop muted playsinline>
-    <source src="../../_static/images/grid-mode.webm" type="video/webm" />
-    <source src="../../_static/images/grid-mode.mp4" type="video/mp4" />
-    <img src="../../_static/images/grid-mode.png"
+    <source src="../_static/images/grid-mode.webm" type="video/webm" />
+    <source src="../_static/images/grid-mode.mp4" type="video/mp4" />
+    <img src="../_static/images/grid-mode.png"
       title="Your browser does not support the video tag"
       alt="a screen recording showing the the Kidney example toggling between normal mode and grid mode"
     >
@@ -586,7 +592,7 @@ The distribution of the layers in the grid can be altered according to the setti
 1. Grid width/height: By default, -1, which automatically determines the grid layout.
 1. Grid spacing: The value will adjust the spacing between grid views either proportionally to the layer extents (i.e. \[0,1)) or as a pixel value \[1,1500) and will automatically adjust if needed.
 
-![image: Grid Mode Widget](../../_static/images/grid-widget.png)
+![image: Grid Mode Widget](../_static/images/grid-widget.png)
 
 ### Home button
 
