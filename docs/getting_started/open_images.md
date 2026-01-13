@@ -22,6 +22,7 @@ napari natively supports tiff and many other standard formats like png, jpg etc.
 For example you can try with with your own images or by downloading [this ome tiff file](https://downloads.openmicroscopy.org/images/OME-TIFF/2016-06/MitoCheck/00001_01.ome.tiff) ([CC BY 4.0 license](https://downloads.openmicroscopy.org/images/OME-TIFF/2016-06/MitoCheck/readme.txt)) and opening it in napari via drag-and-drop or the file dialog:
 
 ```{code-cell} ipython3
+:execution: {"timeout": 300}
 :tags: [remove-cell]
 
 import pooch
