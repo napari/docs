@@ -48,7 +48,7 @@ width = 1200
 viewer = napari.Viewer()
 viewer.open(file_path_tiff)
 viewer.window.resize(width, height)
-nbscreenshot(viewer)
+nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel OME-TIFF image of MitoCheck cells.")
 ```
 
 As can be seen above, the default importer correctly interpreted the data to be multi-dimensional by adding a slider, allowing you to scroll through the data (in this case, time, but napari is dimension-agnostic). 
@@ -100,7 +100,7 @@ file_path_czi = pooch.retrieve(
 viewer = napari.Viewer()
 viewer.open(file_path_czi, plugin='ndevio')
 viewer.window.resize(width, height)
-nbscreenshot(viewer)
+nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel CZI image opened via ndevio of Ostrinia nubilalis cells.")
 ```
 
 On top of just allowing to open file formats, some plugins also provide additional tools, for example to explore metadata, offer import options, etc. The ndevio plugin for example provides widgets to export data and explore basic metadata via the `Plugins -> ndevio -> I/O utilities` menu. Here we see that valuable information about pixel size was recovered from the czi file metadata:
@@ -115,12 +115,12 @@ qwidget = widget.widget()
 scroll_area = qwidget.findChild(QScrollArea)
 scroll_area.verticalScrollBar().setValue(scroll_area.verticalScrollBar().maximum())
 plugin_widget.update_metadata_from_layer()
-nbscreenshot(viewer)
+nbscreenshot(viewer, alt_text="napari viewer showing the ndevio plugin dock widget with metadata.")
 ```
 
 If multiple readers are available for a given format, when opening an image via the menu `File -> Open` you will be prompted to select which plugin to use. If you have set a default you can also adjust it in `Settings -> Preferences -> Plugins -> File Readers` by entering the desired extension (e.g. `.czi`, don't forget the `.`) and selecting the preferred plugin from the dropdown.
 
-![Open sample image](../_static/images/plugin-reader-choice.png)
+![Plugin reader options](../_static/images/plugin-reader-choice.png)
 
 +++
 
@@ -150,7 +150,7 @@ viewer = napari.Viewer()
 viewer.open(file_path_ply, plugin='napari-meshio')
 viewer.dims.ndisplay = 3
 viewer.camera.angles = (92, -24, 15)
-nbscreenshot(viewer)
+nbscreenshot(viewer, alt_text="napari viewer showing a 3D mesh of an airplane opened via napari-meshio.")
 ```
 
 +++ {"vscode": {"languageId": "plaintext"}}
@@ -187,7 +187,7 @@ file_path_tiff2 = pooch.retrieve(
 
 viewer = napari.Viewer()
 viewer.open(file_path_tiff2)
-nbscreenshot(viewer)
+nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells.")
 ```
 
 Instead we can now first read the data for example with `imageio`, and add it to the viewer by explicitly specifying the channel axis:
@@ -205,7 +205,7 @@ viewer.add_image(image, channel_axis=0);
 ```{code-cell} ipython3
 :tags: [remove-input]
 
-nbscreenshot(viewer)
+nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells with a layer per channel.")
 ```
 
 Note that different reader plugins might interpret your data in different ways. Withe the same data as above where the default `imageio` reader failed to interpret the channels correctly, the `ndevio` plugin correctly identified the channels and assigned them separate layers:
@@ -213,7 +213,7 @@ Note that different reader plugins might interpret your data in different ways. 
 ```{code-cell} ipython3
 viewer = napari.Viewer()
 viewer.open(file_path_tiff2, plugin='ndevio')
-nbscreenshot(viewer)
+nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells opened via ndevio.")
 ```
 
 In the case of badly interpreted dimensions, one can also reshape the data using certain plugins. For example the [napari-skimage](https://napari-hub.org/plugins/napari-skimage.html) plugin provides a tool to reshape layers via the `Plugins -> napari skimage -> Axis operations` menu. Here we use the `swap axes` function to exchange the X and Y axes:
@@ -236,5 +236,5 @@ viewer.grid.enabled = True
 :tags: [remove-input]
 
 viewer.reset_view()
-nbscreenshot(viewer)
+nbscreenshot(viewer, alt_text="napari viewer showing twice the same multi-channel TIFF images in grid mode, the second with X and Y axes swapped via napari-skimage.")
 ```
