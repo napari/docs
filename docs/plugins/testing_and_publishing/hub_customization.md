@@ -106,6 +106,8 @@ readme = "README.md"
 The hub will render your README with proper Markdown formatting. If you begin with a Level 1 heading, it will be treated as a title and removed from the description. Use Level 2 headings to create sections - the hub will automatically generate sidebar navigation from them.
 
 ```{tip}
+For best results, follow the [writing an effective description](#writing-an-effective-description) guidelines below.
+
 You can provide a hub-specific description using the `.napari-hub/DESCRIPTION.md` file in your repository (see [Hub-specific description](#hub-specific-description)).
 ```
 
@@ -317,7 +319,7 @@ visibility: public  # or "hidden"
 Even `hidden` plugins are installable via the napari plugin manager. To completely remove your plugin from napari and the hub, see [Removing your plugin](#removing-your-plugin-from-napari-and-the-hub).
 ```
 
-## Hub-specific configuration (.napari-hub/)
+## Hub-specific configuration
 
 For fine-grained control over your hub listing, create a `.napari-hub/` folder in your repository root. The hub will only access this folder if you've specified a "Source Code" URL pointing to your GitHub repository.
 
@@ -378,6 +380,26 @@ authors:
 
 ```{warning}
 Some fields in `config.yml` are being migrated to the npe2 manifest. Image modality and supported data may eventually move to manifest-defined categories. Check the [napari hub wiki](https://github.com/chanzuckerberg/napari-hub/wiki) for the latest information.
+```
+
+## Writing an effective description
+
+Whether using your README or a hub-specific description, follow these guidelines:
+
+**What to include:**
+
+- **Clear summary**: Start with who the plugin is for, what data it works with, and what problems it solves
+- **Quick start example**: Include images, GIFs, or videos showing the plugin in action
+- **Relevant keywords**: Mention key terms users might search for (e.g., "segmentation", "3D", "time series")
+- **Section headings**: Use Level 2 headings (`##`) to organize content - these create navigation links
+
+**What to avoid:**
+
+- **Badges and shields**: These distract hub users; relevant info (like test status) is shown elsewhere
+- **GitHub-specific content**: Focus on end users, not developers
+
+```{tip}
+See the [sample data contribution guide](contributions-sample-data) to include example data with your plugin that users can immediately try.
 ```
 
 ## Citation information
