@@ -81,7 +81,7 @@ This basics installation allows us to open ome-tiff, ome-zarr, imageio etc. via 
 pip install bioio-czi
 ```
 
-Afte restarting napari, we are now allowed to just drag and drop a czi file in the viewer to open it. You can try with [this example](https://ftp.ebi.ac.uk/biostudies/fire/S-BSST/601/S-BSST601/Files/Supplementary%20data%201.czi) from the [BioImage Archive](https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BSST601?query=czi) (CCO license):
+After restarting napari, we are now allowed to just drag and drop a czi file in the viewer to open it. You can try with [this example](https://ftp.ebi.ac.uk/biostudies/fire/S-BSST/601/S-BSST601/Files/Supplementary%20data%201.czi) from the [BioImage Archive](https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BSST601?query=czi) (CCO license):
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -208,7 +208,7 @@ viewer.add_image(image, channel_axis=0);
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells with a layer per channel.")
 ```
 
-Note that different reader plugins might interpret your data in different ways. Withe the same data as above where the default `imageio` reader failed to interpret the channels correctly, the `ndevio` plugin correctly identified the channels and assigned them separate layers:
+Note that different reader plugins might interpret your data in different ways. With the same data as above where the default `imageio` reader failed to interpret the channels correctly, the `ndevio` plugin correctly identified the channels and assigned them separate layers:
 
 ```{code-cell} ipython3
 viewer = napari.Viewer()
