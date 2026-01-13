@@ -153,6 +153,7 @@ subtrees:
         - entries:
           - file: plugins/testing_and_publishing/test
           - file: plugins/testing_and_publishing/deploy
+          - file: plugins/testing_and_publishing/hub_customization
           - file: plugins/testing_workshop_docs/index
             subtrees:
             - entries:
