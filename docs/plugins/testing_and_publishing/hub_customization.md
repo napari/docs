@@ -558,7 +558,7 @@ Choose categories that accurately reflect your plugin's functionality to help us
 
 ### Keep dependencies minimal
 
-Only include necessary dependencies in your base requirements. Use optional dpendencies for features like:
+Only include necessary dependencies in your base requirements. Use optional dependencies for features like:
 
 - Specific backends or accelerators
 
