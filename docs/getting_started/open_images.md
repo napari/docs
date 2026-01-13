@@ -72,7 +72,7 @@ There are a few examples of plugins bundling multiple readers. One example is [n
 In the example below we illustrate how to use ndevio to open a Zeiss czi file. First we  need to install ndevio either via the Plugin manager or via pip:
 
 ```bash
-pip install napari-ndevio
+pip install ndevio
 ```
 
 This basics installation allows us to open ome-tiff, ome-zarr, imageio etc. via the plugin. Now we need to install the additional bioio reader for czi files:
