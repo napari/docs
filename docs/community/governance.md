@@ -16,6 +16,13 @@ resolved.
 
 ## Roles and responsibilities
 
+The napari organization and software ecosystem is supported by a broad community
+of users, our contributors, and the napari team. The napari team is responsible
+for all project governance and is anchored by two bodies: the napari core
+team members, and the napari steering council. In this section, we define
+the different bodies supporting the project, and describe the roles and responsibilies
+of the napari core team members and the steering council.
+
 ### The community
 
 The napari community consists of anyone using or working with the project
@@ -31,15 +38,28 @@ project in concrete ways, such as:
 - reporting issues on our
   [GitHub issues page](https://github.com/napari/napari/issues);
 - proposing a change to the documentation, or
-  tutorials via a [GitHub pull request](https://github.com/napari/napari/pulls);
-- discussing the design of the napari or its tutorials on in existing
+  tutorials via a [GitHub pull request](https://github.com/napari/docs/pulls);
+- discussing the design of napari or its tutorials on in existing
   [issues](https://github.com/napari/napari/issues) and
   [pull requests](https://github.com/napari/napari/pulls);
 - discussing examples or use cases on the
   [image.sc forum](https://forum.image.sc/tag/napari) under the #napari tag; or
 - reviewing [open pull requests](https://github.com/napari/napari/pulls)
 
-among other possibilities. Any community member can become a contributor, and
+among other possibilities.
+
+Note that community members proposing code changes, reporting issues, discussing design,
+or reviewing pull requests for **any** project in the [napari GitHub organization](https://github.com/napari) are also deemed contributors. Some of the associated projects community members
+may be interested in are:
+
+- The [napari plugin manager]() for installing plugins within the viewer
+- The [napari packaging]() project that handles our one-click bundled installer
+- The [napari hub]() website for browsing available plugins
+- The [napari plugin template]() for quickly generating a plugin from scratch
+- Plugins maintained by the napari team such as [napari-tiff]() for reading and writing TIFF files,
+and [napari-metadata]() for displaying and editing layer metadata
+
+Any community member can become a contributor, and
 all are encouraged to do so. By contributing to the project, community members
 can directly help to shape its future.
 
@@ -79,20 +99,42 @@ For a full list of core team members see our [About the project and team](team) 
 
 ### Steering council
 
-The Steering Council (SC) members are primarily core team members who have additional
-responsibilities to ensure the smooth running of the project. SC members are
+The purpose of the Steering Council (SC) is to ensure smooth progress from the big-picture
+perspective. The SC is ultimately responsible for all strategic and operational
+dimensions of the napari project. This includes, but is not limited to all legal, financial
+and operational decisions. The SC actively works to carry out the napari project's mission,
+in accordance with its values and with the support of the core team members. SC members are
 expected to participate in strategic planning, approve changes to the
 governance model, and make decisions about funding granted to the project
-itself. (Funding to community members is theirs to pursue and manage). The
-purpose of the SC is to ensure smooth progress from the big-picture
-perspective. Changes that impact the full project require analysis informed by
-long experience with both the project and the larger ecosystem. When the core
-team member community (including the SC members) fails to reach such a consensus
-in a reasonable timeframe, the SC is the entity that resolves the issue.
+itself. 
 
-Members of the SC also have the "owner" role within the [napari GitHub organization](https://github.com/napari)
+The SC has the responsibility to:
+
+- Pursue, raise, allocate and manage all project funding.
+- Coordinate, manage and select candidates for all roles and personnel employed or contracted
+to the napari project.
+- Manage all legal aspects of the napari project, such as contracts, compliance and copyright,
+with support from NumFOCUS.
+- Manage the project's relationship with NumFOCUS as a Sponsored Project,
+- Ensure the timely delivery of all deliverables, milestones, reports and other
+commitments associated with restricted funding such as grants or contracts.
+- Coordinate and oversee the delivery of the project development roadmap, in collaboration with
+the core team members and the broader community.
+- Hold a monthly meeting, and distribute summaries of these meetings to the core team members.
+- Ensure the publication of an annual State of Napari report that provides a summary of the
+previous year's activities across the entire napari community, and highlights the current and
+future direction of the project.
+- Members of the SC also have the "owner" role within the [napari GitHub organization](https://github.com/napari)
 and are ultimately responsible for managing the napari GitHub account, the [@napari@fosstodon.org](https://fosstodon.org/@napari)
 Mastodon account, the [napari website](https://napari.org), and other similar napari owned resources.
+- When the core team member community (including the SC members) fails to reach such a consensus in
+a reasonable timeframe, the SC is the entity that resolves the issue.
+
+SC members may be core team members but can also be nominated from the community at large. Changes 
+that impact the full project require analysis informed by long experience with both the project
+and the larger ecosystem. As such, SC members should be community members who have interacted heavily
+with the project and its ecosystem, whether they be users, plugin developers, direct napari contributors,
+or involved with the project in other ways e.g. attending community events, supporting users of napari, etc.
 
 The SC will be no less than three members and no more than five members,
 with a strong preference for an odd number to ensure a simple majority vote
@@ -101,7 +143,7 @@ diversity of voices. All deadlocked votes of the SC will be postponed until
 there is an odd number of members and another vote can be held. A majority of the
 SC will not be employed by the same entity. One seat on the SC is reserved
 for a member elected by the [Institutional and Funding Partner Advisory Council](#institutional-and-funding-partners),
-as detailed below. This member need not be an existing core team member.
+as detailed below.
 
 The SC membership, including the Institutional and Funding Partner (IFP) seat, is revisited every January.
 SC members who do not actively engage with the SC duties are expected to resign. New members for
