@@ -103,7 +103,7 @@ The purpose of the Steering Council (SC) is to ensure smooth progress from the b
 perspective. The SC is ultimately responsible for all strategic and operational
 dimensions of the napari project. This includes, but is not limited to all legal, financial
 and operational decisions. The SC actively works to carry out the napari project's mission,
-in accordance with its values and with the support of the core team members. SC members are
+in accordance with the project's values and with the support of the core team members. SC members are
 expected to participate in strategic planning, approve changes to the
 governance model, and make decisions about funding granted to the project
 itself. 
@@ -127,7 +127,7 @@ future direction of the project.
 - Members of the SC also have the "owner" role within the [napari GitHub organization](https://github.com/napari)
 and are ultimately responsible for managing the napari GitHub account, the [@napari@fosstodon.org](https://fosstodon.org/@napari)
 Mastodon account, the [napari website](https://napari.org), and other similar napari owned resources.
-- When the core team member community (including the SC members) fails to reach such a consensus in
+- When the core team member community (including the SC members) fails to reach a consensus in
 a reasonable timeframe, the SC is the entity that resolves the issue.
 
 SC members may be core team members but can also be nominated from the community at large. Changes 
