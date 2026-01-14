@@ -780,6 +780,9 @@ def main(stubs=False):
 
 if __name__ == '__main__':
     import argparse
+    import sys
+
+    sys.setrecursionlimit(5000)
 
     parser = argparse.ArgumentParser(description='Update UI sections docs.')
     parser.add_argument(
