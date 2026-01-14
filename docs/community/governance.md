@@ -49,15 +49,15 @@ project in concrete ways, such as:
 among other possibilities.
 
 Note that community members proposing code changes, reporting issues, discussing design,
-or reviewing pull requests for **any** project in the [napari GitHub organization](https://github.com/napari) are also deemed contributors. Some of the associated projects community members
-may be interested in are:
+or reviewing pull requests for **any** project in the [napari GitHub organization](https://github.com/napari) are also deemed contributors.
+Some of the associated projects community members may be interested in are:
 
-- The [napari plugin manager]() for installing plugins within the viewer
-- The [napari packaging]() project that handles our one-click bundled installer
-- The [napari hub]() website for browsing available plugins
-- The [napari plugin template]() for quickly generating a plugin from scratch
-- Plugins maintained by the napari team such as [napari-tiff]() for reading and writing TIFF files,
-and [napari-metadata]() for displaying and editing layer metadata
+- The [napari plugin manager](https://github.com/napari/napari-plugin-manager) for installing plugins within the viewer
+- The [napari packaging](https://github.com/napari/packaging) project that handles our one-click bundled installer
+- The [napari hub](https://github.com/napari/hub-lite) website for browsing available plugins
+- The [napari plugin template](https://github.com/napari/napari-plugin-template) for quickly generating a plugin from scratch
+- Plugins maintained by the napari team such as [napari-tiff](https://github.com/napari/napari-tiff) for reading and writing TIFF files,
+and [napari-metadata](https://github.com/napari/napari-metadata) for displaying and editing layer metadata
 
 Any community member can become a contributor, and
 all are encouraged to do so. By contributing to the project, community members
