@@ -76,7 +76,7 @@ In the example below we illustrate how to use ndevio to open a Zeiss czi file. F
 pip install ndevio
 ```
 
-This basics installation allows us to open ome-tiff, ome-zarr, imageio etc. via the plugin. Now we need to install the additional bioio reader for czi files:
+This basic installation allows us to open ome-tiff, ome-zarr, imageio etc. via the plugin. Now we need to install the additional bioio reader for czi files:
 
 ```bash
 pip install bioio-czi
