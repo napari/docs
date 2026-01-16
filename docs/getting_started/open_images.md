@@ -66,7 +66,7 @@ There are two possibilities for reader plugins: they can either be specialized i
 
 +++
 
-### Generalistic reader plugins
+### General-purpose reader plugins
 
 There are a few examples of plugins bundling multiple readers. One example is [ndevio](https://napari-hub.org/plugins/ndevio.html) which wraps the family of [bioio](https://bioio.readthedocs.io/en/latest/) packages to provide support for multiple microscopy file formats. Often such bundled reader plugins come with a set of formats supported by default, and allow the users to add optional formats, typically by installing additional dependencies. 
 
