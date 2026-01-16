@@ -17,7 +17,7 @@ There are multiple ways to open images in napari, depending on the image format 
 
 ## Default napari reader
 
-napari natively supports tiff and many other standard formats like png, jpg etc. When drag and dropping files or using the `File -> Open Sample` menu with such formats, images will be read via the [imageio](https://imageio.readthedocs.io/en/stable/) library and appear in the viewer.
+napari natively supports tiff and many other standard formats like png, jpg etc. When drag-and-dropping files, using one of the `File -> Open File/Folder` menu options, or using the `File -> Open Sample` menu with such formats, images will be read via the [imageio](https://imageio.readthedocs.io/en/stable/) library and appear in the viewer.
 
 For example you can try with with your own images or by downloading [this ome tiff file](https://downloads.openmicroscopy.org/images/OME-TIFF/2016-06/MitoCheck/00001_01.ome.tiff) ([CC BY 4.0 license](https://downloads.openmicroscopy.org/images/OME-TIFF/2016-06/MitoCheck/readme.txt)) and opening it in napari via drag-and-drop or the file dialog:
 
