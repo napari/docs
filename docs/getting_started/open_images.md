@@ -119,7 +119,7 @@ plugin_widget.update_metadata_from_layer()
 nbscreenshot(viewer, alt_text="napari viewer showing the ndevio plugin dock widget with metadata.")
 ```
 
-If multiple readers are available for a given format, when opening an image via the menu `File -> Open` you will be prompted to select which plugin to use. If you have set a default you can also adjust it in `Settings -> Preferences -> Plugins -> File Readers` by entering the desired extension (e.g. `.czi`, don't forget the `.`) and selecting the preferred plugin from the dropdown.
+If multiple readers are available for a given format, when drag-and-dropping a file, or opening an image via the menu `File -> Open` you will be prompted to select which plugin to use. If you have set a default you can also adjust it in `Settings -> Preferences -> Plugins -> File Readers` by entering the desired extension (e.g. `.czi`, don't forget the `.`) and selecting the preferred plugin from the dropdown.
 
 ![Plugin reader options](../_static/images/plugin-reader-choice.png)
 
