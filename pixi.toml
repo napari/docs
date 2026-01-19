@@ -4,7 +4,7 @@ authors = ["napari developers"]
 channels = ["conda-forge"]
 name = "napari-docs"
 
-platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]  # All platforms
+platforms = ["win-64", "linux-64", "osx-arm64"]  # All platforms
 version = "0.1.0"
 
 [feature.base.dependencies]
