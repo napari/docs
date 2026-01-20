@@ -151,7 +151,7 @@ coming to one of our [community meetings](meeting-schedule).
 - Refactor contributor docs: prioritize pixi for local builds ([docs#880](https://github.com/napari/docs/pull/880))
 - Modernize type annotation to use builtins ([docs#883](https://github.com/napari/docs/pull/883))
 - Update dark mode colors ([docs#884](https://github.com/napari/docs/pull/884))
-- Remove outdated mentions about PySide2 in documentaion ([docs#889](https://github.com/napari/docs/pull/889))
+- Remove outdated mentions about PySide2 in documentation ([docs#889](https://github.com/napari/docs/pull/889))
 - Explain accessing dock widget wrappers ([docs#892](https://github.com/napari/docs/pull/892))
 - Add v0.7.0 release notes ([docs#893](https://github.com/napari/docs/pull/893))
 - Add npe1 deprecation info to release notes ([docs#894](https://github.com/napari/docs/pull/894))
