@@ -47,11 +47,11 @@ our [Plugins Zulip chat
 channel](https://napari.zulipchat.com/#narrow/channel/309872-plugins) or by
 coming to one of our [community meetings](meeting-schedule).
 
-### Grid overlay - bigger, better, faster 📈
+### Grid mode - bigger, better, faster 📈
 
-If you've been playing with our new grid overlays since 0.6.5, you 
+If you've been playing with our new grid mode since 0.6.5, you 
 may have stumbled into performance issues when progressively adding
-new layers to the viewer. Stumble no longer! Our grid overlays are now wicked fast and buttery smooth 🧈.
+new layers to the viewer. Stumble no longer! Our grid mode is now wicked fast and buttery smooth 🧈.
 
 We've also fixed some issues with mouse interactions and deleting
 layers, so you can tile to your heart's content. Try it out:
