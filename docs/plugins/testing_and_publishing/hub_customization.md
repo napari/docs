@@ -6,11 +6,10 @@ Once your plugin is published to [PyPI](https://pypi.org/) with the `Framework :
 
 ## Overview
 
-The napari hub displays information about your plugin from three sources:
+The napari hub displays information about your plugin from two main sources:
 
 1. **PyPI** - Core package metadata from your `pyproject.toml`
 2. **npe2 manifest** - Plugin-specific metadata from your `napari.yaml` file
-3. **GitHub** - Optional `.napari-hub/` customization files in your repository
 
 By understanding how these sources work together, you can ensure your plugin appears with accurate, appealing information on the hub.
 
@@ -60,7 +59,7 @@ dynamic = ["version"]
 
 #### Authors
 
-Plugin authors displayed on your listing. The hub will use this information unless you provide a `CITATION.cff` file (see [Citation information](#citation-information)).
+Plugin authors displayed on your listing. The hub will display this information on the search page and on your plugin's page.
 
 ```toml
 [project]
@@ -72,7 +71,7 @@ authors = [
 
 #### License
 
-The license under which your plugin is distributed. Use a valid [SPDX identifier](https://spdx.org/licenses/) or the string `"Other"`. The hub supports filtering by [OSI-approved](https://opensource.org/licenses) open source licenses. Modern Python packaging uses the [`license-expression` format](https://packaging.python.org/en/latest/specifications/core-metadata/#license-expression) for specifying licenses.
+The license under which your plugin is distributed. Use a valid [SPDX identifier](https://spdx.org/licenses/) or the string `"Other"`. Modern Python packaging uses the [`license-expression` format](https://packaging.python.org/en/latest/specifications/core-metadata/#license-expression) for specifying licenses.
 
 ```toml
 [project]
@@ -90,10 +89,6 @@ license = {text = "BSD-3-Clause"}
 
 ````
 
-```{note}
-If you specify a license that is not a valid SPDX identifier, the hub will display "Other". The hub will also attempt to detect your license from your GitHub repository if available.
-```
-
 #### Description
 
 A detailed description of your plugin. This appears on the plugin's detail page and is indexed for search. Use your `README.md` file:
@@ -103,17 +98,18 @@ A detailed description of your plugin. This appears on the plugin's detail page 
 readme = "README.md"
 ```
 
-The hub will render your README with proper Markdown formatting. If you begin with a Level 1 heading, it will be treated as a title and removed from the description. Use Level 2 headings to create sections - the hub will automatically generate sidebar navigation from them.
+The hub will render your README with proper Markdown formatting. If you begin with a Level 1 heading, it will be treated as a title and removed from the description.
 
-```{tip}
-For best results, follow the [writing an effective description](#writing-an-effective-description) guidelines below.
+**What to include:**
 
-You can provide a hub-specific description using the `.napari-hub/DESCRIPTION.md` file in your repository (see [Hub-specific description](#hub-specific-description)).
-```
+- **Clear summary**: Start with who the plugin is for, what data it works with, and what problems it solves
+- **Quick start example**: Include images, GIFs, or videos showing the plugin in action
+- **Relevant keywords**: Mention key terms users might search for (e.g., "segmentation", "3D", "time series")
+- **Section headings**: Use Level 2 headings (`##`) to organize content - these create navigation links in the sidebar
 
 #### Classifiers
 
-Classifiers provide structured metadata about your plugin. The `Framework :: napari` classifier is required for hub visibility.
+Trove classifiers provide structured metadata about your plugin. The `Framework :: napari` classifier is required for hub visibility.
 
 ```toml
 [project]
@@ -147,7 +143,7 @@ See the full list of [PyPI classifiers](https://pypi.org/classifiers/).
 
 #### Python version requirements
 
-Specify the Python versions your plugin supports. The hub uses this for filtering:
+Specify the Python versions your plugin supports:
 
 ```toml
 [project]
@@ -158,7 +154,7 @@ If you specify `">=3.10"`, the hub will tag your plugin as supporting Python 3.1
 
 #### Dependencies
 
-List your plugin's dependencies. The hub displays these on the detail page (excluding `napari` and `napari-plugin-engine`).
+List your plugin's dependencies. The hub displays these on the detail page.
 
 ```toml
 [project]
@@ -185,10 +181,6 @@ Documentation = "https://napari-example-plugin.readthedocs.io"
 "Source Code" = "https://github.com/username/napari-example-plugin"
 "Bug Tracker" = "https://github.com/username/napari-example-plugin/issues"
 "User Support" = "https://forum.image.sc/tag/napari"
-```
-
-```{note}
-If your `Homepage` URL points to a GitHub repository, it will be used as the "Source Code" link. Having a "Source Code" link is required for the hub to access your repository for additional metadata.
 ```
 
 ### Complete example
@@ -248,36 +240,6 @@ name: napari-example-plugin
 display_name: Example Segmentation Plugin
 ```
 
-### Categories
-
-Categories help users discover your plugin through filtering and search. The hub maps certain npe2 categories to "Workflow Steps":
-
-```yaml
-name: napari-example-plugin
-# Optional: Define categories
-categories: ["Segmentation", "Image Processing"]
-contributions:
-  commands:
-    - id: napari-example-plugin.segment
-      title: Segment Image
-  widgets:
-    - command: napari-example-plugin.segment
-      display_name: Segment
-
-```
-
-These category values map to the hub's "Workflow Step" filter:
-
-- `Annotation` → Workflow Step: Annotation
-- `Segmentation` → Workflow Step: Segmentation
-- `Image Processing` → Workflow Step: Image Processing
-- `Transformations` → Workflow Step: Transformations
-- `Visualization` → Workflow Step: Visualization
-
-```{admonition} Request new categories
-If you need additional categories, please [open an issue on the npe2 repository](https://github.com/napari/npe2/issues).
-```
-
 ### Plugin type indicators
 
 The hub automatically detects your plugin's capabilities from your manifest contributions:
@@ -305,7 +267,7 @@ contributions:
 
 ### Visibility control
 
-Control whether your plugin appears in hub search and listings:
+Control whether your plugin appears in hub search and listings, and in the napari plugin manager:
 
 ```yaml
 name: napari-example-plugin
@@ -313,156 +275,9 @@ visibility: public  # or "hidden"
 ```
 
 - `public` (default): Plugin appears in search and listings
-- `hidden`: Detail page is accessible via direct link, but plugin doesn't appear in search
+- `hidden`: Detail page is accessible via direct link, but plugin doesn't appear in search. Remains installable via napari plugin manager.
 
-```{note}
-Even `hidden` plugins are installable via the napari plugin manager. To completely remove your plugin from napari and the hub, see [Removing your plugin](#removing-your-plugin-from-napari-and-the-hub).
-```
-
-## Hub-specific configuration
-
-For fine-grained control over your hub listing, create a `.napari-hub/` folder in your repository root. The hub will only access this folder if you've specified a "Source Code" URL pointing to your GitHub repository.
-
-```{note}
-The hub previously supported `.napari/` for configuration files, but `.napari-hub/` is now the preferred location to avoid confusion with the plugin manifest.
-```
-
-### Hub-specific description
-
-Provide a different description for the hub by creating `.napari-hub/DESCRIPTION.md`:
-
-```markdown
-<!-- .napari-hub/DESCRIPTION.md -->
-
-# Example Segmentation Plugin for napari
-
-This plugin provides state-of-the-art deep learning segmentation specifically designed for microscopy images.
-
-## Features
-
-- Pre-trained models for common cell types
-- GPU acceleration support
-- Interactive parameter tuning
-- Batch processing capabilities
-
-## Getting Started
-
-After installation, find the plugin in the `Plugins` menu...
-```
-
-This overrides your `README.md` for the hub listing only. Level 2 headings (`##`) create automatic sidebar navigation.
-
-### Additional metadata (config.yml)
-
-Create `.napari-hub/config.yml` for additional metadata:
-
-```yaml
-# .napari-hub/config.yml
-
-# Image modalities your plugin supports
-image_modalities:
-  - Fluorescence
-  - Brightfield
-  - Electron Microscopy
-
-# Data types your plugin works with
-supported_data:
-  - 2D
-  - 3D
-  - Time Series
-
-# Override authors (if not using CITATION.cff)
-authors:
-  - Jane Doe
-  - John Smith
-  - Research Lab Team
-```
-
-```{warning}
-Some fields in `config.yml` are being migrated to the npe2 manifest. Image modality and supported data may eventually move to manifest-defined categories. Check the [napari hub wiki](https://github.com/chanzuckerberg/napari-hub/wiki) for the latest information.
-```
-
-## Writing an effective description
-
-Whether using your README or a hub-specific description, follow these guidelines:
-
-**What to include:**
-
-- **Clear summary**: Start with who the plugin is for, what data it works with, and what problems it solves
-- **Quick start example**: Include images, GIFs, or videos showing the plugin in action
-- **Relevant keywords**: Mention key terms users might search for (e.g., "segmentation", "3D", "time series")
-- **Section headings**: Use Level 2 headings (`##`) to organize content - these create navigation links
-
-**What to avoid:**
-
-- **Badges and shields**: These distract hub users; relevant info (like test status) is shown elsewhere
-- **GitHub-specific content**: Focus on end users, not developers
-
-```{tip}
-See the [sample data contribution guide](contributions-sample-data) to include example data with your plugin that users can immediately try.
-```
-
-## Citation information
-
-If your plugin has a `CITATION.cff` file in your repository root, the hub will:
-
-1. Display citation information on your plugin's detail page
-2. Allow users to download citations in various formats (BibTeX, APA, etc.)
-3. Use author information from the file, overriding PyPI metadata
-
-Example `CITATION.cff`:
-
-```yaml
-cff-version: 1.2.0
-message: "If you use this plugin, please cite it as below."
-title: "napari Example Segmentation Plugin"
-version: 0.1.0
-date-released: 2024-01-15
-authors:
-  - family-names: Doe
-    given-names: Jane
-    orcid: https://orcid.org/0000-0000-0000-0000
-  - family-names: Smith
-    given-names: John
-repository-code: "https://github.com/username/napari-example-plugin"
-license: BSD-3-Clause
-```
-
-Learn more at [Citation File Format documentation](https://citation-file-format.github.io/).
-
-## Field reference
-
-This table summarizes where each field is displayed and how it's sourced:
-
-| Field | Detail Page | Listings | Search | Filter | Source | Fallback |
-|-------|-------------|----------|--------|--------|--------|----------|
-| Display Name | ✅ | ✅ | ✅ | - | npe2 manifest | - |
-| Package Name | ✅ | ✅ | ✅ | - | PyPI | - |
-| Version | ✅ | ✅ | - | - | PyPI | - |
-| Summary | ✅ | ✅ | ✅ | - | PyPI | - |
-| Description | ✅ | - | ✅ | - | PyPI `readme` | `.napari-hub/DESCRIPTION.md` |
-| Authors | ✅ | ✅ | ✅ | - | `CITATION.cff` | PyPI, `.napari-hub/config.yml` |
-| License | ✅ | - | - | ✅ (OSI) | GitHub API | PyPI |
-| Python Version | ✅ | - | - | ✅ | PyPI `requires-python` | - |
-| Operating System | ✅ | - | - | ✅ | PyPI classifiers | - |
-| Dependencies | ✅ | - | - | - | PyPI `dependencies` | - |
-| Workflow Step | ✅ | ✅ | - | ✅ | npe2 categories | `.napari-hub/config.yml` |
-| Image Modality | ✅ | ✅ | - | ✅ | `.napari-hub/config.yml` | - |
-| Supported Data | ✅ | - | - | ✅ | `.napari-hub/config.yml` | - |
-| Plugin Type | ✅ | ✅ | - | ✅ | npe2 contributions | - |
-| File Extensions (read) | ✅ | - | - | ✅ | npe2 readers | - |
-| File Extensions (write) | ✅ | - | - | ✅ | npe2 writers | - |
-| Layer Types (write) | ✅ | - | - | - | npe2 writers | - |
-| Documentation | ✅ | - | - | - | PyPI `urls.Documentation` | - |
-| Source Code | ✅ | - | - | - | PyPI `urls."Source Code"` | PyPI `urls.Homepage` |
-| Bug Tracker | ✅ | - | - | - | PyPI `urls."Bug Tracker"` | - |
-| User Support | ✅ | - | - | - | PyPI `urls."User Support"` | - |
-| Twitter | ✅ | - | - | - | PyPI `urls.Twitter` | - |
-| Release Date | ✅ | ✅ | - | ✅ | PyPI | - |
-| Citation | ✅ | - | - | - | `CITATION.cff` | - |
-| Visibility | - | - | - | - | npe2 manifest | `public` |
-
-## Removing your plugin from napari and the hub
+### Removing your plugin from napari and the hub
 
 To completely hide your plugin from both the napari plugin manager and the napari hub, remove the `Framework :: napari` classifier from your `pyproject.toml`:
 
@@ -481,12 +296,10 @@ You must release a new version for this change to take effect.
 
 After removing the classifier:
 
-- ✅ Your plugin will still work when manually installed (`pip install your-plugin`)
-- ❌ It won't appear in the napari plugin manager
-- ❌ It won't appear on the napari hub
-- ❌ It won't be automatically discovered by napari
-
-If you want your plugin to remain installable with the napari plugin manager but not appear in search, use the `visibility: hidden` setting in your `napari.yaml` manifest instead.
+- Your plugin will still work when manually installed (`pip install your-plugin`)
+- It won't appear in the napari plugin manager
+- It won't appear on the napari hub
+- It won't be automatically discovered by napari metadata tools
 
 ## Troubleshooting
 
@@ -515,25 +328,6 @@ Check that:
 - Remember that Level 1 headings (`#`) are treated as titles and removed
 - Use Level 2 headings (`##`) to create navigable sections
 
-### My custom .napari-hub files aren't being used
-
-Ensure that:
-
-- Your package is published to PyPI
-- You included the `Framework :: napari` classifier
-- Your plugin's `visibility` is not set to `hidden` (or is set to `public`)
-- Your package has a valid npe2 manifest (`napari.yaml`) with a `napari.manifest` entry point
-
-### Author information is incorrect
-
-The hub prioritizes author information in this order:
-
-1. `.napari-hub/config.yml` `authors` field
-2. `CITATION.cff` file
-3. `pyproject.toml` `authors` field
-
-Make sure you're updating the highest priority source that exists in your project.
-
 ## Best practices
 
 ### Write a compelling summary
@@ -551,10 +345,6 @@ Link to thorough documentation that includes:
 - Usage examples with screenshots
 - API reference
 - Troubleshooting guide
-
-### Use meaningful categories
-
-Choose categories that accurately reflect your plugin's functionality to help users discover it through filters.
 
 ### Keep dependencies minimal
 

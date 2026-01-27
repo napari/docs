@@ -17,8 +17,6 @@ see our comprehensive guide: [](hub-customization). This guide covers:
 
 - Setting package metadata in `pyproject.toml`
 - Using npe2 manifest metadata for hub display
-- Creating hub-specific configuration files
-- Adding citation information
 - Controlling plugin visibility
 
 ## Deployment
