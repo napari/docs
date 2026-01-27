@@ -19,10 +19,9 @@ There are multiple ways to open images in napari, depending on the image format 
 
 napari natively supports tiff and many other standard formats like png, jpg etc. When drag-and-dropping files, using one of the `File -> Open File/Folder` menu options, or using the `File -> Open Sample` menu with such formats, images will be read via the [imageio](https://imageio.readthedocs.io/en/stable/) library and appear in the viewer.
 
-For example you can try with with your own images or by downloading [this ome tiff file](https://downloads.openmicroscopy.org/images/OME-TIFF/2016-06/MitoCheck/00001_01.ome.tiff) ([CC BY 4.0 license](https://downloads.openmicroscopy.org/images/OME-TIFF/2016-06/MitoCheck/readme.txt)) and opening it in napari via drag-and-drop or the file dialog:
+For example you can try with with your own images or by downloading [this tif file](https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/582/S-BIAD582/Files/01_wt_Dprotein555-TL/raw_mps/5-2b_01_wt_Dprotein555-TL_003_rawmp.tif) (CC0, Clark et al. (2022). BioStudies, S-BIAD582. Retrieved from https://www.ebi.ac.uk/biostudies/bioimages/studies/S-BIAD582) and opening it in napari via drag-and-drop or the file dialog:
 
 ```{code-cell} ipython3
-:execution: {"timeout": "300"}
 :tags: [remove-cell]
 
 import pooch
@@ -33,9 +32,9 @@ from napari.utils import nbscreenshot
 import imageio.v3 as iio
 
 file_path_tiff = pooch.retrieve(
-        url="https://downloads.openmicroscopy.org/images/OME-TIFF/2016-06/MitoCheck/00001_01.ome.tiff",
-        known_hash='7c5c8c7c3e3a09ec38eb478fec47fc3458ba9cc79dda924b918cba83572054ab',
-        fname = '00001_01.ome.tiff',
+        url="https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/582/S-BIAD582/Files/01_wt_Dprotein555-TL/raw_mps/5-2b_01_wt_Dprotein555-TL_003_rawmp.tif",
+        known_hash='5b43ed0269eaa1eebf4c48079270a30e6cc40e87f20cc36c1b3d5a07c51c7b20',
+        fname = '5-2b_01_wt_Dprotein555-TL_003_rawmp.tif',
         path=Path(os.path.expanduser("~"))
         )
 ```
@@ -48,11 +47,21 @@ height = 600
 width = 1200
 viewer = napari.Viewer()
 viewer.open(file_path_tiff)
+viewer.dims.point = [0,0,0]
 viewer.window.resize(width, height)
-nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel OME-TIFF image of MitoCheck cells.")
+nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel tif microscopy image of a Drosophila embryo.")
 ```
 
-As can be seen above, the default importer correctly interpreted the data to be multi-dimensional by adding a slider, allowing you to scroll through the data (in this case, time, but napari is dimension-agnostic). 
+As can be seen above, the default importer correctly interpreted the data to be multi-dimensional by adding a slider, allowing you to scroll through the data. This dataset is composed of three channels and usually those are shown in separate napari layers. However, the default reader is not capable of reading enough metadata and just conisders channels as a standard additional dimension. This can be fixed by spliting the layer (right-click on layer and `Split Stack)`:
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+from napari.layers._layer_actions import _split_stack
+
+_split_stack(viewer.layers)
+nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel tif microscopy image of a Drosophila embryo with channels split into layers.")
+```
 
 As mentioned above there are situations where the default import mechanism will not be sufficient as `imageio` typically does not support custom commercial formats such as those used in microscopy (e.g. czi, lif, nd2) or remote sensing (e.g. envi). In these cases, napari's reading capabilities need to be extended via reader plugins.
 
@@ -82,15 +91,15 @@ This basic installation allows us to open ome-tiff, ome-zarr, imageio etc. via t
 pip install bioio-czi
 ```
 
-After restarting napari, we are now allowed to just drag and drop a czi file in the viewer to open it. You can try with [this example](https://ftp.ebi.ac.uk/biostudies/fire/S-BSST/601/S-BSST601/Files/Supplementary%20data%201.czi) from the [BioImage Archive](https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BSST601?query=czi) (CCO license):
+After restarting napari, we are now allowed to just drag and drop a czi file in the viewer to open it. You can try with [this example](https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi) from the [IDR library](https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BSST601?query=czi) ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), Valuchova et al. https://doi.org/10.17867/10000144):
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
 file_path_czi = pooch.retrieve(
-        url="https://ftp.ebi.ac.uk/biostudies/fire/S-BSST/601/S-BSST601/Files/Supplementary%20data%201.czi",
-        known_hash='c41805edb3dcef172835bd2cbf39d77627c97f707af00119fa3e10d8599c9399',
-        fname = 'Ostrinia_nubilalis_suppdata_1.czi',
+        url="https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi",
+        known_hash='aec7eeee335398b25f2185beaaa958afeb88c45853faac597cf034ac5d312c16',
+        fname = 'Bud_projection.czi',
         path=Path(os.path.expanduser("~"))
         )
 ```
@@ -101,7 +110,7 @@ file_path_czi = pooch.retrieve(
 viewer = napari.Viewer()
 viewer.open(file_path_czi, plugin='ndevio')
 viewer.window.resize(width, height)
-nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel CZI image opened via ndevio of Ostrinia nubilalis cells.")
+nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel CZI image opened via ndevio of a bud lobe of Arabidopsis.")
 ```
 
 On top of just allowing to open file formats, some plugins also provide additional tools, for example to explore metadata, offer import options, etc. The ndevio plugin for example provides widgets to export data and explore basic metadata via the `Plugins -> ndevio -> I/O utilities` menu. Here we see that valuable information about pixel size was recovered from the czi file metadata:
@@ -153,8 +162,6 @@ viewer.dims.ndisplay = 3
 viewer.camera.angles = (92, -24, 15)
 nbscreenshot(viewer, alt_text="napari viewer showing a 3D mesh of an airplane opened via napari-meshio.")
 ```
-
-+++ {"vscode": {"languageId": "plaintext"}}
 
 ## Sample images
 
