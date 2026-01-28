@@ -9,7 +9,7 @@ Once your plugin is published to [PyPI](https://pypi.org/) with the `Framework :
 The napari hub displays information about your plugin from three main sources:
 
 1. **PyPI** - Core package metadata from your `pyproject.toml`
-2. **readme** - As defined in your `pyproject.toml`, serves as the description on your plugin's detail page.
+2. **README** - As defined in your `pyproject.toml`, serves as the description on your plugin's detail page.
 3. **npe2 manifest** - Plugin-specific metadata from your `napari.yaml` file
 
 By understanding how these sources work together, you can ensure your plugin appears with accurate, appealing information on the hub.
@@ -276,7 +276,7 @@ visibility: public  # or "hidden"
 
 ### Removing your plugin from napari and the hub
 
-To completely hide your plugin from both the napari plugin manager and the napari hub, remove the `Framework :: napari` classifier from your `pyproject.toml`:
+To completely hide your plugin from all napari-related APIs, workflows and listings, remove the `Framework :: napari` classifier from your `pyproject.toml`:
 
 ```toml
 [project]
