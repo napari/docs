@@ -214,7 +214,11 @@ The hub will render your README with proper Markdown formatting. If you begin wi
 
 ### Including images and media
 
-There are two ways to include images in your Readme so that they will show up on external sites like the napari hub and PyPI:
+There are a few ways to include images and other media in your description, but these assets need to be hosted somewhere and accessible via an absolute URL. In other words, relative paths to images in your repository will not work. Images should use the markdown format `![alt text](https://absolute.url/to/image)`. Consider how an image located on the `main` branch at `./resources/image.png` in your repository could be hosted:
+
+1. The raw path to the image, identified with `raw.githubusercontent.com`. e.g. `![raw image](https://raw.githubusercontent.com/user/repo/main/resources/image.png)`. On Github, you can open the image in the repo, open the image in a new tab and copy the address bar url.
+2. The raw blob path to the image, with `?raw=true` appended. e.g. `![blob image](https://github.com/user/repo/blob/main/resources/image.png?raw=true)`. On Github, you can open the image in the repo and right-click the image to copy the link address.
+3. The raw path to any image or asset on Github or on any other site, including your own static documentation.
 
 ## npe2 manifest metadata
 
