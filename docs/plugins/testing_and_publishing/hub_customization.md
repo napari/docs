@@ -6,10 +6,11 @@ Once your plugin is published to [PyPI](https://pypi.org/) with the `Framework :
 
 ## Overview
 
-The napari hub displays information about your plugin from two main sources:
+The napari hub displays information about your plugin from three main sources:
 
 1. **PyPI** - Core package metadata from your `pyproject.toml`
-2. **npe2 manifest** - Plugin-specific metadata from your `napari.yaml` file
+2. **readme** - As defined in your `pyproject.toml`, serves as the description on your plugin's detail page.
+3. **npe2 manifest** - Plugin-specific metadata from your `napari.yaml` file
 
 By understanding how these sources work together, you can ensure your plugin appears with accurate, appealing information on the hub.
 
@@ -88,24 +89,6 @@ license = {text = "BSD-3-Clause"}
 ```
 
 ````
-
-#### Description
-
-A detailed description of your plugin. This appears on the plugin's detail page and is indexed for search. Use your `README.md` file:
-
-```toml
-[project]
-readme = "README.md"
-```
-
-The hub will render your README with proper Markdown formatting. If you begin with a Level 1 heading, it will be treated as a title and removed from the description.
-
-**What to include:**
-
-- **Clear summary**: Start with who the plugin is for, what data it works with, and what problems it solves
-- **Quick start example**: Include images, GIFs, or videos showing the plugin in action
-- **Relevant keywords**: Mention key terms users might search for (e.g., "segmentation", "3D", "time series")
-- **Section headings**: Use Level 2 headings (`##`) to organize content - these create navigation links in the sidebar
 
 #### Classifiers
 
@@ -211,6 +194,28 @@ Documentation = "https://napari-example-plugin.readthedocs.io"
 napari-example-plugin = "napari_example_plugin:napari.yaml"
 ```
 
+## Plugin Hub Description with README.md
+
+A detailed description of your plugin. This appears on the plugin's detail page and is indexed for search. Use your `README.md` file:
+
+```toml
+[project]
+readme = "README.md"
+```
+
+The hub will render your README with proper Markdown formatting. If you begin with a Level 1 heading, it will be treated as a title and removed from the description.
+
+### Writing a quality Readme
+
+- **Clear summary**: Start with who the plugin is for, what data it works with, and what problems it solves
+- **Quick start example**: Include images, GIFs, or videos showing the plugin in action
+- **Relevant keywords**: Mention key terms users might search for (e.g., "segmentation", "3D", "time series")
+- **Section headings**: Use Level 2 headings (`##`) to organize content - these create navigation links in the sidebar
+
+### Including images and media
+
+There are two ways to include images in your Readme so that they will show up on external sites like the napari hub and PyPI:
+
 ## npe2 manifest metadata
 
 Your plugin's [npe2 manifest](plugin-manifest) (`napari.yaml`) provides napari-specific metadata that appears on the hub.
@@ -306,50 +311,3 @@ Check that:
 - You included the `Framework :: napari` classifier
 - Your plugin's `visibility` is not set to `hidden` (or is set to `public`)
 - Your package has a valid npe2 manifest (`napari.yaml`) with a `napari.manifest` entry point
-
-### My description isn't formatting correctly
-
-- Ensure your README is valid Markdown
-- Check that `readme = "README.md"` is in your `pyproject.toml`
-- Remember that Level 1 headings (`#`) are treated as titles and removed
-- Use Level 2 headings (`##`) to create navigable sections
-
-## Best practices
-
-### Write a compelling summary
-
-Your summary appears in search results and plugin listings. Make it count:
-
-**Good**: "GPU-accelerated 3D cell segmentation for confocal microscopy"  
-**Poor**: "A napari plugin for segmentation"
-
-### Provide comprehensive documentation
-
-Link to thorough documentation that includes:
-
-- Installation instructions
-- Usage examples with screenshots
-- API reference
-- Troubleshooting guide
-
-### Keep dependencies minimal
-
-Only include necessary dependencies in your base requirements. Use optional dependencies for features like:
-
-- Specific backends or accelerators
-
-```toml
-[project.optional-dependencies]
-gpu = ["cupy", "torch"]
-```
-
-Use dependency groups for requirements that are not necessary to include in project metadata like:
-
-- Development tools
-- Documentation building
-
-```toml
-[dependency-groups]
-dev = ["pytest", "pytest-cov", "ruff"]
-docs = ["sphinx", "sphinx-rtd-theme"]
-```
