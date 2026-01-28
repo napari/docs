@@ -109,7 +109,7 @@ The hub will render your README with proper Markdown formatting. If you begin wi
 
 #### Classifiers
 
-Trove classifiers provide structured metadata about your plugin. The `Framework :: napari` classifier is required for hub visibility.
+[PyPI Trove classifiers](https://pypi.org/classifiers/) provide structured metadata about your plugin. The `Framework :: napari` classifier is required for hub visibility.
 
 ```toml
 [project]
@@ -127,30 +127,14 @@ classifiers = [
 ]
 ```
 
-**Operating System classifiers** let users filter by platform:
-
-```toml
-classifiers = [
-    "Operating System :: MacOS",
-    "Operating System :: Microsoft :: Windows",
-    "Operating System :: POSIX :: Linux",
-    # OR for cross-platform plugins:
-    "Operating System :: OS Independent",
-]
-```
-
-See the full list of [PyPI classifiers](https://pypi.org/classifiers/).
-
 #### Python version requirements
 
-Specify the Python versions your plugin supports:
+Additionally, specify the Python versions your plugin supports. If you specify `">=3.10"`, the hub will tag your plugin as supporting Python 3.10, 3.11, 3.12, etc.
 
 ```toml
 [project]
 requires-python = ">=3.10"
 ```
-
-If you specify `">=3.10"`, the hub will tag your plugin as supporting Python 3.10, 3.11, 3.12, etc.
 
 #### Dependencies
 
@@ -233,7 +217,7 @@ Your plugin's [npe2 manifest](plugin-manifest) (`napari.yaml`) provides napari-s
 
 ### Display name
 
-The display name appears in plugin listings and the napari plugin manager:
+The `display_name`, and not the `name`, appears in plugin listings and the napari plugin manager:
 
 ```yaml
 name: napari-example-plugin
@@ -242,12 +226,14 @@ display_name: Example Segmentation Plugin
 
 ### Plugin type indicators
 
-The hub automatically detects your plugin's capabilities from your manifest contributions:
+The hub automatically detects your plugin's capabilities from your manifest contributions and displays them as Plugin types:
 
 - **Reader plugins**: Detected from `contributions.readers`
 - **Writer plugins**: Detected from `contributions.writers`
 - **Widget plugins**: Detected from `contributions.widgets`
 - **Sample data**: Detected from `contributions.sample_data`
+
+### Reader and writer file extensions
 
 The hub displays supported file extensions for readers and writers:
 
@@ -277,6 +263,8 @@ visibility: public  # or "hidden"
 - `public` (default): Plugin appears in search and listings
 - `hidden`: Detail page is accessible via direct link, but plugin doesn't appear in search. Remains installable via napari plugin manager.
 
+## Troubleshooting
+
 ### Removing your plugin from napari and the hub
 
 To completely hide your plugin from both the napari plugin manager and the napari hub, remove the `Framework :: napari` classifier from your `pyproject.toml`:
@@ -296,12 +284,10 @@ You must release a new version for this change to take effect.
 
 After removing the classifier:
 
-- Your plugin will still work when manually installed (`pip install your-plugin`)
+- Your plugin will still work when manually installed (e.g. `pip install your-plugin`)
 - It won't appear in the napari plugin manager
 - It won't appear on the napari hub
 - It won't be automatically discovered by napari metadata tools
-
-## Troubleshooting
 
 ### My changes aren't showing up on the hub
 
