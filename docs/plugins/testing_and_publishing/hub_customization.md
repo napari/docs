@@ -305,7 +305,6 @@ The napari hub updates plugin information periodically. After publishing a new v
 1. Wait up to 4 hours for the hub to refresh
 2. Clear your browser cache
 3. Check that your new version appears on [PyPI](https://pypi.org/)
-4. Verify your GitHub "Source Code" URL is correct and publicly accessible
 
 ### My plugin doesn't appear on the hub at all
 
