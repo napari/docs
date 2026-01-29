@@ -86,6 +86,12 @@ for and against merging a pull-request, and be involved in deciding major
 changes to the API, and thereby more easily carry on with their project related
 activities.
 
+Aside from technical contributions, core team members support
+the Steering Council in carrying out the project's mission. They participate
+in discussion about the project's present and future goals and direction,
+collaborate with the SC to establish and update the project's development roadmap,
+and support the napari community at large.
+
 Core team members are expected to review code contributions while adhering to the
 [core team member guide](core-dev-guide). New core team members can be nominated
 by any existing core team member, and for details on that process see our core
@@ -118,7 +124,7 @@ with support from NumFOCUS.
 - Manage the project's relationship with NumFOCUS as a Sponsored Project,
 - Ensure the timely delivery of all deliverables, milestones, reports and other
 commitments associated with restricted funding such as grants or contracts.
-- Coordinate and oversee the delivery of the project development roadmap, in collaboration with
+- Coordinate and oversee the project development roadmap, and its delivery, in collaboration with
 the core team members and the broader community.
 - Hold a monthly meeting, and distribute summaries of these meetings to the core team members.
 - Ensure the publication of an annual State of Napari report that provides a summary of the
@@ -146,11 +152,19 @@ for a member elected by the [Institutional and Funding Partner Advisory Council]
 as detailed below.
 
 The SC membership, including the Institutional and Funding Partner (IFP) seat, is revisited every January.
-SC members who do not actively engage with the SC duties are expected to resign. New members for
-vacant spots are added by nomination by a core team member. Nominees should have demonstrated
-long-term, continued commitment to the project and its [mission and values](mission-and-values). A
-nomination will result in discussion that cannot take more than a month and
-then admission to the SC by consensus. During that time deadlocked votes of the SC will
+Current SC members must actively reaffirm their membership for the upcoming year, or choose to 
+resign. SC members who do not actively engage with the SC duties are expected to resign. Should
+an SC member resign, they remain eligible for rejoining the SC at a later date, via the standard process
+described below. 
+
+New members for vacant spots are added by nomination by a core team member or SC member, and
+subsequent vote.
+Nominees should have demonstrated long-term, continued commitment to the project and/or its community, and its
+[mission and values](mission-and-values). Before nomination, the core team should approach
+the prospective nominee to gauge their interest and availability in the role. 
+A nomination will result in discussion among current core team members and SC members,
+that cannot take more than a month and then admission to the SC by consensus, as defined [below](#decision-making-process). 
+During that time deadlocked votes of the SC will
 be postponed until the new member has joined and another vote can be held. The IFP seat
 is elected by the IFP Advisory Council.
 

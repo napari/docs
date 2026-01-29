@@ -17,8 +17,14 @@ foremost, you should familiarize yourself with the project's
 doubt, always refer back there.
 
 As a core team member, you gain the responsibility of shepherding
-other contributors through the review process; here are some
+other contributors through the review process; below are some
 guidelines for how to do that.
+
+You also gain the responsibility of collaborating with the Steering
+Council and the rest of the team in shaping the project's goals and future direction
+as aligned with the mission and values. Please read our [governance](../../community/governance.md)
+documentation for more information on our governance process, and the Steering
+Council's role.
 
 ## All contributors are treated the same
 
@@ -213,7 +219,8 @@ Core team members can choose to become emeritus core team members and suspend
 their approval and voting rights until they become active again. Emeritus core
 team members can request **or** be invited to become active core team members at
 a later date, and active core team members will vote on this status-change as
-above.
+above. Core team members must reaffirm their membership every January. Core team
+members who do not reaffirm their membership will automatically become emeritus.
 
 ## Contribute to this guide (!)
 
