@@ -168,6 +168,18 @@ During that time deadlocked votes of the SC will
 be postponed until the new member has joined and another vote can be held. The IFP seat
 is elected by the IFP Advisory Council.
 
+Any core team member or SC member can request the explusion of an SC member
+whom they believe has acted in a manner contrary to the project's mission and values,
+or who has failed to participate in Steering Council activities. This may be done by
+approaching another SC member, who is then responsible for calling a vote and managing the process,
+as detailed below.
+Written notice of the proposed expulsion must be given to the member at least 21 days
+before a vote is held, and the member must be a given reasonable opportunity of appealing.
+The member will be expelled if the vote, by secret ballot, of the core team members
+and Steering Council achieves a 75% majority. An expelled member may not be readmitted
+unless a vote for readmission, by secret ballot, of the core team members and Steering Council
+achieves a 75% majority.
+
 The SC may be contacted at `napari-steering-council@googlegroups.com`. For a list of the current
 SC see our [About the project and team](team) page.
 

@@ -222,6 +222,19 @@ a later date, and active core team members will vote on this status-change as
 above. Core team members must reaffirm their membership every January. Core team
 members who do not reaffirm their membership will automatically become emeritus.
 
+## Expulsion of core team members
+
+Any core team member or SC member can request the explusion of an SC member
+whom they believe has acted in a manner contrary to the project's mission and values. This may be done by
+approaching an SC member, who is then responsible for calling a vote and managing the process,
+as detailed below.
+Written notice of the proposed expulsion must be given to the member at least 21 days
+before a vote is held, and the member must be a given reasonable opportunity of appealing.
+The member will be expelled if the vote, by secret ballot, of the core team members
+and Steering Council achieves a 75% majority. An expelled member may not be readmitted
+unless a vote for readmission, by secret ballot, of the core team members and Steering Council
+achieves a 75% majority.  
+
 ## Contribute to this guide (!)
 
 This guide reflects the experience of the current core team members. We
