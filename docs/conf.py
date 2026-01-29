@@ -14,7 +14,7 @@ import os
 import re
 from datetime import datetime
 from importlib import import_module
-from importlib.metadata import distribution
+from importlib.metadata import distribution, version as metadata_version
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
@@ -197,7 +197,7 @@ nb_execution_mode = os.environ.get('NB_EXECUTION_MODE', 'auto')
 nb_output_stderr = 'show'
 mermaid_d3_zoom = True
 mermaid_version = '11.4.1'
-mermaid_include_elk = ''
+mermaid_include_elk = '' if parse_version(metadata_version('sphinxcontrib-mermaid')) < parse_version('2.0') else False
 tags_create_tags = True
 tags_output_dir = '_tags'
 tags_overview_title = 'Tags'
