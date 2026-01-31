@@ -174,7 +174,7 @@ There are a few cases, where it is necessary to resort to some coding in the con
 
 ![IPython console](../_static/images/IPython.png)
 
-First, there might be no plugin reader for your format, but only a library to read the data as Numpy arrays. In such a case, the images need to be first read as arrays and then added to the viewer. Second, there might be a reader plugin for your format, but the metadata could be missing or badly interpreted, leading to an incorrect loading of the data. In such cases, the data also need to be read manually and added to the viewer after reshaping them. In the following example, opening a multi-dimensional tiff file leads to an incorrect interpretation of the dimensions: the channels are interpreted as a standard dimension (first dimension of size 3) instead of being recognized as channels and assigned separate layers:
+First, there might be no plugin reader for your format, but only a library to read the data as arrays. In such a case, the images need to be first read as arrays and then added to the viewer. Second, there might be a reader plugin for your format, but the metadata could be missing or badly interpreted, leading to an incorrect loading of the data. In such cases, the data may also need to be read programmatically and added to the viewer after reshaping/pre-processing. In the following example, opening a multi-dimensional tiff file leads to loading the channels as a dimension (first dimension of size 3), instead of being assigned to separate layers:
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
