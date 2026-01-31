@@ -162,7 +162,7 @@ nbscreenshot(viewer, alt_text="napari viewer showing a 3D mesh of an airplane op
 
 ## Sample images
 
-Sometimes you just need to open images to test some functionality of napari or a plugin. In that case you can use sample images that come bundled with napari. Here is an example of opening the "cell" sample image. In napari, go to `File -> Open Sample -> napari built-ins -> Cell`
+Sometimes you just need to open images to test some functionality of napari or a plugin. In that case you can use sample images that come bundled with napari. Here is an example of opening the "cell" sample image. In napari, go to `File -> Open Sample -> napari builtins -> Cell`
 
 ![Open sample image](../_static/images/open_image.png)
 
