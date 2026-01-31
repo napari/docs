@@ -213,7 +213,7 @@ viewer.add_image(image, channel_axis=0);
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells with a layer per channel.")
 ```
 
-Note that different reader plugins might interpret your data in different ways. With the same data as above where the default `imageio` reader failed to interpret the channels correctly, the `ndevio` plugin correctly identified the channels and assigned them separate layers:
+Note that different reader plugins might interpret your data in different ways. With the same data as above where the builtin `imageio` reader did not split the channels into layers, the `ndevio` plugin identified the channels from the metadata and assigned them separate layers:
 
 ```{code-cell} ipython3
 viewer = napari.Viewer()
