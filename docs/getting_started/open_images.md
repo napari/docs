@@ -63,7 +63,7 @@ _split_stack(viewer.layers)
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel tif microscopy image of a Drosophila embryo with channels split into layers.")
 ```
 
-As mentioned above there are situations where the default import mechanism will not be sufficient as `imageio` typically does not support custom commercial formats such as those used in microscopy (e.g. czi, lif, nd2) or remote sensing (e.g. envi). In these cases, napari's reading capabilities need to be extended via reader plugins.
+As mentioned above, there are situations where the builtin reader will not be sufficient. For example, `imageio` typically does not support custom commercial/proprietary formats such as those used in microscopy (e.g. czi, lif, nd2) or remote sensing (e.g. envi). In these cases, napari's reading capabilities need to be extended using an appropriate reader plugin.
 
 +++
 
