@@ -52,7 +52,7 @@ viewer.window.resize(width, height)
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel tif microscopy image of a Drosophila embryo.")
 ```
 
-As can be seen above, the default importer correctly interpreted the data to be multi-dimensional by adding a slider, allowing you to scroll through the data. This dataset is composed of three channels and usually those are shown in separate napari layers. However, the default reader is not capable of reading enough metadata and just conisders channels as a standard additional dimension. This can be fixed by spliting the layer (right-click on layer and `Split Stack)`:
+As can be seen above, the builtin reader correctly interpreted the data to be multi-dimensional by adding a slider, allowing you to scroll through the data. This dataset is composed of three channels and you may prefer that those be shown as separate napari layers. However, the default reader is not capable of reading enough metadata to know this, so it just considers "channels" as an additional dimension. This can be fixed by spliting the layer (right-click on layer and `Split Stack)`:
 
 ```{code-cell} ipython3
 :tags: [remove-input]
