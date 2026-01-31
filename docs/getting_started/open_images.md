@@ -195,7 +195,7 @@ viewer.open(file_path_tiff2)
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells.")
 ```
 
-Instead we can now first read the data for example with `imageio`, and add it to the viewer by explicitly specifying the channel axis:
+Instead we can now first read the data for example with `imageio`, and add it to the viewer while specifying which axis of the array should be split into individual layers, using the `channel_axis` argument:
 
 ```{code-cell} ipython3
 image = iio.imread(file_path_tiff2)
