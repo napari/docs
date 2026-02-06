@@ -27,22 +27,6 @@ A reference for the `npe2` manifest file, which is used to define the plugin and
 
 A technical specification for how plugins can contribute additional functionality and features to napari.
 ```
-````
-
-## Deprecated: napari plugin engine v1
-
-```{important}
-New plugins should use the `npe2` standard.
-We encourage first generation plugin authors to migrate their plugin to the `npe2` standard.
-```
-
-````{grid}
-```{grid-item-card} Napari plugin engine v1 reference
-:link: napari-plugin-engine
-:link-type: ref
-
-These documents provide background on the first generation plugin system which is now deprecated.
-```
 
 ```{grid-item-card} Migration guide to npe2
 :link: npe2-migration-guide
