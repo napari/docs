@@ -69,7 +69,7 @@ As mentioned above, there are situations where the builtin reader will not be su
 
 ## Using a plugin reader
 
-Readers are a specific feature of napari plugins making it possible to open additional file formats via the `File -> Open` menu or drag-and-drop. They are installed in the same way as other napari plugins, either via the napari plugin manager or via pip/conda. Read more in our [guide to finding and installing plugins](https://napari.org/stable/plugins/start_using_plugins/finding_and_installing_plugins.html#finding-and-installing-plugins)). Once installed, they will be automatically discovered by napari and used for the appropriate files.
+Readers are a specific feature of napari plugins making it possible to open additional file formats via the `File -> Open` menu or drag-and-drop. They are installed in the same way as other napari plugins, either using the Plugins menu or your preferred Python package installer. Read more in our [guide to finding and installing plugins](find-and-install-plugins). Once installed, plugins will be automatically discovered by napari and used for the appropriate files.
 
 There are two possibilities for reader plugins: they can either be specialized in reading one single file format, or they can be more generic and bundle multiple readers. Using a generic reader plugin has the advantage of reducing the number of plugins and ensuring homogeneous behavior across formats. However, specialized readers may provide more advanced features for a given format.
 
