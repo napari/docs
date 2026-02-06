@@ -136,7 +136,7 @@ If multiple readers are available for a given format, when drag-and-dropping a f
 
 ### Single format reader
 
-Some specific file formats have dedicated reader plugins. Here, we use the example of mesh formats that can be visualized in the surface layer. The [`napari-meshio`](https://napari-hub.org/plugins/napari-meshio.html) plugin provides a reader to open a mesh file such as this [example ply file](https://people.sc.fsu.edu/~jburkardt/data/ply/airplane.ply). Again it can be installed via the plugin manager or via pip:
+Some specific file formats have dedicated reader plugins. Here, we use the example of mesh formats that can be visualized in the surface layer. The [`napari-meshio`](https://napari-hub.org/plugins/napari-meshio.html) plugin provides a reader to open a mesh file such as this [example ply file](https://people.sc.fsu.edu/~jburkardt/data/ply/airplane.ply). Again it can be installed using the napari plugin manager or your preferred Python package manager.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
