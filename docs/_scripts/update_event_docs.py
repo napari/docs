@@ -86,8 +86,8 @@ class Ev:
 
         if issubclass(self.model, ViewerModel):
             return f'viewer.events.{self.name}'
-        for name, field_ in napari.Viewer.__fields__.items():
-            if field_.type_ is self.model:
+        for name, field in napari.Viewer.model_fields.items():
+            if field.annotation is self.model:
                 return f'viewer.{name}.events.{self.name}'
         return ''
 
@@ -156,11 +156,10 @@ def iter_evented_model_events(module: ModuleType = napari) -> Iterator[Ev]:
             if not issubclass(kls, EventedModel):
                 continue
             docs = class_doc_attrs(kls)
-            for name, field_ in kls.__fields__.items():
-                finfo = field_.field_info
-                if finfo.allow_mutation:
-                    descr = f'{finfo.title.lower()}' if finfo.title else docs.get(name)
-                    yield Ev(name, kls, descr, field_.type_)
+            for name, field in kls.model_fields.items():
+                if not field.frozen:
+                    descr = f'{field.title.lower()}' if field.title else docs.get(name)
+                    yield Ev(name, kls, descr, field.annotation)
 
 
 def iter_evented_container_events(

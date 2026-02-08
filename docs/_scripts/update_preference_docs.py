@@ -59,11 +59,12 @@ The output was reviewed and edited for accuracy and clarity.
 from pathlib import Path
 
 from jinja2 import Template
-from napari._pydantic_compat import ModelMetaclass
 from napari._qt.dialogs.preferences_dialog import PreferencesDialog
 from napari._qt.qt_event_loop import get_qapp
 from napari._qt.qt_resources import get_stylesheet
 from napari.settings import NapariSettings
+from napari._pydantic_util import get_inner_type
+from pydantic._internal._model_construction import ModelMetaclass
 from qtpy.QtCore import QTimer
 from qtpy.QtWidgets import QMessageBox
 
@@ -233,9 +234,9 @@ def generate_images():
 
     # Collect all sections first
     sections = [
-        field.field_info.title or name
-        for name, field in NapariSettings.__fields__.items()
-        if isinstance(field.type_, ModelMetaclass)
+        field.title or name
+        for name, field in NapariSettings.model_fields.items()
+        if isinstance(get_inner_type(field.annotation), ModelMetaclass)
     ]
 
     # Process each section with proper timing
@@ -273,27 +274,28 @@ def create_preferences_docs():
     """Create preferences docs from SETTINGS using a jinja template."""
     sections = {}
 
-    for name, field in NapariSettings.__fields__.items():
-        if not isinstance(field.type_, ModelMetaclass):
+    for name, field in NapariSettings.model_fields.items():
+        ftype = get_inner_type(field.annotation)
+        if not isinstance(ftype, ModelMetaclass):
             continue
 
-        excluded = getattr(field.type_.NapariConfig, 'preferences_exclude', [])
-        title = field.field_info.title or name
+        excluded = getattr(ftype.NapariConfig, 'preferences_exclude', [])
+        title = field.title or name
         sections[title.lower()] = {
             'title': title,
-            'description': field.field_info.description or '',
+            'description': field.description or '',
             'fields': [
                 {
                     'field': n,
-                    'title': f.field_info.title,
-                    'description': f.field_info.description,
+                    'title': f.title,
+                    'description': f.description,
                     'default': f.get_default()
                     if title.lower() == 'shortcuts'
                     else repr(f.get_default()),
                     'ui': n not in excluded,
-                    'type': repr(f._type_display()).replace('.typing', ''),
+                    'type': repr(f.annotation).replace('.typing', ''),
                 }
-                for n, f in sorted(field.type_.__fields__.items())
+                for n, f in sorted(field.annotation.model_fields.items())
                 if n not in ('schema_version')
             ],
         }
