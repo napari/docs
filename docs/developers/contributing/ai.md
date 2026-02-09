@@ -3,6 +3,15 @@
 
 # AI use policy and guidelines
 
+## tldr
+
+We are humans who enjoy working with other humans. You may use whatever
+tools you like, but you are ultimately responsible for the changes you submit.
+Don't submit changes you haven't carefully read through yourself, and let us
+have a conversation with you, not a chatbot.
+
+## Introduction
+
 Our goal in napari is to develop excellent software.
 This requires careful attention to detail in every change we
 integrate. Maintainer time and attention is very limited, so it's
