@@ -20,8 +20,8 @@ your _best_ work.
 
 You can use any tools that help you understand the napari codebase and
 write good code, including AI tools. However, as noted above, you
-always need to understand and explain the changes you're proposing to
-make, whether or not you used an LLM as part of your process to
+always need to make a sincere effort to understand and explain the changes
+you're proposing, whether or not you used an LLM as part of your process to
 produce them. The answer to "Why is X an improvement?" should never be
 "I'm not sure. The AI did it."
 
