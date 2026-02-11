@@ -40,7 +40,8 @@ without review.
    useful search engine/discovery tool in this process, but don't
    trust claims they make about how napari works. LLMs are often wrong,
    even about details that are clearly answered in the napari
-   documentation.
+   documentation. When in doubt, please reach out to us on our
+   [Zulip chat room](https://napari.zulipchat.com).
 2. Try to submit your changes in small, self-contained pull requests,
    even if an LLM generates them all in one go.
 3. Don't simply ask an LLM to add **code comments**, as it will likely
