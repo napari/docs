@@ -26,9 +26,10 @@ produce them. The answer to "Why is X an improvement?" should never be
 "I'm not sure. The AI did it."
 
 ::: warning
-**Do not submit an AI-generated PR you haven't personally understood and
-tested**, as this wastes maintainers' time. PRs that appear to violate this
-guideline will be closed without review.
+**Do not allow AI agents to submit PRs for you**, and **do not submit an
+AI-generated PR you haven't personally understood and tested**, as this wastes
+maintainers' time. PRs that appear to violate this guideline will be closed
+without review.
 :::
 
 ## Using AI as a coding assistant
