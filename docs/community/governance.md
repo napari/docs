@@ -193,8 +193,10 @@ may be done by approaching another SC member, who is then responsible for
 calling a vote and managing the process, as detailed below.
 
 Written notice of the proposed expulsion must be given to the member at least
-21 days before a vote is held, and the member must be a given reasonable
-opportunity of appealing.  The member will be expelled if the vote, by secret
+21 days before a vote is held. As soon as a removal request has been made, the
+member's permissions will be reduced to prohibit destructive actions on
+relevant platforms. Before the vote, the member must be given reasonable
+opportunity to appeal. The member will be expelled if the vote, by secret
 ballot, of the core team members and Steering Council achieves a 75% majority.
 An expelled member may not be readmitted unless a vote for readmission, by
 secret ballot, of the core team members and Steering Council achieves a 75%
