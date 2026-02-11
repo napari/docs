@@ -143,8 +143,10 @@ The SC has the responsibility to:
   and highlights the current and future direction of the project.
 - Members of the SC also have the "owner" role within the [napari GitHub
   organization](https://github.com/napari)
-  and are ultimately responsible for managing the napari GitHub account, the [@napari@fosstodon.org](https://fosstodon.org/@napari)
-  Mastodon account, the [napari website](https://napari.org), and other similar napari owned resources.
+  and are ultimately responsible for managing the napari GitHub account, the
+  [@napari@fosstodon.org](https://fosstodon.org/@napari) Mastodon account, the
+  [napari website](https://napari.org), and other similar napari owned
+  resources.
 - When the core team member community (including the SC members) fails to reach
   a consensus in a reasonable timeframe, the SC is the entity that resolves the
   issue.
