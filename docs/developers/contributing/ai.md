@@ -58,7 +58,7 @@ writing. We strongly prefer clear and concise communication about
 points that actually require discussion over long AI-generated
 comments.
 
-When you use an LLM to write a message for you, it remains **your
+If you use an LLM to write a message for you, it remains **your
 responsibility** to read through the whole thing and make sure that it
 makes sense to you and represents your ideas concisely. A good rule
 of thumb is that if you can't make yourself carefully read some LLM
