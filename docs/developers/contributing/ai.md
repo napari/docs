@@ -79,9 +79,8 @@ workflows.
    generated any part of it. napari's maintainers will be unable to review your
    contributions if you misrepresent your work (e.g., misdescribing your code
    changes, their effect, or your testing process).
-4. Complete all parts of the **PR description template**, including screenshots
-   and the submission checklist. Don't simply overwrite the template with LLM
-   output.
+4. Complete all parts of the **PR description template**. Don't simply
+   overwrite the template with LLM output.
 5. **Clarity and succinctness** are much more important than perfect grammar, so
    you shouldn't feel obliged to pass your writing through an LLM. If you do ask
    an LLM to clean up your writing style, be sure it does _not_ make it longer
