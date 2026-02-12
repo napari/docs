@@ -194,7 +194,7 @@ nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image 
 
 ## Using plugins to improve image display
 
-With the release of napari 0.7.0, [napari-metadata](https://napari-hub.org/plugins/napari-meta) is included with the bundle and with `napari[optional]` and `napari[all]` installations. This plugin provides a widget to view and edit the metadata of layers. This can be useful to check if the metadata was correctly read, and to edit it if necessary. 
+With the release of napari 0.7.0, [napari-metadata](https://napari-hub.org/plugins/napari-meta) is included with the bundle, conda-forge and with `pip install "napari[optional]"` (or `napari[all]`) installations. This plugin provides a widget to view and edit the metadata of layers. This can be useful to check if the metadata was correctly read, and to edit it if necessary. 
 
 ![napari metadata widget](https://raw.githubusercontent.com/napari/napari-metadata/main/resources/horizontal-widget.png)
 
