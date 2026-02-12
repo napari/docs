@@ -42,7 +42,7 @@ file_path_tiff = pooch.retrieve(
 ```{code-cell} ipython3
 :tags: [remove-input]
 
-# set the size of the viewer for the screenshot
+# set the size of the viewer for the screenshot, used throughout notebook
 height = 600
 width = 1200
 viewer = napari.Viewer()
@@ -79,17 +79,10 @@ There are two possibilities for reader plugins: they can either be specialized i
 
 There are a few examples of plugins bundling multiple readers. One example is [ndevio](https://napari-hub.org/plugins/ndevio.html) which wraps the family of [bioio](https://bioio.readthedocs.io/en/latest/) packages to provide support for multiple microscopy file formats. Often such bundled reader plugins come with a set of formats supported by default, and allow the users to add optional formats, typically by installing additional dependencies. 
 
-In the example below we illustrate how to use ndevio to open a Zeiss CZI file. First we  need to install ndevio either via the Plugin manager or via pip:
+In the example below we illustrate how to use ndevio to open a Zeiss CZI file. First we need to install ndevio, with, for example, the napari plugin manager.
 
-```bash
-pip install ndevio
-```
-
-This basic installation allows us to open ome-tiff, ome-zarr, imageio etc. via the plugin. Now we need to install the additional bioio reader for  files:
-
-```bash
-pip install bioio-czi
-```
+This basic installation allows us to open ome-tiff, ome-zarr, imageio etc. via the plugin.
+However, when trying to open a supported format such as CZI, we get an informative error message that the necessary bioio reader is not installed, and a widget will pop-up enabling installation of the required dependency.
 
 After restarting napari, we are now allowed to just drag and drop a CZI file in the viewer to open it. You can try with [this example](https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi) from the [IDR library](https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BSST601?query=czi) ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), Valuchova et al. https://doi.org/10.17867/10000144):
 
