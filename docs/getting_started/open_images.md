@@ -73,6 +73,10 @@ Readers are a specific feature of napari plugins making it possible to open addi
 
 There are two possibilities for reader plugins: they can either be specialized in reading one single file format, or they can be more generic and bundle multiple readers. Using a generic reader plugin has the advantage of reducing the number of plugins and ensuring homogeneous behavior across formats. However, specialized readers may provide more advanced features for a given format.
 
+If multiple readers are available for a given format, when drag-and-dropping a file, or opening an image via the menu `File -> Open` you will be prompted to select which plugin to use. If you have set a default you can also adjust it in `Settings -> Preferences -> Plugins -> File Readers` by entering the desired extension and selecting the preferred plugin from the dropdown.
+
+![Plugin reader options](../_static/images/plugin-reader-choice.png)
+
 +++
 
 ### General-purpose reader plugins
@@ -105,10 +109,6 @@ viewer.open(file_path_czi, plugin='ndevio')
 viewer.window.resize(width, height)
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel CZI image opened via ndevio of a bud lobe of Arabidopsis.")
 ```
-
-If multiple readers are available for a given format, when drag-and-dropping a file, or opening an image via the menu `File -> Open` you will be prompted to select which plugin to use. If you have set a default you can also adjust it in `Settings -> Preferences -> Plugins -> File Readers` by entering the desired extension (e.g. `.czi`, don't forget the `.`) and selecting the preferred plugin from the dropdown.
-
-![Plugin reader options](../_static/images/plugin-reader-choice.png)
 
 +++
 
