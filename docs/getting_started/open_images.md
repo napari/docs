@@ -79,42 +79,9 @@ If multiple readers are available for a given format, when drag-and-dropping a f
 
 +++
 
-### General-purpose reader plugins
-
-There are a few examples of plugins bundling multiple readers. One example is [ndevio](https://napari-hub.org/plugins/ndevio.html) which wraps the family of [bioio](https://bioio.readthedocs.io/en/latest/) packages to provide support for multiple microscopy file formats. Often such bundled reader plugins come with a set of formats supported by default, and allow the users to add optional formats, typically by installing additional dependencies. 
-
-In the example below we illustrate how to use ndevio to open a Zeiss CZI file. First we need to install ndevio, with, for example, the napari plugin manager.
-
-This basic installation allows us to open ome-tiff, ome-zarr, imageio etc. via the plugin.
-However, when trying to open a supported format such as CZI, we get an informative error message that the necessary bioio reader is not installed and a widget will pop-up enabling installation of a suggested reader. Should those suggestions be insufficient, bioio-bioformats is available.
-
-After restarting napari, we are now allowed to just drag and drop a CZI file in the viewer to open it. You can try with [this example](https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi) from the [IDR library](https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BSST601?query=czi) ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), Valuchova et al. https://doi.org/10.17867/10000144):
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-file_path_czi = pooch.retrieve(
-        url="https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi",
-        known_hash='aec7eeee335398b25f2185beaaa958afeb88c45853faac597cf034ac5d312c16',
-        fname = 'Bud_projection.czi',
-        path=Path(os.path.expanduser("~"))
-        )
-```
-
-```{code-cell} ipython3
-:tags: [remove-input]
-
-viewer = napari.Viewer()
-viewer.open(file_path_czi, plugin='ndevio')
-viewer.window.resize(width, height)
-nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel CZI image opened via ndevio of a bud lobe of Arabidopsis.")
-```
-
-+++
-
 ### Single format reader
 
-Some specific file formats have dedicated reader plugins. Here, we use the example of mesh formats that can be visualized in the surface layer. The [`napari-meshio`](https://napari-hub.org/plugins/napari-meshio.html) plugin provides a reader to open a mesh file such as this [example ply file](https://people.sc.fsu.edu/~jburkardt/data/ply/airplane.ply). Again it can be installed using the napari plugin manager or your preferred Python package manager.
+Some specific file formats have dedicated reader plugins. Here, we use the example of mesh formats that can be visualized in the surface layer. The [`napari-meshio`](https://napari-hub.org/plugins/napari-meshio.html) plugin provides a reader to open a mesh file such as this [example ply file](https://people.sc.fsu.edu/~jburkardt/data/ply/airplane.ply). The plugin can be installed using the napari plugin manager or your preferred Python package manager.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -135,6 +102,39 @@ viewer.open(file_path_ply, plugin='napari-meshio')
 viewer.dims.ndisplay = 3
 viewer.camera.angles = (92, -24, 15)
 nbscreenshot(viewer, alt_text="napari viewer showing a 3D mesh of an airplane opened via napari-meshio.")
+```
+
++++
+
+### General-purpose reader plugins
+
+There are a few examples of plugins bundling multiple readers. One example is [ndevio](https://napari-hub.org/plugins/ndevio.html) which wraps the family of [bioio](https://bioio.readthedocs.io/en/latest/) packages to provide support for multiple microscopy file formats. Often such bundled reader plugins come with a set of formats supported by default, and allow the users to add optional formats, typically by installing additional dependencies. 
+
+In the example below we illustrate how to use ndevio to open a Zeiss CZI file. Again, we need to install ndevio with either the napari plugin manager or your preferred Python package manager.
+
+This basic installation allows us to open ome-tiff, ome-zarr, imageio etc. via the plugin.
+However, when trying to open a supported format such as CZI, we get an informative error message that the necessary bioio reader is not installed and a widget will pop-up enabling installation of a suggested reader. Should those suggestions be insufficient, bioio-bioformats is available for ndevio.
+
+We are now allowed to just drag and drop a CZI file in the viewer to open it. You can try with [this example](https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi) from the [IDR library](https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BSST601?query=czi) ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), Valuchova et al. https://doi.org/10.17867/10000144):
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+file_path_czi = pooch.retrieve(
+        url="https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi",
+        known_hash='aec7eeee335398b25f2185beaaa958afeb88c45853faac597cf034ac5d312c16',
+        fname = 'Bud_projection.czi',
+        path=Path(os.path.expanduser("~"))
+        )
+```
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+viewer = napari.Viewer()
+viewer.open(file_path_czi, plugin='ndevio')
+viewer.window.resize(width, height)
+nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel CZI image opened via ndevio of a bud lobe of Arabidopsis.")
 ```
 
 ## Sample images
