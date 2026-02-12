@@ -445,6 +445,10 @@ def generate_docs_ui_section(
 
 # ---- Main and UI sections parameters
 def main(stubs=False):
+
+    import sys
+    sys.setrecursionlimit(5000)
+
     # General 'settings'
     mermaid_graph_base_settings = {
         'graph_orientation': 'LR',
@@ -780,9 +784,6 @@ def main(stubs=False):
 
 if __name__ == '__main__':
     import argparse
-    import sys
-
-    sys.setrecursionlimit(5000)
 
     parser = argparse.ArgumentParser(description='Update UI sections docs.')
     parser.add_argument(
