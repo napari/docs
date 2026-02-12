@@ -56,7 +56,7 @@ than a JPEG from the year 2000? That's no longer the case!
 Courtesy of our community contributor, Guillaume Witz (@guiwitz), and his PR for
 texture tiling ([PR #8395](https://github.com/napari/napari/pull/8395)) 2D
 images that exceed OpenGL's maximum texture size will be split into multiple
-tiles, each small enough to fit on the GPU, and rendered as separate vispy `Image` node.
+tiles, each small enough to fit on the GPU.
 
 ![Image with a screenshot of napari 0.6.6 on the left and napari 0.7.0 on the right displaying a DeCAM image of the Milky Way. The image on the left is pixelated, while the image on the right is displayed at full resolution.](https://github.com/user-attachments/assets/d0a115a8-49d5-432c-b561-f29fe9ac8116)
 
