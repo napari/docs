@@ -86,7 +86,7 @@ across all layers. Pretty slick!
 
 ![GIF displaying the usage of the features table with multiple selected layers.](https://github.com/user-attachments/assets/e06fd403-ed03-4edd-9192-a4e287d25ff7)
 
-### Imitation is the highest form of flattery - smarter new layer buttons
+### Smarter new layer buttons - inheriting from selected layers
 
 Prior to 0.7.0, creating a new layer Points, Shapes or Labels layer would give you a layer
 with extent and dimensionality equal to the union of all currently open layers, and with
@@ -94,8 +94,9 @@ none of the other spatial information (scale, units, etc.) inherited.
 
 Now, with [#8357](https://github.com/napari/napari/pull/8357) you can create a new Shapes
 or Points layer (Labels coming soon!) that inherits from a selected layer
-(or a combination of selected layers)! Your new layer will copy all spatial information
-from its ancestor, ready for annotating!
+(or a combination of selected layers). If you have one layer selected, 
+your new layer will copy all spatial information from its ancestor, ready for annotating!
+If you have multiple layers selected, only scale is copied.
 
 TODO: add image of the different button visual, once merged, and note
 
@@ -109,11 +110,10 @@ If you've ever loaded data of mixed dimensionality in napari, like a TYX volume
 alongside a YX segmentation, you may have noticed the default axis labels didn't
 quite line up:
 
-```
-axes  | 0 | 1 | 2
-volume| 0 | 1 | 2
-segmt |   | 0 | 1
-```
+| axes   | 0 | 1 | 2 |
+|--------|---|---|---|
+| volume | 0 | 1 | 2 |
+| segmt  |   | 0 | 1 |
 
 That's because napari used 0-based indexing for its viewer axis labels, which breaks
 down when layers have different numbers of dimensions. With
@@ -121,11 +121,10 @@ down when layers have different numbers of dimensions. With
 viewer axis labels now use negative indexing by default, just like Python's own indexing
 semantics. The last axis is always `-1`, the second-to-last is always `-2`, and so on:
 
-```
-axes  | 0  | 1  | 2
-volume| -3 | -2 | -1
-segmt |    | -2 | -1
-```
+| axes   | 0  | 1  | 2  |
+|--------|----|----|----|
+| volume | -3 | -2 | -1 |
+| segmt  |    | -2 | -1 |
 
 This means axis labels stay consistent as you add or remove layers of different
 dimensionality -- axis `-1` is always your last axis. This also fixes
