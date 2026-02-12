@@ -403,8 +403,8 @@ class MyWidget(QWidget):
         return something_amazing()
 
 class FastWidget(QWidget):
-  def do_something_fast(self):
-    return np.zeros((10, 10))
+    def do_something_fast(self):
+        return np.zeros((10, 10))
 ```
 
 In this case, only `MyWidget` requires the heavy dependency, but with the import

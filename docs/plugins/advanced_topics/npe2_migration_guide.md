@@ -449,8 +449,8 @@ plugin's contributions will be created and cached locally. On all future
 launches of napari, that cached manifest will be used and the plugin will
 *not* be imported immediately when napari boots.
 
-With napari v0.7.0, legacy npe1 plugins will **only** be usable if they
-can be "shimmed" via this adaptor. 
+With napari v0.7.0, legacy npe1 plugins will **only** be usable through
+this adaptor; plugins relying on import-time behaviour may malfunction. 
 
 ### Benefits
 
