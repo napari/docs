@@ -198,6 +198,8 @@ viewer.open(file_path_tiff2, plugin='ndevio')
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells opened via ndevio.")
 ```
 
+## Using plugins to work with images after reading
+
 In the case of badly interpreted dimensions, one can also reshape the data using certain plugins. For example the [napari-skimage](https://napari-hub.org/plugins/napari-skimage.html) plugin provides a tool to reshape layers via the `Plugins -> napari skimage -> Axis operations` menu. Here we use the `swap axes` function to exchange the X and Y axes:
 
 ```{code-cell} ipython3
