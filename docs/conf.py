@@ -172,6 +172,10 @@ intersphinx_mapping = {
         'https://vispy.org/',
         'https://vispy.org/objects.inv',
     ],
+    'pydantic': [
+        'https://docs.pydantic.dev/latest/',
+        'https://docs.pydantic.dev/latest/objects.inv',
+    ]
 }
 
 # myst markdown extensions for additional markdown features
