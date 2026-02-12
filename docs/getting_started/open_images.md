@@ -82,7 +82,7 @@ There are a few examples of plugins bundling multiple readers. One example is [n
 In the example below we illustrate how to use ndevio to open a Zeiss CZI file. First we need to install ndevio, with, for example, the napari plugin manager.
 
 This basic installation allows us to open ome-tiff, ome-zarr, imageio etc. via the plugin.
-However, when trying to open a supported format such as CZI, we get an informative error message that the necessary bioio reader is not installed, and a widget will pop-up enabling installation of the required dependency.
+However, when trying to open a supported format such as CZI, we get an informative error message that the necessary bioio reader is not installed and a widget will pop-up enabling installation of a suggested reader. Should those suggestions be insufficient, bioio-bioformats is available.
 
 After restarting napari, we are now allowed to just drag and drop a CZI file in the viewer to open it. You can try with [this example](https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi) from the [IDR library](https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BSST601?query=czi) ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), Valuchova et al. https://doi.org/10.17867/10000144):
 
