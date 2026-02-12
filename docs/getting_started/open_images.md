@@ -15,6 +15,14 @@ kernelspec:
 
 There are multiple ways to open images in napari, depending on the image format and the type of processing you intend to apply to the data. The simplest option is to use napari’s builtin file dialog or drag-and-drop functionality. To open certain specialized data types, such as images saved in custom microscopy formats, you may need to extend napari’s data-loading capabilities by using a specific type of [napari plugin](https://napari.org/stable/plugins/start_using_plugins/finding_and_installing_plugins.html#find-and-install-plugins) called reader plugins. Finally, for maximum flexibility, images can also be opened programmatically, for example via the napari console or in a Jupyter notebook.
 
+## Sample images
+
+Sometimes you just need to open images to test some functionality of napari or a plugin. In that case you can use sample images that come bundled with napari or some plugins. Here is an example of opening the "cell" sample image. In napari, go to `File -> Open Sample -> napari builtins -> Cell`
+
+![Open sample image](../_static/images/open_image.png)
+
++++
+
 ## Builtin napari reader
 
 napari natively supports TIFF and many other standard formats like PNG, JPG etc. When drag-and-dropping files, using one of the `File -> Open File/Folder` menu options, or using the `File -> Open Sample` menu with such formats, images will be read via the [imageio](https://imageio.readthedocs.io/en/stable/) library and appear in the viewer.
@@ -136,14 +144,6 @@ viewer.open(file_path_czi, plugin='ndevio')
 viewer.window.resize(width, height)
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel CZI image opened via ndevio of a bud lobe of Arabidopsis.")
 ```
-
-## Sample images
-
-Sometimes you just need to open images to test some functionality of napari or a plugin. In that case you can use sample images that come bundled with napari or some plugins. Here is an example of opening the "cell" sample image. In napari, go to `File -> Open Sample -> napari builtins -> Cell`
-
-![Open sample image](../_static/images/open_image.png)
-
-+++
 
 ## Using the napari console to open an image
 
