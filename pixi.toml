@@ -57,10 +57,3 @@ slimgallery-live = "make slimgallery-live"
 # Utility tasks
 linkcheck-files = "make linkcheck-files"
 spellcheck = "make spellcheck"
-
-[pypi-dependencies]
-ndevio = ">=0.7.0, <0.8"
-bioio-czi = ">=2.4.2, <3"
-napari-meshio = ">=0.0.2, <0.0.3"
-napari-skimage = ">=0.6.0, <0.7"
-
