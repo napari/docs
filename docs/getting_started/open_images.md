@@ -106,21 +106,6 @@ viewer.window.resize(width, height)
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel CZI image opened via ndevio of a bud lobe of Arabidopsis.")
 ```
 
-On top of just allowing to open file formats, some plugins also provide additional tools, for example to explore metadata, offer import options, etc. The ndevio plugin for example provides widgets to export data and explore basic metadata via the `Plugins -> ndevio -> I/O utilities` menu. Here we see that valuable information about pixel size was recovered from the CZI file metadata:
-
-```{code-cell} ipython3
-:tags: [remove-input]
-
-from qtpy.QtWidgets import QScrollArea
-
-widget, plugin_widget = viewer.window.add_plugin_dock_widget('ndevio', 'I/O Utilities')
-qwidget = widget.widget()
-scroll_area = qwidget.findChild(QScrollArea)
-scroll_area.verticalScrollBar().setValue(scroll_area.verticalScrollBar().maximum())
-plugin_widget.update_metadata_from_layer()
-nbscreenshot(viewer, alt_text="napari viewer showing the ndevio plugin dock widget with metadata.")
-```
-
 If multiple readers are available for a given format, when drag-and-dropping a file, or opening an image via the menu `File -> Open` you will be prompted to select which plugin to use. If you have set a default you can also adjust it in `Settings -> Preferences -> Plugins -> File Readers` by entering the desired extension (e.g. `.czi`, don't forget the `.`) and selecting the preferred plugin from the dropdown.
 
 ![Plugin reader options](../_static/images/plugin-reader-choice.png)
