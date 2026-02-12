@@ -21,8 +21,6 @@ Sometimes you just need to open images to test some functionality of napari or a
 
 ![Open sample image](../_static/images/open_image.png)
 
-+++
-
 ## Builtin napari reader
 
 napari natively supports TIFF and many other standard formats like PNG, JPG etc. When drag-and-dropping files, using one of the `File -> Open File/Folder` menu options, or using the `File -> Open Sample` menu with such formats, images will be read via the [imageio](https://imageio.readthedocs.io/en/stable/) library and appear in the viewer.
@@ -73,8 +71,6 @@ nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel tif microsc
 
 As mentioned above, there are situations where the builtin reader will not be sufficient. For example, `imageio` typically does not support custom commercial/proprietary formats such as those used in microscopy (e.g. CZI, LIF, ND2) or remote sensing (e.g. ENVI). In these cases, napari's reading capabilities need to be extended using an appropriate reader plugin.
 
-+++
-
 ## Using a plugin reader
 
 Readers are a specific feature of napari plugins making it possible to open additional file formats via the `File -> Open` menu or drag-and-drop. They are installed in the same way as other napari plugins, either using the Plugins menu or your preferred Python package installer. Read more in our [guide to finding and installing plugins](find-and-install-plugins). Once installed, plugins will be automatically discovered by napari and used for the appropriate files.
@@ -84,8 +80,6 @@ There are two possibilities for reader plugins: they can either be specialized i
 If multiple readers are available for a given format, when drag-and-dropping a file, or opening an image via the menu `File -> Open` you will be prompted to select which plugin to use. If you have set a default you can also adjust it in `Settings -> Preferences -> Plugins -> File Readers` by entering the desired extension and selecting the preferred plugin from the dropdown.
 
 ![Plugin reader options](../_static/images/plugin-reader-choice.png)
-
-+++
 
 ### Single format reader
 
@@ -121,9 +115,9 @@ There are a few examples of plugins bundling multiple readers. One example is [n
 In the example below we illustrate how to use ndevio to open a Zeiss CZI file. Again, we need to install ndevio with either the napari plugin manager or your preferred Python package manager.
 
 This basic installation allows us to open ome-tiff, ome-zarr, imageio etc. via the plugin.
-However, when trying to open a supported format such as CZI, we get an informative error message that the necessary bioio reader is not installed and a widget will pop-up enabling installation of a suggested reader. Should those suggestions be insufficient, bioio-bioformats is available for ndevio.
+However, when trying to open a supported format such as CZI, we get an informative error message that the necessary bioio reader is not installed. You can always install any additional arbitrary packages with the [napari plugin manager](https://napari.org/napari-plugin-manager/#installing-a-plugin-via-direct-entry); in this case, we need to install bioio-czi to read the czi file (or bioio-bioformats).
 
-We are now allowed to just drag and drop a CZI file in the viewer to open it. You can try with [this example](https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi) from the [IDR library](https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BSST601?query=czi) ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), Valuchova et al. https://doi.org/10.17867/10000144):
+We are now able to just drag and drop a CZI file in the viewer to open it. You can try with [this example](https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi) from the [IDR library](https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BSST601?query=czi) ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), Valuchova et al. https://doi.org/10.17867/10000144):
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
