@@ -192,6 +192,7 @@ subtrees:
       - file: developers/contributing/index
         subtrees:
         - entries:
+          - file: developers/contributing/ai
           - file: developers/contributing/dev_install
           - file: developers/contributing/testing
           - file: developers/contributing/translations
