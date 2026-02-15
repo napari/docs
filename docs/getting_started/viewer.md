@@ -544,7 +544,7 @@ while being able to roll through the spatial dimensions.
 ```{tip}
 The roll dimensions pop up also lets you rename the dimension axes used by the viewer.
 Just double click on the text to the right of the padlock icon. For example, for a 3D volume, double-click
-the default axis name `0` and change it to `Z`. The change will be reflected in the slider in 2D view
+the default axis name `-3` and change it to `Z`. The change will be reflected in the slider in 2D view
 and the `axes` overlay.
 ```
 
