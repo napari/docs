@@ -299,6 +299,11 @@ New empty `Points`, `Shapes`, and `Labels` layers can be added to the viewer usi
 viewer.add_points()
 ```
 
+```tip
+Creating a new points or shapes layer with the layer buttons will inherit the dimensions and scale of the selected layer(s), as shown by the highlight around the buttons.
+To create layers that inherit the full dimensions and mixed scale of all the layers in the layer list, select/deselect all layers.
+```
+
 Once added, either in the GUI or via the console, these layers become accessible in the layers list section of the GUI and at `viewer.layers`. For example, an empty Points layer created using the code snippet above can be accessed using `viewer.layers['Points']`.
 
 Layers can be deleted by selecting them and clicking on the `delete` button with the trash icon (or using the keybinding as set in the [**Preferences** dialog](napari-preferences)).
