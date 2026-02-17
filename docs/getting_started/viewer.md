@@ -299,7 +299,10 @@ New empty `Points`, `Shapes`, and `Labels` layers can be added to the viewer usi
 viewer.add_points()
 ```
 
-```tip
+```{admonition} Tip: New layer button behavior
+---
+class: tip
+---
 Creating a new points or shapes layer with the layer buttons will inherit the dimensions and scale of the selected layer(s), as shown by the highlight around the buttons.
 To create layers that inherit the full dimensions and mixed scale of all the layers in the layer list, select/deselect all layers.
 ```
