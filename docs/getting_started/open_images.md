@@ -37,11 +37,16 @@ import napari
 from napari.utils import nbscreenshot
 import imageio.v3 as iio
 
+# make download folder
+download_folder = Path(os.path.expanduser("~")).joinpath("Desktop", "napari-docs-build")
+if not download_folder.is_dir():
+    download_folder.mkdir(parents=True, exist_ok=True)
+
 file_path_tiff = pooch.retrieve(
         url="https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/582/S-BIAD582/Files/01_wt_Dprotein555-TL/raw_mps/5-2b_01_wt_Dprotein555-TL_003_rawmp.tif",
         known_hash='5b43ed0269eaa1eebf4c48079270a30e6cc40e87f20cc36c1b3d5a07c51c7b20',
-        fname = '5-2b_01_wt_Dprotein555-TL_003_rawmp.tif',
-        path=Path(os.path.expanduser("~"))
+        fname='5-2b_01_wt_Dprotein555-TL_003_rawmp.tif',
+        path=download_folder
         )
 ```
 
@@ -77,7 +82,7 @@ Readers are a specific feature of napari plugins making it possible to open addi
 
 There are two possibilities for reader plugins: they can either be specialized in reading one single file format, or they can be more generic and bundle multiple readers. Using a generic reader plugin has the advantage of reducing the number of plugins and ensuring homogeneous behavior across formats. However, specialized readers may provide more advanced features for a given format.
 
-If multiple readers are available for a given format, when drag-and-dropping a file, or opening an image via the menu `File -> Open` you will be prompted to select which plugin to use. If you have set a default you can also adjust it in `Settings -> Preferences -> Plugins -> File Readers` by entering the desired extension and selecting the preferred plugin from the dropdown.
+If multiple readers are available for a given format, when drag-and-dropping a file, or opening an image via the menu `File -> Open` you will be prompted to select which plugin to use. If you have set a default you can also adjust it in `Preferences -> Plugins -> File Readers` by entering the desired extension and selecting the preferred plugin from the dropdown.
 
 ![Plugin reader options](../_static/images/plugin-reader-choice.png)
 
@@ -92,7 +97,7 @@ file_path_ply = pooch.retrieve(
     url="https://people.sc.fsu.edu/~jburkardt/data/ply/airplane.ply",
     known_hash='370846416b2d0d9c574e356a5b43c7aac2db748761daab270fdd1331f97305a8', 
     fname="airplane.ply",
-    path=Path(os.path.expanduser("~"))
+    path=download_folder
 )
 ```
 
@@ -122,7 +127,7 @@ We are now able to just drag and drop a zarr file in the viewer to open it. We u
 import s3fs
 
 file = "ExpD_chicken_embryo_MIP.ome.zarr"
-file_path_zarr = Path(os.path.expanduser("~")).joinpath(file)
+file_path_zarr = download_folder.joinpath(file)
 fs = s3fs.S3FileSystem(
     anon=True,
     client_kwargs={"endpoint_url": "https://uk1s3.embassy.ebi.ac.uk"}
@@ -158,7 +163,7 @@ file_path_tiff2 = pooch.retrieve(
     url="https://github.com/guiwitz/microfilm/raw/refs/heads/master/demodata/coli_nucl_ori_ter.tif",
     known_hash="f37020f32fe3f8aa8ef44563646b51dc3517e372564939733181da65e13f0eda", 
     fname="coli_nucl_ori_ter.tif",
-    path=Path(os.path.expanduser("~"))
+    path=download_folder
 )
 ```
 
