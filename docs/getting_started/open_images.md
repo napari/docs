@@ -106,37 +106,41 @@ viewer.camera.angles = (92, -24, 15)
 nbscreenshot(viewer, alt_text="napari viewer showing a 3D mesh of an airplane opened via napari-meshio.")
 ```
 
-+++
-
 ### General-purpose reader plugins
 
 There are a few examples of plugins bundling multiple readers. One example is [ndevio](https://napari-hub.org/plugins/ndevio.html) which wraps the family of [bioio](https://bioio.readthedocs.io/en/latest/) packages to provide support for multiple microscopy file formats. Often such bundled reader plugins come with a set of formats supported by default, and allow the users to add optional formats, typically by installing additional dependencies. 
 
-In the example below we illustrate how to use ndevio to open a Zeiss CZI file. Again, we need to install ndevio with either the napari plugin manager or your preferred Python package manager.
+In the example below we illustrate how to use ndevio to open a zarr file. Again, we need to install ndevio with either the [napari plugin manager](https://napari.org/napari-plugin-manager/#installing-a-plugin-via-direct-entry) or your preferred Python package manager.
 
-This basic installation allows us to open ome-tiff, ome-zarr, imageio etc. via the plugin.
-However, when trying to open a supported format such as CZI, we get an informative error message that the necessary bioio reader is not installed. You can always install any additional arbitrary packages with the [napari plugin manager](https://napari.org/napari-plugin-manager/#installing-a-plugin-via-direct-entry); in this case, we need to install bioio-czi to read the czi file (or bioio-bioformats).
+This basic installation allows to open ome-tiff, ome-zarr, imageio etc. via the plugin. If you need to open another format such as CZI, ND2 etc., you will have to install additional extension (for example for ndevio please refer to the [instructions](https://github.com/ndev-kit/ndevio?tab=readme-ov-file#additional-image-format-support)). This can be done for example via the [direct entry option](https://napari.org/napari-plugin-manager/#installing-a-plugin-via-direct-entry) of the plugin manager.
 
-We are now able to just drag and drop a CZI file in the viewer to open it. You can try with [this example](https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi) from the [IDR library](https://www.ebi.ac.uk/biostudies/BioImages/studies/S-BSST601?query=czi) ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), Valuchova et al. https://doi.org/10.17867/10000144):
+We are now able to just drag and drop a zarr file in the viewer to open it. We use an example from the [IDR OME-NGFF Samples](https://idr.github.io/ome-ngff-samples/) (ExpD_chicken_embryo_MIP.ome.zarr, CC BY 4.0, Voigt et al. (2019) https://doi.org/10.17867/10000127d):
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-file_path_czi = pooch.retrieve(
-        url="https://ftp.ebi.ac.uk/pub/databases/IDR/idr0077-valuchova-flowerlightsheet/20200428-ftp/2019-03-05%2007mm%20bud%20lobe%20in%20detail_Maximum%20intensity%20projection.czi",
-        known_hash='aec7eeee335398b25f2185beaaa958afeb88c45853faac597cf034ac5d312c16',
-        fname = 'Bud_projection.czi',
-        path=Path(os.path.expanduser("~"))
-        )
+import s3fs
+
+file = "ExpD_chicken_embryo_MIP.ome.zarr"
+file_path_zarr = Path(os.path.expanduser("~")).joinpath(file)
+fs = s3fs.S3FileSystem(
+    anon=True,
+    client_kwargs={"endpoint_url": "https://uk1s3.embassy.ebi.ac.uk"}
+)
+fs.get(
+    f"idr/zarr/v0.5/idr0066/{file}",
+    file_path_zarr,
+    recursive=True
+);
 ```
 
 ```{code-cell} ipython3
 :tags: [remove-input]
 
 viewer = napari.Viewer()
-viewer.open(file_path_czi, plugin='ndevio')
+viewer.open(file_path_zarr, plugin='ndevio')
 viewer.window.resize(width, height)
-nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel CZI image opened via ndevio of a bud lobe of Arabidopsis.")
+nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel zarr image opened via ndevio of a chicken embryo.")
 ```
 
 ## Using the napari console to open an image
@@ -187,6 +191,8 @@ nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image 
 Note that different reader plugins might interpret your data in different ways. With the same data as above where the builtin `imageio` reader did not split the channels into layers, the `ndevio` plugin identified the channels from the metadata and assigned them separate layers:
 
 ```{code-cell} ipython3
+:tags: [remove-input]
+
 viewer = napari.Viewer()
 viewer.open(file_path_tiff2, plugin='ndevio')
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells opened via ndevio.")
