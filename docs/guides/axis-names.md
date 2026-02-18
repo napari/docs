@@ -18,7 +18,7 @@ kernelspec:
 ```{warning}
 The napari team is actively working to improve the consistency and user
 experience of axis names and other axis metadata. This guide should be up to
-date, but things may be in a confusing state. It's not you, it's us! 😅 In
+date, but things may be in a confusing state. It's not you, it's us! In
 summary:
 
 - **Before 0.6.0,** napari's `Viewer.dims` held axis names, and these were
@@ -35,18 +35,18 @@ summary:
 ```
 
 napari started out as a tool to look at NumPy arrays. As such, it mimics some
-behavior when mixing arrays of different dimension, known as
+behavior when mixing arrays of different dimensions, known as
 [broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html).
 
 Specifically, arrays of mixed dimensionality are *right-aligned*. In order to
 make array shapes match across different elements of napari, napari 0.7.0
 started using *negative indexing*, i.e. indexing from the right end of a list
-or tuple, for its axes.
+or tuple, for its axes labels.
 
 Suppose we have a time lapse of neuronal activity, with a 3D image with
 dimensions T, Y, and X, a set of 2D masks of dimensions Y, X, and a set of
 2D centroid coordinates, with dimensions Y, X. Before napari 0.7.0, the default
-dimension names would have been:
+axis labels would have been:
 
 | component  |  T |  Y |  X |
 |------------|----|----|----|
