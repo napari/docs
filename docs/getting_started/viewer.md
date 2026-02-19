@@ -306,7 +306,7 @@ viewer.add_points()
 class: tip
 ---
 Creating a new points or shapes layer with the layer buttons will inherit the dimensions and scale of the selected layer(s), as shown by the highlight around the buttons.
-To create layers that inherit the full dimensions and mixed scale of all the layers in the layer list, select/deselect all layers.
+To create layers that inherit the full dimensions and mixed scale of all the layers in the layer list, either select all layers or ensure no layers are selected.
 ```
 
 Once added, either in the GUI or via the console, these layers become accessible in the layers list section of the GUI and at `viewer.layers`. For example, an empty Points layer created using the code snippet above can be accessed using `viewer.layers['Points']`.
