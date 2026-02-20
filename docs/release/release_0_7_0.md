@@ -293,18 +293,6 @@ would lock up the viewer entirely. Not anymore!
 Beware: there's still more to do, because drawing and drag-moving large selections
 remain slow!
 
-#### Lightning labels
-
-Labels painting on large images used to be sluggish. Polygon fills on a 10000x10000
-label array took over 22 seconds, and large brush sizes would lock up the viewer entirely.
-
-With [#8592](https://github.com/napari/napari/pull/8592), polygon rasterization now uses
-PIL instead of scikit-image's `polygon2mask`, giving us an up to 6x speedup,
-and `data_setitem` now uses numpy's `min`/`max`, giving us an up to 4x speedup. These small
-changes have given us some big wins, but performance is still not where we'd like it to be.
-We've got a more comprehensive PR in flight ([#8636](https://github.com/napari/napari/pull/8636))
-to address the underlying performance issue.
-
 ### Infrastructure & dependencies
 
 A couple of notes on big changes in our dependencies:
@@ -315,11 +303,13 @@ This brings us one step closer to fully adopting `psygnal` as our event library.
 were using napari with PySide for your Qt bindings, you'll need to upgrade to PySide6. Good news
 is that PySide6 is looking pretty stable, while PySide2 had some compatibility issues with numpy2,
 and had to be built from source for Python 3.11+.
+- In ([#8665](https://github.com/napari/napari/pull/8665)) we updated the default qt
+binding to PyQt6. PyQt6 will now be installed with `napari[all]` installations. Windows users
+should see improvements to their display with better support for fractional scaling!
 - In [#8338](https://github.com/napari/napari/pull/8338) we replaced `numpydoc` with `docstring_parser`
 for parsing our docstrings. This will be a pretty invisible change from a user's perspective, but
 it saves more than 50MB of disk space for a napari install!
 
-- Change default qt binding to PyQt6 ([#8665](https://github.com/napari/napari/pull/8665))
 
 ## New Features
 
@@ -358,6 +348,7 @@ it saves more than 50MB of disk space for a napari install!
 - Use negative indexing for viewer dims axis labels ([#8565](https://github.com/napari/napari/pull/8565))
 - Add colorbar & bounding box overlays to Layers menu ([#8611](https://github.com/napari/napari/pull/8611))
 - Add visual for new points/shapes button on selected layers ([#8649](https://github.com/napari/napari/pull/8649))
+- Limit `self.events` callbacks trigger to only once per assigment ([#8672](https://github.com/napari/napari/pull/8672))
 
 ## Performance
 
@@ -466,6 +457,7 @@ it saves more than 50MB of disk space for a napari install!
 - Fix camera angles in handedness guide ([docs#940](https://github.com/napari/docs/pull/940))
 - Add guide explaining default axis names ([docs#942](https://github.com/napari/docs/pull/942))
 - Add info about new points/shapes layer button behavior ([docs#943](https://github.com/napari/docs/pull/943))
+- Add final? 0.7.0 highlights and group by topic ([docs#944](https://github.com/napari/docs/pull/944))
 
 ## Other Pull Requests
 
@@ -593,7 +585,7 @@ it saves more than 50MB of disk space for a napari install!
 - [Yohsuke T. Fukai](https://github.com/napari/napari/commits?author=yfukai) - @yfukai +
 - [Zuzana Čočková](https://github.com/napari/napari/commits?author=cockovaz) - @cockovaz +
 
-## 23 reviewers added to this release (alphabetical)
+## 24 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -617,6 +609,7 @@ it saves more than 50MB of disk space for a napari install!
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
 - [Rensu Theart](https://github.com/napari/docs/commits?author=rensutheart) - @rensutheart +
 - [Sesan](https://github.com/napari/napari/commits?author=Olusesan) - @Olusesan
+- [Talley Lambert](https://github.com/napari/docs/commits?author=tlambert03) - @tlambert03
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Yohsuke T. Fukai](https://github.com/napari/napari/commits?author=yfukai) - @yfukai +
 - [Zuzana Čočková](https://github.com/napari/napari/commits?author=cockovaz) - @cockovaz +
