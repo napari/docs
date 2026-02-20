@@ -16,7 +16,9 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 ## Highlights
 
-### Transition to npe2 plugin engine 🔌
+### Breaking Changes
+
+#### Transition to npe2 plugin engine 🔌
 
 In 0.6.0 we began the process of deprecating npe1 (napari-plugin-engine).
 In all 0.6.x releases, npe1 plugins were automatically converted to npe2 by default,
@@ -45,6 +47,71 @@ guide](npe2-migration-guide), and, if you encounter any issues, get in touch in
 our [Plugins Zulip chat
 channel](https://napari.zulipchat.com/#narrow/channel/309872-plugins) or by
 coming to one of our [community meetings](meeting-schedule).
+
+#### Negative axis labels? A real positive
+
+If you've ever loaded data of mixed dimensionality in napari, like a TYX volume
+alongside a YX segmentation, you may have noticed the default axis labels didn't
+quite line up:
+
+| axes   | 0 | 1 | 2 |
+|--------|---|---|---|
+| volume | 0 | 1 | 2 |
+| segmt  |   | 0 | 1 |
+
+That's because napari used 0-based indexing for its viewer axis labels, which breaks
+down when layers have different numbers of dimensions. With
+[#8565](https://github.com/napari/napari/pull/8565),
+viewer axis labels now use negative indexing by default, just like Python's own indexing
+semantics. The last axis is always `-1`, the second-to-last is always `-2`, and so on:
+
+| axes   | 0  | 1  | 2  |
+|--------|----|----|----|
+| volume | -3 | -2 | -1 |
+| segmt  |    | -2 | -1 |
+
+This means axis labels stay consistent as you add or remove layers of different
+dimensionality -- axis `-1` is always your last axis. This also fixes
+a long-standing bug where axis labels could end up duplicated when mixing layers of
+different dimensionality ([#6569](https://github.com/napari/napari/issues/6569)).
+
+You'll notice this change in the dims slider labels, the axis overlay, and the dims
+popup widget. If you already label your axes with your own names (e.g. `z`, `y`, `x`),
+nothing's changed. For everyone else, we have consistency at last!
+
+
+#### What's in an angle? The truth! Fixed camera angles 🎥
+
+If you've ever set up the camera to take that perfect publication-worthy photo of
+your data (and taken the time to query the camera angles), you may have noticed they seemed... off.
+That's because they were! Very... off. This was due to a long-standing bug in how we calculated our
+camera angles, fueled in part by some arcane vispy axis-swapping tomfoolery, and in part by napari's
+starting position of `viewer.camera.angles = (0, 0, 90)`.
+
+Good news! With [#8281](https://github.com/napari/napari/pull/8281), angles make sense again. The default camera angles are `(0, 0, 0)`, and they
+move intuitively -- so `viewer.camera.angles = (0, 0, 10)` actually represents a 10 degree
+rotation around the 0th dimension. What a time to be alive!
+
+Old versions of napari:
+
+![Image showing an old version of a napari viewer with a layer opened and its camera angle (10, 0, 0) displayed in the console.](https://github.com/user-attachments/assets/9ae2040c-36f7-4c4c-8ef8-140202d7ccda)
+
+New and sane:
+
+![Image showing the 0.7.0 napari viewer with a layer opened and its camera angle (10, 0, 0) displayed in the console. The layer is rotated 10 degrees in its first dimension](https://github.com/user-attachments/assets/6b972b46-5c3c-439a-8b0a-fe8a293224e5)
+
+All rotations are now right-handed (counterclockwise when the axis points towards the viewer),
+with automatic sign-flipping for flipped camera views. We've also removed the unwieldy to type
+(and confusing to reason about) `quaternion2euler_degrees` in favour of scipy's `Rotation` class.
+
+Now for the bad news... After many (and we do [mean](https://github.com/napari/napari/pull/8537)
+[**many**](https://github.com/napari/napari/pull/8557)) attempts, we realized we couldn't
+provide legacy conversion functions to get you to and from the original camera angles. Therefore,
+this is a **breaking change**.
+
+If you had scripts or notebooks setting up angles for screenshots, or if you've got workshop
+materials or tutorials with preset angles, they'll need to be updated. Any existing code
+using `viewer.camera.angles = (z, y, x)` will now produce a different view than before.
 
 ### New features & widgets
 
@@ -121,12 +188,15 @@ v._overlays['current_slice'].gridded = True
 v.dims.axis_labels = ['z', 'y', 'x']
 ```
 
+**Note**: the `v._overlays` attribute is still private as we're working out the best API.
+
 ### Rendering & display
 
 #### More pixels to play with - texture tiling
 
-Ever loaded a large 2D image in napari just to zoom in and find it's blurrier
-than a JPEG from the year 2000? That's no longer the case!
+Ever loaded a large 2D image in napari just to zoom in and feel like you're not
+really getting a lot of bang for your pixel bucks? That's because we were
+downsampling images that were too large to send the whole thing to the GPU.
 
 Courtesy of our community contributor, Guillaume Witz (@guiwitz), and his PR for
 texture tiling ([PR #8395](https://github.com/napari/napari/pull/8395)) 2D
@@ -137,14 +207,14 @@ tiles, each small enough to fit on the GPU.
 
 #### Points - any size you like 🟣
 
-On MacOS, the points layer has never been able to reach its full potential, as OpenGL
+On macOS, the points layer has never been able to reach its full potential, as OpenGL
 drivers limit the size of an individual marker to a certain number of screen pixels.
 
 With [#8552](https://github.com/napari/napari/pull/8552) and the release of `vispy v0.16`,
 this long-standing issue has finally been resolved. Across all operating systems, you can
 make your points as big as you want!
 
-This change has also propagated to the zoom behaviour on MacOS -- points now zoom
+This change has also propagated to the zoom behaviour on macOS -- points now zoom
 proportionally to the data, rather than staying the same size in screen pixels.
 
 Here's the behaviour pre 0.7.0:
@@ -157,17 +227,6 @@ And now:
 
 
 ### Performance
-
-#### Lightning labels
-
-Labels painting on large images used to be sluggish. Polygon fills on a 10000x10000
-label array took over 22 seconds, and large brush sizes would lock up the viewer entirely.
-
-With [#8592](https://github.com/napari/napari/pull/8592), polygon rasterization now uses
-PIL instead of scikit-image's `polygon2mask`, giving us an up to 6x speedup,
-and `data_setitem` now uses numpy's `min`/`max`, giving us an up to 4x speedup!
-
-Small changes, big wins!
 
 #### Grid mode -- bigger, better, faster 📈
 
@@ -231,73 +290,20 @@ would lock up the viewer entirely. Not anymore!
   ~3x speedup when many shapes are selected
   ([#8551](https://github.com/napari/napari/pull/8551)).
 
-There's still more to do (drawing and drag-moving large selections remain
-slow), but the days of the viewer locking up on a big shapes layer are over.
+Beware: there's still more to do, because drawing and drag-moving large selections
+remain slow!
 
-### Negative axis labels? A real positive
+#### Lightning labels
 
-If you've ever loaded data of mixed dimensionality in napari, like a TYX volume
-alongside a YX segmentation, you may have noticed the default axis labels didn't
-quite line up:
+Labels painting on large images used to be sluggish. Polygon fills on a 10000x10000
+label array took over 22 seconds, and large brush sizes would lock up the viewer entirely.
 
-| axes   | 0 | 1 | 2 |
-|--------|---|---|---|
-| volume | 0 | 1 | 2 |
-| segmt  |   | 0 | 1 |
-
-That's because napari used 0-based indexing for its viewer axis labels, which breaks
-down when layers have different numbers of dimensions. With
-[#8565](https://github.com/napari/napari/pull/8565),
-viewer axis labels now use negative indexing by default, just like Python's own indexing
-semantics. The last axis is always `-1`, the second-to-last is always `-2`, and so on:
-
-| axes   | 0  | 1  | 2  |
-|--------|----|----|----|
-| volume | -3 | -2 | -1 |
-| segmt  |    | -2 | -1 |
-
-This means axis labels stay consistent as you add or remove layers of different
-dimensionality -- axis `-1` is always your last axis. This also fixes
-a long-standing bug where axis labels could end up duplicated when mixing layers of
-different dimensionality ([#6569](https://github.com/napari/napari/issues/6569)).
-
-You'll notice this change in the dims slider labels, the axis overlay, and the dims
-popup widget. If you already label your axes with your own names (e.g. `z`, `y`, `x`),
-nothing's changed. For everyone else, we have consistency at last!
-
-
-### What's in an angle? The truth! Fixed camera angles 🎥
-
-If you've ever set up the camera to take that perfect publication-worthy photo of
-your data (and taken the time to query the camera angles), you may have noticed they seemed... off.
-That's because they were! Very... off. This was due to a long-standing bug in how we calculated our
-camera angles, fueled in part by some arcane vispy axis-swapping tomfoolery, and in part by napari's
-starting position of `viewer.camera.angles = (0, 0, 90)`.
-
-Good news! With [#8281](https://github.com/napari/napari/pull/8281), angles make sense again. The default camera angles are `(0, 0, 0)`, and they
-move intuitively -- so `viewer.camera.angles = (0, 0, 10)` actually represents a 10 degree
-rotation around the 0th dimension. What a time to be alive!
-
-Old versions of napari:
-
-![Image showing an old version of a napari viewer with a layer opened and its camera angle (10, 0, 0) displayed in the console.](https://github.com/user-attachments/assets/9ae2040c-36f7-4c4c-8ef8-140202d7ccda)
-
-New and sane:
-
-![Image showing the 0.7.0 napari viewer with a layer opened and its camera angle (10, 0, 0) displayed in the console. The layer is rotated 10 degrees in its first dimension](https://github.com/user-attachments/assets/6b972b46-5c3c-439a-8b0a-fe8a293224e5)
-
-All rotations are now right-handed (counterclockwise when the axis points towards the viewer),
-with automatic sign-flipping for flipped camera views. We've also removed the unwieldy to type
-(and confusing to reason about) `quaternion2euler_degrees` in favour of scipy's `Rotation` class.
-
-Now for the bad news... After many (and we do [mean](https://github.com/napari/napari/pull/8537)
-[**many**](https://github.com/napari/napari/pull/8557)) attempts, we realized we couldn't
-provide legacy conversion functions to get you to and from the original camera angles. Therefore,
-this is a **breaking change**.
-
-If you had scripts or notebooks setting up angles for screenshots, or if you've got workshop
-materials or tutorials with preset angles, they'll need to be updated. Any existing code
-using `viewer.camera.angles = (z, y, x)` will now produce a different view than before.
+With [#8592](https://github.com/napari/napari/pull/8592), polygon rasterization now uses
+PIL instead of scikit-image's `polygon2mask`, giving us an up to 6x speedup,
+and `data_setitem` now uses numpy's `min`/`max`, giving us an up to 4x speedup. These small
+changes have given us some big wins, but performance is still not where we'd like it to be.
+We've got a more comprehensive PR in flight ([#8636](https://github.com/napari/napari/pull/8636))
+to address the underlying performance issue.
 
 ### Infrastructure & dependencies
 
