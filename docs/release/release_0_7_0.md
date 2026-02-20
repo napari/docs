@@ -348,7 +348,7 @@ it saves more than 50MB of disk space for a napari install!
 - Use negative indexing for viewer dims axis labels ([#8565](https://github.com/napari/napari/pull/8565))
 - Add colorbar & bounding box overlays to Layers menu ([#8611](https://github.com/napari/napari/pull/8611))
 - Add visual for new points/shapes button on selected layers ([#8649](https://github.com/napari/napari/pull/8649))
-- Limit `self.events` callbacks trigger to only once per assigment ([#8672](https://github.com/napari/napari/pull/8672))
+- Limit `self.events` callbacks trigger to only once per assignment ([#8672](https://github.com/napari/napari/pull/8672))
 
 ## Performance
 
