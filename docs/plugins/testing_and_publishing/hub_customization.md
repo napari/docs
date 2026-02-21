@@ -139,7 +139,7 @@ dependencies = [
 
 ### Project URLs
 
-Project URLs appear as links on your plugin's detail page. The hub recognizes several special URL names:
+It is best practice to specify the following URLs in your `pyproject.toml` file:
 
 ```toml
 [project.urls]
@@ -149,6 +149,11 @@ Documentation = "https://napari-example-plugin.readthedocs.io"
 "Bug Tracker" = "https://github.com/username/napari-example-plugin/issues"
 "User Support" = "https://forum.image.sc/tag/napari"
 ```
+
+The hub displays your project's PyPI link (not specified here, created when you publish your package),
+and your project's GitHub link on your plugin details page. The GitHub link will be parsed from
+your `Homepage` **or** `Source Code` links under `[project.urls]`, so you can update your `Homepage`
+to a dedicated website if you have one.
 
 ### Complete example
 
