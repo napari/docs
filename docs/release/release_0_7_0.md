@@ -48,6 +48,7 @@ our [Plugins Zulip chat
 channel](https://napari.zulipchat.com/#narrow/channel/309872-plugins) or by
 coming to one of our [community meetings](meeting-schedule).
 
+(axis-labels)=
 #### Negative axis labels? A real positive
 
 If you've ever loaded data of mixed dimensionality in napari, like a TYX volume
@@ -62,8 +63,9 @@ quite line up:
 That's because napari used 0-based indexing for its viewer axis labels, which breaks
 down when layers have different numbers of dimensions. With
 [#8565](https://github.com/napari/napari/pull/8565),
-viewer axis labels now use negative indexing by default, just like Python's own indexing
-semantics. The last axis is always `-1`, the second-to-last is always `-2`, and so on:
+viewer axis labels now use negative indexing by default, combining Python's negative indexing
+semantics with NumPy's array broadcasting semantics. The last axis is always `-1`,
+the second-to-last is always `-2`, and so on:
 
 | axes   | 0  | 1  | 2  |
 |--------|----|----|----|
@@ -89,8 +91,8 @@ camera angles, fueled in part by some arcane vispy axis-swapping tomfoolery, and
 starting position of `viewer.camera.angles = (0, 0, 90)`.
 
 Good news! With [#8281](https://github.com/napari/napari/pull/8281), angles make sense again. The default camera angles are `(0, 0, 0)`, and they
-move intuitively -- so `viewer.camera.angles = (0, 0, 10)` actually represents a 10 degree
-rotation around the 0th dimension. What a time to be alive!
+move intuitively -- so `viewer.camera.angles = (10, 0, 0)` actually represents a 10 degree
+rotation around the (-3rd)[axis-labels] dimension. What a time to be alive!
 
 Old versions of napari:
 
@@ -101,8 +103,7 @@ New and sane:
 ![Image showing the 0.7.0 napari viewer with a layer opened and its camera angle (10, 0, 0) displayed in the console. The layer is rotated 10 degrees in its first dimension](https://github.com/user-attachments/assets/6b972b46-5c3c-439a-8b0a-fe8a293224e5)
 
 All rotations are now right-handed (counterclockwise when the axis points towards the viewer),
-with automatic sign-flipping for flipped camera views. We've also removed the unwieldy to type
-(and confusing to reason about) `quaternion2euler_degrees` in favour of scipy's `Rotation` class.
+with automatic sign-flipping for flipped camera views.
 
 Now for the bad news... After many (and we do [mean](https://github.com/napari/napari/pull/8537)
 [**many**](https://github.com/napari/napari/pull/8557)) attempts, we realized we couldn't
@@ -117,8 +118,10 @@ using `viewer.camera.angles = (z, y, x)` will now produce a different view than 
 
 #### What's my metadata? Where's my metadata? `napari-metadata` to the rescue
 
-With a lot of work from our community contributor, Carlos Mario Rodriguez Reza (@carlosmariorr), and
-our venerable community manager Tim Monko (@TimMonko), `napari` now has a metadata viewing and editing plugin
+With a lot of work from our community contributor, Carlos Mario Rodriguez Reza
+((**@carlosmariorr**)[https://github.com/carlosmariorr]), and
+our venerable community manager Tim Monko ((**@TimMonko**)[https://github.com/timmonko]),
+`napari` now has a metadata viewing and editing plugin
 included in our `napari[all]` installation and our bundle ([PR #8576](https://github.com/napari/napari/pull/8576)).
 
 ![Screenshot of napari displaying an image of neurons, with the napari-metadata Layer Metadata widget across the bottom of the viewer.](https://raw.githubusercontent.com/napari/napari-metadata/main/resources/horizontal-widget.png)
@@ -133,8 +136,8 @@ free to open an issue to request new features -- we're actively improving this p
 
 Prior to 0.7.0, our Features table widget only supported showing individual selected layer features.
 
-With [#8189](https://github.com/napari/napari/pull/8189), courtesy of our community
-contributor Marcelo Zoccoler (@zoccoler), the widget will display
+With [#8189](https://github.com/napari/napari/pull/8189), courtesy of Marcelo Zoccoler
+((**@zoccoler**)[https://github.com/zoccoler]), the widget will display
 features of all selected layers! The layer's name is displayed in an additional column, so you
 always know what you're looking at, and you can choose to display only the shared feature columns
 across all layers. Pretty slick!
@@ -198,7 +201,7 @@ Ever loaded a large 2D image in napari just to zoom in and feel like you're not
 really getting a lot of bang for your pixel bucks? That's because we were
 downsampling images that were too large to send the whole thing to the GPU.
 
-Courtesy of our community contributor, Guillaume Witz (@guiwitz), and his PR for
+Courtesy of Guillaume Witz ((**@guiwitz**)[https://github.com/guiwitz]), and his PR for
 texture tiling ([PR #8395](https://github.com/napari/napari/pull/8395)) 2D
 images that exceed OpenGL's maximum texture size will be split into multiple
 tiles, each small enough to fit on the GPU.
@@ -219,12 +222,33 @@ proportionally to the data, rather than staying the same size in screen pixels.
 
 Here's the behaviour pre 0.7.0:
 
-![Video with a points layer on a grid of white squares. When zooming, the points stay the same size in screen pixels.](../_static/images/points_zoom_066.webm)
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline> 
+    <source src="../_static/images/points_zoom_066.webm" type="video/webm" /> 
+    <source src="../_static/images/points_zoom_066.mp4" type="video/mp4" /> 
+    <img src="../_static/images/points_zoom_066.png" 
+      title="Your browser does not support the video tag" 
+      alt="Video with a points layer on a grid of white squares. When zooming, the points stay the same size in screen pixels." 
+    > 
+  </video> 
+</figure> 
+``` 
 
 And now:
 
-![Video with a points layer on a grid of white squares. When zooming, the points scale proportionally to the data.](../_static/images/points_zoom_070.webm)
-
+```{raw} html
+<figure> 
+  <video width="100%" controls autoplay loop muted playsinline> 
+    <source src="../_static/images/points_zoom_070.webm" type="video/webm" /> 
+    <source src="../_static/images/points_zoom_070.mp4" type="video/mp4" /> 
+    <img src="../_static/images/points_zoom_070.png" 
+      title="Your browser does not support the video tag" 
+      alt="Video with a points layer on a grid of white squares. When zooming, the points scale proportionally to the data." 
+    > 
+  </video> 
+</figure> 
+```
 
 ### Performance
 
