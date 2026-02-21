@@ -48,7 +48,6 @@ our [Plugins Zulip chat
 channel](https://napari.zulipchat.com/#narrow/channel/309872-plugins) or by
 coming to one of our [community meetings](meeting-schedule).
 
-(axis-labels)=
 #### Negative axis labels? A real positive
 
 If you've ever loaded data of mixed dimensionality in napari, like a TYX volume
