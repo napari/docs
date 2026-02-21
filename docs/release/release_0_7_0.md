@@ -92,7 +92,7 @@ starting position of `viewer.camera.angles = (0, 0, 90)`.
 
 Good news! With [#8281](https://github.com/napari/napari/pull/8281), angles make sense again. The default camera angles are `(0, 0, 0)`, and they
 move intuitively -- so `viewer.camera.angles = (10, 0, 0)` actually represents a 10 degree
-rotation around the (-3rd)[axis-labels] dimension. What a time to be alive!
+rotation around the [-3rd](#negative-axis-labels-a-real-positive) dimension. What a time to be alive!
 
 Old versions of napari:
 
