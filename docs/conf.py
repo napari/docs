@@ -60,6 +60,7 @@ extensions = [
     'sphinx_tags',
     'myst_nb',
     'sphinxext.opengraph',
+    'sphinxext.rediraffe',
 ]
 
 # -- HTML Theme ------------------------------------------------------------
@@ -449,6 +450,20 @@ linkcheck_ignore = [
     'https://onlinelibrary.wiley.com/doi/10.1002/col.20327',
 ]
 
+rediraffe_redirects = {
+    'guides/layers': 'getting_started/layers',
+    'tutorials/annotation/index': 'tutorials/annotate_points',
+    'tutorials/segmentation/index': 'tutorials/annotate_segmentation',
+    'tutorials/processing/index': 'tutorials/dask',
+    'tutorials/tracking/index': 'tutorials/cell_tracking',
+    'tutorials/fundamentals/installation': 'getting_started/installation',
+    'tutorials/fundamentals/installation_bundle_conda': 'getting_started/installation#install-as-an-application',
+    'tutorials/fundamentals/getting_started': 'getting_started/launch_napari',
+    'tutorials/fundamentals/features': 'getting_started/features',
+    'tutorials/fundamentals/quick_start': 'getting_started/quick_start',
+    'tutorials/fundamentals/viewer': 'getting_started/viewer',
+    'tutorials/start_index': 'getting_started/start_index',
+}
 
 def rewrite_github_anchor(app, uri: str):
     """Rewrite anchor name of the hyperlink to github.com
