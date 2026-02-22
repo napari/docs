@@ -123,7 +123,7 @@ our venerable community manager Tim Monko ((**@TimMonko**)[https://github.com/ti
 `napari` now has a metadata viewing and editing plugin
 included in our `napari[all]` installation and our bundle ([PR #8576](https://github.com/napari/napari/pull/8576)).
 
-![Screenshot of napari displaying an image of neurons, with the napari-metadata Layer Metadata widget across the bottom of the viewer.](https://raw.githubusercontent.com/napari/napari-metadata/main/resources/horizontal-widget.png)
+![Screenshot of napari displaying an image of neurons, with the napari-metadata Layer Metadata widget across the bottom of the viewer.](https://raw.githubusercontent.com/napari/napari-metadata/main/docs/images/horizontal-widget.png)
 
 Open the `Layer metadata` widget from the `Plugins` menu and you can view File information, and view and edit Axes metadata such as
 axis labels, translation and scale! You can also use the widget to copy specified metadata across to other layers.
