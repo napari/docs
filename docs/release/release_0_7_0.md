@@ -119,7 +119,7 @@ using `viewer.camera.angles = (z, y, x)` will now produce a different view than 
 
 With a lot of work from our community contributor, Carlos Mario Rodriguez Reza
 (https://github.com/carlosmariorr), and
-our venerable community manager Tim Monko ((**@TimMonko**)[https://github.com/timmonko]),
+our venerable community manager Tim Monko (https://github.com/timmonko),
 `napari` now has a metadata viewing and editing plugin
 included in our `napari[all]` installation and our bundle ([PR #8576](https://github.com/napari/napari/pull/8576)).
 
@@ -136,7 +136,7 @@ free to open an issue to request new features -- we're actively improving this p
 Prior to 0.7.0, our Features table widget only supported showing individual selected layer features.
 
 With [#8189](https://github.com/napari/napari/pull/8189), courtesy of Marcelo Zoccoler
-((**@zoccoler**)[https://github.com/zoccoler]), the widget will display
+(https://github.com/zoccoler), the widget will display
 features of all selected layers! The layer's name is displayed in an additional column, so you
 always know what you're looking at, and you can choose to display only the shared feature columns
 across all layers. Pretty slick!
@@ -200,7 +200,7 @@ Ever loaded a large 2D image in napari just to zoom in and feel like you're not
 really getting a lot of bang for your pixel bucks? That's because we were
 downsampling images that were too large to send the whole thing to the GPU.
 
-Courtesy of Guillaume Witz ((**@guiwitz**)[https://github.com/guiwitz]), and his PR for
+Courtesy of Guillaume Witz (https://github.com/guiwitz), and his PR for
 texture tiling ([PR #8395](https://github.com/napari/napari/pull/8395)) 2D
 images that exceed OpenGL's maximum texture size will be split into multiple
 tiles, each small enough to fit on the GPU.
