@@ -118,7 +118,7 @@ using `viewer.camera.angles = (z, y, x)` will now produce a different view than 
 #### What's my metadata? Where's my metadata? `napari-metadata` to the rescue
 
 With a lot of work from our community contributor, Carlos Mario Rodriguez Reza
-((**@carlosmariorr**)[https://github.com/carlosmariorr]), and
+(https://github.com/carlosmariorr), and
 our venerable community manager Tim Monko ((**@TimMonko**)[https://github.com/timmonko]),
 `napari` now has a metadata viewing and editing plugin
 included in our `napari[all]` installation and our bundle ([PR #8576](https://github.com/napari/napari/pull/8576)).
