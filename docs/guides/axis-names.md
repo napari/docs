@@ -28,7 +28,7 @@ summary:
   to provide this information. However, napari did not use that information for
   anything: it was up to the user to propagate it to `Viewer.dims`.
 - **In 0.7.x,** layer axis *units* propagate to `Viewer.dims` automatically,
-  but layer names are still ignored by default.
+  but layer axis *names* are still ignored by default.
 - [**In the hopefully near future,**](active-roadmap), layer axis names will be
   automatically combined to provide the viewer axis names, which will be the
   union of all layer axes.
