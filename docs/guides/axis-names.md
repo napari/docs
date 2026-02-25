@@ -39,7 +39,7 @@ behavior when mixing arrays of different dimensions, known as
 [broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html).
 
 Specifically, arrays of mixed dimensionality are *right-aligned*. In order to
-make array shapes match across different elements of napari, napari 0.7.0
+make array axes match across different elements of napari, napari 0.7.0
 started using *negative indexing*, i.e. indexing from the right end of a list
 or tuple, for its axes labels.
 
