@@ -117,35 +117,17 @@ There are a few examples of plugins bundling multiple readers. One example is [n
 
 In the example below we illustrate how to use ndevio to open a zarr file. Again, we need to install ndevio with either the [napari plugin manager](https://napari.org/napari-plugin-manager/#installing-a-plugin-via-direct-entry) or your preferred Python package manager.
 
-This basic installation allows to open ome-tiff, ome-zarr, imageio etc. via the plugin. If you need to open another format such as CZI, ND2 etc., you will have to install additional extension (for example for ndevio please refer to the [instructions](https://github.com/ndev-kit/ndevio?tab=readme-ov-file#additional-image-format-support)). This can be done for example via the [direct entry option](https://napari.org/napari-plugin-manager/#installing-a-plugin-via-direct-entry) of the plugin manager.
+This basic installation allows to open ome-tiff, ome-zarr, imageio etc. via the plugin. If you need to open another format such as CZI, ND2 etc., you will have to install additional extensions (for example for ndevio please refer to the [instructions](https://github.com/ndev-kit/ndevio?tab=readme-ov-file#additional-image-format-support)). This can be done for example via the [direct entry option](https://napari.org/napari-plugin-manager/#installing-a-plugin-via-direct-entry) of the plugin manager.
 
-We are now able to just drag and drop a zarr file in the viewer to open it. We use an example from the [IDR OME-NGFF Samples](https://idr.github.io/ome-ngff-samples/) (ExpD_chicken_embryo_MIP.ome.zarr, CC BY 4.0, Voigt et al. (2019) https://doi.org/10.17867/10000127d):
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-import s3fs
-
-file = "ExpD_chicken_embryo_MIP.ome.zarr"
-file_path_zarr = download_folder.joinpath(file)
-fs = s3fs.S3FileSystem(
-    anon=True,
-    client_kwargs={"endpoint_url": "https://uk1s3.embassy.ebi.ac.uk"}
-)
-fs.get(
-    f"idr/zarr/v0.5/idr0066/{file}",
-    file_path_zarr,
-    recursive=True
-);
-```
+We are now able to just drag and drop a zarr file in the viewer to open it. We use an example from the [IDR OME-NGFF Samples](https://idr.github.io/ome-ngff-samples/) (13457537.zarr, CC BY 4.0, Payne et al. (2019) https://doi.org/10.1126/science.aay3446):
 
 ```{code-cell} ipython3
 :tags: [remove-input]
 
 viewer = napari.Viewer()
-viewer.open(file_path_zarr, plugin='ndevio')
+viewer.open('https://uk1s3.embassy.ebi.ac.uk/idr/zarr/v0.4/idr0101A/13457537.zarr', plugin='ndevio')
 viewer.window.resize(width, height)
-nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel zarr image opened via ndevio of a chicken embryo.")
+nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel zarr image opened via ndevio of a in situ genome sequencing in a fibroblast.")
 ```
 
 ## Using the napari console to open an image
