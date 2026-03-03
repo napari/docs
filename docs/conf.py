@@ -457,7 +457,7 @@ rediraffe_redirects = {
     'tutorials/processing/index': 'tutorials/dask',
     'tutorials/tracking/index': 'tutorials/cell_tracking',
     'tutorials/fundamentals/installation': 'getting_started/installation',
-    'tutorials/fundamentals/installation_bundle_conda': 'getting_started/installation#install-as-an-application',
+    'tutorials/fundamentals/installation_bundle_conda': 'getting_started/installation',  # Redirecting to an anchor doesn't work.
     'tutorials/fundamentals/getting_started': 'getting_started/launch_napari',
     'tutorials/fundamentals/features': 'getting_started/features',
     'tutorials/fundamentals/quick_start': 'getting_started/quick_start',
