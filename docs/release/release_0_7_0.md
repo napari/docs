@@ -195,7 +195,7 @@ all spatial information from its ancestor, ready for annotating!
 If you have multiple layers selected, only scale is copied.
 
 If you wish to recover the original behavior, select all existing layers before creating your new layer.
-Deselecting all layers gives you a layer with only ndim inherited,
+Deselecting all layers gives you a layer with only the number of dimensions inherited,
 and no other properties.
 
 ##### Labels
@@ -206,14 +206,18 @@ other layer types, the new `Labels` layer will span their extent -- take note, t
 huge!
 
 The `Labels` button is disabled when layers are present in the viewer and none are selected.
-(You can still create a (512 x 512) `Labels` layer when there are no layers open).
+(You can still create a (512 x 512) `Labels` layer when there are no layers present).
+
+##### Visual cues
 
 [#8723](https://github.com/napari/napari/pull/8723) ensures this change is not invisible!
-When you have a layer selected, the Points, Shapes and Labels buttons will be highlighted.
-The highlight color will become brighter when multiple layers are selected. If you're lost
+When your selection will result in full inheritance of spatial information for the new layer,
+the new layer button will be highlighted.
+The highlight color will become brighter when your selection will result in the new layer only
+inheriting the extent of your existing selection. If you're lost
 in the inheritance madness, you can also hover over the buttons to get details about the behavior.
 
-![GIF displaying the highlights on the Shapes, Points and Labels new layer buttons when one or more layers are selected in the layerlist](https://github.com/user-attachments/assets/9e39b42d-97f6-4186-8c1c-db03d7cda1bb)
+![GIF displaying the highlights on the Shapes, Points and Labels new layer buttons when one or more layers are selected in the layerlist](https://github.com/user-attachments/assets/7f71c6a8-173e-4734-869a-3ba41d7b37e9)
 
 PS -- You can now also create these new layers from the `File -> New Layer` menu!
 
