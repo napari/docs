@@ -473,7 +473,7 @@ it saves more than 50MB of disk space for a napari install!
 - If path arg is passed to CLI napari, don't show welcome overlay ([#8725](https://github.com/napari/napari/pull/8725))
 - Use capitalized name of source layer type when adding layer ([#8740](https://github.com/napari/napari/pull/8740))
 - Add scale example for anisotropic 3D data ([#8742](https://github.com/napari/napari/pull/8742))
-- Refactor Welcome overlay to use Qt for text handling and rasterization ([#8745](https://github.com/napari/napari/pull/8745))
+- Use custom Font manager to use Qt discovery mechanism ([#8751](https://github.com/napari/napari/pull/8751))
 
 ## Performance
 
@@ -493,7 +493,6 @@ it saves more than 50MB of disk space for a napari install!
 - [multiscale] Only update/refresh when level has changed or view is outside current corner_pixels ([#8678](https://github.com/napari/napari/pull/8678))
 - [Perf] Remove napari splash screen ([#8686](https://github.com/napari/napari/pull/8686))
 - [Maint] Remove all macOS specific launch code as it's out-dated or problematic (re-running with symlink) ([#8705](https://github.com/napari/napari/pull/8705))
-- Refactor Welcome overlay to use Qt for text handling and rasterization ([#8745](https://github.com/napari/napari/pull/8745))
 
 ## Bug Fixes
 
@@ -562,7 +561,6 @@ it saves more than 50MB of disk space for a napari install!
 - Adding a new example of a multiplexed immunofluorescent image of a murine heart ([#8680](https://github.com/napari/napari/pull/8680))
 - Add sphinxext-rediraffe to docs requirements ([#8690](https://github.com/napari/napari/pull/8690))
 - Update examples gallery for 0.7.0 angles ([#8709](https://github.com/napari/napari/pull/8709))
-- Add 3D points to add_points_3d example ([#8746](https://github.com/napari/napari/pull/8746))
 - Update contributing info and include AI policy and guidelines ([#8754](https://github.com/napari/napari/pull/8754))
 - Remove deprecated `view_*` methods from docs materials ([docs#864](https://github.com/napari/docs/pull/864))
 - Proposed roadmap updates for Q3 ([docs#873](https://github.com/napari/docs/pull/873))
