@@ -263,6 +263,22 @@ tiles, each small enough to fit on the GPU.
 
 ![Image with a screenshot of napari 0.6.6 on the left and napari 0.7.0 on the right displaying a DeCAM image of the Milky Way. The image on the left is pixelated, while the image on the right is displayed at full resolution.](https://github.com/user-attachments/assets/d0a115a8-49d5-432c-b561-f29fe9ac8116)
 
+#### Rendering layers in physical space - units matter!
+
+In 0.6.6 and below, units were stored in metadata, but not used for rendering.
+Adding two layers that represented the same physical space, but had different
+units, e.g. a layer with `scale=500, units='nm'` and one with `scale=0.5, units='μm'`
+wouldn't overlap correctly, even though they should.
+
+Thanks to [#7889](https://github.com/napari/napari/pull/8395), layers with
+compatible units (i.e. those that share the same physical dimension per axis,
+like all spatial), will make use of `units` and `scale` to overlap correctly,
+using the smallest unit as the rendering space.
+
+Units can also be set globally on the layer list using `viewer.layers.units = ('nm', 'nm')`,
+forcing layers to be rendered in this space. If a new layer is added with more dimensions
+than the current layers, this global override is dropped with a warning.
+
 #### Points - any size you like 🟣
 
 On macOS, the points layer has never been able to reach its full potential, as OpenGL
