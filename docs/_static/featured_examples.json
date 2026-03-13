@@ -33,5 +33,12 @@
     "image": "_images/shpx_glr_heart_masks_points_001.png",
     "href": "gallery/3D_vectors_through_time.html",
     "alt": "napari viewer showing annotations with labels and points with features",
+  },
+  {
+    "title": "Overlays and grid mode",
+    "description": "Overlay information like colorbars and scale on an image seperated in grid mode",
+    "image": "_images/sphx_glr_colorbar_tiling_001.png",
+    "href": "gallery/colorbar_tiling.html",
+    "alt": "napari viewer showing grid mode and overlays"
   }
 ]
