@@ -1,72 +1,37 @@
-[
+﻿[
   {
-    "title": "Add image",
-    "description": "Display an image in napari and explore the viewer with a minimal example.",
-    "image": "_images/sphx_glr_add_image_001.png",
-    "href": "gallery/add_image.html",
-    "alt": "Screenshot preview of the add image example"
+    "title": "3D vector field and image across time",
+    "description": "Visualize the compression vectors of x-ray tomography mechanical compression of a granular material",
+    "image": "_images/sphx_glr_3D_vectors_through_time_001.png",
+    "href": "gallery/3D_vectors_through_time.html",
+    "alt": "napari viewer showing a 3D vector field across time"
   },
   {
-    "title": "Add labels",
-    "description": "Work with segmentation masks and label data in a dedicated labels layer.",
-    "image": "_images/sphx_glr_add_labels_001.png",
-    "href": "gallery/add_labels.html",
-    "alt": "Screenshot preview of the add labels example"
-  },
-  {
-    "title": "Add points",
-    "description": "Plot and inspect point annotations directly on top of image data.",
-    "image": "_images/sphx_glr_add_points_001.png",
-    "href": "gallery/add_points.html",
-    "alt": "Screenshot preview of the add points example"
-  },
-  {
-    "title": "Add shapes",
-    "description": "Overlay polygons, paths, rectangles, and other editable shapes.",
-    "image": "_images/sphx_glr_add_shapes_001.png",
-    "href": "gallery/add_shapes.html",
-    "alt": "Screenshot preview of the add shapes example"
-  },
-  {
-    "title": "3D paths",
-    "description": "Visualize paths in 3D and explore volumetric data from multiple angles.",
-    "image": "_images/sphx_glr_3D_paths_001.png",
-    "href": "gallery/3D_paths.html",
-    "alt": "Screenshot preview of the 3D paths example"
-  },
-  {
-    "title": "Affine coffee cup",
-    "description": "See how affine transforms change the display of layered data.",
+    "title": "Affine transforms in 3D",
+    "description": "Translation and rotation of a 3D object scanned by a phone.",
     "image": "_images/sphx_glr_affine_coffee_cup_001.png",
     "href": "gallery/affine_coffee_cup.html",
-    "alt": "Screenshot preview of the affine coffee cup example"
+    "alt": "napari viewer showing 3D affine transforms"
   },
   {
-    "title": "Dask nD image",
-    "description": "Open and explore larger-than-memory arrays backed by Dask.",
-    "image": "_images/sphx_glr_dask_nD_image_001.png",
-    "href": "gallery/dask_nD_image.html",
-    "alt": "Screenshot preview of the Dask nD image example"
+    "title": "Tracking labeled cells",
+    "description": "Visualize cell tracking data with labels and tracks layers.",
+    "image": "_images/sphx_glr_cell_tracking_001.png",
+    "href": "gallery/cell_tracking.html",
+    "alt": "napari viewer showing cell tracking with labels and tracks"
   },
   {
-    "title": "Layer bounding box",
-    "description": "Inspect layer extents and geometry while working interactively.",
-    "image": "_images/sphx_glr_layer_bounding_box_001.png",
-    "href": "gallery/layer_bounding_box.html",
-    "alt": "Screenshot preview of the layer bounding box example"
-  },
-  {
-    "title": "Point cloud",
-    "description": "Render dense point clouds and navigate them in three dimensions.",
-    "image": "_images/sphx_glr_point_cloud_001.png",
-    "href": "gallery/point_cloud.html",
-    "alt": "Screenshot preview of the point cloud example"
-  },
-  {
-    "title": "Xarray time series",
-    "description": "Explore labeled xarray data with geographic and temporal dimensions.",
+    "title": "Xarray weather data across time",
+    "description": "Visualize weather data across time with metadata from an Xarray object",
     "image": "_images/sphx_glr_xarray-latlon-timeseries_001.png",
     "href": "gallery/xarray-latlon-timeseries.html",
-    "alt": "Screenshot preview of the xarray latlon timeseries example"
+    "alt": "napari viewer showing Xarray weather data across time"
+  },
+  {
+    "title": "Annotations with labels and points with features",
+    "description": "Multiplexed heart murine sample with annotated features to show cell type",
+    "image": "_images/shpx_glr_heart_masks_points_001.png",
+    "href": "gallery/3D_vectors_through_time.html",
+    "alt": "napari viewer showing annotations with labels and points with features",
   }
 ]

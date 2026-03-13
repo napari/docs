@@ -46,7 +46,7 @@ theme:
 
 # napari: a fast, interactive viewer for multi-dimensional images in Python
 
-`````{grid} 1 1 3 3
+`````{grid} 1 1 2 2
 
 ````{grid-item}
 :columns: 12 12 5 5
@@ -124,7 +124,6 @@ Discover how plugins extend napari and learn to build your own.
   <a href="https://napari.org/island-dispatch"><i class="fa-solid fa-rss"></i> Blog</a>
 </div>
 ```
-## featured example
 
 ```{raw} html
 <section class="homepage-featured-example" aria-labelledby="homepage-featured-example-title">
