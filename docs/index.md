@@ -88,16 +88,14 @@ theme:
 :link: install-python-package
 :link-type: ref
 
-Install napari from PyPI or conda-forge in a Python environment for
-the full viewer and Python API experience.
+Install napari in a Python environment for the most customizable experience.
 ````
 
-````{grid-item-card} Download bundled app
+````{grid-item-card} Download napari app
 :link: installation_bundle_conda
 :link-type: ref
 
-Download a standalone installer when you want napari as an app without setting
-up Python first.
+A standalone installer for when you want napari without setting up Python first.
 ````
 
 ````{grid-item-card} Getting started
@@ -111,8 +109,7 @@ Launch napari, open images, and learn the core interactions of the viewer.
 :link: plugins-index
 :link-type: ref
 
-Discover how plugins extend napari and learn where to find tools for your
-workflow.
+Discover how plugins extend napari and learn to build your own.
 ````
 
 `````
