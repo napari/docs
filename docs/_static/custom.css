@@ -155,6 +155,7 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
   background-color: var(--pst-color-on-background) !important;
   border-color: var(--pst-color-border) !important;
   color: var(--pst-color-text-base) !important;
+  font-weight: 700 !important;
 }
 
 .homepage-featured-example__actions .sd-btn:hover,
