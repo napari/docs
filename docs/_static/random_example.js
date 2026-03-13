@@ -11,10 +11,9 @@
     const description  = document.getElementById('homepage-featured-example-description');
     const image        = document.getElementById('homepage-featured-example-image');
     const mediaLink    = document.querySelector('.homepage-featured-example__media');
-    const cta          = document.getElementById('homepage-featured-example-cta');
     const reroll       = document.getElementById('homepage-featured-example-reroll');
 
-    if (!titleLink || !description || !image || !mediaLink || !cta || !reroll) return;
+    if (!titleLink || !description || !image || !mediaLink || !reroll) return;
 
     // Resolve the JSON file relative to this script's own URL so it works at
     // any deploy sub-path.  Fall back to a predictable root-relative path.
@@ -32,7 +31,6 @@
       image.src             = example.image;
       image.alt             = example.alt;
       mediaLink.href        = example.href;
-      cta.href              = example.href;
       currentHref           = example.href;
     };
 
