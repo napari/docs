@@ -49,7 +49,7 @@ theme:
 `````{grid} 1 1 3 3
 
 ````{grid-item}
-:columns: 12 12 4 4
+:columns: 12 12 5 5
 
 - **view and explore** 2D, 3D, and higher-dimensional arrays on a canvas;
 - **overlay** derived data such as *points*, *polygons*, *segmentations*, and
@@ -61,7 +61,7 @@ theme:
 ````
 
 ````{grid-item}
-:columns: 12 12 8 8
+:columns: 12 12 7 7
 
 ```{raw} html
 <figure>
@@ -82,55 +82,129 @@ theme:
 
 `````
 
-`````{grid}
+`````{grid} 1 1 3 3
 
-````{grid-item-card} Examples
-:link: gallery
+````{grid-item-card} Install with Python
+:link: install-python-package
 :link-type: ref
 
-See some of the things napari can do.
+Install napari from PyPI or conda-forge in a Python environment for
+the full viewer and Python API experience.
 ````
 
-````{grid-item-card} Installation
-:link: napari-installation
+````{grid-item-card} Download bundled app
+:link: installation_bundle_conda
 :link-type: ref
 
-How to install napari.
+Download a standalone installer when you want napari as an app without setting
+up Python first.
 ````
 
 ````{grid-item-card} Getting started
 :link: launch
 :link-type: ref
 
-Get started with napari.
+Launch napari, open images, and learn the core interactions of the viewer.
 ````
 
 `````
 
-`````{grid}
+## Featured example
 
-````{grid-item-card} Community
-:link: community
+```{raw} html
+<section class="homepage-featured-example" aria-labelledby="homepage-featured-example-title">
+  <div class="homepage-featured-example__copy">
+    <h3 id="homepage-featured-example-title" class="homepage-featured-example__title">
+      <a id="homepage-featured-example-link" href="gallery/add_image.html">Add image</a>
+    </h3>
+    <p id="homepage-featured-example-description" class="homepage-featured-example__description">
+      Display an image in napari and explore the viewer with a minimal example.
+    </p>
+    <div class="homepage-featured-example__actions">
+      <a class="sd-btn sd-btn-primary sd-shadow-sm" id="homepage-featured-example-cta" href="gallery/add_image.html">View example</a>
+      <button class="sd-btn sd-btn-outline-primary sd-shadow-sm" id="homepage-featured-example-reroll" type="button">Show another example</button>
+    </div>
+  </div>
+  <a class="homepage-featured-example__media" href="gallery/add_image.html" aria-label="View the featured napari example">
+    <img
+      id="homepage-featured-example-image"
+      src="_images/sphx_glr_add_image_001.png"
+      alt="Screenshot preview of the add image example"
+      loading="lazy"
+    >
+  </a>
+</section>
+```
+
+## Explore napari
+
+`````{grid} 1 1 3 3
+
+````{grid-item-card} Examples gallery
+:link: gallery
 :link-type: ref
 
-Forums, web chat, video chat, where to ask questions and more! Join us!
+Browse examples that show how to work with images, labels, shapes, points,
+vectors, and more.
 ````
 
-````{grid-item-card} Governance
-:link: napari-governance
-:link-type: ref
+````{grid-item-card} Tutorials
+:link: tutorials/index
+:link-type: doc
 
-napari is developed by a global community. See how.
+Follow step-by-step walkthroughs for common workflows and data-analysis tasks.
 ````
 
 ````{grid-item-card} Plugins
 :link: plugins-index
 :link-type: ref
 
-napari is extensible! Find plugins, or develop your own!
+Discover how plugins extend napari and learn where to find tools for your own
+workflow.
 ````
 
 `````
+
+## Community and resources
+
+`````{grid} 1 1 3 3
+:gutter: 2
+
+````{grid-item-card} Community
+:link: community
+:link-type: ref
+
+Meet the team, find support, join community calls, and learn where to ask
+questions.
+````
+
+````{grid-item-card} Developer resources
+:link: developers/index
+:link-type: doc
+
+Contribute to napari, understand how the project is organized, and find guides
+for working on the codebase and docs.
+````
+
+````{grid-item-card} Release notes and roadmap
+:link: release/index
+:link-type: doc
+
+See what changed in recent releases and where the project is heading next.
+````
+
+`````
+
+```{raw} html
+<div class="homepage-quicklinks">
+  <a href="community/meeting_schedule.html"><i class="fa-solid fa-calendar-days"></i> Community calendar</a>
+  <a href="https://napari.zulipchat.com/"><i class="fa-solid fa-comments"></i> Community chat</a>
+  <a href="troubleshooting.html"><i class="fa-solid fa-circle-question"></i> Troubleshooting</a>
+  <a href="release/index.html"><i class="fa-solid fa-newspaper"></i> Release notes</a>
+  <a href="roadmaps/index.html"><i class="fa-solid fa-map"></i> Roadmaps</a>
+  <a href="https://napari.org/island-dispatch"><i class="fa-solid fa-rss"></i> Blog</a>
+</div>
+```
 
 ## funding
 

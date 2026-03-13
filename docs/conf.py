@@ -85,6 +85,9 @@ html_logo = '_static/images/logo.svg'
 html_css_files = [
     'custom.css',
 ]
+html_js_files = [
+    'random_example.js',
+]
 templates_path = ['_templates']
 favicons = [
     {
