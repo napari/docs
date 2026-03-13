@@ -147,3 +147,19 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
   color: var(--pst-color-primary);
   width: 1em;
 }
+
+/* ── Homepage example buttons: soften the bold black sd-btn defaults ────
+   sphinx-design marks every button property !important, so we must too.  */
+
+.homepage-featured-example__actions .sd-btn {
+  background-color: var(--pst-color-on-background) !important;
+  border-color: var(--pst-color-border) !important;
+  color: var(--pst-color-text-base) !important;
+}
+
+.homepage-featured-example__actions .sd-btn:hover,
+.homepage-featured-example__actions .sd-btn:focus {
+  background-color: var(--pst-color-border) !important;
+  border-color: var(--pst-color-border) !important;
+  color: var(--pst-color-text-base) !important;
+}
