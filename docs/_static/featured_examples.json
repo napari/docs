@@ -32,7 +32,7 @@
     "description": "Multiplexed heart murine sample with annotated features to show cell type",
     "image": "_images/shpx_glr_heart_masks_points_001.png",
     "href": "gallery/3D_vectors_through_time.html",
-    "alt": "napari viewer showing annotations with labels and points with features",
+    "alt": "napari viewer showing annotations with labels and points with features"
   },
   {
     "title": "Overlays and grid mode",
