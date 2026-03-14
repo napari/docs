@@ -85,6 +85,9 @@ html_logo = '_static/images/logo.svg'
 html_css_files = [
     'custom.css',
 ]
+html_js_files = [
+    'random_example.js',
+]
 templates_path = ['_templates']
 favicons = [
     {
@@ -121,7 +124,7 @@ html_theme_options = {
         'version_match': version_match,
     },
     'show_version_warning_banner': True,
-    'navbar_persistent': [],
+    'navbar_persistent': ['search-button'],
     'header_links_before_dropdown': 6,
     'secondary_sidebar_items': ['page-toc'],
     'pygments_light_style': 'napari',
@@ -141,7 +144,7 @@ html_theme_options = {
 # sidebar content
 html_sidebars = {
     '**': ['search-field.html', 'sidebar-nav-bs'],
-    'index': ['search-field.html', 'sidebar-link-items.html'],
+    'index': [],
 }
 
 # html context is passed into the template engine's context for all pages.

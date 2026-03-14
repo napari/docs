@@ -62,3 +62,105 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
   color: var(--napari-color-text-base);
   font-weight: 700;
 }
+
+/* ── Homepage featured example ─────────────────────────────────────── */
+
+.homepage-featured-example {
+  display: grid;
+  align-items: center;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  margin: 1.5rem 0 2rem;
+}
+
+.homepage-featured-example__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.homepage-featured-example__title {
+  margin-top: 0;
+}
+
+.homepage-featured-example__title a {
+  text-decoration: none;
+}
+
+.homepage-featured-example__title a:hover {
+  text-decoration: underline;
+}
+
+.homepage-featured-example__media {
+  display: block;
+}
+
+.homepage-featured-example__media img {
+  border-radius: 5px;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+  display: block;
+  width: 100%;
+}
+
+.homepage-featured-example__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .homepage-featured-example {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage-featured-example__media {
+    order: -1;
+  }
+}
+
+/* ── Homepage quicklinks (icon row) ─────────────────────────────────── */
+
+.homepage-quicklinks {
+  border-bottom: 1px solid var(--pst-color-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin: 1rem 0 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.homepage-quicklinks a {
+  align-items: center;
+  display: inline-flex;
+  font-size: 1rem;
+  font-weight: 500;
+  gap: 0.4rem;
+  text-decoration: none;
+}
+
+.homepage-quicklinks a:hover {
+  text-decoration: underline;
+}
+
+.homepage-quicklinks i {
+  color: var(--pst-color-primary);
+  width: 1em;
+}
+
+/* ── Homepage example buttons: soften the bold black sd-btn defaults ────
+   sphinx-design marks every button property !important, so we must too.  */
+
+.homepage-featured-example__actions .sd-btn {
+  background-color: var(--pst-color-on-background) !important;
+  border-color: var(--pst-color-border) !important;
+  color: var(--pst-color-text-base) !important;
+  font-weight: 700 !important;
+}
+
+.homepage-featured-example__actions .sd-btn:hover,
+.homepage-featured-example__actions .sd-btn:focus {
+  background-color: var(--pst-color-border) !important;
+  border-color: var(--pst-color-border) !important;
+  color: var(--pst-color-text-base) !important;
+}
