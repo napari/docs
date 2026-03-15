@@ -98,3 +98,26 @@ If you meet an exception starting from `RuntimeError: Mix of local and non local
    You can fix the error by manually deleting the `napari` directory.
    In some rare situations this solution may not fix the environment,
    so you may need to recreate, as described in the first option.
+
+
+### Running napari on Wayland with Nvidia cards
+
+The Nvidia driver is not fully ready for Wayland yet. 
+We found that on computer with Nvidia cards, napari fails to start with the error like this:
+
+```python-traceback
+OpenGL.error.GLError: GLError(
+    err = 1280,
+    baseOperation = glGetString,
+    cArguments = (GL_VERSION,),
+    result = b'OpenGL ES 3.2 NVIDIA 580.126.09'
+)
+```
+
+After some investigation, we found that the problem might be solved by setting following environment variable:
+
+```dotenv
+QT_QPA_PLATFORM=xcb
+QT_XCB_GL_INTEGRATION=xcb_glx
+PYOPENGL_PLATFORM=glx
+```
