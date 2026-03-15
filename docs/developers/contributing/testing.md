@@ -501,4 +501,4 @@ Terminal=false
 NoDisplay=true
 ```
 
-You need to add executable propert to this file, `chmod +x ~/.config/autostart/xhost.desktop`
+You need to add executable property to this file, `chmod +x ~/.config/autostart/xhost.desktop`
