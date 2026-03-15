@@ -105,7 +105,7 @@ If you meet an exception starting from `RuntimeError: Mix of local and non local
 The Nvidia driver is not fully ready for Wayland yet. 
 We found that on computer with Nvidia cards, napari fails to start with the error like this:
 
-```python-traceback
+```pytb
 OpenGL.error.GLError: GLError(
     err = 1280,
     baseOperation = glGetString,
@@ -116,7 +116,7 @@ OpenGL.error.GLError: GLError(
 
 After some investigation, we found that the problem might be solved by setting following environment variable:
 
-```dotenv
+```sh
 QT_QPA_PLATFORM=xcb
 QT_XCB_GL_INTEGRATION=xcb_glx
 PYOPENGL_PLATFORM=glx

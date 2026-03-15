@@ -481,7 +481,7 @@ In napari test suite we use `pyautogui` to simulate mouse and keyboard events.
 On Linux it uses `python-xlib` to implement its utility. 
 Unfortunately it do not work ou of the box on Wayland (even with `xwayland` installed)
 
-```python
+```pytb
 ...
 .venv/lib/python3.12/site-packages/Xlib/protocol/display.py:129: in __init__
     raise error.DisplayConnectionError(self.display_name, r.reason)
