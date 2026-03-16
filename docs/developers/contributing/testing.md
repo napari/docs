@@ -477,20 +477,10 @@ so certain tests have been disabled from windows in CI, see
 
 ### Running napari tests on Wayland 
 
-In napari test suite we use `pyautogui` to simulate mouse and keyboard events.
-On Linux it uses `python-xlib` to implement its utility. 
-Unfortunately it might work ou of the box on Wayland (even with `xwayland` installed). We observed this with GNOME Shell desktop. 
+In the napari test suite we use `pyautogui` to simulate mouse and keyboard events.
+On Linux it uses `python-xlib` to implement this utility. 
+Unfortunately it might not work out of the box on Wayland (even with `xwayland` installed). We observed this with (for example) the GNOME desktop. 
 
-```pytb
-...
-.venv/lib/python3.12/site-packages/Xlib/protocol/display.py:129: in __init__
-    raise error.DisplayConnectionError(self.display_name, r.reason)
-E   Xlib.error.DisplayConnectionError: Can't connect to display ":0": b'Authorization required, but no authorization protocol specified\n'
-```
-
-Based on experiments we found that execution of `xhost +SI:localuser:$USER` solves the problem. 
-
-It might be configured in autostart by add givent content to `~/.config/autostart/xhost.desktop`
 
 ```desktop
 [Desktop Entry]
@@ -501,4 +491,4 @@ Terminal=false
 NoDisplay=true
 ```
 
-You need to add executable property to this file, `chmod +x ~/.config/autostart/xhost.desktop`
+This file also needs to be made executable with `chmod +x ~/.config/autostart/xhost.desktop`.

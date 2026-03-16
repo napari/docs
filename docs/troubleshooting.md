@@ -102,21 +102,6 @@ If you meet an exception starting from `RuntimeError: Mix of local and non local
 
 ### Running napari on Wayland with Nvidia cards
 
-The Nvidia driver is not fully ready for Wayland yet. 
-We found that on computer with Nvidia cards, napari fails to start with the error like this:
+The Nvidia driver is not yet fully ready for Wayland. 
+We found that on computers with Nvidia cards and a wayland-based desktop environment, napari fails to start with errors such as this:
 
-```pytb
-OpenGL.error.GLError: GLError(
-    err = 1280,
-    baseOperation = glGetString,
-    cArguments = (GL_VERSION,),
-    result = b'OpenGL ES 3.2 NVIDIA 580.126.09'
-)
-```
-
-After some investigation, we found that the problem might be solved by setting following environment variable:
-
-```sh
-QT_QPA_PLATFORM=xcb
-PYOPENGL_PLATFORM=glx
-```
