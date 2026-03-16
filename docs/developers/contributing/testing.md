@@ -481,6 +481,14 @@ In the napari test suite we use `pyautogui` to simulate mouse and keyboard event
 On Linux it uses `python-xlib` to implement this utility. 
 Unfortunately it might not work out of the box on Wayland (even with `xwayland` installed). We observed this with (for example) the GNOME desktop. 
 
+```pytb
+...
+.venv/lib/python3.12/site-packages/Xlib/protocol/display.py:129: in __init__
+    raise error.DisplayConnectionError(self.display_name, r.reason)
+E   Xlib.error.DisplayConnectionError: Can't connect to display ":0": b'Authorization required, but no authorization protocol specified\n'
+```
+Based on experiments we found that executing `xhost +SI:localuser:$USER` solves the problem. 
+It can be done automatically on startup by adding the above line to `~/.config/autostart/xhost.desktop`.
 
 ```desktop
 [Desktop Entry]
@@ -491,4 +499,4 @@ Terminal=false
 NoDisplay=true
 ```
 
-This file also needs to be made executable with `chmod +x ~/.config/autostart/xhost.desktop`.
+This file also needs to be made executable with `chmod +x ~/.config/autostart/xhost.desktop`.
