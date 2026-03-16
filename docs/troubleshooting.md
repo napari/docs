@@ -118,6 +118,5 @@ After some investigation, we found that the problem might be solved by setting f
 
 ```sh
 QT_QPA_PLATFORM=xcb
-QT_XCB_GL_INTEGRATION=xcb_glx
 PYOPENGL_PLATFORM=glx
 ```
