@@ -479,7 +479,7 @@ so certain tests have been disabled from windows in CI, see
 
 In napari test suite we use `pyautogui` to simulate mouse and keyboard events.
 On Linux it uses `python-xlib` to implement its utility. 
-Unfortunately it do not work ou of the box on Wayland (even with `xwayland` installed)
+Unfortunately it might work ou of the box on Wayland (even with `xwayland` installed). We observed this with GNOME Shell desktop. 
 
 ```pytb
 ...
