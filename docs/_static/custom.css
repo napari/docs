@@ -149,47 +149,73 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
 /* Quicklinks icons */
 .homepage-quicklinks i {
   color: var(--pst-color-primary);
-  font-size: 3.5rem;
+  font-size: 5rem;
   line-height: 1;
   width: auto;
 }
 
-/* ── Homepage accent cards & buttons ──────────────────────────────────
-   Install, Download, Examples Gallery with theme-aware napari blue.
-   sphinx-design marks every property !important, so we must too.        */
+/* ── Homepage accent cards ───────────────────────────────────────────
+   Install, Download cards with theme-aware napari blue.
+   sphinx-design marks every property !important, so we must too.     */
 
 html[data-theme="light"] .homepage-card-accent,
-html[data-theme="light"] .homepage-card-accent .sd-card-body,
-html[data-theme="light"] .homepage-featured-example__actions .sd-btn-primary {
+html[data-theme="light"] .homepage-card-accent .sd-card-body {
   background-color: var(--napari-light-blue) !important;
   border-color: var(--napari-primary-blue) !important;
 }
 
+html[data-theme="dark"] .homepage-card-accent,
+html[data-theme="dark"] .homepage-card-accent .sd-card-body {
+  background-color: color-mix(in srgb, var(--napari-deep-blue), transparent 75%) !important;
+  border-color: var(--napari-deep-blue) !important;
+}
+
+/* ── Homepage featured example buttons ───────────────────────────────
+   "Examples gallery" (sd-btn-primary) matches the accent card napari blue.
+   "Show another example" (sd-btn-outline-primary) is a neutral card-style button.
+   background-image reset prevents any sphinx-design gradient from bleeding through. */
+
 html[data-theme="light"] .homepage-featured-example__actions .sd-btn-primary {
+  background-color: var(--napari-light-blue) !important;
+  background-image: none !important;
+  border-color: var(--napari-primary-blue) !important;
   color: var(--napari-color-text-base) !important;
 }
 
 html[data-theme="light"] .homepage-featured-example__actions .sd-btn-primary:hover,
 html[data-theme="light"] .homepage-featured-example__actions .sd-btn-primary:focus {
   background-color: var(--napari-primary-blue) !important;
+  background-image: none !important;
   border-color: var(--napari-primary-blue) !important;
   color: var(--napari-color-text-base) !important;
 }
 
-html[data-theme="dark"] .homepage-card-accent,
-html[data-theme="dark"] .homepage-card-accent .sd-card-body,
 html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary {
   background-color: color-mix(in srgb, var(--napari-deep-blue), transparent 75%) !important;
+  background-image: none !important;
   border-color: var(--napari-deep-blue) !important;
-}
-
-html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary {
   color: var(--napari-color-text-base) !important;
 }
 
 html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary:hover,
 html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary:focus {
   background-color: var(--napari-deep-blue) !important;
+  background-image: none !important;
   border-color: var(--napari-deep-blue) !important;
+  color: var(--napari-color-text-base) !important;
+}
+
+.homepage-featured-example__actions .sd-btn-outline-primary {
+  background-color: var(--pst-color-on-background) !important;
+  background-image: none !important;
+  border-color: var(--pst-color-border) !important;
+  color: var(--napari-color-text-base) !important;
+}
+
+.homepage-featured-example__actions .sd-btn-outline-primary:hover,
+.homepage-featured-example__actions .sd-btn-outline-primary:focus {
+  background-color: var(--pst-color-border) !important;
+  background-image: none !important;
+  border-color: var(--pst-color-border) !important;
   color: var(--napari-color-text-base) !important;
 }
