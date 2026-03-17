@@ -119,23 +119,26 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
   }
 }
 
-/* ── Homepage quicklinks (icon row) ─────────────────────────────────── */
+/* ── Homepage quicklinks (icon columns) ──────────────────────────────── */
 
 .homepage-quicklinks {
   border-bottom: 1px solid var(--pst-color-border);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 2rem;
+  justify-content: center;
+  gap: 0.75rem 4rem;
   margin: 1rem 0 1.5rem;
   padding-bottom: 1rem;
 }
 
 .homepage-quicklinks a {
   align-items: center;
-  display: inline-flex;
-  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
   font-weight: 500;
-  gap: 0.4rem;
+  gap: 0.5rem;
+  text-align: center;
   text-decoration: none;
 }
 
@@ -143,24 +146,50 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
   text-decoration: underline;
 }
 
+/* Quicklinks icons */
 .homepage-quicklinks i {
   color: var(--pst-color-primary);
-  width: 1em;
+  font-size: 3.5rem;
+  line-height: 1;
+  width: auto;
 }
 
-/* ── Homepage example buttons: soften the bold black sd-btn defaults ────
-   sphinx-design marks every button property !important, so we must too.  */
+/* ── Homepage accent cards & buttons ──────────────────────────────────
+   Install, Download, Examples Gallery with theme-aware napari blue.
+   sphinx-design marks every property !important, so we must too.        */
 
-.homepage-featured-example__actions .sd-btn {
-  background-color: var(--pst-color-on-background) !important;
-  border-color: var(--pst-color-border) !important;
-  color: var(--pst-color-text-base) !important;
-  font-weight: 700 !important;
+html[data-theme="light"] .homepage-card-accent,
+html[data-theme="light"] .homepage-card-accent .sd-card-body,
+html[data-theme="light"] .homepage-featured-example__actions .sd-btn-primary {
+  background-color: var(--napari-light-blue) !important;
+  border-color: var(--napari-primary-blue) !important;
 }
 
-.homepage-featured-example__actions .sd-btn:hover,
-.homepage-featured-example__actions .sd-btn:focus {
-  background-color: var(--pst-color-border) !important;
-  border-color: var(--pst-color-border) !important;
-  color: var(--pst-color-text-base) !important;
+html[data-theme="light"] .homepage-featured-example__actions .sd-btn-primary {
+  color: var(--napari-color-text-base) !important;
+}
+
+html[data-theme="light"] .homepage-featured-example__actions .sd-btn-primary:hover,
+html[data-theme="light"] .homepage-featured-example__actions .sd-btn-primary:focus {
+  background-color: var(--napari-primary-blue) !important;
+  border-color: var(--napari-primary-blue) !important;
+  color: var(--napari-color-text-base) !important;
+}
+
+html[data-theme="dark"] .homepage-card-accent,
+html[data-theme="dark"] .homepage-card-accent .sd-card-body,
+html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary {
+  background-color: color-mix(in srgb, var(--napari-deep-blue), transparent 75%) !important;
+  border-color: var(--napari-deep-blue) !important;
+}
+
+html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary {
+  color: var(--napari-color-text-base) !important;
+}
+
+html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary:hover,
+html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary:focus {
+  background-color: var(--napari-deep-blue) !important;
+  border-color: var(--napari-deep-blue) !important;
+  color: var(--napari-color-text-base) !important;
 }
