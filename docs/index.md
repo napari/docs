@@ -82,7 +82,8 @@ theme:
 
 `````
 
-`````{grid} 1 1 2 2
+`````{grid} 1 2 2 4
+:gutter: 3
 
 ````{grid-item-card} Install with Python
 :link: install-python-package
@@ -137,8 +138,8 @@ Discover how plugins extend napari and learn to build your own.
       Display an image in napari and explore the viewer with a minimal example.
     </p>
     <div class="homepage-featured-example__actions">
-      <button class="sd-btn sd-btn-outline-primary sd-shadow-sm" id="homepage-featured-example-reroll" type="button">Show another example</button>
       <a class="sd-btn sd-btn-primary sd-shadow-sm" href="gallery.html">Examples gallery</a>
+      <button class="sd-btn sd-btn-outline-primary sd-shadow-sm" id="homepage-featured-example-reroll" type="button">Show another example</button>
     </div>
   </div>
   <a class="homepage-featured-example__media" href="gallery/add_image.html" aria-label="View the featured napari example">
