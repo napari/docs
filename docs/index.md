@@ -82,11 +82,12 @@ theme:
 
 `````
 
-`````{grid} 1 2 2 4
+`````{grid} 1 1 2 2
 
 ````{grid-item-card} Install with Python
 :link: install-python-package
 :link-type: ref
+:class-card: homepage-card-accent
 
 Install napari in a Python environment for the most customizable experience.
 ````
@@ -94,12 +95,13 @@ Install napari in a Python environment for the most customizable experience.
 ````{grid-item-card} Download napari app
 :link: installation_bundle_conda
 :link-type: ref
+:class-card: homepage-card-accent
 
 A standalone installer for when you want napari without setting up Python first.
 ````
 
-````{grid-item-card} Getting started
-:link: launch
+````{grid-item-card} Quick start
+:link: napari-quick-start
 :link-type: ref
 
 Launch napari, open images, and learn the core interactions of the viewer.
@@ -116,12 +118,12 @@ Discover how plugins extend napari and learn to build your own.
 
 ```{raw} html
 <div class="homepage-quicklinks">
-  <a href="community/meeting_schedule.html"><i class="fa-solid fa-calendar-days"></i> Community calendar</a>
-  <a href="https://napari.zulipchat.com/"><i class="fa-solid fa-comments"></i> Community chat</a>
-  <a href="release/index.html"><i class="fa-solid fa-newspaper"></i> Release notes</a>
-  <a href="troubleshooting.html"><i class="fa-solid fa-circle-question"></i> Troubleshooting</a>
-  <a href="roadmaps/index.html"><i class="fa-solid fa-map"></i> Roadmap</a>
-  <a href="https://napari.org/island-dispatch"><i class="fa-solid fa-rss"></i> Blog</a>
+  <a href="https://napari.zulipchat.com/"><i class="fa-solid fa-comments"></i><span>Community chat</span></a>
+  <a href="community/meeting_schedule.html"><i class="fa-solid fa-calendar-days"></i><span>Calendar</span></a>
+  <a href="release/index.html"><i class="fa-solid fa-newspaper"></i><span>Release notes</span></a>
+  <a href="troubleshooting.html"><i class="fa-solid fa-circle-question"></i><span>Troubleshooting</span></a>
+  <a href="roadmaps/index.html"><i class="fa-solid fa-map"></i><span>Roadmap</span></a>
+  <a href="https://napari.org/island-dispatch"><i class="fa-solid fa-rss"></i><span>Blog</span></a>
 </div>
 ```
 
