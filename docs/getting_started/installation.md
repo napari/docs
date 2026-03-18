@@ -254,37 +254,48 @@ pip install napari[pyqt6, optional] -c constraints_py3.10.txt
 
 ## Install as an application
 
-napari can be installed as a bundled app on [MacOS](#macos-bundle), [Windows](#windows-bundle), and [Linux](#linux-bundle) with a simple one click download and guided installation process. This installation method is best if you mainly want to use napari as a standalone GUI app. However, certain plugins may not be supported.
+napari can be installed as a standalone application on macOS, Windows, and Linux — no Python knowledge required. This is the simplest way to get started and works best if you want to use napari as a standalone GUI app. Note that some plugins may not be available without a full Python environment.
 
-```{note}
-* If you want to use napari within a Python project, please follow the [Python package installation guide](installation.md#install-as-python-package-recommended).
-* If you want to contribute code back into napari, please follow the [development installation instructions in the contributing guide](napari-contributing).
+Select your platform below to download napari {{ napari_version }} directly:
+
+````{grid} 1 2 2 4
+:gutter: 2
+
+```{grid-item-card} macOS Apple Silicon (arm64)
+:text-align: center
+
+{{ '[Download (.pkg)](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-arm64.pkg)'.replace('NAPARI_VER', napari_version) }}
++++
+{ref}`Installation steps <macos-bundle>`
 ```
 
-Click the tile below to jump to the installation instructions for your operating system.
+```{grid-item-card} macOS Intel (x86_64)
+:text-align: center
 
-````{grid}
-
-```{grid-item-card} macOS
-:link: macos-bundle
-:link-type: ref
+{{ '[Download (.pkg)](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.pkg)'.replace('NAPARI_VER', napari_version) }}
++++
+{ref}`Installation steps <macos-bundle>`
 ```
 
 ```{grid-item-card} Windows
-:link: windows-bundle
-:link-type: ref
+:text-align: center
+
+{{ '[Download (.exe)](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
++++
+{ref}`Installation steps <windows-bundle>`
 ```
 
 ```{grid-item-card} Linux
-:link: linux-bundle
-:link-type: ref
+:text-align: center
+
+{{ '[Download (.sh)](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.sh)'.replace('NAPARI_VER', napari_version) }}
++++
+{ref}`Installation steps <linux-bundle>`
 ```
 
 ````
 
-```{note}
-If you are interested in an earlier version of the napari app, you may access those files by scrolling below the latest release on the [napari GitHub release page](https://github.com/napari/napari/releases). Each release (0.4.15 and above) will have an "Assets" section with the installers for Windows, macOS, and Linux.
-```
+For earlier versions of the napari app, scroll below the latest release on the [napari GitHub releases page](https://github.com/napari/napari/releases). Each release (0.4.15 and above) includes installers for all platforms under the "Assets" section.
 
 (macos-bundle)=
 
