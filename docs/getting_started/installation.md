@@ -300,17 +300,9 @@ For earlier versions of the napari app, scroll below the latest release on the [
 
 ### Windows
 
-Download the napari app ({{ napari_version }}) for your platform:
+Download from Github: {{ '[napari-REL-Windows-x86_64.exe](https://github.com/napari/napari/releases/download/vREL/napari-REL-Windows-x86_64.exe)'.replace('REL', release) }}
 
-```{admonition} Windows (x86_64)
----
-class: admonition
----
-{{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
-```
-
-Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.7.0-Windows-x86_64.exe`, but the version number will be {{ napari_version }}.
-Double click this file to open the napari Setup.
+Double-click the downloaded `.exe` file to begin setup.
 
 ![Montage of the napari EXE installer icon with an arrow pointing to the Welcome page of the napari EXE installer on Windows.](../_static/images/bundle_17.png)
 
@@ -344,24 +336,12 @@ Next check out our [tutorial on the viewer](viewer-tutorial) or explore any of t
 
 ### macOS
 
-Download the napari app ({{ napari_version }}) for your platform:
+Download the installer for your Mac:
 
-```{admonition} macOS Apple Silicon (arm64)
----
-class: admonition
----
-{{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-arm64.pkg)'.replace('NAPARI_VER', napari_version) }}
-```
+- {{ '[napari-REL-macOS-arm64.pkg](https://github.com/napari/napari/releases/download/vREL/napari-REL-macOS-arm64.pkg)'.replace('REL', release) }} — Apple Silicon (M1 and later)
+- {{ '[napari-REL-macOS-x86_64.pkg](https://github.com/napari/napari/releases/download/vREL/napari-REL-macOS-x86_64.pkg)'.replace('REL', release) }} — Intel
 
-```{admonition} macOS Intel (x86)
----
-class: admonition
----
-{{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.pkg)'.replace('NAPARI_VER', napari_version) }}
-```
-
-Once you have downloaded the appropriate macOS package file, you will have a file with a name like `napari-0.7.0-macOS-x86_64.pkg`, but the version number will be {{ napari_version }}.
-Double-click or open this file to launch the Installer.
+Double-click the downloaded `.pkg` file to launch the Installer.
 
 ![Cropped screenshot of macOS desktop UI showing the icon of the PKG installer file, and an arrow pointing to the Welcome page in the opened PKG installer.](../_static/images/bundle_04.png)
 
@@ -405,17 +385,13 @@ Next check out our [tutorial on the viewer](viewer-tutorial) or explore any of t
 
 ### Linux
 
-Download the napari app ({{ napari_version }}) for your platform:
+Download from Github: {{ '[napari-REL-Linux-x86_64.sh](https://github.com/napari/napari/releases/download/vREL/napari-REL-Linux-x86_64.sh)'.replace('REL', release) }}
 
-```{admonition} Linux (x86_64)
----
-class: admonition
----
-{{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.sh)'.replace('NAPARI_VER', napari_version) }}
+Open a terminal, navigate to your downloads folder (`cd ~/Downloads`), and run:
+
+```sh
+bash napari-REL-Linux-x86_64.sh  # replace REL with the release version, e.g. 0.7.0
 ```
-
-Once you have downloaded the Linux SH file, you will have a file with a name like `napari-0.7.0-Linux-x86_64.sh`, but the version number will be {{ napari_version }}.
-Open a new terminal window, navigate to the downloads folder (usually `cd ~/Downloads`) and run the command `bash napari-*-Linux-x86_64.sh`.
 
 ![Montage of the SH installer icon on Ubuntu, with an arrow pointing to an open terminal instance with a pre-typed command that reads 'bash napari-0.4.14.dev73-Linux-x86_64.sh'.](../_static/images/bundle_28.png)
 
