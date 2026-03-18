@@ -397,29 +397,29 @@ Press {kbd}`Enter` to display the License Agreement.
 
 ![Cropped screenshot of the default Ubuntu terminal displaying the welcome paragraphs of the text-based installer of napari for Linux systems.](../_static/images/bundle_29.png)
 
-Read through the agreement shown below. You must agree to the terms by typing out `yes` and pressing {kbd}`Enter` to continue.
+Read through the agreement. Type `yes` and press {kbd}`Enter` to accept and continue.
 
 ![Cropped screenshot of the default Ubuntu terminal displaying the first paragraphs of a BSD-3 Clause License text.](../_static/images/bundle_30.png)
 
 ![Cropped screenshot of the default Ubuntu terminal displaying the last paragraphs of a BSD-3 Clause License text, plus a prompt asking 'Do you accept the license terms?', to which the user must respond 'yes' or 'no'.](../_static/images/bundle_31.png)
 
-Next you will be shown the default location for the installation. You may confirm this location by pressing {kbd}`Enter`. Alternatively, specify a different location by typing out its absolute path. If it does not exist, it will be created. The terminal will then begin the installation process.
+You will be shown the default installation location. Press {kbd}`Enter` to confirm, or type an absolute path to use a different location. The installation will then begin automatically.
 
 ![Montage of two instances of the default Ubuntu terminal showing the default installation path, followed by the first extraction steps of the installation process.](../_static/images/bundle_32.png)
 
-If the installation is successful, the terminal will display a message with the text 'Installation finished'.
+When complete, the terminal will display **"installation finished. Thank you for installing napari!"**.
 
 ![Cropped screenshot of the default Ubuntu terminal displaying the last steps of the installation process. The last line of text reads 'installation finished'.](../_static/images/bundle_33.png)
 
-You can now get started using napari! A shortcut to launch napari should appear on your desktop or application menu. Under some Linux desktop environments, you can also search for 'napari' using the desktop search bar.
+napari is now installed. A launcher shortcut should appear in your desktop application menu; under some desktop environments you can also search for "napari" using the search bar.
 
 ![Full screenshot of the application menu in the Ubuntu desktop environment. A 6x4 grid of application icons includes the napari icon on the third row, third column, highlighted with a red circle.](../_static/images/bundle_34.png)
 
 ![Full screenshot of the Ubuntu search menu, with the query 'napari', displaying some results which include the application icon for the installed napari.](../_static/images/bundle_35.png)
 
-napari comes installed with sample images from scikit-image. Use the dropdown menu File > Open Sample > napari to open a sample image, or open one of your own images using File > Open or dragging and dropping your image onto the canvas.
+napari includes sample images from scikit-image. Use **File > Open Sample > napari** to open one, or use **File > Open** (or drag and drop files onto the viewer) to open your own images.
 
-Next check out our [tutorial on the viewer](viewer-tutorial) or explore any of the pages under the [Usage tab](usage).
+Next, check out our [tutorial on the viewer](viewer-tutorial) or explore the [Usage tab](usage).
 
 ## Plugins
 
