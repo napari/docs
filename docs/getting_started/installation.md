@@ -345,41 +345,39 @@ Double-click the downloaded `.pkg` file to launch the Installer.
 
 ![Cropped screenshot of macOS desktop UI showing the icon of the PKG installer file, and an arrow pointing to the Welcome page in the opened PKG installer.](../_static/images/bundle_04.png)
 
-Click 'Continue' to open the Software License Agreement.
+Click **Continue** to open the Software License Agreement.
 
 ![Cropped screenshot of the License page in an opened PKG installer, showing the BSD 3-Clause License text and four buttons: Print, Save, Go Back and Continue.](../_static/images/bundle_06.png)
 
-After reading this agreement, click 'Continue' to be prompted to agree to the Software License Agreement in order to proceed with installation.
+Read the agreement and click **Continue** again. You will be prompted to agree before installation can proceed.
 
 ![Cropped screenshot of the License page prompting the user to agree to the napari Software License Agreement. The dialog contains three buttons: Read License, Disagree and Agree.](../_static/images/bundle_07.png)
 
-Click on 'Agree'. On the following page, you will be shown how much space the installation will use and can begin the standard installation by clicking 'Install.'
+Click **Agree**. On the next page, review the disk space required and click **Install** to begin the standard installation.
 
 ![Cropped screenshot of the Installation Type page on the PKG installer. It reports the estimated space the installation will use (2.45 GB in this example) and shows four buttons: Change Install Location, Customize, Go Back and Install.](../_static/images/bundle_09.png)
 
-However, if you would like to change the default location for the installation, you may specify a different location by clicking 'Change Install Location…' and following the subsequent prompts before starting the installation.
+To install to a different location, click **Change Install Location…** before proceeding. You can also click **Customize** to adjust optional installation components.
 
-You can also optionally click on 'Customize' to disable or enable some aspects of the installation process.
-
-The installation progress can be monitored on the following window. Some notifications will appear in the top right corner of your display with further details.
+Installation progress is shown in the next window, with status notifications appearing in the top-right corner of your display.
 
 ![Cropped screenshot of the Installation page of the PKG installer. This page displays a progress bar at a 10%. In the top right corner, an example of a system notification with the text 'Installing packages. This might take a few minutes' is shown](../_static/images/bundle_10.png)
 
 ```{note}
-If an error occurred during the installation, do not close the installer immediately. Before doing so, please inspect the logs by clicking on Window > Installer log or pressing {kbd}`⌘+L`. In the Detail Level dropdown, choose 'Show All Logs' and click on Save to keep a copy of the contents in a text file. This will be useful if you want to [submit an issue](https://github.com/napari/napari/issues/new/choose).
+If an error occurs during installation, do not close the installer immediately. Inspect the log via **Window > Installer log** (or {kbd}`⌘+L`), set the Detail Level to **Show All Logs**, and save a copy. Include this log if you [submit an issue](https://github.com/napari/napari/issues/new/choose).
 ```
 
-After finishing with no errors, a new page with the text "The installation was successful" will appear, as shown below.
+When installation finishes successfully, you will see **"The installation was successful"**:
 
 ![Cropped screenshot of the final page of the PKG installer, Summary, reporting "The installation was successful" with a green check mark icon. A blue Close button is available.](../_static/images/bundle_11.png)
 
-Click Close to finish. You can now get started using napari like any macOS application! You can use Launchpad to open it or find it using the Finder, under 🏠 [User directory] > Applications.
+Click **Close**. napari is now installed and can be launched from Launchpad or found in Finder under 🏠 [User directory] > Applications.
 
 ![Montage of two cropped screenshots. On the left, the macOS finder icon and the Launchpad icon, highlighted with a red circle. On the right, the opened launchpad UI showing a 4x4 grid of applications icon, with napari appearing in the bottom right corner.](../_static/images/bundle_13.png)
 
-napari comes installed with sample images from scikit-image. Use the dropdown menu File > Open Sample > napari to open a sample image, or open one of your own images using File > Open or dragging and dropping your image onto the canvas.
+napari includes sample images from scikit-image. Use **File > Open Sample > napari** to open one, or use **File > Open** (or drag and drop files onto the viewer) to open your own images.
 
-Next check out our [tutorial on the viewer](viewer-tutorial) or explore any of the pages under the [Usage tab](usage).
+Next, check out our [tutorial on the viewer](viewer-tutorial) or explore the [Usage tab](usage).
 
 (linux-bundle)=
 
