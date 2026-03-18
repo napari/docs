@@ -255,7 +255,7 @@ pip install napari[pyqt6, optional] -c constraints_py3.10.txt
 
 napari can be installed as a standalone application on macOS, Windows, and Linux — no Python knowledge required. This is the simplest way to get started and works best if you want to use napari as a standalone GUI app. Note that some plugins may not be available without a full Python environment.
 
-Select your platform below to download napari {{ napari_version }} directly:
+Select your platform below to download napari {{ release }} directly:
 
 ````{grid} 1 2 2 4
 :gutter: 2
@@ -263,7 +263,7 @@ Select your platform below to download napari {{ napari_version }} directly:
 ```{grid-item-card} Windows
 :text-align: center
 
-{{ '[Download (.exe)](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
+{{ '[Download (.exe)](https://github.com/napari/napari/releases/download/vREL/napari-REL-Windows-x86_64.exe)'.replace('REL', release) }}
 +++
 {ref}`Installation steps <windows-bundle>`
 ```
@@ -271,7 +271,7 @@ Select your platform below to download napari {{ napari_version }} directly:
 ```{grid-item-card} macOS Apple Silicon (arm64)
 :text-align: center
 
-{{ '[Download (.pkg)](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-arm64.pkg)'.replace('NAPARI_VER', napari_version) }}
+{{ '[Download (.pkg)](https://github.com/napari/napari/releases/download/vREL/napari-REL-macOS-arm64.pkg)'.replace('REL', release) }}
 +++
 {ref}`Installation steps <macos-bundle>`
 ```
@@ -279,7 +279,7 @@ Select your platform below to download napari {{ napari_version }} directly:
 ```{grid-item-card} macOS Intel (x86_64)
 :text-align: center
 
-{{ '[Download (.pkg)](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.pkg)'.replace('NAPARI_VER', napari_version) }}
+{{ '[Download (.pkg)](https://github.com/napari/napari/releases/download/vREL/napari-REL-macOS-x86_64.pkg)'.replace('REL', release) }}
 +++
 {ref}`Installation steps <macos-bundle>`
 ```
@@ -287,7 +287,7 @@ Select your platform below to download napari {{ napari_version }} directly:
 ```{grid-item-card} Linux
 :text-align: center
 
-{{ '[Download (.sh)](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.sh)'.replace('NAPARI_VER', napari_version) }}
+{{ '[Download (.sh)](https://github.com/napari/napari/releases/download/vREL/napari-REL-Linux-x86_64.sh)'.replace('REL', release) }}
 +++
 {ref}`Installation steps <linux-bundle>`
 ```

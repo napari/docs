@@ -271,6 +271,7 @@ python_version_range = f'{min_python_version}-{max_python_version}'
 myst_substitutions = {
     'napari_conda_version': f'`napari={version_string}`',
     'napari_version': version_string,
+    'release': release,
     'python_version': python_version,
     'python_version_range': python_version_range,
     'python_version_code': f'`python={python_version}`',
