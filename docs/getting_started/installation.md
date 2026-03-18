@@ -260,6 +260,14 @@ Select your platform below to download napari {{ napari_version }} directly:
 ````{grid} 1 2 2 4
 :gutter: 2
 
+```{grid-item-card} Windows
+:text-align: center
+
+{{ '[Download (.exe)](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
++++
+{ref}`Installation steps <windows-bundle>`
+```
+
 ```{grid-item-card} macOS Apple Silicon (arm64)
 :text-align: center
 
@@ -276,14 +284,6 @@ Select your platform below to download napari {{ napari_version }} directly:
 {ref}`Installation steps <macos-bundle>`
 ```
 
-```{grid-item-card} Windows
-:text-align: center
-
-{{ '[Download (.exe)](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
-+++
-{ref}`Installation steps <windows-bundle>`
-```
-
 ```{grid-item-card} Linux
 :text-align: center
 
@@ -295,6 +295,50 @@ Select your platform below to download napari {{ napari_version }} directly:
 ````
 
 For earlier versions of the napari app, scroll below the latest release on the [napari GitHub releases page](https://github.com/napari/napari/releases). Each release (0.4.15 and above) includes installers for all platforms under the "Assets" section.
+
+(windows-bundle)=
+
+### Windows
+
+Download the napari app ({{ napari_version }}) for your platform:
+
+```{admonition} Windows (x86_64)
+---
+class: admonition
+---
+{{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
+```
+
+Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.5.0-Windows-x86_64.exe`, but the version number will be {{ napari_version }}.
+Double click this file to open the napari Setup.
+
+![Montage of the napari EXE installer icon with an arrow pointing to the Welcome page of the napari EXE installer on Windows.](../_static/images/bundle_17.png)
+
+Click Next to continue and go to the License page. Read the contents and, if you agree, continue by clicking 'I Agree'.
+
+![Cropped screenshot of the License Agreement page of the napari EXE installer. A scrollable text area displays the legal text. Three buttons are available: Back, I Agree, and Cancel.](../_static/images/bundle_18.png)
+
+The recommended installation method is to install napari just for the current user ("Just Me"):
+
+![Cropped screenshot of the Setup Installation Type page of the napari EXE installer. Two options are available: Just Me (recommended), and All Users (requires admin privileges). At the bottom, three buttons Back, Next and Cancel are displayed.](../_static/images/bundle_19.png)
+
+On the next page you will be shown how much space will be used by the installation and the default destination folder, which can be changed by using the 'Browse' button. Click 'Next' to continue.
+
+![Cropped screenshot of the Choose Install Location page of the napari EXE installer. A text field next to a Browse button shows the default installation path. Additional text below reports the required space for the installation (2.6 GB) and the total space available on disk (61.1 GB). The three buttons at the bottom read Back, Next and Cancel.](../_static/images/bundle_20.png)
+
+On the next page, click 'Install' to start the installation process. Installation progress can be monitored on the following page. By clicking on 'Show details', you can obtain more information on the ongoing tasks. You can right-click on this new text area to copy the contents to the clipboard if needed.
+
+![Cropped screenshot of the Installation process page of the napari EXE installer. A progress bar at around 95% reads "Setting up the package cache...". A button with the text "Show details" is available below. At the bottom of the dialog, three grayed out buttons read Back, Next, and Cancel.](../_static/images/bundle_22.png)
+
+Once installation is complete, you will see the page below. Click 'Finish' to close the installation wizard.
+
+![Cropped screenshot of the final page of the napari EXE installer. It reports that the installation has finished successfully and that the dialog can be closed by clicking on the Finish button at the bottom.](../_static/images/bundle_24.png)
+
+You can now get started using napari! A shortcut to launch napari can be found in the Windows Start menu.
+
+napari comes installed with sample images from scikit-image. Use the dropdown menu File > Open Sample > napari to open a sample image, or open one of your own images using File > Open or dragging and dropping your image onto the canvas.
+
+Next check out our [tutorial on the viewer](viewer-tutorial) or explore any of the pages under the [Usage tab](usage).
 
 (macos-bundle)=
 
@@ -352,50 +396,6 @@ After finishing with no errors, a new page with the text "The installation was s
 Click Close to finish. You can now get started using napari like any macOS application! You can use Launchpad to open it or find it using the Finder, under 🏠 [User directory] > Applications.
 
 ![Montage of two cropped screenshots. On the left, the macOS finder icon and the Launchpad icon, highlighted with a red circle. On the right, the opened launchpad UI showing a 4x4 grid of applications icon, with napari appearing in the bottom right corner.](../_static/images/bundle_13.png)
-
-napari comes installed with sample images from scikit-image. Use the dropdown menu File > Open Sample > napari to open a sample image, or open one of your own images using File > Open or dragging and dropping your image onto the canvas.
-
-Next check out our [tutorial on the viewer](viewer-tutorial) or explore any of the pages under the [Usage tab](usage).
-
-(windows-bundle)=
-
-### Windows
-
-Download the napari app ({{ napari_version }}) for your platform:
-
-```{admonition} Windows (x86_64)
----
-class: admonition
----
-{{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
-```
-
-Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.5.0-Windows-x86_64.exe`, but the version number will be {{ napari_version }}.
-Double click this file to open the napari Setup.
-
-![Montage of the napari EXE installer icon with an arrow pointing to the Welcome page of the napari EXE installer on Windows.](../_static/images/bundle_17.png)
-
-Click Next to continue and go to the License page. Read the contents and, if you agree, continue by clicking 'I Agree'.
-
-![Cropped screenshot of the License Agreement page of the napari EXE installer. A scrollable text area displays the legal text. Three buttons are available: Back, I Agree, and Cancel.](../_static/images/bundle_18.png)
-
-The recommended installation method is to install napari just for the current user ("Just Me"):
-
-![Cropped screenshot of the Setup Installation Type page of the napari EXE installer. Two options are available: Just Me (recommended), and All Users (requires admin privileges). At the bottom, three buttons Back, Next and Cancel are displayed.](../_static/images/bundle_19.png)
-
-On the next page you will be shown how much space will be used by the installation and the default destination folder, which can be changed by using the 'Browse' button. Click 'Next' to continue.
-
-![Cropped screenshot of the Choose Install Location page of the napari EXE installer. A text field next to a Browse button shows the default installation path. Additional text below reports the required space for the installation (2.6 GB) and the total space available on disk (61.1 GB). The three buttons at the bottom read Back, Next and Cancel.](../_static/images/bundle_20.png)
-
-On the next page, click 'Install' to start the installation process. Installation progress can be monitored on the following page. By clicking on 'Show details', you can obtain more information on the ongoing tasks. You can right-click on this new text area to copy the contents to the clipboard if needed.
-
-![Cropped screenshot of the Installation process page of the napari EXE installer. A progress bar at around 95% reads "Setting up the package cache...". A button with the text "Show details" is available below. At the bottom of the dialog, three grayed out buttons read Back, Next, and Cancel.](../_static/images/bundle_22.png)
-
-Once installation is complete, you will see the page below. Click 'Finish' to close the installation wizard.
-
-![Cropped screenshot of the final page of the napari EXE installer. It reports that the installation has finished successfully and that the dialog can be closed by clicking on the Finish button at the bottom.](../_static/images/bundle_24.png)
-
-You can now get started using napari! A shortcut to launch napari can be found in the Windows Start menu.
 
 napari comes installed with sample images from scikit-image. Use the dropdown menu File > Open Sample > napari to open a sample image, or open one of your own images using File > Open or dragging and dropping your image onto the canvas.
 
