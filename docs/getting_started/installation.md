@@ -43,7 +43,7 @@ If you want to contribute code back into napari, you should follow the [developm
 
 This installation method allows you to use napari from Python to programmatically
 interact with the app. It is the best way to install napari and make full use of
-all its features.
+all its features. Python package distributions of napari can be installed via `pip`, `conda-forge`, or from source.
 
 It requires:
 
@@ -55,7 +55,7 @@ You may also want:
 - an environment manager like [conda](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html) or
   [venv](https://docs.python.org/3/library/venv.html) **(Highly recommended)**
 
-```{note} New to Python?
+```{admonition} New to Python?
 New to Python or uncertain about conda, pip, and virtual environments?
 Here are some resources we recommend:
 
@@ -63,9 +63,7 @@ Here are some resources we recommend:
 - [Detailed comparison of Python environment management tools](https://www.nijho.lt/post/python-environments/)
 ```
 
-Python package distributions of napari can be installed via `pip`, `conda-forge`, or from source.
-
-```{important} A clean environment is recommended
+```{admonition} A clean environment is recommended
 While not strictly required, it is highly recommended to install
 napari into a clean virtual environment using an environment manager like
 [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or
@@ -309,7 +307,7 @@ class: admonition
 {{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Windows-x86_64.exe)'.replace('NAPARI_VER', napari_version) }}
 ```
 
-Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.5.0-Windows-x86_64.exe`, but the version number will be {{ napari_version }}.
+Once you have downloaded the Windows executable file, you will have a file with a name like `napari-0.7.0-Windows-x86_64.exe`, but the version number will be {{ napari_version }}.
 Double click this file to open the napari Setup.
 
 ![Montage of the napari EXE installer icon with an arrow pointing to the Welcome page of the napari EXE installer on Windows.](../_static/images/bundle_17.png)
@@ -360,7 +358,7 @@ class: admonition
 {{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-macOS-x86_64.pkg)'.replace('NAPARI_VER', napari_version) }}
 ```
 
-Once you have downloaded the appropriate macOS package file, you will have a file with a name like `napari-0.5.0-macOS-x86_64.pkg`, but the version number will be {{ napari_version }}.
+Once you have downloaded the appropriate macOS package file, you will have a file with a name like `napari-0.7.0-macOS-x86_64.pkg`, but the version number will be {{ napari_version }}.
 Double-click or open this file to launch the Installer.
 
 ![Cropped screenshot of macOS desktop UI showing the icon of the PKG installer file, and an arrow pointing to the Welcome page in the opened PKG installer.](../_static/images/bundle_04.png)
@@ -414,7 +412,7 @@ class: admonition
 {{ '# [Download from GitHub](https://github.com/napari/napari/releases/download/vNAPARI_VER/napari-NAPARI_VER-Linux-x86_64.sh)'.replace('NAPARI_VER', napari_version) }}
 ```
 
-Once you have downloaded the Linux SH file, you will have a file with a name like `napari-0.5.0-Linux-x86_64.sh`, but the version number will be {{ napari_version }}.
+Once you have downloaded the Linux SH file, you will have a file with a name like `napari-0.7.0-Linux-x86_64.sh`, but the version number will be {{ napari_version }}.
 Open a new terminal window, navigate to the downloads folder (usually `cd ~/Downloads`) and run the command `bash napari-*-Linux-x86_64.sh`.
 
 ![Montage of the SH installer icon on Ubuntu, with an arrow pointing to an open terminal instance with a pre-typed command that reads 'bash napari-0.4.14.dev73-Linux-x86_64.sh'.](../_static/images/bundle_28.png)
