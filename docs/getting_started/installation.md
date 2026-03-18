@@ -56,6 +56,7 @@ You may also want:
   [venv](https://docs.python.org/3/library/venv.html) **(Highly recommended)**
 
 ```{admonition} New to Python?
+:class: note
 New to Python or uncertain about conda, pip, and virtual environments?
 Here are some resources we recommend:
 
@@ -224,8 +225,9 @@ If you switch backends, it's a good idea to `pip uninstall` the one
 you're not using.
 ```
 
-```{note} Pyside2 is no longer supported
-PySide2 is no longer maintained, so we dropped support for it in napari 0.7.0. PyQt5 remains supported, but we recommend the now Qt6 backends.
+```{admonition} Pyside2 is no longer supported
+:class: warning
+PySide2 is no longer maintained, so we dropped support for it in napari 0.7.0. PyQt5 remains supported, but we recommend the Qt6 backends.
 ```
 
 #### Using constraints files
