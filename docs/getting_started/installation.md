@@ -16,13 +16,26 @@ kernelspec:
 
 # Install napari
 
-This guide will teach you how to do a clean install of **napari** and launch the viewer.
+`````{grid} 1 2 2 2
 
-If you're already familiar with Python, napari can be installed from PyPI or conda-forge using your favorite virtual environment and package manager. Otherwise, keep reading for instructions on how to install napari as a Python package.
+````{grid-item-card} Install with Python
+:link: install-python-package
+:link-type: ref
+:class-card: homepage-card-accent
 
-```{tip}
-If you just want to get started quickly with napari as an app, check out our [napari app installation instructions](#installation_bundle_conda).
-```
+Install napari in a Python environment for the most customizable experience.
+````
+
+````{grid-item-card} Download napari app
+:link: installation_bundle_conda
+:link-type: ref
+:class-card: homepage-card-accent
+
+A standalone installer for when you want napari without setting up Python first.
+````
+`````
+
+If you want to contribute code back into napari, you should follow the [development installation instructions in the contributing guide](dev-installation) instead.
 
 (install-python-package)=
 
