@@ -125,7 +125,7 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
   border-top: 1px solid var(--napari-dark-gray);
   border-bottom: 1px solid var(--napari-dark-gray);
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.75rem 0;
   justify-content: center;
   margin: 1rem 0 1.5rem;
@@ -155,8 +155,24 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
 
 .homepage-quicklinks i {
   color: var(--pst-color-primary);
-  font-size: 6rem;
+  font-size: 4rem;
   line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .homepage-quicklinks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem 0;
+  }
+
+  .homepage-quicklinks a {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .homepage-quicklinks a:nth-child(2n) {
+    border-right: none;
+  }
 }
 
 /* ── Homepage accent cards ───────────────────────────────────────────
