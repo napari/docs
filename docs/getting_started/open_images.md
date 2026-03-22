@@ -74,6 +74,13 @@ _split_stack(viewer.layers)
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel tif microscopy image of a Drosophila embryo with channels split into layers.")
 ```
 
+```{code-cell} python
+---
+tags: [remove-cell]
+---
+viewer.close()
+```
+
 As mentioned above, there are situations where the builtin reader will not be sufficient. For example, `imageio` typically does not support custom commercial/proprietary formats such as those used in microscopy (e.g. CZI, LIF, ND2) or remote sensing (e.g. ENVI). In these cases, napari's reading capabilities need to be extended using an appropriate reader plugin.
 
 ## Using a plugin reader
@@ -111,6 +118,13 @@ viewer.camera.angles = (92, -24, 15)
 nbscreenshot(viewer, alt_text="napari viewer showing a 3D mesh of an airplane opened via napari-meshio.")
 ```
 
+```{code-cell} python
+---
+tags: [remove-cell]
+---
+viewer.close()
+```
+
 ### General-purpose reader plugins
 
 There are a few examples of plugins bundling multiple readers. One example is [ndevio](https://napari-hub.org/plugins/ndevio.html) which wraps the family of [bioio](https://bioio.readthedocs.io/en/latest/) packages to provide support for multiple microscopy file formats. Often such bundled reader plugins come with a set of formats supported by default, and allow the users to add optional formats, typically by installing additional dependencies. 
@@ -128,6 +142,13 @@ viewer = napari.Viewer()
 viewer.open('https://uk1s3.embassy.ebi.ac.uk/idr/zarr/v0.4/idr0101A/13457537.zarr', plugin='ndevio')
 viewer.window.resize(width, height)
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel zarr image opened via ndevio of a in situ genome sequencing in a fibroblast.")
+```
+
+```{code-cell} python
+---
+tags: [remove-cell]
+---
+viewer.close()
 ```
 
 ## Using the napari console to open an image
@@ -157,6 +178,13 @@ viewer.open(file_path_tiff2)
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells.")
 ```
 
+```{code-cell} python
+---
+tags: [remove-cell]
+---
+viewer.close()
+```
+
 Instead we can now first read the data for example with `imageio`, and add it to the viewer while specifying which axis of the array should be split into individual layers, using the `channel_axis` argument:
 
 ```{code-cell} ipython3
@@ -175,6 +203,13 @@ viewer.add_image(image, channel_axis=0);
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells with a layer per channel.")
 ```
 
+```{code-cell} python
+---
+tags: [remove-cell]
+---
+viewer.close()
+```
+
 Note that different reader plugins might interpret your data in different ways. With the same data as above where the builtin `imageio` reader did not split the channels into layers, the `ndevio` plugin identified the channels from the metadata and assigned them separate layers:
 
 ```{code-cell} ipython3
@@ -183,6 +218,13 @@ Note that different reader plugins might interpret your data in different ways. 
 viewer = napari.Viewer()
 viewer.open(file_path_tiff2, plugin='ndevio')
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells opened via ndevio.")
+```
+
+```{code-cell} python
+---
+tags: [remove-cell]
+---
+viewer.close()
 ```
 
 ## Using plugins to improve image display
@@ -212,4 +254,11 @@ viewer.grid.enabled = True
 
 viewer.reset_view()
 nbscreenshot(viewer, alt_text="napari viewer showing twice the same multi-channel TIFF images in grid mode, the second with X and Y axes swapped via napari-skimage.")
+```
+
+```{code-cell} python
+---
+tags: [remove-cell]
+---
+viewer.close()
 ```
