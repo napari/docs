@@ -237,7 +237,7 @@ viewer.close()
 
 With the release of napari 0.7.0, [napari-metadata](https://napari.org/napari-metadata) is included with the bundle, conda-forge and with `pip install "napari[optional]"` (or `napari[all]`) installations. This plugin provides a widget to view and edit the metadata of layers. This can be useful to check if the metadata was correctly read, and to edit it if necessary. 
 
-![napari metadata widget](https://raw.githubusercontent.com/napari/napari-metadata/main/resources/horizontal-widget.png)
+![napari metadata widget](https://raw.githubusercontent.com/napari/napari-metadata/main/docs/images/horizontal-widget.png)
 
 In the case of badly interpreted dimensions, one can also reshape the data using certain plugins. For example the [napari-skimage](https://napari-hub.org/plugins/napari-skimage.html) plugin provides a tool to reshape layers via the `Plugins -> napari skimage -> Axis operations` menu. Here we use the `swap axes` function to exchange the X and Y axes:
 
