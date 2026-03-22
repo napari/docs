@@ -168,13 +168,19 @@ file_path_tiff2 = pooch.retrieve(
     fname="coli_nucl_ori_ter.tif",
     path=download_folder
 )
+viewer = napari.Viewer()
 ```
 
 ```{code-cell} ipython3
+# Open the downloaded data with dimensions CZYX
+viewer.open(file_path_tiff2)
+
+# Switch to viewing the first channel
+viewer.dims.set_point(0, 0)
+```
+```{code-cell} ipython3
 :tags: [remove-input]
 
-viewer = napari.Viewer()
-viewer.open(file_path_tiff2)
 nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image of E. coli cells.")
 ```
 
