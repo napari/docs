@@ -58,6 +58,16 @@ theme:
   such as NumPy or Zarr arrays, allowing you to
 - **seamlessly weave** exploration, computation, and annotation together in
   imaging data analysis.
+
+
+```{button-ref} napari-quick-start
+:color: primary
+:ref-type: myst
+:shadow:
+:class: start-button
+
+{material-regular}`arrow_forward;1.2em` Get started
+```
 ````
 
 ````{grid-item}
@@ -82,39 +92,24 @@ theme:
 
 `````
 
-`````{grid} 1 2 2 4
+`````{grid} 1 2 2 2
 :gutter: 3
 
-````{grid-item-card} Install with Python
+::::{grid-item-card} {material-regular}`terminal;1.3em` Install with Python
 :link: install-python-package
 :link-type: ref
 :class-card: homepage-card-accent
 
 Install napari in a Python environment for the most customizable experience.
-````
+::::
 
-````{grid-item-card} Download napari app
+::::{grid-item-card} {material-regular}`install_desktop;1.3em` Download napari app
 :link: installation_bundle_conda
 :link-type: ref
 :class-card: homepage-card-accent
 
 A standalone installer for when you want napari without setting up Python first.
-````
-
-````{grid-item-card} Quick start
-:link: napari-quick-start
-:link-type: ref
-
-Launch napari, open images, and learn the core interactions of the viewer.
-````
-
-````{grid-item-card} Plugins
-:link: plugins-index
-:link-type: ref
-
-Discover how plugins extend napari and learn to build your own.
-````
-
+::::
 `````
 
 ```{raw} html

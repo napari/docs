@@ -122,8 +122,8 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
 /* ── Homepage quicklinks (icon columns) ──────────────────────────────── */
 
 .homepage-quicklinks {
-  border-top: 1px solid var(--napari-dark-gray);
-  border-bottom: 1px solid var(--napari-dark-gray);
+  border-top: 1px solid #68686817;
+  border-bottom: 1px solid #68686817;
   display: flex;
   flex-wrap: nowrap;
   gap: 0.75rem 0;
@@ -134,7 +134,7 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
 
 .homepage-quicklinks a {
   align-items: center;
-  border-right: 1px solid var(--napari-dark-gray);
+  border-right: 1px solid #68686817;
   display: flex;
   flex-direction: column;
   font-size: 0.9rem;
@@ -179,16 +179,44 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
    Install, Download cards with theme-aware napari blue.
    sphinx-design marks every property !important, so we must too.     */
 
-html[data-theme="light"] .homepage-card-accent,
+/* html[data-theme="light"] .homepage-card-accent,
 html[data-theme="light"] .homepage-card-accent .sd-card-body {
-  background-color: var(--napari-light-blue) !important;
-  border-color: var(--napari-primary-blue) !important;
+  padding-left: 0.3rem !important;
+  padding-right: 0.3rem !important;
 }
 
 html[data-theme="dark"] .homepage-card-accent,
 html[data-theme="dark"] .homepage-card-accent .sd-card-body {
-  background-color: color-mix(in srgb, var(--napari-deep-blue), transparent 75%) !important;
+  padding-left: 0.3rem !important;
+  padding-right: 0.3rem !important;
+} */
+
+.start-button {
+  display: block;
+}
+
+html[data-theme="light"] .start-button:hover {
+  background-color: var(--napari-deep-blue) !important;
   border-color: var(--napari-deep-blue) !important;
+  color: var(--napari-color-text-base) !important;
+}
+
+html[data-theme="dark"] .start-button:hover {
+  background-color: var(--napari-dark-gray) !important;
+  border-color: var(--napari-dark-gray) !important;
+  color: var(--napari-color-text-base) !important;
+}
+
+html[data-theme="light"] .start-button {
+  background-color: var(--napari-primary-blue) !important;
+  border-color: var(--napari-primary-blue) !important;
+  color: var(--napari-color-text-base) !important;
+}
+
+html[data-theme="dark"] .start-button {
+  background-color: var(--napari-purple) !important;
+  border-color: var(--napari-purple) !important;
+  color: var(--napari-color-text-base) !important;
 }
 
 /* ── Homepage featured example buttons ───────────────────────────────
@@ -212,17 +240,17 @@ html[data-theme="light"] .homepage-featured-example__actions .sd-btn-primary:foc
 }
 
 html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary {
-  background-color: color-mix(in srgb, var(--napari-deep-blue), transparent 75%) !important;
+  background-color: color-mix(in srgb, var(--napari-purple), transparent 5%) !important;
   background-image: none !important;
-  border-color: var(--napari-deep-blue) !important;
+  border-color: var(--napari-purple) !important;
   color: var(--napari-color-text-base) !important;
 }
 
 html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary:hover,
 html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary:focus {
-  background-color: var(--napari-deep-blue) !important;
+  background-color: var(--napari-purple) !important;
   background-image: none !important;
-  border-color: var(--napari-deep-blue) !important;
+  border-color: var(--napari-purple) !important;
   color: var(--napari-color-text-base) !important;
 }
 
@@ -239,4 +267,8 @@ html[data-theme="dark"] .homepage-featured-example__actions .sd-btn-primary:focu
   background-image: none !important;
   border-color: var(--pst-color-border) !important;
   color: var(--napari-color-text-base) !important;
+}
+
+html[data-theme="dark"] img#homepage-featured-example-image {
+  background-color: var(--pst-color-background) !important;
 }
