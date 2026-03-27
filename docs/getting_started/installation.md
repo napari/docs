@@ -268,7 +268,7 @@ Select your platform below to download napari {{ bundle_release }} directly:
 {ref}`Installation steps <windows-bundle>`
 ```
 
-```{grid-item-card} macOS Apple Silicon (arm64)
+```{grid-item-card} macOS Apple Silicon (arm64) —  M1 and later
 :text-align: center
 
 {{ '[Download (.pkg)](https://github.com/napari/napari/releases/download/vREL/napari-REL-macOS-arm64.pkg)'.replace('REL', bundle_release) }}
