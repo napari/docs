@@ -15,6 +15,7 @@ import re
 from datetime import datetime
 from importlib import import_module
 from importlib.metadata import distribution, version as metadata_version
+from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
 import napari
