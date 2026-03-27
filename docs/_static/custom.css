@@ -105,13 +105,13 @@ html[data-theme="dark"] .homepage-button:hover {
 }
 
 html[data-theme="light"] .homepage-quicklinks {
-  border-top: 1px solid rgba(0, 0, 0, 0.25);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 html[data-theme="dark"] .homepage-quicklinks {
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .homepage-quicklinks a {
@@ -222,4 +222,9 @@ html[data-theme="dark"] .homepage-quicklinks a {
 
 html[data-theme="dark"] img#homepage-featured-example-image {
   background-color: var(--pst-color-background) !important;
+}
+
+.homepage-example-button:hover {
+  background-color: var(--pst-color-background) !important;
+  color: var(--napari-color-text-base) !important;
 }

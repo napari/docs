@@ -134,7 +134,7 @@ A standalone installer for when you want napari without setting up Python first.
     </p>
     <div class="homepage-featured-example__actions">
       <a class="sd-btn sd-btn-primary sd-shadow-sm homepage-button" href="gallery.html">Examples gallery</a>
-      <button class="sd-btn sd-btn-outline-primary sd-shadow-sm" id="homepage-featured-example-reroll" type="button">Show another example</button>
+      <button class="sd-btn sd-btn-outline-primary sd-shadow-sm homepage-example-button" id="homepage-featured-example-reroll" type="button">Show another example</button>
     </div>
   </div>
   <a class="homepage-featured-example__media" href="gallery/add_image.html" aria-label="View the featured napari example">
