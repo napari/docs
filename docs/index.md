@@ -64,9 +64,9 @@ theme:
 :color: primary
 :ref-type: myst
 :shadow:
-:class: start-button
+:class: homepage-button
 
-{material-regular}`arrow_forward;1.2em` Get started
+{material-regular}`arrow_forward;1.2em` **Get started**
 ```
 ````
 
@@ -133,7 +133,7 @@ A standalone installer for when you want napari without setting up Python first.
       Display an image in napari and explore the viewer with a minimal example.
     </p>
     <div class="homepage-featured-example__actions">
-      <a class="sd-btn sd-btn-primary sd-shadow-sm" href="gallery.html">Examples gallery</a>
+      <a class="sd-btn sd-btn-primary sd-shadow-sm homepage-button" href="gallery.html">Examples gallery</a>
       <button class="sd-btn sd-btn-outline-primary sd-shadow-sm" id="homepage-featured-example-reroll" type="button">Show another example</button>
     </div>
   </div>
