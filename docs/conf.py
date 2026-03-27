@@ -267,6 +267,10 @@ min_python_version = min(napari_supported_python_versions)
 max_python_version = max(napari_supported_python_versions)
 
 version_string = '.'.join(str(x) for x in __version_tuple__[:3])
+bundle_release = release
+if napari_version.pre and napari_version.pre[0] in {'a', 'rc'}:
+    pre_label, pre_number = napari_version.pre
+    bundle_release = f'{napari_version.base_version}{pre_label}{pre_number}'
 # when updating the version below, ensure to also update napari/napari README
 python_version = '3.11'
 python_version_range = f'{min_python_version}-{max_python_version}'
@@ -275,6 +279,7 @@ myst_substitutions = {
     'napari_conda_version': f'`napari={version_string}`',
     'napari_version': version_string,
     'release': release,
+    'bundle_release': bundle_release,
     'python_version': python_version,
     'python_version_range': python_version_range,
     'python_version_code': f'`python={python_version}`',
