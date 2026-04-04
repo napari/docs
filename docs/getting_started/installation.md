@@ -268,7 +268,6 @@ Select your platform below to download napari {{ bundle_release }} directly:
 {ref}`Installation steps <windows-bundle>`
 ```
 
-```{grid-item-card} macOS Apple Silicon (arm64) —  M1 and later
 :text-align: center
 
 {{ '[Download (.pkg)](https://github.com/napari/napari/releases/download/vREL/napari-REL-macOS-arm64.pkg)'.replace('REL', bundle_release) }}
@@ -300,7 +299,7 @@ For earlier versions of the napari app, scroll below the latest release on the [
 
 ### Windows
 
-Download from Github: {{ '[napari-REL-Windows-x86_64.exe](https://github.com/napari/napari/releases/download/vREL/napari-REL-Windows-x86_64.exe)'.replace('REL', bundle_release) }}
+Download from GitHub: {{ '[napari-REL-Windows-x86_64.exe](https://github.com/napari/napari/releases/download/vREL/napari-REL-Windows-x86_64.exe)'.replace('REL', bundle_release) }}
 
 Double-click the downloaded `.exe` file to begin setup.
 
@@ -338,7 +337,7 @@ Next, check out our [tutorial on the viewer](viewer-tutorial) or explore the [Us
 
 Download the installer for your Mac:
 
-- {{ '[napari-REL-macOS-arm64.pkg](https://github.com/napari/napari/releases/download/vREL/napari-REL-macOS-arm64.pkg)'.replace('REL', bundle_release) }} — Apple Silicon (M1 and later)
+- {{ '[napari-REL-macOS-arm64.pkg](https://github.com/napari/napari/releases/download/vREL/napari-REL-macOS-arm64.pkg)'.replace('REL', bundle_release) }} — Apple Silicon (ARM)
 - {{ '[napari-REL-macOS-x86_64.pkg](https://github.com/napari/napari/releases/download/vREL/napari-REL-macOS-x86_64.pkg)'.replace('REL', bundle_release) }} — Intel
 
 Double-click the downloaded `.pkg` file to launch the Installer.
@@ -383,7 +382,7 @@ Next, check out our [tutorial on the viewer](viewer-tutorial) or explore the [Us
 
 ### Linux
 
-Download from Github: {{ '[napari-REL-Linux-x86_64.sh](https://github.com/napari/napari/releases/download/vREL/napari-REL-Linux-x86_64.sh)'.replace('REL', bundle_release) }}
+Download from GitHub: {{ '[napari-REL-Linux-x86_64.sh](https://github.com/napari/napari/releases/download/vREL/napari-REL-Linux-x86_64.sh)'.replace('REL', bundle_release) }}
 
 Open a terminal, navigate to your downloads folder (`cd ~/Downloads`), and run:
 
