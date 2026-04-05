@@ -10,9 +10,9 @@ individual extension documentation for more information on specific settings.
 # -- Imports --------------------------------------------------------------
 
 import logging
+import json
 import os
 import re
-import subprocess
 from datetime import datetime
 from importlib import import_module
 from importlib.metadata import distribution, version as metadata_version
@@ -269,25 +269,20 @@ max_python_version = max(napari_supported_python_versions)
 
 version_string = '.'.join(str(x) for x in __version_tuple__[:3])
 
-# For bundle download links, always use a version that has published assets.
-# On dev builds the current version_string refers to an unreleased version,
-# so fall back to the latest stable tag from git instead.
-def _latest_stable_tag() -> str:
-    """Return the most recent vX.Y.Z git tag (no pre-release suffix)."""
-    try:
-        result = subprocess.run(
-            ['git', 'tag', '--sort=-version:refname'],
-            capture_output=True, text=True, check=True,
-        )
-        for tag in result.stdout.splitlines():
-            tag = tag.strip()
-            if re.fullmatch(r'v\d+\.\d+\.\d+', tag):
-                return tag.lstrip('v')
-    except Exception:
-        pass
-    return version_string  # fallback
+def _stable_version_from_switcher() -> str:
+    """Return the stable docs version advertised in the version switcher."""
+    switcher_path = Path(__file__).parent / '_static' / 'version_switcher.json'
+    switcher_entries = json.loads(switcher_path.read_text(encoding='utf-8'))
+    return next(
+        entry['version']
+        for entry in switcher_entries if entry.get('preferred')
+    )
 
-bundle_version = _latest_stable_tag() if napari_version.is_prerelease else version_string
+bundle_version = (
+    _stable_version_from_switcher()
+    if napari_version.is_prerelease
+    else version_string
+)
 # when updating the version below, ensure to also update napari/napari README
 python_version = '3.11'
 python_version_range = f'{min_python_version}-{max_python_version}'
