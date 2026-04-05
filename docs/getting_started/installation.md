@@ -294,7 +294,9 @@ Select your platform below to download napari {{ bundle_version }} directly:
 
 ````
 
-For earlier versions of the napari app, scroll below the latest release on the [napari GitHub releases page](https://github.com/napari/napari/releases). Each release (0.4.15 and above) includes installers for all platforms under the "Assets" section.
+For pre-release versions or earlier stable versions of the napari app,
+scroll below the latest release on the [napari GitHub releases page](https://github.com/napari/napari/releases).
+Each release (0.4.15 and above) includes installers for all platforms under the "Assets" section.
 
 (windows-bundle)=
 
