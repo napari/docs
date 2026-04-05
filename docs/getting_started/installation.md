@@ -336,7 +336,10 @@ Next, check out our [tutorial on the viewer](viewer-tutorial) or explore the [Us
 
 ### macOS
 
-Download the installer for your Mac:
+Download the installer for your Mac. If you are unsure which version to choose,
+check "About this Mac" from the Apple menu or check the
+[official Apple documentation](https://support.apple.com/en-us/116943)
+to identify if your machine is Apple Silicon (ARM).
 
 - {{ '[napari-REL-macOS-arm64.pkg](https://github.com/napari/napari/releases/download/vREL/napari-REL-macOS-arm64.pkg)'.replace('REL', bundle_version) }} — Apple Silicon (ARM)
 - {{ '[napari-REL-macOS-x86_64.pkg](https://github.com/napari/napari/releases/download/vREL/napari-REL-macOS-x86_64.pkg)'.replace('REL', bundle_version) }} — Intel
