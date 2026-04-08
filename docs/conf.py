@@ -126,7 +126,8 @@ html_theme_options = {
     'show_version_warning_banner': True,
     'navbar_persistent': ['search-button'],
     'header_links_before_dropdown': 6,
-    'secondary_sidebar_items': ['page-toc'],
+    'use_edit_page_button': True,
+    'secondary_sidebar_items': ['page-toc', 'edit-this-page'],
     'pygments_light_style': 'napari',
     'pygments_dark_style': 'dracula',
     'announcement': '',
@@ -154,6 +155,11 @@ html_context = {
     # add release version to context
     'release': release,
     'version': version,
+    # GitHub info for "Edit on GitHub" links
+    'github_user': 'napari',
+    'github_repo': 'docs',
+    'github_version': 'main',
+    'doc_path': 'docs',
 }
 
 # intersphinx configuration for frequently used links to other projects
