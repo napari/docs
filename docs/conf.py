@@ -127,7 +127,7 @@ html_theme_options = {
     'navbar_persistent': ['search-button'],
     'header_links_before_dropdown': 6,
     'use_edit_page_button': True,
-    'secondary_sidebar_items': ['page-toc', 'edit-this-page'],
+    'secondary_sidebar_items': ['page-toc', 'edit-this-page', 'sourcelink'],
     'pygments_light_style': 'napari',
     'pygments_dark_style': 'dracula',
     'announcement': '',
