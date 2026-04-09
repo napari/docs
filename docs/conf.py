@@ -127,7 +127,7 @@ html_theme_options = {
     'navbar_persistent': ['search-button'],
     'header_links_before_dropdown': 6,
     'use_edit_page_button': True,
-    'secondary_sidebar_items': ['page-toc', 'edit-this-page', 'sourcelink'],
+    'secondary_sidebar_items': ['page-toc', 'edit-this-page'],
     'pygments_light_style': 'napari',
     'pygments_dark_style': 'dracula',
     'announcement': '',
@@ -160,6 +160,11 @@ html_context = {
     'github_repo': 'docs',
     'github_version': 'main',
     'doc_path': 'docs',
+    'edit_page_provider_name': 'GitHub',
+    'edit_page_url_template': (
+        '{{ github_url }}/{{ github_user }}/{{ github_repo }}'
+        '/blob/{{ github_version }}/{{ doc_path }}{{ file_name }}'
+    ),
 }
 
 # intersphinx configuration for frequently used links to other projects
