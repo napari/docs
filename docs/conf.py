@@ -10,6 +10,7 @@ individual extension documentation for more information on specific settings.
 # -- Imports --------------------------------------------------------------
 
 import logging
+import json
 import os
 import re
 from datetime import datetime
@@ -278,6 +279,21 @@ min_python_version = min(napari_supported_python_versions)
 max_python_version = max(napari_supported_python_versions)
 
 version_string = '.'.join(str(x) for x in __version_tuple__[:3])
+
+def _stable_version_from_switcher() -> str:
+    """Return the stable docs version advertised in the version switcher."""
+    switcher_path = Path(__file__).parent / '_static' / 'version_switcher.json'
+    switcher_entries = json.loads(switcher_path.read_text(encoding='utf-8'))
+    return next(
+        entry['version']
+        for entry in switcher_entries if entry.get('preferred')
+    )
+
+bundle_version = (
+    _stable_version_from_switcher()
+    if napari_version.is_prerelease
+    else version_string
+)
 # when updating the version below, ensure to also update napari/napari README
 python_version = '3.11'
 python_version_range = f'{min_python_version}-{max_python_version}'
@@ -285,6 +301,7 @@ python_version_range = f'{min_python_version}-{max_python_version}'
 myst_substitutions = {
     'napari_conda_version': f'`napari={version_string}`',
     'napari_version': version_string,
+    'bundle_version': bundle_version,
     'release': release,
     'python_version': python_version,
     'python_version_range': python_version_range,
