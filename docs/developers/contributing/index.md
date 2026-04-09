@@ -154,7 +154,7 @@ to library users. `DeprecationWarning` is the correct signal for developer-facin
 **In the code**, always pass `stacklevel=2` to `warnings.warn()` so the warning
 points to the caller's location rather than inside napari's internals.
 
-**In the docstring**, use the `.. deprecated::` directive alongside any related
+In the docstring below the short summary, use the [`.. deprecated::` directive](https://numpydoc.readthedocs.io/en/latest/format.html#deprecation-warning) alongside any related
 `.. versionadded::` notes:
 
 ```rst
