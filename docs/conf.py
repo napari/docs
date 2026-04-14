@@ -145,7 +145,7 @@ html_theme_options = {
 
 # sidebar content
 html_sidebars = {
-    '**': ['search-field.html', 'sidebar-nav-bs'],
+    '**': ['sidebar-nav-bs'],
     'index': [],
 }
 
