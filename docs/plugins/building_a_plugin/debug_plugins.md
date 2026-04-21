@@ -62,10 +62,16 @@ For example if `pip list` does show the package is installed, and `npe2 validate
 
 ## Seeing tracebacks from plugin errors
 
-By default, napari will output any traceback information from plugin related errors to the console or jupyter notebook that napari was launched from.
+By default, uncaught exceptions that reach napari are printed to the console or Jupyter notebook that napari was launched from.
 Additionally, a popup will show in the bottom right corner of the napari viewer with a `View Traceback` button.
-Inside of this popup, the full traceback can be seen, along with the option to drop into the debugger from here.
+Inside that popup, the full traceback can be seen, along with the option to drop into the debugger from there.
 Dropping into the debugger will open the built in [python debugger](https://docs.python.org/3/library/pdb.html) at the point of failure.
+
+If you catch an exception yourself, napari will only show that same traceback
+experience if you forward the original exception object with
+`notification_manager.receive_error(...)`.
+If you instead convert the exception to `show_error(str(exc))` or
+`warnings.warn(str(exc))`, the traceback UI is intentionally lost.
 
 You can also configure napari not to catch error messages, or force napari to exit on error via the following environment variables, respectively:
 
@@ -223,76 +229,153 @@ Then, for `python test_print.py` you can use any of your usual debugging tools -
 
 ## Logging and user messages in napari
 
-### Set up plugin user messages and notifications
-
 There are, generally speaking, three main methods for notifying users of problems in napari.
 
 1. Raise an exception to indicate a breaking problem in the code (e.g. unexpected user input `raise ValueError("some error")`).
 1. Indicate that something was handled, but may not be the behaviour the user was expecting using `warnings.warn("some warning")`.
 1. Show an information popup in the napari GUI by using the `napari.utils.notifications.show_info("message")` command.
 
-### Set up plugin log messages
+Check out the {ref}`sphx_glr_gallery_message_routing.py` example for a visual
+demonstration of the different routes in napari and how they interact with each other.
+See also [](message-routing) for a discussion of when to use each method and how to use them effectively in your plugin code.
 
-In addition to these user focused methods, you can set up plugin debug logs and messages during development. You can either use {mod}`napari specific functions <napari.utils.notifications>`, or [built in Python logging](https://docs.python.org/3/library/logging.html).
+### When to let an exception propagate
+
+Let an exception propagate when the current operation should fail and the caller
+or napari itself should decide how to present that failure.
+This is the default and usually the right choice for genuine bugs, invalid
+internal state, and actions that should abort.
+
+### When to catch an exception
+
+Catch an exception when one of the following is true:
+
+1. You can recover and continue.
+1. You want to replace a misleading higher-level error with a more accurate
+   user-facing one.
+1. You need to downgrade the problem to a warning or informational message.
+
+If you catch a real exception but still want napari's traceback popup, forward
+it with `notification_manager.receive_error(type(exc), exc, exc.__traceback__)`.
+If you catch it and call `show_error(str(exc))`, you are intentionally choosing
+to discard the traceback UI.
+
+### What to use for messages
+
+- Use `show_warning()` or related napari helpers for explicit GUI-visible
+    messages after your code has already handled the situation.
+- Use `warnings.warn()` for deprecations and other Python warning semantics
+    that should also exist in tests, scripts, and headless usage.
+- Use logging for developer diagnostics and **Help > Show logs**.
+
+Repeated identical Python warnings are not a good GUI message channel.
+Python warning filters apply first, and napari also deduplicates repeated
+warnings while its hook is installed.
+
+### Stacklevel and visibility for warnings
+
+When you call `warnings.warn()`, set `stacklevel` so the warning points to the
+code that should change.
+
+- In napari internals, `stacklevel=2` is usually right for a direct public API
+    warning, but wrappers and helper layers often need `3` or more.
+- In plugins, `stacklevel=2` is usually right when your own public helper or
+    API warns directly.
+- If the warning is emitted from a plugin callback, decorator, or helper,
+    increase the stacklevel until the warning points at the plugin code or user
+    call site you actually want people to inspect.
+
+Default visibility is different across channels:
+
+- `DeprecationWarning` is hidden by Python's default CLI warning filters.
+- `UserWarning` is shown by default in the CLI.
+- In napari, warnings may also appear as viewer notifications while napari's
+    warning hook is installed, but that is not guaranteed before the window is
+    visible and repeated identical warnings are deduplicated.
+- If you need a guaranteed viewer-side message, use `show_warning()` rather
+    than relying on `warnings.warn()`.
+
+### Recommended plugin patterns
+
+Use Python warnings for deprecations and API-style warnings:
+
+```python
+import warnings
+
+
+def old_function():
+    warnings.warn(
+        "old_function() is deprecated; use new_function() instead",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+```
+
+Use napari notifications for explicit GUI-visible user messages:
+
+```python
+from napari.utils.notifications import show_warning
+
+
+def export_with_defaults(path):
+    show_warning("No output path was chosen; using the default export location.")
+```
+
+Use logging for developer diagnostics and post-hoc debugging:
+
+```python
+import logging
+
+
+logger = logging.getLogger(__name__)
+
+
+def recompute_preview(shape):
+    logger.debug("Recomputing preview for shape %s", shape)
+```
+
+Use `receive_error(...)` only when you intentionally catch an exception but
+still want napari's traceback UI:
+
+```python
+from napari.utils.notifications import notification_manager
+
+
+def run_plugin_action():
+    try:
+        raise ValueError("Bad user input")
+    except ValueError as exc:
+        notification_manager.receive_error(
+            type(exc), exc, exc.__traceback__
+        )
+        return None
+```
+
+### Viewing plugin log messages
+
+The simplest path is to use standard Python logging:
+
+```python
+import logging
+
+
+logger = logging.getLogger(__name__)
+logger.debug("Widget state changed")
+logger.warning("Falling back to a slower code path")
+```
+
+Then run napari from a terminal and open **Help > Show logs**.
+The terminal and the log dock are both useful, but they are not the same
+channel as napari's notification popup.
 
 ```{tip}
 A logging library, like [loguru](https://github.com/Delgan/loguru), can be easier to get started with than the built in Python logging library.
 ```
 
-Below is an example of establishing debug messages and logs in your code and viewing them in napari by setting the preferences for GUI notifications and console notifications to be at the debug level. We modify the example function from before to have a debug log message:
+If you want explicit napari notifications to be echoed to the terminal while
+you are debugging, lower the console notification threshold:
 
 ```Python
-import logging
-import sys
-from napari.utils.notifications import (
-    notification_manager,
-    Notification,
-    NotificationSeverity,
-    show_console_notification,
-)
-
-my_plugin_logger = logging.getLogger("napari_simple_reload")
-stdout_handler = logging.StreamHandler(sys.stderr)
-stdout_handler.setFormatter(
-    logging.Formatter(
-        fmt="%(levelname)s: %(asctime)s %(message)s",
-        datefmt="%d/%m/%Y %I:%M:%S %p"
-    )
-)
-my_plugin_logger.addHandler(stdout_handler)
-my_plugin_logger.setLevel(logging.WARNING)
-
-def show_debug(message: str):
-    """
-    Show a debug message in the notification manager.
-    """
-    notification_ = Notification(
-        message, severity=NotificationSeverity.DEBUG)
-    # Show message in the console only
-    show_console_notification(notification_)
-    # Show message in console and the napari GUI
-    notification_manager.dispatch(notification_)
-    # Control level of shown messages via napari preferences
-
-def example(input_string: str) -> str:
-    output_string = (
-        f"You entered {input_string}!"
-        if input_string
-        else "Please enter something in the text box."
-    )
-    show_debug(f"The input string was (napari): {input_string}")
-    my_plugin_logger.debug(
-        f"The input string was (logging): {input_string}")
-    print(output_string)
-    return output_string
-```
-
-### Viewing plugin log messages
-
-Launch the viewer with the napari notification levels set to debug and your plugin logger level set to debug:
-
-```Python
-# example_notication.py
 import logging
 from napari.settings import get_settings
 from napari import run, Viewer
@@ -300,6 +383,7 @@ from napari import run, Viewer
 settings = get_settings()
 settings.application.console_notification_level = "debug"
 settings.application.gui_notification_level = "debug"
+
 viewer = Viewer()
 viewer.window.add_plugin_dock_widget(
   "napari-simple-reload", "Autogenerated"
@@ -307,7 +391,6 @@ viewer.window.add_plugin_dock_widget(
 logging.getLogger("napari_simple_reload").setLevel(logging.DEBUG)
 run()
 ```
-
 Running this script with `python example_notification.py` and entering fast into the input text box and clicking run you should then see:
 
 ```text
@@ -317,6 +400,9 @@ DEBUG: The input string was (napari): fast
 DEBUG: 20/09/2022 05:59:23 PM The input string was (logging): fast
 'You entered fast!'
 ```
+
+With those settings, explicit napari notifications such as `show_info()` and
+`show_warning()` will also be echoed to the terminal.
 
 The full code changes and new files after applying the changes to the plugin in each step of the examples are [here](https://github.com/seankmartin/napari-plugin-debug/tree/full_code/napari-simple-reload).
 
