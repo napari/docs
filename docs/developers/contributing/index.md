@@ -145,7 +145,7 @@ the corresponding docstring to contain the `.. versionadded::` or
 Please also consider documenting any major features/changes in our
 [tutorials](tutorials) and other [usage documentation](usage).
 
-#### Deprecation Warnings
+#### napari Deprecations
 
 When deprecating a feature, use `DeprecationWarning` instead of `FutureWarning`.
 `FutureWarning` is silenced by Python's default warning filters, making it invisible
@@ -161,6 +161,63 @@ In the docstring below the short summary, use the [`.. deprecated::` directive](
 .. deprecated:: X.Y.Z
    :func:`old_function` is deprecated. Use :func:`new_function` instead.
 ```
+
+(message-routing)=
+#### Notifications, warnings, and logging
+
+For an overview and visual demonstration of the different message routes in napari
+check out the {ref}`sphx_glr_gallery_message_routing.py` example.
+
+- Let real exceptions propagate by default. This is the normal path for bugs,
+   invalid state, and operations that should fail. In a running napari session,
+   uncaught exceptions are surfaced with traceback UI.
+- Use `show_info()`, `show_warning()`, or `show_error()` for explicit
+   user-facing messages after your code has already handled the condition.
+- Use `warnings.warn()` for Python warning semantics, especially deprecations
+   and library-style warnings that should still exist outside the GUI.
+- Use logging for developer diagnostics and post-hoc debugging, not as the main
+   user-facing channel.
+
+Catch an exception only when you need to recover, return a fallback value, or
+replace a misleading higher-level failure with a more accurate one. If you do
+catch a real exception and still want napari's traceback popup, forward the
+original exception with `notification_manager.receive_error(...)` rather than
+flattening it to `show_error(str(exc))`.
+
+Two practical cautions:
+
+- `warnings.warn()` is not a guaranteed repeatable GUI message channel. Python
+   warning filters apply first, and napari also deduplicates repeated warnings
+   while its warning hook is installed.
+- Messages emitted before the main window is visible should not rely on GUI
+   notification display.
+
+Rule of thumb:
+
+- Let errors propagate unless you have a concrete recovery or translation step.
+- Use napari notification helpers for explicit viewer messages.
+- Use Python warnings for deprecations and library-style warnings.
+- Use logging for diagnostics.
+
+For `warnings.warn()`, set `stacklevel` so the warning points at the code that
+should change:
+
+- Use `stacklevel=2` when a public napari function or method warns directly.
+- Increase it to `3` or more when the warning is emitted from a helper,
+   wrapper, descriptor, or decorator and you want the warning to land on the
+   external caller rather than inside napari.
+- Check the rendered warning location in a real call site rather than assuming
+   `2` is always correct.
+
+Default visibility also matters:
+
+- `DeprecationWarning` is hidden by Python's default CLI warning filters unless
+   the user enables it, use `FutureWarning` if you want the warning to be displayed to users.
+- `UserWarning` is shown by default in the CLI.
+- In a running napari session, warnings may also be mirrored into the viewer
+   notification system while napari's warning hook is installed, but they are
+   still subject to Python warning filters and napari deduplicates repeated
+   identical warnings.
 
 ### Tests
 
