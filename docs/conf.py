@@ -114,9 +114,6 @@ favicons = [
 
 # napari sphinx theme options
 html_theme_options = {
-    'external_links': [
-        {'name': 'napari hub', 'url': 'https://napari-hub.org'},
-    ],
     'github_url': 'https://github.com/napari/napari',
     'navbar_start': ['navbar-logo', 'navbar-project'],
     'navbar_end': ['version-switcher', 'navbar-icon-links', 'theme-switcher'],
