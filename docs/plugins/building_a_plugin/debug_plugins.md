@@ -235,121 +235,14 @@ There are, generally speaking, three main methods for notifying users of problem
 1. Indicate that something was handled, but may not be the behaviour the user was expecting using `warnings.warn("some warning")`.
 1. Show an information popup in the napari GUI by using the `napari.utils.notifications.show_info("message")` command.
 
-Check out the {ref}`sphx_glr_gallery_message_routing.py` example for a visual
-demonstration of the different routes in napari and how they interact with each other.
-See also [](message-routing) for a discussion of when to use each method and how to use them effectively in your plugin code.
+See [](napari-message-routing) for the canonical guidance on when to use each
+route, how warning filtering behaves, and how to preserve napari's traceback
+UI when you intentionally catch an exception.
 
-### When to let an exception propagate
-
-Let an exception propagate when the current operation should fail and the caller
-or napari itself should decide how to present that failure.
-This is the default and usually the right choice for genuine bugs, invalid
-internal state, and actions that should abort.
-
-### When to catch an exception
-
-Catch an exception when one of the following is true:
-
-1. You can recover and continue.
-1. You want to replace a misleading higher-level error with a more accurate
-   user-facing one.
-1. You need to downgrade the problem to a warning or informational message.
-
-If you catch a real exception but still want napari's traceback popup, forward
-it with `notification_manager.receive_error(type(exc), exc, exc.__traceback__)`.
-If you catch it and call `show_error(str(exc))`, you are intentionally choosing
-to discard the traceback UI.
-
-### What to use for messages
-
-- Use `show_warning()` or related napari helpers for explicit GUI-visible
-    messages after your code has already handled the situation.
-- Use `warnings.warn()` for deprecations and other Python warning semantics
-    that should also exist in tests, scripts, and headless usage.
-- Use logging for developer diagnostics and **Help > Show logs**.
-
-Repeated identical Python warnings are not a good GUI message channel.
-Python warning filters apply first, and napari also deduplicates repeated
-warnings while its hook is installed.
-
-### Stacklevel and visibility for warnings
-
-When you call `warnings.warn()`, set `stacklevel` so the warning points to the
-code that should change.
-
-- In napari internals, `stacklevel=2` is usually right for a direct public API
-    warning, but wrappers and helper layers often need `3` or more.
-- In plugins, `stacklevel=2` is usually right when your own public helper or
-    API warns directly.
-- If the warning is emitted from a plugin callback, decorator, or helper,
-    increase the stacklevel until the warning points at the plugin code or user
-    call site you actually want people to inspect.
-
-Default visibility is different across channels:
-
-- `DeprecationWarning` is hidden by Python's default CLI warning filters.
-- `UserWarning` is shown by default in the CLI.
-- In napari, warnings may also appear as viewer notifications while napari's
-    warning hook is installed, but that is not guaranteed before the window is
-    visible and repeated identical warnings are deduplicated.
-- If you need a guaranteed viewer-side message, use `show_warning()` rather
-    than relying on `warnings.warn()`.
-
-### Recommended plugin patterns
-
-Use Python warnings for deprecations and API-style warnings:
-
-```python
-import warnings
-
-
-def old_function():
-    warnings.warn(
-        "old_function() is deprecated; use new_function() instead",
-        DeprecationWarning,
-        stacklevel=2,
-    )
-```
-
-Use napari notifications for explicit GUI-visible user messages:
-
-```python
-from napari.utils.notifications import show_warning
-
-
-def export_with_defaults(path):
-    show_warning("No output path was chosen; using the default export location.")
-```
-
-Use logging for developer diagnostics and post-hoc debugging:
-
-```python
-import logging
-
-
-logger = logging.getLogger(__name__)
-
-
-def recompute_preview(shape):
-    logger.debug("Recomputing preview for shape %s", shape)
-```
-
-Use `receive_error(...)` only when you intentionally catch an exception but
-still want napari's traceback UI:
-
-```python
-from napari.utils.notifications import notification_manager
-
-
-def run_plugin_action():
-    try:
-        raise ValueError("Bad user input")
-    except ValueError as exc:
-        notification_manager.receive_error(
-            type(exc), exc, exc.__traceback__
-        )
-        return None
-```
+For plugins specifically, the main debugging rule is: use standard Python
+logging for diagnostics, use napari notification helpers for handled
+viewer-facing messages, and only call `receive_error(...)` when you are
+catching an exception on purpose but still want napari to show the traceback.
 
 ### Viewing plugin log messages
 
