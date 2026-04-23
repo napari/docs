@@ -5,134 +5,89 @@ subtrees:
     subtrees:
     - titlesonly: True
       entries:
-      - file: tutorials/start_index
+      - file: getting_started/quick_start
+      - file: getting_started/start_index
         subtrees:
         - titlesonly: True
           entries:
-          - file: tutorials/fundamentals/quick_start
-          - file: tutorials/fundamentals/installation
-          - file: tutorials/fundamentals/getting_started
-          - file: tutorials/fundamentals/viewer
-          - file: guides/layers
+          - file: getting_started/installation
+          - file: getting_started/launch_napari
+          - file: getting_started/open_images
+          - file: getting_started/viewer
+          - file: getting_started/layers
+          - file: getting_started/features
+      - file: howtos/layers/index
+        subtrees:
+        - titlesonly: True
+          entries:
+          - file: howtos/layers/image
+          - file: howtos/layers/labels
+          - file: howtos/layers/shapes
+          - file: howtos/layers/points
+          - file: howtos/layers/tracks
+          - file: howtos/layers/vectors
+          - file: howtos/layers/surface
       - file: tutorials/index
         subtrees:
         - entries:
-          - file: tutorials/annotation/index
-            subtrees:
-            - entries:
-              - file: tutorials/annotation/annotate_points
-          - file: tutorials/processing/index
-            subtrees:
-            - entries:
-              - file: tutorials/processing/dask
-          - file: tutorials/segmentation/index
-            subtrees:
-            - entries:
-              - file: tutorials/segmentation/annotate_segmentation
-          - file: tutorials/tracking/index
-            subtrees:
-            - entries:
-              - file: tutorials/tracking/cell_tracking
+          - file: tutorials/annotate_points
+          - file: tutorials/dask
+          - file: tutorials/annotate_segmentation
+          - file: tutorials/cell_tracking
       - file: howtos/index
         subtrees:
         - titlesonly: True
           entries:
-          - file: howtos/layers/index
+          - file: howtos/extending/index
             subtrees:
             - titlesonly: True
               entries:
-              - file: howtos/layers/image
-              - file: howtos/layers/labels
-              - file: howtos/layers/points
-              - file: howtos/layers/shapes
-              - file: howtos/layers/surface
-              - file: howtos/layers/tracks
-              - file: howtos/layers/vectors
-          - file: howtos/connecting_events
+              - file: howtos/extending/magicgui
+              - file: howtos/extending/connecting_events
           - file: howtos/napari_imageJ
           - file: howtos/docker
           - file: howtos/perfmon
           - file: howtos/headless
+          - file: howtos/themes
       - file: guides/index
         subtrees:
         - entries:
-          - file: guides/magicgui
-          - file: guides/event_loop
-          - file: guides/napari_models
-          - file: guides/threading
           - file: guides/3D_interactivity
-          - file: guides/rendering-explanation
+          - file: guides/axis-names
+          - file: guides/handedness
+          - file: guides/triangulation
           - file: guides/rendering
           - file: guides/performance
           - file: guides/preferences
           - file: guides/contexts_expressions
-          - file: guides/app_model
+          - file: guides/event_loop
+          - file: guides/threading
           - file: guides/events_reference
       - file: further-resources/glossary
       - file: further-resources/napari-workshops
       - file: further-resources/sample_data
+      - file: troubleshooting
       - file: gallery
-  - file: plugins/index
-    subtrees:
-    - entries:
-      - file: plugins/find_and_install_plugin
-      - file: plugins/first_plugin
-      - file: plugins/manifest
-      - file: plugins/contributions
-      - file: plugins/guides
-      - file: plugins/test_deploy
-      - file: plugins/best_practices
-      - file: plugins/debug_plugins
-      - file: plugins/npe2_migration_guide
-      - file: plugins/npe1
-      - file: plugins/testing_workshop_docs/index
-        subtrees:
-        - entries:
-          - file: plugins/testing_workshop_docs/1-pythons-assert-keyword
-          - file: plugins/testing_workshop_docs/2-pytest-testing-frameworks
-          - file: plugins/testing_workshop_docs/3-readers-and-fixtures
-          - file: plugins/testing_workshop_docs/4-test-coverage
-          - file: plugins/testing_workshop_docs/testing-resources
-  - file: community/index
-    subtrees:
-    - titlesonly: True
-      entries:
-      - file: community/mission_and_values
-      - file: community/team
-      - file: community/code_of_conduct
-      - file: community/code_of_conduct_reporting
-      - file: community/governance
-      - file: community/working_groups
-      - file: community/meeting_schedule
-      - file: developers/index
-        subtrees:
-        - entries:
-          - file: developers/contributing
-          - file: naps/index
-            subtrees:
-            - maxdepth: 1
-              entries:
-              - file: naps/0-nap-process
-              - file: naps/1-institutional-funding-partners
-              - file: naps/2-conda-based-packaging
-              - file: naps/3-spaces
-              - file: naps/4-async-slicing
-              - file: naps/5-new-logo
-              - file: naps/6-contributable-menus
-          - file: developers/documentation/index
-            subtrees:
-            - entries:
-              - file: developers/documentation/docs_template
-          - file: developers/translations
-          - file: developers/core_dev_guide
-          - file: developers/release
-          - file: developers/testing
-          - file: developers/profiling
-          - file: developers/benchmarks
-          - file: developers/packaging
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_7_0
+          - file: release/release_0_6_6
+          - file: release/release_0_6_5
+          - file: release/release_0_6_4
+          - file: release/release_0_6_3
+          - file: release/release_0_6_2
+          - file: release/release_0_6_1
+          - file: release/release_0_6_0
+          - file: release/release_0_5_6
+          - file: release/release_0_5_5
+          - file: release/release_0_5_4
+          - file: release/release_0_5_3
+          - file: release/release_0_5_2
+          - file: release/release_0_5_1
+          - file: release/release_0_5_0
+          - file: release/release_0_4_19
+          - file: release/release_0_4_18
           - file: release/release_0_4_17
           - file: release/release_0_4_16
           - file: release/release_0_4_15
@@ -175,18 +130,133 @@ subtrees:
           - file: release/release_0_1_5
           - file: release/release_0_1_3
           - file: release/release_0_1_0
+  - file: plugins/index
+    subtrees:
+    - entries:
+      - file: plugins/start_using_plugins/finding_and_installing_plugins
+      - file: plugins/building_a_plugin/index
+        subtrees:
+        - entries:
+          - file: plugins/building_a_plugin/first_plugin
+          - file: plugins/building_a_plugin/guides
+          - file: plugins/building_a_plugin/debug_plugins
+          - file: plugins/building_a_plugin/best_practices
+          - file: plugins/virtual_environment_docs/index
+            subtrees:
+            - entries:
+              - file: plugins/virtual_environment_docs/1-virtual-environments
+              - file: plugins/virtual_environment_docs/2-deploying-your-plugin
+              - file: plugins/virtual_environment_docs/3-version-management
+              - file: plugins/virtual_environment_docs/4-developer-tools
+              - file: plugins/virtual_environment_docs/5-survey
+      - file: plugins/testing_and_publishing/index
+        subtrees:
+        - entries:
+          - file: plugins/testing_and_publishing/test
+          - file: plugins/testing_and_publishing/deploy
+          - file: plugins/testing_and_publishing/hub_customization
+          - file: plugins/testing_workshop_docs/index
+            subtrees:
+            - entries:
+              - file: plugins/testing_workshop_docs/1-pythons-assert-keyword
+              - file: plugins/testing_workshop_docs/2-pytest-testing-frameworks
+              - file: plugins/testing_workshop_docs/3-readers-and-fixtures
+              - file: plugins/testing_workshop_docs/4-test-coverage
+              - file: plugins/testing_workshop_docs/testing-resources
+      - file: plugins/advanced_topics/index
+        subtrees:
+        - entries:
+          - file: plugins/advanced_topics/npe2_migration_guide
+          - file: plugins/advanced_topics/adapted_plugin_guide
+          - file: plugins/advanced_topics/widget_communication
+      - file: plugins/technical_references/index
+        subtrees:
+        - entries:
+          - file: plugins/technical_references/manifest
+          - file: plugins/technical_references/contributions
+  - file: community/index
+    subtrees:
+    - titlesonly: True
+      entries:
+      - file: community/mission_and_values
+      - file: community/team
+      - file: community/code_of_conduct
+      - file: community/code_of_conduct_reporting
+      - file: community/governance
+      - file: community/working_groups
+      - file: community/meeting_schedule
+      - file: community/licensing
+      - file: community/resources
+  - file: developers/index
+    subtrees:
+    - entries:
+      - file: developers/contributing/index
+        subtrees:
+        - entries:
+          - file: developers/contributing/ai
+          - file: developers/contributing/dev_install
+          - file: developers/contributing/testing
+          - file: developers/contributing/translations
+          - file: developers/contributing/performance/index
+            subtrees:
+            - entries:
+              - file: developers/contributing/performance/profiling
+              - file: developers/contributing/performance/benchmarks
+          - file: developers/contributing/documentation/index
+            subtrees:
+            - entries:
+              - file: developers/contributing/documentation/docs_template
+              - file: developers/contributing/documentation/docs_deployment
+      - file: developers/coredev/core_dev_guide
+        subtrees:
+        - entries:
+          - file: developers/coredev/maintenance
+          - file: developers/coredev/release
+          - file: developers/coredev/packaging
+      - file: developers/architecture/index
+        subtrees:
+        - entries:
+          - file: developers/architecture/dir_organization
+          - file: developers/architecture/napari_models
+          - file: developers/architecture/app_model
+          - file: developers/architecture/magicgui_type_reg
+          - file: developers/architecture/ui_sections/index
+            subtrees:
+            - entries:
+              - file: developers/architecture/ui_sections/application_menus_ui
+              - file: developers/architecture/ui_sections/application_status_bar_ui
+              - file: developers/architecture/ui_sections/layers_controls_ui
+              - file: developers/architecture/ui_sections/layers_list_ui
+              - file: developers/architecture/ui_sections/viewer_ui
+              - file: developers/architecture/ui_sections/console_ui
+              - file: developers/architecture/ui_sections/dialogs_ui
+      - file: naps/index
+        subtrees:
+        - maxdepth: 1
+          entries:
+          - file: naps/0-nap-process
+          - file: naps/1-institutional-funding-partners
+          - file: naps/2-conda-based-packaging
+          - file: naps/3-spaces
+          - file: naps/4-async-slicing
+          - file: naps/5-new-logo
+          - file: naps/6-contributable-menus
+          - file: naps/7-key-binding-dispatch
+          - file: naps/8-telemetry
+          - file: naps/9-multiple-canvases
       - file: roadmaps/index
         subtrees:
         - entries:
+          - file: roadmaps/active_roadmap
           - file: roadmaps/0_4
           - file: roadmaps/0_3_retrospective
           - file: roadmaps/0_3
-      - file: community/licensing
   - file: api/index
     subtrees:
     - titlesonly: True
       entries:
       - file: api/modules
       - file: api/event_loop
-      - file: api/view_layer
+      - file: api/viewer
       - file: api/misc
+      - file: api/deprecated

@@ -9,10 +9,10 @@ For the average user's workflows.
    :toctree:
 
    napari.layers
-   napari.view_layers
    napari.types
    napari.utils
    napari.window
+   napari.utils.transforms
 
 .. rubric:: Advanced
 

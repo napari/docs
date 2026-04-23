@@ -1,0 +1,44 @@
+{# Displays the TOC-subtree for pages nested under the currently active top-level TOCtree element. #}
+<nav class="bd-docs-nav bd-links" aria-label="{{ _('Section Navigation') }}">
+  <p class="caption" role="heading" aria-level="1">
+    <span class="caption-text">Section Navigation</span>
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    {{- generate_toctree_html(
+    "sidebar",
+    show_nav_level=theme_show_nav_level | int,
+    maxdepth=theme_navigation_depth | int,
+    collapse=theme_collapse_navigation | tobool,
+    includehidden=theme_sidebar_includehidden | tobool,
+    titles_only=True
+    )
+
+    -}}
+    <p class="caption" role="heading" aria-level="2">
+      <span class="caption-text">Resources</span>
+    </p>
+    <ul class="nav bd-sidenav">
+      <li class="toctree-l1">
+          <a class="reference internal" href="{{ pathto('community/meeting_schedule.html', 1) }}">Community calendar</a>
+      </li>
+      <li class="toctree-l1">
+          <a class="reference external" href="https://napari.zulipchat.com/">Community chat</a>
+      </li>
+      <li class="toctree-l1">
+          <a class="reference internal" href="{{ pathto('troubleshooting.html', 1) }}">Troubleshooting</a>
+      </li>
+      <li class="toctree-l1">
+          <a class="reference internal" href="{{ pathto('release/index.html', 1) }}">Release notes</a>
+      </li>
+      <li class="toctree-l1">
+          <a class="reference internal" href="{{ pathto('roadmaps/active_roadmap.html', 1) }}">Roadmap</a>
+      </li>
+      <li class="toctree-l1">
+          <a class="reference external" href="https://napari.org/island-dispatch">Blog</a>
+      </li>
+      <li class="toctree-l1">
+          <a class="reference external" href="https://napari-hub.org">Discover plugins</a>
+      </li>
+    </ul>
+  </div>
+</nav>

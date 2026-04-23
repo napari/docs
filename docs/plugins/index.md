@@ -1,69 +1,98 @@
 (plugins-index)=
+
 # Plugins
 
+Plugins extend napari's functionality, allowing for customization and sharing with the community.
+While you can use scripts and widgets to extend napari, plugins provide great flexibility.
+Existing plugins extend napari to add:
 
-```{note}
-These pages describe the process of **building** a plugin.
+- support for import and export of image and related data types.
+- support for working with specialized data formats.
+- domain specific features, including microscopy, climate, geoscience, and more.
 
-If you are looking to **use** published plugins, see the
-[guide on installing plugins](find-and-install-plugins), or head to the [napari hub][napari_hub] to
-search for plugins.
+Share and discover napari plugins on [napari hub](https://napari-hub.org),
+[PyPI](https://pypi.org/search/?q=napari), or [conda-forge](https://conda-forge.org/packages/).
+Interested in creating a plugin? [napari-plugin-template](https://github.com/napari/napari-plugin-template),
+a [copier](https://copier.readthedocs.io/en/stable/) template, bootstraps authoring
+[npe](https://github.com/napari/npe2)-based napari plugins.
+
+## Plugin users
+
+Check out the user focused guides for finding, installing, and using napari plugins.
+
+````{grid} 2
+```{grid-item-card} Finding and installing plugins
+:link: find-and-install-plugins
+:link-type: ref
+
+How to find and install plugins using the napari plugin manager.
 ```
 
-Plugins allow developers to customize and extend napari.  This includes
+```{grid-item-card} napari hub
+:link: https://napari-hub.org
+:link-type: url
 
-- Adding file format support with [readers] and [writers]
-- Adding custom [widgets] and user interface elements
-- Providing [sample data][sample_data]
-- Changing the look of napari with a color [theme]
+Head over to the napari hub to search for plugins that suit your needs.
+```
+````
 
-Here you can find:
+## Plugin developers
 
-- How to [build, test and publish a plugin](how-to-build-a-plugin).
-- Where to find [guides](./guides) to help get you started.
-- [Best practices](./best_practices) when developing plugins.
+Check out our plugin developer guides to start creating your own napari plugins.
 
-```{admonition} Introducing npe2
-:class: important
+````{grid} 2
+```{grid-item-card} Building a plugin
+:link: how-to-build-a-plugin
+:link-type: ref
 
-We introduced a new plugin engine [`npe2`][npe2] in December 2021.
-
-Unless otherwise stated, most of the documentation herein pertains
-to the new npe2 format (which uses a static `napari.yaml` manifest)
-
-Plugins targeting the first generation `napari-plugin-engine` 
-(using `@napari_hook_implementation` decorators) will
-continue to work for at least the first half of 2022, but we
-recommend migrating to `npe2`. See the
-[migration guide](npe2-migration-guide) for details.
+In depth guides to build a plugin for napari.
 ```
 
-(how-to-build-a-plugin)=
-## How to build plugins
+```{grid-item-card} Best practices
+:link: best-practices
+:link-type: ref
 
-If you're just getting started with napari plugins, try our
-[Your First Plugin](./first_plugin) tutorial.
+Set of important best practices to have in mind when building a plugin.
+```
+````
 
-For a list of all available contribution points and specifications,
-see the [Contributions reference](./contributions)
+````{grid} 2
+```{grid-item-card} Testing and publishing
+:link: plugin-test-deploy
+:link-type: ref
 
-If you're ready to publish your plugin, see [Test and deploy](./test_deploy)
+How to test your plugin works and how to publish it,
+along with some tips for making your plugin easy to find.
+```
 
-For special considerations when building a napari plugin, see
-{ref}`best-practices`.
+```{grid-item-card} Virtual environments and useful tools
+:link: virtual-environments-and-useful-tools
+:link-type: ref
+
+Workshop on virtual environments and useful tools for plugin development.
+```
+````
+
+````{grid}
+```{grid-item-card} Technical references
+:link: plugin-technical-references
+:link-type: ref
+
+Technical references for the plugin system and the plugin API
+and guides to convert from first generation plugins to npe2.
+```
+````
 
 ## Looking for help?
 
 If you have questions, try asking on the [zulip chat][napari_zulip].
 Submit issues to the [napari github repository][napari_issues].
 
-[npe1]: https://github.com/napari/napari-plugin-engine
-[npe2]: https://github.com/napari/npe2
 [napari_issues]: https://github.com/napari/napari/issues/new/choose
 [napari_zulip]: https://napari.zulipchat.com/
-[napari_hub]: https://napari-hub.org
-[readers]: contributions-readers
-[writers]: contributions-writers
-[widgets]: contributions-widgets
-[sample_data]: contributions-sample-data
-[theme]: contributions-themes
+
+```{warning}
+In napari 0.7.0, legacy "npe1" plugins will only work by auto-conversion to the new plugin engine, `npe2`.
+The vast majority of plugins will continue working as before. If you notice any issues with a plugin, check out the
+[Changes to the plugin engine in 0.6.0](adapted-plugin-guide) document to see if this is affecting you.
+```

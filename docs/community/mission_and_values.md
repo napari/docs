@@ -1,9 +1,10 @@
 (mission-and-values)=
+
 # Mission and Values
 
 This document is meant to help guide decisions about the future of `napari`, be it in terms of
 whether to accept new functionality, changes to the styling of the code or graphical user interface (GUI),
-or whether to take on new dependencies, among other things. It serves as a point of reference for [core developers](core-dev-guide) actively working on the project, and an introduction for
+or whether to take on new dependencies, among other things. It serves as a point of reference for [core team members](core-dev-guide) actively working on the project, and an introduction for
 newcomers who want to learn a little more about where the project is going and what the team's
 values are. You can also learn more about how the project is managed by looking at our [governance model](napari-governance).
 
@@ -24,6 +25,7 @@ The founding napari team came together around a shared vision for a Python based
 As the project has grown we've turned these original principles into the mission statement and set of values that we described below.
 
 (our-mission)=
+
 ## Our mission
 
 napari aims to be the **multi-dimensional image viewer for Python** and to **provide GUI access to a plugin ecosystem of image analysis tools for scientists** to use in their daily work. We hope to accomplish this by:
@@ -41,16 +43,16 @@ napari aims to be the **multi-dimensional image viewer for Python** and to **pro
 - ensuring **scientific accuracy**. We prioritise bug fixes and feature development that affect the scientific interpretation of the displayed data. For example, a bug in which point coordinates are offset by one pixel from the overlaid image coordinates is higher priority than one in which a UI button doesn't work.
 
 (our-values)=
+
 ## Our values
 
-- We are **inclusive**. We welcome and mentor newcomers who are making their first contribution and strive to grow our most dedicated contributors into [core developers](core-dev-guide). We have a [Code of Conduct](napari-coc) to make napari
-a welcoming place for all.
+- We are **inclusive**. We welcome and mentor newcomers who are making their first contribution and strive to grow our most dedicated contributors into [core team members](core-dev-guide). We have a [Code of Conduct](napari-coc) to make napari a welcoming place for all.
 
-- We are **community-driven**. We respond to feature requests and proposals on our [issue tracker](https://github.com/napari/napari/issues), making decisions that are driven by our users’ requirements, not by the whims of the core team.
+- We are **community-driven**. We respond to feature requests and proposals on our [issue tracker](https://github.com/napari/napari/issues), making decisions that are driven by our users' requirements, not by the whims of the core team.
 
 - We provide **a tool others can build on** and making it easy for people to develop and share plugins that extend napari's functionality and to develop fully custom applications that consume napari.
 
-- We serve **scientific applications** primarily, over “consumer” image editing in the vein of Photoshop or GIMP. This often means prioritizing n-dimensional data support, and rejecting implementations of “flashy” features that have little scientific value.
+- We serve **scientific applications** primarily, over "consumer" image editing in the vein of Photoshop or GIMP. This often means prioritizing n-dimensional data support, and rejecting implementations of "flashy" features that have little scientific value.
 
 - We are **domain agnostic** within the sciences. Functionality that is highly specific to particular scientific domains belongs in plugins, whereas functionality that cuts across many domains and is likely to be widely used belongs inside napari.
 
@@ -58,9 +60,9 @@ a welcoming place for all.
 
 - We value **simple, readable implementations**. Readable code that is easy to understand, for newcomers and maintainers alike, makes it easier to contribute new code as well as prevent bugs.
 
-- We value **education and documentation**. All functions should have docstrings, preferably with examples, and major functionality should be explained in our [tutorials](https://napari.org/tutorials). Core developers can take an active role in finishing documentation examples.
+- We value **education and documentation**. All functions should have docstrings, preferably with examples, and major functionality should be explained in our [tutorials](https://napari.org/tutorials). Core team members can take an active role in finishing documentation examples.
 
-- We **minimize [magic](https://en.wikipedia.org/wiki/Magic_(programming))** and always provide a way for users to opt out of magical behaviour and guessing by providing explicit ways to control functionality. We support NumPy array like objects and we prefer to educate users rather than make decisions on their behalf. This does not preclude the use of sensible defaults.
+- We **minimize [magic](<https://en.wikipedia.org/wiki/Magic_(programming)>)** and always provide a way for users to opt out of magical behaviour and guessing by providing explicit ways to control functionality. We support NumPy array like objects and we prefer to educate users rather than make decisions on their behalf. This does not preclude the use of sensible defaults.
 
 ## Our vision for plugins
 
@@ -76,4 +78,4 @@ As noted above, we'll be beginning to actively work on the plugin infrastructure
 
 ## Acknowledgements
 
-We share a lot of our mission and values with the `scikit-image` project with whom we share founding members, and acknowledge the influence of their [mission and values statement](https://scikit-image.org/docs/dev/values.html) on this document.
+We share a lot of our mission and values with the `scikit-image` project with whom we share founding members, and acknowledge the influence of their [mission and values statement](https://scikit-image.org/docs/stable/about/values.html) on this document.

@@ -148,8 +148,8 @@ provides metadata). From now on we will refer to them as _napari pinnings_.
 > There are precedents in other projects that support the usage of pinnings. For example,
 > Fiji/SciJava [^scijava-pinnings], conda-forge [^conda-forge-pinnings], or Maxiconda [^maxiconda].
 
-[A prototype notebook](https://colab.research.google.com/drive/1QxbBZYe9-AThGuRsTfwYzT72_UkamXmk) 
-assessing the "installability" of all plugins in the same environment is available. 
+[A prototype notebook](https://colab.research.google.com/drive/1QxbBZYe9-AThGuRsTfwYzT72_UkamXmk)
+assessing the "installability" of all plugins in the same environment is available.
 Results across Python versions show incompatibilities on Linux, possibly even more intricate on macOS
 and Windows. Excerpt for Python 3.9:
 
@@ -389,7 +389,7 @@ non-compliant licensing schemes or bad packaging practices.
 
 * [ ] Add documentation about conda-forge in the release guide
 * [ ] Add documentation about conda-forge in the plugin developer guide
-* [ ] Ensure the cookiecutter template has some notion of conda packaging
+* [ ] Ensure the napari plugin template has some notion of conda packaging
 * [ ] Decide which packages need to be governed by the _napari pinnings_ metapackage
 
 ### Milestone 2: Building conda-based installers for napari
@@ -451,7 +451,7 @@ extended with different PRs:
 Some more work is needed to offer full support to the plugin ecosystem, as detailed below.
 #### Tasks
 
-* [X] Make the `Installer` class  [^napari-installer-classs] conda/mamba-aware
+* [X] Make the `Installer` class  [^napari-installer-class] conda/mamba-aware
 * [X] Populate the plugin listing with data obtained from the napari hub API [^napari-hub-api]
 * [ ] Detect which plugins can be installed directly from conda-forge and which ones need a
       combination of `conda` channels and PyPI sources
@@ -607,17 +607,15 @@ CC0+BY [^cc0by].
 
 [^napari-releases-json]: <https://api.github.com/repos/napari/napari/releases>
 
-[^mne-constructor]: <https://twitter.com/mne_news/status/1506212014993162247>
+[^mne-constructor]: <https://x.com/mne_news/status/1506212014993162247>
 
 [^appimage-crash]: <https://github.com/napari/napari/issues/3487>
 
 [^appimage-crash2]: <https://github.com/napari/napari/issues/3816>
 
-[^napari-packaging-docs]: <https://napari.org/stable/developers/packaging.html>
+[^napari-packaging-docs]: <napari-packaging>
 
 [^napari-hub-api]: https://api.napari-hub.org/plugins
-
-[^vscode-extensions-ui]: https://code.visualstudio.com/docs/editor/extension-marketplace
 
 [^in-app-update-pr]: https://github.com/napari/napari/pull/4422
 
@@ -627,7 +625,7 @@ CC0+BY [^cc0by].
 
 [^briefcase-python]: https://github.com/beeware?q=Python+support&type=all&language=&sort=
 
-[^pypi-parallelism-abi]: https://twitter.com/ralfgommers/status/1517410559972589569
+[^pypi-parallelism-abi]: https://x.com/ralfgommers/status/1517410559972589569
 
 [^release-guide]: https://napari.org/stable/developers/release.html
 
