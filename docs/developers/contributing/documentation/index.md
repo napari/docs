@@ -837,8 +837,11 @@ comma.
 Tags are generated into the [](tagoverview) pages by `sphinx-tags`. They are
 descriptive labels, not execution flags.
 Tags do not hide an example from the gallery or change how it is built.
-If an example should stay out of the public gallery, use the `*_.py` naming
-convention instead as this will prevent it from being built.
+To stop displaying an example in the public gallery, 
+add an underscore _ after the example's name.
+microscopy_example.py would be displayed in the public gallery;
+while, microscopy_example_.py would not be displayed in the public gallery
+due to the trailing underscore in the name.
 
 Before creating a new tag, check [](tagoverview) and reuse an existing tag
 when possible. New tags automatically create new tag pages, so the tag set is
