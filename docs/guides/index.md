@@ -15,6 +15,9 @@ computations, and would like to avoid having the viewer become unresponsive
 while you wait for a computation to finish, you may benefit from reading about
 {ref}`multithreading-in-napari`.
 
+If you are deciding whether a condition should raise, warn, notify, or log,
+see {ref}`napari-message-routing`.
+
 If you are interested in using napari to explore 3D objects, see {ref}`3d-interactivity`.
 
 To understand how napari produces a 2- or 3-dimensional render in the canvas

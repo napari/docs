@@ -145,7 +145,7 @@ the corresponding docstring to contain the `.. versionadded::` or
 Please also consider documenting any major features/changes in our
 [tutorials](tutorials) and other [usage documentation](usage).
 
-#### Deprecation Warnings
+#### napari Deprecations
 
 When deprecating a feature, use `FutureWarning` instead of `DeprecationWarning`.
 `DeprecationWarning` is
@@ -162,6 +162,23 @@ In the docstring below the short summary, use the [`.. deprecated::` directive](
 .. deprecated:: X.Y.Z
    :func:`old_function` is deprecated. Use :func:`new_function` instead.
 ```
+
+(message-routing)=
+#### Notifications, warnings, and logging
+
+See [](napari-message-routing) for the canonical guidance on choosing between
+exceptions, napari notifications, Python warnings, and logging.
+
+For `napari` contributions in particular:
+
+- Let real exceptions propagate as with normal Python, napari natively handles
+  them in the GUI, unless you have a concrete recovery or
+  translation step.
+- If you want to raise information for the user without tracebacks,
+  use `show_info()` or `show_warning()` rather than `warnings.warn()`.
+- If you catch a real exception but still want napari's traceback popup,
+  forward it with `notification_manager.receive_error(...)` instead of
+  flattening it to `show_error(str(exc))`.
 
 ### Tests
 
