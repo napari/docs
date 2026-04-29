@@ -221,6 +221,30 @@ layer to specify if your data is a multiscale image or not. If you don't provide
 this value, then napari will try and guess whether your data is or needs to be a
 multiscale image.
 
+### Locking the multiscale level
+
+By default, napari automatically selects which resolution level to display based
+on the current zoom and viewport. In 2D this means zooming in loads
+higher-resolution data, while in 3D the coarsest level is used for performance.
+
+If you want to force a specific resolution level — for example, to keep a
+consistent view while panning or to inspect a particular level — you can set
+the `locked_data_level` property, or using the resolution dropdown in the layer controls:
+
+```python
+# Lock rendering to level 0 (highest resolution)
+layer.locked_data_level = 0
+
+# Restore automatic level selection
+layer.locked_data_level = None
+```
+
+When a level is locked, napari loads the full extent of that level on the currently
+displayed dimensions regardless of zoom or display mode. The lock is automatically 
+reset to `None` when the layer's data is replaced.
+
+This property is available on both `Image` and `Labels` layers.
+
 ## Loading multichannel images
 
 Each channel in a multichannel image can be displayed as an individual layer by
