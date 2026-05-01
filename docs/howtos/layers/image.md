@@ -214,7 +214,7 @@ multiscale image and the part of the image that needs to be displayed:
 This example had precomputed multiscale images stored in a `zarr` file, which is
 best for performance. If you don't have a precomputed multiscale image but try
 and show an exceptionally large image, napari will try and compute the
-multiscale image for you unless you tell it not to.
+best for performance.
 
 You can use the boolean `multiscale` keyword argument when creating an image
 layer to specify if your data is a multiscale image or not. If you don't provide
