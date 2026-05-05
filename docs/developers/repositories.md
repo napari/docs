@@ -77,7 +77,7 @@ features, but they are not as central as the core application and docs repos.
 
 | Repo | Description | Status |
 | --- | --- | --- |
-| [napari-animation](https://github.com/napari/napari-animation) | Plugin for building and exporting animations from viewer state. | Maintenance |
+| [napari-animation](https://github.com/napari/napari-animation) | Plugin for building and exporting animations from viewer state. | Active |
 | [napari-geojson](https://github.com/napari/napari-geojson) | GeoJSON support for reading and writing geographic annotation data in napari. | Active |
 | [napari-graph](https://github.com/napari/napari-graph) | Graph data structures and algorithms for visualization and editing workflows. | Backlog |
 | [napari-tiff](https://github.com/napari/napari-tiff) | TIFF reader and writer plugin maintained by the napari team. | Active |
@@ -104,8 +104,8 @@ project-level operations.
 
 The repositories below are not in the `napari` GitHub organization, but they
 are important friends of napari that are contributed to by members of the napari community.
-The following `pyapp-kit` projects were largely spun out of napari by the work
-of Talley Lambert, and they continue to be developed in close coordination with napari's needs. 
+The following `pyapp-kit` projects were largely spun out of napari and
+continue to be developed in close coordination with napari's needs. 
 
 - [vispy/vispy](https://github.com/vispy/vispy): rendering backend and canvas
   infrastructure used by napari.
