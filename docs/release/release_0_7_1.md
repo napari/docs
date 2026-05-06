@@ -104,7 +104,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Use viewer-based caching for font manager ([#8761](https://github.com/napari/napari/pull/8761))
 - Enable `TC003` - typing-only-standard-library-import rule in ruff config ([#8791](https://github.com/napari/napari/pull/8791))
 - Solve "Could not resolve type hint for required parameter 'qt_viewer'." ([#8792](https://github.com/napari/napari/pull/8792))
-- Add app-model to mypy task dependecies and fix errors ([#8794](https://github.com/napari/napari/pull/8794))
+- Add app-model to mypy task dependencies and fix errors ([#8794](https://github.com/napari/napari/pull/8794))
 - Update `coverage`, `dask`, `fsspec`, `hypothesis`, `ipython`, `numpy`, `pint`, `pygments`, `pyside6`, `qtconsole`, `superqt` ([#8796](https://github.com/napari/napari/pull/8796))
 - Move from `appdirs` to `platformdirs` ([#8797](https://github.com/napari/napari/pull/8797))
 - [pre-commit.ci] pre-commit autoupdate ([#8800](https://github.com/napari/napari/pull/8800))
@@ -179,7 +179,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wulin Teo](https://github.com/napari/napari/commits?author=wulinteousa2-hash) - @wulinteousa2-hash +
 
-## 17 reviewers added to this release (alphabetical)
+## 18 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -195,6 +195,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
+- [Lucien Hinderling](https://github.com/napari/docs/commits?author=hinderling) - @hinderling
 - [Margot Chazotte](https://github.com/napari/napari/commits?author=MargotCh) - @MargotCh
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
