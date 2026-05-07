@@ -32,3 +32,4 @@ If you come across image databases that are missing from the list below, create 
 | [Human BioMolecular Atlas Program (HuBMAP)](https://portal.hubmapconsortium.org/) | An open platform to discover, visualize and download standardized healthy single-cell and spatial tissue data. |
 | [OpenOrganelle](https://openorganelle.janelia.org/) | A data portal for volume electron microscopy datasets and accompanying segmentations available for exploration. |
 | [Wellcome Sanger Institute OME-Zarr](https://www.sanger.ac.uk/collaboration/ome-zarr/) | A collection of datasets from the Sanger Institute that have been converted to OME-Zarr to test and encourage the file format (NGFF) specifications for storing and serving bioimaging data. |
+| [WEBKNOSSOS OME-Zarr Gallery](https://zarr.webknossos.org/) | A gallery of OME-Zarr datasets from WEBKNOSSOS. |
