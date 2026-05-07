@@ -34,3 +34,4 @@ If you come across image databases that are missing from the list below, create 
 | [Wellcome Sanger Institute OME-Zarr](https://www.sanger.ac.uk/collaboration/ome-zarr/) | A collection of datasets from the Sanger Institute that have been converted to OME-Zarr to test and encourage the file format (NGFF) specifications for storing and serving bioimaging data. |
 | [WEBKNOSSOS OME-Zarr Gallery](https://zarr.webknossos.org/) | A gallery of OME-Zarr datasets from WEBKNOSSOS. |
 | [OME-NGFF Data Resources](https://ngff.openmicroscopy.org/data) | A list of publicly available OME-Zarr datasets for testing and exploration. |
+| [Human Organ Atlas](https://human-organ-atlas.esrf.fr/) | The Human Organ Atlas bridges cellular and whole organ scales with images of whole intact organs at 8-20 μm resolution and region of interest zooms at 1 μm. |
