@@ -30,3 +30,4 @@ If you come across image databases that are missing from the list below, create 
 | [Broad Bioimage Benchmark Collection](https://bbbc.broadinstitute.org/image_sets) | Benchmark images with ground truth segmentation. |
 | [DANDI Archive](https://dandiarchive.org/) | The BRAIN Initiative archive for publishing and sharing neurophysiology data including electrophysiology, optophysiology, and behavioral time-series, and images from immunostaining experiments. |
 | [Human BioMolecular Atlas Program (HuBMAP)](https://portal.hubmapconsortium.org/) | An open platform to discover, visualize and download standardized healthy single-cell and spatial tissue data. |
+| [OpenOrganelle](https://openorganelle.janelia.org/) | A data portal for volume electron microscopy datasets and accompanying segmentations available for exploration. |
