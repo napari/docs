@@ -1,6 +1,6 @@
 ---
 name: "\U0001F41B Bug Report"
-about: Report typos, innacuracies or errors to help us improve the napari documentation
+about: Report typos, inaccuracies or errors to help us improve the napari documentation
 title: ''
 labels: bug
 assignees: ''
