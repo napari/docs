@@ -89,6 +89,7 @@ This allows to have better resolution that previously and keep data enough small
 - Fix floating widgets and use custom title bar in all cases ([#8898](https://github.com/napari/napari/pull/8898))
 - Wrap Labels multiscale data in MultiScaleData object in setter ([#8922](https://github.com/napari/napari/pull/8922))
 - Fix Labels show_selected_label being silently dropped after color shuffle ([#8947](https://github.com/napari/napari/pull/8947))
+- Fix Volume visual crash when adding invisible scalar field in 3D ([#8968](https://github.com/napari/napari/pull/8968))
 
 ## Documentation
 
@@ -112,6 +113,7 @@ This allows to have better resolution that previously and keep data enough small
 - Add release notes for 0.7.1a1 ([docs#1009](https://github.com/napari/docs/pull/1009))
 - Minimal all-contributors setup ([docs#1011](https://github.com/napari/docs/pull/1011))
 - Add Carlos to Core Team page ([docs#1012](https://github.com/napari/docs/pull/1012))
+- Update release notes for 0.7.1 ([docs#1019](https://github.com/napari/docs/pull/1019))
 - Example: Enhance theme sample widget with theme colors, widgets ([#8662](https://github.com/napari/napari/pull/8662))
 - Add note to Camera.angles docstring about quaternion normalisation ([#8864](https://github.com/napari/napari/pull/8864))
 - Docs: Bump lower version of napari-sphinx-theme ([#8886](https://github.com/napari/napari/pull/8886))
@@ -190,7 +192,6 @@ This allows to have better resolution that previously and keep data enough small
 - ci(dependabot): bump the actions group across 1 directory with 8 updates ([#8963](https://github.com/napari/napari/pull/8963))
 - Pass token to make `gh` working in create release workflow ([#8964](https://github.com/napari/napari/pull/8964))
 - Next fix of release workflow by pass directly `dist/*` ([#8966](https://github.com/napari/napari/pull/8966))
-- Fix Volume visual crash when adding invisible scalar field in 3D ([#8968](https://github.com/napari/napari/pull/8968))
 - Try to fix passing prerelease to `gh release create` ([#8969](https://github.com/napari/napari/pull/8969))
 - Explicitly set repository in make release workflow ([#8970](https://github.com/napari/napari/pull/8970))
 - Update `hypothesis`, `pandas`, `pyside6`, `pytest-rerunfailures`, `virtualenv` ([#8981](https://github.com/napari/napari/pull/8981))
