@@ -539,10 +539,10 @@ def _gallery_extra_deps_note(extra_deps: list[str]) -> str:
     return f"""
 .. admonition:: Extra packages required
 
-This example requires additional packages that are not available in typical
-napari installations. For this example to work, you will need to install: {deps}.
-See :doc:`the installation guide <{PLUGIN_INSTALL_GUIDE}>` for ways to install
-additional packages, including from within napari.
+   This example requires additional packages that are not available in typical
+   napari installations. For this example to work, you will need to install: {deps}.
+   See :doc:`the installation guide <{PLUGIN_INSTALL_GUIDE}>` for ways to install
+   additional packages, including from within napari.
 """
 
 
