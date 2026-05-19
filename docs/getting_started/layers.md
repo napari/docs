@@ -64,6 +64,30 @@ button. Note that you can Option/Alt-click on the `visibility` button to show
 `visibility` button of a layer a second time, the visibility state of all layers
 will be restored.
 
+## Layer locking
+
+All our layers support a `locked` property that protects a layer from
+destructive layer-list actions.
+
+You can lock or unlock selected layers from the layer list by right-clicking and
+choosing **Toggle lock**, or in Python by setting `layer.locked`:
+
+```python
+layer.locked = True
+
+# unlock again
+layer.locked = False
+```
+
+When a layer is locked, napari will not delete it from the layer list. Actions
+that delete the original layer as part of their workflow are also disabled,
+including converting between image and labels layers and splitting or merging
+image stacks.
+
+Locking currently applies to these destructive layer-list operations. It does
+not make the layer data read-only or disable other non-destructive layer
+controls.
+
 (layer_opacity)=
 
 ## Layer opacity
