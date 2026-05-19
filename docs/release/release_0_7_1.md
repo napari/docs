@@ -1,7 +1,7 @@
 # napari 0.7.1
 ⚠️ *Note: these release notes are still in draft while 0.7.1a1 is in prerelease testing.* ⚠️
 
-*Thu, May 14, 2026*
+*Thu, May 21, 2026*
 
 We're happy to announce the release of napari 0.7.1!
 napari is a fast, interactive, multi-dimensional image viewer for Python.
@@ -15,6 +15,25 @@ https://napari.org.
 napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this is a **Meso** release containing awesome new features, but some effort may be needed when updating previous projects to use this version.
 
 ## Highlights
+
+
+## Signed windows bundle
+
+Since napari 0.7.1 our bundle on Windows is now [signed](https://github.com/napari/packaging/pull/387). It means that you should be able to run napari without any warnings about the application being from an unknown publisher. This is a great step forward for our Windows users, as it enhances security and trust in our application, especially on managed environments where unsigned applications may be blocked by default.
+
+The certificate is issued for NumFOCUS foundation that provide legal representation for napari, and many other open source projects.
+ 
+If you encounter any issues related to this change, please let us know!
+
+
+## Selection of the rendered level for multiscale layers
+
+Till napari 0.7.1 when render a multiscale layer in 3d, napari would always render the lowest resolution level of the pyramid. 
+Thanks to [#8917](https://github.com/napari/napari/pull/8917) user can now select the level of the pyramid to render in 3d. 
+This allows to have better resolution that previously and keep data enough small to fit in GPU memory.
+
+
+
 
 - Add points layer face and border colorbar ([#8624](https://github.com/napari/napari/pull/8624))
 
@@ -43,6 +62,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Set pixel as default scalebar unit ([#8900](https://github.com/napari/napari/pull/8900))
 - Turn off contrast/color controls when surface has `vertex_colors` ([#8909](https://github.com/napari/napari/pull/8909))
 - Actually use theme type from npe contrib ([#8915](https://github.com/napari/napari/pull/8915))
+- Add multiscale level lock for scalar field layers ([#8917](https://github.com/napari/napari/pull/8917))
 - Do not add a new colormap if one already exists in napari ([#8924](https://github.com/napari/napari/pull/8924))
 - Improve sizing of dims ordering popup ([#8952](https://github.com/napari/napari/pull/8952))
 
@@ -86,18 +106,22 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Remove napari-hub from navbar and add to sidebar ([docs#995](https://github.com/napari/docs/pull/995))
 - Update deprecation warning guidance to use `FutureWarning` ([docs#997](https://github.com/napari/docs/pull/997))
 - Update Jupyter notebook example screenshot ([docs#1003](https://github.com/napari/docs/pull/1003))
+- Update multiscale documentation to describe new level selection ([docs#1004](https://github.com/napari/docs/pull/1004))
 - Add release notes for 0.7.1a1 ([docs#1009](https://github.com/napari/docs/pull/1009))
+- Minimal all-contributors setup ([docs#1011](https://github.com/napari/docs/pull/1011))
+- Add Carlos to Core Team page ([docs#1012](https://github.com/napari/docs/pull/1012))
 - Example: Enhance theme sample widget with theme colors, widgets ([#8662](https://github.com/napari/napari/pull/8662))
 - Add note to Camera.angles docstring about quaternion normalisation ([#8864](https://github.com/napari/napari/pull/8864))
 - Docs: Bump lower version of napari-sphinx-theme ([#8886](https://github.com/napari/napari/pull/8886))
-- Example: Comparison of messages in napari (notifications, logs, etc) ([#8914](https://github.com/napari/napari/pull/8914))
 - Replace v (shorter) with viewer in the examples ([#8940](https://github.com/napari/napari/pull/8940))
+- Add Carlos Rodríguez-Reza to core team section of citation file ([#8971](https://github.com/napari/napari/pull/8971))
 
 ## Other Pull Requests
 
 - ci(dependabot): bump the github-actions group with 3 updates ([docs#975](https://github.com/napari/docs/pull/975))
 - Fix minor typos ([docs#1005](https://github.com/napari/docs/pull/1005))
 - ci(dependabot): bump the github-actions group with 3 updates ([docs#1006](https://github.com/napari/docs/pull/1006))
+- Remove "auto author assign" workflow ([docs#1008](https://github.com/napari/docs/pull/1008))
 - Update workflows to python 3.14 ([#8666](https://github.com/napari/napari/pull/8666))
 - Improve typing in qt_dims_slider and clean local functions ([#8683](https://github.com/napari/napari/pull/8683))
 - Drop triangle from 3.14 docs dependencies ([#8703](https://github.com/napari/napari/pull/8703))
@@ -151,19 +175,32 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [pre-commit.ci] pre-commit autoupdate ([#8923](https://github.com/napari/napari/pull/8923))
 - Scalar base data setter ([#8925](https://github.com/napari/napari/pull/8925))
 - Instead of checking if milestone is added, add the milestone on merge ([#8926](https://github.com/napari/napari/pull/8926))
+- Adapt tests that use zarr to work on zarr < 3 and zarr > 3.2.0 ([#8943](https://github.com/napari/napari/pull/8943))
 - Don't use random floats for image layer data in screenshot tests ([#8945](https://github.com/napari/napari/pull/8945))
+- Update `coverage`, `fsspec`, `hypothesis`, `pydantic`, `pydantic-settings`, `tensorstore`, `tifffile`, `virtualenv` ([#8949](https://github.com/napari/napari/pull/8949))
 - [pre-commit.ci] pre-commit autoupdate ([#8951](https://github.com/napari/napari/pull/8951))
 - Fix auto milestone workflow ([#8954](https://github.com/napari/napari/pull/8954))
 - Explicitly pass the repository name in command setting milestone ([#8955](https://github.com/napari/napari/pull/8955))
+- Update python version used to generate title and body of update constraints PR ([#8957](https://github.com/napari/napari/pull/8957))
+- Use `gh release create` instead of `softprops/action-gh-release` ([#8958](https://github.com/napari/napari/pull/8958))
+- Remove CODEOWNERS ([#8959](https://github.com/napari/napari/pull/8959))
+- Restore testing on windows-latest (Revert  5d6ab46) ([#8960](https://github.com/napari/napari/pull/8960))
+- ci(dependabot): bump the actions group across 1 directory with 8 updates ([#8963](https://github.com/napari/napari/pull/8963))
+- Pass token to make `gh` working in create release workflow ([#8964](https://github.com/napari/napari/pull/8964))
+- Next fix of release workflow by pass directly `dist/*` ([#8966](https://github.com/napari/napari/pull/8966))
+- Fix Volume visual crash when adding invisible scalar field in 3D ([#8968](https://github.com/napari/napari/pull/8968))
+- Try to fix passing prerelease to `gh release create` ([#8969](https://github.com/napari/napari/pull/8969))
+- Explicitly set repository in make release workflow ([#8970](https://github.com/napari/napari/pull/8970))
+- Update `hypothesis`, `pandas`, `pyside6`, `pytest-rerunfailures`, `virtualenv` ([#8981](https://github.com/napari/napari/pull/8981))
 
 
-## 17 authors added to this release (alphabetical)
+## 18 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy +
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) - @willingc
-- [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) - @cmalinmayor +
+- [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) ([docs](https://github.com/napari/docs/commits?author=cmalinmayor))  - @cmalinmayor +
 - [Constantin Aronssohn](https://github.com/napari/docs/commits?author=cnstt) - @cnstt
 - [David Stansby](https://github.com/napari/napari/commits?author=dstansby) - @dstansby
 - [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
@@ -172,6 +209,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [Kabilar Gunalan](https://github.com/napari/docs/commits?author=kabilar) - @kabilar
 - [LiudengZhang](https://github.com/napari/napari/commits?author=LiudengZhang) - @LiudengZhang
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
+- [Lucien Hinderling](https://github.com/napari/napari/commits?author=hinderling) - @hinderling +
 - [Margot Chazotte](https://github.com/napari/napari/commits?author=MargotCh) - @MargotCh
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Newstein](https://github.com/napari/napari/commits?author=pnewstein) - @pnewstein +
@@ -179,13 +217,15 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wulin Teo](https://github.com/napari/napari/commits?author=wulinteousa2-hash) - @wulinteousa2-hash +
 
-## 18 reviewers added to this release (alphabetical)
+## 20 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy +
+- [Anniek Stokkermans](https://github.com/napari/docs/commits?author=AnniekStok) - @AnniekStok
+- [Carlos Mario Rodriguez Reza](https://github.com/napari/docs/commits?author=carlosmariorr) - @carlosmariorr
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) - @willingc
-- [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) - @cmalinmayor +
+- [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) ([docs](https://github.com/napari/docs/commits?author=cmalinmayor))  - @cmalinmayor +
 - [Constantin Aronssohn](https://github.com/napari/docs/commits?author=cnstt) - @cnstt
 - [David Stansby](https://github.com/napari/napari/commits?author=dstansby) - @dstansby
 - [Davin Potts](https://github.com/napari/docs/commits?author=applio) - @applio
@@ -195,7 +235,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
-- [Lucien Hinderling](https://github.com/napari/docs/commits?author=hinderling) - @hinderling
+- [Lucien Hinderling](https://github.com/napari/napari/commits?author=hinderling) - @hinderling +
 - [Margot Chazotte](https://github.com/napari/napari/commits?author=MargotCh) - @MargotCh
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
