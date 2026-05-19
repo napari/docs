@@ -35,6 +35,7 @@ napari is a consensus-based community project. Anyone with an interest in the pr
 - [Ziyang Liu](https://github.com/napari/napari/commits?author=liu-ziyang) - [@liu-ziyang](https://github.com/liu-ziyang)
 
 ## Current Steering Council Members
+
 - [Brian Northan](https://github.com/napari/napari/commits?author=bnorthan) - [@bnorthan](https://github.com/bnorthan)
 - [Curtis Rueden](https://github.com/napari/napari/commits?author=ctrueden) - [@ctrueden](https://github.com/ctrueden)
 - [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - [@DragaDoncila](https://github.com/DragaDoncila)
