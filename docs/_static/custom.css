@@ -44,6 +44,33 @@ html[data-theme="dark"] div.sphx-glr-download a:hover {
   background-color: #222832 !important;
 }
 
+.napari-gallery-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+}
+
+.napari-gallery-downloads .sphx-glr-download {
+  margin: 0;
+}
+
+html[data-theme="light"] .napari-gallery-downloads div.sphx-glr-download a {
+  border-color: #d7deea !important;
+}
+
+html[data-theme="dark"] .napari-gallery-downloads div.sphx-glr-download a {
+  border-color: #4f5f79 !important;
+  color: #fff;
+}
+
+.sphx-glr-download-link-note,
+.sphx-glr-download-jupyter,
+.sphx-glr-download-python,
+.sphx-glr-download-zip {
+  display: none;
+}
+
 /* Version warning banner color */
 #bd-header-version-warning {
   background-color: color-mix(in srgb, var(--pst-color-secondary-bg), transparent 30%);
