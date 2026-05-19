@@ -34,8 +34,7 @@ Till napari 0.7.1 when render a multiscale layer in 3d, napari would always rend
 Thanks to [#8917](https://github.com/napari/napari/pull/8917) user can now select the level of the pyramid to render in 3d. 
 This allows to have better resolution that previously and keep data enough small to fit in GPU memory.
 
-
-
+![](https://private-user-images.githubusercontent.com/3826210/594679066-862e7512-0309-429c-b155-a9c03acf2db6.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzkxOTA1MDgsIm5iZiI6MTc3OTE5MDIwOCwicGF0aCI6Ii8zODI2MjEwLzU5NDY3OTA2Ni04NjJlNzUxMi0wMzA5LTQyOWMtYjE1NS1hOWMwM2FjZjJkYjYucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI2MDUxOSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNjA1MTlUMTEzMDA4WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9NTQzMTdjNjQ4NjlmYzhhZGJmOWQ3ZTc2ODJmZTA4MTAwNmM2N2U2YjQwMGEwMmMyNjFlYjQzMzNkZmM0ZTNiMCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmcmVzcG9uc2UtY29udGVudC10eXBlPWltYWdlJTJGcG5nIn0.A2IPrKLyhwx8vdZHQloht-Avjr8CwTxEmoX9--Q-XZc)
 
 - Add points layer face and border colorbar ([#8624](https://github.com/napari/napari/pull/8624))
 
