@@ -1,5 +1,5 @@
 # napari 0.7.1
-⚠️ *Note: these release notes are still in draft while 0.7.1a1 is in prerelease testing.* ⚠️
+⚠️ *Note: these release notes are still in draft while 0.7.1b1 is in prerelease testing.* ⚠️
 
 *Thu, May 21, 2026*
 
@@ -16,6 +16,8 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 ## Highlights
 
+
+The napari 0.7.1 release is mainly a bug fix release, but it also includes some new features and improvements. Here are some of the highlights:
 
 ## Signed windows bundle
 
