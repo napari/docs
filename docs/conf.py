@@ -409,6 +409,7 @@ GALLERY_SOURCE_PATH_RE = re.compile(r'\.\. "(.+\.py)"\n')
 GALLERY_TITLE_RE = re.compile(r'^.+\n=+\n', re.MULTILINE)
 NAPARI_PYPROJECT = Path(__file__).resolve().parents[2] / 'napari' / 'pyproject.toml'
 PLUGIN_INSTALL_GUIDE = '../plugins/start_using_plugins/finding_and_installing_plugins'
+NAPARI_INSTALL_GUIDE = '../getting_started/installation'
 GALLERY_IGNORED_PACKAGES = frozenset({'pooch'})
 
 
@@ -540,9 +541,11 @@ def _gallery_extra_deps_note(extra_deps: list[str]) -> str:
 .. admonition:: Extra packages required
 
    This example requires additional packages that are not available in typical
-   napari installations. For this example to work, you will need to install: {deps}.
-   See :doc:`the installation guide <{PLUGIN_INSTALL_GUIDE}>` for ways to install
-   additional packages, including from within napari.
+   napari installations.
+   For this example to work in :doc:`recommended napari installations <{NAPARI_INSTALL_GUIDE}>`,
+   you will need to install additional packages: {deps}.
+   See the :doc:`the plugin installation guide <{PLUGIN_INSTALL_GUIDE}>`
+   for ways to install additional packages from within napari.
 """
 
 
