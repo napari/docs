@@ -79,14 +79,15 @@ layer.locked = True
 layer.locked = False
 ```
 
-When a layer is locked, napari will not delete it from the layer list. Actions
-that delete the original layer as part of their workflow are also disabled,
-including converting between image and labels layers and splitting or merging
-image stacks.
+When a layer is locked, you will not be able to delete it from the layer list
+with the napari UI. Actions that delete the original layer as part of their workflow
+are also disabled, including converting between image and labels layers and
+splitting or merging image stacks.
 
 Locking currently applies to these destructive layer-list operations. It does
 not make the layer data read-only or disable other non-destructive layer
-controls.
+controls. You may still programmatically interact
+with the layer regardless of the lock state.
 
 (layer_opacity)=
 
