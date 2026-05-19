@@ -304,6 +304,8 @@ Each release (0.4.15 and above) includes installers for all platforms under the 
 
 Download from GitHub: {{ '[napari-REL-Windows-x86_64.exe](https://github.com/napari/napari/releases/download/vREL/napari-REL-Windows-x86_64.exe)'.replace('REL', bundle_version) }}
 
+Double-click the downloaded `.exe` file to begin setup.
+
 ```{admonition} Windows Security Warning
 :class: important
 The napari Windows installer is code-signed, but newly released installers can
@@ -317,8 +319,6 @@ is **NumFOCUS, Inc.** before choosing **Run anyway**. On managed work
 computers, your IT or security software may still block the installer until the
 signed publisher is explicitly allowed.
 ```
-
-Double-click the downloaded `.exe` file to begin setup.
 
 ![Montage of the napari EXE installer icon with an arrow pointing to the Welcome page of the napari EXE installer on Windows.](../_static/images/bundle_17.png)
 
