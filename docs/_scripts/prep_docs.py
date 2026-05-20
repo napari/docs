@@ -99,6 +99,7 @@ def main(stubs=False):
         plugin_docs = {
             'plugins/_npe2_sample_data_guide.md': '(sample-data-contribution-guide)=\n',
             'plugins/_npe2_readers_guide.md': '(readers-contribution-guide)=\n',
+            'plugins/_npe2_themes_guide.md': '(themes-contribution-guide)=\n',
             'plugins/_npe2_widgets_guide.md': '(widgets-contribution-guide)=\n',
             'plugins/_npe2_menus_guide.md': '(menus-contribution-guide)=\n',
             'plugins/_npe2_manifest.md': '# Manifest Reference\n',
