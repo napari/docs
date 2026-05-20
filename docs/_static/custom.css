@@ -64,14 +64,6 @@ html[data-theme="dark"] .napari-gallery-downloads .sphx-glr-download a:hover {
   margin: 0;
 }
 
-/* Remove the sphinx-gallery downloads note and buttons */
-.sphx-glr-download-link-note,
-.sphx-glr-download-jupyter,
-.sphx-glr-download-python,
-.sphx-glr-download-zip {
-  display: none;
-}
-
 /* Version warning banner color */
 #bd-header-version-warning {
   background-color: color-mix(in srgb, var(--pst-color-secondary-bg), transparent 30%);
