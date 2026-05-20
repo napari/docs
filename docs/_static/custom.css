@@ -248,8 +248,3 @@ html[data-theme="dark"] .homepage-quicklinks a {
 html[data-theme="dark"] img#homepage-featured-example-image {
   background-color: var(--pst-color-background) !important;
 }
-
-.homepage-example-button:hover {
-  background-color: var(--pst-color-background) !important;
-  color: var(--napari-color-text-base) !important;
-}
