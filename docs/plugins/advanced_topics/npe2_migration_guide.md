@@ -414,7 +414,7 @@ def get_new_theme() -> Dict[str, Dict[str, Union[str, Tuple, List]]:
 ```
 
 becomes this theme contribution in the plugin manifest. Note that `type`
-selects the base light/dark theme, omitted color keys inherit from that base,
+indicates whether the theme is light or dark, omitted color keys inherit from that base,
 and `syntax_style` stays at the top level rather than under `colors`:
 
 ```yaml
