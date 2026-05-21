@@ -144,3 +144,14 @@ the bug report template. If you think something isn't working, don't hesitate to
   <source media="(prefers-color-scheme: dark)" srcset="https://chanzuckerberg.com/wp-content/themes/czi/img/logo-white.svg">
   <img alt="CZI logo" src="https://chanzuckerberg.com/wp-content/themes/czi/img/logo.svg">
 </picture>
+
+## contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
