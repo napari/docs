@@ -4,9 +4,9 @@
 
 A napari theme is a named collection of colors and style values used across the
 viewer canvas, widgets, icons, and console. If you want to programmatically
-prototype a theme, check out the {ref}`shpx_glr_gallery_new_theme.py` example.
+prototype a theme, check out the {ref}`sphx_glr_gallery_new_theme.py` example.
 However, the `npe2` theme contribution allows declaratively 
-defining themes and enables easy distribution to others.
+defining themes and enables easy distribution to others via plugins.
 
 If you want other people to install and reuse your theme, prefer the plugin
 workflow. The programmatic workflow is still useful for local experiments and
