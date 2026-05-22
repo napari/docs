@@ -87,7 +87,7 @@ conda-forge channel. We also recommend this path for users of arm64 macOS machin
 ([Apple Silicon](https://support.apple.com/en-us/116943), meaning a processor with a name like "M1"). You can install it with:
 
 ```sh
-conda install -c conda-forge napari pyqt6
+conda install -c conda-forge napari pyqt6 --override-channels
 ```
 
 You can then upgrade to a new version of napari using:
@@ -99,7 +99,7 @@ conda update napari
 If you want to install napari with PySide6 as the backend you need to install it using
 
 ```sh
-conda install -c conda-forge napari pyside6
+conda install -c conda-forge napari pyside6 --override-channels
 ```
 
 ````{note}
