@@ -84,10 +84,9 @@ with the napari UI. Actions that delete the original layer as part of their work
 are also disabled, including converting between image and labels layers and
 splitting or merging image stacks.
 
-Locking currently applies to these destructive layer-list operations. It does
-not make the layer data read-only or disable other non-destructive layer
-controls. You may still programmatically interact
-with the layer regardless of the lock state.
+Locking currently applies only to these destructive layer-list operations. It does
+not make the layer data read-only or disable other non-destructive changes, such as use of the layer
+controls. Finally, you may still programmatically interact with the layer regardless of the lock state.
 
 (layer_opacity)=
 
