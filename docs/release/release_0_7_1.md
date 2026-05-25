@@ -1,7 +1,7 @@
 # napari 0.7.1
 ⚠️ *Note: these release notes are still in draft while 0.7.1b1 is in prerelease testing.* ⚠️
 
-*Thu, May 21, 2026*
+*Wed, May 27, 2026*
 
 We're happy to announce the release of napari 0.7.1!
 napari is a fast, interactive, multi-dimensional image viewer for Python.
@@ -15,7 +15,6 @@ https://napari.org.
 napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this is a **Meso** release containing awesome new features, but some effort may be needed when updating previous projects to use this version.
 
 ## Highlights
-
 
 The napari 0.7.1 release is mainly a bug fix release, but it also includes some new features and improvements. Here are some of the highlights:
 
@@ -41,6 +40,21 @@ This allows for higher resolution rendering than before, while keeping data enou
 
 The points layer now allows coloring points based of their feature values. In napari 0.7.1 we added support for colorbars for points layer ([#8624](https://github.com/napari/napari/pull/8624)), so you can now easily see the mapping between feature values and colors. This is especially useful when you have a large number of points and want to quickly understand the distribution of feature values.
 
+<img width="1019" height="783" alt="napari_colorbar" src="https://github.com/user-attachments/assets/1522aa7c-3520-4e41-85e6-99e9a91c47ee" />
+
+## Scalebar with units 
+
+In previous version of napari, if someone open scale bar using View > Scale Bar > Scale Bar visible it was showing the scale bar with no units. In napari 0.7.1 we 
+set default unit to pixel in [#8900](https://github.com/napari/napari/pull/8900) and add calculation of units for scale bar based on currently added layers in [#8907](https://github.com/napari/napari/pull/8907)
+
+![Scale bar with units](https://github.com/user-attachments/assets/b25a1a53-b9a0-46f1-b88c-c2625e4287a8)
+
+## Lock layer to prevent accidental deletions
+
+In [#8736](https://github.com/napari/napari/pull/8736) we added initial lock mechanism for layers. When a layer is locked, it cannot be accidentally deleted or modified. This is especially useful when you have a complex project with many layers and want to prevent accidental changes to important layers.
+In the future we plan to expand this feature to prevent not only deletion but also other modifications.
+
+![Lock layer on layer list](https://github.com/user-attachments/assets/1df17b1e-cb52-4b2f-88b3-495f1e5301a0)
 
 
 ## New Features
@@ -50,10 +64,10 @@ The points layer now allows coloring points based of their feature values. In na
 ## Improvements
 
 - Add handler for show message when napari fails to import ([#8609](https://github.com/napari/napari/pull/8609))
-- Add example driving computation from gui ([#8658](https://github.com/napari/napari/pull/8658))
 - Example: Enhance theme sample widget with theme colors, widgets ([#8662](https://github.com/napari/napari/pull/8662))
 - Do not connect to children events of EventedDict items if there is no callback ([#8673](https://github.com/napari/napari/pull/8673))
 - ENH: For multiscale 2d: store materialized thumbnail_level ([#8715](https://github.com/napari/napari/pull/8715))
+- UX: Add Layer.locked property to protect layers from accidental deletion ([#8736](https://github.com/napari/napari/pull/8736))
 - Canvas based font size ([#8770](https://github.com/napari/napari/pull/8770))
 - Enh, minor, builtins: use urllib (and defer) instead of requests if reading a remote script path ([#8785](https://github.com/napari/napari/pull/8785))
 - Perf: Defer importing scipy.spatial ([#8789](https://github.com/napari/napari/pull/8789))
@@ -64,8 +78,8 @@ The points layer now allows coloring points based of their feature values. In na
 - Add note for user how to reset the reader preference ([#8848](https://github.com/napari/napari/pull/8848))
 - Ensure all napari and plugin commands use . instead of : ([#8883](https://github.com/napari/napari/pull/8883))
 - Improve dask check to support more dask-backed array types ([#8896](https://github.com/napari/napari/pull/8896))
-- Fix floating widgets and use custom title bar in all cases ([#8898](https://github.com/napari/napari/pull/8898))
 - Set pixel as default scalebar unit ([#8900](https://github.com/napari/napari/pull/8900))
+- ScaleBar units from layers ([#8907](https://github.com/napari/napari/pull/8907))
 - Turn off contrast/color controls when surface has `vertex_colors` ([#8909](https://github.com/napari/napari/pull/8909))
 - Actually use theme type from npe contrib ([#8915](https://github.com/napari/napari/pull/8915))
 - Add multiscale level lock for scalar field layers ([#8917](https://github.com/napari/napari/pull/8917))
@@ -83,14 +97,13 @@ The points layer now allows coloring points based of their feature values. In na
 
 ## Bug Fixes
 
-- fix: clims for non-numpy arrays with out-of-view translate ([#8756](https://github.com/napari/napari/pull/8756))
+- Add max depth_value to avoid clipping volumes in 3d (#8809) ([#8810](https://github.com/napari/napari/pull/8810))
 - Fix TypeError with anisotropic data in 3D ray intersections ([#8812](https://github.com/napari/napari/pull/8812))
 - Reuse QMarginSlidersPopup between rightclicks ([#8819](https://github.com/napari/napari/pull/8819))
 - Fix: Use Python's tokenize script decoding for builtin reader ([#8838](https://github.com/napari/napari/pull/8838))
 - Fix: Blocks dims slider widget creation feedback to dims model ([#8840](https://github.com/napari/napari/pull/8840))
 - Fix: play button loop mode duplication ([#8841](https://github.com/napari/napari/pull/8841))
 - Improve dask check to support more dask-backed array types ([#8896](https://github.com/napari/napari/pull/8896))
-- Fix floating widgets and use custom title bar in all cases ([#8898](https://github.com/napari/napari/pull/8898))
 - Wrap Labels multiscale data in MultiScaleData object in setter ([#8922](https://github.com/napari/napari/pull/8922))
 - Fix Labels show_selected_label being silently dropped after color shuffle ([#8947](https://github.com/napari/napari/pull/8947))
 - Fix Volume visual crash when adding invisible scalar field in 3D ([#8968](https://github.com/napari/napari/pull/8968))
@@ -115,14 +128,24 @@ The points layer now allows coloring points based of their feature values. In na
 - Update Jupyter notebook example screenshot ([docs#1003](https://github.com/napari/docs/pull/1003))
 - Update multiscale documentation to describe new level selection ([docs#1004](https://github.com/napari/docs/pull/1004))
 - Add release notes for 0.7.1a1 ([docs#1009](https://github.com/napari/docs/pull/1009))
+- Add sample databases ([docs#1010](https://github.com/napari/docs/pull/1010))
 - Minimal all-contributors setup ([docs#1011](https://github.com/napari/docs/pull/1011))
 - Add Carlos to Core Team page ([docs#1012](https://github.com/napari/docs/pull/1012))
 - Update release notes for 0.7.1 ([docs#1019](https://github.com/napari/docs/pull/1019))
+- Add Curtis and Brian to SC members ([docs#1020](https://github.com/napari/docs/pull/1020))
+- Add Windows bundle signing and reputation info ([docs#1022](https://github.com/napari/docs/pull/1022))
+- Fix: `pyqt6` for conda install instructions ([docs#1023](https://github.com/napari/docs/pull/1023))
+- Add admonition to gallery examples that require additional packages ([docs#1024](https://github.com/napari/docs/pull/1024))
+- Clean up button css for homepage and gallery ([docs#1026](https://github.com/napari/docs/pull/1026))
+- Add themes contribution to plugin building guides ([docs#1027](https://github.com/napari/docs/pull/1027))
+- Add `--override-channels` flag to the `conda install` commands.  ([docs#1028](https://github.com/napari/docs/pull/1028))
 - Example: Enhance theme sample widget with theme colors, widgets ([#8662](https://github.com/napari/napari/pull/8662))
 - Add note to Camera.angles docstring about quaternion normalisation ([#8864](https://github.com/napari/napari/pull/8864))
 - Docs: Bump lower version of napari-sphinx-theme ([#8886](https://github.com/napari/napari/pull/8886))
 - Replace v (shorter) with viewer in the examples ([#8940](https://github.com/napari/napari/pull/8940))
 - Add Carlos Rodríguez-Reza to core team section of citation file ([#8971](https://github.com/napari/napari/pull/8971))
+- Unpin sphinx for docs ([#8993](https://github.com/napari/napari/pull/8993))
+- Add units to Dims docstring and clarify Layer.units ([#8996](https://github.com/napari/napari/pull/8996))
 
 ## Other Pull Requests
 
@@ -159,7 +182,6 @@ The points layer now allows coloring points based of their feature values. In na
 - Revert Citation validator from ubuntu-slim to use ubuntu-latest ([#8851](https://github.com/napari/napari/pull/8851))
 - Deprecate make_default_color_array ([#8852](https://github.com/napari/napari/pull/8852))
 - Dependabot cooldown ([#8853](https://github.com/napari/napari/pull/8853))
-- Test against conda packages using pixi ([#8855](https://github.com/napari/napari/pull/8855))
 - Use bash script instead of docker image for checking PR labels ([#8856](https://github.com/napari/napari/pull/8856))
 - Check untyped defs in labels ([#8861](https://github.com/napari/napari/pull/8861))
 - add jasper-tms to citation ([#8862](https://github.com/napari/napari/pull/8862))
@@ -199,46 +221,52 @@ The points layer now allows coloring points based of their feature values. In na
 - Try to fix passing prerelease to `gh release create` ([#8969](https://github.com/napari/napari/pull/8969))
 - Explicitly set repository in make release workflow ([#8970](https://github.com/napari/napari/pull/8970))
 - Update `hypothesis`, `pandas`, `pyside6`, `pytest-rerunfailures`, `virtualenv` ([#8981](https://github.com/napari/napari/pull/8981))
+- In vispy overalys use **kwargs instead of synchronizing signature ([#8982](https://github.com/napari/napari/pull/8982))
+- Update `numpy`, `tensorstore`, `tifffile` ([#8986](https://github.com/napari/napari/pull/8986))
+- Bump vispy to 0.16.2 ([#8992](https://github.com/napari/napari/pull/8992))
 
 
-## 18 authors added to this release (alphabetical)
+## 21 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy +
+- [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) ([docs](https://github.com/napari/docs/commits?author=carlosmariorr))  - @carlosmariorr
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) - @willingc
 - [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) ([docs](https://github.com/napari/docs/commits?author=cmalinmayor))  - @cmalinmayor +
 - [Constantin Aronssohn](https://github.com/napari/docs/commits?author=cnstt) - @cnstt
 - [David Stansby](https://github.com/napari/napari/commits?author=dstansby) - @dstansby
 - [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
+- [hiroalchem](https://github.com/napari/napari/commits?author=hiroalchem) - @hiroalchem
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo
 - [Kabilar Gunalan](https://github.com/napari/docs/commits?author=kabilar) - @kabilar
 - [LiudengZhang](https://github.com/napari/napari/commits?author=LiudengZhang) - @LiudengZhang
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
 - [Lucien Hinderling](https://github.com/napari/napari/commits?author=hinderling) - @hinderling +
 - [Margot Chazotte](https://github.com/napari/napari/commits?author=MargotCh) - @MargotCh
+- [Martin Weigert](https://github.com/napari/napari/commits?author=maweigert) - @maweigert
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Newstein](https://github.com/napari/napari/commits?author=pnewstein) - @pnewstein +
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wulin Teo](https://github.com/napari/napari/commits?author=wulinteousa2-hash) - @wulinteousa2-hash +
 
-## 20 reviewers added to this release (alphabetical)
+## 21 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy +
-- [Anniek Stokkermans](https://github.com/napari/docs/commits?author=AnniekStok) - @AnniekStok
-- [Carlos Mario Rodriguez Reza](https://github.com/napari/docs/commits?author=carlosmariorr) - @carlosmariorr
+- [Anniek Stokkermans](https://github.com/napari/docs/commits?author=AnniekStok) - @AnniekStok +
+- [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) ([docs](https://github.com/napari/docs/commits?author=carlosmariorr))  - @carlosmariorr
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) - @willingc
 - [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) ([docs](https://github.com/napari/docs/commits?author=cmalinmayor))  - @cmalinmayor +
 - [Constantin Aronssohn](https://github.com/napari/docs/commits?author=cnstt) - @cnstt
 - [David Stansby](https://github.com/napari/napari/commits?author=dstansby) - @dstansby
-- [Davin Potts](https://github.com/napari/docs/commits?author=applio) - @applio
 - [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
-- [github-advanced-security[bot]](https://github.com/napari/docs/commits?author=github-advanced-security[bot]) - @github-advanced-security[bot]
+- [github-advanced-security[bot]](https://github.com/napari/docs/commits?author=github-advanced-security[bot]) - @github-advanced-security[bot] +
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
+- [hiroalchem](https://github.com/napari/napari/commits?author=hiroalchem) - @hiroalchem
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
@@ -248,3 +276,4 @@ The points layer now allows coloring points based of their feature values. In na
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wulin Teo](https://github.com/napari/napari/commits?author=wulinteousa2-hash) - @wulinteousa2-hash +
+- [Yann Pellegrini](https://github.com/napari/docs/commits?author=Yann-P) - @Yann-P +
