@@ -23,23 +23,23 @@ The napari 0.7.1 release is mainly a bug fix release, but it also includes some 
 
 Since napari 0.7.1 our bundle on Windows is now [signed](https://github.com/napari/packaging/pull/387). It means that you should be able to run napari without any warnings about the application being from an unknown publisher. This is a great step forward for our Windows users, as it enhances security and trust in our application, especially on managed environments where unsigned applications may be blocked by default.
 
-The certificate is issued for NumFOCUS foundation that provide legal representation for napari, and many other open source projects.
+The certificate is issued for the NumFOCUS foundation, which supports napari and a large number of other open source projects.
  
 If you encounter any issues related to this change, please let us know!
 
 
 ## Selection of the rendered level for multiscale layers
 
-Till napari 0.7.1 when render a multiscale layer in 3d, napari would always render the lowest resolution level of the pyramid. 
-Thanks to [#8917](https://github.com/napari/napari/pull/8917) user can now select the level of the pyramid to render in 3d. 
-This allows to have better resolution that previously and keep data enough small to fit in GPU memory.
+Before napari 0.7.1, when rendering a multiscale layer in 3D, napari would always render the lowest resolution level of the pyramid. 
+Thanks to [#8917](https://github.com/napari/napari/pull/8917), users can now select the level of the pyramid to render in 3D. 
+This allows for higher resolution rendering than before, while keeping data enough small to fit in GPU memory.
 
-![](https://github.com/user-attachments/assets/862e7512-0309-429c-b155-a9c03acf2db6)
+![The resolution dropdown in the layer controls allows the user to select different levels of a multiscale image.](https://github.com/user-attachments/assets/862e7512-0309-429c-b155-a9c03acf2db6)
 
 
 ## Colorbars for points layer
 
-The points layer allow to color points based of their feature values. In napari 0.7.1 we added support for colorbars for points layer ([#8624](https://github.com/napari/napari/pull/8624)), so you can now easily see the mapping between feature values and colors. This is especially useful when you have a large number of points and want to quickly understand the distribution of feature values.
+The points layer now allows coloring points based of their feature values. In napari 0.7.1 we added support for colorbars for points layer ([#8624](https://github.com/napari/napari/pull/8624)), so you can now easily see the mapping between feature values and colors. This is especially useful when you have a large number of points and want to quickly understand the distribution of feature values.
 
 
 
