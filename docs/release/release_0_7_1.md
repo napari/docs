@@ -18,9 +18,9 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 The napari 0.7.1 release is mainly a bug fix release, but it also includes some new features and improvements. Here are some of the highlights:
 
-## Signed windows bundle
+## Signed Windows bundle
 
-Since napari 0.7.1 our bundle on Windows is now [signed](https://github.com/napari/packaging/pull/387). It means that you should be able to run napari without any warnings about the application being from an unknown publisher. This is a great step forward for our Windows users, as it enhances security and trust in our application, especially on managed environments where unsigned applications may be blocked by default.
+Starting with the napari 0.7.1 release, our bundle on Windows is now [signed](https://github.com/napari/packaging/pull/387) with a NumFOCUS certificate, like our macOS bundle has been. This means that you should be able to run napari without any warnings about the application being from an unknown publisher. This is an important step forward for our Windows users, as it enhances security and trust in our application, especially in managed IT environments where unsigned applications may be blocked by default.
 
 The certificate is issued for the NumFOCUS foundation, which supports napari and a large number of other open source projects.
  
@@ -29,9 +29,12 @@ If you encounter any issues related to this change, please let us know!
 
 ## Selection of the rendered level for multiscale layers
 
-Before napari 0.7.1, when rendering a multiscale layer in 3D, napari would always render the lowest resolution level of the pyramid. 
-Thanks to [#8917](https://github.com/napari/napari/pull/8917), users can now select the level of the pyramid to render in 3D. 
-This allows for higher resolution rendering than before, while keeping data enough small to fit in GPU memory.
+Prior to napari 0.7.1, when rendering a multiscale layer: 
+
+- in 3D display, napari would always render the lowest resolution level of the pyramid
+- in 2D display, the pyramid level would be automatically selected based on the viewport
+
+Thanks to [#8917](https://github.com/napari/napari/pull/8917), users can now select a multiscale level to render. For the case of 3D display, for example, this allows for choosing a higher resolution rendering than before, as long as the selected level can fit within GPU texture limits. Meanwhile, for 2D display, you can fix the resolution level, which can be useful for annotation or previewing data prior to an analysis or export step.
 
 ![The resolution dropdown in the layer controls allows the user to select different levels of a multiscale image.](https://github.com/user-attachments/assets/862e7512-0309-429c-b155-a9c03acf2db6)
 
@@ -44,14 +47,14 @@ The points layer now allows coloring points based of their feature values. In na
 
 ## Scalebar with units 
 
-In previous version of napari, if someone open scale bar using View > Scale Bar > Scale Bar visible it was showing the scale bar with no units. In napari 0.7.1 we 
-set default unit to pixel in [#8900](https://github.com/napari/napari/pull/8900) and add calculation of units for scale bar based on currently added layers in [#8907](https://github.com/napari/napari/pull/8907)
+In previous versions of napari, if you added A scale bar using **View > Scale Bar > Scale Bar visible**, it was shown with no units. In napari 0.7.1 we now
+set default unit to `pixel` in [#8900](https://github.com/napari/napari/pull/8900) and also add calculation of units for scale bar based on currently added layers in [#8907](https://github.com/napari/napari/pull/8907), if they have units set.
 
 ![Scale bar with units](https://github.com/user-attachments/assets/b25a1a53-b9a0-46f1-b88c-c2625e4287a8)
 
 ## Lock layer to prevent accidental deletions
 
-In [#8736](https://github.com/napari/napari/pull/8736) we added initial lock mechanism for layers. When a layer is locked, it cannot be accidentally deleted or modified. This is especially useful when you have a complex project with many layers and want to prevent accidental changes to important layers.
+In [#8736](https://github.com/napari/napari/pull/8736) we added initial lock mechanism for layers. When a layer is locked, it cannot be accidentally deleted or destructively modified. This is especially useful when you have a complex project with many layers and want to prevent accidental changes to important layers. Note: the layer controls are not affected by the lock at this time.
 In the future we plan to expand this feature to prevent not only deletion but also other modifications.
 
 ![Lock layer on layer list](https://github.com/user-attachments/assets/1df17b1e-cb52-4b2f-88b3-495f1e5301a0)
