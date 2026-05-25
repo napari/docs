@@ -73,7 +73,7 @@ You can lock or unlock selected layers from the layer list by right-clicking and
 choosing **Toggle lock**, or in Python by setting `layer.locked`:
 
 ```python
-layer.locked = True
+layer.locked = True  # or a napari.layers.base.LayerLock enum value
 
 # unlock again
 layer.locked = False
