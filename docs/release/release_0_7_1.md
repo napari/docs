@@ -60,6 +60,7 @@ In the future we plan to expand this feature to prevent not only deletion but al
 ![Lock layer on layer list](https://github.com/user-attachments/assets/1df17b1e-cb52-4b2f-88b3-495f1e5301a0)
 
 
+
 ## New Features
 
 - Add points layer face and border colorbar ([#8624](https://github.com/napari/napari/pull/8624))
@@ -71,10 +72,8 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Do not connect to children events of EventedDict items if there is no callback ([#8673](https://github.com/napari/napari/pull/8673))
 - ENH: For multiscale 2d: store materialized thumbnail_level ([#8715](https://github.com/napari/napari/pull/8715))
 - UX: Add Layer.locked property to protect layers from accidental deletion ([#8736](https://github.com/napari/napari/pull/8736))
-- Canvas based font size ([#8770](https://github.com/napari/napari/pull/8770))
 - Enh, minor, builtins: use urllib (and defer) instead of requests if reading a remote script path ([#8785](https://github.com/napari/napari/pull/8785))
 - Perf: Defer importing scipy.spatial ([#8789](https://github.com/napari/napari/pull/8789))
-- Revert the switch from Welcome widget to Welcome overlay from #8117 ([#8793](https://github.com/napari/napari/pull/8793))
 - Add handler for show message when napari fails to import v2 ([#8803](https://github.com/napari/napari/pull/8803))
 - Update text in mac installer to improve UX ([#8806](https://github.com/napari/napari/pull/8806))
 - Fix: Use Python's tokenize script decoding for builtin reader ([#8838](https://github.com/napari/napari/pull/8838))
@@ -88,13 +87,13 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Add multiscale level lock for scalar field layers ([#8917](https://github.com/napari/napari/pull/8917))
 - Do not add a new colormap if one already exists in napari ([#8924](https://github.com/napari/napari/pull/8924))
 - Improve sizing of dims ordering popup ([#8952](https://github.com/napari/napari/pull/8952))
+- typing: add type hints to `napari/utils/shortcuts.py` ([#8983](https://github.com/napari/napari/pull/8983))
 
 ## Performance
 
 - ENH: For multiscale 2d: store materialized thumbnail_level ([#8715](https://github.com/napari/napari/pull/8715))
 - Enh, minor, builtins: use urllib (and defer) instead of requests if reading a remote script path ([#8785](https://github.com/napari/napari/pull/8785))
 - Perf: Defer importing scipy.spatial ([#8789](https://github.com/napari/napari/pull/8789))
-- Revert the switch from Welcome widget to Welcome overlay from #8117 ([#8793](https://github.com/napari/napari/pull/8793))
 - Improve dask check to support more dask-backed array types ([#8896](https://github.com/napari/napari/pull/8896))
 - Use pep562 to defer AVAILABLE_LABELS_COLORMAPS which imports skimage.color -> scipy.linalg ([#8903](https://github.com/napari/napari/pull/8903))
 
@@ -138,10 +137,8 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Add Curtis and Brian to SC members ([docs#1020](https://github.com/napari/docs/pull/1020))
 - Add Windows bundle signing and reputation info ([docs#1022](https://github.com/napari/docs/pull/1022))
 - Fix: `pyqt6` for conda install instructions ([docs#1023](https://github.com/napari/docs/pull/1023))
-- Add admonition to gallery examples that require additional packages ([docs#1024](https://github.com/napari/docs/pull/1024))
+- Document layer locking in napari GUI and API ([docs#1025](https://github.com/napari/docs/pull/1025))
 - Clean up button css for homepage and gallery ([docs#1026](https://github.com/napari/docs/pull/1026))
-- Add themes contribution to plugin building guides ([docs#1027](https://github.com/napari/docs/pull/1027))
-- Add `--override-channels` flag to the `conda install` commands.  ([docs#1028](https://github.com/napari/docs/pull/1028))
 - Example: Enhance theme sample widget with theme colors, widgets ([#8662](https://github.com/napari/napari/pull/8662))
 - Add note to Camera.angles docstring about quaternion normalisation ([#8864](https://github.com/napari/napari/pull/8864))
 - Docs: Bump lower version of napari-sphinx-theme ([#8886](https://github.com/napari/napari/pull/8886))
@@ -229,12 +226,13 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Bump vispy to 0.16.2 ([#8992](https://github.com/napari/napari/pull/8992))
 
 
-## 21 authors added to this release (alphabetical)
+## 22 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy +
-- [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) ([docs](https://github.com/napari/docs/commits?author=carlosmariorr))  - @carlosmariorr
+- [Austin Epiphane Yann Tung-Shan Lefebvre](https://github.com/napari/napari/commits?author=aelefebv) - @aelefebv +
+- [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) - @carlosmariorr
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) - @willingc
 - [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) ([docs](https://github.com/napari/docs/commits?author=cmalinmayor))  - @cmalinmayor +
 - [Constantin Aronssohn](https://github.com/napari/docs/commits?author=cnstt) - @cnstt
@@ -255,23 +253,24 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wulin Teo](https://github.com/napari/napari/commits?author=wulinteousa2-hash) - @wulinteousa2-hash +
 
-## 21 reviewers added to this release (alphabetical)
+## 22 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy +
-- [Anniek Stokkermans](https://github.com/napari/docs/commits?author=AnniekStok) - @AnniekStok +
-- [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) ([docs](https://github.com/napari/docs/commits?author=carlosmariorr))  - @carlosmariorr
+- [Anniek Stokkermans](https://github.com/napari/docs/commits?author=AnniekStok) - @AnniekStok
+- [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) - @carlosmariorr
 - [Carol Willing](https://github.com/napari/napari/commits?author=willingc) - @willingc
 - [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) ([docs](https://github.com/napari/docs/commits?author=cmalinmayor))  - @cmalinmayor +
 - [Constantin Aronssohn](https://github.com/napari/docs/commits?author=cnstt) - @cnstt
 - [David Stansby](https://github.com/napari/napari/commits?author=dstansby) - @dstansby
 - [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
-- [github-advanced-security[bot]](https://github.com/napari/docs/commits?author=github-advanced-security[bot]) - @github-advanced-security[bot] +
+- [github-advanced-security[bot]](https://github.com/napari/docs/commits?author=github-advanced-security[bot]) - @github-advanced-security[bot]
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [hiroalchem](https://github.com/napari/napari/commits?author=hiroalchem) - @hiroalchem
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
+- [Kabilar Gunalan](https://github.com/napari/docs/commits?author=kabilar) - @kabilar
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
 - [Lucien Hinderling](https://github.com/napari/napari/commits?author=hinderling) - @hinderling +
 - [Margot Chazotte](https://github.com/napari/napari/commits?author=MargotCh) - @MargotCh
@@ -279,4 +278,4 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wulin Teo](https://github.com/napari/napari/commits?author=wulinteousa2-hash) - @wulinteousa2-hash +
-- [Yann Pellegrini](https://github.com/napari/docs/commits?author=Yann-P) - @Yann-P +
+- [Yann Pellegrini](https://github.com/napari/docs/commits?author=Yann-P) - @Yann-P
