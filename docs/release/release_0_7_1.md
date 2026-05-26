@@ -1,5 +1,5 @@
 # napari 0.7.1
-⚠️ *Note: these release notes are still in draft while 0.7.1b1 is in prerelease testing.* ⚠️
+⚠️ *Note: these release notes are still in draft while 0.7.1rc1 is in prerelease testing.* ⚠️
 
 *Wed, May 27, 2026*
 
@@ -145,6 +145,7 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Replace v (shorter) with viewer in the examples ([#8940](https://github.com/napari/napari/pull/8940))
 - Add Carlos Rodríguez-Reza to core team section of citation file ([#8971](https://github.com/napari/napari/pull/8971))
 - Unpin sphinx for docs ([#8993](https://github.com/napari/napari/pull/8993))
+- add Yann-P to Citation.cff ([#8994](https://github.com/napari/napari/pull/8994))
 - Add units to Dims docstring and clarify Layer.units ([#8996](https://github.com/napari/napari/pull/8996))
 
 ## Other Pull Requests
@@ -223,7 +224,10 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Update `hypothesis`, `pandas`, `pyside6`, `pytest-rerunfailures`, `virtualenv` ([#8981](https://github.com/napari/napari/pull/8981))
 - In vispy overalys use **kwargs instead of synchronizing signature ([#8982](https://github.com/napari/napari/pull/8982))
 - Update `numpy`, `tensorstore`, `tifffile` ([#8986](https://github.com/napari/napari/pull/8986))
+- [pre-commit.ci] pre-commit autoupdate ([#8988](https://github.com/napari/napari/pull/8988))
 - Bump vispy to 0.16.2 ([#8992](https://github.com/napari/napari/pull/8992))
+- Docs: Bump napari-sphinx-theme to use sticky banners ([#8997](https://github.com/napari/napari/pull/8997))
+- Deprecate scale_bar.unit ([#9007](https://github.com/napari/napari/pull/9007))
 
 
 ## 22 authors added to this release (alphabetical)
