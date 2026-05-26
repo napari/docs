@@ -122,7 +122,6 @@ html_theme_options = {
         'version_match': version_match,
     },
     'show_version_warning_banner': True,
-    'navbar_persistent': ['search-button'],
     'header_links_before_dropdown': 6,
     'use_edit_page_button': True,
     'secondary_sidebar_items': ['page-toc', 'edit-this-page'],
