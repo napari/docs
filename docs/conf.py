@@ -410,7 +410,9 @@ GALLERY_METADATA_END_RE = re.compile(
     r'^\.\. GENERATED FROM PYTHON SOURCE LINES \d+-\d+\s*$', re.MULTILINE
 )
 NAPARI_PYPROJECT = Path(__file__).resolve().parents[2] / 'napari' / 'pyproject.toml'
-PLUGIN_INSTALL_GUIDE = '../plugins/start_using_plugins/finding_and_installing_plugins'
+PLUGIN_MANAGER_ADDITIONAL_PACKAGES_GUIDE = (
+    'https://napari.org/napari-plugin-manager/#installing-via-direct-entry'
+)
 NAPARI_INSTALL_GUIDE = '../getting_started/installation'
 GALLERY_IGNORED_PACKAGES = frozenset({'pooch'})
 
@@ -546,7 +548,7 @@ def _gallery_extra_deps_note(extra_deps: list[str]) -> str:
    napari installations.
    For this example to work in :doc:`recommended napari installations <{NAPARI_INSTALL_GUIDE}>`,
    you will need to install additional packages: {deps}.
-   See the :doc:`the plugin installation guide <{PLUGIN_INSTALL_GUIDE}>`
+   See the `plugin manager guide on installing additional packages <{PLUGIN_MANAGER_ADDITIONAL_PACKAGES_GUIDE}>`
    for ways to install additional packages from within napari.
 """
 
