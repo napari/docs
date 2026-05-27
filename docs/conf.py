@@ -548,7 +548,7 @@ def _gallery_extra_deps_note(extra_deps: list[str]) -> str:
    napari installations.
    For this example to work in :doc:`recommended napari installations <{NAPARI_INSTALL_GUIDE}>`,
    you will need to install additional packages: {deps}.
-   See the `plugin manager guide on installing additional packages <{PLUGIN_MANAGER_ADDITIONAL_PACKAGES_GUIDE}>`
+   See the `plugin manager guide <{PLUGIN_MANAGER_ADDITIONAL_PACKAGES_GUIDE}>`_
    for ways to install additional packages from within napari.
 """
 
