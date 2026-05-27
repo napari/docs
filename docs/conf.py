@@ -396,15 +396,18 @@ def napari_scraper(block, block_vars, gallery_conf):
     return scrapers.figure_rst(img_paths, gallery_conf['src_dir'])
 
 
-GALLERY_TITLE_RE = re.compile(r'^.+\n=+\n', re.MULTILINE)
+GALLERY_METADATA_END_RE = re.compile(
+    r'^\.\. GENERATED FROM PYTHON SOURCE LINES \d+-\d+\s*$', re.MULTILINE
+)
 
 
 def add_gallery_download_buttons(app, docname, source):
-    """Add compact top-of-page download links to generated gallery examples.
-    
-    The title of the example is used to determine where to insert the download links,
-    which are only added to generated gallery examples.
-    The links are added after the title.
+    """Add compact download links near the top of generated gallery examples.
+
+    Sphinx-Gallery emits the example title first, followed by the short
+    description and tags, and only then the ``GENERATED FROM PYTHON SOURCE``
+    marker. Insert the links just before that first marker so they stay below
+    the description metadata without overriding Sphinx-Gallery templates.
     """
     if not docname.startswith('gallery/'):
         return
@@ -416,8 +419,8 @@ def add_gallery_download_buttons(app, docname, source):
         return
 
     example_name = Path(docname).name
-    title_match = GALLERY_TITLE_RE.search(content)
-    if title_match is None:
+    metadata_end_match = GALLERY_METADATA_END_RE.search(content)
+    if metadata_end_match is None:
         return
 
     download_block = f"""
@@ -434,9 +437,9 @@ def add_gallery_download_buttons(app, docname, source):
             :download:`Notebook (.ipynb) <{example_name}.ipynb>`
 """
     source[0] = (
-        content[: title_match.end()]
+        content[: metadata_end_match.start()]
         + download_block
-        + content[title_match.end() :]
+        + content[metadata_end_match.start() :]
     )
 
 
