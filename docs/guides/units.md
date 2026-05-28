@@ -64,6 +64,11 @@ If units are consistent across layers, the scale bar will automatically display
 the correct units and length to scale. If you do not provide units, napari falls
 back to pixels.
 
+If napari cannot infer a consistent layer-list unit, the scale bar becomes
+dimensionless. There is also one important special case: the scale bar label
+corresponds to the last displayed axis. If the displayed axes do not all have
+the same dimensionality, napari will warn that only the last displayed axis unit is being used.
+
 The gallery example {ref}`sphx_glr_gallery_scale_bar.py` focuses on scale bar
 appearance and layout. The gallery example
 {ref}`sphx_glr_gallery_units_impact_rendering.py` focuses on unit-aware world
