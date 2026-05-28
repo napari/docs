@@ -3,11 +3,11 @@
 # Scale and unit-aware rendering
 
 Units in napari describe the physical meaning of each layer axis. They work
-alongside layer transforms such as `scale` and `translate`, but they answer a
-different question: `scale` informs about the spacing of the data, while `units`
-inform the meaning behind each scale value. All layers of napari contain both 
-`scale` and `units` metadata, and they work together to determine how the layer is 
-rendered and how it interacts with other unit-aware features such as the scale bar.
+alongside layer transforms such as `scale` and `translate`, combining into a
+spatial transformation with dimensions that carry physical meaning.
+All layers of napari contain these transforms and `units` metadata, and they work
+together to determine how the layer is rendered and how it interacts with
+other unit-aware features, such as the scale bar.
 
 For interactive editing, the
 [napari-metadata](https://napari.org/napari-metadata/) plugin can expose
