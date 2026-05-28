@@ -122,9 +122,9 @@ QT_QPA_PLATFORM=xcb
 PYOPENGL_PLATFORM=glx
 ```
 
-Recent versions of napari set these variables automatically at startup, so launching via
+napari sets these variables automatically at startup, so launching via
 the `napari` command or a Python script usually works without any action on your part.
-napari only sets these variables if you haven't, so your own values are always respected.
+napari only sets these variables _for the current session_ if you haven't, so your own values are always respected.
 
 This automatic fix only works if napari is imported *before* any Qt application is created.
 If a Qt application already exists (most commonly in IPython or Jupyter when `%gui qt` runs
