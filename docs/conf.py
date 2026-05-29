@@ -79,6 +79,7 @@ extensions = [
 html_theme = 'napari_sphinx_theme'
 html_title = 'napari'
 html_sourcelink_suffix = ''
+html_baseurl = 'https://napari.org/stable/'
 
 # Check version and set version_match which is used by the version switcher
 version_match = 'dev' if version == 'dev' else str(release)
