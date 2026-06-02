@@ -74,7 +74,7 @@ theme:
 :columns: 12 12 7 7
 
 ```{raw} html
-<figure>
+<figure class="homepage-video">
 
   <video width="100%" controls autoplay loop muted playsinline>
     <source src="_static/images/tribolium.webm" type="video/webm" />
