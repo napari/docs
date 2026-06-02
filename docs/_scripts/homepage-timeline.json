@@ -1,0 +1,675 @@
+{
+    "track_options": {
+        "ndisplay": [
+            "napari.viewer.Viewer",
+            "dims.ndisplay"
+        ],
+        "dims slider": [
+            "napari.viewer.Viewer",
+            "dims.point"
+        ],
+        "dims margins": [
+            "napari.viewer.Viewer",
+            "dims.thickness"
+        ],
+        "dims ": [
+            "napari.viewer.Viewer",
+            "dims.current_step"
+        ],
+        "view direction": [
+            "napari.viewer.Viewer",
+            "camera.angles"
+        ],
+        "zoom": [
+            "napari.viewer.Viewer",
+            "camera.zoom"
+        ],
+        "dims": [
+            "napari.viewer.Viewer",
+            "dims"
+        ],
+        "camera": [
+            "napari.viewer.Viewer",
+            "camera"
+        ],
+        "viewer": [
+            "napari.viewer.Viewer",
+            ""
+        ],
+        "tribolium embryo—visibility": [
+            "napari.layers.image.image.Image",
+            "visible"
+        ],
+        "tribolium embryo—opacity": [
+            "napari.layers.image.image.Image",
+            "opacity"
+        ],
+        "tribolium embryo—blending": [
+            "napari.layers.image.image.Image",
+            "blending"
+        ],
+        "tribolium embryo—transform": [
+            "napari.layers.image.image.Image",
+            "_transforms"
+        ],
+        "tribolium embryo—clipping planes": [
+            "napari.layers.image.image.Image",
+            "experimental_clipping_planes"
+        ]
+    },
+    "tracks": {
+        "ndisplay": {
+            "name": "ndisplay",
+            "keyframes": [
+                {
+                    "t": 0,
+                    "value": 2,
+                    "easing": "Linear"
+                },
+                {
+                    "t": 264,
+                    "value": 2,
+                    "easing": "Step"
+                },
+                {
+                    "t": 269,
+                    "value": 3,
+                    "easing": "Step"
+                }
+            ]
+        },
+        "dims slider": {
+            "name": "dims slider",
+            "keyframes": [
+                {
+                    "t": 0,
+                    "value": [
+                        2610.0,
+                        182.04,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 40,
+                    "value": [
+                        2610.0,
+                        346.32,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 100,
+                    "value": [
+                        2610.0,
+                        42.92,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 140,
+                    "value": [
+                        2610.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 160,
+                    "value": [
+                        0.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 213,
+                    "value": [
+                        5310.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 261,
+                    "value": [
+                        540.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Step"
+                },
+                {
+                    "t": 269,
+                    "value": [
+                        540.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 300,
+                    "value": [
+                        540.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 423,
+                    "value": [
+                        540.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 444,
+                    "value": [
+                        0.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 493,
+                    "value": [
+                        5310.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 558,
+                    "value": [
+                        0.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 619,
+                    "value": [
+                        5310.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                },
+                {
+                    "t": 689,
+                    "value": [
+                        5310.0,
+                        187.96,
+                        344.84,
+                        177.6
+                    ],
+                    "easing": "Linear"
+                }
+            ]
+        },
+        "camera": {
+            "name": "camera",
+            "keyframes": [
+                {
+                    "t": 0,
+                    "value": {
+                        "center": [
+                            0.0,
+                            344.84,
+                            177.6
+                        ],
+                        "zoom": 1.2178077435036752,
+                        "angles": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 157,
+                    "value": {
+                        "center": [
+                            0.0,
+                            344.84,
+                            177.6
+                        ],
+                        "zoom": 4.011069370796491,
+                        "angles": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 197,
+                    "value": {
+                        "center": [
+                            0.0,
+                            112.73231726491603,
+                            154.91278289055552
+                        ],
+                        "zoom": 4.011069370796491,
+                        "angles": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 226,
+                    "value": {
+                        "center": [
+                            0.0,
+                            112.73231726491603,
+                            154.91278289055552
+                        ],
+                        "zoom": 4.011069370796491,
+                        "angles": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 269,
+                    "value": {
+                        "center": [
+                            182.04,
+                            344.84,
+                            177.6
+                        ],
+                        "zoom": 1.2480467619653914,
+                        "angles": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 300,
+                    "value": {
+                        "center": [
+                            182.04,
+                            344.84,
+                            177.6
+                        ],
+                        "zoom": 1.2480467619653914,
+                        "angles": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 313,
+                    "value": {
+                        "center": [
+                            182.04,
+                            344.84,
+                            177.6
+                        ],
+                        "zoom": 1.2480467619653914,
+                        "angles": [
+                            -26.254795090067862,
+                            -45.532607382444645,
+                            56.95983208238341
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 345,
+                    "value": {
+                        "center": [
+                            182.04,
+                            344.84,
+                            177.6
+                        ],
+                        "zoom": 1.2480467619653914,
+                        "angles": [
+                            -82.7972743636919,
+                            -23.2218013801228,
+                            142.75714179006798
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 373,
+                    "value": {
+                        "center": [
+                            182.04,
+                            344.84,
+                            177.6
+                        ],
+                        "zoom": 1.2480467619653914,
+                        "angles": [
+                            -85.7613694984574,
+                            9.384908413396749,
+                            199.3293809644101
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 397,
+                    "value": {
+                        "center": [
+                            182.04,
+                            344.84,
+                            177.6
+                        ],
+                        "zoom": 1.2480467619653914,
+                        "angles": [
+                            -71.16159482885489,
+                            6.212141449408522,
+                            267.1416990554137
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 425,
+                    "value": {
+                        "center": [
+                            182.04,
+                            344.84,
+                            177.6
+                        ],
+                        "zoom": 1.2480467619653914,
+                        "angles": [
+                            -113.06532663316582,
+                            6.212141449408522,
+                            267.1416990554137
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 517,
+                    "value": {
+                        "center": [
+                            182.04,
+                            344.84,
+                            177.6
+                        ],
+                        "zoom": 1.5101365819781227,
+                        "angles": [
+                            -113.06532663316582,
+                            6.212141449408522,
+                            267.1416990554137
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 555,
+                    "value": {
+                        "center": [
+                            192.20346658669777,
+                            328.84312214166795,
+                            171.43709277311623
+                        ],
+                        "zoom": 1.4931971206783132,
+                        "angles": [
+                            83.12106627274555,
+                            16.323725517993353,
+                            260.5684861410071
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 608,
+                    "value": {
+                        "center": [
+                            192.20346658669777,
+                            328.84312214166795,
+                            171.43709277311623
+                        ],
+                        "zoom": 1.5872873286369364,
+                        "angles": [
+                            120.2068292803427,
+                            7.351420177336424,
+                            245.5740594593759
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                },
+                {
+                    "t": 650,
+                    "value": {
+                        "center": [
+                            244.2944473308524,
+                            250.58387990318803,
+                            151.7130848769639
+                        ],
+                        "zoom": 2.0313151129215803,
+                        "angles": [
+                            149.41047140281685,
+                            18.759118290379224,
+                            245.5169703370534
+                        ],
+                        "perspective": 0.0,
+                        "mouse_pan": true,
+                        "mouse_zoom": true,
+                        "orientation": [
+                            "towards",
+                            "down",
+                            "right"
+                        ]
+                    },
+                    "easing": "Linear"
+                }
+            ]
+        },
+        "zoom": {
+            "name": "zoom",
+            "keyframes": [
+                {
+                    "t": 0,
+                    "value": 0.7092424330111696,
+                    "easing": "Linear"
+                },
+                {
+                    "t": 147,
+                    "value": 0.7092424330111696,
+                    "easing": "Linear"
+                },
+                {
+                    "t": 209,
+                    "value": 2.5422477252738793,
+                    "easing": "Linear"
+                },
+                {
+                    "t": 234,
+                    "value": 2.476783250550211,
+                    "easing": "Linear"
+                },
+                {
+                    "t": 264,
+                    "value": 0.7092424330111696,
+                    "easing": "Linear"
+                },
+                {
+                    "t": 335,
+                    "value": 0.7092424330111696,
+                    "easing": "Linear"
+                },
+                {
+                    "t": 411,
+                    "value": 1.2087758122532066,
+                    "easing": "Linear"
+                },
+                {
+                    "t": 520,
+                    "value": 1.2087758122532066,
+                    "easing": "Linear"
+                },
+                {
+                    "t": 572,
+                    "value": 1.442988480579033,
+                    "easing": "Linear"
+                },
+                {
+                    "t": 659,
+                    "value": 2.1126794344157624,
+                    "easing": "Linear"
+                }
+            ]
+        }
+    },
+    "current_frame": 674,
+    "play_mode": 1,
+    "play_fps": 30
+}
