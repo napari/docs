@@ -122,7 +122,17 @@ QT_QPA_PLATFORM=xcb
 PYOPENGL_PLATFORM=glx
 ```
 
-napari sets these variables automatically at startup, so launching via
+```{important}
+This workaround needs XWayland (the X11 compatibility layer) installed and running,
+since `xcb` connects to an X server rather than to Wayland directly.
+Most desktop environments ship and start it by default; 
+if yours doesn't, forcing `xcb` fails with `Could not load the Qt
+platform plugin "xcb"`. Install it via your package manager (e.g. `xwayland` on
+Debian/Ubuntu, `xorg-xwayland` on Arch) and start a new session.
+```
+
+When napari detects an Nvidia proprietary driver *and* a reachable X server,
+it sets the aforementioned environment variables automatically at startup, so launching via
 the `napari` command or a Python script usually works without any action on your part.
 napari only sets these variables _for the current session_ if you haven't, so your own values are always respected.
 
