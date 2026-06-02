@@ -133,6 +133,10 @@ def render(args: argparse.Namespace) -> None:
     output_path = args.output.expanduser().resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
+    viewer.screenshot(
+        path=output_path.with_suffix('.png'),
+        canvas_only=RENDER_CANVAS_ONLY,
+    )
     widget.save_movie(
         filename=output_path,
         fps=RENDER_FPS,
