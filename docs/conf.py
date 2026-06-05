@@ -9,19 +9,28 @@ individual extension documentation for more information on specific settings.
 
 # -- Imports --------------------------------------------------------------
 
-import logging
+import ast
 import json
+import logging
 import os
 import re
+import tomllib
 from datetime import datetime
+from functools import cache
 from importlib import import_module
-from importlib.metadata import distribution, version as metadata_version
+from importlib.metadata import (
+    distribution,
+    packages_distributions,
+    version as metadata_version,
+)
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
 import napari
 from jinja2.filters import FILTERS
 from napari._version import __version_tuple__
+from packaging.requirements import Requirement
+from packaging.utils import canonicalize_name
 from packaging.version import parse as parse_version
 from pygments.lexers.configs import TOMLLexer
 from sphinx.highlighting import lexers
@@ -397,13 +406,156 @@ def napari_scraper(block, block_vars, gallery_conf):
     return scrapers.figure_rst(img_paths, gallery_conf['src_dir'])
 
 
+GALLERY_SOURCE_PATH_RE = re.compile(r'\.\. "(.+\.py)"\n')
 GALLERY_METADATA_END_RE = re.compile(
     r'^\.\. GENERATED FROM PYTHON SOURCE LINES \d+-\d+\s*$', re.MULTILINE
 )
+NAPARI_PYPROJECT = Path(__file__).resolve().parents[2] / 'napari' / 'pyproject.toml'
+PLUGIN_MANAGER_ADDITIONAL_PACKAGES_GUIDE = (
+    'https://napari.org/napari-plugin-manager/#installing-via-direct-entry'
+)
+NAPARI_INSTALL_GUIDE = '../getting_started/installation'
+GALLERY_IGNORED_PACKAGES = frozenset({'pooch'})
 
 
-def add_gallery_download_buttons(app, docname, source):
-    """Add compact download links near the top of generated gallery examples.
+def _marker_matches(requirement: Requirement) -> bool:
+    return requirement.marker is None or requirement.marker.evaluate()
+
+
+@cache
+def _load_napari_pyproject() -> dict:
+    with NAPARI_PYPROJECT.open('rb') as file:
+        return tomllib.load(file)
+
+
+@cache
+def _get_napari_declared_packages(extra: str | None = None) -> frozenset[str]:
+    project = _load_napari_pyproject()['project']
+    packages = {
+        canonicalize_name(requirement.name)
+        for requirement in map(Requirement, project['dependencies'])
+        if _marker_matches(requirement)
+    }
+    if extra is None:
+        return frozenset(packages)
+
+    pending = [extra]
+    seen_extras = set()
+    optional_dependencies = project['optional-dependencies']
+    while pending:
+        current_extra = pending.pop()
+        if current_extra in seen_extras:
+            continue
+        seen_extras.add(current_extra)
+        for requirement in map(Requirement, optional_dependencies[current_extra]):
+            if not _marker_matches(requirement):
+                continue
+            if canonicalize_name(requirement.name) == 'napari' and requirement.extras:
+                pending.extend(sorted(requirement.extras))
+                continue
+            packages.add(canonicalize_name(requirement.name))
+
+    return frozenset(packages)
+
+
+@cache
+def _get_gallery_extra_packages() -> frozenset[str]:
+    optional_dependencies = _load_napari_pyproject()['project']['optional-dependencies']
+    gallery_packages = {
+        canonicalize_name(requirement.name)
+        for requirement in map(Requirement, optional_dependencies['gallery'])
+        if _marker_matches(requirement)
+    }
+    return frozenset(
+        sorted(
+            gallery_packages
+            - _get_napari_declared_packages('all')
+            - GALLERY_IGNORED_PACKAGES
+        )
+    )
+
+
+@cache
+def _get_gallery_extra_import_roots() -> dict[str, str]:
+    gallery_packages = _get_gallery_extra_packages()
+    import_roots: dict[str, str] = {}
+    for module_name, distributions in packages_distributions().items():
+        for dist_name in distributions:
+            package_name = canonicalize_name(dist_name)
+            if package_name in gallery_packages:
+                import_roots[module_name] = package_name
+                break
+    return import_roots
+
+
+def _get_example_extra_deps(content: str, srcdir: str) -> list[str]:
+    path_match = GALLERY_SOURCE_PATH_RE.search(content)
+    if path_match is None:
+        return []
+
+    py_path = Path(path_match.group(1))
+    if not py_path.is_absolute():
+        py_path = Path(srcdir) / py_path
+    if not py_path.exists():
+        return []
+
+    try:
+        tree = ast.parse(py_path.read_text(encoding='utf-8', errors='ignore'))
+    except SyntaxError:
+        return []
+
+    import_roots = _get_gallery_extra_import_roots()
+    extra_deps: list[str] = []
+    seen: set[str] = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            roots = {alias.name.split('.')[0] for alias in node.names}
+        elif isinstance(node, ast.ImportFrom) and node.module:
+            roots = {node.module.split('.')[0]}
+        else:
+            continue
+
+        for root in roots:
+            package_name = import_roots.get(root)
+            if package_name and package_name not in seen:
+                seen.add(package_name)
+                extra_deps.append(package_name)
+
+    return extra_deps
+
+
+def _gallery_download_block(example_name: str) -> str:
+    return f"""
+.. only:: html
+
+    .. container:: napari-gallery-downloads
+
+        .. container:: sphx-glr-download
+
+            :download:`Python (.py) <{example_name}.py>`
+
+        .. container:: sphx-glr-download
+
+            :download:`Notebook (.ipynb) <{example_name}.ipynb>`
+"""
+
+
+def _gallery_extra_deps_note(extra_deps: list[str]) -> str:
+    deps = ', '.join(f'``{package}``' for package in extra_deps)
+    return f"""
+.. admonition:: Extra packages required
+
+   This example requires additional packages that are not available in typical
+   napari installations.
+   For this example to work in :doc:`recommended napari installations <{NAPARI_INSTALL_GUIDE}>`,
+   you will need to install additional packages: {deps}.
+   See the `plugin manager guide <{PLUGIN_MANAGER_ADDITIONAL_PACKAGES_GUIDE}>`_
+   for ways to install additional packages from within napari.
+"""
+
+
+def augment_gallery_example(app, docname, source):
+    """Add compact download links and admontion before script.
 
     Sphinx-Gallery emits the example title first, followed by the short
     description and tags, and only then the ``GENERATED FROM PYTHON SOURCE``
@@ -419,27 +571,18 @@ def add_gallery_download_buttons(app, docname, source):
     if 'THIS FILE WAS AUTOMATICALLY GENERATED BY SPHINX-GALLERY.' not in content:
         return
 
-    example_name = Path(docname).name
     metadata_end_match = GALLERY_METADATA_END_RE.search(content)
     if metadata_end_match is None:
         return
 
-    download_block = f"""
-.. only:: html
+    blocks = [_gallery_download_block(Path(docname).name)]
+    extra_deps = _get_example_extra_deps(content, app.srcdir)
+    if extra_deps:
+        blocks.append(_gallery_extra_deps_note(extra_deps))
 
-    .. container:: napari-gallery-downloads
-
-        .. container:: sphx-glr-download
-
-            :download:`Python (.py) <{example_name}.py>`
-
-        .. container:: sphx-glr-download
-
-            :download:`Notebook (.ipynb) <{example_name}.ipynb>`
-"""
     source[0] = (
         content[: metadata_end_match.start()]
-        + download_block
+        + '\n'.join(blocks)
         + content[metadata_end_match.start() :]
     )
 
@@ -588,7 +731,7 @@ def setup(app):
     """
     app.registry.source_suffix.pop('.ipynb', None)
     app.connect('source-read', add_google_calendar_secrets)
-    app.connect('source-read', add_gallery_download_buttons)
+    app.connect('source-read', augment_gallery_example)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
     app.connect('autodoc-process-docstring', qt_docstrings)
 
