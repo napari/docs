@@ -155,6 +155,7 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Document automatic Wayland/Nvidia workaround in troubleshooting ([docs#1033](https://github.com/napari/docs/pull/1033))
 - Fix: Opaque, instead of translucent, sticky version banner ([docs#1035](https://github.com/napari/docs/pull/1035))
 - Update homepage video with reproducible napari-animation script ([docs#1036](https://github.com/napari/docs/pull/1036))
+- Update release notes to 0.7.1rc3 ([docs#1041](https://github.com/napari/docs/pull/1041))
 - Example: Enhance theme sample widget with theme colors, widgets ([#8662](https://github.com/napari/napari/pull/8662))
 - Add note to Camera.angles docstring about quaternion normalisation ([#8864](https://github.com/napari/napari/pull/8864))
 - Docs: Bump lower version of napari-sphinx-theme ([#8886](https://github.com/napari/napari/pull/8886))
