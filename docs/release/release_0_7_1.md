@@ -1,7 +1,7 @@
 # napari 0.7.1
-⚠️ *Note: these release notes are still in draft while 0.7.1rc1 is in prerelease testing.* ⚠️
+⚠️ *Note: these release notes are still in draft while 0.7.1rc3 is in prerelease testing.* ⚠️
 
-*Wed, May 27, 2026*
+*Sun, Jun 07, 2026*
 
 We're happy to announce the release of napari 0.7.1!
 napari is a fast, interactive, multi-dimensional image viewer for Python.
@@ -48,7 +48,9 @@ The points allows coloring points based of their feature values; in napari 0.7.1
 ## Scalebar with units 
 
 In previous versions of napari, if you added A scale bar using **View > Scale Bar > Scale Bar visible**, it was shown with no units. In napari 0.7.1 we now
-set default unit to `pixel` in [#8900](https://github.com/napari/napari/pull/8900) and also add calculation of units for scale bar based on currently added layers in [#8907](https://github.com/napari/napari/pull/8907), if they have units set.
+set default unit to `pixel` in [#8900](https://github.com/napari/napari/pull/8900) and also add calculation of units for scale bar based on currently added layers in [#8907](https://github.com/napari/napari/pull/8907) and [#9007](https://github.com/napari/napari/pull/9007), if they have units set.
+Documentation was also updated to include a guide about unit and scale aware rendering in [#1032](https://github.com/napari/docs/pull/1032)
+
 
 ![Scale bar with units](https://github.com/user-attachments/assets/b25a1a53-b9a0-46f1-b88c-c2625e4287a8)
 
@@ -72,8 +74,10 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Do not connect to children events of EventedDict items if there is no callback ([#8673](https://github.com/napari/napari/pull/8673))
 - ENH: For multiscale 2d: store materialized thumbnail_level ([#8715](https://github.com/napari/napari/pull/8715))
 - UX: Add Layer.locked property to protect layers from accidental deletion ([#8736](https://github.com/napari/napari/pull/8736))
+- Canvas based font size ([#8770](https://github.com/napari/napari/pull/8770))
 - Enh, minor, builtins: use urllib (and defer) instead of requests if reading a remote script path ([#8785](https://github.com/napari/napari/pull/8785))
 - Perf: Defer importing scipy.spatial ([#8789](https://github.com/napari/napari/pull/8789))
+- Revert the switch from Welcome widget to Welcome overlay from #8117 ([#8793](https://github.com/napari/napari/pull/8793))
 - Add handler for show message when napari fails to import v2 ([#8803](https://github.com/napari/napari/pull/8803))
 - Update text in mac installer to improve UX ([#8806](https://github.com/napari/napari/pull/8806))
 - Fix: Use Python's tokenize script decoding for builtin reader ([#8838](https://github.com/napari/napari/pull/8838))
@@ -86,14 +90,18 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Actually use theme type from npe contrib ([#8915](https://github.com/napari/napari/pull/8915))
 - Add multiscale level lock for scalar field layers ([#8917](https://github.com/napari/napari/pull/8917))
 - Do not add a new colormap if one already exists in napari ([#8924](https://github.com/napari/napari/pull/8924))
+- Adjust pt argument of font size increase/decrease based on platform ([#8950](https://github.com/napari/napari/pull/8950))
 - Improve sizing of dims ordering popup ([#8952](https://github.com/napari/napari/pull/8952))
 - typing: add type hints to `napari/utils/shortcuts.py` ([#8983](https://github.com/napari/napari/pull/8983))
+- Use QSS instead of hard-coding style (including font) for the notification action button ([#9001](https://github.com/napari/napari/pull/9001))
+- Use actual font-size in the keybind-clash popup ([#9002](https://github.com/napari/napari/pull/9002))
 
 ## Performance
 
 - ENH: For multiscale 2d: store materialized thumbnail_level ([#8715](https://github.com/napari/napari/pull/8715))
 - Enh, minor, builtins: use urllib (and defer) instead of requests if reading a remote script path ([#8785](https://github.com/napari/napari/pull/8785))
 - Perf: Defer importing scipy.spatial ([#8789](https://github.com/napari/napari/pull/8789))
+- Revert the switch from Welcome widget to Welcome overlay from #8117 ([#8793](https://github.com/napari/napari/pull/8793))
 - Improve dask check to support more dask-backed array types ([#8896](https://github.com/napari/napari/pull/8896))
 - Use pep562 to defer AVAILABLE_LABELS_COLORMAPS which imports skimage.color -> scipy.linalg ([#8903](https://github.com/napari/napari/pull/8903))
 
@@ -109,6 +117,7 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Wrap Labels multiscale data in MultiScaleData object in setter ([#8922](https://github.com/napari/napari/pull/8922))
 - Fix Labels show_selected_label being silently dropped after color shuffle ([#8947](https://github.com/napari/napari/pull/8947))
 - Fix Volume visual crash when adding invisible scalar field in 3D ([#8968](https://github.com/napari/napari/pull/8968))
+- Auto-apply XCB/GLX workaround on Linux+Wayland at startup ([#9009](https://github.com/napari/napari/pull/9009))
 
 ## Documentation
 
@@ -135,10 +144,17 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Add Carlos to Core Team page ([docs#1012](https://github.com/napari/docs/pull/1012))
 - Update release notes for 0.7.1 ([docs#1019](https://github.com/napari/docs/pull/1019))
 - Add Curtis and Brian to SC members ([docs#1020](https://github.com/napari/docs/pull/1020))
+- Move download links to top of examples ([docs#1021](https://github.com/napari/docs/pull/1021))
 - Add Windows bundle signing and reputation info ([docs#1022](https://github.com/napari/docs/pull/1022))
 - Fix: `pyqt6` for conda install instructions ([docs#1023](https://github.com/napari/docs/pull/1023))
+- Add admonition to gallery examples that require additional packages ([docs#1024](https://github.com/napari/docs/pull/1024))
 - Document layer locking in napari GUI and API ([docs#1025](https://github.com/napari/docs/pull/1025))
 - Clean up button css for homepage and gallery ([docs#1026](https://github.com/napari/docs/pull/1026))
+- Add baseurl to favor stable versions in search engines ([docs#1029](https://github.com/napari/docs/pull/1029))
+- Guide about unit and scale aware rendering ([docs#1032](https://github.com/napari/docs/pull/1032))
+- Document automatic Wayland/Nvidia workaround in troubleshooting ([docs#1033](https://github.com/napari/docs/pull/1033))
+- Fix: Opaque, instead of translucent, sticky version banner ([docs#1035](https://github.com/napari/docs/pull/1035))
+- Update homepage video with reproducible napari-animation script ([docs#1036](https://github.com/napari/docs/pull/1036))
 - Example: Enhance theme sample widget with theme colors, widgets ([#8662](https://github.com/napari/napari/pull/8662))
 - Add note to Camera.angles docstring about quaternion normalisation ([#8864](https://github.com/napari/napari/pull/8864))
 - Docs: Bump lower version of napari-sphinx-theme ([#8886](https://github.com/napari/napari/pull/8886))
@@ -157,7 +173,6 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Update workflows to python 3.14 ([#8666](https://github.com/napari/napari/pull/8666))
 - Improve typing in qt_dims_slider and clean local functions ([#8683](https://github.com/napari/napari/pull/8683))
 - Drop triangle from 3.14 docs dependencies ([#8703](https://github.com/napari/napari/pull/8703))
-- Use viewer-based caching for font manager ([#8761](https://github.com/napari/napari/pull/8761))
 - Enable `TC003` - typing-only-standard-library-import rule in ruff config ([#8791](https://github.com/napari/napari/pull/8791))
 - Solve "Could not resolve type hint for required parameter 'qt_viewer'." ([#8792](https://github.com/napari/napari/pull/8792))
 - Add app-model to mypy task dependencies and fix errors ([#8794](https://github.com/napari/napari/pull/8794))
@@ -208,6 +223,7 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Instead of checking if milestone is added, add the milestone on merge ([#8926](https://github.com/napari/napari/pull/8926))
 - Adapt tests that use zarr to work on zarr < 3 and zarr > 3.2.0 ([#8943](https://github.com/napari/napari/pull/8943))
 - Don't use random floats for image layer data in screenshot tests ([#8945](https://github.com/napari/napari/pull/8945))
+- Remove decreases of font_size from primary UI elements. ([#8948](https://github.com/napari/napari/pull/8948))
 - Update `coverage`, `fsspec`, `hypothesis`, `pydantic`, `pydantic-settings`, `tensorstore`, `tifffile`, `virtualenv` ([#8949](https://github.com/napari/napari/pull/8949))
 - [pre-commit.ci] pre-commit autoupdate ([#8951](https://github.com/napari/napari/pull/8951))
 - Fix auto milestone workflow ([#8954](https://github.com/napari/napari/pull/8954))
@@ -227,10 +243,12 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - [pre-commit.ci] pre-commit autoupdate ([#8988](https://github.com/napari/napari/pull/8988))
 - Bump vispy to 0.16.2 ([#8992](https://github.com/napari/napari/pull/8992))
 - Docs: Bump napari-sphinx-theme to use sticky banners ([#8997](https://github.com/napari/napari/pull/8997))
-- Deprecate scale_bar.unit ([#9007](https://github.com/napari/napari/pull/9007))
+- Update multiscale controls label by adding _on_order_changed function to qt controls ([#9006](https://github.com/napari/napari/pull/9006))
+- Update `coverage`, `hypothesis`, `ipython`, `platformdirs`, `tifffile`, `virtualenv` ([#9021](https://github.com/napari/napari/pull/9021))
+- [pre-commit.ci] pre-commit autoupdate ([#9022](https://github.com/napari/napari/pull/9022))
 
 
-## 22 authors added to this release (alphabetical)
+## 24 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -252,12 +270,14 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - [Margot Chazotte](https://github.com/napari/napari/commits?author=MargotCh) - @MargotCh
 - [Martin Weigert](https://github.com/napari/napari/commits?author=maweigert) - @maweigert
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
+- [Niko Sirmpilatze](https://github.com/napari/docs/commits?author=niksirbi) - @niksirbi +
 - [Peter Newstein](https://github.com/napari/napari/commits?author=pnewstein) - @pnewstein +
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wulin Teo](https://github.com/napari/napari/commits?author=wulinteousa2-hash) - @wulinteousa2-hash +
+- [Yann Pellegrini](https://github.com/napari/docs/commits?author=Yann-P) - @Yann-P +
 
-## 22 reviewers added to this release (alphabetical)
+## 23 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -279,7 +299,8 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - [Lucien Hinderling](https://github.com/napari/napari/commits?author=hinderling) - @hinderling +
 - [Margot Chazotte](https://github.com/napari/napari/commits?author=MargotCh) - @MargotCh
 - [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
+- [Niko Sirmpilatze](https://github.com/napari/docs/commits?author=niksirbi) - @niksirbi +
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wulin Teo](https://github.com/napari/napari/commits?author=wulinteousa2-hash) - @wulinteousa2-hash +
-- [Yann Pellegrini](https://github.com/napari/docs/commits?author=Yann-P) - @Yann-P
+- [Yann Pellegrini](https://github.com/napari/docs/commits?author=Yann-P) - @Yann-P +
