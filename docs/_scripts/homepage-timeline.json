@@ -64,7 +64,7 @@
                 {
                     "t": 0,
                     "value": 2,
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 264,
@@ -89,7 +89,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 40,
@@ -99,7 +99,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 100,
@@ -109,7 +109,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 140,
@@ -119,7 +119,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 160,
@@ -129,7 +129,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 213,
@@ -139,7 +139,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 261,
@@ -159,7 +159,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 300,
@@ -169,7 +169,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 423,
@@ -179,7 +179,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 444,
@@ -189,7 +189,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 493,
@@ -199,7 +199,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 558,
@@ -209,7 +209,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 619,
@@ -219,7 +219,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 689,
@@ -229,7 +229,7 @@
                         344.84,
                         177.6
                     ],
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 }
             ]
         },
@@ -259,7 +259,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 157,
@@ -284,7 +284,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 197,
@@ -309,7 +309,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 226,
@@ -334,7 +334,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 269,
@@ -359,7 +359,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 300,
@@ -384,7 +384,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 313,
@@ -409,7 +409,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 345,
@@ -434,7 +434,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 373,
@@ -459,7 +459,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 397,
@@ -484,7 +484,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 425,
@@ -509,7 +509,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 517,
@@ -534,7 +534,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 555,
@@ -559,7 +559,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 608,
@@ -584,7 +584,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 650,
@@ -609,7 +609,7 @@
                             "right"
                         ]
                     },
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 }
             ]
         },
@@ -619,52 +619,52 @@
                 {
                     "t": 0,
                     "value": 0.7092424330111696,
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 147,
                     "value": 0.7092424330111696,
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 209,
                     "value": 2.5422477252738793,
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 234,
                     "value": 2.476783250550211,
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 264,
                     "value": 0.7092424330111696,
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 335,
                     "value": 0.7092424330111696,
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 411,
                     "value": 1.2087758122532066,
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 520,
                     "value": 1.2087758122532066,
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 572,
                     "value": 1.442988480579033,
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 },
                 {
                     "t": 659,
                     "value": 2.1126794344157624,
-                    "easing": "Linear"
+                    "easing": "Quadratic"
                 }
             ]
         }
