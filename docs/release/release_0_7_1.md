@@ -42,7 +42,7 @@ Thanks to [#8917](https://github.com/napari/napari/pull/8917), users can now [se
 
 The points allows coloring points based of their feature values; in napari 0.7.1 we added support for colorbars ([#8624](https://github.com/napari/napari/pull/8624)), so you can now easily see the mapping between feature values and colors, just like the colorbars for image colormapping. This is especially useful when you have a large number of points and want to quickly understand the distribution of feature values.
 
-<img width="1019" height="783" alt="napari_colorbar" src="https://github.com/user-attachments/assets/1522aa7c-3520-4e41-85e6-99e9a91c47ee" />
+<img width="1019" height="783" alt="Example of colorbar for points layer" src="https://github.com/user-attachments/assets/1522aa7c-3520-4e41-85e6-99e9a91c47ee" />
 
 ## Scalebar with units 
 
@@ -65,13 +65,13 @@ In the future we plan to expand this feature to prevent not only deletion but al
 ## New Features
 
 - Add points layer face and border colorbar ([#8624](https://github.com/napari/napari/pull/8624))
+- UX: Add Layer.locked property to protect layers from accidental deletion ([#8736](https://github.com/napari/napari/pull/8736))
 
 ## Improvements
 
 - Example: Enhance theme sample widget with theme colors, widgets ([#8662](https://github.com/napari/napari/pull/8662))
 - Do not connect to children events of EventedDict items if there is no callback ([#8673](https://github.com/napari/napari/pull/8673))
 - ENH: For multiscale 2d: store materialized thumbnail_level ([#8715](https://github.com/napari/napari/pull/8715))
-- UX: Add Layer.locked property to protect layers from accidental deletion ([#8736](https://github.com/napari/napari/pull/8736))
 - Canvas based font size ([#8770](https://github.com/napari/napari/pull/8770))
 - Enh, minor, builtins: use urllib (and defer) instead of requests if reading a remote script path ([#8785](https://github.com/napari/napari/pull/8785))
 - Perf: Defer importing scipy.spatial ([#8789](https://github.com/napari/napari/pull/8789))
