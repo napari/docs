@@ -119,6 +119,7 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - Fix Volume visual crash when adding invisible scalar field in 3D ([#8968](https://github.com/napari/napari/pull/8968))
 - Auto-apply XCB/GLX workaround on Linux+Wayland at startup ([#9009](https://github.com/napari/napari/pull/9009))
 - Fix update of Shapes._value when remove shape ([#9041](https://github.com/napari/napari/pull/9041))
+- Set `Shapes._value`to `None, None` on delete of shape ([#9044](https://github.com/napari/napari/pull/9044))
 
 ## Build Tools
 
@@ -254,6 +255,7 @@ In the future we plan to expand this feature to prevent not only deletion but al
 - [pre-commit.ci] pre-commit autoupdate ([#9022](https://github.com/napari/napari/pull/9022))
 - Block pydantic==2.14.0a1 in `--pre` tests ([#9023](https://github.com/napari/napari/pull/9023))
 - ci(dependabot): bump the actions group with 6 updates ([#9024](https://github.com/napari/napari/pull/9024))
+- Mnt: Block qt6 6.11.0, 6.11.1 due to dock widget and resizing bugs ([#9052](https://github.com/napari/napari/pull/9052))
 
 
 ## 25 authors added to this release (alphabetical)
