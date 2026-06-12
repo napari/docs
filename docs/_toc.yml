@@ -54,6 +54,7 @@ subtrees:
         - entries:
           - file: guides/3D_interactivity
           - file: guides/axis-names
+          - file: guides/units
           - file: guides/handedness
           - file: guides/triangulation
           - file: guides/rendering
