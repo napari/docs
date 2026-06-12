@@ -17,7 +17,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 The napari 0.7.1 release includes many new features and improvements. Here are some of the highlights:
 
-## Signed Windows bundle
+### Signed Windows bundle
 
 Starting with the napari 0.7.1 release, our bundle on Windows is now [signed](https://github.com/napari/packaging/pull/387) with a NumFOCUS certificate, like our macOS bundle has been. This means that you should be able to run napari without any warnings about the application being from an unknown publisher. This is an important step forward for our Windows users, as it enhances security and trust in our application, especially in managed IT environments where unsigned applications may be blocked by default.
 
@@ -26,7 +26,7 @@ The certificate is issued for the NumFOCUS foundation, which supports napari and
 If you encounter any issues related to this change, please let us know!
 
 
-## Selection of the rendered level for multiscale layers
+### Selection of the rendered level for multiscale layers
 
 Prior to napari 0.7.1, when rendering a multiscale layer: 
 
@@ -38,13 +38,13 @@ Thanks to [#8917](https://github.com/napari/napari/pull/8917), users can now [se
 ![The resolution dropdown in the layer controls allows the user to select different levels of a multiscale image.](https://github.com/user-attachments/assets/862e7512-0309-429c-b155-a9c03acf2db6)
 
 
-## Colorbars for points layer
+### Colorbars for points layer
 
 The points allows coloring points based of their feature values; in napari 0.7.1 we added support for colorbars ([#8624](https://github.com/napari/napari/pull/8624)), so you can now easily see the mapping between feature values and colors, just like the colorbars for image colormapping. This is especially useful when you have a large number of points and want to quickly understand the distribution of feature values.
 
 <img width="1019" height="783" alt="Example of colorbar for points layer" src="https://github.com/user-attachments/assets/1522aa7c-3520-4e41-85e6-99e9a91c47ee" />
 
-## Scalebar with units 
+### Scalebar with units
 
 In previous versions of napari, if you added a scale bar using **View > Scale Bar > Scale Bar visible**, it was shown with no units. In napari 0.7.1 we now
 set default unit to `pixel` in [#8900](https://github.com/napari/napari/pull/8900) and also add calculation of units for scale bar based on currently added layers in [#8907](https://github.com/napari/napari/pull/8907) and [#9007](https://github.com/napari/napari/pull/9007), if they have units set and are logically consistent across layers.
@@ -53,7 +53,7 @@ We've also [added a guide about unit and scale aware rendering](https://napari.o
 
 ![Scale bar with units](https://github.com/user-attachments/assets/b25a1a53-b9a0-46f1-b88c-c2625e4287a8)
 
-## Lock layer to prevent accidental deletions
+### Lock layer to prevent accidental deletions
 
 In [#8736](https://github.com/napari/napari/pull/8736) we added the initial implementation for a [lock mechanism for layers](https://napari.org/stable/getting_started/layers.html#layer-locking). Now, when a layer is locked, it cannot be accidentally deleted or destructively modified. This is especially useful when you have a complex project with many layers and want to prevent accidental changes to important layers. Note: the layer controls are not affected by the lock at this time.
 In the future we plan to expand this feature to prevent not only deletion but also other modifications.
