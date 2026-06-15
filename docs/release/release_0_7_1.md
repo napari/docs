@@ -42,7 +42,7 @@ Thanks to [#8917](https://github.com/napari/napari/pull/8917), users can now [se
 
 The points allows coloring points based of their feature values; in napari 0.7.1 we added support for colorbars ([#8624](https://github.com/napari/napari/pull/8624)), so you can now easily see the mapping between feature values and colors, just like the colorbars for image colormapping. This is especially useful when you have a large number of points and want to quickly understand the distribution of feature values.
 
-<img width="1019" height="783" alt="Example of colorbar for points layer" src="https://github.com/user-attachments/assets/1522aa7c-3520-4e41-85e6-99e9a91c47ee" />
+![Example of colorbar for points layer](https://github.com/user-attachments/assets/1522aa7c-3520-4e41-85e6-99e9a91c47ee)
 
 ### Scalebar with units
 
