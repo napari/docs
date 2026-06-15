@@ -1,6 +1,6 @@
 # napari 0.7.1
 
-*Mon, Jun 15, 2026*
+*Tue, Jun 16, 2026*
 
 We're happy to announce the release of napari 0.7.1!
 napari is a fast, interactive, multi-dimensional image viewer for Python.
