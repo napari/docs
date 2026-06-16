@@ -1,12 +1,14 @@
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: "v5.0.0"
+  rev: "v6.0.0"
   hooks:
+    - id: fix-byte-order-marker
     - id: check-added-large-files
     - id: check-case-conflict
     - id: check-merge-conflict
     - id: check-symlinks
     - id: check-yaml
+    - id: check-json
     - id: debug-statements
     - id: end-of-file-fixer
     - id: mixed-line-ending
@@ -15,12 +17,12 @@ repos:
 
 - repo: https://github.com/codespell-project/codespell
   # Configuration for codespell is in .codespellrc
-  rev: v2.4.0
+  rev: v2.4.2
   hooks:
   - id: codespell
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.12.3
+  rev: v0.15.17
   hooks:
     # Run the linter.
     - id: ruff-check
@@ -30,12 +32,12 @@ repos:
     - id: ruff-format
       types_or: [ python, pyi ]
 
-- repo: https://github.com/executablebooks/mdformat
-  rev: 0.7.22
-  hooks:
-    - id: mdformat
-      additional_dependencies: [mdformat-myst, mdformat-ruff]
-      files: (docs/.)
+#- repo: https://github.com/executablebooks/mdformat
+#  rev: 1.0.0
+#  hooks:
+#    - id: mdformat
+#      additional_dependencies: [mdformat-myst, mdformat-ruff]
+#      files: (docs/.)
 
 default_language_version:
     python: python3.13

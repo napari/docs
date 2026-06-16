@@ -17,7 +17,7 @@ To download the Zarr locally (which offers much easier animation development), u
 
 The author mode opens napari with the dataset and timeline widget popped out.
 If a timelime JSON already exists, it will be loaded.
-Note that some things, like colormap and contrast_limits, were not settable in the 
+Note that some things, like colormap and contrast_limits, were not settable in the
 napari-animation version used to develop this timeline. So, there is the ability
 to set various constants at the top to modify the script easier.
 (The napari-animation branch used to develop this contains both Windows encoding fixes
