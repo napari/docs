@@ -56,13 +56,8 @@ ON_GITHUB_PR = (
 
 ON_CIRCLECI = env_truthy("CIRCLECI")
 
-ON_CIRCLECI_PR = ON_CIRCLECI and bool(
-    os.environ.get("CIRCLE_PULL_REQUEST")
-    or os.environ.get("CIRCLE_PULL_REQUESTS")
-    or os.environ.get("CIRCLE_PR_NUMBER")
-)
 
-ON_PR_CI = ON_GITHUB_PR or ON_CIRCLECI_PR
+ON_PR_CI = ON_GITHUB_PR or ON_CIRCLECI
 
 # -- Version information ---------------------------------------------------
 
