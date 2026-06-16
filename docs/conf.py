@@ -41,6 +41,29 @@ import pooch.core
 
 from napari.utils._examples_data import napari_choose_downloader
 
+# -- Detect build on CI PR ----------------------------------------------------
+
+def env_truthy(name: str) -> bool:
+
+    return os.environ.get(name, "").lower() in {"1", "true", "yes"}
+
+ON_GITHUB_ACTIONS = env_truthy("GITHUB_ACTIONS")
+
+ON_GITHUB_PR = (
+    ON_GITHUB_ACTIONS
+    and os.environ.get("GITHUB_EVENT_NAME") == "pull_request"
+)
+
+ON_CIRCLECI = env_truthy("CIRCLECI")
+
+ON_CIRCLECI_PR = ON_CIRCLECI and bool(
+    os.environ.get("CIRCLE_PULL_REQUEST")
+    or os.environ.get("CIRCLE_PULL_REQUESTS")
+    or os.environ.get("CIRCLE_PR_NUMBER")
+)
+
+ON_PR_CI = ON_GITHUB_PR or ON_CIRCLECI_PR
+
 # -- Version information ---------------------------------------------------
 
 napari_version = parse_version(napari.__version__)
@@ -88,7 +111,10 @@ version_match = 'dev' if version == 'dev' else str(release)
 # can change this to match the local version i.e. "_static/version_switcher.json"
 # However, this must be the absolute URL for deployed versions. See
 # https://github.com/napari/napari.github.io/issues/427 for details.
-json_url = 'https://napari.org/dev/_static/version_switcher.json'
+if ON_PR_CI:
+    json_url = '_static/version_switcher.json'
+else:
+    json_url = 'https://napari.org/dev/_static/version_switcher.json'
 
 # Path to static files, images, favicons, logos, css, and extra templates
 html_static_path = ['_static']
