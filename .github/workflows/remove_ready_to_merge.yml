@@ -1,9 +1,11 @@
 name: Remove "ready to merge" label
 
 on:
-  pull_request_target:
-    types: [closed]
-  workflow_call:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "6 6 * * *" # every morning
 
 
 permissions:
@@ -12,4 +14,6 @@ permissions:
 jobs:
   remove_label:
     name: Remove ready to merge label
-    uses: napari/napari/.github/workflows/remove_ready_to_merge.yml@48fcd2f4351845419303b1d3a102dcb5ce6923ab # v0.7.0
+    uses: napari/shared-workflows/.github/workflows/remove_ready_to_merge.yml@main
+    with:
+      label_name+: "Full docs preview/ready to merge"
