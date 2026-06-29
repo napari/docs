@@ -1,4 +1,4 @@
-name: Remove "ready to merge" label
+name: Remove ready to merge label
 
 on:
   push:
