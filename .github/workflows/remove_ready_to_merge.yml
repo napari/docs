@@ -16,4 +16,4 @@ jobs:
     name: Remove ready to merge label
     uses: napari/shared-workflows/.github/workflows/remove_ready_to_merge.yml@main
     with:
-      label_name+: "Full docs preview/ready to merge"
+      label_name: "Full docs preview/ready to merge"
