@@ -235,7 +235,7 @@ PySide2 is no longer maintained, so we dropped support for it in napari 0.7.0. P
 Since napari 0.4.18, we store constraints files with information about each exact dependency version against which napari was tested.
 This could be useful if you need to install napari as a package from PyPI, and prevents creating environments where napari does not start or work properly.
 
-The constraints files are stored in the napari repository under `resources/constraints/constraints_py3.14.txt`. To find
+The constraints files are stored in the napari repository under `resources/constraints`. To find
 constraints for specific releases, go under the link `https://github.com/napari/napari/tree/{tag}/resources/constraints`
 replacing `{tag}` with the desired napari version.
 
