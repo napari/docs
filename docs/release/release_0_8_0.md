@@ -1,0 +1,129 @@
+# napari 0.8.0
+
+*Sun, Jul 05, 2026*
+
+We're happy to announce the release of napari 0.8.0!
+napari is a fast, interactive, multi-dimensional image viewer for Python.
+It's designed for browsing, annotating, and analyzing large multi-dimensional
+images. It's built on top of Qt (for the GUI), vispy (for performant GPU-based
+rendering), and the scientific Python stack (numpy, scipy).
+
+For more information, examples, and documentation, please visit our website,
+https://napari.org.
+
+napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this is a **Macro** release containing awesome new features, but may require dedication of some significant time when upgrading projects to use this version.
+
+## Highlights
+
+- Unify use of theme colors ([#8927](https://github.com/napari/napari/pull/8927))
+- Theme colors adjustments ([#9078](https://github.com/napari/napari/pull/9078))
+- Drop Python 3.10 and implement 3.11+ changes ([#9104](https://github.com/napari/napari/pull/9104))
+
+## Improvements
+
+- Add handler for show message when napari fails to import ([#8609](https://github.com/napari/napari/pull/8609))
+- UX: Add viewer mouse binding (alt) to the scroll wheel to scroll layers ([#8731](https://github.com/napari/napari/pull/8731))
+- Make tips more generally usable ([#8762](https://github.com/napari/napari/pull/8762))
+- Add handler for show message when napari fails to import v2 ([#8803](https://github.com/napari/napari/pull/8803))
+- Unify use of theme colors ([#8927](https://github.com/napari/napari/pull/8927))
+- Make multiscale level labels static to avoid delayed updates ([#9006](https://github.com/napari/napari/pull/9006))
+- Fix: adapt frame box upper bound to data size (allow >6-digit indices) ([#9064](https://github.com/napari/napari/pull/9064))
+- Theme colors adjustments ([#9078](https://github.com/napari/napari/pull/9078))
+- Add `-h | --help` arguments to `compile_constraints.sh` ([#9090](https://github.com/napari/napari/pull/9090))
+- feat: add metadata submenu to the layers menu ([#9107](https://github.com/napari/napari/pull/9107))
+
+## Bug Fixes
+
+- Make multiscale level labels static to avoid delayed updates ([#9006](https://github.com/napari/napari/pull/9006))
+- Gate drag_to_zoom to pan/zoom mode or no layers selected ([#9016](https://github.com/napari/napari/pull/9016))
+- [Shapes] When using Shift to draw circle/square, allow shape to grow in direction of mouse drag ([#9018](https://github.com/napari/napari/pull/9018))
+- Fix: adapt frame box upper bound to data size (allow >6-digit indices) ([#9064](https://github.com/napari/napari/pull/9064))
+- Fix half-voxel offset ([#9065](https://github.com/napari/napari/pull/9065))
+- Make Wayland XCB/GLX workaround modular for non-NVIDIA GPUs ([#9070](https://github.com/napari/napari/pull/9070))
+- Fix colorbar box ([#9071](https://github.com/napari/napari/pull/9071))
+- Remove stretch from features table widget layout ([#9099](https://github.com/napari/napari/pull/9099))
+- Limit dims scroll to 1 step at a time ([#9117](https://github.com/napari/napari/pull/9117))
+- Fix problem with ignoring annotation when drag and drop ([#9136](https://github.com/napari/napari/pull/9136))
+
+## Deprecations
+
+- Next round of deprecation for scale_bar.unit ([#9029](https://github.com/napari/napari/pull/9029))
+
+## Documentation
+
+- Up-to-date compile constraints instructions ([docs#1043](https://github.com/napari/docs/pull/1043))
+- Update version_switcher for 0.7.1 ([docs#1044](https://github.com/napari/docs/pull/1044))
+- Fix formatting in version_switcher.json (remove spurious comma) ([docs#1045](https://github.com/napari/docs/pull/1045))
+- Update pre-commit config, apply rules ([docs#1046](https://github.com/napari/docs/pull/1046))
+- python >=3.11 for all docs references ([docs#1052](https://github.com/napari/docs/pull/1052))
+- Add tip to use `-h` or `--help` flags with the `compile_constraints.sh` script ([docs#1053](https://github.com/napari/docs/pull/1053))
+- examples: remove deprecated `scale_bar.unit`  and enable `viewer.scale_bar.visible = True`  ([#9012](https://github.com/napari/napari/pull/9012))
+
+## Other Pull Requests
+
+- Fix linkchecker action constraints to file for py312 ([docs#1048](https://github.com/napari/docs/pull/1048))
+- [pre-commit.ci] pre-commit autoupdate ([docs#1050](https://github.com/napari/docs/pull/1050))
+- Use shared workflow for remove ready to merge label ([docs#1054](https://github.com/napari/docs/pull/1054))
+- Prevent selection from overwriting feature_defaults ([#8769](https://github.com/napari/napari/pull/8769))
+- Use Qt6 colorScheme to detect system theme ([#8904](https://github.com/napari/napari/pull/8904))
+- Remove check of Qt version that disable gradient in themes ([#8961](https://github.com/napari/napari/pull/8961))
+- QSS cleanup: remove plugin manager qss and some even older plugin sorter qss ([#9003](https://github.com/napari/napari/pull/9003))
+- typing: add type annotations to _tracebacks.py ([#9011](https://github.com/napari/napari/pull/9011))
+- Update `dask`, `hypothesis`, `ipython`, `matplotlib`, `pytest`, `tqdm`, `virtualenv` ([#9036](https://github.com/napari/napari/pull/9036))
+- [pre-commit.ci] pre-commit autoupdate ([#9040](https://github.com/napari/napari/pull/9040))
+- [Maint] Remove unneeded _set_highlight calls in Shapes key and mouse binds ([#9060](https://github.com/napari/napari/pull/9060))
+- Add information about PyQt5 deprecation ([#9079](https://github.com/napari/napari/pull/9079))
+- [pre-commit.ci] pre-commit autoupdate ([#9080](https://github.com/napari/napari/pull/9080))
+- ci: trigger dependency check on PR edits ([#9084](https://github.com/napari/napari/pull/9084))
+- fix(typing): fix mypy error in `qt_list_view.py` ([#9093](https://github.com/napari/napari/pull/9093))
+- fix(typing):  add typing and fix mypy error in `qt_tree_view.py` ([#9094](https://github.com/napari/napari/pull/9094))
+- fix(typing): add typing and fix mypy error in `screenshot_dialog.py` ([#9095](https://github.com/napari/napari/pull/9095))
+- fix(typing): add typing and fix mypy errors in `tree/group.py` ([#9096](https://github.com/napari/napari/pull/9096))
+- fix(typing): add typing and fix mypy errors in `debugging.py` ([#9097](https://github.com/napari/napari/pull/9097))
+- fix(typing): add typing and fix mypy errors in `custom_types.py` ([#9098](https://github.com/napari/napari/pull/9098))
+- fix(typing): add typing and fix mypy error in `qt_tooltip.py` ([#9101](https://github.com/napari/napari/pull/9101))
+- fix(typing): add typing and fix mypy error in `qt_spinbox.py` ([#9102](https://github.com/napari/napari/pull/9102))
+- fix(typing): add typing and fix mypy error in `qt_scrollbar.py` ([#9103](https://github.com/napari/napari/pull/9103))
+- fix(typing): add typing and fix mypy errors in `qt_range_slider_popup.py` ([#9108](https://github.com/napari/napari/pull/9108))
+- fix(typing) : add typing and fix mypy error in `qt_progress_bar.py` ([#9109](https://github.com/napari/napari/pull/9109))
+- fix(typing): add typing and fix mypy error in `qt_message_popup.py` ([#9111](https://github.com/napari/napari/pull/9111))
+- fix(typing): add typing and fix mypy error in `qt_font_size.py` ([#9112](https://github.com/napari/napari/pull/9112))
+- fix(typing): add typing and fix error in `qt_dims_sorter.py` ([#9113](https://github.com/napari/napari/pull/9113))
+- Use shared version of label clean workflow ([#9116](https://github.com/napari/napari/pull/9116))
+- fix(typing): add typing and fix mypy error in `qt_about.py` ([#9125](https://github.com/napari/napari/pull/9125))
+- Remove `compat.py` (and `StrEnum` export), update imports, and remove case-insens lookup ([#9133](https://github.com/napari/napari/pull/9133))
+- Minimum support for zarr>=3 for builtins ([#9134](https://github.com/napari/napari/pull/9134))
+- Fix 3d rgb ([#9135](https://github.com/napari/napari/pull/9135))
+
+
+## 9 authors added to this release (alphabetical)
+
+(+) denotes first-time contributors 🥳
+
+- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) - @Aniketsy
+- [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) ([docs](https://github.com/napari/docs/commits?author=carlosmariorr))  - @carlosmariorr
+- [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) - @cmalinmayor
+- [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
+- [Kyle I. S. Harrington](https://github.com/napari/napari/commits?author=kephale) - @kephale
+- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
+- [Mikkel Roald-Arbøl](https://github.com/napari/napari/commits?author=roaldarbol) - @roaldarbol +
+- [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
+- [Tim Monko](https://github.com/napari/docs/commits?author=TimMonko) - @TimMonko
+
+## 13 reviewers added to this release (alphabetical)
+
+(+) denotes first-time contributors 🥳
+
+- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) - @Aniketsy
+- [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) ([docs](https://github.com/napari/docs/commits?author=carlosmariorr))  - @carlosmariorr
+- [Carol Willing](https://github.com/napari/docs/commits?author=willingc) - @willingc
+- [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) - @cmalinmayor
+- [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
+- [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
+- [Imaduddin Sheikh](https://github.com/napari/docs/commits?author=isheikh8492) - @isheikh8492
+- [Jacopo Abramo](https://github.com/napari/docs/commits?author=jacopoabramo) - @jacopoabramo
+- [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
+- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
+- [Mikkel Roald-Arbøl](https://github.com/napari/napari/commits?author=roaldarbol) - @roaldarbol +
+- [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
+- [Tim Monko](https://github.com/napari/docs/commits?author=TimMonko) - @TimMonko
