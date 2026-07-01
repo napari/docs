@@ -17,6 +17,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 - Unify use of theme colors ([#8927](https://github.com/napari/napari/pull/8927))
 - Theme colors adjustments ([#9078](https://github.com/napari/napari/pull/9078))
+- Add information about PyQt5 deprecation ([#9079](https://github.com/napari/napari/pull/9079))
 - Drop Python 3.10 and implement 3.11+ changes ([#9104](https://github.com/napari/napari/pull/9104))
 
 ## Improvements
@@ -29,7 +30,6 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Make multiscale level labels static to avoid delayed updates ([#9006](https://github.com/napari/napari/pull/9006))
 - Fix: adapt frame box upper bound to data size (allow >6-digit indices) ([#9064](https://github.com/napari/napari/pull/9064))
 - Theme colors adjustments ([#9078](https://github.com/napari/napari/pull/9078))
-- Add `-h | --help` arguments to `compile_constraints.sh` ([#9090](https://github.com/napari/napari/pull/9090))
 - feat: add metadata submenu to the layers menu ([#9107](https://github.com/napari/napari/pull/9107))
 
 ## Bug Fixes
@@ -57,6 +57,8 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Update pre-commit config, apply rules ([docs#1046](https://github.com/napari/docs/pull/1046))
 - python >=3.11 for all docs references ([docs#1052](https://github.com/napari/docs/pull/1052))
 - Add tip to use `-h` or `--help` flags with the `compile_constraints.sh` script ([docs#1053](https://github.com/napari/docs/pull/1053))
+- Remove `github-advanced-security[bot]` from list of reviewers of 0.7.1 ([docs#1055](https://github.com/napari/docs/pull/1055))
+- Add initial release notes for 0.8.0 ([docs#1056](https://github.com/napari/docs/pull/1056))
 - examples: remove deprecated `scale_bar.unit`  and enable `viewer.scale_bar.visible = True`  ([#9012](https://github.com/napari/napari/pull/9012))
 
 ## Other Pull Requests
@@ -72,9 +74,9 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Update `dask`, `hypothesis`, `ipython`, `matplotlib`, `pytest`, `tqdm`, `virtualenv` ([#9036](https://github.com/napari/napari/pull/9036))
 - [pre-commit.ci] pre-commit autoupdate ([#9040](https://github.com/napari/napari/pull/9040))
 - [Maint] Remove unneeded _set_highlight calls in Shapes key and mouse binds ([#9060](https://github.com/napari/napari/pull/9060))
-- Add information about PyQt5 deprecation ([#9079](https://github.com/napari/napari/pull/9079))
 - [pre-commit.ci] pre-commit autoupdate ([#9080](https://github.com/napari/napari/pull/9080))
 - ci: trigger dependency check on PR edits ([#9084](https://github.com/napari/napari/pull/9084))
+- Add `-h | --help` arguments to `compile_constraints.sh` ([#9090](https://github.com/napari/napari/pull/9090))
 - fix(typing): fix mypy error in `qt_list_view.py` ([#9093](https://github.com/napari/napari/pull/9093))
 - fix(typing):  add typing and fix mypy error in `qt_tree_view.py` ([#9094](https://github.com/napari/napari/pull/9094))
 - fix(typing): add typing and fix mypy error in `screenshot_dialog.py` ([#9095](https://github.com/napari/napari/pull/9095))
@@ -93,7 +95,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - fix(typing): add typing and fix mypy error in `qt_about.py` ([#9125](https://github.com/napari/napari/pull/9125))
 - Remove `compat.py` (and `StrEnum` export), update imports, and remove case-insens lookup ([#9133](https://github.com/napari/napari/pull/9133))
 - Minimum support for zarr>=3 for builtins ([#9134](https://github.com/napari/napari/pull/9134))
-- Fix 3d rgb ([#9135](https://github.com/napari/napari/pull/9135))
+- Fix get_status for RGB images in 3D display mode ([#9135](https://github.com/napari/napari/pull/9135))
 
 
 ## 9 authors added to this release (alphabetical)
