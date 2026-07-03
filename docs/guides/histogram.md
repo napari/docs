@@ -84,4 +84,4 @@ napari's histogram is designed to work efficiently with datasets of all sizes:
   one at a time, accumulating the histogram counts along the way. This avoids loading
   the entire dataset into memory. The entire computation runs in a background thread,
   so you can continue interacting with napari while the histogram is being calculated.
-  The plot updates once all sampled chunks have been processed.
+  The plot updates progressively as chunks are processed.
