@@ -34,6 +34,7 @@ layer:
   - Opacity
   - Contrast Limits
   - Auto-contrast
+  - Histogram
   - Gamma
   - Colormap
   - Blending
@@ -73,6 +74,14 @@ The GUI controls may be adjusted as follows:
 - `auto-contrast` is adjusted by selecting either `once` or `continuous`. `once`
   adjusts the contrast one time while `continuous` adjusts the contrast as you
   explore the image.
+
+- `histogram` shows the distribution of pixel values for the layer. The
+  histogram button sits next to the contrast limits slider.
+  - **Left-click** the button to toggle the histogram inline in the layer controls.
+  - **Right-click** to open an advanced popup with the histogram, a larger
+    contrast limits slider, gamma correction, and reset buttons.
+  See the {ref}`histogram-guide` for a detailed explanation of canvas and full
+  modes, log scale, and how it handles large data.
 
 - `gamma` can be adjusted from a minimum of 0.20 to a maximum of 2.00.
   *Gamma correction* or *gamma* is a nonlinear operation used to encode and
