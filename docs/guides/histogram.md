@@ -15,7 +15,7 @@ contrast limits, gamma correction, and colormaps.
 
 ## Accessing the histogram
 
-Each image layer has a histogram button next to the {ref}`contrast limits <adjusting-contrast-limits>` slider.
+Each image layer has a histogram button next to the {ref}`contrast limits <contrast-limits>` slider.
 The button has two interactions:
 
 - **Left-click** toggles the histogram inline, directly in the layer controls panel.

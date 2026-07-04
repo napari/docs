@@ -46,7 +46,7 @@ Before we can use any of the GUI `layer controls`, we must load an image.
 2. Click `File` > `Open Sample` > `napari builtins` > `Cells (3D+2Ch)` or any
    sample image of your choice.
 
-```{image} ../_static/images/histogram-overview.png
+```{image} ../../_static/images/histogram-overview.png
 :alt: napari histogram in layer controls
 :width: 60%
 ```
