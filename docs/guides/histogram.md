@@ -6,7 +6,7 @@ The histogram in napari shows the distribution of pixel values in an {class}`~na
 It helps you understand the intensity range of your data and make informed decisions when setting
 contrast limits, gamma correction, and colormaps.
 
-```{image} ../_static/images/histogram-overview.png
+```{image} ../_static/images/histogram-popup.png
 :alt: napari viewer with the histogram visible in layer controls and the advanced histogram popup
 :width: 100%
 ```
