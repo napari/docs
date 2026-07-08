@@ -16,7 +16,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 ## Highlights
 
-The napari 0.8.0 is released that drops support for python 3.10 [#9104](https://github.com/napari/napari/pull/9104) and deprecate support for pyqt5 [#9079](https://github.com/napari/napari/pull/9079). But we also ship some new fetures and improvements. Here are some of the highlights:
+The napari 0.8.0 is release that drops support for python 3.10 [#9104](https://github.com/napari/napari/pull/9104) and deprecate support for pyqt5 [#9079](https://github.com/napari/napari/pull/9079). But we also ship some new features and improvements. Here are some of the highlights:
 
 ### Drop of support for python 3.10 and pyqt5
 
@@ -92,6 +92,7 @@ In [#9078](https://github.com/napari/napari/pull/9078) and [#8927](https://githu
 - Use level-0 extent for multiscale bounding box overlay ([#9142](https://github.com/napari/napari/pull/9142))
 - Guard against stale index for layer paint methods ([#9149](https://github.com/napari/napari/pull/9149))
 - Fix: Restore tooltip symbol QSS after #9003 ([#9161](https://github.com/napari/napari/pull/9161))
+- Fix: update cached unit scale when layer data dimensionality changes (#9164) ([#9181](https://github.com/napari/napari/pull/9181))
 
 ## API Changes
 
