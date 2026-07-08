@@ -8,8 +8,8 @@ prototype a theme, check out the {ref}`sphx_glr_gallery_new_theme.py` example.
 However, the `npe2` theme contribution allows declaratively 
 defining themes and enables easy distribution to others via plugins.
 
-If you want other people to install and reuse your theme, prefer the plugin
-workflow. The programmatic workflow is still useful for local experiments and
+If you want other people to install and reuse your theme, prefer the [plugin
+workflow](plugin-workflow). The programmatic workflow is still useful for local experiments and
 rapid iteration.
 
 (preview-themes)=
@@ -28,6 +28,8 @@ directly:
 ```sh
 python examples/theme_sample.py
 ```
+
+(plugin-workflow)=
 
 ## Ship a theme in a plugin
 
