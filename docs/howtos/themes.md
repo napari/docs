@@ -19,6 +19,8 @@ The most complete theme preview tool lives in the example gallery as
 {ref}`sphx_glr_gallery_theme_sample.py`. It opens napari with a dock widget
 that shows the theme color roles, common widget states, and a theme selector
 that includes plugin-contributed themes after plugins are initialized. 
+A [WCAG contrast ratio](https://webaim.org/resources/contrastchecker/) table
+displays the most important color pairs for accessibility testing.
 
 You can download the python script from the example page and drag'n'drop it onto napari to run it.
 
