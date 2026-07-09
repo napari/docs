@@ -28,10 +28,6 @@ PyQt5 is already reached its end of life. We already dropped support for PySide2
 
 In [#8391](https://github.com/napari/napari/pull/8391) we added a histogram view for the Image layer, So you could easily see brightness distribution of the image. The histogram is shown in the layer controls when the Image layer is selected. Histogram is rendered based on visible data.
 
-### Fixing the drawing circle and square shapes
-
-In the [#9018](https://github.com/napari/napari/pull/9018) we fixed the drawing of circle and square using the Shift modifier key. Now the shape follow the mouse, not just grow to bottom right. 
-
 ### Floating axes overlays 
 
 Thanks to [#8262](https://github.com/napari/napari/pull/8262) the axes overlay could be always visible, floating over the data instead of being fixed to the top right corner of data. Find them in View menu. 
@@ -44,6 +40,7 @@ In [#9078](https://github.com/napari/napari/pull/9078) and [#8927](https://githu
 
 
 
+- [Shapes] When using Shift to draw circle/square, allow shape to grow in direction of mouse drag ([#9018](https://github.com/napari/napari/pull/9018))
 - Selectable camera modes with `Separate` (default) and `Shared` views across ndisplay ([#9151](https://github.com/napari/napari/pull/9151))
 - Add WCAG contrast table to Theme Sample example ([#9175](https://github.com/napari/napari/pull/9175))
 
@@ -56,6 +53,7 @@ In [#9078](https://github.com/napari/napari/pull/9078) and [#8927](https://githu
 ## Improvements
 
 - Add handler for show message when napari fails to import ([#8609](https://github.com/napari/napari/pull/8609))
+- Add example driving computation from gui ([#8658](https://github.com/napari/napari/pull/8658))
 - UX: Add viewer mouse binding (alt) to the scroll wheel to scroll layers ([#8731](https://github.com/napari/napari/pull/8731))
 - Make tips more generally usable ([#8762](https://github.com/napari/napari/pull/8762))
 - Add handler to show message when napari fails to import ([#8803](https://github.com/napari/napari/pull/8803))
@@ -104,6 +102,7 @@ In [#9078](https://github.com/napari/napari/pull/9078) and [#8927](https://githu
 
 ## Documentation
 
+- Update Theme contribution guidance ([docs#1002](https://github.com/napari/docs/pull/1002))
 - Up-to-date compile constraints instructions ([docs#1043](https://github.com/napari/docs/pull/1043))
 - Update version_switcher for 0.7.1 ([docs#1044](https://github.com/napari/docs/pull/1044))
 - Fix formatting in version_switcher.json (remove spurious comma) ([docs#1045](https://github.com/napari/docs/pull/1045))
@@ -114,6 +113,7 @@ In [#9078](https://github.com/napari/napari/pull/9078) and [#8927](https://githu
 - Add initial release notes for 0.8.0 ([docs#1056](https://github.com/napari/docs/pull/1056))
 - Update README with links for the dev and published docs ([docs#1058](https://github.com/napari/docs/pull/1058))
 - Feature documentation for image layer histogram ([docs#1059](https://github.com/napari/docs/pull/1059))
+- Update 0.8.0 release notes, add highlight ([docs#1062](https://github.com/napari/docs/pull/1062))
 - examples: remove deprecated `scale_bar.unit`  and enable `viewer.scale_bar.visible = True`  ([#9012](https://github.com/napari/napari/pull/9012))
 
 ## Other Pull Requests
@@ -121,6 +121,7 @@ In [#9078](https://github.com/napari/napari/pull/9078) and [#8927](https://githu
 - Fix linkchecker action constraints to file for py312 ([docs#1048](https://github.com/napari/docs/pull/1048))
 - [pre-commit.ci] pre-commit autoupdate ([docs#1050](https://github.com/napari/docs/pull/1050))
 - Use shared workflow for remove ready to merge label ([docs#1054](https://github.com/napari/docs/pull/1054))
+- ci(dependabot): bump the github-actions group across 1 directory with 5 updates ([docs#1057](https://github.com/napari/docs/pull/1057))
 - Prevent selection from overwriting feature_defaults ([#8769](https://github.com/napari/napari/pull/8769))
 - Use Qt6 colorScheme to detect system theme ([#8904](https://github.com/napari/napari/pull/8904))
 - Remove check of Qt version that disable gradient in themes ([#8961](https://github.com/napari/napari/pull/8961))
@@ -185,7 +186,7 @@ In [#9078](https://github.com/napari/napari/pull/9078) and [#8927](https://githu
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Tony Reksoatmodjo](https://github.com/napari/napari/commits?author=Modjular) - @Modjular +
 
-## 16 reviewers added to this release (alphabetical)
+## 17 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -193,6 +194,7 @@ In [#9078](https://github.com/napari/napari/pull/9078) and [#8927](https://githu
 - [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) ([docs](https://github.com/napari/docs/commits?author=carlosmariorr))  - @carlosmariorr
 - [Carol Willing](https://github.com/napari/docs/commits?author=willingc) - @willingc
 - [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) - @cmalinmayor
+- [Davin Potts](https://github.com/napari/docs/commits?author=applio) - @applio
 - [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
 - [Gabriel Selzer](https://github.com/napari/docs/commits?author=gselzer) - @gselzer
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
