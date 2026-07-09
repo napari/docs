@@ -64,7 +64,7 @@ theme:
 :color: primary
 :ref-type: myst
 :shadow:
-:class: homepage-button
+:class: button-primary
 
 {material-regular}`arrow_forward;1.2em` **Get started**
 ```
@@ -74,12 +74,12 @@ theme:
 :columns: 12 12 7 7
 
 ```{raw} html
-<figure>
+<figure class="homepage-video">
 
   <video width="100%" controls autoplay loop muted playsinline>
     <source src="_static/images/tribolium.webm" type="video/webm" />
     <source src="_static/images/tribolium.mp4" type="video/mp4" />
-    <img src="_static/images/tribolium.jpg"
+    <img src="_static/images/tribolium.png"
       title="your browser does not support the video tag"
       alt="napari viewer showing a 4D image of a developing Tribolium embryo.  Dataset Fluo-N3DL-TRIF from the [cell tracking challenge](http://celltrackingchallenge.net/3d-datasets/) by Dr. A. Jain, MPI-CBG, Dresden, Germany."
     >
@@ -133,8 +133,8 @@ A standalone installer for when you want napari without setting up Python first.
       Display an image in napari and explore the viewer with a minimal example.
     </p>
     <div class="homepage-featured-example__actions">
-      <a class="sd-btn sd-btn-primary sd-shadow-sm homepage-button" href="gallery.html">Examples gallery</a>
-      <button class="sd-btn sd-btn-outline-primary sd-shadow-sm homepage-example-button" id="homepage-featured-example-reroll" type="button">Show another example</button>
+      <a class="sd-btn sd-btn-primary sd-shadow-sm button-primary" href="gallery.html">Examples gallery</a>
+      <button class="sd-btn sd-btn-outline-primary sd-shadow-sm button-alt" id="homepage-featured-example-reroll" type="button">Show another example</button>
     </div>
   </div>
   <a class="homepage-featured-example__media" href="gallery/add_image.html" aria-label="View the featured napari example">
