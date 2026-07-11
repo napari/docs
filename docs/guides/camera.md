@@ -11,6 +11,22 @@ in 3D mode.
 
 When you pan, zoom, or rotate the view, you are interacting with the camera.
 
+## Fitting the camera to the scene
+
+There are two programmatic ways that the camera is fit to the scene
+(i.e. the extent of all layers in the viewer):
+
+```python
+# Fit the camera to the scene and reset angles to default
+viewer.reset_view() 
+
+# Keep angles, but fit the camera to the scene
+viewer.fit_to_view() 
+```
+
+These can also be accessed via the **View** menu.
+The Home button in the viewer toolbar resets the view.
+
 (camera-synced)=
 
 ## Synced vs separate camera modes
@@ -71,18 +87,19 @@ There are four ways to interact with the camera synced mode:
 Right-click the **2D/3D toggle button** in the viewer toolbar to open the
 camera popup. This popup contains:
 
+- Camera orientation settings (see {ref}`handedness-guide`).
+- Zoom controls (in 2D and 3D modes).
+- Perspective controls (in 3D mode).
+- Camera angles (in 3D mode).
 - The **"Sync 2D/3D camera"** checkbox to toggle between synced and separate
   modes.
-- Perspective controls (in 3D mode).
-- Camera orientation settings (see {ref}`handedness-guide`).
 
 ![camera controls popup showing the sync checkbox](../_static/images/camera-controls.png)
 
 ### Menu — Toggle Synced Camera
 
 From the **View** menu, select **Toggle Synced Camera**
-(keybinding {kbd}`Ctrl+U`). A notification will appear indicating whether
-the camera is now synced or separate.
+(keybinding {kbd}`Ctrl+U`).
 
 ### API — Programmatic control
 
