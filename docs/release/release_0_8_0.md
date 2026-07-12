@@ -11,7 +11,10 @@ rendering), and the scientific Python stack (numpy, scipy).
 For more information, examples, and documentation, please visit our website,
 https://napari.org.
 
-napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this is a **Macro** release containing awesome new features, but may require dedication of some significant time when upgrading projects to use this version.
+napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this
+is a **Macro** release containing awesome new features, but may require
+dedication of some significant time when upgrading projects to use this
+version.
 
 ## Highlights
 
@@ -59,9 +62,18 @@ at large remote data. Try it out!
 
 ### Synced cameras between 2D and 3D views
 
-Ever switched between 2D and 3D views to check out your data, only to be frustrated that the zoom and center has been reset? Now, by default, the cameras are [`synced` between views (#9151)](https://github.com/napari/napari/pull/9151)! The synced camera's zoom and center persists when switching between 2D and 3D, with the depth (Z) component synced through the dimension slider to complete the round-trip.
+Ever switched between 2D and 3D views to check out your data, only to be
+frustrated that the zoom and center has been reset? Now, by default, the
+cameras are
+[`synced` between views (#9151)](https://github.com/napari/napari/pull/9151)!
+The synced camera's zoom and center persists when switching between 2D and 3D,
+with the depth (Z) component synced through the dimension slider to complete
+the round-trip.
 
-To unlock the cameras from each other for completely separate views, you can toggle `viewer.camera.synced = False` from the Camera popup (right-click 2D/3D button) or **Toggle Synced Camera** (Ctrl/Cmd+U) in the **View** menu. Set your preferred default in **Preferences** -> **Application** -> **Synced Camera**.
+To unlock the cameras from each other for completely separate views, you can
+toggle `viewer.camera.synced = False` from the Camera popup (right-click 2D/3D
+button) or **Toggle Synced Camera** (Ctrl/Cmd+U) in the **View** menu. Set your
+preferred default in **Preferences** -> **Application** -> **Synced Camera**.
 
 ```{raw} html
 <figure>
