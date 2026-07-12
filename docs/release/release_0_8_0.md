@@ -88,6 +88,30 @@ preferred default in **Preferences** -> **Application** -> **Synced Camera**.
 </figure>
 ```
 
+### Auto-fill label contours when painting
+
+Annotating blobs in 2D just got a lot faster! In paint mode, right-click to
+start a *self-filling* area annotation. Then draw your shape, and when you come
+back around to the start point, the shape will automatically fill with your
+selected label! ([#9075](https://github.com/napari/napari/pull/9075))
+See it in action below:
+
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../_static/images/auto-fill-labels.webm" type="video/webm" />
+    <source src="../_static/images/auto-fill-labels.mp4" type="video/mp4" />
+    <img src="../_static/images/auto-fill-labels.jpg"
+      title="Your browser does not support the video tag"
+      alt="Video showing an annotation around a coin, with the coin filling with the annotated label at the end."
+    >
+  </video>
+</figure>
+```
+
+We intend to keep refining this functionality, so if you like it but it doesn't
+*quite* fit in your workflow, please {ref}`get in touch <community>`!
+
 ### Paint into more arrays faster!
 
 Labels painting is now much faster for zarr arrays, and you can now paint into
