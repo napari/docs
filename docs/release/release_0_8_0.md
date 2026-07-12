@@ -1,5 +1,5 @@
 # napari 0.8.0
-⚠️ *Note: these release notes are still in draft while 0.8.0rc1 is in prerelease testing.* ⚠️
+⚠️ *Note: these release notes are still in draft while 0.8.0rc0 is in prerelease testing.* ⚠️
 
 *Sun, Jul 12, 2026*
 
