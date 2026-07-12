@@ -529,13 +529,20 @@ Note that if you want to drag the canvas/rendering itself, instead of rotating t
 - holding {kbd}`Shift` ({kbd}`Control` on macOS), pressing the right mouse button and
   dragging the mouse; or
 - right-clicking (on macOS holding {kbd}`Control` and clicking) on the 2D/3D mode
-  button, which will bring up the perspective slider.
+  button, which will bring up the camera popup with controls for perspective,
+  camera orientation and angles, and the **Sync 2D/3D camera** checkbox
+  (see the [camera guide](camera-guide)).
 
 The camera perspective can also be altered programmatically:
 
 ```python
 viewer.camera.perspective = 45
 ```
+
+By default, camera center and zoom persist when switching between 2D and 3D
+views (synced mode). You can change this behavior via the camera popup, the
+**View** menu (**Toggle Synced Camera**, {kbd}`Ctrl+U`), or programmatically
+through `viewer.camera.synced`. See the [camera guide](camera-guide) for details.
 
 ### Roll dimensions
 
@@ -714,7 +721,11 @@ viewer.theme = 'dark'
 
 You can also change the theme using the "Toggle theme" keyboard shortcut, by default {kbd}`Command/Control+Shift+T`. Note that changing the theme using this shortcut will only change the *current* viewer theme. If you wish to make the change permanent for all viewers, make sure to also change your settings in the **Appearance** tab of the [**Preferences** dialog](napari-preferences).
 
-Adding your own custom theme isn't too hard but it requires creating your own color `palette` and rebuilding the icons. It's also possible for [plugins to contribute a theme](contributions-themes). If people want more themes, we're happy to add them or you can look at our [contributing guidelines](napari-contributing) for more information about building the icons and add one yourself!
+Custom themes can be prototyped directly in Python or distributed declaratively
+from a plugin.
+[Plugins can contribute a theme](contributions-themes) by declaring a light or
+dark base theme and overriding only the colors they need. See
+[Creating and testing themes](napari-themes) for both workflows.
 
 +++
 

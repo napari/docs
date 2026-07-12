@@ -53,9 +53,11 @@ subtrees:
         subtrees:
         - entries:
           - file: guides/3D_interactivity
+          - file: guides/camera
           - file: guides/axis-names
           - file: guides/units
           - file: guides/handedness
+          - file: guides/histogram
           - file: guides/triangulation
           - file: guides/rendering
           - file: guides/performance
@@ -72,6 +74,7 @@ subtrees:
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_8_0
           - file: release/release_0_7_1
           - file: release/release_0_7_0
           - file: release/release_0_6_6
@@ -185,6 +188,7 @@ subtrees:
       - file: community/code_of_conduct
       - file: community/code_of_conduct_reporting
       - file: community/governance
+      - file: community/security
       - file: community/working_groups
       - file: community/meeting_schedule
       - file: community/licensing
