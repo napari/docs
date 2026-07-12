@@ -1,5 +1,4 @@
 # napari 0.8.0
-⚠️ *Note: these release notes are still in draft while 0.8.0rc0 is in prerelease testing.* ⚠️
 
 *Sun, Jul 12, 2026*
 
@@ -60,7 +59,7 @@ at large remote data. Try it out!
 
 ### Synced cameras between 2D and 3D views
 
-Ever switched between 2D and 3D views to check out your data, only to be frustrated that the zoom and center has been reset? Now, by default, the cameras are [`synced` between views (#9151)](https://github.com/napari/napari/pull/9151)! The synced camera's zoom and center persists when switching between 2D and 3D, with the depth (Z) component synced through the dimension slider to complete the round-trip. 
+Ever switched between 2D and 3D views to check out your data, only to be frustrated that the zoom and center has been reset? Now, by default, the cameras are [`synced` between views (#9151)](https://github.com/napari/napari/pull/9151)! The synced camera's zoom and center persists when switching between 2D and 3D, with the depth (Z) component synced through the dimension slider to complete the round-trip.
 
 To unlock the cameras from each other for completely separate views, you can toggle `viewer.camera.synced = False` from the Camera popup (right-click 2D/3D button) or **Toggle Synced Camera** (Ctrl/Cmd+U) in the **View** menu. Set your preferred default in **Preferences** -> **Application** -> **Synced Camera**.
 
@@ -208,7 +207,6 @@ WCAG-compliant theme? Try out the new WCAG table in
 - fix(typing): add typing and fix mypy error in `qt_message_popup.py` ([#9111](https://github.com/napari/napari/pull/9111))
 - fix(typing): add typing and fix mypy error in `qt_font_size.py` ([#9112](https://github.com/napari/napari/pull/9112))
 - fix(typing): add typing and fix error in `qt_dims_sorter.py` ([#9113](https://github.com/napari/napari/pull/9113))
-- Use shared version of label clean workflow ([#9116](https://github.com/napari/napari/pull/9116))
 - [pre-commit.ci] pre-commit autoupdate ([#9122](https://github.com/napari/napari/pull/9122))
 - fix(typing): add typing and fix mypy error in `qt_about.py` ([#9125](https://github.com/napari/napari/pull/9125))
 - Minimum support for zarr>=3 for builtins ([#9134](https://github.com/napari/napari/pull/9134))
@@ -221,6 +219,7 @@ WCAG-compliant theme? Try out the new WCAG table in
 - Update `certifi`, `coverage`, `fsspec`, `hypothesis`, `ipython`, `npe2`, `pillow`, `pydantic-settings`, `pytest`, `pytest-rerunfailures`, `scipy`, `tqdm`, `virtualenv`, `wrapt` ([#9158](https://github.com/napari/napari/pull/9158))
 - `macos-15` runner instead of `macos-latest` (now `macos-26`) to prevent segfaults ([#9162](https://github.com/napari/napari/pull/9162))
 - Remove method and functions marked for removal in 0.8.0 ([#9177](https://github.com/napari/napari/pull/9177))
+- Clean rest of elements  marked as "to remove in 0.8.0"  ([#9191](https://github.com/napari/napari/pull/9191))
 
 
 ## 18 authors added to this release (alphabetical)
