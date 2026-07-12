@@ -1,6 +1,5 @@
 # napari 0.8.0
-
-⚠️ *Note: these release notes are still in draft while 0.8.0rcX is in prerelease testing.* ⚠️
+⚠️ *Note: these release notes are still in draft while 0.8.0rc1 is in prerelease testing.* ⚠️
 
 *Mon, Jul 13, 2026*
 
@@ -13,10 +12,7 @@ rendering), and the scientific Python stack (numpy, scipy).
 For more information, examples, and documentation, please visit our website,
 https://napari.org.
 
-napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this
-is a **Macro** release containing awesome new features, but may require
-dedication of some significant time when upgrading projects to use this
-version.
+napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this is a **Macro** release containing awesome new features, but may require dedication of some significant time when upgrading projects to use this version.
 
 ## Highlights
 
@@ -153,6 +149,7 @@ WCAG-compliant theme? Try out the new WCAG table in
 
 - Add floating axes canvas overlay ([#8262](https://github.com/napari/napari/pull/8262))
 - Histogram for the Image layer controls and contrast limits popup ([#8391](https://github.com/napari/napari/pull/8391))
+- Feat: add cellpose-inspired right-click to encircle mask creation interaction mode ([#9075](https://github.com/napari/napari/pull/9075))
 - Toggleable `synced` (default) and separated camera views across ndisplay ([#9151](https://github.com/napari/napari/pull/9151))
 
 ## Improvements
@@ -274,7 +271,7 @@ WCAG-compliant theme? Try out the new WCAG table in
 - Clean rest of elements  marked as "to remove in 0.8.0"  ([#9191](https://github.com/napari/napari/pull/9191))
 
 
-## 18 authors added to this release (alphabetical)
+## 19 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -293,11 +290,12 @@ WCAG-compliant theme? Try out the new WCAG table in
 - [Omkar Kabde](https://github.com/napari/napari/commits?author=omkar-334) - @omkar-334 +
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) ([docs](https://github.com/napari/docs/commits?author=psobolewskiPhD))  - @psobolewskiPhD
 - [Rupesh](https://github.com/napari/napari/commits?author=Rupeshhsharma) - @Rupeshhsharma +
+- [Talley Lambert](https://github.com/napari/napari/commits?author=tlambert03) - @tlambert03
 - [Teun Huijben](https://github.com/napari/napari/commits?author=TeunHuijben) - @TeunHuijben +
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Tony Reksoatmodjo](https://github.com/napari/napari/commits?author=Modjular) - @Modjular +
 
-## 17 reviewers added to this release (alphabetical)
+## 18 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -305,6 +303,7 @@ WCAG-compliant theme? Try out the new WCAG table in
 - [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) ([docs](https://github.com/napari/docs/commits?author=carlosmariorr))  - @carlosmariorr
 - [Carol Willing](https://github.com/napari/docs/commits?author=willingc) - @willingc
 - [Caroline Malin-Mayor](https://github.com/napari/napari/commits?author=cmalinmayor) - @cmalinmayor
+- [carsen-stringer](https://github.com/napari/docs/commits?author=carsen-stringer) - @carsen-stringer
 - [Davin Potts](https://github.com/napari/napari/commits?author=applio) - @applio +
 - [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
 - [Gabriel Selzer](https://github.com/napari/docs/commits?author=gselzer) - @gselzer
