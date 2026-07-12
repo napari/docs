@@ -63,6 +63,19 @@ Ever switched between 2D and 3D views to check out your data, only to be frustra
 
 To unlock the cameras from each other for completely separate views, you can toggle `viewer.camera.synced = False` from the Camera popup (right-click 2D/3D button) or **Toggle Synced Camera** (Ctrl/Cmd+U) in the **View** menu. Set your preferred default in **Preferences** -> **Application** -> **Synced Camera**.
 
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../_static/images/synced-cameras.webm" type="video/webm" />
+    <source src="../_static/images/synced-cameras.mp4" type="video/mp4" />
+    <img src="../_static/images/synced-cameras.jpg"
+      title="Your browser does not support the video tag"
+      alt="Video showing zoom and position staying in sync between 2D and 3D views of the same data."
+    >
+  </video>
+</figure>
+```
+
 ### Paint into more arrays faster!
 
 Labels painting is now much faster for zarr arrays, and you can now paint into
