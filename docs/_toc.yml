@@ -53,6 +53,7 @@ subtrees:
         subtrees:
         - entries:
           - file: guides/3D_interactivity
+          - file: guides/camera
           - file: guides/axis-names
           - file: guides/units
           - file: guides/handedness
