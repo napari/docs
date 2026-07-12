@@ -32,7 +32,7 @@ Owners should meet the following criteria:
 
 ### Authentication and review
 
-Ownership requests are made via the private `#auth-security` Zulip channel
+Request to become an owner are made via the private `#auth-security` Zulip channel
 and are reviewed by the current owners and the Steering Council.
 
 Ownership designations are reviewed annually, typically at the same time
@@ -67,7 +67,7 @@ Requests should include:
 
 Requests are reviewed by the designated owners and/or the
 [Steering Council](napari-governance). Temporary owner access is
-granted by consensus of the current owners. The request and its
+granted by any of the current owners. The request and its
 resolution should be recorded in the Zulip thread for
 accountability and future reference.
 
@@ -89,7 +89,6 @@ access at any time if they deem it no longer necessary.
 | **Write** | Push access, PR management | Core team members |
 | **Read** | Read-only access | All organization members |
 
-For questions about organization security, reach out on the
-`#auth-security` Zulip channel or contact the
+For questions about organization security, contact the
 [Steering Council](napari-governance) at
 `napari-steering-council@googlegroups.com`.
