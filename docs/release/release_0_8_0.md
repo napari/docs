@@ -65,7 +65,7 @@ at large remote data. Try it out!
 Ever switched between 2D and 3D views to check out your data, only to be
 frustrated that the zoom and center has been reset? Now, by default, the
 cameras are
-[`synced` between views (#9151)](https://github.com/napari/napari/pull/9151)!
+[synced between views (#9151)](https://github.com/napari/napari/pull/9151)!
 The synced camera's zoom and center persists when switching between 2D and 3D,
 with the depth (Z) component synced through the dimension slider to complete
 the round-trip.
