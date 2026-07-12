@@ -56,6 +56,7 @@ subtrees:
           - file: guides/axis-names
           - file: guides/units
           - file: guides/handedness
+          - file: guides/histogram
           - file: guides/triangulation
           - file: guides/rendering
           - file: guides/performance
@@ -186,6 +187,7 @@ subtrees:
       - file: community/code_of_conduct
       - file: community/code_of_conduct_reporting
       - file: community/governance
+      - file: community/security
       - file: community/working_groups
       - file: community/meeting_schedule
       - file: community/licensing
