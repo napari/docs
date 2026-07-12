@@ -172,6 +172,7 @@ WCAG-compliant theme? Try out the new WCAG table in
 - Add video and fallback image for histogram highlight ([docs#1063](https://github.com/napari/docs/pull/1063))
 - Fix video relative paths which had extra '..' ([docs#1064](https://github.com/napari/docs/pull/1064))
 - Add Camera Guide to explain synced/separate camera modes ([docs#1065](https://github.com/napari/docs/pull/1065))
+- Final update of release notes for 0.8.0 ([docs#1066](https://github.com/napari/docs/pull/1066))
 - examples: remove deprecated `scale_bar.unit`  and enable `viewer.scale_bar.visible = True`  ([#9012](https://github.com/napari/napari/pull/9012))
 
 ## Other Pull Requests
