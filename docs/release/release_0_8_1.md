@@ -28,7 +28,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Update version switcher to point to 0.8.0 as stable ([docs#1071](https://github.com/napari/docs/pull/1071))
 - Use shared version of label clean workflow ([#9116](https://github.com/napari/napari/pull/9116))
 - TST: parameterizing with iterables is deprecated in pytest ([#9217](https://github.com/napari/napari/pull/9217))
-- Make tensorstore optional dependecy of `test_labels` again ([#9220](https://github.com/napari/napari/pull/9220))
+- Make tensorstore optional dependency of `test_labels` again ([#9220](https://github.com/napari/napari/pull/9220))
 
 
 ## 3 authors added to this release (alphabetical)
