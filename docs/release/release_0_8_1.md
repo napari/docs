@@ -20,6 +20,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 ## Documentation
 
 - Update homepage video for 0.8 changes ([docs#1070](https://github.com/napari/docs/pull/1070))
+- Start creating 0.8.1 release notes ([docs#1073](https://github.com/napari/docs/pull/1073))
 
 ## Other Pull Requests
 
