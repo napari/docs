@@ -322,7 +322,7 @@ bundle_version = (
     else version_string
 )
 # when updating the version below, ensure to also update napari/napari README
-python_version = '3.11'
+python_version = '3.14'
 python_version_range = f'{min_python_version}-{max_python_version}'
 
 myst_substitutions = {
@@ -334,6 +334,8 @@ myst_substitutions = {
     'python_version_range': python_version_range,
     'python_version_code': f'`python={python_version}`',
     'conda_create_env': f'```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```',
+    'venv_create_env': f'```sh\nuv venv -p {python_version} napari-env\nsource napari-env/bin/activate\n```',
+
 }
 
 # -- Autosummary ------------------------------------------------------------
