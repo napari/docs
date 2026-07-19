@@ -121,7 +121,7 @@ conda update -n base conda
 While not strictly required, it is highly recommended to install
 napari into a clean virtual environment using the [uv venv](https://docs.python.org/3/library/venv.html) environment manager.
 
-This should be set up *before* you install napari. For example, setting with
+This should be set up *before* you install napari. For example, setting
 up a Python {{ python_version }} environment with `uv venv`:
 
 {{ venv_create_env }}
