@@ -193,6 +193,7 @@ subtrees:
       - file: community/meeting_schedule
       - file: community/licensing
       - file: community/resources
+      - file: community/napari_logo_usage
   - file: developers/index
     subtrees:
     - entries:
