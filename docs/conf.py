@@ -334,7 +334,7 @@ myst_substitutions = {
     'python_version_range': python_version_range,
     'python_version_code': f'`python={python_version}`',
     'conda_create_env': f'```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```',
-    'venv_create_env': f'```sh\nuv venv -p {python_version} napari-env\nsource napari-env/bin/activate\n```',
+    'venv_create_env': f'```sh\nuv venv -p {python_version}\n```',
 
 }
 

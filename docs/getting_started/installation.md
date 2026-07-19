@@ -48,17 +48,16 @@ all its features. Python package distributions of napari can be installed via `p
 It requires:
 
 - [Python {{ python_version_range }}](https://www.python.org/downloads/)
-- the ability to install python packages via [uv](https://docs.astral.sh/uv/), [pip](https://pypi.org/project/pip/) or [conda-forge](https://conda-forge.org/docs/user/introduction.html)
+- the ability to install python packages via [uv](https://docs.astral.sh/uv/) or [conda-forge](https://conda-forge.org/docs/user/introduction.html)
 
 You may also want:
 
 - an environment manager like [uv](https://docs.astral.sh/uv/pip/environments/), 
-[conda](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html) or
-  [venv](https://docs.python.org/3/library/venv.html) **(Highly recommended)**
+[conda](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html) **(Highly recommended)**
 
 ```{admonition} New to Python?
 :class: note
-New to Python or uncertain about uv, conda, pip, and virtual environments?
+New to Python or uncertain about uv, conda, and virtual environments?
 Here are some resources we recommend:
 
 - [Scientific Python: Getting started with Python for science](https://lectures.scientific-python.org/intro/index.html)
@@ -125,7 +124,10 @@ This should be set up *before* you install napari. For example, setting
 up a Python {{ python_version }} environment with `uv venv`:
 
 {{ venv_create_env }}
-
+```sh
+source .venv/bin/activate # for macOS and Linux
+.venv\Scripts\activate # for Windows
+```
 
 napari can be installed from PyPI on most macOS, Linux, and Windows systems with Python
 {{ python_version_range }} using uv pip:
@@ -156,6 +158,10 @@ This should be set up *before* you install napari. For example, setting with
 up a Python {{ python_version }} environment with `uv venv`:
 
 {{ venv_create_env }}
+```sh
+source .venv/bin/activate # for macOS and Linux
+.venv\Scripts\activate # for Windows
+```
 
 To install the latest version with yet to be released features from Github you can use pip:
 
