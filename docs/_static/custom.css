@@ -250,3 +250,8 @@ html[data-theme="dark"] .homepage-quicklinks a {
 html[data-theme="dark"] img#homepage-featured-example-image {
   background-color: var(--pst-color-background) !important;
 }
+
+/* ── Navbar: distinguish active from hover ─────────────────────────────── */
+.bd-header ul.navbar-nav > li.nav-item.current > .nav-link {
+  border-bottom: 4px solid var(--napari-color-text-base);
+}
