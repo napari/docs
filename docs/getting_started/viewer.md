@@ -178,6 +178,8 @@ The **canvas** is in the center of the viewer and contains the visual display of
 
 +++
 
+The canvas model can be accessed via `viewer.canvas`; several things are exposed here, such as the [grid mode](grid-mode), [canvas overlays](viewer-overlays) and the overlay tiling settings.
+
 (layer-list)=
 
 ### Layer list
@@ -589,6 +591,8 @@ Note that this has no effect on the order of `viewer.dims.current_step`. The fir
 
 The fourth button transposes the displayed dimensions.
 
+(grid-mode)=
+
 ### Grid button
 
 The fifth button, the grid button, toggles between the default layer mode and grid mode. When clicked, it distributes the layers in a grid of cells. Each cell is a small interactive canvas whose camera is linked with all the others.
@@ -606,7 +610,7 @@ The fifth button, the grid button, toggles between the default layer mode and gr
 </figure>
 ```
 
-The distribution of the layers in the grid can be altered according to the settings below, accessible by right-clicking the button (or programmatically through `viewer.grid`). The question icons can be hovered for more information about each setting.
+The distribution of the layers in the grid can be altered according to the settings below, accessible by right-clicking the button (or programmatically through `viewer.canvas.grid`). The question icons can be hovered for more information about each setting.
 
 1. Grid stride: By default, 1, placing one layer in each view. The value determines the number of layers overlaid in each view. Negative values reverse the order in which layers are displayed in the grid.
 1. Grid width/height: By default, -1, which automatically determines the grid layout.
