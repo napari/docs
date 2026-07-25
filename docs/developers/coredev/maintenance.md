@@ -64,4 +64,3 @@ Fill the form:
 12. Paste a new token to the value field
 
 To validate if the token is working, you can run the "Upgrade test constraints" workflow manually. Ensure that there will be some packages to update.
-
