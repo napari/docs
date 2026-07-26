@@ -331,5 +331,3 @@ Add glossary for people to understand difference between events / signals
 
 ## Points of contention
 Things we are not sure about and have different opinion on.
-
-
