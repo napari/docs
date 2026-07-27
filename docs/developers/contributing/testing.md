@@ -143,17 +143,64 @@ in `System Settings > Privacy & Security > Accessibility` so `pyautogui` can con
 It is also possible to run tests locally using `tox`. We use `tox` to run test in CI.
 The main difference between running `pytest` locally or `tox` locally is that `tox` will create a virtual environment
 for each test environment, so it will take a bit more time. Though, `tox` will be more similar to the CI environment.
+The only requirement for running tests is to have `tox` in your environment and the target Python version discoverable on your system. 
 To run test using `tox` using Python 3.13 and pyqt6 on Linux, enter:
 
 ```sh
-tox -e py313-linux-pyqt6
+tox -e py313-linux-pyqt6-no_cov
 ```
 
-To get list of all available environments that may be run:
+To get the list of all available environments that may be run:
 
 ```sh
 tox list
 ```
+
+#### Speed up tox environment creation
+
+To speed up the setup of creation of tox environments you can install `tox-uv` plugin that uses `uv` in 
+place of `pip` plus `virtualenv` to create tox environments.
+The only disadvantage of this method is that it install `uv` in your environment 
+that is making precedence over global `uv` installation. 
+So you need to remember to regularly update one more `uv` installation. 
+
+#### Running with constraints 
+
+For fully reproduce CI environment you might use constraints files for tox environment creation.
+For example, to run tests using Python 3.13 and pyqt6 on Linux with a constraints file, enter:
+
+```sh
+PIP_CONSTRAINT=resources/constraints/constraints_py313.txt tox -e py313-linux-pyqt6-no_cov
+```
+
+or with `tox-uv` 
+
+```sh
+UV_CONSTRAINT=resources/constraints/constraints_py313.txt tox -e py313-linux-pyqt6-no_cov
+```
+
+#### Running a subset of test using tox 
+
+The part of tox call after `--` is passed to pytest. So you can run a subset of tests using tox as well. For example, to run only tests in `src/napari/layers/image/` file using Python 3.13 and pyqt6 on Linux, enter:
+
+```sh
+tox -e py313-linux-pyqt6-no_cov -- src/napari/layers/image
+```
+
+#### Use tox to create an environment for debugging 
+
+The `tox` provides a convenient way to create a virtual environment for debugging. You can use `devenv` command to create a virtual environment for debugging. For example, to create a virtual environment for debugging using Python 3.13 and pyqt6 on Linux, enter:
+
+```sh
+$ tox devenv -e py313-linux-pyqt6-no_cov
+```
+Then at the end of the output is a path to created virtual environment.
+
+```sh
+...
+ROOT: created development environment under /Users/grzegorzbokota/Documents/Projekty/napari/venv
+```
+That you can activate in your IDE or terminal as a normal virtual environment. 
 
 ### Run tests without pop-up windows
 
