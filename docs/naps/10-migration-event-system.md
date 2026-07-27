@@ -43,9 +43,11 @@ that happened either inside an application or as a result of external activity t
 respond to.
 An event is delivered to a specific `QObject`, which acts as the intended receiver. Every `QObject` has an 
 `event()` method that acts as a dispatcher: it does not normally handle the event itself, but routes it to 
-the appropriate event handler, such as `mousePressEvent()`, `keyPressEvent()`, or `paintEvent()`.
-If the handler accepts the event, Qt considers it handled. If it is ignored, Qt may attempt to propagate the 
-event to another object, such as a parent widget.
+the appropriate event handler such as `QObject.mousePressEvent()`, `QObject.keyPressEvent()`, or 
+`QObject.paintEvent()`. An event handler is a method of a `QObject` subclass that contains the code responsible 
+for responding to a particular type of event when it is delivered to that object.
+If the handler accepts the event, Qt considers it handled. This means that the event is not propagated further. 
+If it is ignored, Qt may attempt to propagate the event to another object, such as a parent widget.
 
 
 ```{mermaid}
