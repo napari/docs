@@ -156,6 +156,26 @@ To get the list of all available environments that may be run:
 tox list
 ```
 
+#### Minimum requirements testing. 
+
+One of our test suite entries is testing napari against minimum requirements declared in `pyproject.toml` file.
+This checks if napari will still work, even if someone have outdated dependencies installed in their environment. 
+Most often if something is failing in this test run it is either a simple change or reason to bump minimum requirements in `pyproject.toml` file.
+
+To run this test use:
+
+```sh
+MIN_REQ=1 tox -e py311-linux-pyqt5-no_cov --recreate
+```
+
+or 
+
+```sh
+MIN_REQ=1 tox -e py311-windows-pyqt5-no_cov --recreate
+```
+
+Unfortunately, it is impossible to test this on arm macOS, because of lack of pyqt5 support for this platform.
+
 #### Speed up tox environment creation
 
 To speed up the setup of creation of tox environments you can install `tox-uv` plugin that uses `uv` in 
@@ -178,6 +198,8 @@ or with `tox-uv`
 ```sh
 UV_CONSTRAINT=resources/constraints/constraints_py313.txt tox -e py313-linux-pyqt6-no_cov
 ```
+
+Constraint usage guarantees the same version of dependencies as in CI environment. Its usually isn’t needed, but it sometimes happens that the newest version of some dependency is not compatible with napari test suite, and it is good to have a way to run tests with the same versions of dependencies as in the CI environment.
 
 #### Running a subset of test using tox 
 
