@@ -48,7 +48,7 @@ If the handler accepts the event, Qt considers it handled. If it is ignored, Qt 
 event to another object, such as a parent widget.
 
 
-```mermaid
+```{mermaid}
 flowchart TD
     A[External source<br/>Mouse / Keyboard / Timer / Application] --> B[Create QEvent object]
 
@@ -108,7 +108,7 @@ slot defines the action that should happen in response to a notification. It say
 happened".
 
 The model looks like this:
-```mermaid
+```{mermaid}
 flowchart TD
     A[Object changes state<br/>or something interesting happens] --> B[Object emits signal]
 
@@ -135,7 +135,7 @@ button.clicked.connect(save_file) # clicked is signal and save_file is the slot
 ```
 Now `clicked` could also have other slots connected:
 
-```mermaid
+```{mermaid}
 flowchart LR
     A[QPushButton] -->|emits| B[clicked signal]
 
@@ -154,7 +154,7 @@ The button does not know:
 
 It just emits.
 
-### Signal / slots vs Events<br>
+### _Signal_ / _slots_ vs _Events_<br>
 Although both mechanisms communicate information between components, they serve different purposes. 
 _Events_ dispatch interactions to potential handlers, whereas _signals_ notify interested observers that state has 
 already changed.
@@ -189,7 +189,7 @@ layer.events.data.connect(callback)
 ```
 This means that conceptually it looks like this:
 
-```mermaid
+```{mermaid}
 flowchart TD
     A[Layer data changes] --> B[data changes]
 
