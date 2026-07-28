@@ -386,87 +386,98 @@ wherever possible. Napari components should not need to understand backend-speci
 to communicate with one another.<br>
 Furthermore, users / developers would benefit from improved communication of propagating events to the main thread.
 
-## Requirements of the implementation
-There are a couple of things we would like to see from the implementation. These are here defined 
-as guiding principles. Ultimately, some of these are not set in stone, but are meant to be guiding principles. 
-Also, in case the guiding principles cannot be followed everywhere, there should be one central document describing 
-why this was the case. The guiding principles:
+## Proposed design principles
+The following principles are intended to guide the migration. They describe the desired architecture rather than 
+prescribing every implementation detail. Where practical considerations require deviations from these principles, 
+those decisions should be documented.
 
-1. __One event system__
-Napari should have a single event mechanism for communication between internal components. <br>
-While external libraries such as _Qt_ and _vispy_ may continue to expose their own native event systems, 
-these should be treated as implementation details at the application boundary. Internal napari components 
-should communicate through a common abstraction based on _psygnal_. This reduces the number of event models 
-contributors need to understand and avoids coupling application logic to specific GUI or rendering frameworks.
-2. __Backend agnostic__
-The napari event model should not depend on the choice of GUI or rendering backend.<br>
-Backends should translate their native events into napari events, and consume napari events where required, 
-through clearly defined adapter layers. For example, a mouse event originating from _Qt_, _vispy_, or another 
-future backend should be converted into a napari-defined signal rather than directly propagating through 
-backend-specific APIs. This allows future backends to be integrated without requiring changes throughout 
-the application codebase.
-3. __Explicit and typed interfaces__
-Event definitions should be explicit, discoverable, and statically analysable.<br>
-_Signals_ should declare the values they emit (_psygnal_):
-    ```python
-    data = Signal(DataType)
-    opacity = Signal(float)
-    layers_changed = Signal(Layer)
-    ```
-    rather than relying on dynamically populated event objects (current system):
-    ```python
-    event.value
-    event.source
-    event.type
-    ```
-    This would improve:
-    - type checking 
-    - IDE autocompletion 
-    - generated documentation 
-    - developer understanding of APIs
+### 1. One application dispatch model
+Napari should expose a single, coherent application dispatch model for communication between internal components.
+Backend libraries such as _Qt_ and _vispy_ will continue to use their native communication mechanisms internally, 
+but these should remain implementation details encapsulated within napari-owned integration layers.
+Application code should communicate using napari's dispatch model rather than directly depending on 
+backend-specific APIs.
 
-    Where events require complex information, the payload should be represented by a well-defined Python type rather 
-    than a dynamically modified event object.
+### 2. Distinguish signals from events
+The migration should make a clear architectural distinction between __signals__ and __events__.
+__Signals__ represent __state-change notifications__. For example:
+- layer opacity changed
+- layer inserted
+- camera zoom changed
 
-4. __Separate event dispatch from event payloads__
-The migration should distinguish between the mechanism used to deliver notifications and the data 
-carried by those notifications.<br>
-_Psygnal_ should provide the dispatch mechanism, while payload objects should represent domain-specific information. 
-For example: Comment: not wanna do this with mouse event
-   ```python
-   mouse_press = Signal(MouseEvent)
-   ```
-   where _MouseEvent_ is a typed object containing information such as position, button, and modifiers.
-This allows rich events to remain expressive while avoiding the limitations of the current dynamic 
-_Event_ implementation.
+__Events__ represent interactions that are being dispatched before application state changes.
+For example:
+- mouse press
+- mouse drag
+- key press
 
-5. __Preserve behaviour before improving APIs__
-The migration should prioritize behavioral compatibility over immediate API redesign.<br>
-Existing event semantics, including ordering, connection behavior, and lifecycle management, should be 
-preserved where practical. Improvements to API clarity and typing should be introduced gradually through 
-deprecation cycles. This reduces risk for users and plugin developers while allowing the underlying 
-implementation to evolve.
-6. __Make threading behavior explicit (not certain how achievable this is)(change documentation wise mostly)__
-Event delivery across threads should have clearly defined semantics.<br>
-Currently, GUI frameworks impose their own threading requirements, which can make event behaviour difficult 
-to reason about when application logic, computation, and rendering operate on different threads.
-The new event architecture should establish consistent rules for:
-- emitting signals from worker threads 
-- forwarding events to the GUI thread 
-- interacting with backend-specific thread restrictions.<br>
+__Signals__ and events have different semantics and should not be forced into the same abstraction.
 
-   <br>Threading behaviour should be handled deliberately by the event infrastructure rather than being an implicit 
-property of the backend. 
-[_Psygnal_ docs](https://psygnal.readthedocs.io/en/latest/usage/?h=threa#connecting-across-threads) would be good to read for this.
-7. __Minimise custom event infrastructure__
-The migration should favour standard _psygnal_ abstractions over napari-specific event infrastructure.<br>
-Wherever possible, functionality should be expressed using _Signal_, _SignalGroup_, and typed payload objects rather 
-than introducing additional event abstractions. This reduces maintenance burden, simplifies the architecture, and 
-makes the event system more familiar to contributors already accustomed to Qt's signals and slots.
-8. __Focus on long term stability__
-The event system is fundamental infrastructure used throughout napari and its plugin ecosystem.<br> 
-Changes should favour simple, well-defined abstractions with stable semantics. This migration should establish 
-an event architecture that can evolve without requiring repeated ecosystem-wide API changes.
+### 3. Use explicit, typed signals
+State-change notifications should be represented using explicit __psygnal signals__.
+For example:
+
+```python
+opacity = Signal(float)
+layer_inserted = Signal(Layer)
+camera_zoom = Signal(float)
+```
+
+rather than dynamically constructed event objects:
+
+```python
+event.value
+event.source
+event.type
+```
+
+Explicit signal definitions improve:
+- static type checking
+- IDE autocompletion
+- documentation generation
+- developer understanding of APIs
+
+### 4. Separate dispatch semantics from payloads
+The mechanism used to dispatch information should be independent of the objects representing that information.
+Signals should emit typed values or domain objects. _Events_ should carry well-defined payload types describing 
+the interaction being dispatched.
+For example, an interaction event might carry a typed `MouseEvent` object containing position, button, modifiers, 
+and other interaction-specific information.
+Separating dispatch semantics from payload representation makes communication easier to understand while avoiding 
+the limitations of dynamically populated event objects.
+
+### 5. Encapsulate backend communication
+_Qt_, _Vispy_, and future rendering or GUI backends should continue to use the communication mechanisms that are 
+most appropriate for those frameworks. Rather than replacing these mechanisms, napari should encapsulate them within 
+backend integration layers.
+This keeps backend-specific communication localized while exposing a consistent application-level API to the rest 
+of napari and to plugins.
+
+### 6. Preserve behaviour before improving APIs
+The migration should prioritize behavioral compatibility over immediate API redesign.
+Existing semantics—including callback ordering, event propagation, lifecycle behaviour, and plugin 
+expectations—should be preserved wherever practical.
+API improvements should be introduced incrementally through well-defined deprecation cycles.
+
+### 7. Make threading behaviour explicit
+Backend-specific threading constraints should remain encapsulated wherever possible.
+Where application-level communication crosses thread boundaries, the semantics should be clearly documented.
+This proposal does not attempt to redefine how backend frameworks manage threads, but it should establish clear 
+guidance for how signals, events, and backend integrations interact with existing threading models.
+
+### 8. Minimise custom infrastructure
+Where appropriate, the migration should favour standard _psygnal_ abstractions over custom napari infrastructure.
+State-change notifications should primarily use `Signal` and `SignalGroup`, avoiding additional napari-specific 
+abstractions unless they provide clear architectural benefits.
+Interaction events may require richer dispatch semantics than _psygnal_ alone provides, but these should be 
+implemented using the smallest amount of custom infrastructure necessary.
+
+### 9. Design for long-term maintainability
+The communication infrastructure is fundamental to napari's architecture and plugin ecosystem.
+The migration should favour simple, explicit, and well-documented abstractions that can evolve over time without 
+requiring repeated ecosystem-wide API changes.
+A successful design should make it easier to support future rendering backends, improve tooling and documentation, 
+and reduce the long-term maintenance burden of the communication infrastructure.
 
 ## Proposed architecture
 The proposed architecture establishes psygnal as the single event dispatch mechanism used throughout napari. 
