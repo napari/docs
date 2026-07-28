@@ -7,6 +7,7 @@
 :Created: 2026-26-07
 :Status: Draft
 :Type: <Standards Track | Process>
+:Version: 1
 ```
 
 ## Purpose
@@ -698,6 +699,9 @@ CC0+BY [^id4].
     <https://creativecommons.org/publicdomain/zero/1.0/>
 
 [^id4]: <https://dancohen.org/2013/11/26/cc0-by/>
+
+## Changelog
+1. [#1086](https://github.com/napari/docs/pull/1086) Introduces initial version of the document
 
 ## Copyright
 
