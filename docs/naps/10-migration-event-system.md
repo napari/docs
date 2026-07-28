@@ -37,7 +37,7 @@ arose because the word _event_ has been used to describe both user interactions 
 state-change notifications (such as layer properties changing), despite these representing fundamentally 
 different concepts.
 
-### _Events_ in _Qt_ terminology<br>
+### _Events_ in _Qt_ terminology
 _Events_ in the sense of _Qt_ are objects derived from `QEvent` (or one of its subclasses) that represent something 
 that happened either inside an application or as a result of external activity that the application needs to 
 respond to.
@@ -101,11 +101,11 @@ A Qt event is therefore a directed message with three important properties:
 The key idea is:
 A Qt event answers the question: "Something happened. Who should handle it?"
 
-### Signals (Qt signals and slots)<br>
+### Signals (Qt signals and slots)
 Signals and slots are a different mechanism from events. 
-- A **signal** notification emitted by an object to announce that some observable state has changed. 
+- A __signal__ notification emitted by an object to announce that some observable state has changed. 
 The emitter does not know, or need to know, which components are listening.
-- A **slot** is a function (or method) that is connected to a signal and is executed when that signal is emitted. A 
+- A __slot__ is a function (or method) that is connected to a signal and is executed when that signal is emitted. A 
 slot defines the action that should happen in response to a notification. It says "Perform this action when signal
 happened".
 
@@ -156,20 +156,20 @@ The button does not know:
 
 It just emits.
 
-### _Signal_ / _slots_ vs _Events_<br>
+### _Signal_ / _slots_ vs _Events_
 Although both mechanisms communicate information between components, they serve different purposes. 
 _Events_ dispatch interactions to potential handlers, whereas _signals_ notify interested observers that state has 
 already changed.
 
 | | Qt Event | Qt Signal |
 |---|---|---|
-| **Meaning** | Something happened | Notify observers about something |
-| **Direction** | One sender → one target | One sender → many receivers |
-| **Receiver** | Determined by Qt | Explicitly connected by programmer |
-| **Routing** | Event queue and event dispatcher | Signal-slot connection |
-| **Handler** | Event handler (`mousePressEvent`) | Slot / callback |
-| **Propagation** | Can be accepted, ignored, or propagated | No propagation |
-| **Example** | Mouse click, key press, paint event | Button clicked, value changed |
+| __Meaning__ | Something happened | Notify observers about something |
+| __Direction__ | One sender → one target | One sender → many receivers |
+| __Receiver__ | Determined by Qt | Explicitly connected by programmer |
+| __Routing__ | Event queue and event dispatcher | Signal-slot connection |
+| __Handler__ | Event handler (`mousePressEvent`) | Slot / callback |
+| __Propagation__ | Can be accepted, ignored, or propagated | No propagation |
+| __Example__ | Mouse click, key press, paint event | Button clicked, value changed |
 
 A dispatch mechanism determines how information flows between components. Both _events_ and _signals_ are 
 dispatch mechanisms, but they have different semantics. 
@@ -178,7 +178,7 @@ to consume or propagate it. Signal dispatch broadcasts that state has changed to
 The remainder of this proposal uses the term dispatch model to refer to the combination of these mechanisms 
 that napari exposes at the application level.
 
-### Current terminology in napari<br>
+### Current terminology in napari
 By now it is perhaps already clear that napari is using terminology different from _Qt_ at the moment.
 Most of the objects currently exposed through _napari.utils.events_ are semantically _signals_, despite 
 being called _events_. They are emitted after state has changed, support multiple connected callbacks, 
@@ -210,7 +210,7 @@ Throughout the remainder of this proposal, the term _signal_ refers to state-cha
 refers to dispatching interactions that may be handled or propagated. This distinction reflects the intended 
 semantics of the proposed architecture rather than the terminology used by the current implementation.
 
-### Situation in envisioned rendering backend (_pygfx_)<br>
+### Situation in envisioned rendering backend (_pygfx_)
 For migration, it makes sense to look at how other rendering backends deal with events. From code in
 _pygfx_ it is clear that the way _pygfx_ talks about events is very similar to the way _Qt_ talks about it.
 This is clear from their docstring of the `Event` class:
@@ -259,7 +259,7 @@ often focused on adopting _psygnal_, they collectively highlight a broader archi
 application dispatch model.
 
 One of the earliest discussions arose from the migration of magicgui to _psygnal_ [#3373](https://github.com/napari/napari/issues/3373). That discussion 
-highlighted the usability and maintainability benefits of replacing the dynamic **Event** objects with 
+highlighted the usability and maintainability benefits of replacing the dynamic __Event__ objects with 
 explicit, typed signals. In particular, it noted that the current _napari.utils.events_ API relies heavily on 
 dynamically generated event objects and `EmitterGroup`, making it difficult to discover available events, 
 reason about callback signatures, provide IDE autocompletion, or perform static type checking. By contrast, 
@@ -287,37 +287,47 @@ to `psygnal.EventedModel`. Although limited in scope, this provided an initial p
 of napari's event infrastructure can be migrated incrementally without requiring an immediate, project-wide 
 transition.
 
-## Rationale
-The current event system has served napari well, but it has become a significant source of architectural 
-complexity. Today, napari uses several event mechanisms simultaneously, including _Qt signals_ and _slots_, 
-_vispy_ events, _napari.utils.events_, and, in some places, _psygnal_. This means contributors must understand 
-multiple APIs with different semantics, callback signatures, and threading behaviour, and application logic 
-is often coupled directly to the event systems of specific backend libraries.<br>
-A primary goal of this migration is to establish a single, backend-agnostic event mechanism for internal 
-communication. Rather than allowing _Qt_ or _vispy_ to dictate how events are represented and propagated 
-throughout the application, napari should own its event model and treat GUI and rendering frameworks as adapters 
-at the boundaries of the system. This is particularly important for supporting multiple rendering backends, 
-where backend-specific events should be translated into a common abstraction before they are consumed by the 
-rest of the application.<br>
-Beyond the architectural benefits, the current _napari.utils.events_ implementation has several limitations. 
-Events are represented by dynamically constructed _Event_ objects whose available attributes are determined at 
-runtime, making them difficult to inspect, document, and type. Similarly, _EmitterGroups_ are created dynamically, 
-limiting IDE autocompletion and static analysis. In practice, many events follow simple, well-defined signatures 
-(for example, "opacity changed" or "layer inserted"), yet the current implementation obscures this information 
-behind a generic event object.
-_Psygnal_ provides a more explicit and familiar programming model. _Signals_ declare the values they emit, callback 
-signatures are directly visible, and static type checkers and IDEs can infer the expected interfaces. Many 
-contributors are already familiar with the _Qt signals_ and _slots_ model, and _psygnal_ provides a pure Python 
-implementation with similar semantics while remaining independent of any particular GUI framework.
-Finally, adopting a single signaling mechanism simplifies the internal architecture. A unified event system 
-makes it easier to reason about event flow, establish consistent threading behavior, improve testability, 
-and reduce the maintenance burden of supporting multiple overlapping event abstractions. While the migration 
-represents a substantial effort, it also provides an opportunity to modernize one of napari's core infrastructure 
-components and better position the project for future backend, typing, and architectural improvements.
+# Rationale
+The current communication infrastructure has served napari well, but it has become a significant source of 
+architectural complexity. Today, napari uses several communication mechanisms simultaneously, including _Qt
+signals_ and _slots_, _vispy_ events, _napari.utils.events_, and, in some places, _psygnal_. These mechanisms
+are present throughout the codebase and represent different communication semantics, but there is currently no 
+clear architectural distinction between them.<br>
+As a result, contributors must understand multiple APIs with different connection patterns, callback signatures, and 
+behaviors, while the napari application logic is often coupled directly to backend-specific communication mechanisms.
+A key motivation for this migration is to establish a coherent application dispatch model for napari with explicit 
+semantics for different types of communication. In particular, napari currently uses the term _event_ to describe
+both state-change notifications and user interactions, despite these representing fundamentally different concepts.<br>
+State changes, such as a layer's opacity changing or a layer being inserted, are naturally represented as _signals_: 
+notifications that something has changed and that interested components may react. User interactions, such as mouse 
+and keyboard input, are instead _events_: dispatched interactions that may require ordering, handling, propagation, 
+or acceptance before application state is modified.<br>
+The goal of this migration is therefore not to replace every event with _psygnal_, but to establish a clear 
+separation between these concepts. _Psygnal_ provides the foundation for napari's internal signaling infrastructure, 
+while backend-specific event systems such as those provided by _Qt_ and _vispy_ remain encapsulated where they are 
+required. Rather than allowing GUI or rendering frameworks to define napari's application-level communication model, 
+napari should own the interfaces between application components and treat backend-specific systems as implementation 
+details at the boundaries of the architecture.<br>
+Beyond the architectural benefits, the current _napari.utils.events_ implementation has several limitations when used 
+for state-change notifications. These notifications are represented by dynamically constructed `Event` objects 
+whose available attributes are determined at runtime, making them difficult to inspect, document, and type. 
+Similarly, `EmitterGroups` are created dynamically, limiting IDE autocompletion and static analysis.<br>
+In practice, many of these notifications have simple, well-defined signatures (for example, "opacity changed" 
+or "layer inserted"), yet the current implementation obscures this information behind a generic event object.
+_Psygnal_ provides a more explicit and familiar signaling model. Signals declare the values they emit, callback 
+signatures are directly visible, and static type checkers and IDEs can infer the expected interfaces.
+Many contributors are already familiar with the _Qt signals_ and _slots_ model, and _psygnal_ provides similar 
+semantics in pure Python while remaining independent of any particular GUI framework.<br>
+Finally, establishing a consistent application-level communication model will simplify the internal architecture 
+and reduce the maintenance burden of supporting multiple overlapping abstractions. It will make communication 
+pathways easier to reason about, improve static typing and documentation, and provide a clearer foundation for 
+future work such as additional rendering backends.
+While the migration represents a substantial effort, it provides an opportunity to modernize one of napari's core 
+infrastructure components while preserving the semantics required by both state notifications and user 
+interaction dispatch.
+Please see below for a more concise display of the problems with the current communication model.
 
-Please see below for a more in depth description / discussion of the problems with the current state.
-
-## The problem with the current event system
+## The problem with the current communication model
 Napari currently uses several different event systems throughout the codebase:
 - the custom _napari.utils.events_ framework (derived from _vispy_)
 - _vispy's_ event system
