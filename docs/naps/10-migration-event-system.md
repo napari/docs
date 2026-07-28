@@ -328,42 +328,63 @@ interaction dispatch.
 Please see below for a more concise display of the problems with the current communication model.
 
 ## The problem with the current communication model
-Napari currently uses several different event systems throughout the codebase:
-- the custom _napari.utils.events_ framework (derived from _vispy_)
-- _vispy's_ event system
+Napari currently uses several different mechanisms to communicate between components throughout the codebase:
+
+- the custom _napari.utils.events_ framework (derived from _VisPy_)
+- _Vispy's_ event system
 - _Qt signals_ and _slots_
-- _psygnal_ (used in overlays)
+- _psygnal_ (currently used by overlays)
 
-As a result, different parts of napari communicate using different abstractions and are not translated 
-into one signal / event model.
-This has a number of consequences:
+These mechanisms are used in different parts of the codebase time and represent different communication semantics. 
+As a result, different parts of napari communicate using different abstractions, making the flow of information 
+through the application difficult to reason about.<br>
+This has several consequences.
 
-__Tight coupling to backend libraries__<br>
-Much of napari's internal code is coupled directly to _Qt_ or _vispy_ because events are represented 
-using their native mechanisms. This makes it difficult to separate application logic from rendering 
-or UI concerns.
+### Tight coupling to backend libraries
 
-__Multiple programming models__<br>
-Developers currently need to understand several different event APIs:
+Much of napari's internal communication is coupled directly to _Qt_ or _Vispy_ because napari application code 
+frequently interacts with their native communication mechanisms. This makes it difficult to separate application 
+logic from GUI and rendering concerns and complicates support for alternative backends.<br>
+Ideally, backend-specific communication should remain an implementation detail, with napari exposing a consistent 
+application-level dispatch model regardless of which GUI or rendering backend is being used.
+
+### Multiple programming models
+Contributors currently need to understand several communication models:
+
 - _Qt signals_ and _slots_
-- _vispy_ events
+- _Vispy_ events
 - _napari.utils.events_
-- _psygnal_ (in case of overlays)
+- _psygnal_
 
-Each has different semantics, callback signatures, and connection patterns. This increases the cognitive
-load for contributors and makes it harder to write reusable infrastructure.
-Moving towards a single internal event abstraction reduces this complexity and makes behaviour more
-consistent across the codebase.
+Each has different semantics, callback signatures, connection mechanisms, and lifecycle rules. This increases the 
+cognitive load for contributors, makes APIs less consistent, and complicates the development of reusable
+infrastructure.
 
-__Threading__<br>
-Napari already contains components that execute across different threads, including computational workloads and 
-GUI-related components. However, threading behaviour is currently influenced by the specific event system being 
-used rather than being managed consistently at the napari application level.
-Different frameworks involved in napari's event handling have different assumptions and mechanisms for thread 
-communication. For example, _Qt_ imposes strict thread-affinity rules for GUI objects, while _vispy_ has its own event 
-handling model. As a result, code that emits or responds to events may need to be aware of backend-specific threading 
-constraints, making event flow harder to reason about and increasing coupling between application logic and external 
-libraries.
+### Dynamic event definitions
+
+Many state-change notifications are represented using dynamically constructed `Event` objects and `EmitterGroup`s.
+
+The information carried by these events is determined at runtime, making it difficult to:
+
+- discover available notifications
+- understand callback signatures
+- provide IDE autocompletion
+- perform static type checking
+- generate accurate documentation
+
+Although many notifications have simple, well-defined interfaces (for example, "opacity changed" or "layer inserted"), 
+these interfaces are hidden behind generic event objects.
+
+### Threading
+
+Napari already contains components that execute across multiple threads, including computational workloads and 
+GUI-related components. Threading behaviour is currently influenced by the communication mechanisms provided by 
+backend libraries. For example, _Qt_ imposes thread-affinity requirements for GUI objects, while rendering backends 
+have their own communication models.<br>
+Although these constraints cannot be removed, they should remain encapsulated within backend integration layers 
+wherever possible. Napari components should not need to understand backend-specific threading behavior simply 
+to communicate with one another.<br>
+Furthermore, users / developers would benefit from improved communication of propagating events to the main thread.
 
 ## Requirements of the implementation
 There are a couple of things we would like to see from the implementation. These are here defined 
