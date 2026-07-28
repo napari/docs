@@ -495,7 +495,58 @@ therefore communicate through explicit napari-owned signals and events rather th
 backend-specific APIs.
 Conceptually, the architecture becomes:
 
-_Create schematic_
+```{mermaid}
+flowchart TB
+
+    User["User interaction<br/>(mouse, keyboard, touch)"]
+
+    subgraph Backends
+        Qt["Qt"]
+        Vispy["VisPy"]
+        Pygfx["Future backend<br/>(e.g. pygfx)"]
+    end
+
+    subgraph Napari["napari"]
+        Adapters["Backend integration layers"]
+
+        Events["Interaction events<br/>(dispatch)"]
+
+        Models["Models"]
+        Viewer["Viewer state"]
+        Controllers["Controllers"]
+
+        Signals["psygnal Signals<br/>(state-change notifications)"]
+
+        Plugins["Plugins"]
+    end
+
+    Renderer["Rendering backend"]
+
+    User --> Qt
+    User --> Vispy
+    User -. future .-> Pygfx
+
+    Qt --> Adapters
+    Vispy --> Adapters
+    Pygfx --> Adapters
+
+    Adapters --> Events
+
+    Events --> Models
+    Events --> Viewer
+    Events --> Controllers
+
+    Models --> Signals
+    Viewer --> Signals
+    Controllers --> Signals
+
+    Signals --> Plugins
+    Signals --> Controllers
+    Signals --> Viewer
+
+    Viewer --> Renderer
+    Controllers --> Renderer
+```
 
 Under this architecture:
 - `psygnal.Signal` and `SignalGroup` become the primary mechanism for state-change notifications.
