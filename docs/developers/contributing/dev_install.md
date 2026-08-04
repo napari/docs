@@ -99,7 +99,7 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
    [`ruff-format`](https://docs.astral.sh/ruff/formatter/) and lint with
    [`ruff-check`](https://docs.astral.sh/ruff/linter/).
    To enable it to be executed on creation of every commit, reduce CI usage and reduce the number of test errors,
-   install `prek` as pre-comit hood by running the following command in your environment:
+   install `prek` as pre-commit hook by running the following command in your environment:
 
    ```sh
    prek install
