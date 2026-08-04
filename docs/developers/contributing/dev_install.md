@@ -119,7 +119,7 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
    comment along with the specific error code (e.g. `import sys  # noqa: E402`) but
    please do not ignore errors lightly.
 
-   ```note
+   ```{note}
    To run `prek` manually, without creating a commit, you can run `prek run --all-files`.
    ```
 
