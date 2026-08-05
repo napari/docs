@@ -16,17 +16,38 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 ## Highlights
 
+### Fuzzy find in command palette
+
+Implement fuzzy find for the command palette ([#8661](https://github.com/napari/napari/pull/8661))
+
+### Adjust grid rendering with hidden layers
+
+If using grid layout without using stride, there are no blanks fields for hidden layers
+thanks to [#9244](https://github.com/napari/napari/pull/9244)
+
+### Inherit axis labels from layers
+
+Thanks to [#9282](https://github.com/napari/napari/pull/9282) the axis labels in interface, next to slide and `Dims.axis_labels`
+are calculated based on axis labels of layers
+
+### Status bar coordinates as floats
+
+Thanks to [#9287](https://github.com/napari/napari/pull/9287) we no longer render coordinates on scale bar
+as integers, but as floats. It is important for all who use fractional
+`Layer.scale`
+
+### Public API for auto contrast limit
+
+In [#9271](https://github.com/napari/napari/pull/9271) the public API for auto contrast limits is added
+
 
 
 - Canvas model ([#8633](https://github.com/napari/napari/pull/8633))
-- Implement fuzzy find for the command palette ([#8661](https://github.com/napari/napari/pull/8661))
 - Implement Surface slicing with async request/response ([#8783](https://github.com/napari/napari/pull/8783))
 - Remove translations code ([#8935](https://github.com/napari/napari/pull/8935))
 - Add builtin Wavefront OBJ to surfaces reader ([#9228](https://github.com/napari/napari/pull/9228))
-- fix: adjust the layout based on the hidden layers in grid ([#9244](https://github.com/napari/napari/pull/9244))
-- publicly expose auto contrast limits ([#9271](https://github.com/napari/napari/pull/9271))
-- update dims axis labels from layers axis labels ([#9282](https://github.com/napari/napari/pull/9282))
-- Status bar coordinates as floats ([#9287](https://github.com/napari/napari/pull/9287))
+
+
 - Dynamically construct layer controls based on selection ([#9318](https://github.com/napari/napari/pull/9318))
 
 ## New Features
@@ -79,7 +100,6 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 - [pre-commit.ci] pre-commit autoupdate ([docs#1069](https://github.com/napari/docs/pull/1069))
 - Update homepage video for 0.8.0/.1 changes ([docs#1070](https://github.com/napari/docs/pull/1070))
-- Start creating 0.8.1 release notes ([docs#1073](https://github.com/napari/docs/pull/1073))
 - Enhance contributing documentation with GitHub edit info ([docs#1075](https://github.com/napari/docs/pull/1075))
 - Adding uv to getting started - installation ([docs#1076](https://github.com/napari/docs/pull/1076))
 - make napari logo usage page ([docs#1077](https://github.com/napari/docs/pull/1077))
@@ -114,7 +134,6 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [pre-commit.ci] pre-commit autoupdate ([#9197](https://github.com/napari/napari/pull/9197))
 - Add ``example`` to ``allowed_labels`` in ``check_labels`` job of ``label_and_milestone_checker.yml`` workflow ([#9214](https://github.com/napari/napari/pull/9214))
 - TST: parameterizing with iterables is deprecated in pytest ([#9217](https://github.com/napari/napari/pull/9217))
-- MAINT: Remove deprecated ScaleBar.unit ([#9218](https://github.com/napari/napari/pull/9218))
 - Add stereo 3D viewer widget example ([#9219](https://github.com/napari/napari/pull/9219))
 - Make tensorstore optional dependency of `test_labels` again ([#9220](https://github.com/napari/napari/pull/9220))
 - Remove unnecessary ``FutureWarning`` ignore for ``test_layers_save_svg`` ([#9225](https://github.com/napari/napari/pull/9225))
