@@ -16,6 +16,8 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 ## Highlights
 
+
+
 - Canvas model ([#8633](https://github.com/napari/napari/pull/8633))
 - Implement fuzzy find for the command palette ([#8661](https://github.com/napari/napari/pull/8661))
 - Implement Surface slicing with async request/response ([#8783](https://github.com/napari/napari/pull/8783))
@@ -86,6 +88,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Bring several NAPs up to date ([docs#1091](https://github.com/napari/docs/pull/1091))
 - [pre-commit.ci] pre-commit autoupdate ([docs#1095](https://github.com/napari/docs/pull/1095))
 - Update dev instructions to use prek ([docs#1096](https://github.com/napari/docs/pull/1096))
+- Add initial release notes for 0.9.0 ([docs#1097](https://github.com/napari/docs/pull/1097))
 - Update recommended Python version in README from 3.11 to 3.13 ([#9223](https://github.com/napari/napari/pull/9223))
 - Load data from zarr in map example if contextily fails ([#9307](https://github.com/napari/napari/pull/9307))
 
