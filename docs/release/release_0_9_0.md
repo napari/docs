@@ -58,14 +58,11 @@ In [#9271](https://github.com/napari/napari/pull/9271) the public API for auto c
 - Add builtin Wavefront OBJ to surfaces reader ([#9228](https://github.com/napari/napari/pull/9228))
 - Dynamically construct layer controls based on selection ([#9318](https://github.com/napari/napari/pull/9318))
 
-## Breaking Changes
-
-- Remove translations code ([#8935](https://github.com/napari/napari/pull/8935))
-
 ## Improvements
 
 - MAINT Always raise error when `widget_name` given in `get_widget_contribution` ([#6544](https://github.com/napari/napari/pull/6544))
 - Small refactor of point slicing + `rescale` projection mode to replace out_of_slice_display ([#8786](https://github.com/napari/napari/pull/8786))
+- Refactor out-of-slice display for vectors into a projection mode ([#9032](https://github.com/napari/napari/pull/9032))
 - move features table widget command to the Metadata menu ([#9231](https://github.com/napari/napari/pull/9231))
 - fix: change the order of edge/face color and border ([#9232](https://github.com/napari/napari/pull/9232))
 - Move the layer lock to group with link/unlink in layer list context menu ([#9235](https://github.com/napari/napari/pull/9235))
@@ -103,6 +100,8 @@ In [#9271](https://github.com/napari/napari/pull/9271) the public API for auto c
 ## Deprecations
 
 - Canvas model ([#8633](https://github.com/napari/napari/pull/8633))
+- Small refactor of point slicing + `rescale` projection mode to replace out_of_slice_display ([#8786](https://github.com/napari/napari/pull/8786))
+- Refactor out-of-slice display for vectors into a projection mode ([#9032](https://github.com/napari/napari/pull/9032))
 - Refactor floating_axes/axes into canvas_axes/scene_axes ([#9363](https://github.com/napari/napari/pull/9363))
 
 ## Documentation
@@ -113,6 +112,7 @@ In [#9271](https://github.com/napari/napari/pull/9271) the public API for auto c
 - make napari logo usage page ([docs#1077](https://github.com/napari/docs/pull/1077))
 - Delete useless line ([docs#1078](https://github.com/napari/docs/pull/1078))
 - Update auto-fill-labels loop video to extend end frame ([docs#1082](https://github.com/napari/docs/pull/1082))
+- Update info about canvas model ([docs#1083](https://github.com/napari/docs/pull/1083))
 - Bring several NAPs up to date ([docs#1091](https://github.com/napari/docs/pull/1091))
 - Update dev instructions to use prek ([docs#1096](https://github.com/napari/docs/pull/1096))
 - Add initial release notes for 0.9.0 ([docs#1097](https://github.com/napari/docs/pull/1097))
@@ -165,9 +165,11 @@ In [#9271](https://github.com/napari/napari/pull/9271) the public API for auto c
 - Fix test failures when running napari in tiling window managers by forcing the screenshot size. ([#9284](https://github.com/napari/napari/pull/9284))
 - Update `certifi`, `hypothesis`, `pandas`, `platformdirs`, `tqdm`, `virtualenv` ([#9295](https://github.com/napari/napari/pull/9295))
 - [pre-commit.ci] pre-commit autoupdate ([#9303](https://github.com/napari/napari/pull/9303))
+- Simplify tox configuration ([#9309](https://github.com/napari/napari/pull/9309))
 - Update latlon with map example to follow PEP8 ([#9312](https://github.com/napari/napari/pull/9312))
 - Remove `make_napari_viewer` from `test_vispy_labels_polygon_overlay` ([#9314](https://github.com/napari/napari/pull/9314))
 - Revert "Disable part of test matrix to increase runner availability during sprints/hackathon (#9226)" ([#9348](https://github.com/napari/napari/pull/9348))
+- Drop colormap translation dictionaries ([#9358](https://github.com/napari/napari/pull/9358))
 - Use LF for all files in gitattributes ([#9359](https://github.com/napari/napari/pull/9359))
 
 
