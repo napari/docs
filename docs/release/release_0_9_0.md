@@ -116,6 +116,7 @@ In [#9271](https://github.com/napari/napari/pull/9271) the public API for auto c
 - Bring several NAPs up to date ([docs#1091](https://github.com/napari/docs/pull/1091))
 - Update dev instructions to use prek ([docs#1096](https://github.com/napari/docs/pull/1096))
 - Add initial release notes for 0.9.0 ([docs#1097](https://github.com/napari/docs/pull/1097))
+- Update release notes for napari 0.9.0a2 ([docs#1099](https://github.com/napari/docs/pull/1099))
 - Add stereo 3D viewer widget example ([#9219](https://github.com/napari/napari/pull/9219))
 - Update recommended Python version in README from 3.11 to 3.13 ([#9223](https://github.com/napari/napari/pull/9223))
 - Add (Euro)SciPy Sprint Authors to Citation ([#9234](https://github.com/napari/napari/pull/9234))
