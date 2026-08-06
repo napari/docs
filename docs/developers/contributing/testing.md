@@ -144,10 +144,10 @@ It is also possible to run tests locally using `tox`. We use `tox` to run test i
 The main difference between running `pytest` locally or `tox` locally is that `tox` will create a virtual environment
 for each test environment, so it will take a bit more time. Though, `tox` will be more similar to the CI environment.
 The only requirement for running tests is to have `tox` in your environment and the target Python version discoverable on your system. 
-To run test using `tox` using Python 3.13 and pyqt6 on Linux, enter:
+To run test using `tox` using Python 3.13 and pyqt6, enter:
 
 ```sh
-tox -e py313-linux-pyqt6-no_cov
+tox -e py313-pyqt6
 ```
 
 To get the list of all available environments that may be run:
@@ -165,38 +165,18 @@ Most often if something is failing in this test run it is either a simple change
 To run this test use:
 
 ```sh
-MIN_REQ=1 tox -e py311-linux-pyqt5-no_cov --recreate
+MIN_REQ=1 tox -e py311-pyqt5 --recreate
 ```
 
-or 
-
-```sh
-MIN_REQ=1 tox -e py311-windows-pyqt5-no_cov --recreate
-```
-
-Unfortunately, it is impossible to test this on arm macOS, because of lack of pyqt5 support for this platform.
-
-#### Speed up tox environment creation
-
-To speed up the setup of creation of tox environments you can install `tox-uv` plugin that uses `uv` in 
-place of `pip` plus `virtualenv` to create tox environments.
-The only disadvantage of this method is that it install `uv` in your environment 
-that is making precedence over global `uv` installation. 
-So you need to remember to regularly update one more `uv` installation. 
+Unfortunately, it is impossible to test this on ARM macOS, because of lack of pyqt5 support for this platform.
 
 #### Running with constraints 
 
 For fully reproduce CI environment you might use constraints files for tox environment creation.
-For example, to run tests using Python 3.13 and pyqt6 on Linux with a constraints file, enter:
+For example, to run tests using Python 3.13 and pyqt6 with a constraints file, enter:
 
 ```sh
-PIP_CONSTRAINT=resources/constraints/constraints_py313.txt tox -e py313-linux-pyqt6-no_cov
-```
-
-or with `tox-uv` 
-
-```sh
-UV_CONSTRAINT=resources/constraints/constraints_py313.txt tox -e py313-linux-pyqt6-no_cov
+UV_CONSTRAINT=resources/constraints/constraints_py313.txt tox -e py313-pyqt6
 ```
 
 Constraint usage guarantees the same version of dependencies as in CI environment. Its usually isn’t needed, but it sometimes happens that the newest version of some dependency is not compatible with napari test suite, and it is good to have a way to run tests with the same versions of dependencies as in the CI environment.
@@ -206,15 +186,17 @@ Constraint usage guarantees the same version of dependencies as in CI environmen
 The part of tox call after `--` is passed to pytest. So you can run a subset of tests using tox as well. For example, to run only tests in `src/napari/layers/image/` file using Python 3.13 and pyqt6 on Linux, enter:
 
 ```sh
-tox -e py313-linux-pyqt6-no_cov -- src/napari/layers/image
+tox -e py313-pyqt6 -- src/napari/layers/image
 ```
 
 #### Use tox to create an environment for debugging 
 
-The `tox` provides a convenient way to create a virtual environment for debugging. You can use `devenv` command to create a virtual environment for debugging. For example, to create a virtual environment for debugging using Python 3.13 and pyqt6 on Linux, enter:
+The `tox` provides a convenient way to create a virtual environment for debugging.
+You can use `devenv` command to create a virtual environment for debugging. 
+For example, to create a virtual environment for debugging using Python 3.13 and pyqt6, enter:
 
 ```sh
-$ tox devenv -e py313-linux-pyqt6-no_cov
+$ tox devenv -e py313-pyqt6
 ```
 Then at the end of the output is a path to created virtual environment.
 
@@ -223,6 +205,30 @@ Then at the end of the output is a path to created virtual environment.
 ROOT: created development environment under /Users/grzegorzbokota/Documents/Projekty/napari/venv
 ```
 That you can activate in your IDE or terminal as a normal virtual environment. 
+
+#### Run test measuring coverage using tox
+
+You might want to locally check how your changes affect test coverage. You can run tox with coverage measurement using the following command:
+
+```sh
+TOX_TEST_RUNNER="coverage run" tox -e py314-pyqt6
+```
+
+This command will create a coverage report in `.coverage` file. You can then generate a report using the following command:
+
+1. `coverage report` - to see a report in the console. It will show you the percentage of code covered by tests and the lines that are not covered.
+2. `coverage html` - to generate a report in HTML format. You can then open it browser and see exactly which lines are not covered by tests.
+
+```{note}
+We do not use `pytes-cov` as it do not measure coverage of all code, like our `make-napari-viewer` fixture. 
+```
+
+```{note}
+Some parts of code are tested only on given platform, python version or in minimum requirements test. 
+So running coverage locally might not be the same as in CI.
+Some lines might be not covered on your platform, but they are covered in CI.
+```
+
 
 ### Run tests without pop-up windows
 
