@@ -183,7 +183,8 @@ Constraint usage guarantees the same version of dependencies as in CI environmen
 
 #### Running a subset of test using tox 
 
-The part of tox call after `--` is passed to pytest. So you can run a subset of tests using tox as well. For example, to run only tests in `src/napari/layers/image/` file using Python 3.13 and pyqt6 on Linux, enter:
+The part of tox call after `--` is passed to pytest. So you can run a subset of tests using tox as well. 
+For example, to run only tests in `src/napari/layers/image/` file using Python 3.13 and pyqt6, enter:
 
 ```sh
 tox -e py313-pyqt6 -- src/napari/layers/image
