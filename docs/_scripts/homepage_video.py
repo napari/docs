@@ -79,12 +79,14 @@ def build_viewer(*, show: bool) -> napari.Viewer:
     layer = viewer.layers[0]
     layer.name = LAYER_NAME
     layer.contrast_limits = CONTRAST_LIMITS
+    layer.contrast_limits_range = CONTRAST_LIMITS
     layer.rendering = RENDERING
     layer.attenuation = ATTENUATION
     layer.colormap = COLORMAP
-    viewer.scale_bar.visible = True
-    viewer.axes.visible = True
+    layer.histogram.enabled = True
     viewer.dims.axis_labels = ('T', 'Z', 'Y', 'X')
+    viewer.scale_bar.visible = True
+    viewer.floating_axes.visible = True
     viewer.window._qt_window.resize(*WINDOW_SIZE)
     viewer.fit_to_view()
     return viewer
