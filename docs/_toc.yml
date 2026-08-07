@@ -214,6 +214,7 @@ subtrees:
             - entries:
               - file: developers/contributing/documentation/docs_template
               - file: developers/contributing/documentation/docs_deployment
+      - file: developers/repositories
       - file: developers/coredev/core_dev_guide
         subtrees:
         - entries:
