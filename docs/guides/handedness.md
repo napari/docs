@@ -62,7 +62,7 @@ viewer, sst_layer = napari.imshow(
         colormap='magma',
         )
 viewer.dims.axis_labels = sst.sst.dims
-viewer.axes.visible = True
+viewer.scene.overlays.axes.visible = True
 ```
 
 ```{code-cell} python
@@ -144,7 +144,7 @@ tags: [remove-input]
 ---
 viewer.camera.angles = (90, 0, 0)
 viewer.camera.zoom = 16
-viewer.axes.visible = True
+viewer.scene.overlays.axes.visible = True
 
 nbscreenshot(viewer)
 ```
