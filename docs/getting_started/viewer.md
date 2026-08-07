@@ -178,7 +178,9 @@ The **canvas** is in the center of the viewer and contains the visual display of
 
 +++
 
+```{seealso}
 The canvas model can be accessed via `viewer.canvas`; several things are exposed here, such as the [grid mode](grid-mode), [canvas overlays](viewer-overlays) and the overlay tiling settings.
+```
 
 (layer-list)=
 
