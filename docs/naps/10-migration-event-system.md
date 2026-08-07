@@ -624,7 +624,7 @@ Where appropriate, `psygnal.EventedModel` should replace napari's custom impleme
 Update application components that consume state-change notifications.
 This includes:
 
-- controllers
+- controllers*
 - viewer logic
 - actions
 - menus
@@ -632,6 +632,12 @@ This includes:
 - plugin-facing APIs
 
 At this stage, the majority of application state changes should be communicated through explicit typed signals.
+
+*With regards to what is meant with controllers here, controller should:
+- listen to events of rendering backend and GUI frontend and tell the napari models what changed.
+- based on changes to the napari models tell the rendering backend / GUI frontend what to draw / update.
+In this respect something like the `LayerControls` can be seen as a controller and also everything that inherits 
+the VispyBaseLayer as it translates between napari models and vispy.
 
 #### 4 Backend integration
 Review communication at the boundaries between napari and backend frameworks. Rather than replacing _Qt_ or _vispy_ 
