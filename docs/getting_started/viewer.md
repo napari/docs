@@ -544,7 +544,7 @@ viewer.scene.camera.perspective = 45
 By default, camera center and zoom persist when switching between 2D and 3D
 views (synced mode). You can change this behavior via the camera popup, the
 **View** menu (**Toggle Synced Camera**, {kbd}`Ctrl+U`), or programmatically
-through `viewer.camera.synced`. See the [camera guide](camera-guide) for details.
+through `viewer.scene.camera.synced`. See the [camera guide](camera-guide) for details.
 
 ### Roll dimensions
 
