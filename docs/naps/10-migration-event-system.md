@@ -28,7 +28,7 @@ initial migration strategy rather than a fixed implementation plan. We expect to
 is gained during implementation, documenting significant architectural decisions and any deviations from the 
 original proposal.
 
-![image](../_static/images/hang_the_code.gif)
+![image](../_static/images/hang_the_code.png)
 
 ## Terminology and concepts
 Throughout this proposal, the terms _event_ and _signal_ are used in their architectural sense rather than according to 
