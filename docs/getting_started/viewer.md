@@ -546,6 +546,10 @@ views (synced mode). You can change this behavior via the camera popup, the
 **View** menu (**Toggle Synced Camera**, {kbd}`Ctrl+U`), or programmatically
 through `viewer.scene.camera.synced`. See the [camera guide](camera-guide) for details.
 
+```{note}
+The scene model also gives you access to [scene overlays](viewer-overlays)!
+```
+
 ### Roll dimensions
 
 The third button rolls the dimensions that are currently displayed in the viewer.
