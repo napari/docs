@@ -29,7 +29,7 @@ parameters:
 # Orbs are reusable packages of CircleCI configuration that you may share across projects.
 # See: https://circleci.com/docs/2.1/orb-intro/
 orbs:
-  python: circleci/python@3.0.0
+  python: circleci/python@4.0.0
 
 jobs:
   build-docs:
