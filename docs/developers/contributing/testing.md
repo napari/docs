@@ -143,7 +143,7 @@ in `System Settings > Privacy & Security > Accessibility` so `pyautogui` can con
 It is also possible to run tests locally using `tox`. We use `tox` to run test in CI.
 The main difference between running `pytest` locally or `tox` locally is that `tox` will create a virtual environment
 for each test environment, so it will take a bit more time. Though, `tox` will be more similar to the CI environment.
-The only requirement for running tests is to have `tox` in your environment and the target Python version discoverable on your system.
+The only requirement for running tests is to have `tox` in your environment.
 
 `tox` can be used to run tests for a single environment configuration too.  
 For example, to run tests using `tox` for Python 3.13 and pyqt6, enter:
