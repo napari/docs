@@ -1,3 +1,6 @@
+import os
+from pathlib import Path
+
 from nilearn import datasets
 import pooch
 
@@ -8,6 +11,9 @@ def main():
     datasets.fetch_surf_fsaverage()
 
     #getting_started/open_images.md
+    download_folder = Path(os.path.expanduser("~")).joinpath("Desktop", "napari-docs-build")
+    if not download_folder.is_dir():
+        download_folder.mkdir(parents=True, exist_ok=True)
     pooch.retrieve(
         url="https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/582/S-BIAD582/Files/01_wt_Dprotein555-TL/raw_mps/5-2b_01_wt_Dprotein555-TL_003_rawmp.tif",
         known_hash='5b43ed0269eaa1eebf4c48079270a30e6cc40e87f20cc36c1b3d5a07c51c7b20',
