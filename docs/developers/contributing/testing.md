@@ -223,7 +223,7 @@ This command will create a coverage report in `.coverage` file. You can then gen
 2. `coverage html` - to generate a report in HTML format. You can then open it in the browser and see exactly which lines are not covered by tests.
 
 ```{note}
-We do not use `pytest-cov` as it do not measure coverage of all code, like our `make-napari-viewer` fixture. 
+We do not use `pytest-cov` as it does not measure coverage of all code, like our `make-napari-viewer` fixture. 
 ```
 
 ```{note}
