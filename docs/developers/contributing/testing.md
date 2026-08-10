@@ -180,7 +180,9 @@ For example, to run tests using Python 3.13 and pyqt6 with a constraints file, e
 UV_CONSTRAINT=resources/constraints/constraints_py313.txt tox -e py313-pyqt6
 ```
 
-Constraint usage guarantees the same version of dependencies as in the CI environment. It usually isn’t needed, but it sometimes happens that the newest version of some dependency is not compatible with the napari test suite, and it is useful to have a way to run tests with the same versions of dependencies as in the CI environment.
+Constraint usage guarantees the same version of dependencies as in the CI environment where dependencies are pinned to a specific PyPI package version.
+ 
+While it usually isn’t needed to run this locally, running tests with the constraint file ensures that tests run with the exact same versions of dependencies as in napari's CI environment.
 
 #### Running a subset of test using tox 
 
