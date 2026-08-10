@@ -143,25 +143,27 @@ in `System Settings > Privacy & Security > Accessibility` so `pyautogui` can con
 It is also possible to run tests locally using `tox`. We use `tox` to run test in CI.
 The main difference between running `pytest` locally or `tox` locally is that `tox` will create a virtual environment
 for each test environment, so it will take a bit more time. Though, `tox` will be more similar to the CI environment.
-The only requirement for running tests is to have `tox` in your environment and the target Python version discoverable on your system. 
-To run test using `tox` using Python 3.13 and pyqt6, enter:
+The only requirement for running tests is to have `tox` in your environment and the target Python version discoverable on your system.
+
+`tox` can be used to run tests for a single environment configuration too.  
+For example, to run tests using `tox` for Python 3.13 and pyqt6, enter:
 
 ```sh
 tox -e py313-pyqt6
 ```
 
-To get the list of all available environments that may be run:
+To get the list of all available environment configurations that may be run:
 
 ```sh
 tox list
 ```
 
-#### Minimum requirements testing. 
+#### Minimum requirements testing 
 
-One of our test suite entries is testing napari against the minimum requirements declared in the `pyproject.toml` file.
-This checks if napari will still work even with outdated dependencies. Most often if something is failing in this test run, it is either a simple change or a reason to bump the minimum requirements in the `pyproject.toml` file.
+Tests may be run against the minimum requirements declared in the `pyproject.toml` file.
+This checks if napari will work even with outdated or minimal dependencies. If the minimal requirements test run fails, it is likely either a simple regression fix or a reason to bump the minimum requirements in the `pyproject.toml` file.
 
-To run this test use:
+To run this test, prefix the `tox` command with `MIN_REQ=1`:
 
 ```sh
 MIN_REQ=1 tox -e py311-pyqt5 --recreate
@@ -171,7 +173,8 @@ Unfortunately, it is impossible to test this on ARM macOS, due to the lack of py
 
 #### Running with constraints 
 
-To fully reproduce the CI environment, you might use our constraints files; for example, to run tests using Python 3.13 and pyqt6 with a constraints file, enter:
+To fully reproduce the CI environment, you might use our constraints files which fully specifies dependency versions.
+For example, to run tests using Python 3.13 and pyqt6 with a constraints file, enter:
 
 ```sh
 UV_CONSTRAINT=resources/constraints/constraints_py313.txt tox -e py313-pyqt6
@@ -181,7 +184,7 @@ Constraint usage guarantees the same version of dependencies as in the CI enviro
 
 #### Running a subset of test using tox 
 
-The part of tox call after `--` is passed to pytest. So you can run a subset of tests using tox as well. 
+To run a subset of tests using tox, add a directory or file after `--` and that will be passed to pytest. 
 For example, to run only tests in the `src/napari/layers/image/` file using Python 3.13 and pyqt6, enter:
 
 ```sh
@@ -204,7 +207,7 @@ ROOT: created development environment under [...]/napari/venv
 ```
 You can activate it in your IDE or terminal as a normal virtual environment. 
 
-#### Run test measuring coverage using tox
+#### Use tox to measure coverage
 
 You might want to locally check how your changes affect test coverage. You can run tox with coverage measurement using the following command:
 
