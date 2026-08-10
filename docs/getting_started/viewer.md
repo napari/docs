@@ -648,7 +648,7 @@ In napari there are two main types: canvas overlays - which are locked in positi
 Canvas overlays can be accessed via `viewer.canvas.overlays`:
 
 - Scale bar (canvas overlay, accessible via `viewer.canvas.overlays.scale_bar`): it displays distances in world coordinates for the displayed scene. The scale bar usually inherits layer units when they are set. If inference fails it can fall back to a dimensionless label, and if displayed axes mix dimensionalities it uses the last displayed axis unit with a warning. You can control its appearance and fixed length from the viewer. See the [units guide](units-guide) for more information. 
-- Canvas Axes (canvas overlay, accessible via `viewer.canvas.overlays.axes`): displays basix axes in a corner of the canvas, linked to the viewer's camera.
+- Canvas Axes (canvas overlay, accessible via `viewer.canvas.overlays.axes`): displays basic axes in a corner of the canvas, linked to the viewer's camera.
 - Text (canvas overlay, accessible via `viewer.canvas.overlays.text`): displays arbitrary text on the canvas.
 
 Scene overlays live on `viewer.scene.overlays`:
