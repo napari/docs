@@ -53,7 +53,7 @@ DEFAULT_OUTPUT_PATH = SCRIPT_DIR.parent / '_static' / 'images' / 'tribolium.webm
 
 PLUGIN = 'ndevio'
 THEME = 'dark'
-WINDOW_SIZE = (1204, 640)  # Will raise a an encoding block warning (needs // 16 size), but this is a reasonable size close to what it needs
+WINDOW_SIZE = (1504, 800)  # Will raise a an encoding block warning (needs // 16 size), but this is a reasonable size close to what it needs
 TIMELINE_DOCK_AREA = 'bottom'
 TIMELINE_FLOATING = True
 
