@@ -178,6 +178,10 @@ The **canvas** is in the center of the viewer and contains the visual display of
 
 +++
 
+```{seealso}
+The canvas model can be accessed via `viewer.canvas`; several things are exposed here, such as the [grid mode](grid-mode), [canvas overlays](viewer-overlays) and the overlay tiling settings.
+```
+
 (layer-list)=
 
 ### Layer list
@@ -510,8 +514,8 @@ tags: [hide-input]
 ---
 # programmatically adjust the camera angle
 viewer.dims.ndisplay = 3
-viewer.camera.zoom = 2
-viewer.camera.angles = (3, 38, 53)
+viewer.scene.camera.zoom = 2
+viewer.scene.camera.angles = (3, 38, 53)
 nbscreenshot(viewer, alt_text="A rotated 3D view")
 ```
 
@@ -529,12 +533,23 @@ Note that if you want to drag the canvas/rendering itself, instead of rotating t
 - holding {kbd}`Shift` ({kbd}`Control` on macOS), pressing the right mouse button and
   dragging the mouse; or
 - right-clicking (on macOS holding {kbd}`Control` and clicking) on the 2D/3D mode
-  button, which will bring up the perspective slider.
+  button, which will bring up the camera popup with controls for perspective,
+  camera orientation and angles, and the **Sync 2D/3D camera** checkbox
+  (see the [camera guide](camera-guide)).
 
 The camera perspective can also be altered programmatically:
 
 ```python
-viewer.camera.perspective = 45
+viewer.scene.camera.perspective = 45
+```
+
+By default, camera center and zoom persist when switching between 2D and 3D
+views (synced mode). You can change this behavior via the camera popup, the
+**View** menu (**Toggle Synced Camera**, {kbd}`Ctrl+U`), or programmatically
+through `viewer.scene.camera.synced`. See the [camera guide](camera-guide) for details.
+
+```{note}
+The scene model also gives you access to [scene overlays](viewer-overlays)!
 ```
 
 ### Roll dimensions
@@ -582,6 +597,8 @@ Note that this has no effect on the order of `viewer.dims.current_step`. The fir
 
 The fourth button transposes the displayed dimensions.
 
+(grid-mode)=
+
 ### Grid button
 
 The fifth button, the grid button, toggles between the default layer mode and grid mode. When clicked, it distributes the layers in a grid of cells. Each cell is a small interactive canvas whose camera is linked with all the others.
@@ -599,7 +616,7 @@ The fifth button, the grid button, toggles between the default layer mode and gr
 </figure>
 ```
 
-The distribution of the layers in the grid can be altered according to the settings below, accessible by right-clicking the button (or programmatically through `viewer.grid`). The question icons can be hovered for more information about each setting.
+The distribution of the layers in the grid can be altered according to the settings below, accessible by right-clicking the button (or programmatically through `viewer.canvas.grid`). The question icons can be hovered for more information about each setting.
 
 1. Grid stride: By default, 1, placing one layer in each view. The value determines the number of layers overlaid in each view. Negative values reverse the order in which layers are displayed in the grid.
 1. Grid width/height: By default, -1, which automatically determines the grid layout.
@@ -628,15 +645,22 @@ The right side of the status bar contains some helpful tips depending on which l
 Overlays provide additional information about the render state and the data, displayed on the canvas itself.
 In napari there are two main types: canvas overlays - which are locked in position on the screen and hover over the rendered canvas - and scene overlays - which are located somewhere in world coordinates and follow the camera and dims just like layers. Canvas overlays can be positioned in various locations on the canvas (e.g: `top_left`, `bottom_center`), and will automatically tile if multiple are present at the same location.
 
-The viewer gives access to a few such overlays:
+Canvas overlays can be accessed via `viewer.canvas.overlays`:
 
-- Scale bar (canvas overlay, accessible via `viewer.scale_bar`): you may set its unit, length, and other parameters.
-- Axes (scene overlay, accessible via `viewer.axes`): displays basis axes at the origin.
-- Text Overlay (canvas overlay, accessible via `viewer.text_overlay`): displays arbitrary text on the canvas.
+- Scale bar (canvas overlay, accessible via `viewer.canvas.overlays.scale_bar`): it displays distances in world coordinates for the displayed scene. The scale bar usually inherits layer units when they are set. If inference fails it can fall back to a dimensionless label, and if displayed axes mix dimensionalities it uses the last displayed axis unit with a warning. You can control its appearance and fixed length from the viewer. See the [units guide](units-guide) for more information. 
+- Canvas Axes (canvas overlay, accessible via `viewer.canvas.overlays.axes`): displays basic axes in a corner of the canvas, linked to the viewer's camera.
+- Text (canvas overlay, accessible via `viewer.canvas.overlays.text`): displays arbitrary text on the canvas.
+
+Scene overlays live on `viewer.scene.overlays`:
+- Scene Axes (scene overlay, accessible via `viewer.scene.axes`): displays basis axes at the origin in the scene.
 
 These overlays can also be accessed via graphical interface through the **View** menu and their respective submenus.
 
 ```{tip}
+`canvas.overlays` and `scene.overlays` are smart dictionaries that allows access via attributes, instead of only via keys. So a shorthand for `viewer.canvas.overlays['text'] is `viewer.canvas.overlays.text`!
+```
+
+```{seealso}
 Similarly to the viewer, layers [also have some overlays](layer-overlays) that can be used to display layer-specific information!
 ```
 
@@ -714,7 +738,11 @@ viewer.theme = 'dark'
 
 You can also change the theme using the "Toggle theme" keyboard shortcut, by default {kbd}`Command/Control+Shift+T`. Note that changing the theme using this shortcut will only change the *current* viewer theme. If you wish to make the change permanent for all viewers, make sure to also change your settings in the **Appearance** tab of the [**Preferences** dialog](napari-preferences).
 
-Adding your own custom theme isn't too hard but it requires creating your own color `palette` and rebuilding the icons. It's also possible for [plugins to contribute a theme](contributions-themes). If people want more themes, we're happy to add them or you can look at our [contributing guidelines](napari-contributing) for more information about building the icons and add one yourself!
+Custom themes can be prototyped directly in Python or distributed declaratively
+from a plugin.
+[Plugins can contribute a theme](contributions-themes) by declaring a light or
+dark base theme and overriding only the colors they need. See
+[Creating and testing themes](napari-themes) for both workflows.
 
 +++
 
@@ -768,8 +796,6 @@ viewer.close()
 ```
 
 Keys can be bound both to the object class or a particular instance depending on if you want the keybinding to apply to all instances of the class or only one particular instance.
-
-Currently the keybindings only work when the canvas is in focus, we are working to ensure they always work.
 
 The ability to add custom keybindings dramatically increases what is possible within **napari** and we hope you take full advantage of them.
 

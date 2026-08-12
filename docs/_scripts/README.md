@@ -56,6 +56,22 @@ python docs/_scripts/autogenerate_gui_images.py
 - Applies consistent dark theme
 - Handles proper rendering timing with Qt
 
+### homepage_video.py
+
+**Purpose**: Rebuild the homepage viewer video from a reproducible viewer setup and a saved napari-animation timeline JSON.
+
+**Usage**:
+
+```bash
+uv run docs/_scripts/homepage_video.py author
+uv run docs/_scripts/homepage_video.py render
+```
+
+**Key Features**:
+
+- Uses a plain local OME-Zarr at `docs/_scripts/fluo-n3dl-trif-01.ome.zarr` when present; otherwise falls back to the remote URL -- and it renders the same either way!
+- Loads the in-progress napari-animation timeline widget for hand authoring, with the timeline shown as a floating dock window by default
+
 ### update_event_docs.py
 
 **Purpose**: Analyzes the napari codebase to generate comprehensive event documentation.

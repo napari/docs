@@ -5,4 +5,4 @@ documentation:
 
 maintenance:
 - changed-files:
-  - any-glob-to-any-file: ['.circleci/*', '.github/**/*']
+  - any-glob-to-any-file: ['.circleci/*', '.github/**/*', '.pre-commit-config.yaml']
