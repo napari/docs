@@ -322,7 +322,7 @@ bundle_version = (
     else version_string
 )
 # when updating the version below, ensure to also update napari/napari README
-python_version = '3.11'
+python_version = '3.14'
 python_version_range = f'{min_python_version}-{max_python_version}'
 
 myst_substitutions = {
@@ -334,6 +334,8 @@ myst_substitutions = {
     'python_version_range': python_version_range,
     'python_version_code': f'`python={python_version}`',
     'conda_create_env': f'```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```',
+    'venv_create_env': f'```sh\nuv venv -p {python_version}\n```',
+
 }
 
 # -- Autosummary ------------------------------------------------------------
@@ -731,10 +733,11 @@ def qt_docstrings(app, what, name, obj, options, lines):
     Avoids syntax errors since the Qt threading docstrings are written in
     Markdown, and injected into rst docstring automatically.
     """
-    ignore_list = ['WorkerBase', 'FunctionWorker', 'GeneratorWorker']
+    if not name.startswith('napari.qt'):
+        return
+    ignore_list = ['WorkerBase', 'FunctionWorker', 'GeneratorWorker', 'Shadow.from_bytes', 'Shadow.to_bytes', 'Shape.from_bytes', 'Shape.to_bytes']
     if any(f in name for f in ignore_list) and len(lines) > 0:
         del lines[1:]
-
 
 # -- Docs build setup ------------------------------------------------------
 

@@ -84,9 +84,8 @@ def build_viewer(*, show: bool) -> napari.Viewer:
     layer.attenuation = ATTENUATION
     layer.colormap = COLORMAP
     layer.histogram.enabled = True
-    viewer.dims.axis_labels = ('T', 'Z', 'Y', 'X')
-    viewer.scale_bar.visible = True
-    viewer.floating_axes.visible = True
+    viewer.canvas.overlays.scale_bar.visible = True
+    viewer.canvas.overlays.axes.visible = True
     viewer.window._qt_window.resize(*WINDOW_SIZE)
     viewer.fit_to_view()
     return viewer
