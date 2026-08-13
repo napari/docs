@@ -48,32 +48,20 @@ all its features. Python package distributions of napari can be installed via `p
 It requires:
 
 - [Python {{ python_version_range }}](https://www.python.org/downloads/)
-- the ability to install python packages via [pip](https://pypi.org/project/pip/) OR [conda-forge](https://conda-forge.org/docs/user/introduction.html)
+- the ability to install python packages via [uv](https://docs.astral.sh/uv/) or [conda-forge](https://conda-forge.org/docs/user/introduction.html)
 
 You may also want:
 
-- an environment manager like [conda](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html) or
-  [venv](https://docs.python.org/3/library/venv.html) **(Highly recommended)**
+- an environment manager like [uv](https://docs.astral.sh/uv/pip/environments/), 
+[conda](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html) **(Highly recommended)**
 
 ```{admonition} New to Python?
 :class: note
-New to Python or uncertain about conda, pip, and virtual environments?
+New to Python or uncertain about uv, conda, and virtual environments?
 Here are some resources we recommend:
 
 - [Scientific Python: Getting started with Python for science](https://lectures.scientific-python.org/intro/index.html)
 - [Detailed comparison of Python environment management tools](https://www.nijho.lt/post/python-environments/)
-```
-
-```{admonition} A clean environment is recommended
-While not strictly required, it is highly recommended to install
-napari into a clean virtual environment using an environment manager like
-[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or
-[venv](https://docs.python.org/3/library/venv.html).
-
-This should be set up *before* you install napari. For example, setting with
-up a Python {{ python_version }} environment with `conda`:
-
-{{ conda_create_env }}
 ```
 
 Choose one of the options below to install napari as a Python package.
@@ -82,12 +70,18 @@ Choose one of the options below to install napari as a Python package.
 
 `````{tab-item} From conda-forge using conda
 
+While not strictly required, it is highly recommended to install
+napari into a clean virtual environment. This should be set up *before* you install napari. For example, setting with
+up a Python {{ python_version }} environment with `conda`:
+
+{{ conda_create_env }}
+
 If you prefer to manage packages with conda, napari is available on the
 conda-forge channel. We also recommend this path for users of arm64 macOS machines
 ([Apple Silicon](https://support.apple.com/en-us/116943), meaning a processor with a name like "M1"). You can install it with:
 
 ```sh
-conda install -c conda-forge napari pyqt
+conda install -c conda-forge napari pyqt6
 ```
 
 You can then upgrade to a new version of napari using:
@@ -121,19 +115,31 @@ conda update -n base conda
 
 `````
 
-`````{tab-item} From PyPI using pip
+`````{tab-item} From PyPI using uv
+
+While not strictly required, it is highly recommended to install
+napari into a clean virtual environment using the [uv venv](https://docs.python.org/3/library/venv.html) environment manager.
+
+This should be set up *before* you install napari. For example, setting
+up a Python {{ python_version }} environment with `uv venv`:
+
+{{ venv_create_env }}
+```sh
+source .venv/bin/activate # for macOS and Linux
+.venv\Scripts\activate # for Windows
+```
 
 napari can be installed from PyPI on most macOS, Linux, and Windows systems with Python
-{{ python_version_range }} using pip:
+{{ python_version_range }} using uv pip:
 
 ```sh
-python -m pip install "napari[all]"
+uv pip install "napari[all]"
 ```
 
 You can then upgrade napari to a new version using:
 
 ```sh
-python -m pip install "napari[all]" --upgrade
+uv pip install "napari[all]" --upgrade
 ```
 
 *(See [Choosing a different Qt backend](#choosing-a-different-qt-backend) below for an explanation of the `[all]`
@@ -145,10 +151,22 @@ notation.)*
 
 `````{tab-item} From the main branch on Github
 
+While not strictly required, it is highly recommended to install
+napari into a clean virtual environment using the [uv venv](https://docs.python.org/3/library/venv.html) environment manager.
+
+This should be set up *before* you install napari. For example, setting with
+up a Python {{ python_version }} environment with `uv venv`:
+
+{{ venv_create_env }}
+```sh
+source .venv/bin/activate # for macOS and Linux
+.venv\Scripts\activate # for Windows
+```
+
 To install the latest version with yet to be released features from Github you can use pip:
 
 ```sh
-python -m pip install "git+https://github.com/napari/napari.git#egg=napari[all]"
+uv pip install "git+https://github.com/napari/napari.git#egg=napari[all]"
 ```
 
 `````
@@ -235,7 +253,7 @@ PySide2 is no longer maintained, so we dropped support for it in napari 0.7.0. P
 Since napari 0.4.18, we store constraints files with information about each exact dependency version against which napari was tested.
 This could be useful if you need to install napari as a package from PyPI, and prevents creating environments where napari does not start or work properly.
 
-The constraints files are stored in the napari repository under `resources/constraints/constraints_py3.10.txt`. To find
+The constraints files are stored in the napari repository under `resources/constraints`. To find
 constraints for specific releases, go under the link `https://github.com/napari/napari/tree/{tag}/resources/constraints`
 replacing `{tag}` with the desired napari version.
 
@@ -243,10 +261,10 @@ replacing `{tag}` with the desired napari version.
 pip install napari[backend_selection] -c path/to/constraints/file
 ```
 
-For example, if you would like to install napari with PyQt6 on python 3.10:
+For example, if you would like to install napari with PyQt6 on python 3.14:
 
 ```sh
-pip install napari[pyqt6, optional] -c constraints_py3.10.txt
+pip install napari[pyqt6, optional] -c constraints_py3.14.txt
 ```
 
 (installation_bundle_conda)=
@@ -305,6 +323,18 @@ Each release (0.4.15 and above) includes installers for all platforms under the 
 Download from GitHub: {{ '[napari-REL-Windows-x86_64.exe](https://github.com/napari/napari/releases/download/vREL/napari-REL-Windows-x86_64.exe)'.replace('REL', bundle_version) }}
 
 Double-click the downloaded `.exe` file to begin setup.
+
+```{admonition} Windows Security Warning
+:class: important
+The napari Windows installer is code-signed. Microsoft Defender SmartScreen 
+may trigger a warning when a new app version is newly released until the cooling
+period ends.
+
+If Windows shows a warning for an installer downloaded from the official
+napari GitHub releases page, click **More info** and confirm that the publisher
+is **NumFOCUS, Inc.** before choosing **Run anyway**. If you continue
+seeing the warning on managed devices, contact your IT department.
+```
 
 ![Montage of the napari EXE installer icon with an arrow pointing to the Welcome page of the napari EXE installer on Windows.](../_static/images/bundle_17.png)
 

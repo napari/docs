@@ -34,6 +34,7 @@ layer:
   - Opacity
   - Contrast Limits
   - Auto-contrast
+  - Histogram
   - Gamma
   - Colormap
   - Blending
@@ -42,8 +43,13 @@ layer:
 Before we can use any of the GUI `layer controls`, we must load an image.
 
 1. Start napari.
-1. Click `File` > `Open Sample` > `napari builtins` > `Cells (3D+2Ch)` or any
+2. Click `File` > `Open Sample` > `napari builtins` > `Cells (3D+2Ch)` or any
    sample image of your choice.
+
+```{image} ../../_static/images/histogram-overview.png
+:alt: napari histogram in layer controls
+:width: 60%
+```
 
 ### Buttons
 
@@ -73,6 +79,14 @@ The GUI controls may be adjusted as follows:
 - `auto-contrast` is adjusted by selecting either `once` or `continuous`. `once`
   adjusts the contrast one time while `continuous` adjusts the contrast as you
   explore the image.
+
+- `histogram` shows the distribution of pixel values for the layer. The
+  histogram button sits next to the contrast limits slider.
+  - **Left-click** the button to toggle the histogram inline in the layer controls.
+  - **Right-click** to open an advanced popup with the histogram, a larger
+    contrast limits slider, gamma correction, and reset buttons.
+  See the {ref}`histogram-guide` for a detailed explanation of canvas and full
+  modes, log scale, and how it handles large data.
 
 - `gamma` can be adjusted from a minimum of 0.20 to a maximum of 2.00.
   *Gamma correction* or *gamma* is a nonlinear operation used to encode and
@@ -214,12 +228,36 @@ multiscale image and the part of the image that needs to be displayed:
 This example had precomputed multiscale images stored in a `zarr` file, which is
 best for performance. If you don't have a precomputed multiscale image but try
 and show an exceptionally large image, napari will try and compute the
-multiscale image for you unless you tell it not to.
+best for performance.
 
 You can use the boolean `multiscale` keyword argument when creating an image
 layer to specify if your data is a multiscale image or not. If you don't provide
 this value, then napari will try and guess whether your data is or needs to be a
 multiscale image.
+
+### Locking the multiscale level
+
+By default, napari automatically selects which resolution level to display based
+on the current zoom and viewport. In 2D this means zooming in loads
+higher-resolution data, while in 3D the coarsest level is used for performance.
+
+If you want to force a specific resolution level — for example, to keep a
+consistent view while panning or to inspect a particular level — you can set
+the `locked_data_level` property, or using the resolution dropdown in the layer controls:
+
+```python
+# Lock rendering to level 0 (highest resolution)
+layer.locked_data_level = 0
+
+# Restore automatic level selection
+layer.locked_data_level = None
+```
+
+When a level is locked, napari loads the full extent of that level on the currently
+displayed dimensions regardless of zoom or display mode. The lock is automatically 
+reset to `None` when the layer's data is replaced.
+
+This property is available on both `Image` and `Labels` layers.
 
 ## Loading multichannel images
 

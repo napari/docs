@@ -53,8 +53,11 @@ subtrees:
         subtrees:
         - entries:
           - file: guides/3D_interactivity
+          - file: guides/camera
           - file: guides/axis-names
+          - file: guides/units
           - file: guides/handedness
+          - file: guides/histogram
           - file: guides/triangulation
           - file: guides/rendering
           - file: guides/performance
@@ -71,6 +74,9 @@ subtrees:
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_9_0
+          - file: release/release_0_8_0
+          - file: release/release_0_7_1
           - file: release/release_0_7_0
           - file: release/release_0_6_6
           - file: release/release_0_6_5
@@ -183,10 +189,12 @@ subtrees:
       - file: community/code_of_conduct
       - file: community/code_of_conduct_reporting
       - file: community/governance
+      - file: community/security
       - file: community/working_groups
       - file: community/meeting_schedule
       - file: community/licensing
       - file: community/resources
+      - file: community/napari_logo_usage
   - file: developers/index
     subtrees:
     - entries:
@@ -196,7 +204,6 @@ subtrees:
           - file: developers/contributing/ai
           - file: developers/contributing/dev_install
           - file: developers/contributing/testing
-          - file: developers/contributing/translations
           - file: developers/contributing/performance/index
             subtrees:
             - entries:
@@ -244,6 +251,7 @@ subtrees:
           - file: naps/7-key-binding-dispatch
           - file: naps/8-telemetry
           - file: naps/9-multiple-canvases
+          - file: naps/10-migration-event-system
       - file: roadmaps/index
         subtrees:
         - entries:

@@ -128,14 +128,6 @@ QtDeleteButton {
 }
 ```
 
-#### Translations
-
-Starting with version 0.4.7 offers the possibility of installing language packs,
-enabling the user interface to be displayed in different languages. This means that all
-user interface strings need to use the {func}`~napari.utils.translations.trans` helper
-function.
-See the [translations](translations) guide for more.
-
 ### API
 
 If you are changing an existing API or adding a new one, make sure you update
@@ -147,9 +139,10 @@ Please also consider documenting any major features/changes in our
 
 #### Deprecation Warnings
 
-When deprecating a feature, use `DeprecationWarning` instead of `FutureWarning`.
-`FutureWarning` is silenced by Python's default warning filters, making it invisible
-to library users. `DeprecationWarning` is the correct signal for developer-facing deprecations.
+When deprecating a feature, use `FutureWarning` instead of `DeprecationWarning`.
+`DeprecationWarning` is
+[silenced by Python's default warning filters](https://docs.python.org/3/library/warnings.html#warning-categories),
+making it invisible to library users.
 
 **In the code**, always pass `stacklevel=2` to `warnings.warn()` so the warning
 points to the caller's location rather than inside napari's internals.

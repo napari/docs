@@ -19,7 +19,7 @@ kernelspec:
 This page highlights a few napari features that are useful in many scenarios and might be easily overlooked.
 The [command palette](command-palette) is great to avoid clicking around menus to find _that_ specific command.
 The [measurement tool](measure-tool) allows for quick distance and area measurements.
-For layers with `features`, the [features table widge](features-table-widget) provides a simple graphical interface for editing and interaction with the feature table.
+For layers with `features`, the [features table widget](features-table-widget) provides a simple graphical interface for editing and interaction with the feature table.
 
 (command-palette)=
 
@@ -54,7 +54,7 @@ keys to make a selection. Once you have the action you want highlighted, press
 
 When using a `Shapes` layer to annotate features of interest, the **Shape Measurement Tool** is used to obtain a live measurement of the available shapes, including perimeter and area. You can also measure distances by tracing a `Line` between two points.
 
-This tool can be enabled by clicking on `Layers->Measure->Toggle shape dimensions measurement (napari builltins)` while a `Shapes` layer is selected. As with all other commands, this can also be enabled using the [command palette](command-palette) by searching for "shape measurement".
+This tool can be enabled by clicking on `Layers->Measure->Toggle shape dimensions measurement (napari builtins)` while a `Shapes` layer is selected. As with all other commands, this can also be enabled using the [command palette](command-palette) by searching for "shape measurement".
 
 ![image: Shape measurement tool enabled](../_static/images/shape-measure.png).
 
@@ -71,6 +71,33 @@ The **Features Table Widget** can be used to visualize, edit, select, or save th
 To open it, go to `Layer -> Visualize -> Features Table Widget` or press
 {kbd}`Command/Ctrl+Shift+P` to open the [command palette](command-palette) and search for "features".
 To see it in action, see the {ref}`sphx_glr_gallery_features_table_widget.py` gallery example.
+
+(histogram-feature)=
+
+## Histogram
+
+The histogram shows the distribution of pixel values for the active image layer.
+It's a powerful tool for understanding your data's intensity range and making
+informed decisions when adjusting contrast limits and gamma.
+
+```{image} ../_static/images/histogram-overview.png
+:alt: napari histogram in layer controls
+:width: 60%
+```
+
+Access the histogram using the button next to the contrast limits slider:
+
+- **Left-click** to show or hide the histogram inline in layer controls.
+- **Right-click** to open the advanced histogram popup with a larger view,
+  gamma slider, and reset/full-range contrast buttons.
+
+The histogram supports two modes: **canvas** (the default) and **full**.
+**Canvas** mode shows the histogram for the currently visible slice,
+while **full** mode computes the histogram from the entire dataset.
+For large or chunked data, the histogram iteratively
+samples to avoid loading everything into memory.
+
+See the {ref}`histogram-guide` for full details.
 
 ## Running python scripts with napari
 
