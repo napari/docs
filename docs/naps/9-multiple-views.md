@@ -4,7 +4,7 @@
 ```{eval-rst}
 :Authors: Ashley Anderson <aandersoniii@chanzuckerberg.com>, Wouter-Michiel Vierdag, Lorenzo Gaifas
 :Created: 2023-08-04
-:Status: Draft
+:Status: Provisionally Accepted
 :Type: Standards Track
 ```
 
