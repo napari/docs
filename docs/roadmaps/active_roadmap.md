@@ -156,7 +156,7 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 
 - Develop core library to enable a UI-agnostic **multi-canvas viewer,** enabling orthogonal slices, multichannel viewing, and even VR [#5348](https://github.com/napari/napari/issues/5348)
 
-  - Accept [NAP-9 -- Multiple Views](https://napari.org/stable/naps/9-multiple-views.html)
+  - Accept [NAP-9 -- Multiple Views](https://napari.org/stable/naps/9-multiple-canvases.html)
 
 - Implement highly-requested functionality that improves **visualizations and overlays** [#7587](https://github.com/napari/napari/issues/7587) [#5957](https://github.com/napari/napari/issues/5957)
 
