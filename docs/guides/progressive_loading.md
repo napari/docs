@@ -14,6 +14,66 @@ displaying it. For this, it does the following:
 As a result, the napari viewer can work with datasets substantially larger than CPU or GPU memory
 while still keeping navigation responsive.
 
+## Using progressive loading
+
+### When it applies
+
+Progressive loading applies to lazy, chunked, multiscale Image and Labels data, such as Zarr or Dask pyramids. Single-scale data and in-memory pyramids are not converted automatically. Spatially chunked data with reasonably sized chunks gives the best results.
+
+### Enable and use it
+
+Enable **Preferences > Experimental > Progressive loading of multiscale data** before adding the layer. Then open the data normally using File > Open, drag-and-drop, a reader plugin, or `viewer.add_image(..., multiscale=True)`. The setting only affects layers added after it is enabled.
+
+It can also be enabled from the command line:
+
+    NAPARI_PROGRESSIVE_LOADING=1 napari <dataset>
+
+### Advanced Python usage
+
+The experimental Python helper provides access to tuning options:
+
+    from napari.experimental._progressive_loading import (
+        add_progressive_loading_image,
+    )
+
+    layer = add_progressive_loading_image(
+        pyramid,
+        viewer=viewer,
+        interval_max_bytes=512 * 1024**2,
+        max_bytes_per_second=100 * 1024**2,
+    )
+
+Use `add_progressive_loading_labels` for Labels data. These underscored APIs are experimental and may change.
+
+### Practical tuning
+
+| Symptom | Adjustment |
+| --- | --- |
+| Loading interrupts interaction | Lower `max_bytes_per_second` |
+| Resident data uses too much memory | Lower `interval_max_bytes` |
+| 3D texture updates are expensive | Lower `tile_max_bytes_3d` |
+| 3D selects expensive levels too early | Increase `max_pixel_size_3d` |
+| Fine detail takes too long to begin loading | Try `coarse_first=False` |
+
+Chunk layout often matters more than these settings. Very large chunks, or chunks spanning most of a spatial axis, limit how progressively napari can load the data.
+
+### Troubleshooting
+
+- **Nothing changed:** enable the setting before adding the layer and confirm that the data is both chunked and multiscale.
+- **Loading is blocky or slicewise:** inspect the source chunk shape; smaller spatial chunks may work better.
+- **The unexpected 3D level is shown:** return the resolution selector to **Auto**, or adjust `max_pixel_size_3d` when using the Python helper.
+- **More diagnostics are needed:** pass `debug_overlay=True` or set `NAPARI_PROGRESSIVE_DEBUG=1`.
+
+### Current user-facing limitations
+
+- The behavior and Python API are experimental and may change.
+- Automatic conversion supports only eligible chunked multiscale Image and Labels layers.
+- Changing the setting does not convert existing layers; attached loaders continue until their layer is removed.
+- Enabling progressive loading also enables asynchronous rendering.
+- Multiscale Labels layers are read-only.
+- Unsuitable source chunking may still cause pauses or uneven refinement.
+- Moving a dims slider may require a subsequent pan or zoom before the display refreshes.
+
 ## Core concepts
 In order to understand the progressive loader we will first explain some of the concepts needed to 
 understand it.
