@@ -335,3 +335,67 @@ flowchart TD
 ```
 
 ### Keeping interaction responsive
+Progressive loading runs while the user is navigating the dataset, so solely maximizing chunk 
+throughput is not the only goal. Rather, we try to maximize the chunk throughput with the viewer
+still responding smoothly to user input. For this, the `ProgressiveLoader` has a few mechanisms
+in place.
+
+#### Interaction hold
+The `ProgressiveLoader` has a setting called `interaction_hold`. If set to `True`, the loader 
+temporarily reduces background loading and display-update work while the user is actively 
+interacting with the viewer. This prevents progressive loading from competing with interactions 
+such as panning, zooming, rotating, or moving through dimensions. During this period:
+
+- Fetch workers are paused
+- Chunks that finish loading are kept for later processing rather than immediately updating the display
+- Non-essential display updates are deferred
+- In 3D, rendering quality can be temporarily reduced to make interactive frames cheaper
+
+Once the interaction settles, the loader resumes the suspended work, processes any chunks that 
+completed in the meantime, and reevaluates the current view. In short, upon user interaction
+this diagram is followed:
+
+```{mermaid}
+flowchart TD
+    A["User starts interacting"] --> B["Enter interaction hold"]
+
+    B --> C["Pause chunk fetching"]
+    B --> D["Defer completed chunk<br/>display updates"]
+    B --> E["Reduce 3D rendering cost"]
+
+    C --> F["Interaction settles"]
+    D --> F
+    E --> F
+
+    F --> G["Resume loading and<br/>display updates"]
+
+    G --> H["Reevaluate current view"]
+```
+
+#### Rate limiting the loading of chunks
+Even when chunk fetching happens on background threads, loading data as quickly as possible can 
+still affect viewer responsiveness. Fetching a chunk can involve more than waiting for I/O: each
+chunk leads to additional CPU and display-update work.
+The `ProgressiveLoader` provides a setting, `max_bytes_per_second`, that limits the rate at which 
+fetch workers start loading chunks. 
+This pacing happens on the worker threads, before each fetch. However, it indirectly limits the pace
+of work that has to happen downstream:
+
+```{mermaid}
+flowchart TD
+    A["Rate-limit chunk fetching"] --> B["Reduce source loading /<br/>computation pressure"]
+
+    B --> C["Reduce frequency of<br/>completed chunk batches"]
+
+    C --> D["Reduce display-update work"]
+
+    D --> E["Reduce GPU upload pressure"]
+```
+
+The purpose of the rate limit is therefore not necessarily to restrict network bandwidth. It 
+provides a way to control the amount of loading-related work entering the pipeline so that 
+background loading does not overwhelm interactive rendering.
+
+Together, rate limiting and interaction hold serve different purposes. Rate limiting controls 
+how aggressively loading proceeds during normal operation, while interaction hold temporarily 
+gives priority to active user interaction.
