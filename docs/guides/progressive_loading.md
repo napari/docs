@@ -29,7 +29,7 @@ in CPU memory (RAM).
 The purpose of `VirtualData` is to separate the actual logical size of an image from the amount 
 of data that must actually be materialized at any given time.
 
-```mermaid
+```{mermaid}
 flowchart TD
     A["Chunked source"]
     B["VirtualData / multiscale<br/>pyramid"]
@@ -51,7 +51,7 @@ follows the viewport as the user pans, zooms, or changes dimensions. For display
 derived from the layer's corner_pixels; non-displayed dimensions are restricted to the current 
 dimension step. So for 2D data it would conceptually look like this:
 
-```mermaid
+```{mermaid}
 flowchart TB
     subgraph P["Full pyramid level"]
         direction TB
@@ -93,7 +93,7 @@ chunks for the requested view have been loaded, those regions of the resident in
 contain actual target-rresolution data.
 
 The flow for populating and progressively refining a resident interval is therefore like this:
-```mermaid
+```{mermaid}
 flowchart TD
     A["View changes<br/>pan or zoom"] --> B["Establish target<br/>resident interval"]
 
@@ -155,7 +155,7 @@ Once the view is settled, the loader determines a couple of things:
 If the required data is not fully resident / in RAM, a new data fetch is started.
 We present this here schematically:
 
-```mermaid
+```{mermaid}
 flowchart TD
     A["Viewer or layer<br/>state changes"] --> B["Interaction detected"]
 
@@ -212,7 +212,7 @@ that selection takes precedence and automatic level changes are suspended. Retur
 selector to Auto gives level selection back to the progressive loader.
 
 The whole mechanism of 3D resolution level selection can therefore be summarized schematically as:
-```mermaid
+```{mermaid}
 flowchart TD
     A["3D view"] --> B{"auto_level_3d?"}
 
@@ -250,7 +250,7 @@ The resident interval can be larger than the exact rendered viewport. Specifical
 contains the crop described by `corner_pixels`, while the resident interval on the CPU follows underlying
 chunk boundaries and can therefore extend beyond the rendered region as shown below:
 
-```mermaid
+```{mermaid}
 flowchart TB
     subgraph R["Resident interval in RAM"]
         direction TB
@@ -270,7 +270,7 @@ while the viewport contains a crop of it. While this may cause the resident inte
 data outside the visible viewport, it avoids repeatedly partially fetching chunks as the view moves.
 Thus, an overview of fetching chunks looks like this:
 
-```mermaid
+```{mermaid}
 flowchart TD
     A["Visible viewport"] --> B["Determine intersecting<br/>source chunks"]
 
@@ -304,5 +304,34 @@ but to spend the available loading capacity first on those chunks likely to visu
 Fetching chunks happens on background worker threads, rather than on the main thread. The number of concurrent workers 
 is controlled by fetch_workers. By default, the implementation uses up to four workers while deliberately leaving 
 CPU capacity (2 cores by default) available for the GUI.
+
+In summary, a fetch thus happens in a way shown in this diagram:
+```{mermaid}
+flowchart TD
+    A["Target resident interval"] --> B["Find intersecting chunks"]
+
+    B --> C["Remove already<br/>loaded chunks"]
+
+    C --> D["Prioritize missing chunks"]
+
+    D --> E{"coarse_first?"}
+
+    E -- Yes --> F["Fetch intermediate-level<br/>chunk stages first"]
+
+    F --> G["Fill unresolved target regions with<br/> intermediate-level data"]
+
+    G --> H["Fetch target-level chunks"]
+
+    E -- No --> H
+
+    H --> I["Write fetched chunks into<br/>target VirtualData in RAM"]
+
+    I --> J["Update displayed data"]
+
+    J --> K{"More target chunks<br/>to fetch?"}
+
+    K -- Yes --> H
+    K -- No --> L["Fetch pass complete"]
+```
 
 ### Keeping interaction responsive
