@@ -23,8 +23,6 @@ Sometimes you just need to open images to test some functionality of napari or a
 
 ### Available built-in sample images
 
-The following sample images are bundled with napari and are available from `File -> Open Sample -> napari builtins`.
-
 | Sample image | Notes |
 | ------------ | ----- |
 | Astronaut (RGB) | Color photograph of an astronaut. |
