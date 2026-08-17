@@ -242,7 +242,7 @@ The way the resolution level is determined varies between 2D and 3D data in napa
 This because loading 3D data at a given resolution level could prove to be too
 expensive. We will describe the selection of the resolution level in both 2D and 3D.
 
-### Selection the resolution level for 2D data
+#### Selection the resolution level for 2D data
 For 2D data, napari's existing multiscale API selects the resolution level. The 
 progressive loader uses the elvel selected by this API rather than introducing
 a separate mechanism for selecting the target resolution.
@@ -250,7 +250,7 @@ As such, `locked_data_level` (TODO: explain this) is respected. Once the level i
 the loader determines the region required for the current view from the layer's 
 `corner-pixels`.
 
-### 1. Selecting the resolutoin level for 3D data
+#### Selecting the resolutoin level for 3D data
 For 3D data, the resolution level can either be selected automatically by the progressive loader 
 or controlled through napari's normal level selection. This has different trade offs.
 
@@ -394,7 +394,7 @@ flowchart TD
     K -- No --> L["Fetch pass complete"]
 ```
 
-### Keeping interaction responsive
+### 4. Keeping interaction responsive
 Progressive loading runs while the user is navigating the dataset, so solely maximizing chunk 
 throughput is not the only goal. Rather, we try to maximize the chunk throughput with the viewer
 still responding smoothly to user input. For this, the `ProgressiveLoader` has a few mechanisms
@@ -459,3 +459,254 @@ background loading does not overwhelm interactive rendering.
 Together, rate limiting and interaction hold serve different purposes. Rate limiting controls 
 how aggressively loading proceeds during normal operation, while interaction hold temporarily 
 gives priority to active user interaction.
+
+### 5. Updating the displayed data
+So far, we have mainly discussed how chunks are fetched and written into the target level's 
+`VirtualData` in RAM. Once those chunks arrive, the corresponding changes also need to become
+visible on screen.
+The CPU-side `VirtualData` remains the source of the progressively loaded image data. The displayed
+representation is a texture held in GPU memory by the napari/vispy rendering pipeline:
+
+```{mermaid}
+flowchart TD
+    A["Fetched target chunk"] --> B["Write chunk into target<br/>VirtualData in RAM"]
+
+    B --> C["Update corresponding<br/>displayed data"]
+
+    C --> D["GPU texture"]
+
+    D --> E["Canvas"]
+```
+
+There are two main ways in which the progressive loader can make newly loaded data visible: 
+through napari's normal refresh (`layer.refresh()`) path or, when possible, by directly updating 
+only the affected part of the GPU texture.
+
+#### Normal refresh
+A normal refresh by `layer.refresh()` causes the currently required data to be sliced again and 
+updates the displayed texture:
+
+```{mermaid}
+flowchart TD
+    A["VirtualData changed"] --> B["napari refresh"]
+
+    B --> C["Slice current view"]
+
+    C --> D["Upload texture data"]
+
+    D --> E["Render updated view"]
+```
+However, repeatedly performing the complete path for every arriving chunk batch can become expensive, particularly 
+for large 3D textures. However, performing a complete refresh every time a batch of chunks arrives can be expensive. 
+In particular, a refresh may involve re-slicing data and uploading an entire texture even when only a small region 
+has changed. The progressive loader therefore uses several mechanisms to reduce this work.
+
+#### Refresh throttling
+When a `layer.refresh` is required, the loader avoids triggering one for every arriving chunk batch.
+The `refresh_interval_s` setting of the `ProgressiveLoader` specifies the minimum time between refreshes
+while chunks are being loaded. The effective interval can increase when refreshes themselves are 
+expensive (such as with 3D volumes), spacing subsequent refreshes farther apart.
+This allows multiple chunk updates to accumulate between refreshes:
+
+```{mermaid}
+flowchart TD
+    A["Chunks arrive"] --> B["Write chunks into<br/>VirtualData"]
+
+    B --> C{"Refresh interval<br/>has elapsed?"}
+
+    C -- No --> D["Defer refresh"]
+    D --> A
+
+    C -- Yes --> E["Refresh current view"]
+
+    E --> F["Measure refresh cost"]
+
+    F --> G["Adjust effective<br/>refresh interval"]
+
+    G --> A
+```
+Refresh throttling therefore trades immediately displaying each update, for fewer expensive
+slicing and texture-uploads.
+
+#### Texture patching
+A full refresh is not always necessary. When the setting `texture_patching=True`, the loader
+first attempts to update only the region of the existing GPU texture affected by the newly
+loaded chunks.
+The implementation supports partial texture updates for both 2D and 3D displays. This is
+particularly useful in 3D, where a normal refresh can require re-slicing and re-uploading an 
+entire volume tile.
+For a batch or arriving chunks, the loader combines their affected area into a bounding region
+and attempts to upload that region as a single partial texture update. Data within that region 
+that has not yet reached target resolution simply retains or re-uploads its current backdrop 
+content.
+
+```{mermaid}
+flowchart TD
+    A["Target chunks written into<br/>VirtualData in RAM"] --> B{"Texture can be<br/>patched safely?"}
+
+    B -- Yes --> C["Determine affected<br/>texture region"]
+
+    C --> D["Upload changed region<br/>to GPU texture"]
+
+    D --> E["Update displayed view"]
+
+    B -- No --> F["Fall back to<br/>throttled refresh"]
+
+    F --> G["Slice current view"]
+
+    G --> H["Upload displayed data<br/>to GPU texture"]
+
+    H --> E
+```
+Texture patching is only performed when the loader can establish that the current GPU texture 
+corresponds to the current rendered region. For example, its shape and position must match the
+crop represented by layer's current `corner_pixels`. If the texture cannot be matched safely 
+to the current view, the loader falls back to a normal refresh.
+Texture patching only changes how newly loaded data is transferred from the CPU-side `VirtualData`
+to the GPU texture. It does not change how chunks are fetched or stored: `VirtualData` in RAM 
+remains the authoritative representation of the resident image data.
+
+During a fetch pass, the loader therefore generally follows this strategy:
+1. Write arriving target chunks into `VirtualData`
+2. Try patch the corresponding GPU texture region directly
+3. Fall back to a throttled `layer.refresh()` if patching is not possible
+4. After a fully fetched pass successfully texture-patched, defer the normal refresh and later use it to reconcile 
+the slice state and layer thumbnail in napari, while avoiding a redundant full texture upload.
+
+#### Double buffering
+When the view changes, the texture needed for the new view may not be ready immediately. Replacing
+the currently displayed texture too early could expose an incomplete tile while backdrop data is 
+being prepared or chunks are still arriving. 
+
+When `double_buffer=True` for the `ProgressiveLoader`, it uses double buffering to separate the
+texture currently being displayed from the texture being prepared for the new view. Think of it
+as one texture being the front buffer which remains visible, while another texture acts as a back 
+buffer and receives data for the new view.
+
+```{mermaid}
+flowchart TD
+    A["View changes"] --> B["Keep current front texture<br/>visible"]
+
+    B --> C["Prepare new view in<br/>back texture"]
+
+    C --> D["Apply backdrop and<br/>chunk updates"]
+
+    D --> E{"Back texture ready<br/>to present?"}
+
+    E -- No --> D
+    E -- Yes --> F["Present back texture"]
+
+    F --> G["Prepared texture becomes<br/>the displayed texture"]
+```
+
+At the start of a fetch pass, the double buffer is attached before the initial backdrop refresh.
+This allows a full texture upload or texture reallocation for the new view to be staged without
+immediately replacing the texture that is currently being rendered.
+This is especially useful for 3D volumes. When the view changes, the data needed for the new 
+view may not be ready immediately. The previous texture can remain visible while the new texture 
+is populated with backdrop data and newly fetched chunks, preventing an incomplete or empty view 
+from being shown.
+
+Once the back buffer / texture is ready to be displayed, it can be presented and becomes the new
+front texture. It is important to note that this whole mechanism does not introduce another copy 
+of the image pyramid in GPU memory. The two texture buffers are maintained for the currently 
+rendered region, image region in 2D or volume tile in 3D, so that one can remain visible while the 
+other is beign prepared.
+
+#### GPU upload metering
+Even with texture patching and double buffering, transferring a large texture from CPU memory to GPU
+memory can take enough time to interrupt interaction.
+The loader therefore meters larger texture uploads. Instead of allowing a large pendign upload 
+to monopolize a rendeirng frame, the transfer can be divided into smaller pieces and spread
+across multiple frames:
+
+```{mermaid}
+flowchart TD
+    A["Texture data waiting<br/>for GPU upload"] --> B["Upload a bounded<br/>amount"]
+
+    B --> C["Return control to<br/>rendering"]
+
+    C --> D{"More texture data<br/>pending?"}
+
+    D -- Yes --> B
+    D -- No --> E["Upload complete"]
+```
+This mechanism addresses a different cost from refresh throttling and texture patching:
+- refresh throttling limits how often the normal `layer.refresh` is used.
+- Texture patching avoids a full refresh when an existing texture can be updated directly.
+- Double buffering keeps a valid texture visible while a replacement is prepared.
+- GPU upload metering limits how much texture-transfer to the GPU is performed at once.
+
+All these mechanisms also connect back to the interaction hold explained previously. During 
+active interaction, metered texture uploads can be held along with chunk fetching and other 
+non-essential display updates. Once interaction settles, the pending operations are resumed.
+
+### 6. Changing views while loading
+A fetch pass may still be running when the user pans, zooms, changes dimensions or selects
+another resolution level. In that case, continuing to treat the old request as current would 
+be wasteful and could cause the now stale result to affect the new view.
+Therefore, the loader associates loading work with the current view. The old stale request 
+is replaced when a new fetch pass is required:
+
+```{mermaid}
+flowchart TD
+    A["Fetch pass in progress"] --> B["View changes"]
+
+    B --> C["Determine new level<br/>and resident interval"]
+
+    C --> D{"Same active<br/>view?"}
+
+    D -- Yes --> E["Keep current<br/>fetch pass"]
+
+    D -- No --> F["Cancel active pass"]
+
+    F --> G["Establish new<br/>resident interval"]
+
+    G --> H["Start fetch pass<br/>for new view"]
+```
+When a new pass starts, the active worker is canceled and a new generation is created
+for the new request. The previous workers are ignored by callbacks. This is possible
+by keeping track of the number of the generation of workers.
+This is important because canceling background work does not necessarily mean that every
+operation in progress stops instantaneously. Generation checking is an ultimate defensive
+measure for preventing stale results from being treated as the results for the current view.
+
+### 7. Fetch pass completion
+A fetch pass is complete once all required stges for the current view have finished.
+With `coarse_first=True`, these stages include the intermediate pyramid levels followed
+by the target level. Otherwise, the target level is the main fetch stage.
+By this point, the requested regions have been populated with the target-resolution data and
+the loader can release any presentation holds associated with the pass. If texture patching
+successfully handled the entire target pass, the displayed texture already contains the fetched
+daata. A normal refresh can therefore be deferred until it is needed to update the slice state
+and layer thumbnail, as explaiend previously. A final schematic summary of a progressive loading
+request thus becomes:
+
+```{mermaid}
+flowchart TD
+    A["View changes"] --> B["Select target level"]
+
+    B --> C["Determine resident interval"]
+
+    C --> D["Carry over existing data<br/>and establish backdrop"]
+
+    D --> E["Build prioritized<br/>chunk fetch stages"]
+
+    E --> F["Fetch chunks in<br/>background workers"]
+
+    F --> G["Write chunks into<br/>VirtualData in RAM"]
+
+    G --> H["Patch GPU texture or<br/>use throttled refresh"]
+
+    H --> I{"More chunks or<br/>stages remain?"}
+
+    I -- Yes --> F
+    I -- No --> J["Complete fetch pass"]
+
+    J --> K["Present final staged<br/>content if necessary"]
+
+    K --> L["View remains available<br/>for further interaction"]
+
+    L --> M["Next view change"]
+    M --> B
+```
