@@ -110,7 +110,7 @@ viewer.axes -> viewer.scene.overlays.axes
 Speaking of grid mode: grid mode with hidden layers is much improved: empty
 grid spaces will never be shown, regardless of stride, but stride operates on
 the *full* layer list, to prevent layer grouping from changing when layers are
-shown/hidden. ([#9244](https://github.com/napari/napari/pull/9244))
+shown/hidden. ([#9244](https://github.com/napari/napari/pull/9244), [#9397](https://github.com/napari/napari/pull/9397))
 
 ### Public API for auto contrast limit
 
@@ -166,11 +166,17 @@ from napari.utils import translations as trans
 please remove it. (For now, `trans._()` is a no-op.)
 
 
-- Add guided viewer tour ([#9290](https://github.com/napari/napari/pull/9290))
+### Guided tour
+
+If you are new to napari or want to share napari with others,
+you can now use the guided tour to get a quick overview of the
+viewer and its features. The tour is available from the Help menu ([#9290](https://github.com/napari/napari/pull/9290)).
+
+
+- New layer inherits axis labels when derived from another layer ([#9293](https://github.com/napari/napari/pull/9293))
 - Add plugin-defined settings through `ConfigurationContribution`s ([#9308](https://github.com/napari/napari/pull/9308))
 - Inherit axis label, scale, unit, and translate from Xarrays ([#9316](https://github.com/napari/napari/pull/9316))
 - Dynamically construct layer controls based on selection ([#9318](https://github.com/napari/napari/pull/9318))
-- Extend viewbox hiding behaviour on grid to non-1 stride values ([#9397](https://github.com/napari/napari/pull/9397))
 
 ## New Features
 
@@ -249,6 +255,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 
 ## Documentation
 
+- Add info about color and intensity to surface guide ([docs#993](https://github.com/napari/docs/pull/993))
 - Create a repository mapping with descriptions for the project ([docs#1007](https://github.com/napari/docs/pull/1007))
 - Update homepage video for 0.8.0/0.9.0 changes ([docs#1070](https://github.com/napari/docs/pull/1070))
 - Enhance contributing documentation with GitHub edit info ([docs#1075](https://github.com/napari/docs/pull/1075))
@@ -266,6 +273,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 - Fix building docs with PyQt6 ([docs#1102](https://github.com/napari/docs/pull/1102))
 - Triage team and how-to docs ([docs#1106](https://github.com/napari/docs/pull/1106))
 - Mention guided viewer tour ([docs#1107](https://github.com/napari/docs/pull/1107))
+- docs: add list of built-in `sample images` ([docs#1111](https://github.com/napari/docs/pull/1111))
 - Update overlay docstrings ([#9081](https://github.com/napari/napari/pull/9081))
 - Add stereo 3D viewer widget example ([#9219](https://github.com/napari/napari/pull/9219))
 - Update recommended Python version in README from 3.11 to 3.13 ([#9223](https://github.com/napari/napari/pull/9223))
@@ -343,15 +351,17 @@ please remove it. (For now, `trans._()` is a no-op.)
 - Update build docs on circleci to PyQt6 and update python ([#9390](https://github.com/napari/napari/pull/9390))
 - Fix broken shapes due to incomplete merge ([#9399](https://github.com/napari/napari/pull/9399))
 - Bump npe2 minimum for ConfigurationContribution ([#9400](https://github.com/napari/napari/pull/9400))
+- Update `hypothesis`, `numpy`, `platformdirs`, `pygments`, `pyside6`, `pytest-rerunfailures`, `tifffile`, `virtualenv` ([#9414](https://github.com/napari/napari/pull/9414))
 - [pre-commit.ci] pre-commit autoupdate ([#9420](https://github.com/napari/napari/pull/9420))
 - Bump npe2 dependency and constraints to 0.9.0 ([#9422](https://github.com/napari/napari/pull/9422))
+- Follow-up: Rename PluginPreferences to PluginSettings ([#9424](https://github.com/napari/napari/pull/9424))
 
 
 ## 31 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
-- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) - @Aniketsy
+- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy
 - [Anwai Archit](https://github.com/napari/napari/commits?author=anwai98) - @anwai98
 - [Arne Defauw](https://github.com/napari/napari/commits?author=ArneDefauw) - @ArneDefauw +
 - [Aroj Hada](https://github.com/napari/napari/commits?author=ArozHada) - @ArozHada +
@@ -387,7 +397,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 
 (+) denotes first-time contributors 🥳
 
-- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) - @Aniketsy
+- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy
 - [Anwai Archit](https://github.com/napari/napari/commits?author=anwai98) - @anwai98
 - [arbor](https://github.com/napari/docs/commits?author=arbormoss) - @arbormoss
 - [Arne Defauw](https://github.com/napari/napari/commits?author=ArneDefauw) - @ArneDefauw +
