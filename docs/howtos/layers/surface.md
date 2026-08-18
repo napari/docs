@@ -125,13 +125,14 @@ help(napari.Viewer.add_surface)
 ## Surface data
 
 The data for a `surface` layer can be given as either a 2-tuple
-`(vertices, faces)` or a 3-tuple `(vertices, faces, vertex_values)`. The
-vertices are an `NxD` array of `N` vertices in `D` coordinates. The faces are
-an `Mx3` integer array of the indices of the triangles making up the faces of
-the surface. The optional vertex values are a length `N` list of scalar values
-to associate with each vertex for colormap-based rendering. If you omit
-`vertex_values`, napari fills them with ones, so the default underlying surface
-color is white.
+`(vertices, faces)` or a 3-tuple `(vertices, faces, vertex_values)`.
+- The vertices are an `NxD` array of `N` vertices in `D` coordinates. 
+- The faces are an `Mx3` integer array of the indices of the triangles
+  making up the faces of the surface. 
+- The optional vertex values are a length `N` list of scalar values
+  to associate with each vertex for colormap-based rendering. 
+  If you omit `vertex_values`, napari fills them with ones, so the default
+  underlying surface color is white.
 
 ## How surface colors are computed
 
