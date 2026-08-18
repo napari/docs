@@ -24,9 +24,9 @@ The status labels are approximate and should be read as contributor guidance:
   We encourage contributions to these repos to bring them up to speed and 
   bring functionality to match the original vision for the project.
 
-## Core application and extensions
+## Core application and core plugins
 
-These are the repositories that are most central to the central napari experience.
+These are the repositories that are most central to the core napari experience.
 See [](upstream-dependencies) for libraries that are fundamental to napari functionality
 but are developed outside of the napari organization.
 
@@ -35,7 +35,7 @@ but are developed outside of the napari organization.
 | [napari](https://github.com/napari/napari) | Main viewer application and the central repo for layers, events, settings, rendering integration, and releases. | **Active** |
 | [napari-console](https://github.com/napari/napari-console) | In-viewer Python console plugin. | Maintenance |
 | [napari-svg](https://github.com/napari/napari-svg) | SVG export plugin for napari layers. | Backlog |
-| [napari-metadata](https://github.com/napari/napari-metadata) | Metadata editing plugin for layers; included with bundled installs and `napari[optional]`. | Active |
+| [napari-metadata](https://github.com/napari/napari-metadata) | Metadata editing plugin for layers; included with bundled installs and `napari[all]`. | Active |
 
 ## Documentation, websites, and communication
 
@@ -59,7 +59,7 @@ writing and design.
 
 The plugin ecosystem is built around the `npe2` plugin engine and manifest specification.
 The repositories below are focused on supporting the plugin ecosystem,
-whether through core plugin infrastructure and development resources. 
+whether through core plugin infrastructure or development resources. 
 
 | Repo | Description | Status |
 | --- | --- | --- |
