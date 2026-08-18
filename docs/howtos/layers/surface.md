@@ -31,12 +31,10 @@ layer first, then explore the GUI controls.
 
 ## When to use the `surface` layer
 
-The surface layer allows you to display a precomputed surface mesh that is
-defined by an `NxD` array of `N` vertices in `D` coordinates, an `Mx3` integer
-array of the indices of the triangles making up the faces of the surface, and,
-optionally, a length `N` list of values to associate with each vertex to use
-alongside a colormap. If you omit the vertex values, napari uses a length `N`
-array of ones.
+The surface layer allows you to display a precomputed surface mesh: a set of
+vertices connected into triangular faces. Each vertex can optionally carry a
+value that is mapped through a colormap to color the surface. The exact data
+format is described in the [Surface data](#surface-data) section.
 
 ## A simple example
 
@@ -84,8 +82,8 @@ Controls related to `contrast limits`, `auto-contrast`, `gamma`, and
 `colormap` are only available when the surface color is computed from
 `vertex_values`. If you provide `vertex_colors`, napari uses those colors
 directly and disables those controls because they no longer affect rendering.
-When a texture is present, napari multiplies the texture by the underlying
-surface color.
+When a texture is present, napari multiplies the texture color by the
+underlying surface color.
 
 - **Buttons**
   - Pan/zoom - ![image: Pan/zoom tool](../../_static/images/pan-zoom-tool.png) is the default
@@ -126,11 +124,13 @@ help(napari.Viewer.add_surface)
 
 The data for a `surface` layer can be given as either a 2-tuple
 `(vertices, faces)` or a 3-tuple `(vertices, faces, vertex_values)`.
-- The vertices are an `NxD` array of `N` vertices in `D` coordinates. 
+- The vertices are an `NxD` array of `N` vertices in `D` coordinates.
 - The faces are an `Mx3` integer array of the indices of the triangles
-  making up the faces of the surface. 
-- The optional vertex values are a length `N` list of scalar values
-  to associate with each vertex for colormap-based rendering. 
+  making up the faces of the surface.
+- The optional vertex values are a length `N` array of scalar values to
+  associate with each vertex for colormap-based rendering. They can also have
+  additional leading dimensions (for example, a time series), in the form
+  `(D1, D2, ..., N)`, which napari treats as extra dimensions of the layer.
   If you omit `vertex_values`, napari fills them with ones, so the default
   underlying surface color is white.
 
