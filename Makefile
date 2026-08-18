@@ -285,4 +285,4 @@ fallback-videos-clean:
 	rm -f docs/_static/images/*.mp4
 
 spellcheck:
-	pre-commit run --all-files codespell
+	prek run --all-files codespell
