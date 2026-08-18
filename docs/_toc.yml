@@ -208,13 +208,13 @@ subtrees:
               - file: developers/contributing/documentation/docs_template
               - file: developers/contributing/documentation/docs_deployment
       - file: developers/repositories
+      - file: developers/architecture/index
       - file: developers/coredev/core_dev_guide
         subtrees:
         - entries:
           - file: developers/coredev/maintenance
           - file: developers/coredev/release
           - file: developers/coredev/packaging
-      - file: developers/architecture/index
         subtrees:
         - entries:
           - file: developers/architecture/dir_organization

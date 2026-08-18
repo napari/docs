@@ -16,7 +16,6 @@ If you are looking to create and deploy your own napari workshop material, check
 
 Resources for contributors
 
-- [Repository map](napari-repositories)
 - [Contributing guide](napari-contributing)
   - [Development installation](dev-installation)
   - [Testing](napari-testing)
@@ -25,6 +24,7 @@ Resources for contributors
     - [Profiling](napari-profiling)
     - [Benchmarks](napari-benchmarks)
   - [Contributing documentation](contributing-docs)
+- [Repository map](napari-repositories)
 - [](architecture-index)
 ```
 
