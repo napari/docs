@@ -129,7 +129,7 @@ image_layer.auto_contrast = True
 ### 2D slicing of surfaces
 
 Ever since we added surfaces, they have been invisible in 2D slices. Now,
-thanks to all the work done on [thick slicing](dimension-sliders), surface
+thanks to all the work done on [thick slicing](thick-slicing), surface
 slices appear in 2D view ([#8783](https://github.com/napari/napari/pull/8783)).
 This enhancement is accompanied by support for async slicing, which should
 improve viewer responsiveness when slicing large, time varying surfaces, for
