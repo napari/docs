@@ -27,13 +27,39 @@ on the axis labels of layers present in the viewer.
 Now, opening a dataset with labelled axes will result in correctly labelled
 axes in the viewer:
 
-[suggestion for screenshot: [the flim
-ghost](https://us1.discourse-cdn.com/flex015/uploads/imagej/original/3X/6/7/67f30f24a32465ffdee330b59a7e342ec89e1ce1.png)]
+![napari screenshot showing inherited labeled viewer axes](https://us1.discourse-cdn.com/flex015/uploads/imagej/original/3X/6/7/67f30f24a32465ffdee330b59a7e342ec89e1ce1.png)]
+
+Additionally, when you create a new layer from an existing one using the
+buttons in the GUI, the new layer now inherits the axis labels of the layer(s)
+it was derived from. ([#9293](https://github.com/napari/napari/pull/9293))
 
 There is still work to be done here. For example, if layers have labels that
 are inconsistent with each other, napari will simply ignore layers with fewer
 dimensions, or layers added later. But, for most use cases, layer and viewer
 metadata will now be much more informative!
+
+### Layer controls for multiple selected layers
+
+Until now, layer controls only appeared when a single layer was selected. Now,
+napari dynamically builds the layer controls from your selection, so
+when you select several layers at once you can see and use the controls that
+are shared between them. Pan-zoom is always available, while the layer-specific
+buttons still appear only when a single layer is selected.
+([#9318](https://github.com/napari/napari/pull/9318))
+
+There's also an experimental setting, *Generate GUI layer controls dynamically
+instead of using premade panels*, that makes napari use the new dynamic
+controls even for single layers.
+
+### Xarray metadata is now inherited
+
+If you work with [Xarray](https://docs.xarray.dev/) — common in climate,
+geoscience, and many places where data ships with labelled coordinates — napari
+now reads metadata straight from your `DataArray`s. When you add an xarray
+object to the viewer, napari will use its dimension names as axis labels, infer
+`scale` and `translate` from the coordinate values, and pick up `units` from
+CF-convention `units` attributes on coordinates ([#9316](https://github.com/napari/napari/pull/9316)).
+This closed an 8-year old issue: [#14](https://github.com/napari/napari/issues/14)!
 
 ### Status bar coordinates as floats
 
@@ -42,6 +68,39 @@ is set on the layer, the status bar coordinates now have increased precision,
 where before they were limited to just integers. This means you can have more
 accurate physical estimates of your data coordinates when exploring data.
 ([#9287](https://github.com/napari/napari/pull/9287))
+
+### Take a guided tour of the viewer
+
+New to napari, or just want a quick refresher on where everything lives? There's
+now a guided tour, available from **Help → Take a tour**. The tour highlights
+the main areas of the viewer — the canvas, the layer list, layer controls, the
+viewer buttons, the dimension sliders, and the status bar — so you can get your
+bearings in seconds. If the viewer is empty, napari opens the built-in *Balls*
+(3D) sample data so the walkthrough has something to show ([#9290](https://github.com/napari/napari/pull/9290)).
+
+### Contributable plugin preferences
+
+Plugins can now ship their own preferences ([#9308](https://github.com/napari/napari/pull/9308))!
+By declaring `configurations` in
+their `napari.yaml` manifest, plugins get their own settings — stored
+separately from napari's own settings, automatically added to and editable from
+the napari **Preferences** dialog, and accessible programmatically from Python:
+
+```python
+from napari.settings import get_plugin_settings
+
+settings = get_plugin_settings("my-plugin")
+settings.reader.lazy = True
+```
+
+Read more in the [Configurations Guide](https://napari.org/dev/plugins/building_a_plugin/guides.html#configurations)
+to learn more about how to add this new contribution to your own plugins.
+
+### Adjust grid rendering with hidden layers
+
+Speaking of grid mode: grid mode with hidden layers is much improved: empty
+grid spaces are never shown and stride operates on the *full* layer list, so
+layer grouping doesn't change when you show or hide layers ([#9244](https://github.com/napari/napari/pull/9244)).
 
 ### Fuzzy find in command palette
 
@@ -55,6 +114,38 @@ make use of it. It's automatically installed with `napari[all]` or
 fuzzy you want it to be in Preferences > Experimental > Fuzzy Search Threshold.
 
 [screenshot or movie to be provided by Lorenzo]
+
+### 2D slicing of surfaces
+
+Ever since we added surfaces, they have been invisible in 2D slices. Now,
+thanks to all the work done on [thick slicing](thick-slicing), surface
+slices appear in 2D view ([#8783](https://github.com/napari/napari/pull/8783)).
+This enhancement is accompanied by support for async slicing, which should
+improve viewer responsiveness when slicing large, time varying surfaces, for
+example.
+
+[movie of ND-cows and slicing]
+
+... And you can try this out yourself with common .obj surface files thanks to
+a new built-in reader plugin!
+([#9228](https://github.com/napari/napari/pull/9228))
+
+You should now be able to drag and drop .obj files into napari and see them
+instantly.
+
+### Public API for auto contrast limit
+
+For a very long time, it's been possible to set automatic contrast limits
+updating on a layer *only* through the graphical user interface. This means an
+extra click for many workflows and poorer reproducibility. Thanks to
+[#9271](https://github.com/napari/napari/pull/9271), you can now set the
+`auto_contrast` attribute on Image layers:
+
+```python
+image_layer = viewer.add_image(..., auto_contrast=True)
+# or
+image_layer.auto_contrast = True
+```
 
 ### The life-changing magic of tidying up the Viewer model
 
@@ -105,47 +196,6 @@ viewer.camera -> viewer.scene.camera
 viewer.axes -> viewer.scene.overlays.axes
 ```
 
-### Adjust grid rendering with hidden layers
-
-Speaking of grid mode: grid mode with hidden layers is much improved: empty
-grid spaces will never be shown, regardless of stride, but stride operates on
-the *full* layer list, to prevent layer grouping from changing when layers are
-shown/hidden. ([#9244](https://github.com/napari/napari/pull/9244), [#9397](https://github.com/napari/napari/pull/9397))
-
-### Public API for auto contrast limit
-
-For a very long time, it's been possible to set automatic contrast limits
-updating on a layer *only* through the graphical user interface. This means an
-extra click for many workflows and poorer reproducibility. Thanks to
-[#9271](https://github.com/napari/napari/pull/9271), you can now set the
-`auto_contrast` attribute on Image layers:
-
-```python
-image_layer = viewer.add_image(..., auto_contrast=True)
-# or
-image_layer.auto_contrast = True
-```
-
-### 2D slicing of surfaces
-
-Ever since we added surfaces, they have been invisible in 2D slices. Now,
-thanks to all the work done on [thick slicing](thick-slicing), surface
-slices appear in 2D view ([#8783](https://github.com/napari/napari/pull/8783)).
-This enhancement is accompanied by support for async slicing, which should
-improve viewer responsiveness when slicing large, time varying surfaces, for
-example.
-
-[movie of ND-cows and slicing]
-
-### Add built-in wavefront .obj file reader
-
-... And you can try this out yourself with common .obj surface files thanks to
-a new built-in reader plugin!
-([#9228](https://github.com/napari/napari/pull/9228))
-
-You should now be able to drag and drop .obj files into napari and see them
-instantly.
-
 ### Removal of translation code
 
 Several years ago, we started working on implementing localization machinery
@@ -166,17 +216,6 @@ from napari.utils import translations as trans
 please remove it. (For now, `trans._()` is a no-op.)
 
 
-### Guided tour
-
-If you are new to napari or want to share napari with others,
-you can now use the guided tour to get a quick overview of the
-viewer and its features. The tour is available from the Help menu ([#9290](https://github.com/napari/napari/pull/9290)).
-
-
-- New layer inherits axis labels when derived from another layer ([#9293](https://github.com/napari/napari/pull/9293))
-- Add plugin-defined settings through `ConfigurationContribution`s ([#9308](https://github.com/napari/napari/pull/9308))
-- Inherit axis label, scale, unit, and translate from Xarrays ([#9316](https://github.com/napari/napari/pull/9316))
-- Dynamically construct layer controls based on selection ([#9318](https://github.com/napari/napari/pull/9318))
 
 ## New Features
 
