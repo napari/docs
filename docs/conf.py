@@ -733,10 +733,11 @@ def qt_docstrings(app, what, name, obj, options, lines):
     Avoids syntax errors since the Qt threading docstrings are written in
     Markdown, and injected into rst docstring automatically.
     """
-    ignore_list = ['WorkerBase', 'FunctionWorker', 'GeneratorWorker']
+    if not name.startswith('napari.qt'):
+        return
+    ignore_list = ['WorkerBase', 'FunctionWorker', 'GeneratorWorker', 'Shadow.from_bytes', 'Shadow.to_bytes', 'Shape.from_bytes', 'Shape.to_bytes']
     if any(f in name for f in ignore_list) and len(lines) > 0:
         del lines[1:]
-
 
 # -- Docs build setup ------------------------------------------------------
 
