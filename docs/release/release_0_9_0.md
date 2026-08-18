@@ -1,7 +1,7 @@
 # napari 0.9.0
 ⚠️ *Note: these release notes are still in draft while 0.9.0rc1 is in prerelease testing.* ⚠️
 
-*Mon, Aug 17, 2026*
+*Thu, Aug 20, 2026*
 
 We're happy to announce the release of napari 0.9.0!
 napari is a fast, interactive, multi-dimensional image viewer for Python.
@@ -166,9 +166,11 @@ from napari.utils import translations as trans
 please remove it. (For now, `trans._()` is a no-op.)
 
 
-- Fix hidden grids when stride is not abs(1) ([#9311](https://github.com/napari/napari/pull/9311))
+- Add guided viewer tour ([#9290](https://github.com/napari/napari/pull/9290))
+- Add plugin-defined settings through `ConfigurationContribution`s ([#9308](https://github.com/napari/napari/pull/9308))
 - Inherit axis label, scale, unit, and translate from Xarrays ([#9316](https://github.com/napari/napari/pull/9316))
 - Dynamically construct layer controls based on selection ([#9318](https://github.com/napari/napari/pull/9318))
+- Extend viewbox hiding behaviour on grid to non-1 stride values ([#9397](https://github.com/napari/napari/pull/9397))
 
 ## New Features
 
@@ -177,8 +179,10 @@ please remove it. (For now, `trans._()` is a no-op.)
 - feat: add `new` label button to the labels controls ([#9215](https://github.com/napari/napari/pull/9215))
 - Add builtin Wavefront OBJ to surfaces reader ([#9228](https://github.com/napari/napari/pull/9228))
 - Add guided viewer tour ([#9290](https://github.com/napari/napari/pull/9290))
+- Add plugin-defined settings through `ConfigurationContribution`s ([#9308](https://github.com/napari/napari/pull/9308))
 - Inherit axis label, scale, unit, and translate from Xarrays ([#9316](https://github.com/napari/napari/pull/9316))
 - Dynamically construct layer controls based on selection ([#9318](https://github.com/napari/napari/pull/9318))
+- Wrap zarr in dask while projecting multi-scale to keep lazy behavior. ([#9408](https://github.com/napari/napari/pull/9408))
 
 ## Improvements
 
@@ -198,11 +202,11 @@ please remove it. (For now, `trans._()` is a no-op.)
 - UX: Indicate web links in Help menu with ↗ (unicode character) ([#9291](https://github.com/napari/napari/pull/9291))
 - New layer inherits axis labels when derived from another layer ([#9293](https://github.com/napari/napari/pull/9293))
 - Adding histogram to surfaces ([#9306](https://github.com/napari/napari/pull/9306))
-- Fix hidden grids when stride is not abs(1) ([#9311](https://github.com/napari/napari/pull/9311))
 - Dynamically construct layer controls based on selection ([#9318](https://github.com/napari/napari/pull/9318))
 - Scene model ([#9323](https://github.com/napari/napari/pull/9323))
 - UX/UI: Bump the splitter (separator) size by 1px ([#9344](https://github.com/napari/napari/pull/9344))
 - Add middle position to canvas overlays (in addition to top and bottom) ([#9374](https://github.com/napari/napari/pull/9374))
+- Extend viewbox hiding behaviour on grid to non-1 stride values ([#9397](https://github.com/napari/napari/pull/9397))
 
 ## Performance
 
@@ -234,6 +238,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 - fix(vectors): stop edge-color controls mutating the layer and hiding mode changes ([#9364](https://github.com/napari/napari/pull/9364))
 - Fix missing `f` for strings modified in #8935 ([#9371](https://github.com/napari/napari/pull/9371))
 - Fix the built-in `nan` colormap setting `bad_color` instead of `nan_color` ([#9373](https://github.com/napari/napari/pull/9373))
+- fix: reset `dims axis_labels` when layer labels return to default ([#9398](https://github.com/napari/napari/pull/9398))
 
 ## Deprecations
 
@@ -244,7 +249,8 @@ please remove it. (For now, `trans._()` is a no-op.)
 
 ## Documentation
 
-- Update homepage video for 0.8.0/.1 changes ([docs#1070](https://github.com/napari/docs/pull/1070))
+- Create a repository mapping with descriptions for the project ([docs#1007](https://github.com/napari/docs/pull/1007))
+- Update homepage video for 0.8.0/0.9.0 changes ([docs#1070](https://github.com/napari/docs/pull/1070))
 - Enhance contributing documentation with GitHub edit info ([docs#1075](https://github.com/napari/docs/pull/1075))
 - Adding uv to getting started - installation ([docs#1076](https://github.com/napari/docs/pull/1076))
 - make napari logo usage page ([docs#1077](https://github.com/napari/docs/pull/1077))
@@ -255,8 +261,11 @@ please remove it. (For now, `trans._()` is a no-op.)
 - Bring several NAPs up to date ([docs#1091](https://github.com/napari/docs/pull/1091))
 - Update dev instructions to use prek ([docs#1096](https://github.com/napari/docs/pull/1096))
 - Add initial release notes for 0.9.0 ([docs#1097](https://github.com/napari/docs/pull/1097))
-- Update release notes for napari 0.9.0a2 ([docs#1099](https://github.com/napari/docs/pull/1099))
+- Update release notes for napari 0.9.0rc1 ([docs#1099](https://github.com/napari/docs/pull/1099))
+- Create stubs for npe2 `ConfigurationContribution` ([docs#1100](https://github.com/napari/docs/pull/1100))
 - Fix building docs with PyQt6 ([docs#1102](https://github.com/napari/docs/pull/1102))
+- Triage team and how-to docs ([docs#1106](https://github.com/napari/docs/pull/1106))
+- Mention guided viewer tour ([docs#1107](https://github.com/napari/docs/pull/1107))
 - Update overlay docstrings ([#9081](https://github.com/napari/napari/pull/9081))
 - Add stereo 3D viewer widget example ([#9219](https://github.com/napari/napari/pull/9219))
 - Update recommended Python version in README from 3.11 to 3.13 ([#9223](https://github.com/napari/napari/pull/9223))
@@ -318,22 +327,27 @@ please remove it. (For now, `trans._()` is a no-op.)
 - Enable coverage annotation in PR changes view ([#9288](https://github.com/napari/napari/pull/9288))
 - Update `certifi`, `hypothesis`, `pandas`, `platformdirs`, `tqdm`, `virtualenv` ([#9295](https://github.com/napari/napari/pull/9295))
 - [pre-commit.ci] pre-commit autoupdate ([#9303](https://github.com/napari/napari/pull/9303))
-- Add plugin-defined settings through `ConfigurationContribution`s ([#9308](https://github.com/napari/napari/pull/9308))
 - Simplify tox configuration ([#9309](https://github.com/napari/napari/pull/9309))
 - Update latlon with map example to follow PEP8 ([#9312](https://github.com/napari/napari/pull/9312))
 - Remove `make_napari_viewer` from `test_vispy_labels_polygon_overlay` ([#9314](https://github.com/napari/napari/pull/9314))
 - Revert "Disable part of test matrix to increase runner availability during sprints/hackathon (#9226)" ([#9348](https://github.com/napari/napari/pull/9348))
 - Drop colormap translation dictionaries ([#9358](https://github.com/napari/napari/pull/9358))
 - Use LF for all files in gitattributes ([#9359](https://github.com/napari/napari/pull/9359))
+- Stop window-owned worker threads when the interpreter shuts down ([#9367](https://github.com/napari/napari/pull/9367))
 - Change tox and codecov configuration to simplify local reports ([#9368](https://github.com/napari/napari/pull/9368))
 - Update `coverage`, `hypothesis`, `platformdirs`, `pydantic-settings`, `tensorstore`, `virtualenv` ([#9380](https://github.com/napari/napari/pull/9380))
 - chore: remove QRangeSliderPopup ([#9382](https://github.com/napari/napari/pull/9382))
+- chore: remove qt_size_preview module ([#9385](https://github.com/napari/napari/pull/9385))
 - [pre-commit.ci] pre-commit autoupdate ([#9386](https://github.com/napari/napari/pull/9386))
 - Fix handling exception when go to fallback source of data in map example ([#9388](https://github.com/napari/napari/pull/9388))
 - Update build docs on circleci to PyQt6 and update python ([#9390](https://github.com/napari/napari/pull/9390))
+- Fix broken shapes due to incomplete merge ([#9399](https://github.com/napari/napari/pull/9399))
+- Bump npe2 minimum for ConfigurationContribution ([#9400](https://github.com/napari/napari/pull/9400))
+- [pre-commit.ci] pre-commit autoupdate ([#9420](https://github.com/napari/napari/pull/9420))
+- Bump npe2 dependency and constraints to 0.9.0 ([#9422](https://github.com/napari/napari/pull/9422))
 
 
-## 28 authors added to this release (alphabetical)
+## 31 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -345,6 +359,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 - [Bas Bloemsaat](https://github.com/napari/napari/commits?author=basbloemsaat) - @basbloemsaat +
 - [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) - @carlosmariorr
 - [Christophe Creeten](https://github.com/napari/napari/commits?author=ccreeten) - @ccreeten +
+- [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - @DragaDoncila
 - [Edouard Coussoux](https://github.com/napari/napari/commits?author=ecoussoux-ansys) - @ecoussoux-ansys +
 - [Filippo  Maria Castelli, PhD](https://github.com/napari/napari/commits?author=filippocastelli) - @filippocastelli +
 - [girochat](https://github.com/napari/napari/commits?author=girochat) - @girochat +
@@ -353,20 +368,22 @@ please remove it. (For now, `trans._()` is a no-op.)
 - [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) ([docs](https://github.com/napari/docs/commits?author=jni))  - @jni
 - [Kamil Kania](https://github.com/napari/napari/commits?author=Grzyb33k) - @Grzyb33k +
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
+- [Lucy Liu](https://github.com/napari/napari/commits?author=lucyleeow) - @lucyleeow
 - [Margot Chazotte](https://github.com/napari/napari/commits?author=MargotCh) - @MargotCh
 - [Matthias Schabel](https://github.com/napari/napari/commits?author=matthiasschabel) - @matthiasschabel +
 - [michalslabs](https://github.com/napari/napari/commits?author=michalslabs) ([docs](https://github.com/napari/docs/commits?author=michalslabs))  - @michalslabs +
 - [Mridul Seth](https://github.com/napari/napari/commits?author=MridulS) - @MridulS +
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Revathy Venugopal](https://github.com/napari/napari/commits?author=Revathyvenugopal162) - @Revathyvenugopal162 +
+- [Samuel Le Meur-Diebolt](https://github.com/napari/napari/commits?author=sdiebolt) ([docs](https://github.com/napari/docs/commits?author=sdiebolt))  - @sdiebolt
 - [Sara Czasak](https://github.com/napari/docs/commits?author=sara-czasak) - @sara-czasak +
 - [Sébastien Morais](https://github.com/napari/napari/commits?author=SMoraisAnsys) - @SMoraisAnsys +
-- [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) - @TimMonko
+- [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Venkateswarlu Nagineni](https://github.com/napari/napari/commits?author=VenkateswarluNagineni) - @VenkateswarluNagineni +
 - [Wouter-Michiel Vierdag](https://github.com/napari/docs/commits?author=melonora) - @melonora
 - [Zuzana Čočková](https://github.com/napari/napari/commits?author=cockovaz) - @cockovaz
 
-## 24 reviewers added to this release (alphabetical)
+## 25 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -376,7 +393,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 - [Arne Defauw](https://github.com/napari/napari/commits?author=ArneDefauw) - @ArneDefauw +
 - [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) - @carlosmariorr
 - [Carol Willing](https://github.com/napari/docs/commits?author=willingc) - @willingc
-- [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
+- [Draga Doncila Pop](https://github.com/napari/napari/commits?author=DragaDoncila) - @DragaDoncila
 - [Filippo  Maria Castelli, PhD](https://github.com/napari/napari/commits?author=filippocastelli) - @filippocastelli +
 - [girochat](https://github.com/napari/napari/commits?author=girochat) - @girochat +
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
@@ -388,9 +405,10 @@ please remove it. (For now, `trans._()` is a no-op.)
 - [Margot Chazotte](https://github.com/napari/napari/commits?author=MargotCh) - @MargotCh
 - [Matthias Schabel](https://github.com/napari/napari/commits?author=matthiasschabel) - @matthiasschabel +
 - [Maxime Rey](https://github.com/napari/docs/commits?author=MaxJPRey) - @MaxJPRey
+- [Melissa Weber Mendonça](https://github.com/napari/docs/commits?author=melissawm) - @melissawm
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
-- [Samuel Le Meur-Diebolt](https://github.com/napari/docs/commits?author=sdiebolt) - @sdiebolt
+- [Samuel Le Meur-Diebolt](https://github.com/napari/napari/commits?author=sdiebolt) ([docs](https://github.com/napari/docs/commits?author=sdiebolt))  - @sdiebolt
 - [Sara Czasak](https://github.com/napari/docs/commits?author=sara-czasak) - @sara-czasak +
-- [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) - @TimMonko
+- [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wouter-Michiel Vierdag](https://github.com/napari/docs/commits?author=melonora) - @melonora
 - [Zuzana Čočková](https://github.com/napari/napari/commits?author=cockovaz) - @cockovaz
