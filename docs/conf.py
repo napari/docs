@@ -762,7 +762,7 @@ def _skip_pydantic_model_members(app, what, name, obj, skip, options):
     Colormap, ...) inherits pydantic v2's public serialization/schema
     machinery (``model_validate``, ``model_dump``, ``model_fields``, ...).
     Those render pydantic's own docstrings and make the API reference much
-    harder to parse (napari/docs#964), so we hide them from both the
+    harder to parse, so we hide them from both the
     autosummary member tables and the autodoc "Details" sections.
 
     napari's own overrides of some of these methods (e.g.
@@ -789,6 +789,20 @@ def _skip_pydantic_model_members(app, what, name, obj, skip, options):
     # ``__pydantic_*`` into the summary tables.)
     return None
 
+
+def _clean_pydantic_signatures(app, what, name, obj, options, signature, retann):
+    """Replace pydantic's ``<factory>`` sentinel with ``None`` in signatures.
+
+    pydantic v2 renders fields declared with ``default_factory`` as
+    ``= <factory>`` in generated ``__init__`` signatures (an internal
+    ``_HAS_DEFAULT_FACTORY`` sentinel whose repr is ``<factory>``).  That is
+    unhelpful in the docs, so we show ``= None`` instead -- matching what
+    pydantic v1 (napari <= 0.6) rendered.
+    """
+    if signature and '<factory>' in signature:
+        signature = signature.replace(' = <factory>', ' = None')
+    return signature, retann
+
 # -- Docs build setup ------------------------------------------------------
 
 
@@ -802,6 +816,7 @@ def setup(app):
     * Filters out 'duplicate object description' Sphinx warnings
     * Cleans out Qt threading docstrings
     * Hides pydantic BaseModel internals from the API reference
+    * Replaces pydantic's ``<factory>`` signature sentinel with ``None``
 
     """
     app.registry.source_suffix.pop('.ipynb', None)
@@ -810,6 +825,7 @@ def setup(app):
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
     app.connect('autodoc-process-docstring', qt_docstrings)
     app.connect('autodoc-skip-member', _skip_pydantic_model_members)
+    app.connect('autodoc-process-signature', _clean_pydantic_signatures)
 
     logger = logging.getLogger('sphinx')
     warning_handler, *_ = [
