@@ -37,7 +37,7 @@ Many samples come from the scikit-image example images available in [`skimage.da
 | Cell | Grayscale microscopy image of a single cell. |
 | Cells (3D+2Ch) | 3D fluorescence image with two channels. |
 | Checkerboard | Synthetic checkerboard target pattern. |
-| Clock | Photograph of a wall clock. |
+| Clock | Photograph of a motion blurred wall clock. |
 | Coffee (RGB) | Color photograph of a cup of coffee. |
 | Coins | Grayscale photograph of several coins. |
 | Colorwheel (RGB) | Color-wheel test image. |
