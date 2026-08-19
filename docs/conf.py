@@ -338,6 +338,10 @@ myst_substitutions = {
 
 }
 
+# -- Autodoc ----------------------------------------------------------------
+
+autodoc_typehints = 'description'  # Render parameter types in the descriptions rather than the signature.
+
 # -- Autosummary ------------------------------------------------------------
 
 autosummary_generate = True
