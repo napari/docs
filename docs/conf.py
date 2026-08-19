@@ -743,65 +743,43 @@ def qt_docstrings(app, what, name, obj, options, lines):
 # -- Pydantic model internals ---------------------------------------------
 
 
-#: Attributes inherited from pydantic's ``BaseModel`` that are internal
-#: schema/serialization bookkeeping.  They are rendered with pydantic's own
-#: docstrings and only clutter napari's API reference, so we hide them.
-_PYDANTIC_MODEL_ATTRIBUTES = frozenset({
-    'model_computed_fields',
-    'model_config',
-    'model_extra',
-    'model_fields',
-    'model_fields_set',
-})
+def _skip_pydantic_base_model_methods(app, what, name, obj, skip, options):
+    """Skip methods inherited from pydantic's ``BaseModel``.
 
-
-def _skip_pydantic_model_members(app, what, name, obj, skip, options):
-    """Skip members inherited from pydantic's ``BaseModel``.
-
-    Every ``napari.utils.events.EventedModel`` subclass (Viewer, Camera,
-    Colormap, ...) inherits pydantic v2's public serialization/schema
-    machinery (``model_validate``, ``model_dump``, ``model_fields``, ...).
-    Those render pydantic's own docstrings and make the API reference much
-    harder to parse, so we hide them from both the
-    autosummary member tables and the autodoc "Details" sections.
-
-    napari's own overrides of some of these methods (e.g.
-    ``ViewerModel.model_dump``, ``ViewerModel.json``,
-    ``EventedModel.model_json_schema``) are preserved, since they carry real
-    napari docstrings.
+    Keep napari overrides (e.g. ``ViewerModel.model_dump``, ``ViewerModel.json``,
+    ``EventedModel.model_json_schema``), so we preserve those because they don't
+    have the same qualname as pydantic's ``BaseModel`` methods.
     """
-    # Methods: skip only when they genuinely originate from pydantic's
-    # ``BaseModel`` (identified by qualname), so napari overrides with real
-    # docstrings are kept.
     qualname = getattr(obj, '__qualname__', None)
     if qualname:
         module = getattr(obj, '__module__', '')
         if module == 'pydantic.main' and qualname.startswith('BaseModel.'):
             return True
-
-    # Attributes don't expose a qualname; match the pydantic-only names.
-    if name in _PYDANTIC_MODEL_ATTRIBUTES:
-        return True
-
-    # No opinion: return None so Sphinx keeps its default public/private
-    # filtering.  (Returning the ``skip`` value here would make autosummary
-    # treat every member as "show forcedly" and leak private members like
-    # ``__pydantic_*`` into the summary tables.)
     return None
 
 
-def _clean_pydantic_signatures(app, what, name, obj, options, signature, retann):
-    """Replace pydantic's ``<factory>`` sentinel with ``None`` in signatures.
+def _skip_pydantic_named_members(app, what, name, obj, skip, options):
+    """Skip pydantic members that don't expose a ``BaseModel.*`` qualname.
 
-    pydantic v2 renders fields declared with ``default_factory`` as
-    ``= <factory>`` in generated ``__init__`` signatures (an internal
-    ``_HAS_DEFAULT_FACTORY`` sentinel whose repr is ``<factory>``).  That is
-    unhelpful in the docs, so we show ``= None`` instead -- matching what
-    pydantic v1 (napari <= 0.6) rendered.
+    Attributes (``model_config``, ``model_fields``, ...) don't expose a
+    qualname at all, and ``model_post_init`` is aliased by pydantic to an
+    internal function (``init_private_attributes``) rather than
+    ``BaseModel.model_post_init``, so neither is caught by the qualname
+    check.  We match those by name instead.
     """
-    if signature and '<factory>' in signature:
-        signature = signature.replace(' = <factory>', ' = None')
-    return signature, retann
+    _PYDANTIC_MODEL_MEMBERS = frozenset({
+        'model_computed_fields',
+        'model_config',
+        'model_extra',
+        'model_fields',
+        'model_fields_set',
+        'model_post_init',
+    })
+
+    if name in _PYDANTIC_MODEL_MEMBERS:
+        return True
+    return None
+
 
 # -- Docs build setup ------------------------------------------------------
 
@@ -816,7 +794,6 @@ def setup(app):
     * Filters out 'duplicate object description' Sphinx warnings
     * Cleans out Qt threading docstrings
     * Hides pydantic BaseModel internals from the API reference
-    * Replaces pydantic's ``<factory>`` signature sentinel with ``None``
 
     """
     app.registry.source_suffix.pop('.ipynb', None)
@@ -824,8 +801,8 @@ def setup(app):
     app.connect('source-read', augment_gallery_example)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
     app.connect('autodoc-process-docstring', qt_docstrings)
-    app.connect('autodoc-skip-member', _skip_pydantic_model_members)
-    app.connect('autodoc-process-signature', _clean_pydantic_signatures)
+    app.connect('autodoc-skip-member', _skip_pydantic_base_model_methods)
+    app.connect('autodoc-skip-member', _skip_pydantic_named_members)
 
     logger = logging.getLogger('sphinx')
     warning_handler, *_ = [
