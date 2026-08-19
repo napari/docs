@@ -14,21 +14,25 @@ import json
 import logging
 import os
 import re
-import tomllib
 from datetime import datetime
 from functools import cache
 from importlib import import_module
 from importlib.metadata import (
     distribution,
     packages_distributions,
+)
+from importlib.metadata import (
     version as metadata_version,
 )
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
 import napari
+import pooch.core
+import tomllib
 from jinja2.filters import FILTERS
 from napari._version import __version_tuple__
+from napari.utils._examples_data import napari_choose_downloader
 from packaging.requirements import Requirement
 from packaging.utils import canonicalize_name
 from packaging.version import parse as parse_version
@@ -37,9 +41,6 @@ from sphinx.highlighting import lexers
 from sphinx.util import logging as sphinx_logging
 from sphinx_gallery import gen_rst, scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
-import pooch.core
-
-from napari.utils._examples_data import napari_choose_downloader
 
 # -- Detect build on CI PR ----------------------------------------------------
 
@@ -739,6 +740,55 @@ def qt_docstrings(app, what, name, obj, options, lines):
     if any(f in name for f in ignore_list) and len(lines) > 0:
         del lines[1:]
 
+# -- Pydantic model internals ---------------------------------------------
+
+
+#: Attributes inherited from pydantic's ``BaseModel`` that are internal
+#: schema/serialization bookkeeping.  They are rendered with pydantic's own
+#: docstrings and only clutter napari's API reference, so we hide them.
+_PYDANTIC_MODEL_ATTRIBUTES = frozenset({
+    'model_computed_fields',
+    'model_config',
+    'model_extra',
+    'model_fields',
+    'model_fields_set',
+})
+
+
+def _skip_pydantic_model_members(app, what, name, obj, skip, options):
+    """Skip members inherited from pydantic's ``BaseModel``.
+
+    Every ``napari.utils.events.EventedModel`` subclass (Viewer, Camera,
+    Colormap, ...) inherits pydantic v2's public serialization/schema
+    machinery (``model_validate``, ``model_dump``, ``model_fields``, ...).
+    Those render pydantic's own docstrings and make the API reference much
+    harder to parse (napari/docs#964), so we hide them from both the
+    autosummary member tables and the autodoc "Details" sections.
+
+    napari's own overrides of some of these methods (e.g.
+    ``ViewerModel.model_dump``, ``ViewerModel.json``,
+    ``EventedModel.model_json_schema``) are preserved, since they carry real
+    napari docstrings.
+    """
+    # Methods: skip only when they genuinely originate from pydantic's
+    # ``BaseModel`` (identified by qualname), so napari overrides with real
+    # docstrings are kept.
+    qualname = getattr(obj, '__qualname__', None)
+    if qualname:
+        module = getattr(obj, '__module__', '')
+        if module == 'pydantic.main' and qualname.startswith('BaseModel.'):
+            return True
+
+    # Attributes don't expose a qualname; match the pydantic-only names.
+    if name in _PYDANTIC_MODEL_ATTRIBUTES:
+        return True
+
+    # No opinion: return None so Sphinx keeps its default public/private
+    # filtering.  (Returning the ``skip`` value here would make autosummary
+    # treat every member as "show forcedly" and leak private members like
+    # ``__pydantic_*`` into the summary tables.)
+    return None
+
 # -- Docs build setup ------------------------------------------------------
 
 
@@ -751,6 +801,7 @@ def setup(app):
     * Adds google calendar api key to meetings schedule page
     * Filters out 'duplicate object description' Sphinx warnings
     * Cleans out Qt threading docstrings
+    * Hides pydantic BaseModel internals from the API reference
 
     """
     app.registry.source_suffix.pop('.ipynb', None)
@@ -758,6 +809,7 @@ def setup(app):
     app.connect('source-read', augment_gallery_example)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
     app.connect('autodoc-process-docstring', qt_docstrings)
+    app.connect('autodoc-skip-member', _skip_pydantic_model_members)
 
     logger = logging.getLogger('sphinx')
     warning_handler, *_ = [
