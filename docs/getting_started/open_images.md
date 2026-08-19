@@ -59,7 +59,7 @@ Many samples come from the scikit-image example images available in [`skimage.da
 | Rocket (RGB) | Color photograph of a rocket launch. |
 | Shepp Logan Phantom | Synthetic medical imaging phantom. |
 | Skin (RGB) | Color microscopy image of skin tissue. |
-| Text | Grayscale image containing text. |
+| Text | Grayscale image containing handwritten text. |
 
 ## Builtin napari reader
 
