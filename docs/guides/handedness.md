@@ -60,8 +60,8 @@ viewer, sst_layer = napari.imshow(
         name='sea surface temp',
         **get_scale_translate(sst, 'sst'),
         colormap='magma',
+        axis_labels=sst.sst.dims,
         )
-viewer.dims.axis_labels = sst.sst.dims
 viewer.scene.overlays.axes.visible = True
 ```
 
