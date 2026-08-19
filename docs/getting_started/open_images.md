@@ -30,7 +30,7 @@ Many samples come from the scikit-image example images available in [`skimage.da
 | Balls (3D) | 3D synthetic volume of spheres. |
 | Binary Blobs | 2D synthetic binary blob image. |
 | Binary Blobs (3D) | 3D synthetic binary blob volume. |
-| Brick | Photograph of a brick wall texture. |
+| Brick | Grayscale photograph of a brick wall texture. |
 | Brain (3D) | 3D MRI brain volume. |
 | Camera | Grayscale "cameraman" test image. |
 | Cat (RGB) | Color photograph of a cat. |
