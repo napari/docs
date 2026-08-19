@@ -178,13 +178,9 @@ conversions. napari handles all of that for you.
 
 ```{note}
 If you pass an [Xarray](https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html)
-`DataArray` to napari, it automatically inherits metadata from it: dimension
-names become the layer's axis labels, coordinate values are used for `scale`
-and `translate`, and CF-convention `units` attributes on coordinates (validated
-with [pint](https://pint.readthedocs.io/)) become the layer units. Even
-`datetime64` coordinates are converted to a sensible time unit. See the
-[xarray example]({ref}`sphx_glr_gallery_xarray-latlon-timeseries.py`) for a
-full demonstration.
+`DataArray` to napari, it automatically inherits metadata from it, such as axis
+labels, `scale`, `translate`, and units. For details on how this metadata is
+used for rendering, see the [units guide]({ref}`units-guide`).
 ```
 
 napari will also wait until just before it displays data onto the screen to
