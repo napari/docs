@@ -394,6 +394,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 - Update `hypothesis`, `numpy`, `platformdirs`, `pygments`, `pyside6`, `pytest-rerunfailures`, `tifffile`, `virtualenv` ([#9414](https://github.com/napari/napari/pull/9414))
 - [pre-commit.ci] pre-commit autoupdate ([#9420](https://github.com/napari/napari/pull/9420))
 - Bump npe2 dependency and constraints to 0.9.0 ([#9422](https://github.com/napari/napari/pull/9422))
+- Fix Points.symbol type annotation ([#9423](https://github.com/napari/napari/pull/9423))
 - Follow-up: Rename PluginPreferences to PluginSettings ([#9424](https://github.com/napari/napari/pull/9424))
 
 
