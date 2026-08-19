@@ -22,7 +22,7 @@ Sometimes you just need to open images to test some functionality of napari or a
 ![Open sample image](../_static/images/open_image.png)
 
 ### Available built-in sample images
-
+Many samples come from the scikit-image example images available in [`skimage.data`](https://scikit-image.org/docs/stable/api/skimage.data.html#) which you can read to learn more about the images, including source and copyright status.
 | Sample image | Notes |
 | ------------ | ----- |
 | Astronaut (RGB) | Color photograph of an astronaut. |
