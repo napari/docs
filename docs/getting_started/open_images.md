@@ -54,7 +54,7 @@ Many samples come from the scikit-image example images available in [`skimage.da
 | Lily (4Ch) | 4-channel fluorescence image of a lily. |
 | Microaneurysms | Retinal image showing microaneurysms. |
 | Moon | Grayscale photograph of the moon. |
-| Page | Grayscale image of a text page. |
+| Page | Grayscale image of a printed text page. |
 | Retina (RGB) | Color retinal fundus image. |
 | Rocket (RGB) | Color photograph of a rocket launch. |
 | Shepp Logan Phantom | Synthetic medical imaging phantom. |
