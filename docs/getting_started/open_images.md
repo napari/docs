@@ -32,7 +32,7 @@ Sometimes you just need to open images to test some functionality of napari or a
 | Binary Blobs (3D) | 3D synthetic binary blob volume. |
 | Brick | Photograph of a brick wall texture. |
 | Brain (3D) | 3D MRI brain volume. |
-| Camera | Standard grayscale "cameraman" test image. |
+| Camera | Grayscale "cameraman" test image. |
 | Cat (RGB) | Color photograph of a cat. |
 | Cell | Grayscale microscopy image of a single cell. |
 | Cells (3D+2Ch) | 3D fluorescence image with two channels. |
