@@ -180,7 +180,7 @@ conversions. napari handles all of that for you.
 If you pass an [Xarray](https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html)
 `DataArray` to napari, it automatically inherits metadata from it, such as axis
 labels, `scale`, `translate`, and units. For details on how this metadata is
-used for rendering, see the [units guide]({ref}`units-guide`).
+used for rendering, see the [units guide](units-guide).
 ```
 
 napari will also wait until just before it displays data onto the screen to

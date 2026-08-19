@@ -54,7 +54,7 @@ names become the layer's axis labels, coordinate values are used for `scale`
 and `translate`, and CF-convention `units` attributes on coordinates (validated
 with [pint](https://pint.readthedocs.io/)) become the layer units. Even
 `datetime64` coordinates are converted to a sensible time unit. See the
-[xarray example](:ref:`sphx_glr_gallery_xarray-latlon-timeseries.py`) for a
+[xarray example](sphx_glr_gallery_xarray-latlon-timeseries.py) for a
 full demonstration.
 
 ## When units are consistent across layers
