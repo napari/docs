@@ -313,6 +313,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 - Triage team and how-to docs ([docs#1106](https://github.com/napari/docs/pull/1106))
 - Mention guided viewer tour ([docs#1107](https://github.com/napari/docs/pull/1107))
 - docs: add list of built-in `sample images` ([docs#1111](https://github.com/napari/docs/pull/1111))
+- Info about Xarray metadata inheritance ([docs#1113](https://github.com/napari/docs/pull/1113))
 - Update overlay docstrings ([#9081](https://github.com/napari/napari/pull/9081))
 - Add stereo 3D viewer widget example ([#9219](https://github.com/napari/napari/pull/9219))
 - Update recommended Python version in README from 3.11 to 3.13 ([#9223](https://github.com/napari/napari/pull/9223))
@@ -400,7 +401,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 
 (+) denotes first-time contributors 🥳
 
-- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy
+- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) - @Aniketsy
 - [Anwai Archit](https://github.com/napari/napari/commits?author=anwai98) - @anwai98
 - [Arne Defauw](https://github.com/napari/napari/commits?author=ArneDefauw) - @ArneDefauw +
 - [Aroj Hada](https://github.com/napari/napari/commits?author=ArozHada) - @ArozHada +
@@ -436,7 +437,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 
 (+) denotes first-time contributors 🥳
 
-- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy
+- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) - @Aniketsy
 - [Anwai Archit](https://github.com/napari/napari/commits?author=anwai98) - @anwai98
 - [arbor](https://github.com/napari/docs/commits?author=arbormoss) - @arbormoss
 - [Arne Defauw](https://github.com/napari/napari/commits?author=ArneDefauw) - @ArneDefauw +
