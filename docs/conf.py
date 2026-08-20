@@ -29,6 +29,7 @@ from urllib.parse import urlparse, urlunparse
 
 import napari
 import pooch.core
+import pydantic
 import tomllib
 from jinja2.filters import FILTERS
 from napari._version import __version_tuple__
@@ -781,6 +782,28 @@ def _skip_pydantic_named_members(app, what, name, obj, skip, options):
     return None
 
 
+def _add_pydantic_model_dropdown(app, what, name, obj, options, lines):
+    """Append a collapsed link to pydantic docs on pydantic model pages."""
+    if what != 'class' or not name.startswith('napari.'):
+        return
+    if not (isinstance(obj, type) and issubclass(obj, pydantic.BaseModel)):
+        return
+    if obj is pydantic.BaseModel:
+        return
+    lines.extend(
+        [
+            '',
+            '.. dropdown:: Inherited from :external+pydantic:class:`pydantic.BaseModel`',
+            '   :animate: fade-in-slide-down',
+            '',
+            '   This class is a pydantic model. For brevity, the methods and',
+            '   attributes it inherits from :external+pydantic:class:`pydantic.BaseModel`',
+            '   are not repeated here.',
+            '',
+        ]
+    )
+
+
 # -- Docs build setup ------------------------------------------------------
 
 
@@ -794,6 +817,7 @@ def setup(app):
     * Filters out 'duplicate object description' Sphinx warnings
     * Cleans out Qt threading docstrings
     * Hides pydantic BaseModel internals from the API reference
+    * Adds a collapsed link to the pydantic docs on pydantic model pages
 
     """
     app.registry.source_suffix.pop('.ipynb', None)
@@ -801,6 +825,7 @@ def setup(app):
     app.connect('source-read', augment_gallery_example)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
     app.connect('autodoc-process-docstring', qt_docstrings)
+    app.connect('autodoc-process-docstring', _add_pydantic_model_dropdown)
     app.connect('autodoc-skip-member', _skip_pydantic_base_model_methods)
     app.connect('autodoc-skip-member', _skip_pydantic_named_members)
 
