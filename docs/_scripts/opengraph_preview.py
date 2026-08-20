@@ -20,6 +20,7 @@ Usage:
 from pathlib import Path
 
 import napari
+from napari._qt.qt_event_loop import get_qapp
 import pooch
 import scipy.ndimage as ndimage
 from skimage import filters, measure, morphology, segmentation
@@ -39,7 +40,7 @@ WINDOW_SIZE = (1200, 630)
 img = imread(data_path)[:, :, :, :]
 
 # use a tophat filter to remove the background
-img_bs = ndimage.white_tophat(img, size=10)
+img_bs = ndimage.white_tophat(img, size=15)
 
 # blur the image to smooth out noise from the background subtraction
 img_blur = filters.gaussian(img_bs, 1)
@@ -83,11 +84,18 @@ labels = viewer.add_labels(
 viewer.layers.selection = [image]
 viewer.window.resize(*WINDOW_SIZE)
 viewer.dims.ndisplay = 3
+viewer.dims.set_point(0,4)
 viewer.scene.camera.angles = (83, 12, -2)
 viewer.canvas.overlays.axes.visible = True
+viewer.canvas.overlays.axes.box = False
 viewer.canvas.overlays.scale_bar.visible = True
-viewer.canvas.overlays.scale_bar.font_size = 20
+viewer.canvas.overlays.scale_bar.font_size = 15
 viewer.fit_to_view(margin=0)
+
+# Hack to get the viewer to size properly by churning the event loop
+app = get_qapp()
+for _ in range(10):
+    app.processEvents()
 
 viewer.screenshot(path=OUTPUT_PATH, canvas_only=False)
 print(f'Saved OpenGraph image to {OUTPUT_PATH}')
