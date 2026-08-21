@@ -257,7 +257,7 @@ suppress_warnings = ['myst.header', 'etoc.toctree', 'config.cache']
 
 ogp_site_url = 'https://napari.org/'
 ogp_image = 'dev/_static/opengraph_image.png'
-ogp_use_first_image = False
+ogp_use_first_image = True
 ogp_description_length = 300
 ogp_type = 'website'
 ogp_site_name = 'napari'
