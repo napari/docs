@@ -123,7 +123,7 @@ def main(stubs=False):
         __import__("update_event_docs").main()
         __import__("update_ui_sections_docs").main()
         __import__("update_release_docs").main()
-
+    __import__("prefetch_data").main()
 
 if __name__ == '__main__':
     import argparse
