@@ -261,7 +261,12 @@ ogp_use_first_image = False
 ogp_description_length = 300
 ogp_type = 'website'
 ogp_site_name = 'napari'
-ogp_canonical_url = 'https://napari.org/stable'
+ogp_image_alt = '3D segmented tribolium embryo in the napari viewer'
+ogp_canonical_url = 'https://napari.org/stable/'
+ogp_custom_meta_tags = [
+    # The shared ogp_image is a 1200x630 banner; use the large card on X/Twitter.
+    '<meta name="twitter:card" content="summary_large_image" />',
+]
 ogp_social_cards = {
     'image': '_static/logo.png',
 }
