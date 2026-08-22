@@ -17,7 +17,7 @@ In order to facilitate discussion - this NAP will use the following definitions.
 
 *Viewer* - Currently maps basically 1:1 to the napari application main window, including canvas, dims sliders, layer list, layer controls, and dock widgets. Related is the `ViewerModel`, a class in napari that maintains the state of the Viewer. This NAP plans to keep window-related stuff on the `ViewerModel` class.
 
-*Canvas* - Formerly used to refer to the central widget of the napari Viewer which renders the data from the current slice, as well as keeping track of all the visualisation scenegraph from vispy and various other napari-vispy interfaces. Now also a model accessible on the `ViewerModel` that controls canvas and "screen" related features (such as overlays and the grid mode). 
+*Canvas* - Formerly used to refer to the central widget of the napari Viewer which renders the data from the current slice, as well as keeping track of all the visualisation scenegraph from vispy and various other napari-vispy interfaces. Now also a model accessible on the `ViewerModel` that controls canvas and "screen" related features (such as overlays and the grid mode).
 
 *View* - New term introduced by this NAP in order to formalize and disentangle the previous notions of *Canvas*, *Viewer* and *Window*. This NAP introduces a `View` class in napari with its own `Layerlist`, `Dims`, `Canvas` and `Scene`.
 
@@ -201,7 +201,7 @@ If that option were to be chosen, a new NAP will likely be in order.
 :::
 
 :::{important}
-While part 2 is essential for a fully realized multi-view experience, we can reach good intermediate and very usable results if we temporarily disallow certain more "stubbon" layers (Shapes and Tracks) from being used in multiple views.
+While part 2 is essential for a fully realized multi-view experience, we can reach good intermediate and very usable results if we temporarily disallow certain more "stubborn" layers (Shapes and Tracks) from being used in multiple views.
 :::
 
 * following the existing implementations, add `SliceResponse` classes for each layer type (currently remaining: `Shapes`, `Tracks`).
