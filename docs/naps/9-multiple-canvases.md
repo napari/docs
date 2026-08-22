@@ -15,7 +15,7 @@ This NAP was previously discussed as *Multiple Canvases*, but due to the term *C
 
 In order to facilitate discussion - this NAP will use the following definitions.
 
-*Viewer* - Currently maps basically 1:1 to the napari application main window, including canvas, dims sliders, layer list, layer controls, and dock widgets. Related is the `ViewerModel`, a class in napari that maintains the state of the Viewer. This PR plans to window-related stuff on the `ViewerModel` class.
+*Viewer* - Currently maps basically 1:1 to the napari application main window, including canvas, dims sliders, layer list, layer controls, and dock widgets. Related is the `ViewerModel`, a class in napari that maintains the state of the Viewer. This NAP plans to keep window-related stuff on the `ViewerModel` class.
 
 *Canvas* - Formerly used to refer to the central widget of the napari Viewer which renders the data from the current slice, as well as keeping track of all the visualisation scenegraph from vispy and various other napari-vispy interfaces. Now also a model accessible on the `ViewerModel` that controls canvas and "screen" related features (such as overlays and the grid mode). 
 
