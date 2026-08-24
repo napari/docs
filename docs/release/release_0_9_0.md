@@ -112,7 +112,7 @@ make use of it. It's automatically installed with `napari[all]` or
 `napari[optional]`. And if the search feels a bit off, you can set just how
 fuzzy you want it to be in Preferences > Experimental > Fuzzy Search Threshold.
 
-[screenshot or movie to be provided by Lorenzo]
+![Example of fuzzy find using "scle" to find "scale"](https://github.com/user-attachments/assets/88d4d2e1-36e1-4921-8df6-6f8ded4df12e)
 
 ### 2D slicing of surfaces
 
@@ -403,11 +403,14 @@ please remove it. (For now, `trans._()` is a no-op.)
 - Fix broken shapes due to incomplete merge ([#9399](https://github.com/napari/napari/pull/9399))
 - Bump npe2 minimum for ConfigurationContribution ([#9400](https://github.com/napari/napari/pull/9400))
 - Update `hypothesis`, `numpy`, `platformdirs`, `pygments`, `pyside6`, `pytest-rerunfailures`, `tifffile`, `virtualenv` ([#9414](https://github.com/napari/napari/pull/9414))
+- Improve qproviders testing by remove part of make_napari_viewer ([#9416](https://github.com/napari/napari/pull/9416))
 - [pre-commit.ci] pre-commit autoupdate ([#9420](https://github.com/napari/napari/pull/9420))
 - Bump npe2 dependency and constraints to 0.9.0 ([#9422](https://github.com/napari/napari/pull/9422))
 - Fix Points.symbol type annotation ([#9423](https://github.com/napari/napari/pull/9423))
 - Follow-up: Rename PluginPreferences to PluginSettings ([#9424](https://github.com/napari/napari/pull/9424))
+- Fix comprehensive test configuration for examples job ([#9426](https://github.com/napari/napari/pull/9426))
 - Delay deprecation of qt_viewer and private access to 0.10.0 ([#9433](https://github.com/napari/napari/pull/9433))
+- Update `lxml`, `pyqt6`, `pyqt6-qt6`, `scipy`, `tifffile` ([#9443](https://github.com/napari/napari/pull/9443))
 
 
 ## 31 authors added to this release (alphabetical)
