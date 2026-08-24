@@ -296,7 +296,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 - Fix the built-in `nan` colormap setting `bad_color` instead of `nan_color` ([#9373](https://github.com/napari/napari/pull/9373))
 - Fix dock widget positioning ([#9393](https://github.com/napari/napari/pull/9393))
 - fix: reset `dims axis_labels` when layer labels return to default ([#9398](https://github.com/napari/napari/pull/9398))
-- Fix background of clim popup ([#9436](https://github.com/napari/napari/pull/9436))
+- Fix background of contrast limit popup ([#9436](https://github.com/napari/napari/pull/9436))
 - Fix connection of callbacks of settings changes ([#9437](https://github.com/napari/napari/pull/9437))
 
 ## Deprecations
