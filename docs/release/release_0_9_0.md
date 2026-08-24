@@ -123,6 +123,19 @@ This enhancement is accompanied by support for async slicing, which should
 improve viewer responsiveness when slicing large, time varying surfaces, for
 example.
 
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../_static/images/slicing_surface.webm" type="video/webm" />
+    <source src="../_static/images/slicing_surface.mp4" type="video/mp4" />
+    <img src="../_static/images/slicing_surface.png"
+      title="Your browser does not support the video tag"
+      alt="Video showing a slicing of surface layers, with showing how to change thickness of slize and controlling slice mmode."
+    >
+  </video>
+</figure>
+```
+
 [movie of ND-cows and slicing]
 
 ... And you can try this out yourself with common .obj surface files thanks to
