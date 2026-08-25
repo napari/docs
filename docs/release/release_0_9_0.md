@@ -315,6 +315,8 @@ please remove it. (For now, `trans._()` is a no-op.)
 - Fix background of contrast limit popup ([#9436](https://github.com/napari/napari/pull/9436))
 - Fix connection of callbacks of settings changes ([#9437](https://github.com/napari/napari/pull/9437))
 - Restore size policy for layerList docked widget ([#9447](https://github.com/napari/napari/pull/9447))
+- Fix spherical projection ([#9453](https://github.com/napari/napari/pull/9453))
+- Fix warning on new label button ([#9455](https://github.com/napari/napari/pull/9455))
 
 ## Deprecations
 
