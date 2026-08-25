@@ -363,6 +363,7 @@ please remove it. (For now, `trans._()` is a no-op.)
 - Example: combine points and vectors to build a 3D structured object ([#9340](https://github.com/napari/napari/pull/9340))
 - Add projection mode to class Image attributes docstring ([#9378](https://github.com/napari/napari/pull/9378))
 - Add docstrings for relocated models on ViewerModel ([#9430](https://github.com/napari/napari/pull/9430))
+- Restore size policy for layerList docked widget ([#9447](https://github.com/napari/napari/pull/9447))
 
 ## Other Pull Requests
 
