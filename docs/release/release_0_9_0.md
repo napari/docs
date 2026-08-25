@@ -110,7 +110,7 @@ to learn more about how to add this new contribution to your own plugins.
 
 ### Adjust grid rendering with hidden layers
 
-Speaking of grid mode: grid mode with hidden layers is much improved: empty
+Grid mode with hidden layers is much improved: empty
 grid spaces are never shown and stride operates on the *full* layer list, so
 layer grouping doesn't change when you show or hide layers ([#9244](https://github.com/napari/napari/pull/9244)).
 
