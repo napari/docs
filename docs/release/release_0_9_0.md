@@ -46,6 +46,19 @@ are shared between them. Pan-zoom is always available, while the layer-specific
 buttons still appear only when a single layer is selected.
 ([#9318](https://github.com/napari/napari/pull/9318))
 
+```{raw} html
+<figure>
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="../_static/images/joint-controls.webm" type="video/webm" />
+    <source src="../_static/images/joint-controls.mp4" type="video/mp4" />
+    <img src="../_static/images/joint-controls.png"
+      title="Your browser does not support the video tag"
+      alt="Video showing the editing of multiple selected layers at once."
+    >
+  </video>
+</figure>
+```
+
 There's also an experimental setting, *Generate GUI layer controls dynamically
 instead of using premade panels*, that makes napari use the new dynamic
 controls even for single layers.
