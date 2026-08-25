@@ -37,6 +37,25 @@ are inconsistent with each other, napari will simply ignore layers with fewer
 dimensions, or layers added later. But, for most use cases, layer and viewer
 metadata will now be much more informative!
 
+### Xarray metadata is now inherited
+
+In the same vein, if you work with [Xarray](https://docs.xarray.dev/) — common in climate,
+geoscience, and many places where data ships with labelled coordinates — napari
+now reads metadata straight from your `DataArray`s. When you add an xarray
+object to the viewer, napari will use its dimension names as axis labels, infer
+`scale` and `translate` from the coordinate values, and pick up `units` from
+CF-convention `units` attributes on coordinates ([#9316](https://github.com/napari/napari/pull/9316)).
+This closed an 8-year old, double-digit, nearly-as-old-as-napari-itself issue!
+([#14](https://github.com/napari/napari/issues/14))
+
+### Status bar coordinates as floats
+
+Continuing on the theme of improved metadata, when scale and/or unit metadata
+is set on the layer, the status bar coordinates now have increased precision,
+where before they were limited to just integers. This means you can have more
+accurate physical estimates of your data coordinates when exploring data.
+([#9287](https://github.com/napari/napari/pull/9287))
+
 ### Layer controls for multiple selected layers
 
 Until now, layer controls only appeared when a single layer was selected. Now,
@@ -63,32 +82,16 @@ There's also an experimental setting, *Generate GUI layer controls dynamically
 instead of using premade panels*, that makes napari use the new dynamic
 controls even for single layers.
 
-### Xarray metadata is now inherited
-
-If you work with [Xarray](https://docs.xarray.dev/) — common in climate,
-geoscience, and many places where data ships with labelled coordinates — napari
-now reads metadata straight from your `DataArray`s. When you add an xarray
-object to the viewer, napari will use its dimension names as axis labels, infer
-`scale` and `translate` from the coordinate values, and pick up `units` from
-CF-convention `units` attributes on coordinates ([#9316](https://github.com/napari/napari/pull/9316)).
-This closed an 8-year old issue: [#14](https://github.com/napari/napari/issues/14)!
-
-### Status bar coordinates as floats
-
-Continuing on the theme of improved metadata, when scale and/or unit metadata
-is set on the layer, the status bar coordinates now have increased precision,
-where before they were limited to just integers. This means you can have more
-accurate physical estimates of your data coordinates when exploring data.
-([#9287](https://github.com/napari/napari/pull/9287))
-
 ### Take a guided tour of the viewer
 
 New to napari, or just want a quick refresher on where everything lives? There's
 now a guided tour, available from **Help → Take a tour**. The tour highlights
 the main areas of the viewer — the canvas, the layer list, layer controls, the
 viewer buttons, the dimension sliders, and the status bar — so you can get your
-bearings in seconds. If the viewer is empty, napari opens the built-in *Balls*
-(3D) sample data so the walkthrough has something to show ([#9290](https://github.com/napari/napari/pull/9290)).
+bearings in seconds. If the viewer is empty, napari opens the built-in *Balls
+(3D)* sample data so the walkthrough has something to show ([#9290](https://github.com/napari/napari/pull/9290)).
+
+![Screenshot of the napari viewer guided tour][../_static/images/guided-tour.png)
 
 ### Contributable plugin preferences
 
@@ -156,7 +159,7 @@ a new built-in reader plugin!
 You should now be able to drag and drop .obj files into napari and see them
 instantly.
 
-### Public API for auto contrast limit
+### Public API for auto contrast limits
 
 For a very long time, it's been possible to set automatic contrast limits
 updating on a layer *only* through the graphical user interface. This means an
