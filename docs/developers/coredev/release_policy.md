@@ -55,7 +55,7 @@ as the one corresponding to the next `MACRO` release, can be added to a PR to
 indicate that it should not be merged *unless* the current release is 
 determined to be of the appropriate version.
 
-## Milestone ownership
+### Milestone ownership
 
 Whoever adds a milestone to a pull request takes responsibility for driving that
 pull request to a mergeable point — even by pushing the required changes to the
@@ -68,7 +68,7 @@ merged contributions are released in a timely manner so people can start using
 them. It is sometimes better to deliver later without haste, then to rush and
 make mistakes.
 
-## Demilestoning
+### Demilestoning
 
 About a week before the planned rc1, the release manager goes through the
 milestoned pull requests and checks how ready they look. If they have concerns
