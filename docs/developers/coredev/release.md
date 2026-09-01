@@ -1,8 +1,11 @@
-(napari-release)=
+(napari-release-guide)=
 
 # Release guide
 
-This guide documents `napari`'s release process as of 0.6.4.
+This page contains the step-by-step mechanics for executing a `napari` release.
+For the release policy — versioning, cadence, milestone ownership, highlights,
+and the release manager's responsibilities — see the
+[release policy](napari-release).
 Most required tools mentioned here are in https://github.com/napari/napari-release-tools.
 
 ```{important}
