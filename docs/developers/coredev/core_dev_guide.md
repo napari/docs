@@ -155,6 +155,22 @@ While we collectively "own" any patches (and bugs!) that become part
 of the code base, you are vouching for changes you merge. Please take
 that responsibility seriously.
 
+## Release responsibilities
+
+`napari` ships on a monthly cadence; see the [release policy](napari-release) for the
+full process. As a core team member, you are expected to:
+
+- **Own the milestones you set.** The person who adds a milestone to a pull request is
+  responsible for driving it to a mergeable state — even by pushing the required changes —
+  and for communicating its status to the release manager after the first alpha.
+- **Justify highlights.** If you add the `highlight` label to a pull request, provide the
+  motivation plus a draft highlight note and any required images or videos, so the release
+  manager does not have to re-review already-merged PRs.
+- **Respect the release timeline.** Features and enhancements must be ready before the
+  first release candidate; documentation, bug fixes, and maintenance may merge during the
+  rc phase. A feature that misses a release ships a month later — it should not bea reason to
+  delay a release.
+
 ## Documentation and website
 
 For details on how the documentation and website are built, see
@@ -175,7 +191,8 @@ As a core member, you should be familiar with the following napari guides:
 - Our [contributor guide](napari-contributing).
 - Our [benchmarking guide](napari-benchmarks).
 - Our [triage guide](napari-triage).
-- Our [release guide](release).
+- Our [release policy](napari-release).
+- Our [release guide](napari-release-guide) (release mechanics).
 - Our [maintenance guide](maintenance).
 - Our [packaging guide](napari-packaging).
 
