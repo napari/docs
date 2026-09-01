@@ -168,7 +168,7 @@ full process. As a core team member, you are expected to:
   manager does not have to re-review already-merged PRs.
 - **Respect the release timeline.** Features and enhancements must be ready before the
   first release candidate; documentation, bug fixes, and maintenance may merge during the
-  rc phase. A feature that misses a release ships a month later — it should not bea reason to
+  rc phase. A feature that misses a release ships a month later — it should not be a reason to
   delay a release.
 
 ## Documentation and website
