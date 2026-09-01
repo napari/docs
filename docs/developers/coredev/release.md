@@ -2,7 +2,8 @@
 
 # Release guide
 
-This page contains the step-by-step mechanics for executing a `napari` release.
+This page describes the release manager's workflow and the step-by-step
+mechanics for executing a `napari` release.
 For the release policy — versioning, cadence, milestone ownership, highlights,
 and the release manager's responsibilities — see the
 [release policy](napari-release).
@@ -11,6 +12,49 @@ Most required tools mentioned here are in https://github.com/napari/napari-relea
 ```{important}
 The first step in managing a release is to create a new Issue in napari/napari with the [`release` template](https://github.com/napari/napari/tree/main/.github/ISSUE_TEMPLATE/release.md).
 ```
+
+## Release management
+
+The release will be coordinated by a release manager whose responsibilities include the following.
+
+### Step 1: Preparing for the release
+
+- Create a zulip thread in [the release channel](https://napari.zulipchat.com/#narrow/stream/215289-release)
+  letting people know the release candidate is coming and pointing out PRs that would be nice to merge before release.
+- Look through currently open PRs and get a sense of what would be good to merge before the first release candidate. Set milestones appropriately;
+
+At this stage, bug fixes and features that are close to landing should be prioritized.
+The release manager will follow up with PR authors, reviewing and merging as needed.
+New features should wait until after release.
+
+### Step 2: Generating release notes
+
+- Add a header and highlights section to the [`additional notes`](https://github.com/napari/napari-release-tools/tree/main/additional_notes) folder for the given release.
+  Use the [highlight label](https://github.com/napari/napari/pulls?q=sort%3Aupdated-desc+is%3Apr+is%3Aopen+label%3Ahighlight) for the relevant milestone to note which PRs to comment on.
+  To add images or GIFs and have them display in both the napari docs and the github release notes, add the file as a comment to the appropriate PR.
+  You then need to link to the public GitHub asset for that file (obtained via editing the comment and getting the original link) and not the private assets version (which is the link of the previewed image).
+  The public link starts with `https://github.com/user-attachments/assets/...` whereas the private link starts with `https://private-user-images.githubusercontent.com/...`.
+- Generate release notes with the [`generate_release_notes.py` script from napari/napari-release-tools](https://github.com/napari/napari-release-tools/blob/main/generate_release_notes.py);
+- Make a PR with the release notes, making sure to add the new document to the
+  [napari/docs table of contents file](https://github.com/napari/docs/blob/main/docs/_toc.yml).
+  See an example of such a PR: [https://github.com/napari/docs/pull/485](https://github.com/napari/docs/pull/485)
+
+At this point the release manager should ideally be the only person merging PRs on the repo for the next few days before the release.
+
+### Step 3: Making the prerelease
+
+- Merge any remaining PRs and update release notes accordingly;
+- Ensure [`conda-recipe/recipe.yaml`](https://github.com/napari/packaging/blob/main/conda-recipe/recipe.yaml) in `napari/packaging` is up-to-date (e.g. `run` dependencies match `pyproject.toml` requirements);
+- Merge release notes;
+- Make the release candidate and announce on zulip;
+- Announce to release stream on zulip that the first release candidate is available for testing.
+
+### Step 4: Testing the prerelease
+
+- Make sure final rc has been tested;
+- Ensure all PRs have been added to release notes;
+- Make sure docs are correctly deployed;
+- Make release and announce on zulip.
 
 ## Release procedures
 
@@ -190,6 +234,15 @@ The release candidate can then be tested with
 
 ```bash
 python -m pip install "napari[all]>=X.Y.Zrc0"
+```
+
+```{important}
+While the latest prerelease (alpha or release candidate) can be installed with `--pre`,
+this results in *all* dependencies being installed as prereleases. This has
+resulted in other dependencies breaking napari, so instead we recommend promoting
+installation of prereleases by specifying the version explicitly, e.g.:
+
+`python -m pip install "napari[all]>=0.9.1a0"`
 ```
 
 It is recommended that the release candidate is tested in a virtual environment in order to isolate dependencies.

@@ -98,6 +98,6 @@ manager might need to review already-reviewed, approved, and merged PRs.
 
 ## Release manager
 
-The release is coordinated by a release manager, whose
-responsibilities span the release cycle; the
-[release guide](napari-release-guide) has the procedures for each step.
+The release is coordinated by a release manager, whose responsibilities span
+the release cycle. The [release guide](napari-release-guide) documents the
+release manager's workflow and the step-by-step procedures.
