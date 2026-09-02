@@ -79,7 +79,7 @@ days, if there is no response or significant progress, the release manager may
 remove the milestone with a message like "This PR does not look to be ready for
 the upcoming release and is having the milestone removed."
 
-A not-ready feature or enhancement should not delay a release. The exception is
+An incomplete feature or enhancement should not delay a release. The exception is
 a PR that is pending only on review, when the reviewer declares they will do it
 in a few days.
 
