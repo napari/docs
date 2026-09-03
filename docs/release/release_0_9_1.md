@@ -28,7 +28,8 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 - Prefetch data that are problematic and causing docs build failure ([docs#1103](https://github.com/napari/docs/pull/1103))
 - Fix incorrect image link formatting in 0.9 release notes ([docs#1123](https://github.com/napari/docs/pull/1123))
-- Add 0.9.1 release notes ([docs#1127](https://github.com/napari/docs/pull/1127))
+- Add 0.9.1 release notes ([docs#1128](https://github.com/napari/docs/pull/1128))
+- Update version switch to set 0.9.1 to default release  ([docs#1129](https://github.com/napari/docs/pull/1129))
 - Update README image using the imshow.py example ([#9467](https://github.com/napari/napari/pull/9467))
 
 ## Other Pull Requests
