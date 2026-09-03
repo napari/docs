@@ -12,6 +12,7 @@ This is a bug fix release aimed at the issue with resizing of dock widgets in th
 
 For more information, examples, and documentation, please visit our website,
 https://napari.org.
+
 napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this is a **Meso** release containing awesome new features, but some effort may be needed when updating previous projects to use this version.
 
 ## Improvements
