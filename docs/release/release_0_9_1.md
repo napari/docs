@@ -24,6 +24,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [bug fix] Keep playback in sync when dimension ranges change ([#9440](https://github.com/napari/napari/pull/9440))
 - Fix out-of-sync extent in async mode ([#9459](https://github.com/napari/napari/pull/9459))
 - Revert widget size policy change ([#9484](https://github.com/napari/napari/pull/9484))
+- Revert the str cast of shortcut in `bind_shortcut` from #9076 ([#9488](https://github.com/napari/napari/pull/9488))
 
 ## Documentation
 
@@ -48,11 +49,12 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [Matthias Schabel](https://github.com/napari/napari/commits?author=matthiasschabel) - @matthiasschabel
 - [Suyash Naik](https://github.com/napari/napari/commits?author=Suyash-Naik) - @Suyash-Naik +
 
-## 9 reviewers added to this release (alphabetical)
+## 10 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Aniket](https://github.com/napari/docs/commits?author=Aniketsy) - @Aniketsy
+- [Carlos Mario Rodriguez Reza](https://github.com/napari/docs/commits?author=carlosmariorr) - @carlosmariorr
 - [Grzegorz Bokota](https://github.com/napari/docs/commits?author=Czaki) - @Czaki
 - [Jacopo Abramo](https://github.com/napari/docs/commits?author=jacopoabramo) - @jacopoabramo
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
