@@ -238,7 +238,10 @@ subtrees:
         - entries:
           - file: developers/coredev/maintenance
           - file: developers/coredev/triage
-          - file: developers/coredev/release
+          - file: developers/coredev/release_policy
+            subtrees:
+            - entries:
+              - file: developers/coredev/release
           - file: developers/coredev/packaging
       - file: naps/index
         subtrees:
