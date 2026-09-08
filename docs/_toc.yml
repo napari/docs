@@ -66,6 +66,7 @@ subtrees:
           - file: guides/event_loop
           - file: guides/threading
           - file: guides/events_reference
+          - file: guides/progressive_loading
       - file: further-resources/glossary
       - file: further-resources/napari-workshops
       - file: further-resources/sample_data
