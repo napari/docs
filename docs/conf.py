@@ -14,21 +14,26 @@ import json
 import logging
 import os
 import re
-import tomllib
 from datetime import datetime
 from functools import cache
 from importlib import import_module
 from importlib.metadata import (
     distribution,
     packages_distributions,
+)
+from importlib.metadata import (
     version as metadata_version,
 )
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
 import napari
+import pooch.core
+import pydantic
+import tomllib
 from jinja2.filters import FILTERS
 from napari._version import __version_tuple__
+from napari.utils._examples_data import napari_choose_downloader
 from packaging.requirements import Requirement
 from packaging.utils import canonicalize_name
 from packaging.version import parse as parse_version
@@ -37,9 +42,6 @@ from sphinx.highlighting import lexers
 from sphinx.util import logging as sphinx_logging
 from sphinx_gallery import gen_rst, scrapers
 from sphinx_gallery.sorting import ExampleTitleSortKey
-import pooch.core
-
-from napari.utils._examples_data import napari_choose_downloader
 
 # -- Detect build on CI PR ----------------------------------------------------
 
@@ -744,6 +746,69 @@ def qt_docstrings(app, what, name, obj, options, lines):
     if any(f in name for f in ignore_list) and len(lines) > 0:
         del lines[1:]
 
+# -- Pydantic model internals ---------------------------------------------
+
+
+def _skip_pydantic_base_model_methods(app, what, name, obj, skip, options):
+    """Skip methods inherited from pydantic's ``BaseModel``.
+
+    Keep napari overrides (e.g. ``ViewerModel.model_dump``, ``ViewerModel.json``,
+    ``EventedModel.model_json_schema``), so we preserve those because they don't
+    have the same qualname as pydantic's ``BaseModel`` methods.
+    """
+    qualname = getattr(obj, '__qualname__', None)
+    if qualname:
+        module = getattr(obj, '__module__', '')
+        if module == 'pydantic.main' and qualname.startswith('BaseModel.'):
+            return True
+    return None
+
+
+def _skip_pydantic_named_members(app, what, name, obj, skip, options):
+    """Skip pydantic members that don't expose a ``BaseModel.*`` qualname.
+
+    Attributes (``model_config``, ``model_fields``, ...) don't expose a
+    qualname at all, and ``model_post_init`` is aliased by pydantic to an
+    internal function (``init_private_attributes``) rather than
+    ``BaseModel.model_post_init``, so neither is caught by the qualname
+    check.  We match those by name instead.
+    """
+    _PYDANTIC_MODEL_MEMBERS = frozenset({
+        'model_computed_fields',
+        'model_config',
+        'model_extra',
+        'model_fields',
+        'model_fields_set',
+        'model_post_init',
+    })
+
+    if name in _PYDANTIC_MODEL_MEMBERS:
+        return True
+    return None
+
+
+def _add_pydantic_model_dropdown(app, what, name, obj, options, lines):
+    """Append a collapsed link to pydantic docs on pydantic model pages."""
+    if what != 'class' or not name.startswith('napari.'):
+        return
+    if not (isinstance(obj, type) and issubclass(obj, pydantic.BaseModel)):
+        return
+    if obj is pydantic.BaseModel:
+        return
+    lines.extend(
+        [
+            '',
+            '.. dropdown:: Inherited from :external+pydantic:class:`pydantic.BaseModel`',
+            '   :animate: fade-in-slide-down',
+            '',
+            '   This class is a pydantic model. For brevity, the methods and',
+            '   attributes it inherits from :external+pydantic:class:`pydantic.BaseModel`',
+            '   are not repeated here.',
+            '',
+        ]
+    )
+
+
 # -- Docs build setup ------------------------------------------------------
 
 
@@ -756,6 +821,8 @@ def setup(app):
     * Adds google calendar api key to meetings schedule page
     * Filters out 'duplicate object description' Sphinx warnings
     * Cleans out Qt threading docstrings
+    * Hides pydantic BaseModel internals from the API reference
+    * Adds a collapsed link to the pydantic docs on pydantic model pages
 
     """
     app.registry.source_suffix.pop('.ipynb', None)
@@ -763,6 +830,9 @@ def setup(app):
     app.connect('source-read', augment_gallery_example)
     app.connect('linkcheck-process-uri', rewrite_github_anchor)
     app.connect('autodoc-process-docstring', qt_docstrings)
+    app.connect('autodoc-process-docstring', _add_pydantic_model_dropdown)
+    app.connect('autodoc-skip-member', _skip_pydantic_base_model_methods)
+    app.connect('autodoc-skip-member', _skip_pydantic_named_members)
 
     logger = logging.getLogger('sphinx')
     warning_handler, *_ = [
