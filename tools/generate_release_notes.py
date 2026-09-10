@@ -1,42 +1,56 @@
 """Generate the release notes automatically from GitHub pull requests.
 
 We recoment using uv for runing this script.
+
 1. clone the napari/docs repository to read previous contributors and to write the release notes to the correct location.
 
 2. Install the requirements into a virtual environment (PyGitHub and tqdm) with
-   ```
-   uv sync
-   ```
+
+```
+uv sync
+```
+
 3. Start by creating a GitHub API token. You can do this by going to
 GitHub settings -> Developer settings -> Personal access tokens -> Fine-grained tokens.
 Create a new token with read-only access to Public repositories;
 the token must expire in 365 days or less.
 
 4. Set the token as an environment variable:
+
 On Linux or MacOS:
+
 ```
 export GH_TOKEN='<your-gh-api-token>'
 ```
+
 or in Windows cmd:
+
 ```
 set GH_TOKEN=<your-gh-api-token>
 ```
+
 or set permanently with Windows PowerShell:
+
 ```
 [Environment]::SetEnvironmentVariable("GH_TOKEN", "<your-gh-api-token>", "User")
 ```
 
 5. Run the script:
+
 Then, to include everything set for the a chosen milestone:
+
 ```
 uv run generate_release_notes.py <milestone> --target-directory=/path/to/docs/release/
 ```
+
 For example:
+
 ```
 uv run generate_release_notes.py 0.7.1 --target-directory=../napari-docs/docs/release/
 ```
 
 To substitute GitHub handles for author names, use the `--correction-file` option:
+
 ```
 uv run generate_release_notes.py <milestone> --target-directory=/path/to/docs/release/ --correction-file /path/to/name_corrections.yaml
 ```
@@ -61,8 +75,6 @@ access to sqlite database used by cache is not thread-safe.
 Even if we use `filesystem` backend for cache, it still uses sqlite database under the hood.
 
 Hoever, when using `uv` it works and speeds up the execution significantly, so we recommend using `uv` for running this script.
-
-
 
 References:
 - https://github.com/scikit-image/scikit-image/blob/main/tools/generate_release_notes.py
