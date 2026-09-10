@@ -2,7 +2,8 @@
 
 We recoment using uv for runing this script.
 
-1. clone the napari/docs repository to read previous contributors and to write the release notes to the correct location.
+1. clone the napari/docs repository to read previous contributors and to write
+the release notes to the correct location.
 
 2. Install the requirements into a virtual environment (PyGitHub and tqdm) with
 
@@ -10,10 +11,10 @@ We recoment using uv for runing this script.
 uv sync
 ```
 
-3. Start by creating a GitHub API token. You can do this by going to
-GitHub settings -> Developer settings -> Personal access tokens -> Fine-grained tokens.
-Create a new token with read-only access to Public repositories;
-the token must expire in 365 days or less.
+3. Start by creating a GitHub API token. You can do this by going to GitHub
+settings -> Developer settings -> Personal access tokens -> Fine-grained
+tokens. Create a new token with read-only access to Public repositories; the
+token must expire in 365 days or less.
 
 4. Set the token as an environment variable:
 
@@ -32,7 +33,8 @@ set GH_TOKEN=<your-gh-api-token>
 or set permanently with Windows PowerShell:
 
 ```
-[Environment]::SetEnvironmentVariable("GH_TOKEN", "<your-gh-api-token>", "User")
+[Environment]::SetEnvironmentVariable("GH_TOKEN", "<your-gh-api-token>",
+"User")
 ```
 
 5. Run the script:
@@ -40,41 +42,50 @@ or set permanently with Windows PowerShell:
 Then, to include everything set for the a chosen milestone:
 
 ```
-uv run generate_release_notes.py <milestone> --target-directory=/path/to/docs/release/
+uv run generate_release_notes.py <milestone>
+--target-directory=/path/to/docs/release/
 ```
 
 For example:
 
 ```
-uv run generate_release_notes.py 0.7.1 --target-directory=../napari-docs/docs/release/
+uv run generate_release_notes.py 0.7.1 \
+    --target-directory=../napari-docs/docs/release/
 ```
 
-To substitute GitHub handles for author names, use the `--correction-file` option:
+To substitute GitHub handles for author names, use the `--correction-file`
+option:
 
 ```
-uv run generate_release_notes.py <milestone> --target-directory=/path/to/docs/release/ --correction-file /path/to/name_corrections.yaml
+uv run generate_release_notes.py <milestone> \
+    --target-directory=/path/to/docs/release/ \
+    --correction-file /path/to/name_corrections.yaml
 ```
 
-The default correction file is `name_corrections.yaml` in the same directory as this script, so the argument is not needed.
+The default correction file is `name_corrections.yaml` in the same directory as
+this script, so the argument is not needed.
 
-By default the script is caching GitHub API requests to speed
-up execution and reduce the number of requests to the GitHub API.
-It means that if you edit some PR titles or labels, you may not see
-the changes in the generated release notes until the cache expires (after 1h by default).
+By default the script is caching GitHub API requests to speed up execution and
+reduce the number of requests to the GitHub API. It means that if you edit some
+PR titles or labels, you may not see the changes in the generated release notes
+until the cache expires (after 1h by default).
 
-Cache is used to avoid hitting GitHub API rate limits, which can be a
-problem when generating release notes for a large number of pull requests.
+Cache is used to avoid hitting GitHub API rate limits, which can be a problem
+when generating release notes for a large number of pull requests.
 
-Script can be run with the `--no-cache` option to disable caching of GitHub API requests.
+Script can be run with the `--no-cache` option to disable caching of GitHub API
+requests.
 
-To clean the cache, you can delete the `github_cache` directory in the current working directory.
+To clean the cache, you can delete the `github_cache` directory in the current
+working directory.
 
-There is a known problem with using cache on conda environments, because
-we use threads to speed up the execution, and
-access to sqlite database used by cache is not thread-safe.
-Even if we use `filesystem` backend for cache, it still uses sqlite database under the hood.
+There is a known problem with using cache on conda environments, because we use
+threads to speed up the execution, and access to sqlite database used by cache
+is not thread-safe. Even if we use `filesystem` backend for cache, it still
+uses sqlite database under the hood.
 
-Hoever, when using `uv` it works and speeds up the execution significantly, so we recommend using `uv` for running this script.
+Hoever, when using `uv` it works and speeds up the execution significantly, so
+we recommend using `uv` for running this script.
 
 References:
 - https://github.com/scikit-image/scikit-image/blob/main/tools/generate_release_notes.py
