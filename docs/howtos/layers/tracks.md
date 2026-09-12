@@ -192,7 +192,13 @@ tracks_data = prepare_tracks_data(df,
     y="row",
     x="col",)
 
+viewer = napari.Viewer()
+viewer.add_tracks(tracks_data, name="cell tracks")
+
+napari.run()
+
 ```
+
 ## Tracks graph
 
 We can use the tracks `graph` argument to define the relationships between
