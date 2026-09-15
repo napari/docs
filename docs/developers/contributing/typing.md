@@ -1,0 +1,111 @@
+(napari-typing)=
+
+# Type checking
+
+napari is type-checked with [pyrefly](https://pyrefly.org). The check runs on every
+pull request and has to pass before we merge, but **you are not expected to fix type
+errors in your own PR**. If it fails and the fix isn't obvious, ask for help
+and a team member will be eager to guide you.
+
+```{note}
+Why we moved off mypy, and what we compared against, is in the Island Dispatch post
+*From Any to Certainty*
+([napari/island-dispatch#40](https://github.com/napari/island-dispatch/pull/40)).
+```
+
+## Running the check
+
+```sh
+tox -e pyrefly
+```
+
+This builds a small environment from `resources/requirements_pyrefly.txt`, installs
+nothing else, and needs none of napari's own dependencies. A run takes about a
+second.
+
+`tox -e pyrefly` defaults to `pyrefly check`, and arguments after `--`
+are appended, so any pyrefly subcommand can also work:
+
+```sh
+tox -e pyrefly -- check --count-errors
+tox -e pyrefly -- suppress --remove-unused=all
+```
+
+Don't run pyrefly from your development environment: it resolves the packages you
+happen to have installed rather than the pinned ones, and reports a different set of
+errors. The [editor integration](https://pyrefly.org/en/docs/IDE/) reads the same
+`[tool.pyrefly]` configuration, but it sees your environment too — so treat editor
+suggestions as a hint and `tox -e pyrefly` as the answer.
+
+## If you're writing typed code
+
+Annotate code that you add or modify, and only alter types of previous code if
+it is relevant to the overall contribution. Ideally, all code can be properly typed,
+so suppressing (`# pyrefly: ignore [<error_kind>]`) should try to be avoided.
+Sometimes, a type will genuinely not properly solve because of
+a third-party stub, a gap in the typing specification, or dynamic behaviour. 
+If you do suppress, the most important thing is to **name the error kind**,
+so that future readers can understand why it was suppressed and pyrefly can
+self-prune by checking that the suppression is still relevant. 
+The last word of a pyrefly message is the rule it applied:
+
+```
+ERROR src/napari/utils/tree/node.py:64:31-53: Argument `int | None` is not assignable
+to parameter `object` with type `int` in function `list.insert` [bad-argument-type]
+                                                                 ^^^^^^^^^^^^^^^^^
+```
+
+Put that rule on the offending line:
+
+```python
+indices.insert(0, item.index_in_parent())  # pyrefly: ignore [bad-argument-type]
+```
+
+A bare `# pyrefly: ignore` silences every diagnostic on the line, including ones a
+future pyrefly release adds, and nothing can check it for staleness.
+
+The pyrefly config sets `unused-ignore` an error here, so a suppression that stops
+matching anything fails the build. To clear the ones your change left behind, run
+`tox -e pyrefly -- suppress --remove-unused=all`.
+
+If a diagnostic doesn't make sense to you, don't guess — ask. We would much rather
+explain a type than review a suppression nobody understands.
+
+(expanding-coverage)=
+
+## Modifying the type checking config
+
+- **Don't widen `project-excludes` to make a failure go away.** Adding a module takes
+  it out of the check for everyone. Suppress narrowly instead, and if you believe a
+  module really can't be checked, raise it in the pull request rather than adding it
+  quietly.
+- **Bringing a module back into the check** is a self-contained task and a good first
+  contribution: delete its entry from `project-excludes` in `pyproject.toml`, run
+  `tox -e pyrefly`, fix what you can, suppress what you cannot with codes, then run it
+  again and drop any suppression the change leaves unused. For example, `utils` are
+  friendlier starting points than the Qt widget code.
+
+## What the check does not cover
+
+The environment is deliberately small — it installs `resources/requirements_pyrefly.txt`
+and nothing else — so imports like `vispy`, `scipy`, `pandas`, `dask`, `zarr` and their
+kind resolve to `Any`. `project-excludes` also takes more than half the files under
+`src/napari` out of the check, tests included, which means that zero errors means
+only that pyrefly found nothing wrong with the type it could see.
+
+## Where things live
+
+| What | Where |
+| --- | --- |
+| Checker config | `[tool.pyrefly]` in `pyproject.toml` |
+| Pinned checker version and its dependencies | `resources/requirements_pyrefly.in` (source) and `resources/requirements_pyrefly.txt` (lock) |
+| Tox environment | `[testenv:pyrefly]` in `tox.ini` |
+| CI job | `.github/workflows/test_typing.yml` |
+| Lockfile regeneration | `tools/compile_constraints.sh` (also run weekly by `upgrade_test_constraints.yml`) |
+
+## Related
+
+- [](napari-testing) — how we test napari at runtime.
+- [](ai-contributions) — rules that apply to any change, including
+  LLM-assisted ones. A bulk typing sweep is exactly the kind of change that
+  needs the contributor to have read every line.

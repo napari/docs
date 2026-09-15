@@ -205,6 +205,7 @@ subtrees:
           - file: developers/contributing/ai
           - file: developers/contributing/dev_install
           - file: developers/contributing/testing
+          - file: developers/contributing/typing
           - file: developers/contributing/performance/index
             subtrees:
             - entries:
