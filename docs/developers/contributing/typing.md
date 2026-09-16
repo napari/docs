@@ -90,8 +90,8 @@ only that pyrefly found nothing wrong with the type it could see.
 | --- | --- |
 | Checker config | `[tool.pyrefly]` in `pyproject.toml` |
 | Pinned checker version and its dependencies | `resources/requirements_pyrefly.in` (source) and `resources/requirements_pyrefly.txt` (lock) |
+| Constraints pins regeneration | `tools/compile_constraints.sh` (also run weekly by `upgrade_test_constraints.yml`) |
 | Tox environment | `[testenv:pyrefly]` in `tox.ini` |
-| CI job | `.github/workflows/test_typing.yml` |
 | Lockfile regeneration | `tools/compile_constraints.sh` (also run weekly by `upgrade_test_constraints.yml`) |
 
 ## Related
