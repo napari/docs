@@ -9,8 +9,7 @@ and a team member will be eager to guide you.
 
 ```{note}
 Why we moved off mypy, and what we compared against, is in the Island Dispatch post
-*From Any to Certainty*
-([napari/island-dispatch#40](https://github.com/napari/island-dispatch/pull/40)).
+[*From Any to Certainty*](https://github.com/napari/island-dispatch/pull/40).
 ```
 
 ## Running the check
@@ -92,11 +91,4 @@ only that pyrefly found nothing wrong with the type it could see.
 | Pinned checker version and its dependencies | `resources/requirements_pyrefly.in` (source) and `resources/requirements_pyrefly.txt` (lock) |
 | Constraints pins regeneration | `tools/compile_constraints.sh` (also run weekly by `upgrade_test_constraints.yml`) |
 | Tox environment | `[testenv:pyrefly]` in `tox.ini` |
-| Lockfile regeneration | `tools/compile_constraints.sh` (also run weekly by `upgrade_test_constraints.yml`) |
-
-## Related
-
-- [](napari-testing) — how we test napari at runtime.
-- [](ai-contributions) — rules that apply to any change, including
-  LLM-assisted ones. A bulk typing sweep is exactly the kind of change that
-  needs the contributor to have read every line.
+| CI job | `.github/workflows/test_typing.yml` |
