@@ -57,7 +57,7 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
 
 ## Choosing types
 
-- **Annotate parameters and return values, not local vairables.** They are the contract other
+- **Annotate parameters and return values, not local variables.** They are the contract other
   modules rely on, and locals are inferred well enough without help. 
 - **Parameters should accept the widest type that works; returns give back the concrete
   type you built.** When psosible, take `Iterable`, `Sequence` or `Mapping` rather than `list`,
