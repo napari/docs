@@ -19,9 +19,8 @@ Why we moved off mypy, and what we compared against, is in the Island Dispatch p
 tox -e pyrefly
 ```
 
-This builds a small environment from `resources/requirements_pyrefly.txt`, installs
-nothing else, and needs none of napari's own dependencies. A run takes about a
-second.
+This builds a small environment from `resources/requirements_pyrefly.txt`
+constraints with tox. A run takes about a second with a cached environment.
 
 `tox -e pyrefly` defaults to `pyrefly check`, and arguments after `--`
 are appended, so any pyrefly subcommand can also work:
@@ -31,17 +30,12 @@ tox -e pyrefly -- check --count-errors
 tox -e pyrefly -- suppress --remove-unused=all
 ```
 
-Don't run pyrefly from your development environment: it resolves the packages you
-happen to have installed rather than the pinned ones, and reports a different set of
-errors. The [editor integration](https://pyrefly.org/en/docs/IDE/) reads the same
+Don't run pyrefly from your development environment (e.g. `uv run pyrefly check`):
+it resolves the packages you happen to have installed rather than the pinned ones,
+and reports a different set of errors. In addition,
+the [code editor integration](https://pyrefly.org/en/docs/IDE/) reads the same
 `[tool.pyrefly]` configuration, but it sees your environment too — so treat editor
-suggestions as a hint and `tox -e pyrefly` as the answer.
-
-## If you're writing typed code
-
-Annotate code that you add or modify, and only alter types of previous code if
-it is relevant to the overall contribution. Ideally, all code can be properly typed,
-so suppressing (`# pyrefly: ignore [<error_kind>]`) should try to be avoided.
+suggestions as a hint and `tox -e pyrefly` as the standard.
 Sometimes, a type will genuinely not properly solve because of
 a third-party stub, a gap in the typing specification, or dynamic behaviour. 
 If you do suppress, the most important thing is to **name the error kind**,
@@ -64,12 +58,9 @@ indices.insert(0, item.index_in_parent())  # pyrefly: ignore [bad-argument-type]
 A bare `# pyrefly: ignore` silences every diagnostic on the line, including ones a
 future pyrefly release adds, and nothing can check it for staleness.
 
-The pyrefly config sets `unused-ignore` an error here, so a suppression that stops
+The pyrefly config sets `unused-ignore` as an error, so a suppression that stops
 matching anything fails the build. To clear the ones your change left behind, run
 `tox -e pyrefly -- suppress --remove-unused=all`.
-
-If a diagnostic doesn't make sense to you, don't guess — ask. We would much rather
-explain a type than review a suppression nobody understands.
 
 (expanding-coverage)=
 
@@ -89,8 +80,8 @@ explain a type than review a suppression nobody understands.
 
 The environment is deliberately small — it installs `resources/requirements_pyrefly.txt`
 and nothing else — so imports like `vispy`, `scipy`, `pandas`, `dask`, `zarr` and their
-kind resolve to `Any`. `project-excludes` also takes more than half the files under
-`src/napari` out of the check, tests included, which means that zero errors means
+kind resolve to `Any`. `project-excludes` also takes many files under
+`src/napari` out of the check, tests included, such that zero errors means
 only that pyrefly found nothing wrong with the type it could see.
 
 ## Where things live
