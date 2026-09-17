@@ -18,7 +18,7 @@ Our current policy permits deprecations in `MACRO` and `MESO` releases only.
 
 ## Release cadence
 
-`napari` ships on a monthly cadence. Releases are declared minor or major *after
+`napari` ships on a monthly cadence. Releases are declared meso (e.g. 0.9.0 -> 0.9.1) or macro e.g. (0.9.9 -> 0.10.0) *after
 the fact*: we do not pre-plan whether the next release will be "big" or "small",
 so contributions merge when they are ready rather than being rushed into a
 particular release.
@@ -30,10 +30,10 @@ The monthly cycle is:
 - **release candidate** (rc) around the 15th;
 - **final release** around the 21st.
 
-We will not ship a normal (non-bugfix) release between December 10 and January 10.
+We will not ship a release between December 10 and January 10, except in the case of large regressions.
 We may declare a special release (for example, one following a large community
 event) from the start, explicitly outside the expected calendar, when there is
-clear value in doing so.
+clear value in doing so. Such releases may take longer to prepare and this should be communicated clearly.
 
 A feature or enhancement that is not ready for an upcoming release is **not** a
 reason to delay it. With a monthly cadence, it simply ships a month later.
@@ -65,7 +65,7 @@ about the state of the PR after the first alpha.
 Removing a milestone from a pull request that will not be ready is nothing
 personal: it is simply a matter of the calendar, and of making sure already
 merged contributions are released in a timely manner so people can start using
-them. It is sometimes better to deliver later without haste, then to rush and
+them. It is sometimes better to deliver later without haste, than to rush and
 make mistakes.
 
 ### Demilestoning
