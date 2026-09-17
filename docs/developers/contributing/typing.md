@@ -35,11 +35,15 @@ and reports a different set of errors. In addition,
 the [code editor integration](https://pyrefly.org/en/docs/IDE/) reads the same
 `[tool.pyrefly]` configuration, but it sees your environment too — so treat editor
 suggestions as a hint and `tox -e pyrefly` as the standard.
-Sometimes, a type will genuinely not properly solve because of
-a third-party stub, a gap in the typing specification, or dynamic behaviour. 
-If you do suppress, the most important thing is to **name the error kind**,
-so that future readers can understand why it was suppressed and pyrefly can
-self-prune by checking that the suppression is still relevant. 
+
+## When the check complains
+
+Suppressing should be rare. Most types can be written honestly, and a suppression in
+the wrong place hides a real bug. Occasionally one genuinely will not resolve,
+because of a third-party stub, a gap in the typing specification, or dynamic
+behaviour — that is what suppressions are for. The important thing is to **name the
+error kind**, so a reader can tell why it was needed and pyrefly can check that the
+suppression is still doing something.
 The last word of a pyrefly message is the rule it applied:
 
 ```
