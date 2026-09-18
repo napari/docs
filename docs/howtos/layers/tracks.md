@@ -167,37 +167,7 @@ napari.run()
 ```
 
 ## Preparing tracks data from a pandas DataFrame
-The prepare_tracks_data helper maps DataFrame columns to the track ID, time, and spatial coordinates expected by napari. This is useful when track data uses custom column names or when the columns are not already in the order expected by napari.
-
-```python
-import pandas as pd
-
-import napari
-from napari.layers.tracks._track_utils import prepare_tracks_data
-
-df = pd.DataFrame(
-    {
-        "particle": [0, 0, 0, 1, 1, 1],
-        "frame": [0, 1, 2, 0, 1, 2],
-        "depth": [5, 6, 7, 10, 11, 12],
-        "row": [10, 15, 20, 50, 55, 60],
-        "col": [10, 15, 20, 60, 65, 70],
-    }
-)
-
-tracks_data = prepare_tracks_data(df,
-    track_id="particle",
-    t="frame",
-    z="depth",
-    y="row",
-    x="col",)
-
-viewer = napari.Viewer()
-viewer.add_tracks(tracks_data, name="cell tracks")
-
-napari.run()
-
-```
+The prepare_tracks_data helper maps DataFrame columns to a numpy array with the track ID, time, and spatial coordinates in the order expected by napari. This is useful when track data uses custom column names or when the columns are not already in the order expected by napari.
 
 ## Tracks graph
 
