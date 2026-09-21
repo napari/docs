@@ -7,6 +7,7 @@ communicated. It is the entry point for understanding the release process —
 the [release guide](napari-release-guide) contains the step-by-step mechanics
 for executing a release. Most required tools mentioned here are in
 [napari/napari-release-tools](https://github.com/napari/napari-release-tools).
+The release manager is is responsible for organizing, executing, and communicating with the team and community about the release process, as described in the [release guide](napari-release-guide).
 
 ## EffVer: (Intended) Effort Versioning
 
@@ -18,10 +19,10 @@ Our current policy permits deprecations in `MACRO` and `MESO` releases only.
 
 ## Release cadence
 
-`napari` ships on a monthly cadence. Releases are declared meso (e.g. 0.9.0 -> 0.9.1) or macro e.g. (0.9.9 -> 0.10.0) *after
-the fact*: we do not pre-plan whether the next release will be "big" or "small",
-so contributions merge when they are ready rather than being rushed into a
-particular release.
+napari ships on a monthly cadence. Releases are declared meso (e.g.
+`0.9.0` -> `0.9.1`) or macro (e.g. `0.9.9` -> `0.10.0`) *after the fact*: we do
+not pre-plan whether the next release will be "big" or "small", so contributions
+merge when they are ready rather than being rushed into a particular release.
 
 The monthly cycle is:
 
@@ -30,10 +31,11 @@ The monthly cycle is:
 - **release candidate** (rc) around the 15th;
 - **final release** around the 21st.
 
-We will not ship a release between December 10 and January 10, except in the case of large regressions.
-We may declare a special release (for example, one following a large community
-event) from the start, explicitly outside the expected calendar, when there is
-clear value in doing so. Such releases may take longer to prepare and this should be communicated clearly.
+We will not ship a release between December 10 and January 10, except in the case
+of large regressions. We may declare a special release (for example, one
+following a large community event) from the start, explicitly outside the
+expected calendar, when there is clear value in doing so. Such releases may take
+longer to prepare, and this should be communicated clearly.
 
 A feature or enhancement that is not ready for an upcoming release is **not** a
 reason to delay it. With a monthly cadence, it simply ships a month later.
@@ -46,13 +48,13 @@ reason to delay it. With a monthly cadence, it simply ships a month later.
 
 ## Milestones
 
-Milestones are not required to be added pull requests prior to merge. The
+Milestones are not required to be added to pull requests prior to merge. The
 upcoming milestone is automatically added to a PR upon merge. However,
 milestones can be added to a PR to indicate that the PR is either required
 for the next release or that a team member is taking ownership of the PR
-to ensure that it is ready for next release. Finally, future milestones, such
-as the one corresponding to the next `MACRO` release, can be added to a PR to
-indicate that it should not be merged *unless* the current release is 
+to ensure that it is ready for the next release. Finally, future milestones,
+such as the one corresponding to the next `MACRO` release, can be added to a PR
+to indicate that it should not be merged *unless* the current release is
 determined to be of the appropriate version.
 
 ### Milestone ownership
@@ -61,12 +63,6 @@ Whoever adds a milestone to a pull request takes responsibility for driving that
 pull request to a mergeable point — even by pushing the required changes to the
 PR. This person is also responsible for communicating with the release manager
 about the state of the PR after the first alpha.
-
-Removing a milestone from a pull request that will not be ready is nothing
-personal: it is simply a matter of the calendar, and of making sure already
-merged contributions are released in a timely manner so people can start using
-them. It is sometimes better to deliver later without haste, than to rush and
-make mistakes.
 
 ### Demilestoning
 
@@ -83,9 +79,13 @@ An incomplete feature or enhancement should not delay a release. The exception i
 a PR that is pending only on review, when the reviewer declares they will do it
 in a few days.
 
-Removing a milestone is not a judgment on the quality of the work, but simply a
-matter of timing. The PR can be re-milestoned for the next release when it
-is ready.
+Removing a milestone from a pull request that will not be ready is nothing
+personal: it is simply a matter of the calendar, and of making sure already
+merged contributions are released in a timely manner so people can start using
+them. It is sometimes better to deliver later without haste, than to rush and
+make mistakes.
+
+The PR can be re-milestoned for the next release when it is ready.
 
 ## Highlights
 
@@ -95,9 +95,3 @@ should provide the motivation for highlighting, plus a draft
 of the highlight note and any required images or videos. This becomes the basis
 for preparing the highlight text for the release — without it, the release
 manager might need to review already-reviewed, approved, and merged PRs.
-
-## Release manager
-
-The release is coordinated by a release manager, whose responsibilities span
-the release cycle. The [release guide](napari-release-guide) documents the
-release manager's workflow and the step-by-step procedures.
