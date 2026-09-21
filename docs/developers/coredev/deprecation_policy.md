@@ -3,15 +3,10 @@
 # Deprecation policy
 
 This page states what napari promises when we change or remove public API, and
-what plugin authors and downstream users can rely on. It is the entry point for
-understanding how napari breaks things; the step-by-step mechanics of writing a
-deprecation are in the [deprecation guide](napari-deprecation-guide).
-
-```{note}
+what plugin authors and downstream users can rely on.
 This policy is about *notice*. It does not prevent napari from making breaking
 changes — it commits us to telling you about them in advance, on a schedule you
 can plan around.
-```
 
 ## What we promise
 

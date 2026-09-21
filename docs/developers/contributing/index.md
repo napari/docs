@@ -140,7 +140,9 @@ Please also consider documenting any major features/changes in our
 
 #### Deprecation Warnings
 
-When deprecating a feature, use `FutureWarning` instead of `DeprecationWarning`.
+Deprecating or changing existing API follows the [deprecation
+policy](napari-deprecation-policy). When deprecating a feature, use
+`FutureWarning` instead of `DeprecationWarning`.
 `DeprecationWarning` is
 [silenced by Python's default warning filters](https://docs.python.org/3/library/warnings.html#warning-categories),
 making it invisible to library users.
