@@ -14,8 +14,9 @@ When napari changes or removes public API, we commit to:
 
 1. **Warning you in code, where the runtime allows one.** Public API emits a
    warning when it is used, in the category that matches its state (see
-   {ref}`napari-deprecation-states`). Surfaces that cannot warn — such as removals
-   of support for a dependency — are announced and given a window instead.
+   {ref}`napari-deprecation-states`). Some parts of the project cannot warn —
+   such as removals of support for a dependency — are announced in release notes
+   and socials and are given a removal window instead.
 2. **Publishing the removal window.** Every deprecation states the earliest
    window in which the API may be removed with search-friendly text.
 3. **A minimum period of notice.** Two windows in most cases (see
@@ -96,7 +97,7 @@ The following do not go through this policy:
 - **Security fixes.** A vulnerable or dangerously broken feature may be changed or
   removed without notice.
 - **Genuinely internal code** — private names that are not part of any documented
-  or plugin-facing surface.
+  or plugin-facing API.
 - **Features that never worked**, provided nothing depends on the broken behaviour.
 - **Features documented as experimental**, where the docstring says so. An
   experimental marker has to actually be in the documentation; it cannot be
