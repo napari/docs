@@ -243,6 +243,7 @@ subtrees:
             subtrees:
             - entries:
               - file: developers/coredev/release
+          - file: developers/coredev/deprecation_policy
           - file: developers/coredev/packaging
       - file: naps/index
         subtrees:
