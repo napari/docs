@@ -141,14 +141,17 @@ Please also consider documenting any major features/changes in our
 #### Deprecation Warnings
 
 Deprecating or changing existing API follows the [deprecation
-policy](napari-deprecation-policy). When deprecating a feature, use
-`FutureWarning` instead of `DeprecationWarning`.
-`DeprecationWarning` is
+policy](napari-deprecation-policy). When deprecating a feature, see the 
+policy for guidance on whether to use a soft (`DeprecationWarning`) or hard
+(`FutureWarning`) deprecation, and how to set the removal window.
+`FutureWarning` will be seen by end users, while `DeprecationWarning` is
 [silenced by Python's default warning filters](https://docs.python.org/3/library/warnings.html#warning-categories),
 making it invisible to library users.
 
-**In the code**, always pass `stacklevel=2` to `warnings.warn()` so the warning
-points to the caller's location rather than inside napari's internals.
+**In the code**, by default, always pass `stacklevel=2` to `warnings.warn()`
+so the warning points to the caller's location rather than inside napari's
+internals. You may need to adjust the stacklevel if the warning is
+emitted from a helper function or decorator.
 
 In the docstring below the short summary, use the [`.. deprecated::` directive](https://numpydoc.readthedocs.io/en/latest/format.html#deprecation-warning) alongside any related
 `.. versionadded::` notes:
