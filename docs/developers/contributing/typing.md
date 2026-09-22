@@ -66,7 +66,7 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
   honest answer for a dynamic corner of the code, but it should be a decision rather
   than a way to make one error disappear.
 - **Prefer narrowing to `cast()`.**
-[`typing.cast`](https://docs.python.org/3/library/typing.html#typing.cast) only
+   [`typing.cast`](https://docs.python.org/3/library/typing.html#typing.cast) only
   tells the checker to believe you, so if it is the only option left, keep it as
   narrow as you can and say in a comment what makes it safe.
 - **`np.ndarray` promises nothing about dtype or shape.** Use
@@ -143,4 +143,4 @@ only that pyrefly found nothing wrong with the type it could see.
   software engineers. Its "loose vs. specific types" section is the long version of
   the "accept the widest type that works" point above.
 - [Type hints cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
-  — syntax to copy from. It is written for mypy, but the syntax is the same.
+  — syntax suggestions to copy. It is written for mypy, but the syntax is the same.
