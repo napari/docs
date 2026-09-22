@@ -10,6 +10,9 @@ version = "0.1.0"
 [feature.base.dependencies]
 python = "3.13.*"
 make = "*"
+proj = "*"
+gdal = "*"
+rasterio = "*"
 
 [feature.local-napari.pypi-dependencies]
 napari = { path = "../napari", editable = true, extras = ["dev", "pyqt", "docs"]}
