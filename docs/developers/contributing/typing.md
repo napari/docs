@@ -66,7 +66,7 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
   honest answer for a dynamic corner of the code, but it should be a decision rather
   than a way to make one error disappear.
 - **Prefer narrowing to `cast()`.**
-   [`typing.cast`](https://docs.python.org/3/library/typing.html#typing.cast) only
+  [`typing.cast`](https://docs.python.org/3/library/typing.html#typing.cast) only
   tells the checker to believe you, so if it is the only option left, keep it as
   narrow as you can and say in a comment what makes it safe.
 - **`np.ndarray` promises nothing about dtype or shape.** Use
