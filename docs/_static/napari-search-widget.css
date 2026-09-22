@@ -1,0 +1,41 @@
+/* napari brand overrides for Pagefind's default search UI.
+   Full variable list: https://pagefind.app/docs/ui/#customising-the-ui-css */
+.napari-search {
+  position: relative;
+  --pagefind-ui-primary: #4d9de0;
+  --pagefind-ui-text: #23252f;
+  --pagefind-ui-background: #ffffff;
+  --pagefind-ui-border: #d9dbe1;
+  --pagefind-ui-tag: #e9ebf1;
+  --pagefind-ui-border-radius: 6px;
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-font: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  .napari-search {
+    --pagefind-ui-text: #f1f1f1;
+    --pagefind-ui-background: #1e1e21;
+    --pagefind-ui-border: #3c3e46;
+    --pagefind-ui-tag: #2c2e36;
+  }
+}
+
+/* Pagefind's stock UI leaves the results dropdown transparent, relying on
+   an opaque ancestor to back it — true when embedded in a themed navbar,
+   false when floating standalone (as on workshops), where it reads as a
+   broken translucent panel. Always give it its own solid backing. */
+.napari-search .pagefind-ui__results-area {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  z-index: 1;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: var(--pagefind-ui-background);
+  border: var(--pagefind-ui-border-width) solid var(--pagefind-ui-border);
+  border-radius: var(--pagefind-ui-border-radius);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+}

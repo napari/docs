@@ -57,6 +57,11 @@ jobs:
           # Downloads to '/home/runner/work/docs/docs/html'
           path: html
 
+      - name: Build search index
+        # Consumed by napari-search-widget.js, which merges this index with
+        # sibling napari.org sub-sites' indexes at query time.
+        run: npx --yes pagefind@1.5.2 --site html --exclude-selectors ".headerlink"
+
       - name: Deploy Docs
         if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (startsWith(github.ref, 'refs/tags/v') || startsWith(github.ref, 'refs/heads/main'))
         uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
