@@ -1,4 +1,5 @@
 # napari 0.9.2
+⚠️ *Note: these release notes are still in draft while 0.9.2rc1 is in prerelease testing.* ⚠️
 
 *Sun, Sep 27, 2026*
 
@@ -51,6 +52,7 @@ Based on our experience and feedback from the community, we decided to make our 
 ## Performance
 
 - Reorder font-family declaration in console QSS ([#9325](https://github.com/napari/napari/pull/9325))
+- Performance: Avoid redundant unit conversion when aggregating layer extents ([#9411](https://github.com/napari/napari/pull/9411))
 
 ## Bug Fixes
 
@@ -74,6 +76,7 @@ Based on our experience and feedback from the community, we decided to make our 
 
 - New release policy with regular cadence and responsibilities ([docs#1126](https://github.com/napari/docs/pull/1126))
 - Update 0.9.1 release notes to add missed author ([docs#1130](https://github.com/napari/docs/pull/1130))
+- Add initial release notes for 0.9.2 ([docs#1137](https://github.com/napari/docs/pull/1137))
 
 ## Other Pull Requests
 
