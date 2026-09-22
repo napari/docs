@@ -179,4 +179,5 @@ time in one of three ways:
 3. **Demote it** to a soft deprecation, if we have concluded it will not be
    removed.
 
-This process is meant to prevent a deprecation from being forgotten. It is not meant to force a removal.s
+This process is meant to prevent a deprecation from being forgotten. It is not meant
+to force a removal.
