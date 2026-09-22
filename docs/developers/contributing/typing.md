@@ -45,7 +45,9 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
    have it yet. This makes annotations lazy, so they are not evaluated at runtime,
    in order to infer the types:
 3. **Import annotation-only types under `if TYPE_CHECKING:`**, so heavy imports and
-   potential import cycles stay out of the runtime path. Ruff rules flag these and will often move them for you with pre-commit. To do this, add `from typing import TYPE_CHECKING` to the top of the file, then wrap the imports in:
+   potential import cycles stay out of the runtime path. Ruff rules flag these and
+   will often move them for you with pre-commit. To do this, add
+   `from typing import TYPE_CHECKING` to the top of the file, then wrap the imports in:
    ```python
    if TYPE_CHECKING:
        from some_module import SomeType
