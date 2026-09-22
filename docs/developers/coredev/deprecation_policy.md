@@ -134,7 +134,7 @@ category** it emits, and that category is what decides who sees it.
 window. **Soft** means an API we no longer recommend for new code but
 **do not currently intend to remove**. Soft deprecations will show in multiple
 places: including IDEs, pytest output, and when running with certain logging
-configurations, but they are slienced by default for end users. Soft
+configurations, but they are silenced by default for end users. Soft
 deprecations are a way to signal that an API is not recommended for new code, but
 that we are not yet ready to remove it. Soft deprecations may be promoted to hard
 deprecations if we later decide to remove them.
