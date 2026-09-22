@@ -74,6 +74,7 @@ subtrees:
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_9_2
           - file: release/release_0_9_1
           - file: release/release_0_9_0
           - file: release/release_0_8_0
@@ -239,7 +240,10 @@ subtrees:
         - entries:
           - file: developers/coredev/maintenance
           - file: developers/coredev/triage
-          - file: developers/coredev/release
+          - file: developers/coredev/release_policy
+            subtrees:
+            - entries:
+              - file: developers/coredev/release
           - file: developers/coredev/packaging
       - file: naps/index
         subtrees:
