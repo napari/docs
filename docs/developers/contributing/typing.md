@@ -9,7 +9,7 @@ and a team member will be eager to guide you.
 
 ```{note}
 Why we moved off mypy, and what we compared against, is in the Island Dispatch post
-[*From Any to Certainty*](https://github.com/napari/island-dispatch/pull/40).
+[*From Any to Certainty*](https://napari.org/island-dispatch/blog/from-any-to-certainty.html).
 ```
 
 ## Running the check
@@ -55,7 +55,7 @@ to parameter `object` with type `int` in function `list.insert` [bad-argument-ty
 Put that rule on the offending line:
 
 ```python
-indices.insert(0, item.index_in_parent())  # pyrefly: ignore [bad-argument-type]
+indices.insert(0, item.index_in_parent())  # pyrefly: ignore[bad-argument-type]
 ```
 
 A bare `# pyrefly: ignore` silences every diagnostic on the line, including ones a
