@@ -128,13 +128,16 @@ category** it emits, and that category is what decides who sees it.
 | State | Warning category | Who sees it | Window required? | Message must say |
 | --- | --- | --- | --- | --- |
 | **Hard** | `FutureWarning` | Everyone, including end users | **Yes** | "may be removed as early as `YYYY-QN`" |
-| **Soft** | `DeprecationWarning` | Developers only — Python silences this category for library users, but pytest shows it | No | "there are no current plans to remove it" |
+| **Soft** | `DeprecationWarning` | Developers only | No | "there are no current plans to remove it" |
 
 **Hard** states that an API is going away, and that it may be removed as early as the
 window. **Soft** means an API we no longer recommend for new code but
-**do not currently intend to remove**. It still warns, so developers are
-informed, but the warning is quiet enough that end users are not troubled by
-a removal that is not planned.
+**do not currently intend to remove**. Soft deprecations will show in multiple
+places: including IDEs, pytest output, and when running with certain logging
+configurations, but they are slienced by default for end users. Soft
+deprecations are a way to signal that an API is not recommended for new code, but
+that we are not yet ready to remove it. Soft deprecations may be promoted to hard
+deprecations if we later decide to remove them.
 
 ### Moving between states
 
