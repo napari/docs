@@ -43,9 +43,9 @@ This folder contains meeting notes for the **working group name**
 
 **Core team member sponsor:**
 
-**Link to Zulip channel**
+**Link to Zulip channel:**
 
-**Meeting schedule and Zoom link**
+**Meeting schedule and Zoom link:**
 
 **Working group goals:**
 _example: ensure that all napari users have a place to easily find the information necessary to meet their goals with napari. We want to ensure that the napari community has the infrastructure needed to contribute reproducible documentation._

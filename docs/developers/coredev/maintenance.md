@@ -54,10 +54,10 @@ Fill the form:
 ![screenshot of the token creation form](../../_static/images/token_permission_selection.png)
 
 7. Click the _Generate token_ button
-1. Copy token
-1. Go to the napari repository settings
-1. Expand the _Secrets and variables_ section and select _Actions_
-1. Click the edit button for the `GHA_TOKEN` secret
+8. Copy token
+9. Go to the napari repository settings
+10. Expand the _Secrets and variables_ section and select _Actions_
+11. Click the edit button for the `GHA_TOKEN` secret
 
 ![screenshot of the token creation form](../../_static/images/secrets_section.png)
 

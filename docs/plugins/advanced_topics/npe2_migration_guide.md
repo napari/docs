@@ -299,7 +299,7 @@ def napari_experimental_provide_function() -> Union[
 
 #### Example npe2 contribution
 
-*Dock Widget*
+##### Dock Widget
 
 ```yaml
 name: napari-animation
@@ -314,7 +314,7 @@ contributions:
       display_name: Wizard
 ```
 
-*Function widget*
+##### Function widget
 
 ```yaml
 name: my-function-plugin

@@ -103,7 +103,7 @@ It supports the following installer types:
   PKG files are graphical installers native to macOS, so that's the method we use with napari.
 - On Windows, a graphical installer based on [NSIS][19] is generated.
 
-The configuration is done through a `construct.yaml` file, documented [here][7].
+The configuration is done through a `construct.yaml` file, documented in [the constructor documentation][7].
 We generate one on the fly in the `build_installers.py` script found in `napari/packaging`.
 For a hypothetical napari v1.2.3 we would have built this configuration file:
 
