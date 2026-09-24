@@ -3,9 +3,7 @@
 # Annotating videos with napari
 
 ```{Admonition} DEPRECATED ATTRIBUTES
----
-class: warning
----
+:class: warning
 As of napari 0.5.0, `edge_*` attributes are being renamed to
 `border_*` attributes. We have yet to update the images and/or videos in
 this tutorial. Please use `border` in place of `edge` for all `Points` attributes moving forward.

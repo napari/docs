@@ -59,18 +59,14 @@ viewer.add_surface(surface)  # add the surface
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="A viewer with a surface")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -115,9 +111,7 @@ underlying surface color.
 {meth}`~napari.Viewer.add_surface` accepts the following layer-creation parameters.
 
 ```{code-cell} python
----
-tags: [hide-output]
----
+:tags: [hide-output]
 help(napari.Viewer.add_surface)
 ```
 

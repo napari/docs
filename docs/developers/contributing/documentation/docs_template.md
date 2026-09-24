@@ -136,9 +136,7 @@ nbscreenshot(
 ```
 
 ```{code-cell} python3
----
-tags: [remove-input]
----
+:tags: [remove-input]
 from napari.utils import nbscreenshot
 
 viewer.window._qt_window.resize(750, 550)
