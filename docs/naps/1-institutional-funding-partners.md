@@ -64,13 +64,13 @@ napari as part of their official duties, or by committing significant funding
 to napari, as determined by the SC.
 
 This NAP proposes the following benefits for IFPs:
+
 - acknowledgement on the napari website, and in talks about the napari project.
 - ability to promote their contribution on their own sites and communications.
 - ability to improve the project for their specific use cases via their
   engineering, design, and other efforts.
 - ability to provide input to the project via the IFPAC and the IFPAC-elected
   SC member.
-
 
 ## Related Work
 
@@ -105,7 +105,6 @@ An initial proposal for the additions to the governance is included below:
 > employed by the same entity. One seat on the steering council is reserved for
 > a member elected by the Institutional and Funding Partner Advisory Council,
 > as detailed below. This member need not be an existing core developer.
-
 
 >### Institutional and Funding Partners
 >
@@ -212,7 +211,6 @@ Agreed, the SC can help promote this rationale.
 
 NAP-1 does not prescribe the rules for the IFP Advisory Council, but does ask them to describe their
 processes openly.
-
 
 ## References and Footnotes
 

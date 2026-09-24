@@ -4,7 +4,7 @@
 
 This document describes maintenance tasks that need to be performed from time to time. Its purpose is to avoid relying on personal memory alone, and it should be updated regularly.
 
-## Refreshing tokens for the auto upgrade of test constraints and vendored packages.
+## Refreshing tokens for the auto upgrade of test constraints and vendored packages
 
 Because of the security GitHub policy, the commits and pull requests created by an action that uses default `GITHUB_TOKEN`
 will not trigger another action's runs. The possible workaround for this is to close and then reopen the pull request.

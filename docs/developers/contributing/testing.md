@@ -32,7 +32,7 @@ much as we can with unit tests, requiring fewer integration tests, and the least
 of functional tests as depicted in the test pyramid below from
 [softwaretestinghelp.com](https://www.softwaretestinghelp.com/the-difference-between-unit-integration-and-functional-testing/):
 
-![Pyramid diagram depicting the relationship between time to write/execute three different types of tests and return on investment for those tests.  The pyramid is split into three sections: the bottom, largest section is Unit testing, the middle section is Integration testing and the top is Functional testing. The size of the section is proportional to the quantity of tests of that type you should write. Moving up the pyramid, tests take longer to write and have a lower return on investment.](../../_static/images/tests.png)
+![Pyramid diagram depicting the relationship between time to write/execute three different types of tests and return on investment for those tests. The pyramid is split into three sections: the bottom, largest section is Unit testing, the middle section is Integration testing and the top is Functional testing. The size of the section is proportional to the quantity of tests of that type you should write. Moving up the pyramid, tests take longer to write and have a lower return on investment.](../../_static/images/tests.png)
 
 Unit tests are at the base of the pyramid because they are the easiest to write and
 the quickest to run. The time and effort to implement and maintain tests increases
@@ -158,7 +158,7 @@ To get the list of all available environment configurations that may be run:
 tox list
 ```
 
-#### Minimum requirements testing 
+#### Minimum requirements testing
 
 Tests may be run against the minimum requirements declared in the `pyproject.toml` file.
 This checks if napari will work even with outdated or minimal dependencies. If the minimal requirements test run fails, it is likely either a simple regression fix or a reason to bump the minimum requirements in the `pyproject.toml` file.
@@ -171,7 +171,7 @@ MIN_REQ=1 tox -e py311-pyqt5 --recreate
 
 Unfortunately, it is impossible to test this on ARM macOS, due to the lack of pyqt5 support for this platform.
 
-#### Running with constraints 
+#### Running with constraints
 
 To fully reproduce the CI environment, you might use our constraints files which fully specifies dependency versions.
 For example, to run tests using Python 3.13 and pyqt6 with a constraints file, enter:
@@ -181,33 +181,35 @@ UV_CONSTRAINT=resources/constraints/constraints_py313.txt tox -e py313-pyqt6
 ```
 
 Constraint usage guarantees the same version of dependencies as in the CI environment where dependencies are pinned to a specific PyPI package version.
- 
+
 While it usually isn’t needed to run this locally, running tests with the constraint file ensures that tests run with the exact same versions of dependencies as in napari's CI environment.
 
-#### Running a subset of test using tox 
+#### Running a subset of test using tox
 
-To run a subset of tests using tox, add a directory or file after `--` and that will be passed to pytest. 
+To run a subset of tests using tox, add a directory or file after `--` and that will be passed to pytest.
 For example, to run only tests in the `src/napari/layers/image/` file using Python 3.13 and pyqt6, enter:
 
 ```sh
 tox -e py313-pyqt6 -- src/napari/layers/image
 ```
 
-#### Use tox to create an environment for debugging 
+#### Use tox to create an environment for debugging
 
-`tox` provides a convenient way to create a virtual environment for debugging via the `devenv` command. 
+`tox` provides a convenient way to create a virtual environment for debugging via the `devenv` command.
 For example, to create a virtual environment for debugging using Python 3.13 and pyqt6, enter:
 
 ```sh
-$ tox devenv -e py313-pyqt6
+tox devenv -e py313-pyqt6
 ```
+
 Then at the end of the output is a path to created virtual environment.
 
 ```sh
 ...
 ROOT: created development environment under [...]/napari/venv
 ```
-You can activate it in your IDE or terminal as a normal virtual environment. 
+
+You can activate it in your IDE or terminal as a normal virtual environment.
 
 #### Use tox to measure coverage
 
@@ -223,13 +225,12 @@ This command will create a coverage report in `.coverage` file. You can then gen
 2. `coverage html` - to generate a report in HTML format. You can then open it in the browser and see exactly which lines are not covered by tests.
 
 ```{note}
-We do not use `pytest-cov` as it does not measure coverage of all code, like our `make-napari-viewer` fixture. 
+We do not use `pytest-cov` as it does not measure coverage of all code, like our `make-napari-viewer` fixture.
 ```
 
 ```{note}
 Some parts of the code are tested only on a given platform, python version, or in the minimum requirements test, so running coverage locally might not give the same results as on CI.
 ```
-
 
 ### Run tests without pop-up windows
 
@@ -377,7 +378,7 @@ fixture. `qtbot`, which itself depends on `qapp` , allows you to test user input
 
 ````{note}
 Fixtures in pytest can be a little mysterious, since it's not always
-clear where they are coming from.  The `pytest-qt` `qapp` and `qtbot` fixtures
+clear where they are coming from. The `pytest-qt` `qapp` and `qtbot` fixtures
 can be used in two ways; by adding them to the list of arguments of your test function:
 
 ```python
@@ -550,12 +551,11 @@ There are several known issues with displaying GUI tests on windows in CI, and
 so certain tests have been disabled from windows in CI, see
 [#1377](https://github.com/napari/napari/pull/1377) for more discussion.
 
-
-### Running napari tests on Wayland 
+### Running napari tests on Wayland
 
 In the napari test suite we use `pyautogui` to simulate mouse and keyboard events.
-On Linux it uses `python-xlib` to implement this utility. 
-Unfortunately it might not work out of the box on Wayland (even with `xwayland` installed). We observed this with (for example) the GNOME desktop. 
+On Linux it uses `python-xlib` to implement this utility.
+Unfortunately it might not work out of the box on Wayland (even with `xwayland` installed). We observed this with (for example) the GNOME desktop.
 
 ```pytb
 ...
@@ -563,7 +563,8 @@ Unfortunately it might not work out of the box on Wayland (even with `xwayland` 
     raise error.DisplayConnectionError(self.display_name, r.reason)
 E   Xlib.error.DisplayConnectionError: Can't connect to display ":0": b'Authorization required, but no authorization protocol specified\n'
 ```
-Based on experiments we found that executing `xhost +SI:localuser:$USER` solves the problem. 
+
+Based on experiments we found that executing `xhost +SI:localuser:$USER` solves the problem.
 It can be done automatically on startup by adding the above line to `~/.config/autostart/xhost.desktop`.
 
 ```desktop

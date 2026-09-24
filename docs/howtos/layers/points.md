@@ -12,6 +12,7 @@ kernelspec:
 ---
 
 (layers-points)=
+
 # Points
 
 ```{Admonition} DEPRECATED ATTRIBUTES
@@ -153,7 +154,7 @@ layer:
 
   Select `translucent`, `translucent no depth`, `additive`, `minimum`, or
   `opaque` from the dropdown. Refer to the [Blending layers](blending-layers)
-  section of _Layers at a glance_ for an explanation of each type of blending.
+  section of *Layers at a glance* for an explanation of each type of blending.
 
 - Symbol
 

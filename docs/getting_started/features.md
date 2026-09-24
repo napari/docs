@@ -17,7 +17,7 @@ kernelspec:
 # Feature highlights
 
 This page highlights a few napari features that are useful in many scenarios and might be easily overlooked.
-The [command palette](command-palette) is great to avoid clicking around menus to find _that_ specific command.
+The [command palette](command-palette) is great to avoid clicking around menus to find *that* specific command.
 The [measurement tool](measure-tool) allows for quick distance and area measurements.
 For layers with `features`, the [features table widget](features-table-widget) provides a simple graphical interface for editing and interaction with the feature table.
 

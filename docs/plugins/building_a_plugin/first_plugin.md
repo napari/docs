@@ -11,8 +11,9 @@ of conveniences for testing, maintaining, and deploying your plugin.
 
 ```{admonition} new plugin format!
 ---
-class: important
----
+
+## class: important
+
 This page describes the creation of a plugin targeting `npe2`, the second
 generation plugin engine.
 ```
@@ -91,12 +92,13 @@ Your project should now look like this:
 
 ````{admonition} **napari-hello** vs **napari_hello**
 ---
-class: tip
----
-You might notice that we used a **dash** in our top level folder, and an 
-**underscore** in the inner folder. This is the Python convention: *distribution 
-packages* use dashes, while Python *files* and *modules* use underscores. Our 
-*package* is named `napari-hello`, and it includes a single top-level module, 
+
+## class: tip
+
+You might notice that we used a **dash** in our top level folder, and an
+**underscore** in the inner folder. This is the Python convention: *distribution
+packages* use dashes, while Python *files* and *modules* use underscores. Our
+*package* is named `napari-hello`, and it includes a single top-level module,
 called `napari_hello`.
 
 You would *install* this package with
@@ -266,7 +268,7 @@ napari-hello = "napari_hello:napari.yaml"
 
 ```
 
-## 4. Install your plugin and try it out!
+## 4. Install your plugin and try it out
 
 With that, we're ready to go. Let's install our package in the environment
 and then run napari. Note: we're using `python -m pip install -e .` here to install our
@@ -304,6 +306,7 @@ However, you may wish to automate distribution of your plugin using Github,
 see below and the [Publishing](plugin-deploy) guide for more details.
 
 (napari-plugin-template)=
+
 ## Get going quickly with the napari plugin template
 
 Now that you've learned all of the critical steps for creating a plugin,

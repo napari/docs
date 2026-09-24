@@ -117,6 +117,7 @@ nbscreenshot(viewer, alt_text="3D cell nuclei and membranes rendered as 2D slice
 again noting that the last two values are meaningless, but must be provided when using the API in this way.
 
 (thick-slicing)=
+
 ### Margins and thick slicing
 
 napari's API also has some support for performing thick slicing, which integrates over sub-volumes of data instead of selecting sub-regions.
@@ -288,7 +289,7 @@ This may change in the future.
 ### Asynchronous slicing
 
 Since we don't know how long an array access will take, and we never want the GUI thread to block, we should not access array-like objects in the main or GUI thread.
-Instead, napari's rendering can be done _asynchronously_.
+Instead, napari's rendering can be done *asynchronously*.
 This means rendering proceeds at full speed drawing only the data which is in memory ready to be drawn,
 while in the background worker threads load more data into memory to be drawn in the future.
 This also allows you to continue interacting with napari while data is being fetched.
