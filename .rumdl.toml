@@ -14,19 +14,18 @@ disable = [
   "MD057",   # MD057 treats relative links as filesystem paths, but Sphinx resolves [text](target) against the (label)= targets .
   "MD041",  # MD041 wants line 1 to be a level-1 heading; MyST files start with a (label)= target.
 
-  # --- deferred: judgement calls ---
-  "MD034",  # bare URL: the fix is not code-span-aware, it rewrites `http://x` inside code spans
-  "MD033",  # inline HTML
-  "MD036",  # emphasis used instead of a heading
-  "MD059",  # link text should be descriptive
-  "MD067",  # footnote definition order
-  "MD024", "MD028", "MD029", "MD045", "MD051", "MD053",
-
   # --- deferred: line length ---
   "MD013",
 ]
 
 
 [per-file-ignores]
+# The community calendar is a FullCalendar embed: divs, three <script> tags (one a CDN
+# load), a modal, and <b>/<br> inside JS string literals. Markdown cannot express it and
+# removing it would delete the community calendar, so MD033 is scoped away here.
+"docs/community/meeting_schedule.md" = ["MD033"]
+# MD034's fix is not code-span-aware: it rewrites `http://x` inside an inline code
+# span into `<http://x>`, where the brackets are literal, changing rendered text.
+"docs/developers/contributing/documentation/index.md" = ["MD034"]
 "docs/naps/9-multiple-canvases.md" = ["MD058"]
 "docs/plugins/building_a_plugin/best_practices.md" = ["MD032"]
