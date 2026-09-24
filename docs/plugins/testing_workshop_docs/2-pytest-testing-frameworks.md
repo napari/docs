@@ -4,7 +4,7 @@
 
 This lesson explains how to use the [pytest testing framework](https://docs.pytest.org/en/7.2.x/) to make testing easier.
 
-## Other lessons in this tutorial:
+## Other lessons in this tutorial
 
 - 1: [Python’s assert keyword](plugin-testing-workshop-assert)
 - 2: This lesson (Pytest testing framework)
@@ -12,7 +12,7 @@ This lesson explains how to use the [pytest testing framework](https://docs.pyte
 - 4: [Test coverage](plugin-testing-workshop-coverage)
 - Resource links: [Testing resources](plugin-testing-resources)
 
-### This lesson covers:
+### This lesson covers
 
 - [Testing framework features](#testing-framework-features)
 - [Parametrization](#parametrization)

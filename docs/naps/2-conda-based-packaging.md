@@ -76,13 +76,13 @@ In contrast, `conda`-based packaging offers some benefits in those points:
 
 `conda` packaging also has its own downsides compared to `pip`, though:
 
-* pip and PyPI are the *de facto* standard in Python packaging, which means
+* pip and PyPI are the _de facto_ standard in Python packaging, which means
   more developers are aware of them and familiar with them, and how to create
   packages for them. Conda in contrast presents a community education
   challenge.
 * Even with a well-developed community of practice among napari and napari
   plugin developers, some significant industry-provided packages, such as
-  Apple's tensorflow-metal, may *never* be available no conda-forge.
+  Apple's tensorflow-metal, may _never_ be available no conda-forge.
 * Although the conda-forge review process is an advantage with regards to
   correctness and reliability, it presents a scalability challenge in the
   absence of broader community education about conda packaging.
@@ -153,7 +153,7 @@ assessing the "installability" of all plugins in the same environment is availab
 Results across Python versions show incompatibilities on Linux, possibly even more intricate on macOS
 and Windows. Excerpt for Python 3.9:
 
-```
+```text
 $ mamba create -n test-napari-installability --dry-run -q napari=0.4.15 python=3.9 affinder \
   bbii-decon brainglobe-napari-io [...] nfinder platelet-unet-watershed smo waver workshop-demo
 Encountered problems while solving.
@@ -243,25 +243,25 @@ can be built thanks to the nightlies available on the napari channel in Anaconda
 napari has its own plugin manager, which so far has relied on `pip` to install packages available on
 PyPI. To make it compatible with conda packaging, three key changes are needed:
 
-1.  The list of packages on conda-forge does not necessarily match the one coming from PyPI. Right
-    now, the plugins on conda-forge are a _subset_ of those on PyPI, but this might change in the
-    future if some napari plugins become available on conda-forge but not PyPI due to packaging
-    limitations (e.g. availability of dependencies). As a result, the plugin manager needs to source
-    the list of plugins from a repository-agnostic source: the napari hub API. It must be noted that
-    napari hub currently uses PyPI as the ground truth for the list of published plugins and the
-    available versions.
-2.  Once the napari hub API is feeding the list, the plugin manager will also list those available
-    on conda-forge. Packages that are only available on PyPI can also be installed as long as:
+1. The list of packages on conda-forge does not necessarily match the one coming from PyPI. Right
+   now, the plugins on conda-forge are a _subset_ of those on PyPI, but this might change in the
+   future if some napari plugins become available on conda-forge but not PyPI due to packaging
+   limitations (e.g. availability of dependencies). As a result, the plugin manager needs to source
+   the list of plugins from a repository-agnostic source: the napari hub API. It must be noted that
+   napari hub currently uses PyPI as the ground truth for the list of published plugins and the
+   available versions.
+2. Once the napari hub API is feeding the list, the plugin manager will also list those available
+   on conda-forge. Packages that are only available on PyPI can also be installed as long as:
       * The dependencies of the PyPI package are on conda-forge
       * The PyPI package is pure Python (no compiled libraries)
-    In the future, we might explore how to deal with PyPI packages within conda in a safer way, but
-    this is an open packaging question that is extremely difficult to tackle robustly.
-3.  Instrument the plugin manager backend so it can use `conda` or `mamba` to run the plugin
-    installation, update or removal. Some level of customizability is needed to configure extra
-    channels (e.g. a laboratory published their conda packages into their own private channel) and
-    local sources (e.g. drag&drop a conda tarball).
-4.  Add some control to the dependency landscape of the plugin ecosystem using the
-    `napari-pinnings` metapackage mentioned in Milestone 1.
+   In the future, we might explore how to deal with PyPI packages within conda in a safer way, but
+   this is an open packaging question that is extremely difficult to tackle robustly.
+3. Instrument the plugin manager backend so it can use `conda` or `mamba` to run the plugin
+   installation, update or removal. Some level of customizability is needed to configure extra
+   channels (e.g. a laboratory published their conda packages into their own private channel) and
+   local sources (e.g. drag&drop a conda tarball).
+4. Add some control to the dependency landscape of the plugin ecosystem using the
+   `napari-pinnings` metapackage mentioned in Milestone 1.
 
 There are some technical limitations we need to work out as well, namely:
 
@@ -400,17 +400,16 @@ has seen a couple of minor updates in the recent releases:
 * Main PR: [#3378](https://github.com/napari/napari/pull/3378), superseded by
   [#3555](https://github.com/napari/napari/pull/3555) (Prototype a conda-based bundle)
 * Other PRs:
-    * [#3462](https://github.com/napari/napari/pull/3462) (Move icons to package source)
-    * [#4185](https://github.com/napari/napari/pull/4185) (Add licensing page)
-    * [#4210](https://github.com/napari/napari/pull/4210) (Fix EULA/licensing/signing issues)
-    * [#4221](https://github.com/napari/napari/pull/4221) (Adjust conditions that trigger signing)
-    * [#4307](https://github.com/napari/napari/pull/4307) (Test installers in CI)
-    * [#4309](https://github.com/napari/napari/pull/4309) (Use conda-forge/napari-feedstock)
-    * [#4387](https://github.com/napari/napari/pull/4387) (Fix unlink errors on cleanup)
-    * [#4444](https://github.com/napari/napari/pull/4444) (Add versioning to installer itself)
-    * [#4447](https://github.com/napari/napari/pull/4447) (Use custom `.condarc` file)
-    * [#4525](https://github.com/napari/napari/pull/4525) (Revert to napari-versioned default paths)
-
+  * [#3462](https://github.com/napari/napari/pull/3462) (Move icons to package source)
+  * [#4185](https://github.com/napari/napari/pull/4185) (Add licensing page)
+  * [#4210](https://github.com/napari/napari/pull/4210) (Fix EULA/licensing/signing issues)
+  * [#4221](https://github.com/napari/napari/pull/4221) (Adjust conditions that trigger signing)
+  * [#4307](https://github.com/napari/napari/pull/4307) (Test installers in CI)
+  * [#4309](https://github.com/napari/napari/pull/4309) (Use conda-forge/napari-feedstock)
+  * [#4387](https://github.com/napari/napari/pull/4387) (Fix unlink errors on cleanup)
+  * [#4444](https://github.com/napari/napari/pull/4444) (Add versioning to installer itself)
+  * [#4447](https://github.com/napari/napari/pull/4447) (Use custom `.condarc` file)
+  * [#4525](https://github.com/napari/napari/pull/4525) (Revert to napari-versioned default paths)
 
 Adding the missing pieces to `constructor` involves changes in four different projects:
 
@@ -443,15 +442,16 @@ extended with different PRs:
 * Initial PR: [#2943](https://github.com/napari/napari/pull/2943) (Add initial support to install
   plugins with conda/mamba)
 * Other PRs that improved and extended the functionality:
-    * [#3288](https://github.com/napari/napari/pull/3288) (Fix plugin updates)
-    * [#3369](https://github.com/napari/napari/pull/3369) (Add cancel actions to plugin manager)
-    * [#4074](https://github.com/napari/napari/pull/4074) (Use napari hub to list plugins)
-    * [#4520](https://github.com/napari/napari/pull/4520) (Rework how subprocesses are launched)
+  * [#3288](https://github.com/napari/napari/pull/3288) (Fix plugin updates)
+  * [#3369](https://github.com/napari/napari/pull/3369) (Add cancel actions to plugin manager)
+  * [#4074](https://github.com/napari/napari/pull/4074) (Use napari hub to list plugins)
+  * [#4520](https://github.com/napari/napari/pull/4520) (Rework how subprocesses are launched)
 
 Some more work is needed to offer full support to the plugin ecosystem, as detailed below.
+
 #### Tasks
 
-* [X] Make the `Installer` class  [^napari-installer-class] conda/mamba-aware
+* [X] Make the `Installer` class [^napari-installer-class] conda/mamba-aware
 * [X] Populate the plugin listing with data obtained from the napari hub API [^napari-hub-api]
 * [ ] Detect which plugins can be installed directly from conda-forge and which ones need a
       combination of `conda` channels and PyPI sources
@@ -483,7 +483,7 @@ For that reason, we decided to slightly redesign our approach to in-app updates.
 several environments to keep things tidy and performant (see "Detailed description" for Milestone 2
 for more details), but the update checks will mimic something closer to a local server-client model
 or, more accurately, a `napari-updater` process (name subject to change; other options include
-`napari-launcher` or  `napari-manager`) that can be queried by a running `napari` instance.
+`napari-launcher` or `napari-manager`) that can be queried by a running `napari` instance.
 
 * `napari-updater`: We will create a separate standalone package to handle updates outside of the
   `napari` process. This will be designed in an application agnostic way while targeting the needs
@@ -552,12 +552,12 @@ deciding to use the currently proposed one. Namely:
 
 ## Discussion
 
-- [Issue #1001](https://github.com/napari/napari/issues/1001) (Plugin dependency management)
-- [PR #4404](https://github.com/napari/napari/pull/4404) (Switch to a more declarative configuration
+* [Issue #1001](https://github.com/napari/napari/issues/1001) (Plugin dependency management)
+* [PR #4404](https://github.com/napari/napari/pull/4404) (Switch to a more declarative configuration
   for conda packaging)
-- [PR #4519](https://github.com/napari/napari/pull/4519) (Initial draft of this NAP and discussion)
-- [PR #4602](https://github.com/napari/napari/pull/4602) (PR to discuss the approval of this NAP)
-- [Zulip thread](https://napari.zulipchat.com/#narrow/stream/322105-naps/topic/Proposal.20to.20accept.20NAP-2)
+* [PR #4519](https://github.com/napari/napari/pull/4519) (Initial draft of this NAP and discussion)
+* [PR #4602](https://github.com/napari/napari/pull/4602) (PR to discuss the approval of this NAP)
+* [Zulip thread](https://napari.zulipchat.com/#narrow/stream/322105-naps/topic/Proposal.20to.20accept.20NAP-2)
   to discuss the approval of this NAP
 
 ## References and Footnotes

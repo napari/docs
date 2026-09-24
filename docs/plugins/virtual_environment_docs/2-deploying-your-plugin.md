@@ -25,7 +25,7 @@ You are *strongly* encouraged to ship both! If the `wheel` is not present, `pip`
 
 ## Deploying plugins to PyPI
 
-### Manually via **twine**.
+### Manually via **twine**
 
 [twine](https://twine.readthedocs.io/en/latest/) is a command line client you can use to upload your distribution to PyPI. Note that you will need to set up a PyPI account and authenticate yourself when uploading. See [this great guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for a detailed tutorial to building and sharing your first Python packages.
 
@@ -33,16 +33,16 @@ You are *strongly* encouraged to ship both! If the `wheel` is not present, `pip`
 
     # twine is a PyPI Client
     # build is a PEP 517 package builder
-    $ pip install twine build
+    pip install twine build
 
     # create a wheel and an sdist
-    $ python -m build
+    python -m build
 
     # (Optional) upload to test PyPI
-    $ twine upload -r testpypi dist/*
+    twine upload -r testpypi dist/*
 
     # Upload to PyPI
-    $ twine upload dist/*
+    twine upload dist/*
 
 ```
 
@@ -108,12 +108,13 @@ This is **far** easier if you already have an `sdist` published to PyPI.
 
 ```{admonition} Updating your package on conda-forge
 ---
-class: important
----
-By default, when a new release is detected on PyPI, conda-forge bots will automatically make a pull requests to your `conda-forge/package-name-feedstock`, and the plugin maintainer must review, make changes, if needed,  and approve the pull request.
+
+## class: important
+
+By default, when a new release is detected on PyPI, conda-forge bots will automatically make a pull requests to your `conda-forge/package-name-feedstock`, and the plugin maintainer must review, make changes, if needed, and approve the pull request.
 ```
 
-## Other topics in this series:
+## Other topics in this series
 
 - [Virtual environments](./1-virtual-environments.md)
 - [Version management](./3-version-management.md)
