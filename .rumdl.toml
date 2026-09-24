@@ -13,9 +13,6 @@ disable = [
   # --- false positives for a Sphinx/MyST site; permanent ---
   "MD057",   # MD057 treats relative links as filesystem paths, but Sphinx resolves [text](target) against the (label)= targets .
   "MD041",  # MD041 wants line 1 to be a level-1 heading; MyST files start with a (label)= target.
-
-  # --- deferred: line length ---
-  "MD013",
 ]
 
 
@@ -24,6 +21,16 @@ disable = [
 "docs/developers/contributing/documentation/index.md" = ["MD034"]
 "docs/naps/9-multiple-canvases.md" = ["MD058"]
 "docs/plugins/building_a_plugin/best_practices.md" = ["MD032"]
+
+
+[MD013]
+line-length = 79
+reflow = true
+code-blocks = false
+code-spans = false
+math-blocks = false
+heading-line-length = 0
+
 
 [code-block-tools]
 enabled = true
