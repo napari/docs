@@ -310,7 +310,7 @@ viewer, _ = napari.imshow(np.random.rand(64, 64), name="My Image")
 viewer.window.add_dock_widget(my_widget)
 ```
 
-*Note the widget on the right side with "My Image" as the currently selected option*
+**Note:** the widget on the right side with "My Image" as the currently selected option.
 
 ```{code-cell} python
 :tags: [remove-input]

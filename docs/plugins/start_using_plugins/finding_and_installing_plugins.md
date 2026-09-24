@@ -59,7 +59,7 @@ From the dialog, you can install plugins in the following ways:
   ```
 
   ```{admonition} Installing from a Github Branch
-  If you want to install `napari-svg` directly from the development branch on the [github repository](https://github.com/napari/napari-svg), enter `git+https://github.com/napari/napari-svg.git` in the text field.
+  If you want to install `napari-svg` directly from the development branch on the [github repository](https://github.com/napari/napari-svg), enter `git+<https://github.com/napari/napari-svg.git>` in the text field.
   ```
 
   ```{admonition} Installing a Specific Release

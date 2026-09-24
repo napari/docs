@@ -118,12 +118,12 @@ This NAP will be updated to reflect the current state of telemetry.
 ## Related Work
 
 Total systems:
-https://plausible.io/
-https://sentry.io/
-https://opentelemetry.io/
+<https://plausible.io/>
+<https://sentry.io/>
+<https://opentelemetry.io/>
 
 Visualizations:
-https://github.com/grafana/grafana
+<https://github.com/grafana/grafana>
 
 ## Implementation
 
