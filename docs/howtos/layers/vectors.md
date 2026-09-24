@@ -66,18 +66,14 @@ vectors_layer = viewer.add_vectors(vectors, edge_width=3)
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="Vectors overlaid on an image")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -156,9 +152,7 @@ both 2D and 3D:
 {meth}`~napari.Viewer.add_vectors` accepts the following layer-creation parameters.
 
 ```{code-cell} python
----
-tags: [hide-output]
----
+:tags: [hide-output]
 help(napari.Viewer.add_vectors)
 ```
 

@@ -93,9 +93,7 @@ and the parameter specific `slider_float` and `dropdown` let you customize the w
 associated with those function parameters.
 
 ```{code-cell} python
----
-tags: [remove-stderr]
----
+:tags: [remove-stderr]
 from magicgui import magicgui
 import datetime
 import pathlib
@@ -131,9 +129,7 @@ whenever a `threshold_magic_widget` parameter changes, thus the function is call
 as soon as we add the 'camera' image.
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 import napari
 from magicgui import magicgui
 from skimage import data
@@ -154,9 +150,7 @@ viewer.window.add_dock_widget(threshold_magic_widget)
 ```
 
 ```{code-cell} python
----
-tags: [remove-input]
----
+:tags: [remove-input]
 from napari.utils import nbscreenshot
 
 viewer.window._qt_window.resize(1225, 900)
@@ -302,9 +296,7 @@ class ImageWidget(Container):
 Here's a complete example:
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 import napari
 import numpy as np
 from magicgui import magicgui
@@ -321,9 +313,7 @@ viewer.window.add_dock_widget(my_widget)
 *Note the widget on the right side with "My Image" as the currently selected option*
 
 ```{code-cell} python
----
-tags: [remove-input]
----
+:tags: [remove-input]
 from napari.utils import nbscreenshot
 
 viewer.window._qt_window.resize(1225, 900)
@@ -445,9 +435,7 @@ def my_widget(ny: int = 64, nx: int = 64) -> Image:
 Here's a complete example
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 import napari
 import numpy as np
 from magicgui import magicgui
@@ -467,9 +455,7 @@ my_widget()  # "call the widget" to call the function, so it shows in the
 *Note the new "My Image" layer in the viewer as a result of having called the widget function.*
 
 ```{code-cell} python
----
-tags: [remove-input]
----
+:tags: [remove-input]
 from napari.utils import nbscreenshot
 
 viewer.window._qt_window.resize(1225, 900)
@@ -521,9 +507,7 @@ For example, in combination with the {attr}`~napari.types.ImageData` parameter
 annotation [described above](annotating-as-napari-types-data):
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 import numpy as np
 import napari
 from napari.types import LabelsData, ImageData
@@ -542,9 +526,7 @@ threshold()  # "call the widget" to call the function, so it shows in the
 ```
 
 ```{code-cell} python
----
-tags: [remove-input]
----
+:tags: [remove-input]
 from napari.utils import nbscreenshot
 
 viewer.window._qt_window.resize(1225, 900)
@@ -595,9 +577,7 @@ An example of using a {attr}`~napari.types.LayerDataTuple` return annotation in
 a `magicgui` function:
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 import numpy as np
 import napari
 from magicgui import magicgui
@@ -616,9 +596,7 @@ make_points()  # "call the widget" to call the function, so it shows in the
 ```
 
 ```{code-cell} python
----
-tags: [remove-input]
----
+:tags: [remove-input]
 from napari.utils import nbscreenshot
 
 viewer.window._qt_window.resize(1225, 900)
@@ -655,9 +633,7 @@ of an existing layer, you can update this layer, rather than creating a new laye
 time the function is called:
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 import napari
 import numpy as np
 from magicgui import magicgui
@@ -679,9 +655,7 @@ make_points()
 ```
 
 ```{code-cell} python
----
-tags: [remove-input]
----
+:tags: [remove-input]
 from napari.utils import nbscreenshot
 
 viewer.window._qt_window.resize(1225, 900)

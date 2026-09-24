@@ -107,10 +107,7 @@ Once your recipe is approved and merged, the rest happens *automagically*, and y
 This is **far** easier if you already have an `sdist` published to PyPI.
 
 ```{admonition} Updating your package on conda-forge
----
-
-## class: important
-
+:class: important
 By default, when a new release is detected on PyPI, conda-forge bots will automatically make a pull requests to your `conda-forge/package-name-feedstock`, and the plugin maintainer must review, make changes, if needed, and approve the pull request.
 ```
 

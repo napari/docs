@@ -51,9 +51,7 @@ viewer.scene.overlays.axes.visible = True
 ```
 
 ```{code-cell} python
----
-tags: [remove-input]
----
+:tags: [remove-input]
 from napari.utils import nbscreenshot
 nbscreenshot(
         viewer,
@@ -75,9 +73,7 @@ viewer.scene.camera.orientation2d = ('up', 'right')
 ```
 
 ```{code-cell} python
----
-tags: [remove-input]
----
+:tags: [remove-input]
 from napari.utils import nbscreenshot
 nbscreenshot(
         viewer,
@@ -92,9 +88,7 @@ You can also change the axis orientation by right-clicking on the 2D/3D toggle
 button in the viewer.
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -113,9 +107,7 @@ hand along the helix, it will move in the direction of your thumb — and the
 opposite is true of your left-hand, or of the mirror image of this DNA.
 
 ```{code-cell} python
----
-tags: [remove-stdout, remove-stderr]
----
+:tags: [remove-stdout, remove-stderr]
 from vispy.io import read_mesh
 vertices, faces, _, _ = read_mesh('../data/1BNA.obj.gz')
 
@@ -124,9 +116,7 @@ layer = viewer.add_surface((vertices, faces), name='1BNA', shading='smooth')
 ```
 
 ```{code-cell} python
----
-tags: [remove-input]
----
+:tags: [remove-input]
 viewer.scene.camera.angles = (90, 0, 0)
 viewer.scene.camera.zoom = 16
 viewer.scene.overlays.axes.visible = True
@@ -143,16 +133,12 @@ viewer.scene.camera.orientation = ('away', 'down', 'right')
 ```
 
 ```{code-cell} python
----
-tags: [remove-input]
----
+:tags: [remove-input]
 nbscreenshot(viewer)
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
