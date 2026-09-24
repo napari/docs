@@ -71,9 +71,17 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
   [`typing.cast`](https://docs.python.org/3/library/typing.html#typing.cast) only
   tells the checker to believe you, so if it is the only option left, keep it as
   narrow as you can and say in a comment what makes it safe.
-- **`np.ndarray` promises nothing about dtype or shape.** Use
-  `numpy.typing.NDArray[np.float64]` when the dtype matters, and put shape, axes and
-  units in the docstring, where a reader can find them.
+- **Type arrays only with what the contract needs.** The full annotation for a
+  NumPy array is `np.ndarray`, for example
+  `np.ndarray[tuple[int, ...], np.dtype[np.float64]]`,
+  which pins both the shape and the dtype. If the shape is not part of the
+  contract, use `numpy.typing`'s `npt.NDArray` alias instead,
+  which leaves the shape unspecified but the dtype specified, for example
+  `npt.NDArray[np.float64]`. If neither shape nor dtype is part of the contract,
+  use `np.ndarray` without any arguments. For docstrings, always use the runtime
+  class name `np.ndarray` even where the annotation is `npt.NDArray`.
+  Read more in the [NumPy typing guide](https://numpy.org/doc/stable/reference/typing.html),
+  including about `npt.ArrayLike` for inputs that can be converted to arrays.
 
 ## When the check complains
 
