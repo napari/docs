@@ -36,11 +36,15 @@ repos:
   rev: v0.2.77
   hooks:
     # Fix locally with: pre-commit run --hook-stage manual rumdl-fmt
+    # additional_dependencies puts ruff on PATH for the code-block tools enabled in
+    # .rumdl.toml. Keep this pin in step with the ruff-pre-commit rev above.
     - id: rumdl-check
       files: ^docs/
+      additional_dependencies: [ruff==0.16.7]
     - id: rumdl-fmt
       files: ^docs/
       stages: [manual]
+      additional_dependencies: [ruff==0.16.7]
 
 default_language_version:
     python: python3.13
