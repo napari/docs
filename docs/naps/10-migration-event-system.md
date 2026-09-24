@@ -139,7 +139,7 @@ The object emitting the signal does not need to know who is listening or what th
 Now connecting a signal to a slot would look something like this:
 
 ```python
-button.clicked.connect(save_file) # clicked is signal and save_file is the slot
+button.clicked.connect(save_file)  # clicked is signal and save_file is the slot
 ```
 
 Now `clicked` could also have other slots connected:

@@ -333,6 +333,7 @@ class PointsSliceRequest(LayerSliceRequest):
     edge_color: np.ndarray
     edge_width: np.ndarray
 
+
 class PointsSliceResponse(LayerSliceResponse):
     indices: np.ndarray
     size: np.ndarray
@@ -641,9 +642,9 @@ Instead of making the `ViewerModel` the driver of slicing, we could instead driv
 A rough implementation of this approach could look like the following.
 
 ```python
-
 class QtViewer:
     ...
+
     def __init__(self):
         ...
         self.viewer.dims.current_step.connect(self.slice_layers)
@@ -652,15 +653,17 @@ class QtViewer:
         for layer in self.viewer.layers:
             self.layer_to_visual[layer]._slice(self.viewer.dims)
 
+
 class Image:
     ...
-    def _make_slice_request(self, dims: Dims) -> ImageSliceRequest:
-        ...
-    def _get_slice(self, request: ImageSliceRequest) -> ImageSliceResponse:
-        ...
+
+    def _make_slice_request(self, dims: Dims) -> ImageSliceRequest: ...
+    def _get_slice(self, request: ImageSliceRequest) -> ImageSliceResponse: ...
+
 
 class VispyImageLayer:
     ...
+
     def _slice(self, dims: Dims) -> None:
         request = self.layer._make_slice_request(dims)
         task = self.slice_executor.submit(self.layer._get_slice, request)
@@ -670,8 +673,7 @@ class VispyImageLayer:
         self._set_slice(task.result())
 
     @ensure_main_thread
-    def _set_slice(self, response: ImageSliceResponse) -> None:
-        ...
+    def _set_slice(self, response: ImageSliceResponse) -> None: ...
 ```
 
 Most of the internal guts of slicing, such as the implementation of `_get_slice` and

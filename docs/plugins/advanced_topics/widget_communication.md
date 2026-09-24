@@ -21,8 +21,8 @@ To access the `QtViewerDockWidget` wrapper, use the `.parent()` method on the re
 For example, to programmatically show the "Home" dock widget:
 
 ```python
-widget = viewer.window.dock_widgets["Home"]
-qt_widget = widget.native if hasattr(widget, "native") else widget
+widget = viewer.window.dock_widgets['Home']
+qt_widget = widget.native if hasattr(widget, 'native') else widget
 dock_widget = qt_widget.parent()  # Get the QtViewerDockWidget wrapper
 dock_widget.show()
 dock_widget.raise_()
