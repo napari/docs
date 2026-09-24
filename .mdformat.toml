@@ -1,4 +1,0 @@
-exclude = [
-    "docs/naps/*.md",
-    "docs/release/index.md",
-]
