@@ -103,6 +103,7 @@ theme:
 Install napari in a Python environment for the most customizable experience.
 ::::
 
+<!-- rumdl-disable-next-line MD013 -->
 ::::{grid-item-card} {material-regular}`install_desktop;1.3em` Download napari app
 :link: installation_bundle_conda
 :link-type: ref
