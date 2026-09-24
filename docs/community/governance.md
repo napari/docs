@@ -90,7 +90,7 @@ merge pull requests.
 New triage team members are added by nomination by a core team member,
 followed by acceptance through a one-week consensus seeking period.
 Triage team members can step down at any time. The
-details of the role are described in the [triage guide](napari-triage) and 
+details of the role are described in the [triage guide](napari-triage) and
 triage team members should also become familiar with the
 [core team member guide](core-dev-guide).
 

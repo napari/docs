@@ -101,7 +101,7 @@ python -m pip install -e .
 
 ### Plugin project structure
 
-```
+```text
 napari-plugin-debug/napari-simple-reload/
 ├── napari_simple_reload/
 │   ├── __init__.py

@@ -12,6 +12,7 @@ kernelspec:
 ---
 
 (layers-shapes)=
+
 # Shapes
 
 In this document, you will learn about the `napari` `shapes` layer, including

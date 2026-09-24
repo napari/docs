@@ -4,7 +4,7 @@
 
 This tutorial defines the assert keyword in Python and shows how it can be used to write test cases for a simple function.
 
-## Other lessons in this tutorial:
+## Other lessons in this tutorial
 
 - 1: This lesson (Python's assert keyword)
 - 2: [Pytest testing framework](plugin-testing-workshop-pytest)
@@ -12,7 +12,7 @@ This tutorial defines the assert keyword in Python and shows how it can be used 
 - 4: [Test coverage](plugin-testing-workshop-coverage)
 - Resource links: [Testing resources](plugin-testing-resources)
 
-### This lesson covers:
+### This lesson covers
 
 [Assert keyword](#assert-keyword)
 [Test for Pass](#test-for-the-pass-case)

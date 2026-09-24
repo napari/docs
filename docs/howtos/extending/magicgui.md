@@ -478,7 +478,7 @@ nbscreenshot(viewer, alt_text="A magicgui widget using an image layer return ann
 
 ```{note}
 With this method, a new layer will be added to the layer list each time the
-function is called.  To update an existing layer, you must use the
+function is called. To update an existing layer, you must use the
 `LayerDataTuple` approach described below
 ```
 
@@ -496,10 +496,10 @@ def make_points(...) -> list[napari.layers.Layer]:
 ```
 
 ```{note}
-Note: the `list[]` syntax here is optional from the perspective of napari.  You
+Note: the `list[]` syntax here is optional from the perspective of napari. You
 can return either a single Layer or a list of Layers and they will all be added
 to the viewer as long as you annotate with either `list[napari.layers.Layer]` or
-`napari.layers.Layer`.  If you want your code to be properly typed, however,
+`napari.layers.Layer`. If you want your code to be properly typed, however,
 your return type must match your return annotation.
 ```
 
@@ -639,10 +639,10 @@ def make_points(...) -> list[napari.types.LayerDataTuple]:
 ```
 
 ```{note}
-Note: the `list[]` syntax here is optional from the perspective of napari.  You
+Note: the `list[]` syntax here is optional from the perspective of napari. You
 can return either a single tuple or a list of tuples and they will all be added
 to the viewer as long as you annotate with either `list[napari.types.LayerDataTuple]`
-or `napari.types.LayerDataTuple`.  If you want your code to be properly typed, however,
+or `napari.types.LayerDataTuple`. If you want your code to be properly typed, however,
 your return type must match your return annotation.
 ```
 

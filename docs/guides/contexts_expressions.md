@@ -4,7 +4,7 @@
 
 ```{note}
 This page is mostly aimed at developers who are interested in contributing to
-or understanding the inner workings of napari.  While the concept of expressions
+or understanding the inner workings of napari. While the concept of expressions
 *will* be relevant for plugin developers writing plugin manifests, it won't be
 necessary for plugin devs or end-users to understand the implementation details
 described on this page.
@@ -359,7 +359,7 @@ Out[12]: 1
        )
    ```
 
-1. _Internally_ (in napari code), we can use those objects directly to declare
+1. *Internally* (in napari code), we can use those objects directly to declare
    expressions in an IDE-friendly way. For example, here we are declaratively
    populating the layer-list context menu; this is a function that will split
    the current stack into multiple layers, but it is only enabled when the
@@ -374,7 +374,7 @@ Out[12]: 1
    }
    ```
 
-1. _Externally_ (in plugin manifests), plugin developers use the string form to
+1. *Externally* (in plugin manifests), plugin developers use the string form to
    express conditions. For example, this plugin manifest offers up a command
    (just a callable) that is only enabled when the the active layer is an RGB
    image.

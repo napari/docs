@@ -22,7 +22,9 @@ Sometimes you just need to open images to test some functionality of napari or a
 ![Open sample image](../_static/images/open_image.png)
 
 ### Available built-in sample images
+
 Many samples come from the scikit-image example images available in [`skimage.data`](https://scikit-image.org/docs/stable/api/skimage.data.html#) which you can read to learn more about the images, including source and copyright status.
+
 | Sample image | Notes |
 | ------------ | ----- |
 | Astronaut (RGB) | Color photograph of an astronaut. |
@@ -167,7 +169,7 @@ viewer.close()
 
 ### General-purpose reader plugins
 
-There are a few examples of plugins bundling multiple readers. One example is [ndevio](https://napari-hub.org/plugins/ndevio.html) which wraps the family of [bioio](https://bioio.readthedocs.io/en/latest/) packages to provide support for multiple microscopy file formats. Often such bundled reader plugins come with a set of formats supported by default, and allow the users to add optional formats, typically by installing additional dependencies. 
+There are a few examples of plugins bundling multiple readers. One example is [ndevio](https://napari-hub.org/plugins/ndevio.html) which wraps the family of [bioio](https://bioio.readthedocs.io/en/latest/) packages to provide support for multiple microscopy file formats. Often such bundled reader plugins come with a set of formats supported by default, and allow the users to add optional formats, typically by installing additional dependencies.
 
 In the example below we illustrate how to use ndevio to open a zarr file. Again, we need to install ndevio with either the [napari plugin manager](https://napari.org/napari-plugin-manager/#installing-a-plugin-via-direct-entry) or your preferred Python package manager.
 
@@ -218,6 +220,7 @@ viewer.open(file_path_tiff2)
 # Switch to viewing the first channel
 viewer.dims.set_point(0, 0)
 ```
+
 ```{code-cell} ipython3
 :tags: [remove-input]
 
@@ -275,7 +278,7 @@ viewer.close()
 
 ## Using plugins to improve image display
 
-With the release of napari 0.7.0, [napari-metadata](https://napari.org/napari-metadata) is included with the bundle, conda-forge and with `pip install "napari[optional]"` (or `napari[all]`) installations. This plugin provides a widget to view and edit the metadata of layers. This can be useful to check if the metadata was correctly read, and to edit it if necessary. 
+With the release of napari 0.7.0, [napari-metadata](https://napari.org/napari-metadata) is included with the bundle, conda-forge and with `pip install "napari[optional]"` (or `napari[all]`) installations. This plugin provides a widget to view and edit the metadata of layers. This can be useful to check if the metadata was correctly read, and to edit it if necessary.
 
 ![napari metadata widget](https://raw.githubusercontent.com/napari/napari-metadata/main/docs/images/horizontal-widget.png)
 

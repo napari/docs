@@ -12,6 +12,7 @@ kernelspec:
 ---
 
 (layers-surface)=
+
 # Surface
 
 In this document, you will learn about the `napari` `surface` layer, including
@@ -124,6 +125,7 @@ help(napari.Viewer.add_surface)
 
 The data for a `surface` layer can be given as either a 2-tuple
 `(vertices, faces)` or a 3-tuple `(vertices, faces, vertex_values)`.
+
 - The vertices are an `NxD` array of `N` vertices in `D` coordinates.
 - The faces are an `Mx3` integer array of the indices of the triangles
   making up the faces of the surface.

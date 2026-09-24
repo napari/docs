@@ -119,8 +119,9 @@ The image below has the areas of the viewer labeled:
 
 ```{admonition} Tip: Right click advanced option indicator
 ---
-class: tip
----
+
+## class: tip
+
 If you see a button with a chevron mark in the lower right corner, it means you can click it with the right mouse button to bring up more advanced options!
 
 ![buttons with right click indicators](../_static/images/button-right-click-indicator.png)
@@ -311,8 +312,9 @@ viewer.add_points()
 
 ```{admonition} Tip: New layer button behavior
 ---
-class: tip
----
+
+## class: tip
+
 Creating a new points or shapes layer with the layer buttons will inherit the dimensions and scale of the selected layer(s), as shown by the highlight around the buttons.
 To create layers that inherit the full dimensions and mixed scale of all the layers in the layer list, either select all layers or ensure no layers are selected.
 ```
@@ -663,11 +665,12 @@ In napari there are two main types: canvas overlays - which are locked in positi
 
 Canvas overlays can be accessed via `viewer.canvas.overlays`:
 
-- Scale bar (canvas overlay, accessible via `viewer.canvas.overlays.scale_bar`): it displays distances in world coordinates for the displayed scene. The scale bar usually inherits layer units when they are set. If inference fails it can fall back to a dimensionless label, and if displayed axes mix dimensionalities it uses the last displayed axis unit with a warning. You can control its appearance and fixed length from the viewer. See the [units guide](units-guide) for more information. 
+- Scale bar (canvas overlay, accessible via `viewer.canvas.overlays.scale_bar`): it displays distances in world coordinates for the displayed scene. The scale bar usually inherits layer units when they are set. If inference fails it can fall back to a dimensionless label, and if displayed axes mix dimensionalities it uses the last displayed axis unit with a warning. You can control its appearance and fixed length from the viewer. See the [units guide](units-guide) for more information.
 - Canvas Axes (canvas overlay, accessible via `viewer.canvas.overlays.axes`): displays basic axes in a corner of the canvas, linked to the viewer's camera.
 - Text (canvas overlay, accessible via `viewer.canvas.overlays.text`): displays arbitrary text on the canvas.
 
 Scene overlays live on `viewer.scene.overlays`:
+
 - Scene Axes (scene overlay, accessible via `viewer.scene.axes`): displays basis axes at the origin in the scene.
 
 These overlays can also be accessed via graphical interface through the **View** menu and their respective submenus.
@@ -716,7 +719,7 @@ A context-sensitive menu is available when you right-click on any of the layers.
   - **sum projection** - the sum projection simply adds together all the pixel values in the stack for a given position. In this projection, the image is typically re-scaled to a 16-bit image, as the sum of all the pixel intensity values usually exceeds 255, which would result in a completely white 8-bit image.
   - **mean projection** - the mean projection is the average intensity projection. It simply averages all the pixel values in the stacks to make the final projected image.
   - **median projection** - the median projection takes the median pixel intensity for the final projected image.
-- **Link Layers** - links the selected layers. Once layers are linked, any action performed on one layer will be performed on all linked layers at the same time. The layer control panel will show _only_ when a single layer is selected. Changing properties with that layer's control panel will change properties in all of the linked layers.
+- **Link Layers** - links the selected layers. Once layers are linked, any action performed on one layer will be performed on all linked layers at the same time. The layer control panel will show *only* when a single layer is selected. Changing properties with that layer's control panel will change properties in all of the linked layers.
 - **Unlink Layers** - appears when layers are linked. It unlinks the layers so that changes to one of the layer's properties no longer result in the same changes to the previously linked layers.
 - **Select Linked Layers** - appears only when layers are linked. Selects all layers linked to a given layer.
 

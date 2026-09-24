@@ -217,7 +217,7 @@ layer:
 
   Select from `translucent`, `translucent no depth`, `additive`, `minimum`, or
   `opaque` from the dropdown. Refer to the [Blending layers](blending-layers)
-  section of _Layers at a glance_ for an explanation of each type of blending.
+  section of *Layers at a glance* for an explanation of each type of blending.
 
 - Color mode
 
@@ -502,8 +502,9 @@ them.
 
 ```{admonition} Want to save without compression?
 ---
-class: tip
----
+
+## class: tip
+
 When saving a labels layer, lossless zlib compression is applied by default.
 To save with a different level of compression, consider using
 [imageio.imwrite](https://imageio.readthedocs.io/en/stable/_autosummary/imageio.v3.imwrite.html).

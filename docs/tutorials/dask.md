@@ -200,7 +200,7 @@ This dataset was originally described in [Edlow, B.L., Mareyam, A., Horn, A. _et
 ```{admonition} Getting the data
 
 You can download the dataset from [here](https://datadryad.org/stash/dataset/doi:10.5061/dryad.119f80q).
-In this example we use the [FLASH25_100um_TIFF_Axial data](https://datadryad.org/stash/downloads/file_stream/182482). This link will download a ~2 Gb `.zip` file  and after extracting the compressed data set,
+In this example we use the [FLASH25_100um_TIFF_Axial data](https://datadryad.org/stash/downloads/file_stream/182482). This link will download a ~2 Gb `.zip` file and after extracting the compressed data set,
 the `.tiff` images can be found in the `SYNTHESIZED_TIFF_Images_Raw/Synthesized_FLASH25_100um_TIFF_Axial_Images/`
 directory. The dataset is 3.69 GB unzipped.
 ```
@@ -226,7 +226,7 @@ if __name__ == '__main__':
     napari.run()
 ```
 
-__And here's the final output!__
+**And here's the final output!**
 
 ![napari viewer showing the brain dataset as slices, shown each at a time while a slider moves through the first axis of the data.](https://media.giphy.com/media/LO3gPbCs5AxApjAehW/giphy.gif)
 

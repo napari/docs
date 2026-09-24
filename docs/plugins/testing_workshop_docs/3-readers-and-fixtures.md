@@ -4,7 +4,7 @@
 
 This lesson explains how to use and test a plugin's reader function, built-in fixtures, custom fixtures, and enclosed testing.
 
-## Other lessons in this tutorial:
+## Other lessons in this tutorial
 
 - 1: [Python’s assert keyword](plugin-testing-workshop-assert)
 - 2: [Pytest testing framework](plugin-testing-workshop-pytest)
@@ -12,7 +12,7 @@ This lesson explains how to use and test a plugin's reader function, built-in fi
 - 4: [Test coverage](plugin-testing-workshop-coverage)
 - Resource links: [Testing resources](plugin-testing-resources)
 
-### This lesson covers:
+### This lesson covers
 
 - [Readers](#reader)
 - [Built-in fixtures](#built-in-fixtures)

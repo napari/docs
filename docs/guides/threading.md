@@ -115,7 +115,7 @@ napari.run()
 When the `connect` argument to
 {func}`@thread_worker<napari.qt.threading.thread_worker>`
 is not `None`, the thread will start
-by default when the decorated function is called.  Otherwise the thread must
+by default when the decorated function is called. Otherwise the thread must
 be manually started by calling
 {meth}`worker.start() <napari.qt.threading.WorkerBase.start>`.
 ```
@@ -155,7 +155,7 @@ def error_prone_function(): ...
 
 (generators-for-the-win)=
 
-## Generators for the win!
+## Generators for the win
 
 ````{admonition} quick reminder
 
