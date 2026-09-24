@@ -604,7 +604,7 @@ for details).
 
 Currently, the {class}`app_model.Application` class does not have a
 context registry but it may in future (more details can be found
-[here](https://github.com/pyapp-kit/app-model/pull/142#issuecomment-1792405334)).
+[in app-model PR #142](https://github.com/pyapp-kit/app-model/pull/142#issuecomment-1792405334)).
 napari therefore needs to manually update the context via
 {meth}`~app_model.backends.qt.QMenuItemAction.update_from_context`. For menu bar items,
 we connect {meth}`~app_model.backends.qt.QMenuItemAction.update_from_context` to the

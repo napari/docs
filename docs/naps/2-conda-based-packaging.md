@@ -575,10 +575,6 @@ CC0+BY [^cc0by].
 
 <!-- Links -->
 
-[^staged-recipes-napari]: <https://github.com/conda-forge/staged-recipes/pull/9983>
-
-[^napari-feedstock-creation]: <https://github.com/conda-forge/napari-feedstock/commit/815a24cadb9522f4fc81a41c9eb89d45b2e284eb>
-
 [^pypi-napari]: <https://pypi.org/project/napari/>
 
 [^napari-feedstock]: <https://github.com/conda-forge/napari-feedstock>
@@ -587,7 +583,35 @@ CC0+BY [^cc0by].
 
 [^cibuildwheel]: <https://github.com/pypa/cibuildwheel>
 
+[^audithwheel]: <https://github.com/pypa/auditwheel>
+
+[^delocate]: <https://github.com/matthew-brett/delocate>
+
+[^delvewheel]: <https://github.com/adang1345/delvewheel>
+
+[^pypi-parallelism-abi]: <https://x.com/ralfgommers/status/1517410559972589569>
+
+[^briefcase-python]: <https://github.com/beeware?q=Python+support&type=all&language=&sort=>
+
+[^appimage-crash]: <https://github.com/napari/napari/issues/3487>
+
+[^appimage-crash2]: <https://github.com/napari/napari/issues/3816>
+
+[^staged-recipes-napari]: <https://github.com/conda-forge/staged-recipes/pull/9983>
+
+[^napari-feedstock-creation]: <https://github.com/conda-forge/napari-feedstock/commit/815a24cadb9522f4fc81a41c9eb89d45b2e284eb>
+
+[^release-guide]: <https://napari.org/stable/developers/release.html>
+
+[^napari-channel]: <https://anaconda.org/napari/>
+
 [^staged-recipes-all-plugins]: <https://github.com/conda-forge/staged-recipes/pulls?q=is%3Apr+author%3Agoanpeca+created%3A2022-01-01..2022-05-01>
+
+[^scijava-pinnings]: <https://github.com/scijava/pom-scijava/blob/ff35ca810a8717c4f461ef24df4986bf1914c673/pom.xml#L307>
+
+[^conda-forge-pinnings]: <https://github.com/conda-forge/conda-forge-pinning-feedstock/blob/32f93dd/recipe/conda_build_config.yaml>
+
+[^maxiconda]: <https://github.com/Semi-ATE/maxiconda-envs>
 
 [^constructor]: <https://github.com/conda/constructor>
 
@@ -595,57 +619,33 @@ CC0+BY [^cc0by].
 
 [^menuinst]: <https://github.com/conda/menuinst>
 
-[^napari-channel]: <https://anaconda.org/napari/>
+[^briefcase-utilities-example]: <https://github.com/napari/napari/blob/be43e127a079f999d830c457d6d69b7c2b56875d/napari/utils/misc.py#L49>
 
 [^briefcase-workaround-example]: <https://github.com/napari/napari/blob/be43e127a079f999d830c457d6d69b7c2b56875d/napari/plugins/__init__.py#L34-L42>
-
-[^briefcase-utilities-example]: <https://github.com/napari/napari/blob/be43e127a079f999d830c457d6d69b7c2b56875d/napari/utils/misc.py#L49>
 
 [^pyoxidizer]: <https://pyoxidizer.readthedocs.io/en/stable/>
 
 [^nuitka]: <https://nuitka.net/>
 
-[^napari-releases-json]: <https://api.github.com/repos/napari/napari/releases>
-
 [^mne-constructor]: <https://x.com/mne_news/status/1506212014993162247>
 
-[^appimage-crash]: <https://github.com/napari/napari/issues/3487>
+[^napari-packaging-docs]: <https://github.com/napari/packaging>
 
-[^appimage-crash2]: <https://github.com/napari/napari/issues/3816>
+[^napari-installer-class]: <https://github.com/napari/napari/blob/5c10022337601f350ad64ce56eddf6664306e40e/napari/_qt/dialogs/qt_plugin_dialog.py#L64>
 
-[^napari-packaging-docs]: <napari-packaging>
+[^napari-hub-api]: <https://api.napari-hub.org/plugins>
 
-[^napari-hub-api]: https://api.napari-hub.org/plugins
+[^conda-pip-issue-comment]: <https://github.com/napari/napari/issues/3223#issuecomment-972189348>
 
-[^in-app-update-pr]: https://github.com/napari/napari/pull/4422
+[^pamba]: <https://github.com/tlambert03/pamba>
 
-[^installability-notebook]: https://colab.research.google.com/drive/1QxbBZYe9-AThGuRsTfwYzT72_UkamXmk
+[^in-app-update-pr]: <https://github.com/napari/napari/pull/4422>
 
-[^glossary]: https://jaimergp.github.io/scientific-packaging-glossary/
+[^napari-releases-json]: <https://api.github.com/repos/napari/napari/releases>
 
-[^briefcase-python]: https://github.com/beeware?q=Python+support&type=all&language=&sort=
+[^installability-notebook]: <https://colab.research.google.com/drive/1QxbBZYe9-AThGuRsTfwYzT72_UkamXmk>
 
-[^pypi-parallelism-abi]: https://x.com/ralfgommers/status/1517410559972589569
-
-[^release-guide]: https://napari.org/stable/developers/release.html
-
-[^scijava-pinnings]: https://github.com/scijava/pom-scijava/blob/ff35ca810a8717c4f461ef24df4986bf1914c673/pom.xml#L307
-
-[^maxiconda]: https://github.com/Semi-ATE/maxiconda-envs
-
-[^conda-forge-pinnings]: https://github.com/conda-forge/conda-forge-pinning-feedstock/blob/32f93dd/recipe/conda_build_config.yaml
-
-[^audithwheel]: https://github.com/pypa/auditwheel
-
-[^delocate]: https://github.com/matthew-brett/delocate
-
-[^delvewheel]: https://github.com/adang1345/delvewheel
-
-[^conda-pip-issue-comment]: https://github.com/napari/napari/issues/3223#issuecomment-972189348
-
-[^pamba]: https://github.com/tlambert03/pamba
-
-[^napari-installer-class]: https://github.com/napari/napari/blob/5c10022337601f350ad64ce56eddf6664306e40e/napari/_qt/dialogs/qt_plugin_dialog.py#L64
+[^glossary]: <https://jaimergp.github.io/scientific-packaging-glossary/>
 
 [^cc0]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
     <https://creativecommons.org/publicdomain/zero/1.0/>
