@@ -1,14 +1,14 @@
 The sequence of events to draw a polygon or path are almost the same
 when using either the mouse or a tablet.
 
-<ins>Drawing with mouse</ins>
+#### Drawing with mouse
 
 1. Click mouse (left-click) to begin drawing.
 1. Move mouse -- without holding down the mouse button -- to draw the path.
 1. Click mouse (left-click) or press `Esc` to end drawing the path or polygon.
    In case of drawing a polygon the polygon will be automatically completed.
 
-<ins>Drawing with tablet</ins>
+#### Drawing with tablet
 
 The polygon lasso and the path tool can also be used to draw `Polygons` or `Paths`
 using a tablet. In this case, drawing the polygon or path is started by touching
@@ -16,7 +16,7 @@ the tablet screen with the tablet stylus and drawing will continue for as long
 as the pencil is moved while touching the tablet screen. Note that similar behavior
 is also available when using a macOS trackpad, using three-finger drag mode.
 
-<ins>Adding of vertices while drawing</ins>
+#### Adding of vertices while drawing
 
 For both mouse and tablet mode, vertices are added only if the vertex to be added
 is at a certain number of screen pixels away from the previous vertex. This value
@@ -27,7 +27,7 @@ The default is 10 and can be any integer higher than 0 and lower than 50. As wit
 the polygon creation tool, drawing the shape can also be finished by pressing the
 `Esc` key.
 
-<ins>Reducing the number of vertices</ins>
+#### Reducing the number of vertices
 
 After finishing drawing a polygon or path, an implementation of the
 [Ramer–Douglas–Peucker algorithm](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm)
