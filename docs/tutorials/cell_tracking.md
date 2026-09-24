@@ -13,7 +13,7 @@ This application note covers two examples:
 
 The first example of track visualization uses data from the [cell tracking challenge](https://celltrackingchallenge.net/3d-datasets/). We will use the *C. elegans* developing embryo [dataset](https://data.celltrackingchallenge.net/training-datasets/Fluo-N3DH-CE.zip) which consists of 3D+t volumetric imaging data, manually annotated tracks and cell lineage information.
 
-A full description of the data format can be found [here](https://public.celltrackingchallenge.net/documents/Naming%20and%20file%20content%20conventions.pdf).
+A full description of the data format can be found in [the Cell Tracking Challenge format specification](https://public.celltrackingchallenge.net/documents/Naming%20and%20file%20content%20conventions.pdf).
 
 ### Extracting the tracks from the dataset
 
@@ -204,13 +204,13 @@ ______________________________________________________________________
 
 ## 2. Using `btrack` to track cells
 
-The `btrack` library can be used for cell tracking. It provides a convenient `to_napari()` function to enable rapid visualization of the tracking results. You can learn more about the `btrack` library [here](https://github.com/quantumjot/btrack).
+The `btrack` library can be used for cell tracking. It provides a convenient `to_napari()` function to enable rapid visualization of the tracking results. You can learn more about the `btrack` library [in its GitHub repository](https://github.com/quantumjot/btrack).
 
 ```python
 import btrack
 ```
 
-We start by loading a file containing the centroids of all the found cells in each frame of the source movie. Note that this file only contains the locations of cells in the movie, there are no tracks yet. We can use the `btrack` library to load this file as a list of `objects` that contain information about each found cell, including the TZYX position. The example dataset can be downloaded [here](https://github.com/quantumjot/btrack/blob/0f8bbd937535193bde20e3ebe91a323f6bb915e9/examples/napari_example.csv).
+We start by loading a file containing the centroids of all the found cells in each frame of the source movie. Note that this file only contains the locations of cells in the movie, there are no tracks yet. We can use the `btrack` library to load this file as a list of `objects` that contain information about each found cell, including the TZYX position. The example dataset can be downloaded [from the btrack repository](https://github.com/quantumjot/btrack/blob/0f8bbd937535193bde20e3ebe91a323f6bb915e9/examples/napari_example.csv).
 
 ```python
 objects = btrack.dataio.import_CSV('napari_example.csv')
@@ -236,7 +236,7 @@ with btrack.BayesianTracker() as tracker:
     data, features, graph = tracker.to_napari(ndim=2)
 ```
 
-We set the configuration of the tracker using a configuration file using the `.configure_from_file()` method. An example configuration file can be found [here](https://github.com/quantumjot/btrack/blob/main/models/cell_config.json).
+We set the configuration of the tracker using a configuration file using the `.configure_from_file()` method. An example configuration file can be found [in the btrack repository](https://github.com/quantumjot/btrack/blob/main/models/cell_config.json).
 
 Next, the objects are linked into tracks using the `.track_interactive()` method. The `step_size` argument specifies how many steps are taken before reporting the tracking statistics. The `.optimize()` method then performs a global optimization on the dataset and creates lineage trees automatically.
 
@@ -260,9 +260,9 @@ In this application note, we have used napari to track and visualize single cell
 
 References for cell tracking challenge:
 
-- https://www.nature.com/articles/nmeth.1228
-- http://dx.doi.org/10.1093/bioinformatics/btu080
-- http://dx.doi.org/10.1038/nmeth.4473
+- <https://www.nature.com/articles/nmeth.1228>
+- <http://dx.doi.org/10.1093/bioinformatics/btu080>
+- <http://dx.doi.org/10.1038/nmeth.4473>
 
 For a more advanced example of visualizing cell tracking data with napari, please see the Arboretum plugin for napari:
 
