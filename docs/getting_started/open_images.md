@@ -117,9 +117,7 @@ nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel tif microsc
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -161,9 +159,7 @@ nbscreenshot(viewer, alt_text="napari viewer showing a 3D mesh of an airplane op
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -187,9 +183,7 @@ nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel zarr image 
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -228,9 +222,7 @@ nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image 
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -253,9 +245,7 @@ nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image 
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -270,9 +260,7 @@ nbscreenshot(viewer, alt_text="napari viewer showing a multi-channel TIFF image 
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -306,8 +294,6 @@ nbscreenshot(viewer, alt_text="napari viewer showing twice the same multi-channe
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```

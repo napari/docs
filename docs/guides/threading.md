@@ -61,9 +61,7 @@ your function with the
 Continuing with the example above:
 
 ```{code-block} python
----
-emphasize-lines: 4,7,13-15
----
+:emphasize-lines: 4,7,13-15
 import napari
 import numpy as np
 
@@ -198,9 +196,7 @@ as it is generated (rather than taking the average of the fully generated
 stack) we can watch the mean projection as it builds:
 
 ```{code-block} python
----
-emphasize-lines: 19,25
----
+:emphasize-lines: 19,25
 import napari
 import numpy as np
 from napari.qt.threading import thread_worker
@@ -253,9 +249,7 @@ free. In the example below we decorate what would normally be an infinitely
 yielding generator, but add a button that aborts the worker when clicked:
 
 ```{code-block} python
----
-emphasize-lines: 20,30
----
+:emphasize-lines: 20,30
 import time
 import napari
 from napari.qt.threading import thread_worker
@@ -328,9 +322,7 @@ cumulative multiplier that runs in another thread, and exits if the product
 hits "0":
 
 ```{code-block} python
----
-emphasize-lines: 9,14-16,35,39,49,50,52,53
----
+:emphasize-lines: 9,14-16,35,39,49,50,52,53
 import napari
 import time
 

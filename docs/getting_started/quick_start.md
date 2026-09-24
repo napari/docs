@@ -108,9 +108,7 @@ viewer.add_image(data.cell(), name='cell')
 ```
 
 ```{code-cell} ipython3
----
-tags: [remove-input]
----
+:tags: [remove-input]
 import napari
 from napari.utils import nbscreenshot
 
@@ -136,9 +134,7 @@ viewer.layers['cell'].colormap = 'yellow'
 ```
 
 ```{code-cell} ipython3
----
-tags: [remove-input]
----
+:tags: [remove-input]
 viewer.layers['cell'].colormap = "yellow"
 nbscreenshot(viewer, alt_text="image of singular cell with yellow tint")
 ```
@@ -191,9 +187,7 @@ Alternatively, try [this plugin](https://napari-hub.org/plugins/napari-skimage.h
 **Note:** the area reported by `regionprops` is the number of pixels. Check pixel size and convert the reported number to physical units.
 
 ```{code-cell} ipython3
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close_all()
 ```
 

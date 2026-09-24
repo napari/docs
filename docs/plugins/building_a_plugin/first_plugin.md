@@ -10,10 +10,7 @@ repository][napari_plugin_template] that helps automate the creation of new plug
 of conveniences for testing, maintaining, and deploying your plugin.
 
 ```{admonition} new plugin format!
----
-
-## class: important
-
+:class: important
 This page describes the creation of a plugin targeting `npe2`, the second
 generation plugin engine.
 ```
@@ -91,10 +88,7 @@ Your project should now look like this:
 ```
 
 ````{admonition} **napari-hello** vs **napari_hello**
----
-
-## class: tip
-
+:class: tip
 You might notice that we used a **dash** in our top level folder, and an
 **underscore** in the inner folder. This is the Python convention: *distribution
 packages* use dashes, while Python *files* and *modules* use underscores. Our
