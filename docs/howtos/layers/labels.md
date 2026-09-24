@@ -450,18 +450,14 @@ labels_layer = viewer.add_labels(label_image, name='segmentation')
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="Segmentation of coins in an image, displayed using a labels layer")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -471,9 +467,7 @@ viewer.close()
 accepts the following layer-creation parameters.
 
 ```{code-cell} python
----
-tags: [hide-output]
----
+:tags: [hide-output]
 help(napari.Viewer.add_labels)
 ```
 
@@ -501,10 +495,7 @@ the size of any currently existing image layers, allowing you to paint on top of
 them.
 
 ```{admonition} Want to save without compression?
----
-
-## class: tip
-
+:class: tip
 When saving a labels layer, lossless zlib compression is applied by default.
 To save with a different level of compression, consider using
 [imageio.imwrite](https://imageio.readthedocs.io/en/stable/_autosummary/imageio.v3.imwrite.html).
@@ -536,9 +527,7 @@ dimensions of the layer, allowing you to browse volumetric timeseries data and
 other high dimensional data.
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 import napari
 from skimage import data
 from scipy import ndimage as ndi
@@ -551,9 +540,7 @@ viewer.dims.ndisplay = 3
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 # programmatically adjust the camera angle
 viewer.scene.camera.zoom = 2
 viewer.scene.camera.angles = (3, 38, 53)
