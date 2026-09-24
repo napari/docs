@@ -170,7 +170,7 @@ Don't do this:
 # my_plugin/module.py
 import json
 
-data_file = open("some_data_in_my_plugin.json")
+data_file = open('some_data_in_my_plugin.json')
 data = json.load(data_file)
 ```
 
@@ -178,7 +178,7 @@ Instead, make sure to close your resource after grabbing the data (ideally by
 using a context manager, but manually otherwise):
 
 ```py
-with open("some_data_in_my_plugin.json") as data_file:
+with open('some_data_in_my_plugin.json') as data_file:
     data = json.load(data_file)
 ```
 
@@ -398,9 +398,11 @@ import numpy as np
 from qtpy.QtWidgets import QWidget
 from my_heavy_dependency_like_tensorflow import something_amazing
 
+
 class MyWidget(QWidget):
     def do_something_amazing(self):
         return something_amazing()
+
 
 class FastWidget(QWidget):
     def do_something_fast(self):
@@ -420,6 +422,7 @@ like `FastWidget`, load much faster:
 # mypackage/napari_plugin.py
 import numpy as np
 from qtpy.QtWidgets import QWidget
+
 
 class MyWidget(QWidget):
     def do_something_amazing(self):

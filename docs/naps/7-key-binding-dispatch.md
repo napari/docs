@@ -99,6 +99,7 @@ from dataclasses import dataclass, field
 
 from app_model.expressions import Expr
 
+
 @dataclass(order=True)
 class KeyBindingEntry:
     command_id: str = field(compare=False)
@@ -171,6 +172,7 @@ Key bindings will automatically be assigned weights depending on who set them, p
 ```python
 from enum import IntEnum
 
+
 class KeyBindingWeights(IntEnum):
     CORE = 0
     PLUGIN = 300
@@ -236,7 +238,7 @@ keymap = Dict[int, List[KeyBindingEntry]] = {
     KeyMod.CtrlCmd | KeyCode.KeyX: ...,
     KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyC): ...,
     KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyV): ...,
-    KeyMod.Shift : ...,
+    KeyMod.Shift: ...,
 }
 ```
 
@@ -246,8 +248,10 @@ Due to the ability of key sequences to be encoded as 32-bit integers, bitwise op
 def has_shift(key: int) -> bool:
     return bool(key & KeyMod.Shift)
 
+
 def starts_with_ctrl_cmd_x(key: int) -> bool:
     return key & 0x0000FFFF == (KeyMod.CtrlCmd | KeyCode.KeyX)
+
 
 def multi_part(key: int) -> bool:
     return key > 0x0000FFFF
@@ -286,6 +290,7 @@ In a more generic form:
 KEY_MOD_MASK = 0x00000F00
 PART_0_MASK = 0x0000FFFF
 
+
 def create_conflict_filter(conflict_key: int) -> Callable[[int], bool]:
     if conflict_key & KEY_MOD_MASK == conflict_key:
         # only comprised of modifier keys in first part
@@ -301,6 +306,7 @@ def create_conflict_filter(conflict_key: int) -> Callable[[int], bool]:
             return NotImplemented
 
     return inner
+
 
 def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
     conflict_filter = create_conflict_filter(key)
@@ -425,8 +431,7 @@ For example, following is how a user might have defined a key binding for an `Im
 
 ```python
 @Image.bind_key('Control-C')
-def foo(layer):
-    ...
+def foo(layer): ...
 ```
 
 An entry would be created equivalent to:
@@ -435,8 +440,13 @@ An entry would be created equivalent to:
 def wrapper(layer: Image):
     yield from foo(layer)
 
+
 action = Action(id=foo.__qualname__, title=foo.__name__, callback=wrapper)
-entry = KeyBindingEntry(command_id=foo.__qualname__, weight=KeyBindingWeight.USER, when=parse_expression("active_layer_type == 'image'"))
+entry = KeyBindingEntry(
+    command_id=foo.__qualname__,
+    weight=KeyBindingWeight.USER,
+    when=parse_expression("active_layer_type == 'image'"),
+)
 
 register_action(action)
 register_key_binding('Ctrl+C', entry)
@@ -463,6 +473,7 @@ This effectively breaks the key sequences of the key bindings into their respect
 
 ```python
 from app_model.types import KeyBinding
+
 
 @dataclass
 class Node:

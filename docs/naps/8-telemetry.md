@@ -192,16 +192,16 @@ from napari._app_model import get_app_model
 
 
 def get_computer_identifier():
-    config_dir = Path(appdirs.user_config_dir("napari"))
+    config_dir = Path(appdirs.user_config_dir('napari'))
     if not config_dir.exists():
         config_dir.mkdir(parents=True)
-    config_file = config_dir / "telemetry_id.txt"
+    config_file = config_dir / 'telemetry_id.txt'
     if config_file.exists():
         with config_file.open() as fp:
             return fp.read().strip()
     else:
         identifier = str(uuid.uuid4())
-        with config_file.open("w") as fp:
+        with config_file.open('w') as fp:
             fp.write(identifier)
         return identifier
 
@@ -216,26 +216,27 @@ def get_week_identifier():
     computer_id = get_computer_identifier()
     week_num = datetime.datetime.now().isocalendar()[1]
     year = datetime.datetime.now().year
-    return hashlib.md5(f"{year}-{week_num}-{computer_id}".encode()).hexdigest()
+    return hashlib.md5(f'{year}-{week_num}-{computer_id}'.encode()).hexdigest()
 
 
 def get_basic_information():
-    first_report = (Path(appdirs.user_config_dir("napari")) / "first_run.txt").exists()
+    first_report = (Path(appdirs.user_config_dir('napari')) / 'first_run.txt').exists()
     return {
-        "napari_version": metadata.version("napari"),
-        "python_version": sys.version,
-        "identifier": get_week_identifier(),
-        "platform": sys.platform,
-        "cpu_architecture": platform.machine(),
-        "first_report": first_report,
-        "sys_name": _sys_name(),
+        'napari_version': metadata.version('napari'),
+        'python_version': sys.version,
+        'identifier': get_week_identifier(),
+        'platform': sys.platform,
+        'cpu_architecture': platform.machine(),
+        'first_report': first_report,
+        'sys_name': _sys_name(),
     }
 
 
 def get_public_plugins():
     p_sum = plugin_summaries()
-    return ({normalized_name(p["name"]): p for p in p_sum} |
-            {p["name"]: p for p in p_sum})
+    return {normalized_name(p['name']): p for p in p_sum} | {
+        p['name']: p for p in p_sum
+    }
 
 
 def get_middle_information():
@@ -247,19 +248,18 @@ def get_middle_information():
 
     for manifest in pm.iter_manifests():
         name = manifest.name
-        if name == "napari":
+        if name == 'napari':
             continue
         ver = manifest.package_metadata.version
-        if ver in public_plugins.get(name, {}).get("pypi_versions", []):
+        if ver in public_plugins.get(name, {}).get('pypi_versions', []):
             # skip if not public plugin/version
-            plugin_info.append({"name": name, "version": ver})
+            plugin_info.append({'name': name, 'version': ver})
         else:
-            print("skip", name, ver)
+            print('skip', name, ver)
 
     base_info = get_basic_information()
-    base_info["plugins"] = plugin_info
+    base_info['plugins'] = plugin_info
     return base_info
-
 
 
 class SizeCategory(IntEnum):
@@ -281,26 +281,26 @@ class SizeCategory(IntEnum):
 
 
 class DataSizeTypeCollector:
-    _instances: ClassVar[Dict[str, "DataSizeTypeCollector"]] = {}
+    _instances: ClassVar[Dict[str, 'DataSizeTypeCollector']] = {}
 
     def __init__(self, file_path):
         if file_path in self._instances:
-            raise ValueError(f"Already exists {file_path}")
+            raise ValueError(f'Already exists {file_path}')
         self._instances[file_path] = self
         self.file_path = file_path
-        self.data = {"week_info": get_week_identifier()}
+        self.data = {'week_info': get_week_identifier()}
         if os.path.exists(self.file_path):
-            with open(self.file_path, "r") as fp:
+            with open(self.file_path, 'r') as fp:
                 try:
                     data_ = json.load(fp)
                 except ValueError:
                     pass
                 else:
-                    if data_.get("week_info") == self.data["week_info"]:
+                    if data_.get('week_info') == self.data['week_info']:
                         self.data = data_
 
     def save(self):
-        with open(self.file_path, "w") as fp:
+        with open(self.file_path, 'w') as fp:
             json.dump(self.data, fp)
 
     @classmethod
@@ -313,35 +313,43 @@ class DataSizeTypeCollector:
     @staticmethod
     def extract_size_info_volumetric(data):
         return {
-            "size": data.size,
-            "shape": data.shape,
-            "dtype": str(data.dtype),
-            "ndim": data.ndim,
-            "size_category": SizeCategory.from_size(data.size).name,
-            "class": data.__class__.__name__,
+            'size': data.size,
+            'shape': data.shape,
+            'dtype': str(data.dtype),
+            'ndim': data.ndim,
+            'size_category': SizeCategory.from_size(data.size).name,
+            'class': data.__class__.__name__,
         }
 
     @staticmethod
     def extract_size_info_spatial(data):
         return {
-            "size": data.size,
-            "shape": data.shape,
-            "dtype": str(data.dtype),
-            "ndim": data.shape[1],
-            "size_category": SizeCategory.from_size(data.shape[0]).name,
-            "class": data.__class__.__name__,
+            'size': data.size,
+            'shape': data.shape,
+            'dtype': str(data.dtype),
+            'ndim': data.shape[1],
+            'size_category': SizeCategory.from_size(data.shape[0]).name,
+            'class': data.__class__.__name__,
         }
 
     def add_data_info(self, array, layer_name_str):
-        if layer_name_str in {"labels", "image"}:
+        if layer_name_str in {'labels', 'image'}:
             size_info = self.extract_size_info_volumetric(array)
-        else: # layer_name_str in {"points", "shapes", "vectors"}:
+        else:  # layer_name_str in {"points", "shapes", "vectors"}:
             size_info = self.extract_size_info_spatial(array)
-        key = str((layer_name_str, size_info["size_category"], size_info["ndim"], size_info["class"], size_info["dtype"]))
+        key = str(
+            (
+                layer_name_str,
+                size_info['size_category'],
+                size_info['ndim'],
+                size_info['class'],
+                size_info['dtype'],
+            )
+        )
         if key in self.data:
-            self.data[key]["count"] += 1
+            self.data[key]['count'] += 1
         else:
-            self.data[key] = {"count": 1}
+            self.data[key] = {'count': 1}
 
         self.save()
 
@@ -349,13 +357,13 @@ class DataSizeTypeCollector:
 def get_full_information():
     middle_info = get_middle_information()
     data_collector = DataSizeTypeCollector.get_collector(
-        Path(appdirs.user_config_dir("napari")) / "data_size_info.json"
+        Path(appdirs.user_config_dir('napari')) / 'data_size_info.json'
     )
     # app_model = get_app_model() - there is a need to add a collection of data to app_model
     return {
         **middle_info,
-        "data_size_info": data_collector.data,
-        "command_usage": { # it should be collected from app_model
+        'data_size_info': data_collector.data,
+        'command_usage': {  # it should be collected from app_model
             'napari:window:file:open_files_dialog': 50,
             'napari:window:file:copy_canvas_screenshot': 10,
             'napari:window:file:restart': 1,
@@ -367,9 +375,9 @@ def get_full_information():
 The script below generates sample reports for each level of information gathered. The information about layer data is mocked so that this script can be executed independently of `napari`.
 
 ```python
-print("basic")
+print('basic')
 print(json.dumps(get_basic_information(), indent=2))
-print("middle")
+print('middle')
 print(json.dumps(get_middle_information(), indent=2))
 
 
@@ -377,7 +385,7 @@ import numpy as np
 import dask.array as da
 
 
-collector_path = Path(appdirs.user_config_dir("napari")) / "data_size_info.json"
+collector_path = Path(appdirs.user_config_dir('napari')) / 'data_size_info.json'
 if collector_path.exists():
     collector_path.unlink()
 if str(collector_path) in DataSizeTypeCollector._instances:
@@ -385,17 +393,17 @@ if str(collector_path) in DataSizeTypeCollector._instances:
 
 data_collector = DataSizeTypeCollector.get_collector(collector_path)
 
-data_collector.add_data_info(np.empty((100, 100, 100)), "image")
-data_collector.add_data_info(np.empty((100, 100, 100)), "image")
-data_collector.add_data_info(np.empty((100, 100, 100), dtype=np.uint8), "image")
+data_collector.add_data_info(np.empty((100, 100, 100)), 'image')
+data_collector.add_data_info(np.empty((100, 100, 100)), 'image')
+data_collector.add_data_info(np.empty((100, 100, 100), dtype=np.uint8), 'image')
 
-data_collector.add_data_info(da.empty((100, 100, 100)), "image")
+data_collector.add_data_info(da.empty((100, 100, 100)), 'image')
 
 for i in range(50):
-    data_collector.add_data_info(np.empty((10, 10, 10), dtype=np.uint8), "image")
-    data_collector.add_data_info(np.empty((1000, 3), dtype=np.uint8), "points")
+    data_collector.add_data_info(np.empty((10, 10, 10), dtype=np.uint8), 'image')
+    data_collector.add_data_info(np.empty((1000, 3), dtype=np.uint8), 'points')
 
-print("full")
+print('full')
 print(json.dumps(get_full_information(), indent=2))
 ```
 
