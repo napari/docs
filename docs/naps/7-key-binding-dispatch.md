@@ -33,6 +33,7 @@ Conditional evaluation allows plugin developers to tie their keybinding to a spe
 **modifier keys** refer to `ctrl`, `shift`, `alt`, and `meta`. `meta` is also known as `cmd`, `win`, or `super` on osx, windows, or linux, respectively
 
 a **base key** is a key that when pressed without a modifier key, produces one of the following [key codes](https://w3c.github.io/uievents-code/#keyboard-101):
+
 - `a-z`, `0-9`
 - `f1-f12`
 - `` ` ``, `-`, `=`, `[`, `]`, `\`, `;`, `'`, `,`, `.`, `/`
@@ -60,11 +61,11 @@ We propose that:
   `alt+shift+v`). For users only, one modifier key (e.g., `alt`) is also allowed.
   Multiple modifier keys (e.g., `alt+shift`) are not allowed.
 - a key chord part cannot be an invalid key combination nor a single modifier.
-    - `alt t` is **invalid** because the first part is a single modifier (even though
-      it is a valid key combination)
-    - `ctrl+x alt` is **invalid** because the second part is a single modifier
-    - `ctrl+x alt+v` is **valid**
-    - `meta meta` is **invalid** because both parts are single modifiers
+  - `alt t` is **invalid** because the first part is a single modifier (even though
+    it is a valid key combination)
+  - `ctrl+x alt` is **invalid** because the second part is a single modifier
+  - `ctrl+x alt+v` is **valid**
+  - `meta meta` is **invalid** because both parts are single modifiers
 
 The proposal restricts modifier keys being used without a base key, except in the case
 of a single modifier key used in isolation, which is allowed for users.
@@ -86,6 +87,7 @@ Even with conditional activation, many key bindings may find that they share the
 ### Key binding properties
 
 All key binding entries contain the following information:
+
 - `command_id` is the unique identifier of the command that will be executed by this key binding
 - `weight` is the main determinant of key binding priority. high value means a higher priority
 - `when` is the context expression that is evaluated to determine whether the rule is active; if not provided, the rule is always considered active
@@ -115,6 +117,7 @@ class KeyBindingEntry:
 There are three ways to modify how a key binding interacts with a command: an assign rule, a negate rule, and a block rule. Note that negate and block rules only affect key bindings of their weight and below.
 
 An assign rule tells the dispatcher to execute the given command when the rule is enabled:
+
 ```json
 {
     "key": "ctrl+y",
@@ -123,6 +126,7 @@ An assign rule tells the dispatcher to execute the given command when the rule i
 ```
 
 A negate rule is denoted by prefixing the `command_id` with `-` and effectively cancels out assign rules to the same command for that key sequence. For example, to rebind the example for the `redo` command above from `ctrl+y` to `ctrl+shift+z`, one would need the following rules:
+
 ```json
 [
     {
@@ -137,6 +141,7 @@ A negate rule is denoted by prefixing the `command_id` with `-` and effectively 
 ```
 
 A block rule is denoted by simply leaving the `command_id` as blank and prevents any commands for that key sequence from being executed. This cannot be set via the GUI. The below example includes a block rule that disables the previous two rules bound to `tab`:
+
 ```json
 [
     {
@@ -184,27 +189,28 @@ B. The provided key sequence is a base key or key combination that is the first 
 
 There are three potential strategies to deal with this:
 
-* Delay - wait for potential subsequent key presses before executing the command.
-    - this is used for case (A) type conflicts
-    - delay defaults to 200ms but is user configurable
-    - after the delay, the press logic for the command will execute
-    - if another key binding is triggered during delay, this action will be canceled
-    - if the base key `ctrl` is released early, the press logic will execute
-      immediately and the delay will cease, and the release logic will be executed immediately afterwards
-* Execute longest key sequence only - for indirectly conflicting key sequences
+- Delay - wait for potential subsequent key presses before executing the command.
+  - this is used for case (A) type conflicts
+  - delay defaults to 200ms but is user configurable
+  - after the delay, the press logic for the command will execute
+  - if another key binding is triggered during delay, this action will be canceled
+  - if the base key `ctrl` is released early, the press logic will execute
+    immediately and the delay will cease, and the release logic will be executed immediately afterwards
+- Execute longest key sequence only - for indirectly conflicting key sequences
   we only ever execute the longer key sequence.
-    - this is used for case (B) type conflicts
-    - the command for `ctrl+l` will never be triggered so long as it indirectly
-      conflicts with another key binding
-    - multi-part key bindings will always take priority over single-part key bindings
-* On release only - only allow the key to be bindable to 'on-release'
-    - Decided against as this would not allow both 'on-press' and 'on-release' actions.
+  - this is used for case (B) type conflicts
+  - the command for `ctrl+l` will never be triggered so long as it indirectly
+    conflicts with another key binding
+  - multi-part key bindings will always take priority over single-part key bindings
+- On release only - only allow the key to be bindable to 'on-release'
+  - Decided against as this would not allow both 'on-press' and 'on-release' actions.
 
 ### Finding a match
 
 When checking if an active key binding matches the entered key sequence, the resolver will fetch the pre-sorted list of direct conflicts and check if the last entry is active using its `when` property, moving to the next entry if it is not. When it encounters a blocking rule, it will return no match, and for a negate rule, it will store the affected command in an ignore list and continue to the next entry. If no special rules are present, it will return a match if the command is not in an ignore list, otherwise continuing to the next entry, and so on, until no more entries remain.
 
 In pseudo-code this reads as:
+
 ```python
 def find_active_match(entries: List[KeyBindingEntry]) -> Optional[KeyBindingEntry]:
     ignored_commands = []
@@ -222,6 +228,7 @@ def find_active_match(entries: List[KeyBindingEntry]) -> Optional[KeyBindingEntr
 ### Lookup and partial matches
 
 Key bindings can be stored in a map in integer form, as `KeyMod`, `KeyCode`, `KeyCombo`, and `KeyChord` are all represented as unique `int`s with 16 bits per part:
+
 ```python
 keymap = Dict[int, List[KeyBindingEntry]] = {
     KeyMod.CtrlCmd | KeyCode.KeyZ: ...,
@@ -234,6 +241,7 @@ keymap = Dict[int, List[KeyBindingEntry]] = {
 ```
 
 Due to the ability of key sequences to be encoded as 32-bit integers, bitwise operations can be performed to determine certain properties of these sequences:
+
 ```python
 def has_shift(key: int) -> bool:
     return bool(key & KeyMod.Shift)
@@ -246,6 +254,7 @@ def multi_part(key: int) -> bool:
 ```
 
 As such, entries in the keymap can be filtered to find conflicts:
+
 ```python
 > list(filter(has_shift, keymap))
 [<KeyCombo.CtrlCmd|Shift|KeyZ: 3115>, <KeyMod.Shift: 1024>]
@@ -265,12 +274,14 @@ As such, entries in the keymap can be filtered to find conflicts:
 ```
 
 Note that because modifiers are encoded in the `(8, 12]`-bit range, querying for modifiers will only check the first part unless they are shifted by 16:
+
 ```python
 > has_shift(KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyMod.Shift | KeyCode.KeyY))
 False
 ```
 
 In a more generic form:
+
 ```python
 KEY_MOD_MASK = 0x00000F00
 PART_0_MASK = 0x0000FFFF
@@ -411,6 +422,7 @@ A change in the key binding dispatch system would affect anyone using `keymap` o
 While `keymap` and `class_keymap` are unlikely to be commonly used, `bind_key` is, and thus will receive proper deprecation and continue to work by creating an equivalent entry in the new key binding dispatch system.
 
 For example, following is how a user might have defined a key binding for an `Image` layer:
+
 ```python
 @Image.bind_key('Control-C')
 def foo(layer):
@@ -418,6 +430,7 @@ def foo(layer):
 ```
 
 An entry would be created equivalent to:
+
 ```python
 def wrapper(layer: Image):
     yield from foo(layer)
@@ -443,8 +456,9 @@ This inefficiency can be mitigated by using a data structure where entries are s
 
 ```{figure} ./_static/kb-example-graph.png
 ---
-name: fig-1
----
+
+## name: fig-1
+
 Fig. 1: Example of a prefix multitree. Filled nodes have at least one key binding as detailed on the legend in the top left corner.
 ```
 

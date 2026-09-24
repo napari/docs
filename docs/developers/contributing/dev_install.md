@@ -89,10 +89,10 @@ In order to make changes to `napari`, you will need to [fork](https://docs.githu
    included with the typical end-user `napari[all]` installation.
    ```
 
-1. We use [`prek`](https://prek.j178.dev/) to format and lint code. 
+1. We use [`prek`](https://prek.j178.dev/) to format and lint code.
    The `prek` is rust implementation of [`pre-commit`](https://pre-commit.com/)
    and is faster than the python implementation.
-   Full list of used hooks can be found in pre-commit configuration file 
+   Full list of used hooks can be found in pre-commit configuration file
    [`.pre-commit-config.yaml`](https://github.com/napari/napari/blob/main/.pre-commit-config.yaml)
    in the root of the repository.
    The most important hooks are formatting with

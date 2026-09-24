@@ -28,7 +28,7 @@ python -m cProfile path_to_script.py
 
 The output will be a table similar to this one:
 
-```
+```text
          2334264 function calls (2267576 primitive calls) in 2.242 seconds
 
    Ordered by: internal time
@@ -102,14 +102,14 @@ Once the file is saved, you can investigate using free tools. Some options inclu
    statistics to a `.dot` graph file and use graphviz:
 
    ```bash
-   $ python -m gprof2dot -f pstats  -n 5  result.pstat -o result.dot
-   $ dot -Tpng -o result.png result.dot
+   python -m gprof2dot -f pstats  -n 5  result.pstat -o result.dot
+   dot -Tpng -o result.png result.dot
    ```
 
    If your shell supports piping, this can all be combined into one command:
 
    ```bash
-   $ python -m gprof2dot -f pstats  -n 5  result.pstat -o | dot -Tpng -o result.png
+   python -m gprof2dot -f pstats  -n 5  result.pstat -o | dot -Tpng -o result.png
    ```
 
 1. Some IDEs have built in profiling visualization tools. For example, PyCharm Professional, which is free for academics and open source maintainers, allows viewing `.pstat` files using Tools > Open CProfile snapshot.

@@ -137,6 +137,7 @@ themes to match. Or we could simply pick a more natural color for the lagoon,
 again from the satellite image, and forget about matching them.
 
 I will take the opportunity to express two strong opinions:
+
 - I think some form of "ocean purple" is absolutely necessary for the
   background, as I think it's become part of our identity on account of our
   existing logo.

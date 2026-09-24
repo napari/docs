@@ -12,6 +12,7 @@ kernelspec:
 ---
 
 (layers-image)=
+
 # Image
 
 In this document, you will learn how to use the `napari` `image` layer,
@@ -99,7 +100,7 @@ The GUI controls may be adjusted as follows:
 
 - `blending` has the options of `translucent`, `translucent no depth`,
   `additive`, `minimum`, or `opaque` in the dropdown. Refer to the
-  [Blending layers](blending-layers) section of _Layers at a glance_ for an
+  [Blending layers](blending-layers) section of *Layers at a glance* for an
   explanation of each type of blending.
 
 - `interpolation` may be assigned one of the following from the dropdown:
@@ -261,7 +262,7 @@ layer.locked_data_level = None
 ```
 
 When a level is locked, napari loads the full extent of that level on the currently
-displayed dimensions regardless of zoom or display mode. The lock is automatically 
+displayed dimensions regardless of zoom or display mode. The lock is automatically
 reset to `None` when the layer's data is replaced.
 
 This property is available on both `Image` and `Labels` layers.

@@ -176,7 +176,7 @@ The bundled Python version in the installers follows the Python version installe
 `make_bundle_conda.yml` workflow at `napari/packaging`. Update the CI matrix configuration to bump
 the bundled Python. We use the oldest version supported by the [SPEC-0][spec0] recommendations.
 
-#### Default installation path
+### Default installation path
 
 This depends on each OS. Our general strategy is to put the general installation under
 `~/<hidden>/napari-<VERSION>`, which will eventually contain the napari installations under

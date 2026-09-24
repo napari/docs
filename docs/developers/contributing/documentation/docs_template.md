@@ -110,7 +110,7 @@ How you add cell tags depends on how you're editing your notebook.
 
 1. If you're editing a MyST Markdown file directly, you can add tags to your code blocks like so:
 
-````
+````text
     ```{code-cell} python3
     :tags: [remove-input]
 

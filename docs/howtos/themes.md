@@ -5,7 +5,7 @@
 A napari theme is a named collection of colors and style values used across the
 viewer canvas, widgets, icons, and console. If you want to programmatically
 prototype a theme, check out the {ref}`sphx_glr_gallery_new_theme.py` example.
-However, the `npe2` theme contribution allows declaratively 
+However, the `npe2` theme contribution allows declaratively
 defining themes and enables easy distribution to others via plugins.
 
 If you want other people to install and reuse your theme, prefer the [plugin
@@ -13,12 +13,13 @@ workflow](plugin-workflow). The programmatic workflow is still useful for local 
 rapid iteration.
 
 (preview-themes)=
+
 ## Preview themes in a full napari UI
 
 The most complete theme preview tool lives in the example gallery as
 {ref}`sphx_glr_gallery_theme_sample.py`. It opens napari with a dock widget
 that shows the theme color roles, common widget states, and a theme selector
-that includes plugin-contributed themes after plugins are initialized. 
+that includes plugin-contributed themes after plugins are initialized.
 A [WCAG contrast ratio](https://webaim.org/resources/contrastchecker/) table
 displays the most important color pairs for accessibility testing.
 

@@ -2,7 +2,7 @@
 
 This guide explains the different types of tools that can help you develop and test your code.
 
-## This guide covers:
+## This guide covers
 
 - [General tools](#general-tools)
   - [Linting tools](#linting-tools)
@@ -17,7 +17,7 @@ Many are very helpful, but they do take a little time to learn. The more time yo
 
 ### Linting tools
 
-These _check_ your code.
+These *check* your code.
 
 - [ruff](https://github.com/astral-sh/ruff) - checks various code style conventions, unused variables, line spacings, etc…
 - [mypy](https://github.com/python/mypy)
@@ -27,7 +27,7 @@ These _check_ your code.
 
 ### Formatting tools
 
-These _auto-modify_ your code.
+These *auto-modify* your code.
 
 - [ruff-formatter](https://docs.astral.sh/ruff/formatter/)
   Forces code to follow specific style, indentations, etc...
@@ -37,12 +37,12 @@ These _auto-modify_ your code.
 - [prek](https://prek.j178.dev/), Faster implementation of pre-commit, runs all your checks each time you run git commit, preventing bad code from ever getting checked in.
 
 ```console
-     $ pip install prek
+     pip install prek
      # install the pre-commit "git hook"
-     $ prek install
+     prek install
      # then configure in .pre-commit-config.yaml
      # (optionally) Run hooks on demand
-     $ prek run --all-files
+     prek run --all-files
 ```
 
 - [pre-commit-ci](https://pre-commit.ci/)
@@ -73,7 +73,7 @@ These _auto-modify_ your code.
 
 The next topic in this series is the [Survey/Q&A](./5-survey.md).
 
-## Other topics in this series:
+## Other topics in this series
 
 - [Virtual environments](./1-virtual-environments)
 - [Deploying your plugin](./2-deploying-your-plugin.md)

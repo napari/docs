@@ -12,6 +12,7 @@ kernelspec:
 ---
 
 (layers-vectors)=
+
 # Vectors
 
 In this document, you will learn about the `napari` `vectors` layer, including

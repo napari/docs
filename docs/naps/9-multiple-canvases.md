@@ -1,4 +1,5 @@
 (nap-9)=
+
 # NAP-9 — Multiple Views
 
 ```{eval-rst}
@@ -9,6 +10,7 @@
 ```
 
 ## Definitions
+
 :::{note}
 This NAP was previously discussed as *Multiple Canvases*, but due to the term *Canvas* having a well-established and more restrictive meaning of what we aim to implement, we're shifting to using the term *View* for a (hopefully) clearer distinction from existing terms. For a more thorough discussion of terminology, see [alternative terminology](#terminology).
 :::
@@ -27,24 +29,28 @@ In order to facilitate discussion - this NAP will use the following definitions.
 
 :::{warning}
 [VisPy](https://vispy.org/) (the only current rendering backend in napari) has its own specific definitions for some of these or related concepts, such as:
-- [`Canvas`](https://vispy.org/api/vispy.app.canvas.html#module-vispy.app.canvas): the whole surface on which things can be rendered (and which can be embedded in the GUI as we do in napari)
-- [`ViewBox`](https://vispy.org/api/vispy.scene.widgets.viewbox.html#module-vispy.scene.widgets.viewbox): a rectangular portion of a canvas where a Scene can be visualised
-- [`Scene`](https://vispy.org/api/vispy.scene.html#module-vispy.scene): a collection of renderable objects and cameras that the canvas can use to render inside a ViewBox. In vispy, scenes are tree-like structures called scenegraphs composed by Nodes. `Scene` is also now a model on the `ViewerModel`.
+
+* [`Canvas`](https://vispy.org/api/vispy.app.canvas.html#module-vispy.app.canvas): the whole surface on which things can be rendered (and which can be embedded in the GUI as we do in napari)
+* [`ViewBox`](https://vispy.org/api/vispy.scene.widgets.viewbox.html#module-vispy.scene.widgets.viewbox): a rectangular portion of a canvas where a Scene can be visualised
+* [`Scene`](https://vispy.org/api/vispy.scene.html#module-vispy.scene): a collection of renderable objects and cameras that the canvas can use to render inside a ViewBox. In vispy, scenes are tree-like structures called scenegraphs composed by Nodes. `Scene` is also now a model on the `ViewerModel`.
 
 Where necessary to refer to these concepts in this NAP (or discussion), such concepts will be qualified accordingly (for example: "a VisPy Canvas")
 :::
 
 ## Abstract
+
 Current napari architecture supports a single canvas/camera/view per viewer. Simultaneously showing multiple views of the same (or different) data generally necessitates opening an entirely new napari viewer window or low-level work with Qt widgets and private napari APIs. This wastes resources (primarily memory) and complicates interaction.
 This NAP establishes a plan to implement a builtin system for opening, visualizing and interacting with multiple views within a single window.
 
 We propose to achieve this in two parts that can be implemented independently:
+
 1. Splitting of the current `ViewerModel` into two separate models:
-    - a `View` model holding a `Layerlist`, a `Dims`, a `Canvas` and a `Scene`
-    - `ViewerModel`,  which will hold stuff like the window title, the theme, etc, and a new list of `Views`, allowing for multiple independent views.
+    * a `View` model holding a `Layerlist`, a `Dims`, a `Canvas` and a `Scene`
+    * `ViewerModel`, which will hold stuff like the window title, the theme, etc, and a new list of `Views`, allowing for multiple independent views.
 2. Completion of the async `LayerSlicer` and `SliceRequest`/`SliceResponse` work for each layer type, and subsequent complete separation of layer slicing state from the layer models. This will allow to reuse layer objects between different views.
 
 ## Motivation and Scope
+
 The ability to view n-D data from multiple perspectives (ortho-view), or different data from the *same* perspective (for example side-by-side segmentations) is a common feature request, and has proved useful in many other tools for data exploration and analysis. Here is a sampling of issues requesting support and discussing potential implementations:
 
 * [#5348](https://github.com/napari/napari/issues/5348) Multicanvas viewer
@@ -55,6 +61,7 @@ The ability to view n-D data from multiple perspectives (ortho-view), or differe
 * [#1478](https://github.com/napari/napari/issues/1478) Orthogonal viewer plugin
 
 Several plugins and examples have been created to address these limitations, for example:
+
 * [napari-3d-ortho-viewer](https://github.com/gatoniel/napari-3d-ortho-viewer/tree/main)
 * [multiple viewer widgets example](https://napari.org/stable/gallery/multiple_viewer_widget.html#sphx-glr-gallery-multiple-viewer-widget-py)
 
@@ -65,32 +72,35 @@ This document is intended to cover what [#5348](https://github.com/napari/napari
 Providing native support in napari would allow developers to more easily create these experiences, enable interoperability between such plugins, and improve performance.
 
 ### Out of Scope
+
 * Improvements to VisPy to support multiple views of the same `SceneGraph` (sharing data, saving VRAM) - for relevant discussion start with [vispy/#1992](https://github.com/vispy/vispy/issues/1992).
 * For now, view arrangement (for example: tiling behavior) will be handled in the viewer only (left to Qt or custom Qt widgets). Making this state (de)serializable is out of scope for this project, but may be relevant when implementing a “savable viewer state” feature.
 * Specific UI implementations will be explored as part of this work, but UX and UI will likely be formalized later. Since this NAP was first drafted, a lot of work and discussion a on UX and UI has already been carried on in [#5348](https://github.com/napari/napari/issues/5348), which may be included in this NAP or developed later depending on discussion.
 * Supporting alternative frontend (Qt) and backend (Vispy) frameworks. While this work should not make such tasks more difficult in the future, explicit consideration is out-of-scope until further progress is made in these areas.
 * [Non-goals also in NAP-3](https://napari.org/dev/naps/3-spaces.html#non-goals) are related but also considered out-of-scope here
-    * Separation of rendering information (e.g: colormap) from the data (e.g: features) which currently both live on the layer model
-    * Window state restoration and "workspaces" (see [#4227](https://github.com/napari/napari/issues/4227) for further discussion)
+  * Separation of rendering information (e.g: colormap) from the data (e.g: features) which currently both live on the layer model
+  * Window state restoration and "workspaces" (see [#4227](https://github.com/napari/napari/issues/4227) for further discussion)
 
 ## Requirements
+
 * The application data model (`ViewerModel` + Layers) shall support multiple views.
 * The application shall natively display multiple views simultaneously.
-    * There shall be a minimum of one view (current status) per viewer.
+  * There shall be a minimum of one view (current status) per viewer.
 * Each view shall have independent:
-    * Layer list - or layerlist "subview" (see [#Alternative single LayerList](#single-layerlist) for details) (necessary for visualizing different data)
-    * Scene (necessary for viewing data from different POV)
-    * Canvas (controls specific attributes of the canvas of each view)
-    * Dims model (necessary for viewing different slices/dimensions of the data)
-    * Scene and Canvas models (for overlays and other view-related objects)
+  * Layer list - or layerlist "subview" (see [#Alternative single LayerList](#single-layerlist) for details) (necessary for visualizing different data)
+  * Scene (necessary for viewing data from different POV)
+  * Canvas (controls specific attributes of the canvas of each view)
+  * Dims model (necessary for viewing different slices/dimensions of the data)
+  * Scene and Canvas models (for overlays and other view-related objects)
 * The implementation should minimize changes to the existing public API.
 * The main napari programmatic entry point (currently `Viewer/ViewerModel`) shall maintain a concept of a single “active” (currently focused) view (see [#Alternative main view](#main-view)).
-    * There will be no possibility of a viewer with no views.
+  * There will be no possibility of a viewer with no views.
 * Users shall be able to add, remove, and (eventually[^maybe-rearrange]) rearrange views.
 
 [^maybe-rearrange]: Exact UI/UX may is yet to be decided, see [Part 3: GUI and UX](#part-3-gui-and-ux) for some discussion.
 
 ## Design Considerations & Decisions
+
 Part of this design document is intended to capture the desired behavior and prevent scope creep. At the extreme “multiple views” can be achieved with “multiple viewers”. Therefore we need to draw a line somewhere to differentiate a “view” from the current “viewer”. [^napari-lite]
 
 [^napari-lite]: A lightweight "view" might be relevant to the implementation of ["napari-lite"](https://github.com/napari/napari/issues/5940).
@@ -104,16 +114,19 @@ In addition to maintaining the model-view-controller (MVC) architecture of napar
 The napari viewer currently has a [grid mode](https://napari.org/stable/tutorials/fundamentals/viewer.html#grid-button) that can be activated to distribute all layers in a rectangular grid of vispy `ViewBox`es according to a few simple parameters (mainly shape and stride).
 
 This feature has some theoretical and functional overlap with the multi-view described in this NAP, but with a few key differences:
-- grid mode allows *no* control over individual viewbox size and placement except through grid shape and stride. Viewboxes cannot be reordered, removed, or added.
-- grid mode does not create views with independent dims and cameras. The same `Camera` and `Dims` are used to control all viewboxes.
-- grid mode does not have fine-grained control of which layers are displayed in which viewbox. *All* layers are simply distributed based on the order of the layerlist and according to the stride.
+
+* grid mode allows *no* control over individual viewbox size and placement except through grid shape and stride. Viewboxes cannot be reordered, removed, or added.
+* grid mode does not create views with independent dims and cameras. The same `Camera` and `Dims` are used to control all viewboxes.
+* grid mode does not have fine-grained control of which layers are displayed in which viewbox. *All* layers are simply distributed based on the order of the layerlist and according to the stride.
 
 These limitations dramatically simplify the usability of grid mode (one or two button clicks are usually all that's needed for most use cases). On the other hand, multi-view as described in this NAP offers greater control over every aspect described above, at the cost of a more complicate API and GUI accessibility.
 
 In this NAP, we assume that grid mode and multiple views remain separate features. For discussion about why, see [#Alternative: Multi-View grid mode](#multi-view-grid-mode).
 
 ## Related Work
+
 See other image viewers for examples for multiple views (mostly demonstrating orthogonal views):
+
 * [3D Slicer](https://www.slicer.org/)
 * [Orthogonal views in ImageJ and Imaris](https://www.youtube.com/watch?v=94d8sHMP_w8)
 * [OHIF/Cornerstone.js](https://www.cornerstonejs.org/live-examples/crosshairs)
@@ -123,6 +136,7 @@ See other image viewers for examples for multiple views (mostly demonstrating or
 ## Implementation
 
 (part-1-view-model)=
+
 ### Part 1: Viewer and View model
 
 * Change `ViewerModel`, retaining everything that doesn't go into `View`.
@@ -183,14 +197,16 @@ class ViewerModel:
 ```
 
 Noteworthy elements:
-- `_layer_slicer` will be per-View, eventually allowing for independent slicing of the same layer in different views
-- old access patterns (such as `viewer.camera` or `viewer.dims` will be automatically redirected to the active view via `__getattr__`, with no need for extreme code duplication, retaining fully backward-compatible API.
+
+* `_layer_slicer` will be per-View, eventually allowing for independent slicing of the same layer in different views
+* old access patterns (such as `viewer.camera` or `viewer.dims` will be automatically redirected to the active view via `__getattr__`, with no need for extreme code duplication, retaining fully backward-compatible API.
 
 :::{seealso}
 An alternative implementation could maintain a single centralized `LayerList`, with `Views` only having control over layer visibility. See [#Alternative single LayerList](#single-layerlist) for pros and cons.
 :::
 
 (part-2-decouple-slicing-state)=
+
 ### Part 2: Decouple slicing state from layer models
 
 :::{important}
@@ -237,7 +253,7 @@ A question mark is next to attributes and methods that need particular discussio
 
 | Layer Class | Attributes |
 | -------- | -------- |
-| Base/all subclasses | `_slice_input`
+| Base/all subclasses | `_slice_input` |
 | | `_update_dims`
 | | `_data_slice`
 | | `corner_pixels`
@@ -274,15 +290,17 @@ A question mark is next to attributes and methods that need particular discussio
 | | `_fixed_index`
 | | `_update_properties`
 | | `_allow_thumbnail_update`
-| | `_vertex_size `
-| | `_rotation_handle_length `
+| | `_vertex_size`
+| | `_rotation_handle_length`
 
 (part-3-gui-and-ux)=
+
 ### Part 3: GUI and UX
 
 In this last step we want to unlock the ability to visualize multiple views *at the same time*. This requires changes to our `_qt` and `_vispy` modules (and any other potential future backend for GUI and rendering).
 
 #### UX design
+
 :::{seealso}
 Since this NAP was first drafted, a UX/UI design deep-dive was separately carried out in [#5348](https://github.com/napari/napari/issues/5348#issuecomment-2150349638). Depending on feedback on this NAP, that discussion may be integrated as part of this NAP or left to a followup.
 :::
@@ -290,13 +308,14 @@ Since this NAP was first drafted, a UX/UI design deep-dive was separately carrie
 Specific UI design and architecture remains to be determined. UI design needs additional refinement and exploration, and this is expected to continue after basic/core implementation proposed in this NAP is complete. UI changes may also be described in a separate NAP or followup issue along with a discussion of convenience functions and affordances for common operations. Some placeholder or experimental code will be used in the meantime as a prototype implementation.
 
 Some open questions here are (for example):
+
 * Should each view also have visible dims sliders, or can we keep one set of dims sliders that changes based on the active (selected) view?
 * What kind of cross-reference displays or tools should there be, and how to implement them?
-    * through-plane slice indicators
-    * three-point slice definition
+  * through-plane slice indicators
+  * three-point slice definition
 * What kinds of camera-linking should be supported by publicly exposed builtin callbacks?
-    * orthogonal
-    * stereoscopic
+  * orthogonal
+  * stereoscopic
 Beyond showing a grid of views, it would be nice for individual views to be:
 * Resizable
 * Reorderable
@@ -304,16 +323,15 @@ Beyond showing a grid of views, it would be nice for individual views to be:
 * Maybe: Maximized, stacked, and minimized (e.g. with tabs)
 
 Here are some Qt classes that may provide a sound base for multiview UI implementation:
+
 * `QDockWidget`, with the main window being modified to allow dock widget nesting (`dockNestingEnabled`). This may require the fewest modifications to the existing Qt viewer. Allowing widgets to be undocked would make this extremely flexible, but possibly also confusing.
 * `QMdiArea` (“multiple document interface”) satisfies most of these requirements, and should be customizable to satisfy them all. This would offer extreme flexibility of layout.
 * `GridLayout` would likely provide a quite simple but otherwise inflexible solution. For example this may make independent resizing of views difficult
-
 
 #### Implementation
 
 * `QtViewer` will be changed to hold a mapping (or list?) of `View`s to `VispyCanvas`es (with the latter likely being renamed to `VispyView` for consistency)
 * Methods, shortcuts, and menus/buttons must be added to allow showing/hiding, reordering, adding/removing, and selecting views.
-
 
 ## Backward Compatibility
 
@@ -322,6 +340,7 @@ Maintaining the proxy API on the viewer via the concepts of a main and/or active
 ## Future Work
 
 The goal of this NAP is to cover the main architectural changes to enable multi-view work. Future work is expected in
+
 1. user experience, design, and GUI implementation details
 2. consistent, ergonomic, and documented public APIs for advanced interaction with multiple views.
 3. development of frequently requested features dependent on this work (e.g.: orthoview)
@@ -331,10 +350,11 @@ The goal of this NAP is to cover the main architectural changes to enable multi-
 ### Terminology
 
 Other names for `View` that were discussed are:
-- `Canvas`: does not convey the independent dims and camera
-- `Viewport`: used similarly in other rendering software, conveys canvas + camera
-- `Portal`: more evocative of camera + dims, but no established meaning
-- `Realm`: same as above, but a stronger implication of "separate space" which might be undesirable
+
+* `Canvas`: does not convey the independent dims and camera
+* `Viewport`: used similarly in other rendering software, conveys canvas + camera
+* `Portal`: more evocative of camera + dims, but no established meaning
+* `Realm`: same as above, but a stronger implication of "separate space" which might be undesirable
 
 `View` is very similar to viewport but shorter and less jargony, so it seems the best candidate so far.
 
@@ -349,16 +369,17 @@ On the implementation side, this would require deprecating `Layer.visible` since
 A significant advantage of using multiple layerlists over a single one is that it allows us to proceed with [part 1](#part-1-view-model) (and potentially [part 3](#part-3-gui-and-ux) without depending on [part 2](#part-2-decouple-slicing-state), by initially disallowing layers to live in myultiple views (and thus having multiple slicing states).
 
 ### Multi-View grid mode
+
 Grid mode is currently distinct from multi-view. However, the two could be merged by implementing grid-mode as a one-button activation of a preset multi view (similar to how we plan to implement ortho-view). This would require the following:
 
-- Generate and NxM grid of views based on the grid shape and stride
-- link all view `Camera`s together
-- link all view `Dims` together
-- distribute layers in the various view layerlists according to stride
-- add callbacks so that modifying stride and grid shape will redistribute layers
-- add callbacks so adding/removing/reordering layers causes Views to change accordingly. This can only be done if the [single layerlist alternative](#single-layerlist) is used, otherwise users will have to manually access individual layerlists.
-- potentially allow destroying all views when clicking the grid mode button again (this might break any manual modifications made by the user)
-- potentially hide all unnecessary controls, such as redundant dims, redundant layerlist, etc, which  (depending on UI implementation) might take up precious screen real estate
+* Generate and NxM grid of views based on the grid shape and stride
+* link all view `Camera`s together
+* link all view `Dims` together
+* distribute layers in the various view layerlists according to stride
+* add callbacks so that modifying stride and grid shape will redistribute layers
+* add callbacks so adding/removing/reordering layers causes Views to change accordingly. This can only be done if the [single layerlist alternative](#single-layerlist) is used, otherwise users will have to manually access individual layerlists.
+* potentially allow destroying all views when clicking the grid mode button again (this might break any manual modifications made by the user)
+* potentially hide all unnecessary controls, such as redundant dims, redundant layerlist, etc, which (depending on UI implementation) might take up precious screen real estate
 
 It's unclear/undecided how the above should behave if at any point the user "breaks" the assumptions of the grid mode (e.g: reorders views manually, unlinks dims, then adds new layers, etc).
 
@@ -367,28 +388,31 @@ While this alternative unified two code branches into a single one, the downside
 Additionally, differently from this NAP's proposal, the implementation described above would disallow enabling grid mode in a canvas while retaining other canvases in "normal" mode. Refer to [#5348](https://github.com/napari/napari/issues/5348) for extensive discussion about this.
 
 ### Main view
-Instead of all views being the same and operations on the `Window` affecting the currently `active` view, we could have a special, always-present `main` view, so that `Window.layers` will redirect to `Window.views.main.layers`. This makes old code more reliable (as user interaction with the viewer cannot mess up code that relies on a single view), at the cost of making it less flexible (old code will not run on secondary views). We felt that the tradeoff was not worth it. 
+
+Instead of all views being the same and operations on the `Window` affecting the currently `active` view, we could have a special, always-present `main` view, so that `Window.layers` will redirect to `Window.views.main.layers`. This makes old code more reliable (as user interaction with the viewer cannot mess up code that relies on a single view), at the cost of making it less flexible (old code will not run on secondary views). We felt that the tradeoff was not worth it.
 
 ### Users can open multiple napari viewers
+
 Using multiple napari viewers does not satisfy the core user needs for multiple views when processing or manipulating data. Multiple viewers also wastes system resources as viewers do not communicate or share memory, as well as wasting screen real estate by duplicating widgets unnecessarily.
 
 ### Leave multiview to plugins and custom widgets
+
 Unifying an implementation and (eventually) providing a stable multi-view API will save work for plugin authors, and allow more plugins to interoperate.
 
 ### Implement slices using shallow Layer copies
+
 This is a good and reasonable alternative to the proposed implementation, and is how the [multiple viewer widgets example](https://napari.org/stable/gallery/multiple_viewer_widget.html#sphx-glr-gallery-multiple-viewer-widget-py) is implemented. This implementation also makes it easier to configure rendering/appearance per-view (layer visibility, colormap, etc.). However this implementation relies more on careful bookkeeping than data modeling. If this is desired functionality, layer data should be fully separated from the data view (slice and view state). Ultimately this implementation is similar to that proposed in this NAP, and could be considered along a continuum of separating layer data, slice data, and rendering configuration.
 
 ## Discussion
 
 * [#5348](https://github.com/napari/napari/issues/5348) Multicanvas viewer
-    * This is the most recent and thorough discussion multi-view prior to this NAP
+  * This is the most recent and thorough discussion multi-view prior to this NAP
 
 ## Copyright
 
 This document is dedicated to the public domain with the Creative Commons CC0
 license [^id3]. Attribution to this source is encouraged where appropriate, as per
 CC0+BY [^id4].
-
 
 [^id3]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
     <https://creativecommons.org/publicdomain/zero/1.0/>

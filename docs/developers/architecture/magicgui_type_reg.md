@@ -79,7 +79,7 @@ When widget is not a `magicgui` widget, the {class}`~napari.viewer.Viewer` is pr
 via a wrapper `napari` adds around widget contributions.
 ```
 
-# Generalization of `magicgui` type annotation
+## Generalization of `magicgui` type annotation
 
 `napari` generalizes `magicgui` type annotation behaviour beyond `magicgui` widgets,
 to all actions via `app-model` providers and processors. See

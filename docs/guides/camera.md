@@ -32,7 +32,7 @@ The Home button in the viewer toolbar resets the view.
 ## Synced vs separate camera modes
 
 By default, the camera is **synced** between 2D and 3D views: when you switch
-from 2D to 3D (or back), the camera center and zoom stay the same. In 2D, the 
+from 2D to 3D (or back), the camera center and zoom stay the same. In 2D, the
 depth (Z) component corresponds to the -3 dimension. You can also choose
 **separate** (i.e. unsynced) mode, where each view remembers its own camera
 state independently.

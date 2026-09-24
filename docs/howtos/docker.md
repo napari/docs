@@ -40,7 +40,7 @@ These can be useful if you are looking for options:
 
 To run a container with external mapping of display, an example being:
 
-```
+```text
 docker run -it --rm -e DISPLAY=host.docker.internal:0 ghcr.io/napari/napari
 ```
 
@@ -48,7 +48,7 @@ docker run -it --rm -e DISPLAY=host.docker.internal:0 ghcr.io/napari/napari
 
 With this image you don't need X running on the host. A browser is sufficient!
 
-```
+```text
 docker run -it --rm -p 9876:9876 ghcr.io/napari/napari-xpra
 ```
 
@@ -82,9 +82,9 @@ In both cases you'll have a running shell session where you can run these comman
 
 ```bash
 # Install local napari
-$ python3 -m pip install /opt/napari[all]
+python3 -m pip install /opt/napari[all]
 # Run napari
-$ python3 -m napari
+python3 -m napari
 ```
 
 ## Troubleshooting

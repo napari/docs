@@ -1,4 +1,5 @@
 (using-layers)=
+
 # Layers guide
 
 [Layers](napari.layers) are the viewable objects that can be added to a viewer,
