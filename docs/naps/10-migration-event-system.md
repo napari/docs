@@ -12,47 +12,57 @@
 
 ## Purpose
 
-Napari currently relies on several mechanisms for propagating information throughout the application,
-including _Qt signals_ and _slots_, _vispy_ events, _napari.utils.events_, and _psygnal_.
-These mechanisms are used interchangeably in different parts of the codebase, despite representing different
-concepts: some notify that state has changed, while others dispatch user interactions before any state change
-has occurred. As a result, application logic becomes coupled to backend-specific APIs and contributors must
-understand multiple communication models.
+Napari currently relies on several mechanisms for propagating information
+throughout the application, including _Qt signals_ and _slots_, _vispy_ events,
+_napari.utils.events_, and _psygnal_. These mechanisms are used interchangeably
+in different parts of the codebase, despite representing different concepts:
+some notify that state has changed, while others dispatch user interactions
+before any state change has occurred. As a result, application logic becomes
+coupled to backend-specific APIs and contributors must understand multiple
+communication models.
 
-A key observation motivating this proposal is that not all communication in napari has the same semantics.
-State-change notifications (_signals_) and interaction dispatch (_events_ being dispatched, though not in the
-traditional sense of having one targeted receiver) serve different purposes and should not necessarily share
-the same abstraction.
+A key observation motivating this proposal is that not all communication in
+napari has the same semantics. State-change notifications (_signals_) and
+interaction dispatch (_events_ being dispatched, though not in the traditional
+sense of having one targeted receiver) serve different purposes and should not
+necessarily share the same abstraction.
 
-The goal is therefore not to replace every event with _psygnal_, but to establish a coherent application dispatch
-model with explicit semantics for signals, events, and the relationship between them. This document proposes an
-initial migration strategy rather than a fixed implementation plan. We expect to refine the design as experience
-is gained during implementation, documenting significant architectural decisions and any deviations from the
-original proposal.
+The goal is therefore not to replace
+every event with _psygnal_, but to establish a coherent application dispatch
+model with explicit semantics for signals, events, and the relationship between
+them. This document proposes an initial migration strategy rather than a fixed
+implementation plan. We expect to refine the design as experience is gained
+during implementation, documenting significant architectural decisions and any
+deviations from the original proposal.
 
 ![image](../_static/images/hang_the_code.png)
 
 ## Terminology and concepts
 
-Throughout this proposal, the terms _event_ and _signal_ are used in their architectural sense rather than according to
-napari's current implementation. The distinction is important because one of the goals of this migration is to
-clarify the semantics of communication throughout napari. Much of the confusion in previous discussions
-arose because the word _event_ has been used to describe both user interactions (such as mouse presses) and
-state-change notifications (such as layer properties changing), despite these representing fundamentally
-different concepts.
+Throughout this proposal, the terms _event_ and _signal_ are used in their
+architectural sense rather than according to napari's current implementation.
+The distinction is important because one of the goals of this migration is to
+clarify the semantics of communication throughout napari. Much of the confusion
+in previous discussions arose because the word _event_ has been used to
+describe both user interactions (such as mouse presses) and state-change
+notifications (such as layer properties changing), despite these representing
+fundamentally different concepts.
 
 ### _Events_ in _Qt_ terminology
 
-_Events_ in the sense of _Qt_ are objects derived from `QEvent` (or one of its subclasses) that represent something
-that happened either inside an application or as a result of external activity that the application needs to
-respond to.[1]
-An event is delivered to a specific `QObject`, which acts as the intended receiver. Every `QObject` has an
-`event()` method that acts as a dispatcher: it does not normally handle the event itself, but routes it to
-the appropriate event handler such as `QObject.mousePressEvent()`, `QObject.keyPressEvent()`, or
-`QObject.paintEvent()`. An event handler is a method of a `QObject` subclass that contains the code responsible
-for responding to a particular type of event when it is delivered to that object.
-If the handler accepts the event, Qt considers it handled. This means that the event is not propagated further.
-If it is ignored, Qt may attempt to propagate the event to another object, such as a parent widget.
+_Events_ in the sense of _Qt_ are objects derived from `QEvent` (or one of its
+subclasses) that represent something that happened either inside an application
+or as a result of external activity that the application needs to respond
+to.[1] An event is delivered to a specific `QObject`, which acts as the
+intended receiver. Every `QObject` has an `event()` method that acts as a
+dispatcher: it does not normally handle the event itself, but routes it to the
+appropriate event handler such as `QObject.mousePressEvent()`,
+`QObject.keyPressEvent()`, or `QObject.paintEvent()`. An event handler is a
+method of a `QObject` subclass that contains the code responsible for
+responding to a particular type of event when it is delivered to that object.
+If the handler accepts the event, Qt considers it handled. This means that the
+event is not propagated further. If it is ignored, Qt may attempt to propagate
+the event to another object, such as a parent widget.
 
 ```{mermaid}
 flowchart TD
@@ -93,7 +103,8 @@ A Qt event is therefore a directed message with three important properties:
     - The application itself
 2. An event has a target
     - A specific QObject
-    - Usually the widget under the mouse cursor, the widget with keyboard focus, etc.
+    - Usually the widget under the mouse cursor, the widget with keyboard
+      focus, etc.
 3. Dispatch chain
     - _Qt_ creates the event
     - The event enters the event queue
@@ -109,11 +120,13 @@ A Qt event answers the question: "Something happened. Who should handle it?"
 
 Signals and slots are a different mechanism from events.
 
-- A __signal__ notification emitted by an object to announce that some observable state has changed.
+- A __signal__ notification emitted by an object to announce that some
+  observable state has changed.
 The emitter does not know, or need to know, which components are listening.
-- A __slot__ is a function (or method) that is connected to a signal and is executed when that signal is emitted. A
-slot defines the action that should happen in response to a notification. It says "Perform this action when signal
-happened".[2]
+- A __slot__ is a function (or method) that is connected to a signal and is
+  executed when that signal is emitted. A
+slot defines the action that should happen in response to a notification. It
+says "Perform this action when signal happened".[2]
 
 The model looks like this:
 
@@ -135,7 +148,8 @@ Unlike events:
 - Signals are connected explicitly by the developer.
 - Signals are not dispatched through `QObject.event()`.
 
-The object emitting the signal does not need to know who is listening or what the listeners will do.
+The object emitting the signal does not need to know who is listening or what
+the listeners will do.
 
 Now connecting a signal to a slot would look something like this:
 
@@ -166,9 +180,9 @@ It just emits.
 
 ### _Signal_ / _slots_ vs _Events_
 
-Although both mechanisms communicate information between components, they serve different purposes.
-_Events_ dispatch interactions to potential handlers, whereas _signals_ notify interested observers that state has
-already changed.
+Although both mechanisms communicate information between components, they serve
+different purposes. _Events_ dispatch interactions to potential handlers,
+whereas _signals_ notify interested observers that state has already changed.
 
 | | Qt Event | Qt Signal |
 |---|---|---|
@@ -180,21 +194,24 @@ already changed.
 | __Propagation__ | Can be accepted, ignored, or propagated | No propagation |
 | __Example__ | Mouse click, key press, paint event | Button clicked, value changed |
 
-A dispatch mechanism determines how information flows between components. Both _events_ and _signals_ are
-dispatch mechanisms, but they have different semantics.
-_Event_ dispatch determines which component should respond to an interaction, potentially allowing handlers
-to consume or propagate it. Signal dispatch broadcasts that state has changed to any interested observers.
-The remainder of this proposal uses the term dispatch model to refer to the combination of these mechanisms
-that napari exposes at the application level.
+A dispatch mechanism determines how information flows between components. Both
+_events_ and _signals_ are dispatch mechanisms, but they have different
+semantics. _Event_ dispatch determines which component should respond to an
+interaction, potentially allowing handlers to consume or propagate it. Signal
+dispatch broadcasts that state has changed to any interested observers. The
+remainder of this proposal uses the term dispatch model to refer to the
+combination of these mechanisms that napari exposes at the application level.
 
 ### Current terminology in napari
 
-By now it is perhaps already clear that napari is using terminology different from _Qt_ at the moment.
-Most of the objects currently exposed through _napari.utils.events_ are semantically _signals_, despite
-being called _events_.[3] They are emitted after state has changed, support multiple connected callbacks,
-and do not participate in event propagation or acceptance. In other words, they behave much more like
-_Qt signals_ than _Qt events_.
-The example below showcasing a napari event that behaves like _signal_ -> _slot_ highlights this:
+By now it is perhaps already clear that napari is using terminology different
+from _Qt_ at the moment. Most of the objects currently exposed through
+_napari.utils.events_ are semantically _signals_, despite being called
+_events_.[3] They are emitted after state has changed, support multiple
+connected callbacks, and do not participate in event propagation or acceptance.
+In other words, they behave much more like _Qt signals_ than _Qt events_. The
+example below showcasing a napari event that behaves like _signal_ -> _slot_
+highlights this:
 
 ```python
 layer.events.data.connect(callback)
@@ -224,9 +241,10 @@ semantics of the proposed architecture rather than the terminology used by the c
 
 ### Situation in envisioned rendering backend (_pygfx_)
 
-For migration, it makes sense to look at how other rendering backends deal with events. From code in
-_pygfx_ it is clear that the way _pygfx_ talks about events is very similar to the way _Qt_ talks about it.
-This is clear from their docstring of the `Event` class[4]:
+For migration, it makes sense to look at how other rendering backends deal with
+events. From code in _pygfx_ it is clear that the way _pygfx_ talks about
+events is very similar to the way _Qt_ talks about it. This is clear from their
+docstring of the `Event` class[4]:
 
 ```python
 class Event:
@@ -259,17 +277,19 @@ class Event:
     """
 ```
 
-Although the details differ slightly (for example, cancelled versus Qt's accepted state), the overall dispatch
-model is conceptually very similar to Qt's: events are dispatched to targets, may propagate, and may be consumed
-by handlers.
+Although the details differ slightly (for example, cancelled versus Qt's
+accepted state), the overall dispatch model is conceptually very similar to
+Qt's: events are dispatched to targets, may propagate, and may be consumed by
+handlers.
 
 ## Previous discussions
 
-The ideas presented in this proposal have been discussed in various forms over several years, motivated
-by different but closely related goals including improved developer ergonomics, stronger static typing,
-backend independence, and simplification of napari's communication infrastructure. Although these discussions
-often focused on adopting _psygnal_, they collectively highlight a broader architectural need for a more coherent
-application dispatch model.
+The ideas presented in this proposal have been discussed in various forms over
+several years, motivated by different but closely related goals including
+improved developer ergonomics, stronger static typing, backend independence,
+and simplification of napari's communication infrastructure. Although these
+discussions often focused on adopting _psygnal_, they collectively highlight a
+broader architectural need for a more coherent application dispatch model.
 
 One of the earliest discussions arose from the migration of magicgui to _psygnal_ [#3373](https://github.com/napari/napari/issues/3373). That discussion
 highlighted the usability and maintainability benefits of replacing the dynamic __Event__ objects with
@@ -296,11 +316,12 @@ simplify layer initialization, property setters, and event definitions. It was i
 exploratory implementation rather than a mergeable solution, with the goal of informing future architectural
 discussions.
 
-Finally, [#8509](https://github.com/napari/napari/pull/8509) demonstrated that _psygnal_-based models can
-coexist successfully within napari by migrating overlays from napari's custom `EventedModel` implementation
-to `psygnal.EventedModel`. Although limited in scope, this provided an initial proof of concept that parts
-of napari's event infrastructure can be migrated incrementally without requiring an immediate, project-wide
-transition.
+Finally, [#8509](https://github.com/napari/napari/pull/8509) demonstrated that
+_psygnal_-based models can coexist successfully within napari by migrating
+overlays from napari's custom `EventedModel` implementation to
+`psygnal.EventedModel`. Although limited in scope, this provided an initial
+proof of concept that parts of napari's event infrastructure can be migrated
+incrementally without requiring an immediate, project-wide transition.
 
 ## Rationale
 
@@ -351,7 +372,8 @@ Please see below for a more concise display of the problems with the current com
 
 ## The problem with the current communication model
 
-Napari currently uses several different mechanisms to communicate between components throughout the codebase:
+Napari currently uses several different mechanisms to communicate between
+components throughout the codebase:
 
 - the custom _napari.utils.events_ framework (derived from _VisPy_)
 - _Vispy's_ event system
@@ -382,15 +404,17 @@ Contributors currently need to understand several communication models:
 - _napari.utils.events_
 - _psygnal_
 
-Each has different semantics, callback signatures, connection mechanisms, and lifecycle rules. This increases the
-cognitive load for contributors, makes APIs less consistent, and complicates the development of reusable
-infrastructure.
+Each has different semantics, callback signatures, connection mechanisms, and
+lifecycle rules. This increases the cognitive load for contributors, makes APIs
+less consistent, and complicates the development of reusable infrastructure.
 
 ### Dynamic event definitions
 
-Many state-change notifications are represented using dynamically constructed `Event` objects and `EmitterGroup`s.
+Many state-change notifications are represented using dynamically constructed
+`Event` objects and `EmitterGroup`s.
 
-The information carried by these events is determined at runtime, making it difficult to:
+The information carried by these events is determined at runtime, making it
+difficult to:
 
 - discover available notifications
 - understand callback signatures
@@ -398,8 +422,9 @@ The information carried by these events is determined at runtime, making it diff
 - perform static type checking
 - generate accurate documentation
 
-Although many notifications have simple, well-defined interfaces (for example, "opacity changed" or "layer inserted"),
-these interfaces are hidden behind generic event objects.
+Although many notifications have simple, well-defined interfaces (for example,
+"opacity changed" or "layer inserted"), these interfaces are hidden behind
+generic event objects.
 
 ### Threading
 
@@ -416,40 +441,44 @@ Furthermore, users / developers would benefit from improved communication of pro
 
 ## Proposed design principles
 
-The following principles are intended to guide the migration. They describe the desired architecture rather than
-prescribing every implementation detail. Where practical considerations require deviations from these principles,
-those decisions should be documented.
+The following principles are intended to guide the migration. They describe the
+desired architecture rather than prescribing every implementation detail. Where
+practical considerations require deviations from these principles, those
+decisions should be documented.
 
 ### 1. One application dispatch model
 
-Napari should expose a single, coherent application dispatch model for communication between internal components.
-Backend libraries such as _Qt_ and _vispy_ will continue to use their native communication mechanisms internally,
-but these should remain implementation details encapsulated within napari-owned integration layers.
-Application code should communicate using napari's dispatch model rather than directly depending on
-backend-specific APIs.
+Napari should expose a single, coherent application dispatch model for
+communication between internal components. Backend libraries such as _Qt_ and
+_vispy_ will continue to use their native communication mechanisms internally,
+but these should remain implementation details encapsulated within napari-owned
+integration layers. Application code should communicate using napari's dispatch
+model rather than directly depending on backend-specific APIs.
 
 ### 2. Distinguish signals from events
 
-The migration should make a clear architectural distinction between __signals__ and __events__.
-__Signals__ represent __state-change notifications__. For example:
+The migration should make a clear architectural distinction between __signals__
+and __events__. __Signals__ represent __state-change notifications__. For
+example:
 
 - layer opacity changed
 - layer inserted
 - camera zoom changed
 
-__Events__ represent interactions that are being dispatched before application state changes.
-For example:
+__Events__ represent interactions that are being dispatched before application
+state changes. For example:
 
 - mouse press
 - mouse drag
 - key press
 
-__Signals__ and events have different semantics and should not be forced into the same abstraction.
+__Signals__ and events have different semantics and should not be forced into
+the same abstraction.
 
 ### 3. Use explicit, typed signals
 
-State-change notifications should be represented using explicit __psygnal signals__.
-For example:
+State-change notifications should be represented using explicit
+__psygnal signals__. For example:
 
 ```python
 opacity = Signal(float)
@@ -474,51 +503,59 @@ Explicit signal definitions improve:
 
 ### 4. Separate dispatch semantics from payloads
 
-The mechanism used to dispatch information should be independent of the objects representing that information.
-Signals should emit typed values or domain objects. _Events_ should carry well-defined payload types describing
-the interaction being dispatched.
-For example, an interaction event might carry a typed `MouseEvent` object containing position, button, modifiers,
-and other interaction-specific information.
-Separating dispatch semantics from payload representation makes communication easier to understand while avoiding
-the limitations of dynamically populated event objects.
+The mechanism used to dispatch information should be independent of the objects
+representing that information. Signals should emit typed values or domain
+objects. _Events_ should carry well-defined payload types describing the
+interaction being dispatched. For example, an interaction event might carry a
+typed `MouseEvent` object containing position, button, modifiers, and other
+interaction-specific information. Separating dispatch semantics from payload
+representation makes communication easier to understand while avoiding the
+limitations of dynamically populated event objects.
 
 ### 5. Encapsulate backend communication
 
-_Qt_, _Vispy_, and future rendering or GUI backends should continue to use the communication mechanisms that are
-most appropriate for those frameworks. Rather than replacing these mechanisms, napari should encapsulate them within
-backend integration layers.
-This keeps backend-specific communication localized while exposing a consistent application-level API to the rest
-of napari and to plugins.
+_Qt_, _Vispy_, and future rendering or GUI backends should continue to use the
+communication mechanisms that are most appropriate for those frameworks. Rather
+than replacing these mechanisms, napari should encapsulate them within backend
+integration layers. This keeps backend-specific communication localized while
+exposing a consistent application-level API to the rest of napari and to
+plugins.
 
 ### 6. Preserve behaviour before improving APIs
 
-The migration should prioritize behavioral compatibility over immediate API redesign.
-Existing semantics—including callback ordering, event propagation, lifecycle behaviour, and plugin
-expectations—should be preserved wherever practical.
-API improvements should be introduced incrementally through well-defined deprecation cycles.
+The migration should prioritize behavioral compatibility over immediate API
+redesign. Existing semantics—including callback ordering, event propagation,
+lifecycle behaviour, and plugin expectations—should be preserved wherever
+practical. API improvements should be introduced incrementally through
+well-defined deprecation cycles.
 
 ### 7. Make threading behaviour explicit
 
-Backend-specific threading constraints should remain encapsulated wherever possible.
-Where application-level communication crosses thread boundaries, the semantics should be clearly documented.
-This proposal does not attempt to redefine how backend frameworks manage threads, but it should establish clear
-guidance for how signals, events, and backend integrations interact with existing threading models.
+Backend-specific threading constraints should remain encapsulated wherever
+possible. Where application-level communication crosses thread boundaries, the
+semantics should be clearly documented. This proposal does not attempt to
+redefine how backend frameworks manage threads, but it should establish clear
+guidance for how signals, events, and backend integrations interact with
+existing threading models.
 
 ### 8. Minimise custom infrastructure
 
-Where appropriate, the migration should favour standard _psygnal_ abstractions over custom napari infrastructure.
-State-change notifications should primarily use `Signal` and `SignalGroup`, avoiding additional napari-specific
-abstractions unless they provide clear architectural benefits.
-Interaction events may require richer dispatch semantics than _psygnal_ alone provides, but these should be
-implemented using the smallest amount of custom infrastructure necessary.
+Where appropriate, the migration should favour standard _psygnal_ abstractions
+over custom napari infrastructure. State-change notifications should primarily
+use `Signal` and `SignalGroup`, avoiding additional napari-specific
+abstractions unless they provide clear architectural benefits. Interaction
+events may require richer dispatch semantics than _psygnal_ alone provides, but
+these should be implemented using the smallest amount of custom infrastructure
+necessary.
 
 ### 9. Design for long-term maintainability
 
-The communication infrastructure is fundamental to napari's architecture and plugin ecosystem.
-The migration should favour simple, explicit, and well-documented abstractions that can evolve over time without
-requiring repeated ecosystem-wide API changes.
-A successful design should make it easier to support future rendering backends, improve tooling and documentation,
-and reduce the long-term maintenance burden of the communication infrastructure.
+The communication infrastructure is fundamental to napari's architecture and
+plugin ecosystem. The migration should favour simple, explicit, and
+well-documented abstractions that can evolve over time without requiring
+repeated ecosystem-wide API changes. A successful design should make it easier
+to support future rendering backends, improve tooling and documentation, and
+reduce the long-term maintenance burden of the communication infrastructure.
 
 ## Proposed architecture
 
@@ -593,20 +630,28 @@ flowchart TB
 
 Under this architecture:
 
-- `psygnal.Signal` and `SignalGroup` become the primary mechanism for state-change notifications.
+- `psygnal.Signal` and `SignalGroup` become the primary mechanism for
+  state-change notifications.
 - `EmitterGroup` is gradually replaced by explicit `SignalGroup` definitions.
-- State changes emit typed values directly (for example, `Signal(float)` for opacity changes).
-- Rich interaction events (for example mouse and keyboard input) remain event objects with well-defined
+- State changes emit typed values directly (for example, `Signal(float)` for
+  opacity changes).
+- Rich interaction events (for example mouse and keyboard input) remain event
+  objects with well-defined
 semantics, including propagation and acceptance where appropriate.
-- Backend integrations remain responsible for translating between backend-specific communication mechanisms
+- Backend integrations remain responsible for translating between
+  backend-specific communication mechanisms
 and napari's application interfaces.
-- _Qt_ communication remains _Qt_ communication where appropriate, and similarly for _vispy_ and future rendering
-backends, avoiding unnecessary translation for high-frequency internal operations.
+- _Qt_ communication remains _Qt_ communication where appropriate, and
+  similarly for _vispy_ and future rendering
+backends, avoiding unnecessary translation for high-frequency internal
+operations.
 
-This architecture separates application behavior from backend implementation details while recognizing that backend
-frameworks will continue to manage their own communication internally. Supporting a new rendering or GUI backend
-therefore becomes primarily a matter of implementing a new backend integration layer rather than introducing
-another communication model throughout the application.
+This architecture separates application behavior from backend implementation
+details while recognizing that backend frameworks will continue to manage their
+own communication internally. Supporting a new rendering or GUI backend
+therefore becomes primarily a matter of implementing a new backend integration
+layer rather than introducing another communication model throughout the
+application.
 
 ## Migration strategy
 
@@ -621,18 +666,20 @@ plugin authors to migrate gradually.
 
 ### Backward compatibility
 
-A compatibility layer should be introduced before significant internal migration begins.
-The compatibility layer should allow the existing _napari.utils.events_ API to coexist with the new signaling
-infrastructure. Possible mechanisms include:
+A compatibility layer should be introduced before significant internal
+migration begins. The compatibility layer should allow the existing
+_napari.utils.events_ API to coexist with the new signaling infrastructure.
+Possible mechanisms include:
 
 - re-emitting _psygnal_ signals through existing `EmitterGroup` interfaces
 - temporarily supporting both callback styles
 - wrapping legacy `Event` objects where necessary
 - emitting deprecation warnings for legacy APIs
 
-The exact implementation remains an open design question and should be informed by experience from earlier
-migrations, including the overlays migration.
-The compatibility layer is intended only as migration infrastructure and should eventually be removed.
+The exact implementation remains an open design question and should be informed
+by experience from earlier migrations, including the overlays migration. The
+compatibility layer is intended only as migration infrastructure and should
+eventually be removed.
 
 ### Proposed migration phases
 
@@ -648,8 +695,8 @@ This includes:
 - migration utilities
 - any additional functionality required from _psygnal_
 
-The success criterion for this phase is that new components can adopt the new communication model without
-breaking existing code.
+The success criterion for this phase is that new components can adopt the new
+communication model without breaking existing code.
 
 #### 2 Internal state models
 
@@ -664,9 +711,10 @@ Likely candidates include:
 - other internal state models
 - `Layer` after planned refactor
 
-These components are relatively self-contained and primarily emit state-change notifications, making them good
-early candidates for migration.
-Where appropriate, `psygnal.EventedModel` should replace napari's custom implementation.
+These components are relatively self-contained and primarily emit state-change
+notifications, making them good early candidates for migration. Where
+appropriate, `psygnal.EventedModel` should replace napari's custom
+implementation.
 
 #### 3 State change consumers
 
@@ -680,25 +728,30 @@ This includes:
 - _Qt_ widgets
 - plugin-facing APIs
 
-At this stage, the majority of application state changes should be communicated through explicit typed signals.
+At this stage, the majority of application state changes should be communicated
+through explicit typed signals.
 
 *With regards to what is meant with controllers here, controller should:
 
-- listen to events of rendering backend and GUI frontend and tell the napari models what changed.
-- based on changes to the napari models tell the rendering backend / GUI frontend what to draw / update.
-In this respect something like the `LayerControls` can be seen as a controller and also everything that inherits
-the VispyBaseLayer as it translates between napari models and vispy.
+- listen to events of rendering backend and GUI frontend and tell the napari
+  models what changed.
+- based on changes to the napari models tell the rendering backend / GUI
+  frontend what to draw / update.
+In this respect something like the `LayerControls` can be seen as a controller
+and also everything that inherits the VispyBaseLayer as it translates between
+napari models and vispy.
 
 #### 4 Backend integration
 
-Review communication at the boundaries between napari and backend frameworks. Rather than replacing _Qt_ or _vispy_
-communication internally, this phase focuses on ensuring that backend-specific communication remains encapsulated
-within well-defined integration layers.
-Particular attention should be paid to high-frequency interaction events, such as mouse movement and dragging,
-where unnecessary abstraction could introduce measurable overhead. Any proposed changes should therefore be
-benchmarked before adoption.
-Exactly how interaction events should be represented remains an open design question and should be informed
-by experimentation.
+Review communication at the boundaries between napari and backend frameworks.
+Rather than replacing _Qt_ or _vispy_ communication internally, this phase
+focuses on ensuring that backend-specific communication remains encapsulated
+within well-defined integration layers. Particular attention should be paid to
+high-frequency interaction events, such as mouse movement and dragging, where
+unnecessary abstraction could introduce measurable overhead. Any proposed
+changes should therefore be benchmarked before adoption. Exactly how
+interaction events should be represented remains an open design question and
+should be informed by experimentation.
 
 #### 5 Deprecation and cleanup
 
@@ -709,8 +762,8 @@ Once the new communication model has matured:
 - deprecate legacy APIs
 - remove obsolete compatibility infrastructure
 
-The length of the deprecation period should depend on the complexity of the compatibility layer and the impact
-on plugins.
+The length of the deprecation period should depend on the complexity of the
+compatibility layer and the impact on plugins.
 
 ## Open design questions
 
@@ -721,28 +774,37 @@ These include:
 - the final compatibility strategy between `EmitterGroup` and `SignalGroup`
 - the appropriate representation of interaction events
 - the semantics of event propagation and event acceptance
-- whether rich interaction events should use existing backend event objects or napari-defined event types
+- whether rich interaction events should use existing backend event objects or
+  napari-defined event types
 - how backend integration layers should be structured
 - performance characteristics of high-frequency event dispatch
 - whether additional functionality is required from _psygnal_
 
-These questions should be resolved incrementally as experience is gained during the migration.
+These questions should be resolved incrementally as experience is gained during
+the migration.
 
 ## Success criteria
 
 The migration will be considered successful when:
 
-- napari exposes a single, coherent application communication model with clearly defined semantics for both
+- napari exposes a single, coherent application communication model with
+  clearly defined semantics for both
 signals and events
 - state-change notifications use explicit, typed _psygnal_ signals
-- interaction events have well-defined dispatch semantics independent of individual backend implementations
-- backend-specific communication remains encapsulated within napari-owned integration layers
-- Napari application logic no longer depends directly on backend communication APIs
-- event and signal interfaces are explicit, discoverable, and statically analysable
+- interaction events have well-defined dispatch semantics independent of
+  individual backend implementations
+- backend-specific communication remains encapsulated within napari-owned
+  integration layers
+- Napari application logic no longer depends directly on backend communication
+  APIs
+- event and signal interfaces are explicit, discoverable, and statically
+  analysable
 - plugin authors have a documented migration path
-- the legacy _napari.utils.events_ infrastructure is fully replaced through incremental changes.
+- the legacy _napari.utils.events_ infrastructure is fully replaced through
+  incremental changes.
 - threading expectations and backend responsibilities are clearly documented
-- adding a new rendering or GUI backend does not require introducing another application communication model.
+- adding a new rendering or GUI backend does not require introducing another
+  application communication model.
 
 ## References and Footnotes
 
@@ -762,10 +824,11 @@ CC0+BY [^id4].
 
 ## Changelog
 
-1. [#1086](https://github.com/napari/docs/pull/1086) Introduces initial version of the document
+1. [#1086](https://github.com/napari/docs/pull/1086) Introduces initial version
+   of the document
 
 ## Copyright
 
 This document is dedicated to the public domain with the Creative Commons CC0
-license [^id3]. Attribution to this source is encouraged where appropriate, as per
-CC0+BY [^id4].
+license [^id3]. Attribution to this source is encouraged where appropriate, as
+per CC0+BY [^id4].

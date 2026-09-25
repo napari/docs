@@ -159,8 +159,8 @@ def error_prone_function(): ...
 
 A generator function is a
 [special kind of function](https://realpython.com/introduction-to-python-generators/)
-that returns a lazy iterator. To make a generator, you "yield"
-results rather than (or in addition to) "returning" them:
+that returns a lazy iterator. To make a generator, you "yield" results rather
+than (or in addition to) "returning" them:
 
 ```python
 def my_generator():
@@ -304,9 +304,9 @@ to force quit your program.
 So whenever possible, sprinkle your long-running functions with `yield`.
 
 ```{note}
-Starting with napari 0.6.5 workers get registered as a running task and a confirmation
-dialog will be shown if they are still running when closing the napari GUI via
-its close button.
+Starting with napari 0.6.5 workers get registered as a running task and a
+confirmation dialog will be shown if they are still running when closing the
+napari GUI via its close button.
 ```
 
 ## Full two-way communication
