@@ -166,9 +166,9 @@ class ViewerModel:
     title: str
     _layer_slicer: _LayerSlicer
 
-    def reset_view(...): ...  # and similar
+    def reset_view(*args, **kwargs): ...  # and similar
 
-    def add_image(...): ...  # and similar
+    def add_image(*args, **kwargs): ...  # and similar
 ```
 
 With this NAP and the above considerations, we expect to separate the above components roughly as follows:
@@ -183,9 +183,10 @@ class View:
     layers: LayerList
     _layer_slicer: _LayerSlicer
 
-    def reset_view(...): ...  # and similar
+    def reset_view(*args, **kwargs): ...  # and similar
 
-    def add_image(...): ...  # and similar
+    def add_image(*args, **kwargs): ...  # and similar
+
 
 class ViewerModel:
     _views: SelectableEventedList[View]
