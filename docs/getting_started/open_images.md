@@ -67,7 +67,7 @@ Many samples come from the scikit-image example images available in [`skimage.da
 
 napari natively supports TIFF and many other standard formats like PNG, JPG etc. When drag-and-dropping files, using one of the `File -> Open File/Folder` menu options, or using the `File -> Open Sample` menu with such formats, images will be read via the [imageio](https://imageio.readthedocs.io/en/stable/) library and appear in the viewer.
 
-For example you can try with with your own images or by downloading [this TIFF file](https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/582/S-BIAD582/Files/01_wt_Dprotein555-TL/raw_mps/5-2b_01_wt_Dprotein555-TL_003_rawmp.tif) (CC0, Clark et al. (2022). BioStudies, S-BIAD582. Retrieved from https://www.ebi.ac.uk/biostudies/bioimages/studies/S-BIAD582) and opening it in napari via drag-and-drop or the file dialog:
+For example you can try with with your own images or by downloading [this TIFF file](https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/582/S-BIAD582/Files/01_wt_Dprotein555-TL/raw_mps/5-2b_01_wt_Dprotein555-TL_003_rawmp.tif) (CC0, Clark et al. (2022). BioStudies, S-BIAD582. Retrieved from <https://www.ebi.ac.uk/biostudies/bioimages/studies/S-BIAD582>) and opening it in napari via drag-and-drop or the file dialog:
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -171,7 +171,7 @@ In the example below we illustrate how to use ndevio to open a zarr file. Again,
 
 This basic installation allows to open ome-tiff, ome-zarr, imageio etc. via the plugin. If you need to open another format such as CZI, ND2 etc., you will have to install additional extensions (for example for ndevio please refer to the [instructions](https://github.com/ndev-kit/ndevio?tab=readme-ov-file#additional-image-format-support)). This can be done for example via the [direct entry option](https://napari.org/napari-plugin-manager/#installing-a-plugin-via-direct-entry) of the plugin manager.
 
-We are now able to just drag and drop a zarr file in the viewer to open it. We use an example from the [IDR OME-NGFF Samples](https://idr.github.io/ome-ngff-samples/) (13457537.zarr, CC BY 4.0, Payne et al. (2019) https://doi.org/10.1126/science.aay3446):
+We are now able to just drag and drop a zarr file in the viewer to open it. We use an example from the [IDR OME-NGFF Samples](https://idr.github.io/ome-ngff-samples/) (13457537.zarr, CC BY 4.0, Payne et al. (2019) <https://doi.org/10.1126/science.aay3446>):
 
 ```{code-cell} ipython3
 :tags: [remove-input]

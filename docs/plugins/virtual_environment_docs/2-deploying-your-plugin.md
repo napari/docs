@@ -12,7 +12,7 @@ PyPI and conda are two options for how you distribute your package and allow you
 
 `wheel` is a prebuilt package, ready to drop into your `site-packages` directory. It includes compiled OS-specific extensions (if applicable).
 
-You are *strongly* encouraged to ship both! If the `wheel` is not present, `pip` will try to build it from the `sdist` before installation, and that may fail depending on the package. To see if a given package ships a `wheel`, check here: https://pypi.org/project/napari/#files
+You are *strongly* encouraged to ship both! If the `wheel` is not present, `pip` will try to build it from the `sdist` before installation, and that may fail depending on the package. To see if a given package ships a `wheel`, check here: <https://pypi.org/project/napari/#files>
 
 **Note:** This goes for dependencies too! Check all your dependencies for wheel availability.
 
@@ -96,11 +96,11 @@ jobs:
 This is only a brief guide to deploying to `conda-forge`. More information can be found in the [conda-forge docs](https://conda-forge.org/docs/maintainer/adding_pkgs.html).
 To deploy a plugin to `conda-forge`, the plugin's build and run requirements **must** be available on `conda-forge` so the plugin and its dependencies may be installed.
 
-1. Fork https://github.com/conda-forge/staged-recipes
+1. Fork <https://github.com/conda-forge/staged-recipes>
 1. Create a new branch
 1. Create a new folder in recipes directory (copy the existing example)
 1. Update the **meta.yaml** file to include your package's build and run requirements
-1. Commit and open a PR to https://github.com/conda-forge/staged-recipes
+1. Commit and open a PR to <https://github.com/conda-forge/staged-recipes>
 
 Once your recipe is approved and merged, the rest happens *automagically*, and your package will appear on the [conda-forge package list](https://conda-forge.org/packages/).
 

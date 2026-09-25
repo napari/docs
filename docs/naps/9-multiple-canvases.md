@@ -366,7 +366,7 @@ On the flip side, this makes working with large layerlists and several views mor
 
 On the implementation side, this would require deprecating `Layer.visible` since layer visibility would now be a property of the `View`. This might accessible via something like a set of indices `View.visible_layers = {0, 1}`. This could be completely transparent via the GUI, but would be significantly more cumbersome programmatically.
 
-A significant advantage of using multiple layerlists over a single one is that it allows us to proceed with [part 1](#part-1-view-model) (and potentially [part 3](#part-3-gui-and-ux) without depending on [part 2](#part-2-decouple-slicing-state), by initially disallowing layers to live in myultiple views (and thus having multiple slicing states).
+A significant advantage of using multiple layerlists over a single one is that it allows us to proceed with [part 1](#part-1-viewer-and-view-model) (and potentially [part 3](#part-3-gui-and-ux) without depending on [part 2](#part-2-decouple-slicing-state-from-layer-models), by initially disallowing layers to live in myultiple views (and thus having multiple slicing states).
 
 ### Multi-View grid mode
 
