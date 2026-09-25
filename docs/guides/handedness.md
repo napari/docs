@@ -25,8 +25,9 @@ expected when displaying NumPy arrays, for example.
 In 3D, an additional *depth* axis is *pre*pended to the other two.
 
 ```{important}
-In versions 0.5.6 and earlier, it pointed *away* from the camera, while in versions 0.6.0
-it points *towards* the camera. This affects how 3D images and models are rendered, see
+In versions 0.5.6 and earlier, it pointed *away* from the camera, while in
+versions 0.6.0 it points *towards* the camera. This affects how 3D images and
+models are rendered, see
 [3D data, 3D axis orientation, and handedness](3D-handedness).
 ```
 
@@ -65,8 +66,10 @@ nbscreenshot(
 In napari's default orientation, latitude points down. If we were to multiply
 the scale by -1, the image would be flipped, but the latitude *values* (shown
 when hovering over the viewer) would be wrong, and latitude would still point
-down (incorrectly [since Ptolemy](https://en.wikipedia.org/wiki/History_of_cartography#Ptolemy)).
-Instead, we can flip the *axis orientation* so that the vertical axis (latitude) points up:
+down (incorrectly
+[since Ptolemy](https://en.wikipedia.org/wiki/History_of_cartography#Ptolemy)).
+Instead, we can flip the *axis orientation* so that the vertical axis
+(latitude) points up:
 
 ```{code-cell} python
 viewer.scene.camera.orientation2d = ('up', 'right')
@@ -124,9 +127,10 @@ viewer.scene.overlays.axes.visible = True
 nbscreenshot(viewer)
 ```
 
-Starting with napari 0.6.0, using the default orientations, the above image will correctly represent
-a right-handed helix. However, if we flip one of the axes (as they were in napari prior to 0.6.0),
-we will get the mirror image of the DNA, which will be physically inaccurate:
+Starting with napari 0.6.0, using the default orientations, the above image
+will correctly represent a right-handed helix. However, if we flip one of the
+axes (as they were in napari prior to 0.6.0), we will get the mirror image of
+the DNA, which will be physically inaccurate:
 
 ```{code-cell} python
 viewer.scene.camera.orientation = ('away', 'down', 'right')
@@ -143,9 +147,9 @@ viewer.close()
 ```
 
 ```{tip}
-The camera controls, accessible by right-clicking the 2D/3D toggle button,
-will display whether your current axis orientations form a [right-handed or a
-left-handed coordinate frame](https://en.wikipedia.org/wiki/Right-hand_rule#Coordinates).
+The camera controls, accessible by right-clicking the 2D/3D toggle button, will
+display whether your current axis orientations form a
+[right-handed or a left-handed coordinate frame](https://en.wikipedia.org/wiki/Right-hand_rule#Coordinates).
 
 ![camera controls, with a "right handed reference frame" icon highlighted
   next to the axis orientation boxes](../_static/images/handedness.png)
