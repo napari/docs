@@ -268,7 +268,7 @@ We set the points `ndim` to 3 so that the coordinates for the point annotations 
 Finally, we set the border color to a color cycle:
 
 ```python
-    points_layer.border_color_mode = 'cycle'
+points_layer.border_color_mode = 'cycle'
 ```
 
 ## Adding a GUI for selecting points

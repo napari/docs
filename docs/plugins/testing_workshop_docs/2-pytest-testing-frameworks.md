@@ -76,26 +76,30 @@ We've tested these functions with a single value. We need to be more thorough. P
 ```python
 import pytest
 
+
 def get_grade_from_mark(mark):
-    if mark > 50
-        return "Pass"
+    if mark > 50:
+        return 'Pass'
     else:
-        return "Fail"
+        return 'Fail'
 
-@pytest.mark.parametrize("mark", [65, 80, 50])
+
+@pytest.mark.parametrize('mark', [65, 80, 50])
 def test_get_grade_pass(mark):
-    grade = get_grade_from_mark(mark):
-    assert grade == "Pass", f"Expected {mark} to pass, but result was{grade}"
+    grade = get_grade_from_mark(mark)
+    assert grade == 'Pass', f'Expected {mark} to pass, but result was{grade}'
 
-@pytest.mark.parametrize("mark", [40, 25])
+
+@pytest.mark.parametrize('mark', [40, 25])
 def test_get_grade_fail(mark):
-    grade = get_grade_from_mark(mark):
-    assert grade == "Fail", f"Expected {mark} to fail, but result was{grade}"
+    grade = get_grade_from_mark(mark)
+    assert grade == 'Fail', f'Expected {mark} to fail, but result was{grade}'
 
-if _name_ == "_main_";
+
+if __name__ == '__main__':
     test_get_grade_pass(65)
     test_get_grade_fail(30)
-    print("All passing.")
+    print('All passing.')
 ```
 
 We run `pytest` which finds and runs `test_get_grade_pass(mark)`. `test_get_grade_pass(mark)` fails because the code says `mark > 50`, so a mark of 50 still fails. The code should say `>=50` for a mark to pass.

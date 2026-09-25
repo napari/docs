@@ -349,9 +349,8 @@ exclude =
 # setup.py
 ...
 setup(
-    ...
-    packages=find_packages(exclude=("tests", "tests.*")),
-    ...
+    ...,
+    packages=find_packages(exclude=('tests', 'tests.*')),
 )
 ```
 

@@ -259,18 +259,18 @@ def multi_part(key: int) -> bool:
 
 As such, entries in the keymap can be filtered to find conflicts:
 
-```python
-> list(filter(has_shift, keymap))
+```pycon
+>>> list(filter(has_shift, keymap))
 [<KeyCombo.CtrlCmd|Shift|KeyZ: 3115>, <KeyMod.Shift: 1024>]
 
-> list(filter(starts_with_ctrl_cmd_x, keymap))
+>>> list(filter(starts_with_ctrl_cmd_x, keymap))
 [
     <KeyCombo.CtrlCmd|KeyX: 2089>,
     KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyC: 20>),
     KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyV: 39>),
 ]
 
-> list(filter(multi_part, keymap))
+>>> list(filter(multi_part, keymap))
 [
     KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyC: 20>),
     KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyV: 39>),
@@ -279,8 +279,8 @@ As such, entries in the keymap can be filtered to find conflicts:
 
 Note that because modifiers are encoded in the `(8, 12]`-bit range, querying for modifiers will only check the first part unless they are shifted by 16:
 
-```python
-> has_shift(KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyMod.Shift | KeyCode.KeyY))
+```pycon
+>>> has_shift(KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyMod.Shift | KeyCode.KeyY))
 False
 ```
 
@@ -330,6 +330,7 @@ from app_model.types import KeyBinding, KeyCode, KeyMod
 VALID_KEYS: List[KeyCode] = ...
 PRESS_HOLD_DELAY_MS: int = 200
 
+
 class KeyBindingDispatcher:
     keymap: Dict[int, List[KeyBindingEntry]]
     is_prefix: bool
@@ -337,6 +338,7 @@ class KeyBindingDispatcher:
     timer: Optional[Timer]
     active_combo: int
     ...
+
     def on_key_press(self, mods: KeyMod, key: KeyCode):
         self.is_prefix = False
         self.active_combo = 0
@@ -361,11 +363,16 @@ class KeyBindingDispatcher:
 
             if mods == KeyMod.NONE:
                 # single modifier
-                if (entries := self.keymap.get(keymod)) and (match := find_active_match(entries)):
+                if (entries := self.keymap.get(keymod)) and (
+                    match := find_active_match(entries)
+                ):
                     self.active_combo = key
                     if has_conflicts(keymod, self.keymap):
                         # conflicts; exec after delay
-                        self.timer = Timer(PRESS_HOLD_DELAY_MS / 1000, lambda: self.exec_press(match.command_id))
+                        self.timer = Timer(
+                            PRESS_HOLD_DELAY_MS / 1000,
+                            lambda: self.exec_press(match.command_id),
+                        )
                         self.timer.start()
                     else:
                         # no conflicts; exec immediately
@@ -376,7 +383,9 @@ class KeyBindingDispatcher:
             if self.prefix:
                 key_seq = KeyChord(self.prefix, key_seq)
 
-            if (entries := self.keymap.get(key_seq) and (match := find_active_match(entries)):
+            if (entries := self.keymap.get(key_seq)) and (
+                match := find_active_match(entries)
+            ):
                 self.active_combo = mods | key
                 if not self.prefix and has_conflicts(key_seq, self.keymap):
                     # first part of key binding, check for conflicts

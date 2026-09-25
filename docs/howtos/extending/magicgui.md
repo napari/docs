@@ -476,9 +476,9 @@ You can create multiple layers by returning a list of
 ```python
 from magicgui import magicgui
 
+
 @magicgui
-def make_points(...) -> list[napari.layers.Layer]:
-  ...
+def make_points(*args, **kwargs) -> list[napari.layers.Layer]: ...
 ```
 
 ```{note}
@@ -611,9 +611,9 @@ You can also create multiple layers by returning a list of
 ```python
 from magicgui import magicgui
 
+
 @magicgui
-def make_points(...) -> list[napari.types.LayerDataTuple]:
-  ...
+def make_points(*args, **kwargs) -> list[napari.types.LayerDataTuple]: ...
 ```
 
 ```{note}
@@ -701,18 +701,17 @@ custom elements.
 import napari
 from magicgui.widgets import FunctionGui
 
-def my_function(...):
-    ...
+
+def my_function(*args, **kwargs): ...
+
 
 class MyGui(FunctionGui):
     def __init__(self):
         super().__init__(
-          my_function,
-          call_button=True,
-          layout='vertical',
-          param_options={...}
+            my_function, call_button=True, layout='vertical', param_options={}
         )
         # do whatever other initialization you want here
+
 
 # Create a `viewer`
 viewer = napari.Viewer()
