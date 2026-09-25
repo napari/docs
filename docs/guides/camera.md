@@ -18,10 +18,10 @@ There are two programmatic ways that the camera is fit to the scene
 
 ```python
 # Fit the camera to the scene and reset angles to default
-viewer.reset_view() 
+viewer.reset_view()
 
 # Keep angles, but fit the camera to the scene
-viewer.fit_to_view() 
+viewer.fit_to_view()
 ```
 
 These can also be accessed via the **View** menu.
@@ -40,7 +40,7 @@ state independently.
 The current mode is controlled by {attr}`~napari.components.Camera.synced`:
 
 ```python
-viewer.scene.camera.synced = True   # synced mode (default)
+viewer.scene.camera.synced = True  # synced mode (default)
 viewer.scene.camera.synced = False  # separate mode
 ```
 
