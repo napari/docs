@@ -5,11 +5,12 @@
 This document details how to convert a plugin using the first generation
 `napari-plugin-engine`, to the new `npe2` format.
 
-The primary difference between the first generation and second generation plugin
-system relates to how napari *discovers* plugin functionality. In the first
-generation plugin engine, napari had to *import* plugin modules to search for
-hook implementations decorated with `@napari_hook_implementation`. In `npe2`,
-plugins declare their contributions *statically* with a [manifest file](plugin-manifest).
+The primary difference between the first generation and second generation
+plugin system relates to how napari *discovers* plugin functionality. In the
+first generation plugin engine, napari had to *import* plugin modules to search
+for hook implementations decorated with `@napari_hook_implementation`. In
+`npe2`, plugins declare their contributions *statically* with a
+[manifest file](plugin-manifest).
 
 ## Migrating using the `npe2` command line tool
 
@@ -75,10 +76,10 @@ Executing `npe2 convert .` will **modify** the current directory!
 
 The `npe2 convert` command will:
 
-1. Inspect your plugin for hook implementations, and generate an npe2-compatible
-   [manifest file](plugin-manifest), called `napari.yaml`.
-1. **Modify** your `setup.cfg` to use the new `napari.manifest` entry point, and
-   include the manifest file in your package data.
+1. Inspect your plugin for hook implementations, and generate an
+   npe2-compatible [manifest file](plugin-manifest), called `napari.yaml`.
+1. **Modify** your `setup.cfg` to use the new `napari.manifest` entry point,
+   and include the manifest file in your package data.
 
 Use the `npe2 convert` command, passing a path to a plugin
 repository (here, the current directory `.`)
@@ -92,17 +93,18 @@ If you have any napari_plugin_engine imports or hook_implementation decorators, 
 ```
 
 You are encouraged to inspect the newly-generated `napari.yaml` file. Refer to
-the [manifest](plugin-manifest) and [contributions](contributions-ref) references pages
-for details on each field in the manifest.
+the [manifest](plugin-manifest) and [contributions](contributions-ref)
+references pages for details on each field in the manifest.
 
 ```{note}
 In some cases the conversion tool may not be able to completely convert your
 plugin. Notable cases include:
 
 - multi-layer writers using the `napari_get_writer` hook specification
-- *locally* scoped functions returned from `napari_experimental_provide_function`.
-  All [command contributions](contributions-commands)
-  must have global `python_paths`.
+- *locally* scoped functions returned from
+  `napari_experimental_provide_function`. All
+  [command contributions](contributions-commands) must have global
+  `python_paths`.
 
 Feel free to contact us on zulip or github if you need help converting!.
 ```
@@ -120,16 +122,18 @@ ______________________________________________________________________
 
 ## Migration Reference
 
-> *This section goes into detail on the differences between first-generation and
-> second-generation implementations. In many cases, this will be more detail than
-> you need. If you are still struggling with a specific conversion after using
-> `npe2 convert` and reading the [contributions](contributions-ref) reference and
-> [guides](plugin-contribution-guides), this section may be of help.*
+> *This section goes into detail on the differences between first-generation
+> and second-generation implementations. In many cases, this will be more
+> detail than you need. If you are still struggling with a specific conversion
+> after using `npe2 convert` and reading the [contributions](contributions-ref)
+> reference and [guides](plugin-contribution-guides), this section may be of
+> help.*
 
-Existing `napari-plugin-engine` plugins expose functionality via *hook
-implementations*. These are functions decorated to indicate they fulfil a
+Existing `napari-plugin-engine` plugins expose functionality via
+*hook implementations*. These are functions decorated to indicate they fulfil a
 *hook specification* described by napari. Though there are some exceptions,
-most *hook implementations* can be straightforwardly mapped to npe2 [contributions](contributions-ref)
+most *hook implementations* can be straightforwardly mapped to npe2
+[contributions](contributions-ref)
 
 `npe2` provides a command-line tool that will generate plugin manifests by
 inspecting exposed *hook implementations*. Below, we will walk through the
@@ -413,8 +417,9 @@ def get_new_theme() -> Dict[str, Dict[str, Union[str, Tuple, List]]]:
 ```
 
 becomes this theme contribution in the plugin manifest. Note that `type`
-indicates whether the theme is light or dark, omitted color keys inherit from that base,
-and `syntax_style` stays at the top level rather than under `colors`:
+indicates whether the theme is light or dark, omitted color keys inherit from
+that base, and `syntax_style` stays at the top level rather than under
+`colors`:
 
 ```yaml
 name: my-plugin
@@ -461,10 +466,10 @@ The benefits for an end-user opting in to the npe2 adaptor are:
   at launch, napari can boot *significantly* faster.
 - Plugins are imported lazily, only after one of their commands or menu items
   has been requested.
-- It will become clearer to the user which plugin has errored (if any), since it
-  will only occur when the plugin's functionality has been requested.
-- For napari, the internal codebase becomes *much* simpler since only the npe2 API
-  needs to be used.
+- It will become clearer to the user which plugin has errored (if any), since
+  it will only occur when the plugin's functionality has been requested.
+- For napari, the internal codebase becomes *much* simpler since only the npe2
+  API needs to be used.
 
 ### Caveats
 

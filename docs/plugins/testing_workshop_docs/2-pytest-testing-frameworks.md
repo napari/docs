@@ -2,7 +2,9 @@
 
 # 2: Pytest testing framework
 
-This lesson explains how to use the [pytest testing framework](https://docs.pytest.org/en/7.2.x/) to make testing easier.
+This lesson explains how to use the
+[pytest testing framework](https://docs.pytest.org/en/7.2.x/) to make testing
+easier.
 
 ## Other lessons in this tutorial
 
@@ -19,22 +21,36 @@ This lesson explains how to use the [pytest testing framework](https://docs.pyte
 
 ### Resources
 
-The example plugin and all the tests discussed in this lesson are available in [this GitHub repository](https://github.com/DragaDoncila/plugin-tests).
+The example plugin and all the tests discussed in this lesson are available in
+[this GitHub repository](https://github.com/DragaDoncila/plugin-tests).
 
 ## Introduction
 
-We are using pytest as a testing framework. It provides convenience tools to assist with testing. For example, it can discover tests for you if you point it to a directory or a file. It can be installed using `pip install pytest`.
+We are using pytest as a testing framework. It provides convenience tools to
+assist with testing. For example, it can discover tests for you if you point it
+to a directory or a file. It can be installed using `pip install pytest`.
 
 ## Testing framework features
 
 Testing frameworks provide a whole host of useful features, including:
 
-- Test discovery - directories can be crawled (searched) to find things that look like tests and run them
-- Housekeeping and ease of use - convenient methods for writing tests and cleaning up after running the tests
+- Test discovery - directories can be crawled (searched) to find things that
+  look like tests and run them
+- Housekeeping and ease of use - convenient methods for writing tests and
+  cleaning up after running the tests
 
-Pytest goes through the target destination, such as a file or directory, finding any method or function prefaced with the word `test`. It runs all the methods and functions prefaced with the word `test` but _not_ the code under the main block. When `pytest` runs against `example_test.py` (refer to the [Python's assert keyword](plugin-testing-workshop-assert) lesson), it finds several tests that all pass.
+Pytest goes through the target destination, such as a file or directory,
+finding any method or function prefaced with the word `test`. It runs all the
+methods and functions prefaced with the word `test` but _not_ the code under
+the main block. When `pytest` runs against `example_test.py` (refer to the
+[Python's assert keyword](plugin-testing-workshop-assert) lesson), it finds
+several tests that all pass.
 
-If the tests fail, `pytest` is very good at tracing back the reason they failed and showing their values throughout test execution. In more complicated examples, this traceback mechanism can be very helpful. In this example, the message is that we got a `Pass` but were expecting a `Fail`. See the lines below that show the `assert` keyword and the errors.
+If the tests fail, `pytest` is very good at tracing back the reason they failed
+and showing their values throughout test execution. In more complicated
+examples, this traceback mechanism can be very helpful. In this example, the
+message is that we got a `Pass` but were expecting a `Fail`. See the lines
+below that show the `assert` keyword and the errors.
 
 ```console
 (napari-env) user@directory % pytest
@@ -71,7 +87,11 @@ FAILED example_func_py::test_get_grade_fail - AssertionError: Expected 65 to fai
 
 Another very useful tool that pytest provides is parametrization.
 
-We've tested these functions with a single value. We need to be more thorough. Pytest allows us to parametrize tests. We decorate our function with `@pytest.mark.parametrize` and pass the decorator a parameter name, `mark`, as a string, and a list of values for which we’d like to run the test function. Note that we pass in 50 as an edge case; it's the lowest mark that will pass.
+We've tested these functions with a single value. We need to be more thorough.
+Pytest allows us to parametrize tests. We decorate our function with
+`@pytest.mark.parametrize` and pass the decorator a parameter name, `mark`, as
+a string, and a list of values for which we’d like to run the test function.
+Note that we pass in 50 as an edge case; it's the lowest mark that will pass.
 
 ```python
 import pytest
@@ -102,7 +122,9 @@ if __name__ == '__main__':
     print('All passing.')
 ```
 
-We run `pytest` which finds and runs `test_get_grade_pass(mark)`. `test_get_grade_pass(mark)` fails because the code says `mark > 50`, so a mark of 50 still fails. The code should say `>=50` for a mark to pass.
+We run `pytest` which finds and runs `test_get_grade_pass(mark)`.
+`test_get_grade_pass(mark)` fails because the code says `mark > 50`, so a mark
+of 50 still fails. The code should say `>=50` for a mark to pass.
 
 ```console
 example_func.py ..F..
@@ -123,6 +145,8 @@ example_func_py:12: AssertionError
 FAILED example_func_py::test_get_grade_pass[50] - AssertionError: Expected 50 to pass, but result was Fail
 ```
 
-Another valuable feature of `pytest` is the `pytest-cov` option discussed in the [Test coverage](plugin-testing-workshop-coverage) lesson
+Another valuable feature of `pytest` is the `pytest-cov` option discussed in
+the [Test coverage](plugin-testing-workshop-coverage) lesson
 
-The next lesson in this tutorial on testing is the [Readers and fixtures](plugin-testing-workshop-reader-fixtures) lesson.
+The next lesson in this tutorial on testing is the
+[Readers and fixtures](plugin-testing-workshop-reader-fixtures) lesson.
