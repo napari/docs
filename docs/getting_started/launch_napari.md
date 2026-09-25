@@ -13,6 +13,7 @@ kernelspec:
 ---
 
 (launch)=
+
 # Launch napari
 
 This tutorial assumes you have already installed napari.
@@ -46,9 +47,7 @@ napari
 This command will launch an empty viewer:
 
 ```{code-cell} ipython3
----
-tags: [remove-input]
----
+:tags: [remove-input]
 import napari
 from napari.utils import nbscreenshot
 
@@ -73,9 +72,7 @@ If the image is `RGB` or `RGBA` use the `-r` or `--rgb` flag.
 Here's an example of a viewer with an RGB image, the `astronaut` sample image.
 
 ```{code-cell} ipython3
----
-tags: [remove-input]
----
+:tags: [remove-input]
 import napari
 from napari.utils import nbscreenshot
 from skimage.data import astronaut
@@ -219,7 +216,7 @@ To learn more about:
 
 If you try to start napari and see an error message containing following (or similar) text:
 
-```
+```text
 ImportError: No Qt bindings could be found
 ```
 
@@ -259,7 +256,7 @@ from PySide6 import QtWidgets
 
 Such import may raise an error like:
 
-```
+```text
 ImportError: .../site-packages/PyQt5/QtWidgets.abi3.so: undefined symbol: _ZdlPvm, version Qt_5
 ```
 

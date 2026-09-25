@@ -207,7 +207,7 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 
 - Implement **"napari headless is Just Python"** vision so napari can run anywhere that Python can. [#5958](https://github.com/napari/napari/issues/5958)
 
-- Improvements to the plugin manifest 
+- Improvements to the plugin manifest
   - Add high-impact features to existing manifest to enable user workflows e.g. reading hooks [#8032](https://github.com/napari/napari/issues/8032), directory reading patterns [npe2/#155](https://github.com/napari/npe2/issues/155), and context-dependent command/menu items
   - Design & implement a **new version of the plugin manifest** that addresses current pain points, deduplicates parts of the specification, and includes richer contribution types [#6227](https://github.com/napari/napari/issues/6227)
 

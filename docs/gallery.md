@@ -23,9 +23,7 @@ If you want to submit a new example to this gallery, check out our
 ```
 
 ```{toctree}
----
-maxdepth: 1
----
+:maxdepth: 1
 _tags/tagsindex
 ```
 

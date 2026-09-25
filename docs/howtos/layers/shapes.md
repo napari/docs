@@ -12,6 +12,7 @@ kernelspec:
 ---
 
 (layers-shapes)=
+
 # Shapes
 
 In this document, you will learn about the `napari` `shapes` layer, including
@@ -399,18 +400,14 @@ shapes_layer = viewer.add_shapes(
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="Shapes overlaid on image")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -420,9 +417,7 @@ viewer.close()
 accepts the following layer-creation parameters.
 
 ```{code-cell} python
----
-tags: [hide-output]
----
+:tags: [hide-output]
 help(napari.Viewer.add_shapes)
 ```
 
@@ -510,18 +505,14 @@ shapes_layer.add(
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="Add new shapes to an existing shapes layer")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -558,18 +549,14 @@ shapes_layer.add_ellipses(
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="Add new ellipses to an existing shapes layer using the specific method for this layer type")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 

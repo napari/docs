@@ -26,13 +26,13 @@ When a user clicks or moves the mouse in the canvas, napari emits a mouse event 
 
 ## Determining where the click intersects the data
 
-Each napari layer has a method called `get_ray_intersections()` that will return the points on the data bounding box that a given line will intersect (`start_point ` and `end_point `). When the click line (`view_direction`) and position (`position`) are used as inputs, `start_point` and `end_point` are the end points of the segment click line that intersects the layer's axis-alinged data bounding box. `start_point` is the end point that is closest to the camera (i.e, the "first" intersection) and `end_point` is the end point that is farthest from the camera (i.e., the "last" intersection). You can use the line segment between `start_point` and `end_point` to interrogate the layer data that is "under" your cursor.
+Each napari layer has a method called `get_ray_intersections()` that will return the points on the data bounding box that a given line will intersect (`start_point` and `end_point `). When the click line (`view_direction`) and position (`position`) are used as inputs, `start_point` and `end_point` are the end points of the segment click line that intersects the layer's axis-alinged data bounding box. `start_point` is the end point that is closest to the camera (i.e, the "first" intersection) and `end_point` is the end point that is farthest from the camera (i.e., the "last" intersection). You can use the line segment between `start_point` and `end_point` to interrogate the layer data that is "under" your cursor.
 
 ![A diagram that shows how the 3D click line starting from the camera position intersects with the 3D bounding box associated with a layer's data. There are two intersection points. A start point, which is the first intersection point, and the end point which is the second.](../_static/images/3d_interaction_ray_intersection.png)
 
 See the `get_ray_intersection()` docstrings below for details. Note that if the line does not intersect the data bounding box (i.e., the click was outside of the data), `start_point` and `end_point` are `None`. The `position` and `view_direction` should be provided as world coordinates if `world` is set to True and in layer coordinates if `world` is set to `False`.
 
-```
+```text
 def get_ray_intersections(
     self,
     position: List[float],
@@ -78,7 +78,7 @@ def get_ray_intersections(
 
 Custom 3D interactivity can be added via mouse callbacks. The `layer.get_ray_intersections()` function has been designed to work seamlessly with the napari mouse callback event. You can pass the mouse callback event properties to `layer.get_ray_intersections()` get the `start_point` and `end_point` of where the click line intersects the layer data.
 
-```
+```text
 @layer.mouse_drag_callbacks.append
 def on_click(layer, event):
 	# get the points where the click intersects the
@@ -98,7 +98,7 @@ For an example implementation, see [`cursor_ray.py`](https://github.com/napari/n
 
 There are convenience methods in the layer objects (`layer.get_value()`) to get the layer data value underneath the cursor that is "on top" (i.e., closest to `start_point`). Like `layer.get_ray_intersections()`, `layer.get_value()` takes the click position, view direction, dims_displayed in either world or layer coordinates (see `world` argument) as input. Thus, it can be easily integrated into a mouse event callback. Note that `layer.get_value()` returns `None` if the layer is not currently visible. See the docstring below for details.
 
-```
+```text
     def get_value(
         self,
         position,

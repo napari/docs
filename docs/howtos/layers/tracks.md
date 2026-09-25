@@ -12,6 +12,7 @@ kernelspec:
 ---
 
 (layers-tracks)=
+
 # Tracks
 
 In this document, you will learn about the `napari` `tracks` layer, including

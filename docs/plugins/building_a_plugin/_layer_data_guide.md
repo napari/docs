@@ -10,7 +10,7 @@ up often in plugins and is explained here.
 Note that when writing your own plugin, type annotations are optional,
 except in the case of [`magicgui` function widgets](magicgui_decorator).
 For several types related to `LayerData` tuples, napari defines a type alias
-which better indicates a value's _functional role_ in a plugin.
+which better indicates a value's *functional role* in a plugin.
 We describe these below.
 
 ### Informal description
@@ -90,7 +90,7 @@ All of the following are valid `LayerData` tuples:
 (data.astype(int), {'name': 'My Labels', 'blending': 'additive'}, 'labels')
 ```
 
-### Creation from a `Layer` instance.
+### Creation from a `Layer` instance
 
 Note, the {meth}`~napari.layers.Layer.as_layer_data_tuple` method will create a layer data
 tuple from a given layer

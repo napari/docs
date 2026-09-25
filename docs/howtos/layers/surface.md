@@ -12,6 +12,7 @@ kernelspec:
 ---
 
 (layers-surface)=
+
 # Surface
 
 In this document, you will learn about the `napari` `surface` layer, including
@@ -58,18 +59,14 @@ viewer.add_surface(surface)  # add the surface
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="A viewer with a surface")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -114,9 +111,7 @@ underlying surface color.
 {meth}`~napari.Viewer.add_surface` accepts the following layer-creation parameters.
 
 ```{code-cell} python
----
-tags: [hide-output]
----
+:tags: [hide-output]
 help(napari.Viewer.add_surface)
 ```
 
@@ -124,6 +119,7 @@ help(napari.Viewer.add_surface)
 
 The data for a `surface` layer can be given as either a 2-tuple
 `(vertices, faces)` or a 3-tuple `(vertices, faces, vertex_values)`.
+
 - The vertices are an `NxD` array of `N` vertices in `D` coordinates.
 - The faces are an `Mx3` integer array of the indices of the triangles
   making up the faces of the surface.
