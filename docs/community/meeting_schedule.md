@@ -57,7 +57,7 @@ If you are using napari or interested in how napari could be used in your work, 
         info.jsEvent.preventDefault();
         var eventObj = info.event;
         // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName[0]("close");
+        var span = document.getElementsByClassName("close")[0];
         // Get the modal
         var modal = document.getElementById("eventDetailBackground");
         modal.style.display = "block";
