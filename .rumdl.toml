@@ -20,12 +20,7 @@ disable = [
 
 
 [per-file-ignores]
-# The community calendar is a FullCalendar embed: divs, three <script> tags (one a CDN
-# load), a modal, and <b>/<br> inside JS string literals. Markdown cannot express it and
-# removing it would delete the community calendar, so MD033 is scoped away here.
 "docs/community/meeting_schedule.md" = ["MD033"]
-# MD034's fix is not code-span-aware: it rewrites `http://x` inside an inline code
-# span into `<http://x>`, where the brackets are literal, changing rendered text.
 "docs/developers/contributing/documentation/index.md" = ["MD034"]
 "docs/naps/9-multiple-canvases.md" = ["MD058"]
 "docs/plugins/building_a_plugin/best_practices.md" = ["MD032"]
