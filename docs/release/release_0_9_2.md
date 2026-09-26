@@ -75,6 +75,7 @@ The napari team has been working hard to improve our release process, and based 
 - Typing guide: Using Pyrefly and understanding the config ([docs#1134](https://github.com/napari/docs/pull/1134))
 - Typing Guide: Tips and Resources ([docs#1135](https://github.com/napari/docs/pull/1135))
 - Add initial release notes for 0.9.2 ([docs#1137](https://github.com/napari/docs/pull/1137))
+- Update release notes for 0.9.2 ([docs#1146](https://github.com/napari/docs/pull/1146))
 
 ## Other Pull Requests
 
