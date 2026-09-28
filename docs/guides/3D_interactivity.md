@@ -21,7 +21,7 @@ When a user clicks or moves the mouse in the canvas, napari emits a mouse event 
 - **view_direction**: a unit vector in world coordinates pointing from the camera into the scene along the click line. It is `None` in 2D mode.
 - **dims_displayed**: a list of the dimensions currently being displayed
   in the viewer. This comes from `viewer.dims.displayed`.
-- **dims_point**: the current slider position for each dimension in world coordinates. This comes from `viewer.dims.point`.
+- **dims_point**: the current slicing position for each dimension in world coordinates. This comes from `viewer.dims.point`.
 
 ## Determining where the click intersects the data
 
