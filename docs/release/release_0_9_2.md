@@ -34,11 +34,11 @@ The napari team has been working hard to improve our release process, and based 
 
 ## New Features
 
-- Feat: allow passing list of layers to Viewer.reset_view and .fit_to_view ([#6120](https://github.com/napari/napari/pull/6120))
 - Add multiscale level extraction as a `LayerList` action ([#9495](https://github.com/napari/napari/pull/9495))
 
 ## Improvements
 
+- Feat: allow passing list of layers to Viewer.reset_view and .fit_to_view ([#6120](https://github.com/napari/napari/pull/6120))
 - Add setting for global multisampling/antialiasing ([#8570](https://github.com/napari/napari/pull/8570))
 - Reorder font-family declaration in console QSS ([#9325](https://github.com/napari/napari/pull/9325))
 - Performance: Avoid redundant unit conversion when aggregating layer extents ([#9411](https://github.com/napari/napari/pull/9411))
