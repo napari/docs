@@ -1,6 +1,6 @@
 # napari 0.9.2
 
-*Mon, Sep 28, 2026*
+*Tue, Sep 29, 2026*
 
 We're happy to announce the release of napari 0.9.2!
 napari is a fast, interactive, multi-dimensional image viewer for Python.
@@ -56,7 +56,9 @@ The napari team has been working hard to improve our release process, and based 
 - Fix view direction and refactor camera logic into vispy module ([#9389](https://github.com/napari/napari/pull/9389))
 - fix(vectors): emit edge_color_mode when the color setter changes the mode ([#9396](https://github.com/napari/napari/pull/9396))
 - Fix _unique_element crash and incorrect result for list-valued features ([#9409](https://github.com/napari/napari/pull/9409))
+- Fix changing theme with dynamic controls ([#9460](https://github.com/napari/napari/pull/9460))
 - Fix keeping properties and equality operators from parent class ([#9479](https://github.com/napari/napari/pull/9479))
+- Fix surface lighting in async mode ([#9493](https://github.com/napari/napari/pull/9493))
 - Bump vispy: rgb volumes, fixed perspective and overlay bleed ([#9499](https://github.com/napari/napari/pull/9499))
 - Fix calculation of number of viewboxes ([#9509](https://github.com/napari/napari/pull/9509))
 - Fix qt command palette row indexing ([#9512](https://github.com/napari/napari/pull/9512))
