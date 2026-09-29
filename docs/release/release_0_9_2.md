@@ -74,10 +74,10 @@ The napari team has been working hard to improve our release process, and based 
 - New release policy with regular cadence and responsibilities ([docs#1126](https://github.com/napari/docs/pull/1126))
 - Update 0.9.1 release notes to add missed author ([docs#1130](https://github.com/napari/docs/pull/1130))
 - Typing guide: Using Pyrefly and understanding the config ([docs#1134](https://github.com/napari/docs/pull/1134))
-- Typing Guide: Tips and Resources ([docs#1135](https://github.com/napari/docs/pull/1135))
 - Add initial release notes for 0.9.2 ([docs#1137](https://github.com/napari/docs/pull/1137))
 - enforce LF line endings ([docs#1139](https://github.com/napari/docs/pull/1139))
 - Update release notes for 0.9.2 ([docs#1146](https://github.com/napari/docs/pull/1146))
+- Update the version switcher for 0.9.2 ([docs#1150](https://github.com/napari/docs/pull/1150))
 
 ## Other Pull Requests
 
