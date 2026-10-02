@@ -309,6 +309,7 @@ Select your platform below to download napari {{ bundle_version }} directly:
 +++
 {ref}`Installation steps <linux-bundle>`
 ```
+
 ````
 
 For pre-release versions or earlier stable versions of the napari app,
