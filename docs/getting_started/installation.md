@@ -271,7 +271,7 @@ pip install napari[pyqt6, optional] -c constraints_py3.14.txt
 
 ## Install as an application
 
-napari can be installed as a standalone application on macOS, Windows, and Linux — no Python knowledge required. This is the simplest way to get started and works best if you want to use napari as a standalone GUI app. Note that some plugins may not be available without a full Python environment. 
+napari can be installed as a standalone application on macOS, Windows, and Linux — no Python knowledge required. This is the simplest way to get started and works best if you want to use napari as a standalone GUI app. Note that some plugins may not be available without a full Python environment.
 
 Select your platform below to download napari {{ bundle_version }} directly:
 
