@@ -314,7 +314,7 @@ Select your platform below to download napari {{ bundle_version }} directly:
 
 For pre-release versions or earlier stable versions of the napari app,
 scroll below the latest release on the [napari GitHub releases page](https://github.com/napari/napari/releases).
-Each release (0.4.15 and above) includes installers for all platforms under the "Assets" section. MacOS specific: If you have homebrew installed, you can alternatively install it as a cask with `brew install --cask napari` (this will work for both architectures).
+Each release (0.4.15 and above) includes installers for all platforms under the "Assets" section.
 
 (windows-bundle)=
 
@@ -367,6 +367,9 @@ Next, check out our [tutorial on the viewer](viewer-tutorial) or explore the [Us
 (macos-bundle)=
 
 ### macOS
+
+> [!NOTE]
+> You can alternatively install napari as a homebrew cask with `brew install --cask napari` (works for both ARM and Intel Macs). Information about homebrew can be found [here](https://brew.sh).
 
 Download the installer for your Mac. If you are unsure which version to choose,
 check "About this Mac" from the Apple menu or check the
