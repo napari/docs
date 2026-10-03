@@ -112,7 +112,7 @@ $1/\phi^2 = (\phi - 1)/\phi = 1 - 1/\phi = 2 - \phi$, and so on. Similarly,
 $\phi^2 = 1 + \phi$, which again lets you reduce all polynomials of $\phi$ to
 degree 1.
 
-The original implementation is at https://github.com/jni/new-napari-logo, but
+The original implementation is at <https://github.com/jni/new-napari-logo>, but
 if this NAP is accepted, it would add the logo-generating script as a gallery
 example.
 

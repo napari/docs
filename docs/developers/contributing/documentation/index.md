@@ -152,7 +152,7 @@ where `<target>` can be:
 - `slimgallery` : `slimfast`, but also builds the gallery examples from `napari/napari`
 
 For more information about these targets see the ["building locally"](build_docs_locally) section
-of the documentation, including the part on [specialized builds](#building-what-you-need).
+of the documentation, including the part on [specialized builds](#make-building-what-you-need).
 
 Once the jobs complete you will also be able to [preview the documentation](doc_view_ci) by
 using the `Check the rendered docs here!` action at the bottom of your PR, which will go to a
@@ -183,7 +183,7 @@ You can create a local cloned version of the documentation using one of these th
 
      ```bash
      # Note you might have called your repo a different name other than "docs" - "napari-docs" is recommended
-     gh repo clone <your-username>/docs napari-docs
+     gh repo clone YOUR-USERNAME/docs napari-docs
      cd napari-docs
      git remote add upstream https://github.com/napari/docs.git
      ```
@@ -196,10 +196,10 @@ You can create a local cloned version of the documentation using one of these th
      cd docs
      ```
 
-- [Fork on GitHub](https://github.com/napari/docs/fork) and clone using Git directly (replace `<your-username>` with your GitHub handle):
+- [Fork on GitHub](https://github.com/napari/docs/fork) and clone using Git directly (replace `YOUR-USERNAME` with your GitHub handle):
 
      ```bash
-     git clone https://github.com/<your-username>/docs.git napari-docs
+     git clone https://github.com/YOUR-USERNAME/docs.git napari-docs
      cd napari-docs
      git remote add upstream https://github.com/napari/docs.git
      ```
@@ -207,7 +207,7 @@ You can create a local cloned version of the documentation using one of these th
 ```{note}
 To reduce confusion and possible conflicts, the `docs` fork is being cloned into
 a local repository folder named `napari-docs`. Alternately, you could also
-rename the repository when forking `napari/docs` to `napari-docs` and then clone it via `gh repo clone <your-username>/napari-docs`.
+rename the repository when forking `napari/docs` to `napari-docs` and then clone it via `gh repo clone YOUR-USERNAME/napari-docs`.
 
 It is important that you clone the `napari/docs` repository to a path that does not contain spaces.
 For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but\
@@ -494,14 +494,14 @@ We recommend installing the [GitHub CLI](https://docs.github.com/en/github-cli/g
 After installing the `GitHub CLI` you can run:
 
 ```bash
-gh repo clone <your-username>/napari
-gh repo clone <your-username>/docs napari-docs
+gh repo clone YOUR-USERNAME/napari
+gh repo clone YOUR-USERNAME/docs napari-docs
 ```
 
 ````{note}
 To reduce confusion and possible conflicts, the `docs` fork is being cloned into
 a local repository folder named `napari-docs`. Alternately, you could also
-rename the repository when forking `napari/docs` to `napari-docs` and then clone it via `gh repo clone <your-username>/napari-docs`.
+rename the repository when forking `napari/docs` to `napari-docs` and then clone it via `gh repo clone YOUR-USERNAME/napari-docs`.
 
 It is important that you clone the `napari/docs` repository to a path that does not contain spaces.
 For example, `C:\Users\myusername\Documents\GitHub\napari-docs` is a valid path, but\
@@ -596,7 +596,7 @@ of the changed file will be triggered automatically and will be faster,
 because not everything will be built from scratch. Further, a browser preview
 will open up automatically at `http://127.0.0.1`, no need for further action!
 Edit the documents at will, and the browser will auto-reload.
-Once you are done with the live previews, you can exit via <kbd>Ctrl</kbd>+<kbd>C</kbd>
+Once you are done with the live previews, you can exit via {kbd}`Ctrl+C`
 on your terminal.
 
 For example, if you are not editing the gallery examples in the napari repository,

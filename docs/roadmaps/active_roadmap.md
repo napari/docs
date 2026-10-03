@@ -140,7 +140,7 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 
 **The napari core library aims to be a foundation for cutting-edge visualization for research.**
 
-**Architecture improvements**
+##### Architecture improvements
 
 - Adopt the psygnal **event signaling library** throughout to enable different user interfaces to work performantly with the napari core library.
 
@@ -150,7 +150,7 @@ This roadmap outlines our plans to simplify the napari code base to allow greate
 
 - **Decouple library from application design** by using app-model. [#7059](https://github.com/napari/napari/issues/7059)
 
-**User-facing improvements**
+##### User-facing improvements
 
 - Establish a consistent physical model of **data and scene spaces** [#5949](https://github.com/napari/napari/issues/5949)
 

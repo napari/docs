@@ -105,7 +105,7 @@ An initial proposal for the additions to the governance is included below:
 > employed by the same entity. One seat on the steering council is reserved for
 > a member elected by the Institutional and Funding Partner Advisory Council,
 > as detailed below. This member need not be an existing core developer.
-
+>
 >### Institutional and Funding Partners
 >
 > The SC is the primary leadership body for napari. No outside institution,
@@ -225,9 +225,9 @@ This document is dedicated to the public domain with the Creative Commons CC0
 license[^id3]. Attribution to this source is encouraged where appropriate, as
 per CC0+BY[^id4].
 
+[^NumFOCUS-Fiscal-Sponsorship]: <https://numfocus.org/projects-overview>
+
 [^id3]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
 <https://creativecommons.org/publicdomain/zero/1.0/>
 
 [^id4]: <https://dancohen.org/2013/11/26/cc0-by/>
-
-[^NumFOCUS-Fiscal-Sponsorship]: https://numfocus.org/projects-overview
