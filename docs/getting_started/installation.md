@@ -368,9 +368,6 @@ Next, check out our [tutorial on the viewer](viewer-tutorial) or explore the [Us
 
 ### macOS
 
-> [!NOTE]
-> You can alternatively install napari as a homebrew cask with `brew install --cask napari` (works for both ARM and Intel Macs). Information about homebrew can be found [here](https://brew.sh).
-
 Download the installer for your Mac. If you are unsure which version to choose,
 check "About this Mac" from the Apple menu or check the
 [official Apple documentation](https://support.apple.com/en-us/116943)
@@ -416,6 +413,10 @@ Click **Close**. napari is now installed and can be launched from Launchpad or f
 napari includes sample images from scikit-image. Use **File > Open Sample > napari** to open one, or use **File > Open** (or drag and drop files onto the viewer) to open your own images.
 
 Next, check out our [tutorial on the viewer](viewer-tutorial) or explore the [Usage tab](usage).
+
+```{tip}
+You can alternatively install napari as a homebrew cask with `brew install --cask napari` (works for both ARM and Intel Macs). Information about homebrew can be found [here](https://brew.sh).
+```
 
 (linux-bundle)=
 
