@@ -71,22 +71,14 @@ For example you can try with with your own images or by downloading [this TIFF f
 :tags: [remove-cell]
 
 import pooch
-import os
-from pathlib import Path
 import napari
 from napari.utils import nbscreenshot
 import imageio.v3 as iio
-
-# make download folder
-download_folder = Path(os.path.expanduser("~")).joinpath("Desktop", "napari-docs-build")
-if not download_folder.is_dir():
-    download_folder.mkdir(parents=True, exist_ok=True)
 
 file_path_tiff = pooch.retrieve(
         url="https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/582/S-BIAD582/Files/01_wt_Dprotein555-TL/raw_mps/5-2b_01_wt_Dprotein555-TL_003_rawmp.tif",
         known_hash='5b43ed0269eaa1eebf4c48079270a30e6cc40e87f20cc36c1b3d5a07c51c7b20',
         fname='5-2b_01_wt_Dprotein555-TL_003_rawmp.tif',
-        path=download_folder
         )
 ```
 
@@ -144,7 +136,6 @@ file_path_ply = pooch.retrieve(
     url="https://people.sc.fsu.edu/~jburkardt/data/ply/airplane.ply",
     known_hash='370846416b2d0d9c574e356a5b43c7aac2db748761daab270fdd1331f97305a8', 
     fname="airplane.ply",
-    path=download_folder
 )
 ```
 
@@ -206,7 +197,6 @@ file_path_tiff2 = pooch.retrieve(
     url="https://github.com/guiwitz/microfilm/raw/refs/heads/master/demodata/coli_nucl_ori_ter.tif",
     known_hash="f37020f32fe3f8aa8ef44563646b51dc3517e372564939733181da65e13f0eda", 
     fname="coli_nucl_ori_ter.tif",
-    path=download_folder
 )
 viewer = napari.Viewer()
 ```
