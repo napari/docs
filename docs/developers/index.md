@@ -9,7 +9,8 @@ napari has a [Code of Conduct](napari-coc) that should be honored by everyone wh
 
 The [](active-roadmap) highlights the general direction for napari development and possible work plans, but you are free to contribute in any way you like.
 
-If you are looking to create and deploy your own napari workshop material, check out the [napari Workshop Template](https://napari.org/napari-workshop-template/home.html).
+If you are looking to create and deploy your own napari workshop material, start from the
+[napari workshops repository](https://github.com/napari/workshops).
 
 ````{grid} 2
 ```{grid-item-card} Contributor guides
