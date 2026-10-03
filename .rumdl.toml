@@ -24,3 +24,15 @@ disable = [
 "docs/developers/contributing/documentation/index.md" = ["MD034"]
 "docs/naps/9-multiple-canvases.md" = ["MD058"]
 "docs/plugins/building_a_plugin/best_practices.md" = ["MD032"]
+
+[code-block-tools]
+enabled = true
+on-error = "warn"
+on-missing-tool-binary = "fail"
+
+[code-block-tools.languages]
+# A formatter in the `lint` slot is a formatting check: `rumdl check` reports an
+# unformatted block without rewriting it, and `rumdl fmt` rewrites it.
+# MyST `{code-cell}` blocks are not covered: their info string is a directive
+# rather than a language tag, so they are skipped.
+python = { lint = ["ruff:format"], format = ["ruff:format"] }
