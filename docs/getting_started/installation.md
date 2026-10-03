@@ -414,6 +414,10 @@ napari includes sample images from scikit-image. Use **File > Open Sample > napa
 
 Next, check out our [tutorial on the viewer](viewer-tutorial) or explore the [Usage tab](usage).
 
+```{tip}
+You can alternatively install napari as a homebrew cask with `brew install --cask napari` (works for both ARM and Intel Macs). Information about homebrew can be found [here](https://brew.sh).
+```
+
 (linux-bundle)=
 
 ### Linux
