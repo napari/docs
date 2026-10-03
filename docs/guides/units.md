@@ -35,7 +35,7 @@ layer.units = ('usec','nm', 'nm')  # update units later
 In this example, each pixel of the image layer is spaced by `0.25` micrometers along both axes.
 The scale is used to transform each layer from its data coordinates into rendered world coordinates,
 so both vector-based layers (points, shapes, vectors, tracks) and raster-based layers (images, labels)
-are affected by scale and units. 
+are affected by scale and units.
 
 Units can be any valid [Pint](https://pint.readthedocs.io/en/stable/) unit,
 of which [there are a plethora](https://github.com/hgrecco/pint/blob/master/pint/default_en.txt)

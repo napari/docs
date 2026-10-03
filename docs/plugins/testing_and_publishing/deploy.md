@@ -29,9 +29,7 @@ If you used the {ref}`napari-plugin-template`, you can also
 [setup automated deployments][autodeploy] on GitHub for every tagged commit.
 
 ```{admonition} conda-forge
----
-class: attention
----
+:class: attention
 You can also deploy your plugin to conda-forge. Check out [deploying to conda-forge](deploying-to-conda-forge) for more
 details on how to do that.
 ```

@@ -89,7 +89,7 @@ workflows.
    **relevant primary sources**, like source code or reference
    documentation. If you do need to quote an LLM
    answer in a napari conversation, put the answer in a
-   [quote block](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#quoting-text), 
+   [quote block](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#quoting-text),
    to clearly distinguish LLM output from your own thoughts.
 
 ## Acknowledgements

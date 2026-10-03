@@ -2,7 +2,7 @@
 
 This guide contains questions that were submitted to our survey on testing.
 
-## This guide covers:
+## This guide covers
 
 - [What are the best practices to test a plugin with multiple sequential steps?](#what-are-the-best-practices-to-test-a-plugin-with-multiple-sequential-steps)
 - [How do you test widgets, the napari viewer, graphical user interfaces, and Qt in general?](#how-do-you-test-widgets-the-napari-viewer-graphical-user-interfaces-and-qt-in-general)
@@ -104,7 +104,7 @@ Answer:
 - Consider using `watchmedo` from [watchdog](https://github.com/gorakhargosh/watchdog).
   This will monitor a file/directory for changes, and re-run a command each time (which is why step #1 is also useful).
 
-## Other guides in this series:
+## Other guides in this series
 
 - [Virtual environments](./1-virtual-environments.md)
 - [Deploying your plugin](./2-deploying-your-plugin.md)
