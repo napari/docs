@@ -67,7 +67,8 @@ subtrees:
           - file: guides/threading
           - file: guides/events_reference
       - file: further-resources/glossary
-      - file: further-resources/napari-workshops
+      - url: https://napari.org/workshops/
+        title: Workshops
       - file: further-resources/sample_data
       - file: troubleshooting
       - file: gallery
