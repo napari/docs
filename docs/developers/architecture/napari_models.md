@@ -13,13 +13,13 @@ The three main components:
 - Python models describing components in the napari application - these are able
   to operate without the GUI interface and do not have any dependencies on user
   interface classes
-  - this code lives in `napari/components` (utility objects) and
-    `napari/layers` (objects that contain data)
+  - this code lives in [`napari/components`](https://github.com/napari/napari/tree/main/src/napari/components) (utility objects) and
+    [`napari/layers`](https://github.com/napari/napari/tree/main/src/napari/layers) (objects that contain data)
 - Qt classes that handle the interactive GUI aspect of the napari viewer
-  - the private Qt code lives in `napari/_qt` and the smaller public Qt
-    interface code lives in `napari/qt`
+  - the private Qt code lives in [`napari/_qt`](https://github.com/napari/napari/tree/main/src/napari/_qt) and the smaller public Qt
+    interface code lives in [`napari/qt`](https://github.com/napari/napari/tree/main/src/napari/qt)
 - vispy classes that handle rendering
-  - the code for this is private and lives in `napari/_vispy`
+  - the code for this is private and lives in [`napari/_vispy`](https://github.com/napari/napari/tree/main/src/napari/_vispy)
 
 The separation of the Python models from viewer GUI code allows:
 
