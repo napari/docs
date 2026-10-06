@@ -313,7 +313,7 @@ Select your platform below to download napari {{ bundle_version }} directly:
 ````
 
 ```{tip}
-You can alternatively install napari as a homebrew cask with `brew install --cask napari` (works for both ARM and Intel Macs). Information about homebrew can be found [here](https://brew.sh).
+You can alternatively install napari as a homebrew cask with `brew install --cask napari` (works for both ARM and Intel Macs). Be sure to pin the version to prevent overwrite of plugins when upgrading with `brew pin --cask napari`. Information about homebrew can be found [here](https://brew.sh).
 ```
 
 For pre-release versions or earlier stable versions of the napari app,
