@@ -93,7 +93,10 @@ script is run. See our
 class: tip
 ---
 If you already have teaching materials e.g. recordings, slide decks or Jupyter notebooks
-hosted somewhere, you can add links to these on our [napari workshops](workshops) page.
+hosted somewhere, you can contribute them to the
+[napari/workshops repository](https://github.com/napari/workshops), 
+which maintains the current workshop catalogue and schedule, as well
+as an archive of materials.
 ```
 
 ### Formats and templates
