@@ -13,8 +13,11 @@ jobs:
       statuses: write
     name: Run CircleCI artifacts redirector
     # if: github.repository == 'napari/docs'
+    outputs:
+      url: ${{ steps.redirector.outputs.url }}
     steps:
       - name: GitHub Action step
+        id: redirector
         uses: larsoner/circleci-artifacts-redirector-action@5d358ff96e96429a5c64a969bb4a574555439f4f # v1.3.1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -22,3 +25,36 @@ jobs:
           artifact-path: 0/docs/docs/_build/html/index.html
           circleci-jobs: build-docs
           job-title: Check the rendered docs here!
+
+  post_preview_comment:
+    runs-on: ubuntu-latest
+    needs: circleci_artifacts_redirector_job
+    # Only a successful build stores the docs artifact.
+    if: github.event.state == 'success'
+    permissions:
+      pull-requests: write
+    name: Post rendered docs link
+    steps:
+      - name: Find open pull request for commit
+        # The status event carries no pull request number.
+        id: find-pr
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const pulls = await github.paginate(github.rest.pulls.list, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100
+            });
+            const pr = pulls.find((pull) => pull.head.sha === context.payload.sha);
+            core.setOutput('number', pr ? pr.number : '');
+            core.setOutput('short_sha', context.payload.sha.slice(0, 7));
+
+      - name: Post sticky comment
+        if: steps.find-pr.outputs.number != ''
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
+        with:
+          header: rendered-docs
+          number: ${{ steps.find-pr.outputs.number }}
+          message: "Rendered docs for ${{ steps.find-pr.outputs.short_sha }}: ${{ needs.circleci_artifacts_redirector_job.outputs.url }}"
