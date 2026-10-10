@@ -53,7 +53,8 @@ and 3D views:
 
 - **2D → 3D**: The last two dimensions of center (Y, X) come from the 2D view.
   The depth (Z) component is taken from the current position of the dimension
-  slider, so the plane you were looking at in 2D becomes the depth position in 3D.
+  slider, so the plane you were looking at in 2D becomes the depth position in
+  3D.
 - **3D → 2D**: The depth position of the camera is written back to the
   dimension slider, so the depth you were viewing in 3D is preserved when
   you return to 2D. The Y and X center also persist.

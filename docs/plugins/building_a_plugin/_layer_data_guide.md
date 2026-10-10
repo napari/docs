@@ -2,10 +2,10 @@
 
 ## The LayerData tuple
 
-When transferring data to and from plugins, napari does not pass `Layer` objects
-directly. Instead, it passes (mostly) pure-python and array-like types,
-deconstructed into a {class}`tuple` that we refer to as a `LayerData` tuple. This type shows
-up often in plugins and is explained here.
+When transferring data to and from plugins, napari does not pass `Layer`
+objects directly. Instead, it passes (mostly) pure-python and array-like types,
+deconstructed into a {class}`tuple` that we refer to as a `LayerData` tuple.
+This type shows up often in plugins and is explained here.
 
 Note that when writing your own plugin, type annotations are optional,
 except in the case of [`magicgui` function widgets](magicgui_decorator).
@@ -24,10 +24,11 @@ A `LayerData` tuple is a tuple of length 1, 2, or 3 whose items, in order, are:
 1. The `data` object that would be used for `layer.data` (such as a numpy array
    for the `Image` layer)
 1. *(Optional).* A {class}`dict` of layer attributes, suitable for passing as
-   keyword arguments to the corresponding layer constructor (e.g. `{'opacity': 0.7}`)
-1. *(Optional).* A lower case {class}`str` indicating the layer type (e.g.`'image'`,
-   `'labels'`, etc...). If not provided (i.e. if the tuple is only of length 2), the
-   layer type is assumed to be `'image`'.
+   keyword arguments to the corresponding layer constructor (e.g.
+   `{'opacity': 0.7}`)
+1. *(Optional).* A lower case {class}`str` indicating the layer type
+   (e.g.`'image'`, `'labels'`, etc...). If not provided (i.e. if the tuple is
+   only of length 2), the layer type is assumed to be `'image`'.
 
 ### Formal type definition
 
@@ -92,8 +93,8 @@ All of the following are valid `LayerData` tuples:
 
 ### Creation from a `Layer` instance
 
-Note, the {meth}`~napari.layers.Layer.as_layer_data_tuple` method will create a layer data
-tuple from a given layer
+Note, the {meth}`~napari.layers.Layer.as_layer_data_tuple` method will create a
+layer data tuple from a given layer
 
 ```pycon
 >>> img = Image(np.random.rand(2, 2), colormap='green', scale=(4, 4))
@@ -139,4 +140,5 @@ To add a `LayerData` tuple to the napari viewer, use :meth:`Layer.create`:
 >>> viewer.add_layer(napari.layers.Layer.create(*image_layer_data))
 ```
 
-The only attribute that can't be passed to `napari.layers.Layer.create` that is otherwise valid for a `LayerData` tuple is 'channel_axis'.
+The only attribute that can't be passed to `napari.layers.Layer.create` that is
+otherwise valid for a `LayerData` tuple is 'channel_axis'.
