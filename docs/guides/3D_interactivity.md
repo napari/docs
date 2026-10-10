@@ -71,7 +71,7 @@ def get_ray_intersections(
         The point is the full nD coordinates of the layer data.
         If the click does not intersect the axis-aligned data bounding box,
         None is returned.
-	"""
+    """
 ```
 
 ## Adding 3D interactivity via mouse events
