@@ -254,44 +254,44 @@ A question mark is next to attributes and methods that need particular discussio
 | Layer Class | Attributes |
 | -------- | -------- |
 | Base/all subclasses | `_slice_input` |
-| | `_update_dims`
-| | `_data_slice`
-| | `corner_pixels`
-| | `thumbnail` ?
-| | `cursor` ?
-| | `set_view_slice`
-| | `_set_view_slice`
-| | `_make_slice_input`
-| | `_update_slice_response`
-| | `_get_value`
-| | `get_`
-| | `loaded` ?
-| | `_update_draw`
-| | `_get_value`
-| | `_get_value_3d`
-| | `_get_value_ray`
-| Image, Labels | `_data_view`
-| | `_data_level`
-| Points | all `_view_*` and `_*_view` properties
-| | `interaction_box` ?
-| | `_set_drag_start`
-| Surface | all `_view_*` and `_*_view` properties
-| Vectors | all `_view_*` and `_*_view` properties
-| Tracks | all `_view_*` and `_*_view` properties
-|| `_current_displayed_dims`
-| Shapes | `_data_dict`
-|| `_data_view`
-| | all `_*_box` properties
-| | all `_drag_*` properties
-| | `_is_moving`
-| | `_is_selecting`
-| | `_is_creating`
-| | `_fixed_aspect`
-| | `_fixed_index`
-| | `_update_properties`
-| | `_allow_thumbnail_update`
-| | `_vertex_size`
-| | `_rotation_handle_length`
+| | `_update_dims` |
+| | `_data_slice` |
+| | `corner_pixels` |
+| | `thumbnail` ? |
+| | `cursor` ? |
+| | `set_view_slice` |
+| | `_set_view_slice` |
+| | `_make_slice_input` |
+| | `_update_slice_response` |
+| | `_get_value` |
+| | `get_` |
+| | `loaded` ? |
+| | `_update_draw` |
+| | `_get_value` |
+| | `_get_value_3d` |
+| | `_get_value_ray` |
+| Image, Labels | `_data_view` |
+| | `_data_level` |
+| Points | all `_view_*` and `_*_view` properties |
+| | `interaction_box` ? |
+| | `_set_drag_start` |
+| Surface | all `_view_*` and `_*_view` properties |
+| Vectors | all `_view_*` and `_*_view` properties |
+| Tracks | all `_view_*` and `_*_view` properties |
+| | `_current_displayed_dims` |
+| Shapes | `_data_dict` |
+| | `_data_view` |
+| | all `_*_box` properties |
+| | all `_drag_*` properties |
+| | `_is_moving` |
+| | `_is_selecting` |
+| | `_is_creating` |
+| | `_fixed_aspect` |
+| | `_fixed_index` |
+| | `_update_properties` |
+| | `_allow_thumbnail_update` |
+| | `_vertex_size` |
+| | `_rotation_handle_length` |
 
 (part-3-gui-and-ux)=
 

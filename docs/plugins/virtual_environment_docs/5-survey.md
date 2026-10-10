@@ -49,7 +49,7 @@ Granted, this is a work in progress.
 
 For example, these events are emitted when the user interacts with the layer list:
 
-```console
+```text
     Viewer.layers.events.inserted
     Viewer.layers.events.removed
     Viewer.layers.events.moved
