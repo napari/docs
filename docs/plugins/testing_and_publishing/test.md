@@ -87,6 +87,7 @@ not contain the string `"Shift"`. So let's just fake it!
 class FakeEvent:
     modifiers = {'Shift'}
 
+
 def test_mouse_callback(make_napari_viewer):
     viewer = make_napari_viewer()
     wdg = MyWidget(viewer)

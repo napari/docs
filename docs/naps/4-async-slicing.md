@@ -313,7 +313,8 @@ class ImageSliceRequest(LayerSliceRequest):
     corner_pixels: np.ndarray
     data_level: int
 
-class ImageSliceResponse(LayerSliceResponse)
+
+class ImageSliceResponse(LayerSliceResponse):
     thumbnail: np.ndarray
 ```
 
@@ -332,6 +333,7 @@ class PointsSliceRequest(LayerSliceRequest):
     face_color: np.ndarray
     edge_color: np.ndarray
     edge_width: np.ndarray
+
 
 class PointsSliceResponse(LayerSliceResponse):
     indices: np.ndarray
@@ -419,22 +421,22 @@ avoid the associated state and logic leaking into the already complex
 ViewerSliceRequest = dict[Layer, LayerSliceRequest]
 ViewerSliceResponse = dict[Layer, LayerSliceResponse]
 
+
 class LayerSlicer:
     ...
 
     _executor: Executor = ThreadPoolExecutor(max_workers=1)
     _task: Optional[Future[ViewerSliceResponse]] = None
 
-    def __init__(self, ...):
+    def __init__(self, *args, **kwargs):
         self.events = EmitterGroup(source=self, slice_ready=Event)
 
-    def slice_layers_async(self, layers: LayerList, dims: Dims) -> Future[ViewerSliceResponse]:
+    def slice_layers_async(
+        self, layers: LayerList, dims: Dims
+    ) -> Future[ViewerSliceResponse]:
         if self._task is not None:
             self._task.cancel()
-        requests = {
-            layer: layer._make_slice_request(dims)
-            for layer in layers
-        }
+        requests = {layer: layer._make_slice_request(dims) for layer in layers}
         self._task = self._executor.submit(self._slice_layers, request)
         self._task.add_done_callback(self._on_slice_done)
         return self._task
@@ -465,7 +467,7 @@ class ViewerModel:
     dims: Dims
     _slicer: LayerSlicer = LayerSlicer()
 
-    def __init__(self, ...):
+    def __init__(self, *args, **kwargs):
         ...
         self.dims.events.current_step.connect(self._slice_layers_async)
 
@@ -492,7 +494,7 @@ class QtViewer:
     viewer: ViewerModel
     layer_to_visual: Dict[Layer, VispyBaseLayer]
 
-    def __init__(self, ...):
+    def __init__(self, *args, **kwargs):
         ...
         self.viewer._slicer.events.slice_ready.connect(self._on_slice_ready)
 
@@ -641,9 +643,9 @@ Instead of making the `ViewerModel` the driver of slicing, we could instead driv
 A rough implementation of this approach could look like the following.
 
 ```python
-
 class QtViewer:
     ...
+
     def __init__(self):
         ...
         self.viewer.dims.current_step.connect(self.slice_layers)
@@ -652,15 +654,17 @@ class QtViewer:
         for layer in self.viewer.layers:
             self.layer_to_visual[layer]._slice(self.viewer.dims)
 
+
 class Image:
     ...
-    def _make_slice_request(self, dims: Dims) -> ImageSliceRequest:
-        ...
-    def _get_slice(self, request: ImageSliceRequest) -> ImageSliceResponse:
-        ...
+
+    def _make_slice_request(self, dims: Dims) -> ImageSliceRequest: ...
+    def _get_slice(self, request: ImageSliceRequest) -> ImageSliceResponse: ...
+
 
 class VispyImageLayer:
     ...
+
     def _slice(self, dims: Dims) -> None:
         request = self.layer._make_slice_request(dims)
         task = self.slice_executor.submit(self.layer._get_slice, request)
@@ -670,8 +674,7 @@ class VispyImageLayer:
         self._set_slice(task.result())
 
     @ensure_main_thread
-    def _set_slice(self, response: ImageSliceResponse) -> None:
-        ...
+    def _set_slice(self, response: ImageSliceResponse) -> None: ...
 ```
 
 Most of the internal guts of slicing, such as the implementation of `_get_slice` and

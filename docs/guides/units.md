@@ -29,7 +29,7 @@ layer = viewer.add_image(
     units=('s', 'um', 'um'),
 )
 
-layer.units = ('usec','nm', 'nm')  # update units later
+layer.units = ('usec', 'nm', 'nm')  # update units later
 ```
 
 In this example, each pixel of the image layer is spaced by `0.25` micrometers along both axes.

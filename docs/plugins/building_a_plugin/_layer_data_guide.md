@@ -95,7 +95,7 @@ All of the following are valid `LayerData` tuples:
 Note, the {meth}`~napari.layers.Layer.as_layer_data_tuple` method will create a layer data
 tuple from a given layer
 
-```python
+```pycon
 >>> img = Image(np.random.rand(2, 2), colormap='green', scale=(4, 4))
 
 >>> img.as_layer_data_tuple()
@@ -133,7 +133,7 @@ Out[7]:
 
 To add a `LayerData` tuple to the napari viewer, use :meth:`Layer.create`:
 
-```python
+```pycon
 >>> image_layer_data = (data, {'name': 'My Image', 'colormap': 'red'}, 'image')
 >>> viewer = napari.current_viewer()
 >>> viewer.add_layer(napari.layers.Layer.create(*image_layer_data))

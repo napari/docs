@@ -308,12 +308,12 @@ napari.run()
 Next, we will use the Shapes layer to overlay the bounding boxes for each detected object as well as display the calculated circularity. The code for creating the Shapes layer is listed here and each keyword argument is explained below.
 
 ```python
-    shapes_layer = viewer.add_shapes(
-        bbox_rects,
-        face_color='transparent',
-        edge_color='green',
-        name='bounding box'
-    )
+shapes_layer = viewer.add_shapes(
+    bbox_rects,
+    face_color='transparent',
+    edge_color='green',
+    name='bounding box',
+)
 ```
 
 ![napari viewer showing eight roughly circular shapes, each colored differently. Each shape has a bounding box automatically generated around it.](../_static/images/segmentation_bbox.png)
@@ -325,14 +325,14 @@ The first positional argument (`bbox_rects`) contains the bounding boxes we crea
 We can further annotate our analysis by using text to display features of each segmentation. The code to create a shapes layer with text is pasted here and explained below.
 
 ```python
-    shapes_layer = viewer.add_shapes(
-        bbox_rects,
-        face_color='transparent',
-        edge_color='green',
-        features=features,
-        text=text_parameters,
-        name='bounding box'
-    )
+shapes_layer = viewer.add_shapes(
+    bbox_rects,
+    face_color='transparent',
+    edge_color='green',
+    features=features,
+    text=text_parameters,
+    name='bounding box',
+)
 ```
 
 We will use `Shapes.features` to store the annotations for each bounding box. The features are defined as a table where each column is the name of the feature (i.e., label, circularity) and the values are rows where each element contains the value for the corresponding shape (i.e., index matched to the Shape data). As a reminder, we created `labels` and `circularity` above and each is a list containing where each element is feature value for the corresponding (i.e., index matched) shape.

@@ -27,7 +27,7 @@ The example plugin and all the tests discussed in this lesson are available in [
 The key to testing in Python is the [assert](https://realpython.com/python-assert-statement/) keyword. We *assert* a Boolean expression is true and create an error message that appears when that expression is false.
 
 ```python
-assert <Boolean expression>, <error message>
+assert condition, 'error message'
 ```
 
 If it is true, code execution continues as though the assert statement doesn’t exist. If the Boolean expression is false, an `AssertionError` is thrown, an exception raised, and the error message displayed.
@@ -50,8 +50,8 @@ When the mark is > 50, call `get_grade_from_mark` and assert that the grade is w
 
 ```python
 def test_get_grade_pass(mark):
-    grade = get_grade_from_mark(mark):
-    assert grade == "Pass", f"Expected {mark} to pass, but result was{grade}"
+    grade = get_grade_from_mark(mark)
+    assert grade == 'Pass', f'Expected {mark} to pass, but result was{grade}'
 ```
 
 ## Test for the Fail case
@@ -60,8 +60,8 @@ Test the same thing for `Fail` to test all options. Everything is almost the sam
 
 ```python
 def test_get_grade_fail(mark):
-    grade = get_grade_from_mark(mark):
-    assert grade == "Fail", f"Expected {mark} to fail, but result was{grade}"
+    grade = get_grade_from_mark(mark)
+    assert grade == 'Fail', f'Expected {mark} to fail, but result was{grade}'
 ```
 
 We can now write code to run both of the functions with expected values. For example, we expect 65 to pass and 43 to fail. After running both functions, if no exception has been raised we print “All passing.”
