@@ -18,7 +18,7 @@ You are *strongly* encouraged to ship both! If the `wheel` is not present, `pip`
 
 **[build](https://pypa-build.readthedocs.io/en/latest/)** is the recommended package builder that bundles your source code into `sdist` or `wheel` distributions. Install `build` into your local environment and then run it at the root of your package to build your package, as shown below:
 
-```console
+```bash
    pip install build
    python -m build .
 ```
@@ -29,7 +29,7 @@ You are *strongly* encouraged to ship both! If the `wheel` is not present, `pip`
 
 [twine](https://twine.readthedocs.io/en/latest/) is a command line client you can use to upload your distribution to PyPI. Note that you will need to set up a PyPI account and authenticate yourself when uploading. See [this great guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/) for a detailed tutorial to building and sharing your first Python packages.
 
-```console
+```bash
 
     # twine is a PyPI Client
     # build is a PEP 517 package builder

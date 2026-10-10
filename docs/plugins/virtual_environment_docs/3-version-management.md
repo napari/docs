@@ -16,7 +16,7 @@ In increasing order of work, but decreasing order of magic, the methods of bumpi
 
 You can use [setuptools_scm](https://github.com/pypa/setuptools_scm) to automatically generate version numbers for your package based on tagged commits.
 
-```console
+```bash
 # configure in pyproject.toml, then…
 git tag -a v0.1.0 -m v0.1.0
 ```
@@ -27,7 +27,7 @@ The next time you run `python -m build`, either locally or in GitHub actions, yo
 
 One tool for doing this is [bump2version](https://github.com/c4urself/bump2version). For example:
 
-```console
+```bash
    pip install bump2version
    # configure all the places you use your version, then, to update:
    bump2version --current-version 0.5.1 minor

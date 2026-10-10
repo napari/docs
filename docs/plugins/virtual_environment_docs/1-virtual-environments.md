@@ -26,9 +26,9 @@ Adding the `conda-forge` channel to the conda config makes packages in `conda-fo
 
 Make sure the `conda-forge` channel is in your config by using the following commands:
 
-```console
-    $conda config --add channels conda-forge
-    $conda config --set channel_priority strict
+```bash
+    conda config --add channels conda-forge
+    conda config --set channel_priority strict
 ```
 
 **Note:** The default anaconda channel has some very outdated packages, e.g. [old version of Qt](https://forum.image.sc/t/napari-issues-on-bigsur/52630/10).
@@ -39,7 +39,7 @@ Create environments liberally!
 
 To create an environment, use the following commands at the command prompt (terminal):
 
-```console
+```bash
     conda create -n name-of-env python
     conda activate name-of-env
     pip/conda install <whatever>
@@ -52,7 +52,7 @@ Virtual environments are made to be ephemeral.
 Consider your environment to be disposable.
 If you are ever having weird problems, nuke your environment and start over using the following commands:
 
-```console
+```bash
     conda activate base
     conda remove -n name-of-env --all -y
     conda create -n name-of-env python

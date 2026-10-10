@@ -36,7 +36,7 @@ These *auto-modify* your code.
 
 - [prek](https://prek.j178.dev/), Faster implementation of pre-commit, runs all your checks each time you run git commit, preventing bad code from ever getting checked in.
 
-```console
+```bash
      pip install prek
      # install the pre-commit "git hook"
      prek install
