@@ -81,7 +81,7 @@ We are also contracting with [Quansight](https://quansight.com/) for some key ma
 - [Jaime Rodríguez-Guerra](https://github.com/jaimergp) is working on maintaining and improving our bundled application and the `napari-plugin-manager`
 - [Daniel Althviz Moré](https://github.com/dalthviz) is working on refactoring our layer controls implementation, improving the `napari-plugin-manager`, and migrating our application model to `app-model`
 
-### Project history
+## Project history
 
 The napari project began in the spring of 2018. It was born out of the shared need for fast n-dimensional image viewing in Python by project co-founders Loïc Royer, from the Chan Zuckerberg Biohub (CZ Biohub), and Juan Nunez-Iglesias, from Monash University. Since then it has grown rapidly to now also provide a graphical user interface to a plugin ecosystem of image analysis tools for scientists to use in their daily work.
 
@@ -109,7 +109,7 @@ on [mastodon](https://fosstodon.org/@napari),
 
 (funding)=
 
-### Institutional and funding partners
+## Institutional and funding partners
 
 napari is developed by a global community of scientists, with many working as
 volunteers, improving napari for their own use while sharing their work with
