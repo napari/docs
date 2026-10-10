@@ -46,7 +46,7 @@ error kind**, so a reader can tell why it was needed and pyrefly can check that 
 suppression is still doing something.
 The last word of a pyrefly message is the rule it applied:
 
-```
+```text
 ERROR src/napari/utils/tree/node.py:64:31-53: Argument `int | None` is not assignable
 to parameter `object` with type `int` in function `list.insert` [bad-argument-type]
                                                                  ^^^^^^^^^^^^^^^^^

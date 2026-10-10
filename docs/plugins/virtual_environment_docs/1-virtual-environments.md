@@ -2,7 +2,7 @@
 
 This guide explains the value of using virtual environments and how to create and remove them.
 
-## This guide covers:
+## This guide covers
 
 - [The importance of virtual environments](#overview)
 - [Creating environments](#creating-environments)
@@ -26,9 +26,9 @@ Adding the `conda-forge` channel to the conda config makes packages in `conda-fo
 
 Make sure the `conda-forge` channel is in your config by using the following commands:
 
-```console
-    $conda config --add channels conda-forge
-    $conda config --set channel_priority strict
+```bash
+    conda config --add channels conda-forge
+    conda config --set channel_priority strict
 ```
 
 **Note:** The default anaconda channel has some very outdated packages, e.g. [old version of Qt](https://forum.image.sc/t/napari-issues-on-bigsur/52630/10).
@@ -39,10 +39,10 @@ Create environments liberally!
 
 To create an environment, use the following commands at the command prompt (terminal):
 
-```console
-    $ conda create -n name-of-env python
-    $ conda activate name-of-env
-    $ pip/conda install <whatever>
+```bash
+    conda create -n name-of-env python
+    conda activate name-of-env
+    pip/conda install <whatever>
 ```
 
 Virtual environments are made to be ephemeral.
@@ -52,17 +52,17 @@ Virtual environments are made to be ephemeral.
 Consider your environment to be disposable.
 If you are ever having weird problems, nuke your environment and start over using the following commands:
 
-```console
-    $ conda activate base
-    $ conda remove -n name-of-env --all -y
-    $ conda create -n name-of-env python
-    $ conda activate name-of-env
-    $ pip/conda install <whatever>
+```bash
+    conda activate base
+    conda remove -n name-of-env --all -y
+    conda create -n name-of-env python
+    conda activate name-of-env
+    pip/conda install <whatever>
 ```
 
 Encourage your users to do the same. You can waste a lot of time trying to debug something that someone unknowingly did when installing a variety of things into their environment. If they can provide a repeatable example (starting from environment creation), then it's worth debugging.
 
-## Other topics in this series:
+## Other topics in this series
 
 - [Deploying your plugin](./2-deploying-your-plugin.md)
 - [Version management](./3-version-management.md)

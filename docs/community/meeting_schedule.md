@@ -22,6 +22,7 @@ If you are using napari or interested in how napari could be used in your work, 
   </div>
 </div>
 
+```{raw} html
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.9/index.global.min.js"></script>
@@ -85,3 +86,4 @@ If you are using napari or interested in how napari could be used in your work, 
     calendar.render();
   });
 </script>
+```

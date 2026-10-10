@@ -54,7 +54,7 @@ in your currently active environment for `npe2 convert` to find it.
 
 Typically this will look something like:
 
-```
+```text
 conda activate your-env
 cd path/to/your/plugin/repository
 python -m pip install -e .
@@ -97,7 +97,7 @@ for details on each field in the manifest.
 
 ```{note}
 In some cases the conversion tool may not be able to completely convert your
-plugin.  Notable cases include:
+plugin. Notable cases include:
 
 - multi-layer writers using the `napari_get_writer` hook specification
 - *locally* scoped functions returned from `napari_experimental_provide_function`.
@@ -109,7 +109,7 @@ Feel free to contact us on zulip or github if you need help converting!.
 
 Now, update the local package metadata by repeating:
 
-```
+```text
 > python -m pip install -e .
 ```
 
@@ -299,7 +299,7 @@ def napari_experimental_provide_function() -> Union[
 
 #### Example npe2 contribution
 
-_Dock Widget_
+*Dock Widget*
 
 ```yaml
 name: napari-animation
@@ -314,7 +314,7 @@ contributions:
       display_name: Wizard
 ```
 
-_Function widget_
+*Function widget*
 
 ```yaml
 name: my-function-plugin
@@ -452,7 +452,7 @@ launches of napari, that cached manifest will be used and the plugin will
 *not* be imported immediately when napari boots.
 
 With napari v0.7.0, legacy npe1 plugins will **only** be usable through
-this adaptor; plugins relying on import-time behaviour may malfunction. 
+this adaptor; plugins relying on import-time behaviour may malfunction.
 
 ### Benefits
 

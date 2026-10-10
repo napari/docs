@@ -12,6 +12,7 @@ kernelspec:
 ---
 
 (layers-image)=
+
 # Image
 
 In this document, you will learn how to use the `napari` `image` layer,
@@ -99,7 +100,7 @@ The GUI controls may be adjusted as follows:
 
 - `blending` has the options of `translucent`, `translucent no depth`,
   `additive`, `minimum`, or `opaque` in the dropdown. Refer to the
-  [Blending layers](blending-layers) section of _Layers at a glance_ for an
+  [Blending layers](blending-layers) section of *Layers at a glance* for an
   explanation of each type of blending.
 
 - `interpolation` may be assigned one of the following from the dropdown:
@@ -133,18 +134,14 @@ viewer, _ = napari.imshow(cells, colormap='magma')
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="Cells")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -154,9 +151,7 @@ viewer.close()
 accept the same layer-creation parameters.
 
 ```{code-cell} python
----
-tags: [hide-output]
----
+:tags: [hide-output]
 help(napari.imshow)
 ```
 
@@ -261,7 +256,7 @@ layer.locked_data_level = None
 ```
 
 When a level is locked, napari loads the full extent of that level on the currently
-displayed dimensions regardless of zoom or display mode. The lock is automatically 
+displayed dimensions regardless of zoom or display mode. The lock is automatically
 reset to `None` when the layer's data is replaced.
 
 This property is available on both `Image` and `Labels` layers.
@@ -298,18 +293,14 @@ viewer, layers = napari.imshow(
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="napari viewer with a multichannel image of cells displayed as two image layers: nuclei and membrane.")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -323,18 +314,14 @@ viewer, layer = napari.imshow(data.astronaut(), rgb=True)
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="napari viewer with the left sidebar layer controls and an image of astronaut Eileen Collins. In the layer controls, the colormap is fixed to RGB")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -389,9 +376,7 @@ viewer, layer = napari.imshow(image, colormap=('diverging', cmap))
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="napari viewer with colormap example using the cell example from skimage")
@@ -435,18 +420,14 @@ viewer.layers['moon'].contrast_limits=(100, 175)
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="A viewer where the contrast limits have been adjusted")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 

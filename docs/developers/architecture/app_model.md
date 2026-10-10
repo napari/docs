@@ -611,9 +611,9 @@ we connect {meth}`~app_model.backends.qt.QMenuItemAction.update_from_context` to
 `aboutToShow` event of each menu bar `QModelMenu` instance,
 in {meth}`napari.window.Window._add_menus`.
 
-# Migration from action manager
+## Migration from action manager
 
-## Motivation & Future Vision
+### Motivation & Future Vision
 
 While it's certainly possible that there will be cases where this abstraction
 in app-model proves to be a bit more annoying than the previous "procedural" approach,
@@ -626,7 +626,7 @@ there are a number of motivations for adopting this abstraction.
 
 (app-model-action-manager-differences)=
 
-## app-model vs action manager implementation differences
+### app-model vs action manager implementation differences
 
 App-model and action manager differ in when actions are registered.
 In app-model, actions are [registered](app-model-actions-napari) (on

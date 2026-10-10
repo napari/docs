@@ -51,9 +51,7 @@ viewer, image_layer = napari.imshow(data.astronaut(), rgb=True)
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -75,18 +73,14 @@ new_layer = viewer.add_image(data.astronaut(), rgb=True)
 After running either of those two commands, you should be able to see the photograph of the astronaut in the **napari** viewer as shown below:
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="photograph of an astronaut in napari viewer")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -118,9 +112,7 @@ The image below has the areas of the viewer labeled:
 ![image: viewer layout](../_static/images/Viewer-with-arrows.png)
 
 ```{admonition} Tip: Right click advanced option indicator
----
-class: tip
----
+:class: tip
 If you see a button with a chevron mark in the lower right corner, it means you can click it with the right mouse button to bring up more advanced options!
 
 ![buttons with right click indicators](../_static/images/button-right-click-indicator.png)
@@ -197,9 +189,7 @@ The layer list contains one widget for each of the layers that have been added t
 Adding the following three image layers using the code below adds three-layer widgets to the layer list as follows:
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 import napari
 
 from skimage import data
@@ -211,9 +201,7 @@ viewer.add_image(data.camera(), name='camera')
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="3 image layers shown in napari viewer with the canvas displaying a photograph of a man looking through a camcorder")
 ```
 
@@ -242,9 +230,7 @@ viewer.layers['astronaut']
 You can rearrange layers by clicking and dragging them.
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -255,9 +241,7 @@ Above the **layer list** in the top left corner of the viewer there is a box tha
 For example, if you add a `Points` layer after adding an `Image` layer, the new `Points` layer will be 'selected' and you will now see different controls.
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 import numpy as np
 from skimage import data
 
@@ -269,9 +253,7 @@ viewer.add_points(points, size=30)
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="points layer showing 3 white points layered on top of astronaut image in napari viewer")
 ```
 
@@ -289,9 +271,7 @@ viewer.layers[0].opacity = 0.7
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -310,9 +290,7 @@ viewer.add_points()
 ```
 
 ```{admonition} Tip: New layer button behavior
----
-class: tip
----
+:class: tip
 Creating a new points or shapes layer with the layer buttons will inherit the dimensions and scale of the selected layer(s), as shown by the highlight around the buttons.
 To create layers that inherit the full dimensions and mixed scale of all the layers in the layer list, either select all layers or ensure no layers are selected.
 ```
@@ -362,9 +340,7 @@ same. Effectively, the two datasets are broadcast together using [NumPy broadcas
 For example, the following commands from the console will add both 2D and 3D datasets to the same viewer:
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 import numpy as np
 from skimage import data
 
@@ -385,9 +361,7 @@ viewer.add_image(blobs, name='blobs', opacity=0.5, colormap='red')
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="A 2d view of the moon on top of which is overlaid a 3d volume containing blobs through which you can navigate using the dimension slider.")
 ```
 
@@ -412,9 +386,7 @@ scale and translate transformations) is accessible via `viewer.dims.point`.
 By default napari will only show a slice of the data: that which is located *exactly* at this position. However, it is possible to visualize data from a thicker dimensional slice by modifying `viewer.dims.thickness`. This will use each layer's `projection_mode` to visualize the space around `viewer.dims.point`. Alternately, you can set `viewer.dims.margin_left` and `viewer.dims.margin_right` to explicitly set the range of data around `viewer.dims.point` to be projected. Finally, you can use the corresponding `margin_left_step` and `margin_right_step` properties to work in "slider coordinates".
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 import numpy as np
 from skimage import data
 
@@ -430,9 +402,7 @@ nuclei.projection_mode = 'none'
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="A slice through a 2-channel (membranes and nuclei) fluorescence image of cells, which the membranes averaged over 10 z-slices.")
 ```
 
@@ -496,9 +466,7 @@ Note that the icon will change to the following, to indicate 3D mode:
 You can achieve the same result by running the following code in the console:
 
 ```{code-cell} python
----
-tags: [remove-output]
----
+:tags: [remove-output]
 from skimage import data
 from scipy import ndimage as ndi
 
@@ -521,9 +489,7 @@ image) and see what it looks like from the side, back, or a different angle. To 
 drag the cursor to a new position, which will give something like the following view:
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 # programmatically adjust the camera angle
 viewer.dims.ndisplay = 3
 viewer.scene.camera.zoom = 2
@@ -663,11 +629,12 @@ In napari there are two main types: canvas overlays - which are locked in positi
 
 Canvas overlays can be accessed via `viewer.canvas.overlays`:
 
-- Scale bar (canvas overlay, accessible via `viewer.canvas.overlays.scale_bar`): it displays distances in world coordinates for the displayed scene. The scale bar usually inherits layer units when they are set. If inference fails it can fall back to a dimensionless label, and if displayed axes mix dimensionalities it uses the last displayed axis unit with a warning. You can control its appearance and fixed length from the viewer. See the [units guide](units-guide) for more information. 
+- Scale bar (canvas overlay, accessible via `viewer.canvas.overlays.scale_bar`): it displays distances in world coordinates for the displayed scene. The scale bar usually inherits layer units when they are set. If inference fails it can fall back to a dimensionless label, and if displayed axes mix dimensionalities it uses the last displayed axis unit with a warning. You can control its appearance and fixed length from the viewer. See the [units guide](units-guide) for more information.
 - Canvas Axes (canvas overlay, accessible via `viewer.canvas.overlays.axes`): displays basic axes in a corner of the canvas, linked to the viewer's camera.
 - Text (canvas overlay, accessible via `viewer.canvas.overlays.text`): displays arbitrary text on the canvas.
 
 Scene overlays live on `viewer.scene.overlays`:
+
 - Scene Axes (scene overlay, accessible via `viewer.scene.axes`): displays basis axes at the origin in the scene.
 
 These overlays can also be accessed via graphical interface through the **View** menu and their respective submenus.
@@ -716,7 +683,7 @@ A context-sensitive menu is available when you right-click on any of the layers.
   - **sum projection** - the sum projection simply adds together all the pixel values in the stack for a given position. In this projection, the image is typically re-scaled to a 16-bit image, as the sum of all the pixel intensity values usually exceeds 255, which would result in a completely white 8-bit image.
   - **mean projection** - the mean projection is the average intensity projection. It simply averages all the pixel values in the stacks to make the final projected image.
   - **median projection** - the median projection takes the median pixel intensity for the final projected image.
-- **Link Layers** - links the selected layers. Once layers are linked, any action performed on one layer will be performed on all linked layers at the same time. The layer control panel will show _only_ when a single layer is selected. Changing properties with that layer's control panel will change properties in all of the linked layers.
+- **Link Layers** - links the selected layers. Once layers are linked, any action performed on one layer will be performed on all linked layers at the same time. The layer control panel will show *only* when a single layer is selected. Changing properties with that layer's control panel will change properties in all of the linked layers.
 - **Unlink Layers** - appears when layers are linked. It unlinks the layers so that changes to one of the layer's properties no longer result in the same changes to the previously linked layers.
 - **Select Linked Layers** - appears only when layers are linked. Selects all layers linked to a given layer.
 
@@ -738,16 +705,12 @@ viewer.theme = 'light'
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="A napari viewer changed to light theme")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 # change the viewer theme back to dark (for the rest of tutorial)
 viewer.theme = 'dark'
 ```
@@ -786,9 +749,7 @@ def print_names(viewer):
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -805,9 +766,7 @@ def print_message(viewer):
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 

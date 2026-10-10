@@ -33,7 +33,7 @@ In napari 0.7.0
 
 - It will show up in the plugin warning dialog in `napari>=0.6.0` and `napari<=0.7.0`.
 - It will be listed in the plugin manager with an `npe2 (adapted)` tag, if `Use npe2 adaptor` is checked, or without any tag if `Use npe2 adaptor` is not checked (screenshots below)
-    - Note that for `napari>=0.7.0` it will always be listed with the `npe2 (adapted)` tag
+  - Note that for `napari>=0.7.0` it will always be listed with the `npe2 (adapted)` tag
 - It is on this [list of plugins](https://gist.github.com/DragaDoncila/feb87fcbadc756269fdf99000a6ea77c). Please note that not all plugins may be listed here.
 
 ![Adapted npe1 plugin with tag](./images/adapted_plugin_with_tag.png)

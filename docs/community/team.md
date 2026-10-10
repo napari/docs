@@ -65,7 +65,7 @@ members in various roles supported by grants. They are listed below under the
 - [Aniket Singh Yadav](https://github.com/napari/napari/commits?author=Aniketsy) - [@Aniketsy](https://github.com/Aniketsy)
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - [@jacopoabramo](https://github.com/jacopoabramo)
 
-# Team Roles
+## Team Roles
 
 To best serve napari's development, operations, and community, several team roles are contracted. Currently contracted roles are listed below:
 
