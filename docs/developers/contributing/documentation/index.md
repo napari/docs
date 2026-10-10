@@ -651,7 +651,7 @@ mode, which will prevent napari windows from popping up during the build.
    ```
 ````
 
-### Make: building what you need
+###### Make: building what you need
 
 ````{dropdown} napari/docs and notebooks
 ```bash
@@ -710,7 +710,7 @@ variant](live-builds) will open a browser preview and auto-rebuild the single ex
 any other `docs` pages on edit, but it will not run any other code cells.
 ````
 
-#### Make: utilities
+###### Make: utilities
 
 ```bash
 make clean
@@ -718,7 +718,7 @@ make clean-gallery
 make prep-docs
 ```
 
-##### Make on Windows (alternatives)
+###### Make on Windows (alternatives)
 
 `make` with Pixi works natively on Windows (PowerShell, Command Prompt, or your terminal of choice). If you encounter issues, you can consider using Git Bash or WSL as alternatives.
 

@@ -346,7 +346,7 @@ infrastructure components while preserving the semantics required by both state 
 interaction dispatch.
 Please see below for a more concise display of the problems with the current communication model.
 
-### The problem with the current communication model
+## The problem with the current communication model
 
 Napari currently uses several different mechanisms to communicate between components throughout the codebase:
 
@@ -360,7 +360,7 @@ As a result, different parts of napari communicate using different abstractions,
 through the application difficult to reason about.<br>
 This has several consequences.
 
-#### Tight coupling to backend libraries
+### Tight coupling to backend libraries
 
 Much of napari's internal communication is coupled directly to _Qt_ or _vispy_ because napari application code
 frequently interacts with their native communication mechanisms. This makes it difficult to separate application
@@ -368,7 +368,7 @@ logic from GUI and rendering concerns and complicates support for alternative ba
 Ideally, backend-specific communication should remain an implementation detail, with napari exposing a consistent
 application-level dispatch model regardless of which GUI or rendering backend is being used.
 
-#### Multiple programming models
+### Multiple programming models
 
 Contributors currently need to understand several communication models:
 
@@ -381,7 +381,7 @@ Each has different semantics, callback signatures, connection mechanisms, and li
 cognitive load for contributors, makes APIs less consistent, and complicates the development of reusable
 infrastructure.
 
-#### Dynamic event definitions
+### Dynamic event definitions
 
 Many state-change notifications are represented using dynamically constructed `Event` objects and `EmitterGroup`s.
 
@@ -396,7 +396,7 @@ The information carried by these events is determined at runtime, making it diff
 Although many notifications have simple, well-defined interfaces (for example, "opacity changed" or "layer inserted"),
 these interfaces are hidden behind generic event objects.
 
-#### Threading
+### Threading
 
 Napari already contains components that execute across multiple threads, including computational workloads and
 GUI-related components. Threading behaviour is currently influenced by the communication mechanisms provided by
@@ -407,13 +407,13 @@ wherever possible. Napari components should not need to understand backend-speci
 to communicate with one another.<br>
 Furthermore, users / developers would benefit from improved communication of propagating events to the main thread.
 
-### Proposed design principles
+## Proposed design principles
 
 The following principles are intended to guide the migration. They describe the desired architecture rather than
 prescribing every implementation detail. Where practical considerations require deviations from these principles,
 those decisions should be documented.
 
-#### 1. One application dispatch model
+### 1. One application dispatch model
 
 Napari should expose a single, coherent application dispatch model for communication between internal components.
 Backend libraries such as _Qt_ and _vispy_ will continue to use their native communication mechanisms internally,
@@ -421,7 +421,7 @@ but these should remain implementation details encapsulated within napari-owned 
 Application code should communicate using napari's dispatch model rather than directly depending on
 backend-specific APIs.
 
-#### 2. Distinguish signals from events
+### 2. Distinguish signals from events
 
 The migration should make a clear architectural distinction between __signals__ and __events__.
 __Signals__ represent __state-change notifications__. For example:
@@ -439,7 +439,7 @@ For example:
 
 __Signals__ and events have different semantics and should not be forced into the same abstraction.
 
-#### 3. Use explicit, typed signals
+### 3. Use explicit, typed signals
 
 State-change notifications should be represented using explicit __psygnal signals__.
 For example:
@@ -465,7 +465,7 @@ Explicit signal definitions improve:
 - documentation generation
 - developer understanding of APIs
 
-#### 4. Separate dispatch semantics from payloads
+### 4. Separate dispatch semantics from payloads
 
 The mechanism used to dispatch information should be independent of the objects representing that information.
 Signals should emit typed values or domain objects. _Events_ should carry well-defined payload types describing
@@ -475,7 +475,7 @@ and other interaction-specific information.
 Separating dispatch semantics from payload representation makes communication easier to understand while avoiding
 the limitations of dynamically populated event objects.
 
-#### 5. Encapsulate backend communication
+### 5. Encapsulate backend communication
 
 _Qt_, _Vispy_, and future rendering or GUI backends should continue to use the communication mechanisms that are
 most appropriate for those frameworks. Rather than replacing these mechanisms, napari should encapsulate them within
@@ -483,21 +483,21 @@ backend integration layers.
 This keeps backend-specific communication localized while exposing a consistent application-level API to the rest
 of napari and to plugins.
 
-#### 6. Preserve behaviour before improving APIs
+### 6. Preserve behaviour before improving APIs
 
 The migration should prioritize behavioral compatibility over immediate API redesign.
 Existing semantics—including callback ordering, event propagation, lifecycle behaviour, and plugin
 expectations—should be preserved wherever practical.
 API improvements should be introduced incrementally through well-defined deprecation cycles.
 
-#### 7. Make threading behaviour explicit
+### 7. Make threading behaviour explicit
 
 Backend-specific threading constraints should remain encapsulated wherever possible.
 Where application-level communication crosses thread boundaries, the semantics should be clearly documented.
 This proposal does not attempt to redefine how backend frameworks manage threads, but it should establish clear
 guidance for how signals, events, and backend integrations interact with existing threading models.
 
-#### 8. Minimise custom infrastructure
+### 8. Minimise custom infrastructure
 
 Where appropriate, the migration should favour standard _psygnal_ abstractions over custom napari infrastructure.
 State-change notifications should primarily use `Signal` and `SignalGroup`, avoiding additional napari-specific
@@ -505,7 +505,7 @@ abstractions unless they provide clear architectural benefits.
 Interaction events may require richer dispatch semantics than _psygnal_ alone provides, but these should be
 implemented using the smallest amount of custom infrastructure necessary.
 
-#### 9. Design for long-term maintainability
+### 9. Design for long-term maintainability
 
 The communication infrastructure is fundamental to napari's architecture and plugin ecosystem.
 The migration should favour simple, explicit, and well-documented abstractions that can evolve over time without
@@ -513,7 +513,7 @@ requiring repeated ecosystem-wide API changes.
 A successful design should make it easier to support future rendering backends, improve tooling and documentation,
 and reduce the long-term maintenance burden of the communication infrastructure.
 
-### Proposed architecture
+## Proposed architecture
 
 The proposed architecture establishes a single application communication model for napari while recognizing that
 different kinds of communication have different semantics. State-change notifications should be represented
@@ -600,7 +600,7 @@ frameworks will continue to manage their own communication internally. Supportin
 therefore becomes primarily a matter of implementing a new backend integration layer rather than introducing
 another communication model throughout the application.
 
-### Migration strategy
+## Migration strategy
 
 The migration should be incremental, allowing the communication model to evolve while maintaining behavioral
 compatibility wherever practical. Replacing the existing infrastructure in a single step would introduce a large,
@@ -610,7 +610,7 @@ throughout the transition.<br>
 Where possible, new APIs should be introduced before legacy APIs are deprecated, allowing contributors and
 plugin authors to migrate gradually.
 
-#### Backward compatibility
+### Backward compatibility
 
 A compatibility layer should be introduced before significant internal migration begins.
 The compatibility layer should allow the existing _napari.utils.events_ API to coexist with the new signaling
@@ -625,9 +625,9 @@ The exact implementation remains an open design question and should be informed 
 migrations, including the overlays migration.
 The compatibility layer is intended only as migration infrastructure and should eventually be removed.
 
-#### Proposed migration phases
+### Proposed migration phases
 
-##### 1 Compatibility infrastructure
+#### 1 Compatibility infrastructure
 
 Establish the foundations required for incremental migration.
 
@@ -642,7 +642,7 @@ This includes:
 The success criterion for this phase is that new components can adopt the new communication model without
 breaking existing code.
 
-##### 2 Internal state models
+#### 2 Internal state models
 
 Migrate internal models that primarily communicate state changes.
 Likely candidates include:
@@ -659,7 +659,7 @@ These components are relatively self-contained and primarily emit state-change n
 early candidates for migration.
 Where appropriate, `psygnal.EventedModel` should replace napari's custom implementation.
 
-##### 3 State change consumers
+#### 3 State change consumers
 
 Update application components that consume state-change notifications.
 This includes:
@@ -680,7 +680,7 @@ At this stage, the majority of application state changes should be communicated 
 In this respect something like the `LayerControls` can be seen as a controller and also everything that inherits
 the VispyBaseLayer as it translates between napari models and vispy.
 
-##### 4 Backend integration
+#### 4 Backend integration
 
 Review communication at the boundaries between napari and backend frameworks. Rather than replacing _Qt_ or _vispy_
 communication internally, this phase focuses on ensuring that backend-specific communication remains encapsulated
@@ -691,7 +691,7 @@ benchmarked before adoption.
 Exactly how interaction events should be represented remains an open design question and should be informed
 by experimentation.
 
-##### 5 Deprecation and cleanup
+#### 5 Deprecation and cleanup
 
 Once the new communication model has matured:
 
@@ -703,7 +703,7 @@ Once the new communication model has matured:
 The length of the deprecation period should depend on the complexity of the compatibility layer and the impact
 on plugins.
 
-### Open design questions
+## Open design questions
 
 Several important questions remain intentionally unresolved.
 
@@ -719,7 +719,7 @@ These include:
 
 These questions should be resolved incrementally as experience is gained during the migration.
 
-### Success criteria
+## Success criteria
 
 The migration will be considered successful when:
 
@@ -735,7 +735,7 @@ signals and events
 - threading expectations and backend responsibilities are clearly documented
 - adding a new rendering or GUI backend does not require introducing another application communication model.
 
-### References and Footnotes
+## References and Footnotes
 
 [1]: https://doc.qt.io/qt-6/eventsandfilters.html
 [2]: https://doc.qt.io/qt-6/signalsandslots.html
@@ -751,11 +751,11 @@ CC0+BY [^id4].
 
 [^id4]: <https://dancohen.org/2013/11/26/cc0-by/>
 
-### Changelog
+## Changelog
 
 1. [#1086](https://github.com/napari/docs/pull/1086) Introduces initial version of the document
 
-### Copyright
+## Copyright
 
 This document is dedicated to the public domain with the Creative Commons CC0
 license [^id3]. Attribution to this source is encouraged where appropriate, as per
