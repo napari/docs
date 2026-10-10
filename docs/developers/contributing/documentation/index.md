@@ -152,7 +152,7 @@ where `<target>` can be:
 - `slimgallery` : `slimfast`, but also builds the gallery examples from `napari/napari`
 
 For more information about these targets see the ["building locally"](build_docs_locally) section
-of the documentation, including the part on [specialized builds](#make-building-what-you-need).
+of the documentation, including the part on [specialized builds](building-what-you-need).
 
 Once the jobs complete you will also be able to [preview the documentation](doc_view_ci) by
 using the `Check the rendered docs here!` action at the bottom of your PR, which will go to a
