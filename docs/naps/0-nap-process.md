@@ -334,9 +334,7 @@ This process was based on existing process from the scikit-image (SKIPs), NumPy
 
 This document has been placed in the public domain.
 
-[developer forum]: https://forum.image.sc/tag/napari
 [github pull request]: https://github.com/napari/napari/pulls
-[issue tracker]: https://github.com/napari/napari/issues
 [repo]: https://github.com/napari/napari
 [MyST markdown]: https://myst-parser.readthedocs.io/en/latest/index.html
 [MyST markdown cheat sheet]: https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html
