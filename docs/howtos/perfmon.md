@@ -18,10 +18,10 @@ The module can do several things:
 
 ## Monitoring vs. profiling
 
-[Profiling](napari-profiling) is similar to performance monitoring. However profiling
-usually involves running an external tool to acquire timing data on every
-function in the program. Sometimes this will cause the program to run so slowly
-it's hard to use the program interactively.
+[Profiling](napari-profiling) is similar to performance monitoring. However
+profiling usually involves running an external tool to acquire timing data on
+every function in the program. Sometimes this will cause the program to run so
+slowly it's hard to use the program interactively.
 
 Performance monitoring does not require running a separate tool to collect the
 timing information, however we do use Chrome to view the trace files. With
