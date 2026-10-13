@@ -1,5 +1,5 @@
 # napari 0.10.0
-⚠️ *Note: these release notes are still in draft while 0.10.0a0 is in prerelease testing.* ⚠️
+⚠️ *Note: these release notes are still in draft while 0.10.0rc0 is in prerelease testing.* ⚠️
 
 *Sun, Oct 25, 2026*
 
@@ -16,11 +16,22 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 ## Highlights
 
+### Colorful names
+
+A long-requested feature: displaying layer names on the canvas with colormap-aware colors ([#9598](https://github.com/napari/napari/pull/9598))! This comes with some fancy machinery to ensure that colors are shifted enough to be always readable.
+
+![screenshot of the viewer with layer names overlays enabled, colored based on each layer's colormap](https://github.com/user-attachments/assets/629e63f5-381a-4a92-ba17-de02fa408edf)
+
+
 - Add grid overlay ([#7827](https://github.com/napari/napari/pull/7827))
 
 ## New Features
 
 - Add grid overlay ([#7827](https://github.com/napari/napari/pull/7827))
+
+## Breaking Changes
+
+- MAINT: Remove deprecated ScaleBar.unit ([#9218](https://github.com/napari/napari/pull/9218))
 
 ## Improvements
 
@@ -28,16 +39,22 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Add single-plane projection for 3D points layers ([#9229](https://github.com/napari/napari/pull/9229))
 - UI: apply tabular numerals to embedded status bars ([#9407](https://github.com/napari/napari/pull/9407))
 - Clean up status for grid/multiple selection ([#9431](https://github.com/napari/napari/pull/9431))
+- Use canvas size to estimate scale_bar target size ([#9474](https://github.com/napari/napari/pull/9474))
 - Fix fuzzy finding and command highlighting in palette ([#9503](https://github.com/napari/napari/pull/9503))
 - Implement canvas_to_world on the napari side ([#9517](https://github.com/napari/napari/pull/9517))
 - Add option to declare deprecated property using descriptor ([#9527](https://github.com/napari/napari/pull/9527))
 - Add `RenamedWarningEmitter` and `DependentEmitter` ([#9529](https://github.com/napari/napari/pull/9529))
 - Keep reader and writer commands out of the command palette ([#9582](https://github.com/napari/napari/pull/9582))
 - Add warning icon if experimental setting (especially async) is enabled ([#9590](https://github.com/napari/napari/pull/9590))
+- Draw the layer name overlay in the layer's colormap color ([#9598](https://github.com/napari/napari/pull/9598))
 - Add `locked_data_level` as an argument for `Labels` ([#9603](https://github.com/napari/napari/pull/9603))
 - Improve point projections to cover old out_of_slice use case ([#9607](https://github.com/napari/napari/pull/9607))
 - Make the layer name overlay bold ([#9616](https://github.com/napari/napari/pull/9616))
 - Fix reporting of Qt version in `napari --info` ([#9648](https://github.com/napari/napari/pull/9648))
+
+## Performance
+
+- PERF: Speed up grid mode with many layers ([#9633](https://github.com/napari/napari/pull/9633))
 
 ## Bug Fixes
 
@@ -49,26 +66,35 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Fix color of labels in colorpicker ([#9599](https://github.com/napari/napari/pull/9599))
 - Measure text at render size for even overlay padding ([#9617](https://github.com/napari/napari/pull/9617))
 - Fix font clipping in dock widget titles ([#9619](https://github.com/napari/napari/pull/9619))
+- Treat a colormap list of only None like a single None in add_image ([#9624](https://github.com/napari/napari/pull/9624))
 - Limit the lasso_vertex_distance preference spin box to 1-50 ([#9626](https://github.com/napari/napari/pull/9626))
+- PERF: Speed up grid mode with many layers ([#9633](https://github.com/napari/napari/pull/9633))
+- Fix stale perfmon callable reference ([#9671](https://github.com/napari/napari/pull/9671))
 
 ## Documentation
 
-- Add info in tooltips for projection mode ([#9497](https://github.com/napari/napari/pull/9497))
-- Clarify in `LayerList` docstring when the `changed` event is emitted ([#9504](https://github.com/napari/napari/pull/9504))
 - Typing Guide: Tips and Resources ([docs#1135](https://github.com/napari/docs/pull/1135))
 - Deprecation policy using time-based windows for removal ([docs#1138](https://github.com/napari/docs/pull/1138))
+- Clarify mouse event properties in the `3D interactivity guide` ([docs#1147](https://github.com/napari/docs/pull/1147))
 - Add missed PRs to 0.9.2 release notes. ([docs#1151](https://github.com/napari/docs/pull/1151))
 - docs: suggest refined github ([docs#1155](https://github.com/napari/docs/pull/1155))
 - Redirect old workshop pages to napari.org/workshops ([docs#1156](https://github.com/napari/docs/pull/1156))
 - Move Kyle Harrington to Emeritus Steering Council ([docs#1160](https://github.com/napari/docs/pull/1160))
 - Fix failing docs build due to `profiling` clash ([docs#1161](https://github.com/napari/docs/pull/1161))
+- Create release notes for v0.10.0a0 ([docs#1164](https://github.com/napari/docs/pull/1164))
+- Add info in tooltips for projection mode ([#9497](https://github.com/napari/napari/pull/9497))
+- Clarify in `LayerList` docstring when the `changed` event is emitted ([#9504](https://github.com/napari/napari/pull/9504))
 
 ## Other Pull Requests
 
+- ci(dependabot): bump the github-actions group across 1 directory with 2 updates ([docs#1125](https://github.com/napari/docs/pull/1125))
+- Rumdl: Add baseline config and format docs/ ([docs#1140](https://github.com/napari/docs/pull/1140))
+- Move pre-fetch data step to begin of prep_docs.py ([docs#1148](https://github.com/napari/docs/pull/1148))
+- Add missed directories to circelci cache ([docs#1149](https://github.com/napari/docs/pull/1149))
+- Post rendered docs link as a sticky PR comment ([docs#1159](https://github.com/napari/docs/pull/1159))
 - Separate tiling from nontiling overlays ([#9083](https://github.com/napari/napari/pull/9083))
 - fix(typing): add typing and fix mypy error in `qt_tracks_controls.py` ([#9176](https://github.com/napari/napari/pull/9176))
 - fix (typing): add typing and fix mypy error in `qt_symbol_combobox.py` ([#9182](https://github.com/napari/napari/pull/9182))
-- MAINT: Remove deprecated ScaleBar.unit ([#9218](https://github.com/napari/napari/pull/9218))
 - feat: initial working version slide out dockwidget ([#9317](https://github.com/napari/napari/pull/9317))
 - chore: remove ChunkLoader dead test code  ([#9381](https://github.com/napari/napari/pull/9381))
 - Fix labeler action ([#9458](https://github.com/napari/napari/pull/9458))
@@ -91,41 +117,41 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Remove Qt5 from --pre tests ([#9687](https://github.com/napari/napari/pull/9687))
 - Update `hypothesis`, `imageio`, `numpy`, `platformdirs`, `pydantic`, `pyside6`, `toolz`, `virtualenv` ([#9692](https://github.com/napari/napari/pull/9692))
 - Add Lundy Bernard to CITATION.cff ([#9695](https://github.com/napari/napari/pull/9695))
-- ci(dependabot): bump the github-actions group across 1 directory with 2 updates ([docs#1125](https://github.com/napari/docs/pull/1125))
-- Rumdl: Add baseline config and format docs/ ([docs#1140](https://github.com/napari/docs/pull/1140))
-- Move pre-fetch data step to begin of prep_docs.py ([docs#1148](https://github.com/napari/docs/pull/1148))
-- Add missed directories to circelci cache ([docs#1149](https://github.com/napari/docs/pull/1149))
-- Post rendered docs link as a sticky PR comment ([docs#1159](https://github.com/napari/docs/pull/1159))
 
 
-## 12 authors added to this release (alphabetical)
+## 16 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Aditi Juneja](https://github.com/napari/napari/commits?author=Schefflera-Arboricola) - @Schefflera-Arboricola +
 - [Aman kumar](https://github.com/napari/napari/commits?author=ghostiee-11) - @ghostiee-11 +
-- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) - @Aniketsy
+- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy
+- [Bruno Pannunzio](https://github.com/napari/napari/commits?author=bruno-pannunzio) - @bruno-pannunzio +
 - [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) - @carlosmariorr
+- [Chirag Anand](https://github.com/napari/napari/commits?author=chirag-433) - @chirag-433 +
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) ([docs](https://github.com/napari/docs/commits?author=jacopoabramo))  - @jacopoabramo
 - [lettyz3](https://github.com/napari/napari/commits?author=lettyz3) - @lettyz3 +
-- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
+- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
 - [Lundy Bernard](https://github.com/napari/napari/commits?author=lundybernard) ([docs](https://github.com/napari/docs/commits?author=lundybernard))  - @lundybernard +
 - [Matthias Schabel](https://github.com/napari/napari/commits?author=matthiasschabel) - @matthiasschabel
 - [Mridul Seth](https://github.com/napari/napari/commits?author=MridulS) - @MridulS
+- [Omkar Kabde](https://github.com/napari/napari/commits?author=omkar-334) - @omkar-334
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
+- [Wouter-Michiel Vierdag](https://github.com/napari/napari/commits?author=melonora) - @melonora
 
-## 10 reviewers added to this release (alphabetical)
+## 11 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
 - [Aman kumar](https://github.com/napari/napari/commits?author=ghostiee-11) - @ghostiee-11 +
-- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) - @Aniketsy
+- [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy
+- [Bruno Pannunzio](https://github.com/napari/napari/commits?author=bruno-pannunzio) - @bruno-pannunzio +
 - [Carol Willing](https://github.com/napari/docs/commits?author=willingc) - @willingc
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) ([docs](https://github.com/napari/docs/commits?author=jacopoabramo))  - @jacopoabramo
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [lettyz3](https://github.com/napari/napari/commits?author=lettyz3) - @lettyz3 +
-- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
+- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
 - [Peter Sobolewski](https://github.com/napari/docs/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
