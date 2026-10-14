@@ -4,6 +4,7 @@
 
 We welcome your contributions! Here you will find a guide to the contribution
 workflow and tips for contributing to napari.
+If you are looking for an overview of all the repositories in the napari organization, see the [repository map](napari-repositories).
 If you are looking to learn more about the napari code base, see the [napari architecture guide](architecture-index).
 Please [contact](contact) us if you have any queries.
 
@@ -19,6 +20,10 @@ also our [policy on AI contributions](ai-contributions).
 ## Contributing workflow
 
 napari development occurs primarily on GitHub. If you are new to GitHub we recommend checking out the detailed [Github Docs](https://docs.github.com/en).
+
+```{tip}
+We highly recommend installing the [Refined GitHub](https://github.com/refined-github/refined-github) browser extension. It adds additional features to the GitHub web interface that make reviewing issues and pull requests *much* easier.
+```
 
 ### Set up a local development environment
 
@@ -170,7 +175,7 @@ Performance related PRs should include a benchmark in order to clearly depict th
 use-case that is being optimized for. Ideally PRs that add a new feature should
 also include benchmarks to show the new feature is not too slow but this is less vital.
 [](napari-benchmarks) provides more information on benchmarking. If you find
-poor performance, [profiling](profiling) and [performance monitoring](napari-perfmon) can help
+poor performance, [profiling](napari-profiling) and [performance monitoring](napari-perfmon) can help
 identify the cause and where to optimize.
 
 ### Automation and CI
