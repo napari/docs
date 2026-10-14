@@ -167,7 +167,7 @@ napari.run()
 ```
 
 ## Preparing tracks data from a pandas DataFrame
-The prepare_tracks_data helper maps DataFrame columns to a numpy array with the track ID, time, and spatial coordinates in the order expected by napari. This is useful when track data uses custom column names or when the columns are not already in the order expected by napari.
+The `prepare_tracks_data()` helper maps DataFrame columns to a numpy array with the track ID, time, and spatial coordinates in the order expected by napari. This is useful when track data uses custom column names or when the columns are not already in the order expected by napari.
 
 ## Tracks graph
 
