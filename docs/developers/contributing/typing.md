@@ -51,10 +51,10 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
    ```python
    if TYPE_CHECKING:
        from some_module import SomeType
-   ```{note}
+   ```
+   ```{important}
    Lazy evaluation of annotation breaks tools that require runtime type inspection, such as
    magicgui decorators and Pydantic models. For those, type annotations must be real imports!
-   ```
    ```
 4. **Run `tox -e pyrefly`** and read the first complaint before the rest; later errors
    are often consequences of the first one.
