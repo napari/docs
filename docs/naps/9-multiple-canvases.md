@@ -87,13 +87,13 @@ Providing native support in napari would allow developers to more easily create 
 * The application shall natively display multiple views simultaneously.
   * There shall be a minimum of one view (current status) per viewer.
 * Each view shall have independent:
-  * Layer list - or layerlist "subview" (see [#Alternative single LayerList](#single-layerlist) for details) (necessary for visualizing different data)
+  * Layer list - or layerlist "subview" (see [Alternative single LayerList](#single-layerlist) for details) (necessary for visualizing different data)
   * Scene (necessary for viewing data from different POV)
   * Canvas (controls specific attributes of the canvas of each view)
   * Dims model (necessary for viewing different slices/dimensions of the data)
   * Scene and Canvas models (for overlays and other view-related objects)
 * The implementation should minimize changes to the existing public API.
-* The main napari programmatic entry point (currently `Viewer/ViewerModel`) shall maintain a concept of a single “active” (currently focused) view (see [#Alternative main view](#main-view)).
+* The main napari programmatic entry point (currently `Viewer/ViewerModel`) shall maintain a concept of a single “active” (currently focused) view (see [Alternative main view](#main-view)).
   * There will be no possibility of a viewer with no views.
 * Users shall be able to add, remove, and (eventually[^maybe-rearrange]) rearrange views.
 
@@ -121,7 +121,7 @@ This feature has some theoretical and functional overlap with the multi-view des
 
 These limitations dramatically simplify the usability of grid mode (one or two button clicks are usually all that's needed for most use cases). On the other hand, multi-view as described in this NAP offers greater control over every aspect described above, at the cost of a more complicate API and GUI accessibility.
 
-In this NAP, we assume that grid mode and multiple views remain separate features. For discussion about why, see [#Alternative: Multi-View grid mode](#multi-view-grid-mode).
+In this NAP, we assume that grid mode and multiple views remain separate features. For discussion about why, see [Alternative: Multi-View grid mode](#multi-view-grid-mode).
 
 ## Related Work
 
@@ -202,7 +202,7 @@ Noteworthy elements:
 * old access patterns (such as `viewer.camera` or `viewer.dims` will be automatically redirected to the active view via `__getattr__`, with no need for extreme code duplication, retaining fully backward-compatible API.
 
 :::{seealso}
-An alternative implementation could maintain a single centralized `LayerList`, with `Views` only having control over layer visibility. See [#Alternative single LayerList](#single-layerlist) for pros and cons.
+An alternative implementation could maintain a single centralized `LayerList`, with `Views` only having control over layer visibility. See [Alternative single LayerList](#single-layerlist) for pros and cons.
 :::
 
 (part-2-decouple-slicing-state)=
