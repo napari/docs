@@ -74,6 +74,8 @@ subtrees:
       - file: release/index
         subtrees:
         - entries:
+          - file: release/release_0_10_0
+          - file: release/release_0_9_2
           - file: release/release_0_9_1
           - file: release/release_0_9_0
           - file: release/release_0_8_0
@@ -205,6 +207,7 @@ subtrees:
           - file: developers/contributing/ai
           - file: developers/contributing/dev_install
           - file: developers/contributing/testing
+          - file: developers/contributing/typing
           - file: developers/contributing/performance/index
             subtrees:
             - entries:
@@ -238,7 +241,10 @@ subtrees:
         - entries:
           - file: developers/coredev/maintenance
           - file: developers/coredev/triage
-          - file: developers/coredev/release
+          - file: developers/coredev/release_policy
+            subtrees:
+            - entries:
+              - file: developers/coredev/release
           - file: developers/coredev/packaging
       - file: naps/index
         subtrees:
