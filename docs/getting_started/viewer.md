@@ -21,6 +21,10 @@ This tour assumes you have already installed **napari** and know how to launch t
 
 This tour will teach you about the **napari** viewer, including how to use its graphical user interface (GUI) and how the data within it is organized. At the end, you should understand both the layout of the viewer on the screen and the data inside of it.
 
+```{tip}
+napari also includes an interactive version of this viewer overview at **Help > Take a tour**.
+```
+
 +++
 
 ## Launching the viewer
@@ -178,6 +182,10 @@ The **canvas** is in the center of the viewer and contains the visual display of
 
 +++
 
+```{seealso}
+The canvas model can be accessed via `viewer.canvas`; several things are exposed here, such as the [grid mode](grid-mode), [canvas overlays](viewer-overlays) and the overlay tiling settings.
+```
+
 (layer-list)=
 
 ### Layer list
@@ -326,18 +334,26 @@ viewer.layers.pop(i)
 One of the main strengths of **napari** is that it has been designed from the beginning to handle n-dimensional data. While much consumer photography is 2D and `RGB`, scientific image data can often be volumetric (i.e. 3D), volumetric timeseries (i.e. 4D), or even higher dimensional. **napari** places no limits on the dimensionality of its input data for all its layer types.
 
 Adding data with a dimensionality greater than 2D will cause dimension sliders to appear directly underneath the canvas and above the status bar. As many sliders as needed will appear to ensure the data can be fully browsed. For example, a 3D dataset needs one slider, a 4D dataset needs two sliders, and so on. The widths of the scroll bars of the dimension sliders are directly related to how many slices are in each dimension.
-To the left of each slider will be an integer indicating which dimension is being controlled by that slider. These integers are automatically updated when changing which dimensions are to be displayed. Alternately, the sliders can be labeled by double-clicking on the integer and editing the field. The labels can be retrieved programmatically as follows:
+To the left of each slider will be a label indicating which dimension is being
+controlled by that slider. By default these are integers that are automatically
+updated when changing which dimensions are to be displayed, but they are
+replaced by the axis labels of the layers in the viewer whenever those are
+available (see [axis-names](axis-names)). Alternately, the sliders can be
+labeled by double-clicking on the label and editing the field. The labels can
+be retrieved programmatically as follows:
 
 ```{code-cell} python
 # To get the dimension labels
 viewer.dims.axis_labels
 ```
 
-You can also set the axis labels programmatically as follows:
+You can also set the axis labels programmatically. The
+viewer axis labels are automatically derived from the axis labels of the
+layers, so set them on layers instead:
 
 ```{code-cell} python
-# To set new axis labels
-viewer.dims.axis_labels = ("label_1", "label_2")
+# To set new axis labels on a layer
+image_layer.axis_labels = ("label_1", "label_2")
 ```
 
 It is also possible to mix data of different shapes and dimensionality in different layers. If a 2D and 4D dataset are both added to the viewer then the sliders will affect only the 4D dataset, the 2D dataset will remain the
@@ -510,8 +526,8 @@ tags: [hide-input]
 ---
 # programmatically adjust the camera angle
 viewer.dims.ndisplay = 3
-viewer.camera.zoom = 2
-viewer.camera.angles = (3, 38, 53)
+viewer.scene.camera.zoom = 2
+viewer.scene.camera.angles = (3, 38, 53)
 nbscreenshot(viewer, alt_text="A rotated 3D view")
 ```
 
@@ -536,13 +552,17 @@ Note that if you want to drag the canvas/rendering itself, instead of rotating t
 The camera perspective can also be altered programmatically:
 
 ```python
-viewer.camera.perspective = 45
+viewer.scene.camera.perspective = 45
 ```
 
 By default, camera center and zoom persist when switching between 2D and 3D
 views (synced mode). You can change this behavior via the camera popup, the
 **View** menu (**Toggle Synced Camera**, {kbd}`Ctrl+U`), or programmatically
-through `viewer.camera.synced`. See the [camera guide](camera-guide) for details.
+through `viewer.scene.camera.synced`. See the [camera guide](camera-guide) for details.
+
+```{note}
+The scene model also gives you access to [scene overlays](viewer-overlays)!
+```
 
 ### Roll dimensions
 
@@ -566,6 +586,10 @@ viewer: double click on the text to the right of the padlock icon. For
 example, for a 3D volume, double-click the default axis name `-3` (see
 [explanation](axis-names)) and change it to `Z`. The change will be reflected
 in the slider in 2D view and the `axes` overlay.
+
+The viewer axis labels are usually set automatically from
+the axis labels of the layers in the viewer (see [axis-names](axis-names));
+manual renaming is still available for fine-grained control.
 ```
 
 The dimension order can also be checked programmatically as follows:
@@ -589,6 +613,8 @@ Note that this has no effect on the order of `viewer.dims.current_step`. The fir
 
 The fourth button transposes the displayed dimensions.
 
+(grid-mode)=
+
 ### Grid button
 
 The fifth button, the grid button, toggles between the default layer mode and grid mode. When clicked, it distributes the layers in a grid of cells. Each cell is a small interactive canvas whose camera is linked with all the others.
@@ -606,7 +632,7 @@ The fifth button, the grid button, toggles between the default layer mode and gr
 </figure>
 ```
 
-The distribution of the layers in the grid can be altered according to the settings below, accessible by right-clicking the button (or programmatically through `viewer.grid`). The question icons can be hovered for more information about each setting.
+The distribution of the layers in the grid can be altered according to the settings below, accessible by right-clicking the button (or programmatically through `viewer.canvas.grid`). The question icons can be hovered for more information about each setting.
 
 1. Grid stride: By default, 1, placing one layer in each view. The value determines the number of layers overlaid in each view. Negative values reverse the order in which layers are displayed in the grid.
 1. Grid width/height: By default, -1, which automatically determines the grid layout.
@@ -635,15 +661,22 @@ The right side of the status bar contains some helpful tips depending on which l
 Overlays provide additional information about the render state and the data, displayed on the canvas itself.
 In napari there are two main types: canvas overlays - which are locked in position on the screen and hover over the rendered canvas - and scene overlays - which are located somewhere in world coordinates and follow the camera and dims just like layers. Canvas overlays can be positioned in various locations on the canvas (e.g: `top_left`, `bottom_center`), and will automatically tile if multiple are present at the same location.
 
-The viewer gives access to a few such overlays:
+Canvas overlays can be accessed via `viewer.canvas.overlays`:
 
-- Scale bar (canvas overlay, accessible via `viewer.scale_bar`): it displays distances in world coordinates for the displayed scene. The scale bar usually inherits layer units when they are set. If inference fails it can fall back to a dimensionless label, and if displayed axes mix dimensionalities it uses the last displayed axis unit with a warning. You can control its appearance and fixed length from the viewer. See the [units guide](units-guide) for more information. 
-- Axes (scene overlay, accessible via `viewer.axes`): displays basis axes at the origin.
-- Text Overlay (canvas overlay, accessible via `viewer.text_overlay`): displays arbitrary text on the canvas.
+- Scale bar (canvas overlay, accessible via `viewer.canvas.overlays.scale_bar`): it displays distances in world coordinates for the displayed scene. The scale bar usually inherits layer units when they are set. If inference fails it can fall back to a dimensionless label, and if displayed axes mix dimensionalities it uses the last displayed axis unit with a warning. You can control its appearance and fixed length from the viewer. See the [units guide](units-guide) for more information. 
+- Canvas Axes (canvas overlay, accessible via `viewer.canvas.overlays.axes`): displays basic axes in a corner of the canvas, linked to the viewer's camera.
+- Text (canvas overlay, accessible via `viewer.canvas.overlays.text`): displays arbitrary text on the canvas.
+
+Scene overlays live on `viewer.scene.overlays`:
+- Scene Axes (scene overlay, accessible via `viewer.scene.axes`): displays basis axes at the origin in the scene.
 
 These overlays can also be accessed via graphical interface through the **View** menu and their respective submenus.
 
 ```{tip}
+`canvas.overlays` and `scene.overlays` are smart dictionaries that allows access via attributes, instead of only via keys. So a shorthand for `viewer.canvas.overlays['text'] is `viewer.canvas.overlays.text`!
+```
+
+```{seealso}
 Similarly to the viewer, layers [also have some overlays](layer-overlays) that can be used to display layer-specific information!
 ```
 
@@ -780,8 +813,6 @@ viewer.close()
 ```
 
 Keys can be bound both to the object class or a particular instance depending on if you want the keybinding to apply to all instances of the class or only one particular instance.
-
-Currently the keybindings only work when the canvas is in focus, we are working to ensure they always work.
 
 The ability to add custom keybindings dramatically increases what is possible within **napari** and we hope you take full advantage of them.
 

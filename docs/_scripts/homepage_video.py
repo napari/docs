@@ -53,7 +53,7 @@ DEFAULT_OUTPUT_PATH = SCRIPT_DIR.parent / '_static' / 'images' / 'tribolium.webm
 
 PLUGIN = 'ndevio'
 THEME = 'dark'
-WINDOW_SIZE = (1204, 640)  # Will raise a an encoding block warning (needs // 16 size), but this is a reasonable size close to what it needs
+WINDOW_SIZE = (1300, 800)  # Will raise a an encoding block warning (needs // 16 size), but this is a reasonable size close to what it needs
 TIMELINE_DOCK_AREA = 'bottom'
 TIMELINE_FLOATING = True
 
@@ -79,12 +79,13 @@ def build_viewer(*, show: bool) -> napari.Viewer:
     layer = viewer.layers[0]
     layer.name = LAYER_NAME
     layer.contrast_limits = CONTRAST_LIMITS
+    layer.contrast_limits_range = CONTRAST_LIMITS
     layer.rendering = RENDERING
     layer.attenuation = ATTENUATION
     layer.colormap = COLORMAP
-    viewer.scale_bar.visible = True
-    viewer.axes.visible = True
-    viewer.dims.axis_labels = ('T', 'Z', 'Y', 'X')
+    layer.histogram.enabled = True
+    viewer.canvas.overlays.scale_bar.visible = True
+    viewer.canvas.overlays.axes.visible = True
     viewer.window._qt_window.resize(*WINDOW_SIZE)
     viewer.fit_to_view()
     return viewer

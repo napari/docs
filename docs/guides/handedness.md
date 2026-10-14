@@ -38,19 +38,6 @@ the data coordinates have an absolute correspondence to physical space — as is
 the case for latitude and longitude, for example:
 
 ```{code-cell} python
----
-tags: [hide-input]
----
-# function to convert xarray metadata to napari layer metadata
-def get_scale_translate(dataset, array_name):
-    array = getattr(dataset, array_name)
-    dims = [getattr(dataset, dim) for dim in array.dims]
-    translate = [float(d[0]) for d in dims]
-    scale = [float(d[1] - d[0]) for d in dims]
-    return {'scale': scale, 'translate': translate}
-```
-
-```{code-cell} python
 import napari
 import xarray as xr
 
@@ -58,11 +45,9 @@ sst = xr.tutorial.open_dataset('ersstv5')
 viewer, sst_layer = napari.imshow(
         sst.sst,
         name='sea surface temp',
-        **get_scale_translate(sst, 'sst'),
         colormap='magma',
         )
-viewer.dims.axis_labels = sst.sst.dims
-viewer.axes.visible = True
+viewer.scene.overlays.axes.visible = True
 ```
 
 ```{code-cell} python
@@ -86,7 +71,7 @@ down (incorrectly [since Ptolemy](https://en.wikipedia.org/wiki/History_of_carto
 Instead, we can flip the *axis orientation* so that the vertical axis (latitude) points up:
 
 ```{code-cell} python
-viewer.camera.orientation2d = ('up', 'right')
+viewer.scene.camera.orientation2d = ('up', 'right')
 ```
 
 ```{code-cell} python
@@ -142,9 +127,9 @@ layer = viewer.add_surface((vertices, faces), name='1BNA', shading='smooth')
 ---
 tags: [remove-input]
 ---
-viewer.camera.angles = (90, 0, 0)
-viewer.camera.zoom = 16
-viewer.axes.visible = True
+viewer.scene.camera.angles = (90, 0, 0)
+viewer.scene.camera.zoom = 16
+viewer.scene.overlays.axes.visible = True
 
 nbscreenshot(viewer)
 ```
@@ -154,7 +139,7 @@ a right-handed helix. However, if we flip one of the axes (as they were in napar
 we will get the mirror image of the DNA, which will be physically inaccurate:
 
 ```{code-cell} python
-viewer.camera.orientation = ('away', 'down', 'right')
+viewer.scene.camera.orientation = ('away', 'down', 'right')
 ```
 
 ```{code-cell} python

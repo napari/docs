@@ -40,10 +40,9 @@ This docstring was drafted with the assistance of Claude Code.
 The output was reviewed and edited for accuracy and clarity.
 """
 
-import sys
-import stat
 import shutil
-from pathlib import Path
+import stat
+import sys
 from importlib.metadata import version
 from pathlib import Path
 
@@ -93,6 +92,7 @@ def prep_npe2():
 
 
 def main(stubs=False):
+    __import__("prefetch_data").main()
     if stubs:
         # prep_npe2()
         # Generate stub files for plugin docs
@@ -103,7 +103,8 @@ def main(stubs=False):
             'plugins/_npe2_menus_guide.md': '(menus-contribution-guide)=\n',
             'plugins/_npe2_manifest.md': '# Manifest Reference\n',
             'plugins/_npe2_writers_guide.md': '(writers-contribution-guide)=\n',
-            'plugins/_npe2_contributions.md': '# Contributions Reference\n(contributions-themes)=\n(contributions-commands)=\n(contributions-widgets)=\n(contributions-readers)=\n(contributions-writers)=\n(contributions-sample-data)=\n(layer-type-constraints)=\n',
+            'plugins/_npe2_configurations_guide.md': '(configurations-contribution-guide)=\n',
+            'plugins/_npe2_contributions.md': '# Contributions Reference\n(contributions-themes)=\n(contributions-commands)=\n(contributions-widgets)=\n(contributions-readers)=\n(contributions-writers)=\n(contributions-sample-data)=\n(contributions-configurations)=\n(layer-type-constraints)=\n',
         }
         for doc, target in plugin_docs.items():
             file_path = DOCS / doc
@@ -123,7 +124,6 @@ def main(stubs=False):
         __import__("update_event_docs").main()
         __import__("update_ui_sections_docs").main()
         __import__("update_release_docs").main()
-
 
 if __name__ == '__main__':
     import argparse

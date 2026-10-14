@@ -257,11 +257,16 @@ suppress_warnings = ['myst.header', 'etoc.toctree', 'config.cache']
 
 ogp_site_url = 'https://napari.org/'
 ogp_image = 'dev/_static/opengraph_image.png'
-ogp_use_first_image = False
+ogp_use_first_image = True
 ogp_description_length = 300
 ogp_type = 'website'
 ogp_site_name = 'napari'
-ogp_canonical_url = 'https://napari.org/stable'
+ogp_image_alt = '3D segmented tribolium embryo in the napari viewer'
+ogp_canonical_url = 'https://napari.org/stable/'
+ogp_custom_meta_tags = [
+    # The shared ogp_image is a 1200x630 banner; use the large card on X/Twitter.
+    '<meta name="twitter:card" content="summary_large_image" />',
+]
 ogp_social_cards = {
     'image': '_static/logo.png',
 }
@@ -322,7 +327,7 @@ bundle_version = (
     else version_string
 )
 # when updating the version below, ensure to also update napari/napari README
-python_version = '3.11'
+python_version = '3.14'
 python_version_range = f'{min_python_version}-{max_python_version}'
 
 myst_substitutions = {
@@ -334,6 +339,8 @@ myst_substitutions = {
     'python_version_range': python_version_range,
     'python_version_code': f'`python={python_version}`',
     'conda_create_env': f'```sh\nconda create -y -n napari-env -c conda-forge python={python_version}\nconda activate napari-env\n```',
+    'venv_create_env': f'```sh\nuv venv -p {python_version}\n```',
+
 }
 
 # -- Autosummary ------------------------------------------------------------
@@ -731,10 +738,11 @@ def qt_docstrings(app, what, name, obj, options, lines):
     Avoids syntax errors since the Qt threading docstrings are written in
     Markdown, and injected into rst docstring automatically.
     """
-    ignore_list = ['WorkerBase', 'FunctionWorker', 'GeneratorWorker']
+    if not name.startswith('napari.qt'):
+        return
+    ignore_list = ['WorkerBase', 'FunctionWorker', 'GeneratorWorker', 'Shadow.from_bytes', 'Shadow.to_bytes', 'Shape.from_bytes', 'Shape.to_bytes']
     if any(f in name for f in ignore_list) and len(lines) > 0:
         del lines[1:]
-
 
 # -- Docs build setup ------------------------------------------------------
 

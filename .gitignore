@@ -164,6 +164,9 @@ docs/_static/images/*.mp4
 # homepage local zarr
 *fluo-n3dl-trif-01.ome.zarr/
 
+# opengraph preview data cache
+docs/_scripts/data/
+
 # pixi environments
 .pixi/*
 !.pixi/config.toml
