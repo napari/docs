@@ -26,7 +26,10 @@ napari development occurs primarily on GitHub. If you are new to GitHub we
 recommend checking out the detailed [Github Docs](https://docs.github.com/en).
 
 ```{tip}
-We highly recommend installing the [Refined GitHub](https://github.com/refined-github/refined-github) browser extension. It adds additional features to the GitHub web interface that make reviewing issues and pull requests *much* easier.
+We highly recommend installing the
+[Refined GitHub](https://github.com/refined-github/refined-github) browser
+extension. It adds additional features to the GitHub web interface that make
+reviewing issues and pull requests *much* easier.
 ```
 
 ### Set up a local development environment
