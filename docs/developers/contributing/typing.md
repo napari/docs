@@ -43,7 +43,7 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
    modify previous annotations if they are relevant to the contribution you are making.
 2. When feasible, **add `from __future__ import annotations`** at the top of any module that doesn't
    have it yet. This makes annotations lazy, so they are not evaluated at runtime,
-   in order to infer the types:
+   in order to infer the types.
 3. **Import annotation-only types under `if TYPE_CHECKING:`**, so heavy imports and
    potential import cycles stay out of the runtime path. Ruff rules flag these and
    will often move them for you with pre-commit. To do this, add
@@ -51,6 +51,10 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
    ```python
    if TYPE_CHECKING:
        from some_module import SomeType
+   ```{note}
+   Lazy evaluation of annotation breaks tools that require runtime type inspection, such as
+   magicgui decorators and Pydantic models. For those, type annotations must be real imports!
+   ```
    ```
 4. **Run `tox -e pyrefly`** and read the first complaint before the rest; later errors
    are often consequences of the first one.
@@ -62,8 +66,8 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
 - **Annotate parameters and return values, not local variables.** They are the contract other
   modules rely on, and locals are inferred well enough without help. 
 - **Parameters should accept the widest type that works; returns give back the concrete
-  type you built.** When psosible, take `Iterable`, `Sequence` or `Mapping` rather than `list`,
-  and hand back the `list` you actually made.
+  type you built.** When psosible, take `Iterable`, `Sequence` or `Mapping` rather than `list`
+  or `dict`, and hand back the `list` or `dict` you actually made.
 - **`Any` switches off checking for everything it touches.** It is sometimes the
   honest answer for a dynamic corner of the code, but it should be a decision rather
   than a way to make one error disappear.
