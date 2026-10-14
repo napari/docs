@@ -42,8 +42,9 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
    unrelated types alone — a bug fix shouldn't turn into a typing sweep. Only
    modify previous annotations if they are relevant to the contribution you are making.
 2. When feasible, **add `from __future__ import annotations`** at the top of any module that doesn't
-   have it yet. This makes annotations lazy, so they are not evaluated at runtime,
-   in order to infer the types.
+   have it yet. This makes annotations lazy, so they are not executed at runtime until required,
+   in order to infer the types. Where this is not possible (see warning below), annotations
+   that are not used in the code should be wrapped in quotes to avoid early evaluation.
 3. **Import annotation-only types under `if TYPE_CHECKING:`**, so heavy imports and
    potential import cycles stay out of the runtime path. Ruff rules flag these and
    will often move them for you with pre-commit. To do this, add
