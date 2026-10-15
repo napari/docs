@@ -19,6 +19,11 @@ to anyone and spread across time zones.
   <a href="https://github.com/napari/napari"><i class="fa-brands fa-github"></i><span>GitHub</span></a>
   <a href="https://napari.org/island-dispatch"><i class="fa-solid fa-rss"></i><span>Blog</span></a>
 </div>
+<div class="homepage-quicklinks community-socials">
+  <a href="https://www.linkedin.com/company/napari"><i class="fa-brands fa-linkedin"></i><span>LinkedIn</span></a>
+  <a href="https://bsky.app/profile/napari.org"><i class="fa-brands fa-bluesky"></i><span>Bluesky</span></a>
+  <a href="https://fosstodon.org/@napari" rel="me"><i class="fa-brands fa-mastodon"></i><span>Mastodon</span></a>
+</div>
 ```
 
 <!-- rumdl-enable MD013 -->
@@ -72,19 +77,3 @@ napari is open source under the BSD-3-Clause license.
 :::
 
 ::::
-
-## Follow us
-
-Keep up with napari news, releases, and community highlights:
-
-<!-- rumdl-disable MD013 -->
-
-```{raw} html
-<div class="community-socials">
-  <a href="https://www.linkedin.com/company/napari"><i class="fa-brands fa-linkedin"></i><span>LinkedIn</span></a>
-  <a href="https://bsky.app/profile/napari.org"><i class="fa-brands fa-bluesky"></i><span>Bluesky</span></a>
-  <a href="https://fosstodon.org/@napari" rel="me"><i class="fa-brands fa-mastodon"></i><span>Mastodon</span></a>
-</div>
-```
-
-<!-- rumdl-enable MD013 -->

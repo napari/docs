@@ -189,31 +189,11 @@ html[data-theme="dark"] .homepage-quicklinks a {
   }
 }
 
-/* ── Community social links ────────────────────────────────────────── */
+/* ── Community social links (reuse homepage quicklinks) ───────────── */
 
-.community-socials {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 2rem;
-  margin: 0.5rem 0 1.5rem;
-}
-
-.community-socials a {
-  align-items: center;
-  display: flex;
-  font-weight: 500;
-  gap: 0.5rem;
-  text-decoration: none;
-}
-
-.community-socials a:hover {
-  text-decoration: underline;
-}
-
-.community-socials i {
-  color: var(--pst-color-primary);
-  font-size: 1.75rem;
-  line-height: 1;
+.homepage-quicklinks + .community-socials {
+  border-top: none !important;
+  margin-top: -1.5rem;
 }
 
 /* ── Homepage featured example ─────────────────────────────────────── */
