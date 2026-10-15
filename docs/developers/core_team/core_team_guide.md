@@ -97,7 +97,7 @@ When reviewing, focus on the following:
 
 1. **APIs and stability:** Coding users and plugin developers will make
    extensive use of our APIs. The foundation of a healthy plugin ecosystem will
-   be a fully capable and stable set of APIs, so as `napari` matures it will
+   be a fully capable and stable set of APIs, so as `napari` matures it will be
    very important to ensure our APIs are stable. For now, while the project is
    still in an earlier stage, spending the extra time to consider names of
    public facing variables and methods, along side function signatures, could
