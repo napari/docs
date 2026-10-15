@@ -100,9 +100,14 @@ When reviewing, focus on the following:
    fully capable and stable set of APIs, so as `napari` matures it will be
    critical to ensure that our APIs are stable. Spending the extra time to
    consider names of public facing variables and methods, along side function
-   signatures, will save us considerable trouble in the future. Right now we
-   are still making breaking changes with minor version numbers `0.x` and do
-   not have a deprecation policy, but we will work to add one soon.
+   signatures, will save us considerable trouble in the future.
+   napari follows [EffVer](https://effver.org). The
+   [release policy](napari-release) permits deprecations in `MACRO` and
+   `MESO` releases only. We do not yet have a full deprecation policy, so
+   until one exists, prefer a deprecation cycle over a direct breaking
+   change, and follow the
+   [deprecation guidance](../contributing/index.md#deprecation-warnings)
+   in the contributor guide.
 
 1. **Documentation and tutorials:** All new methods should have appropriate doc
    strings following [PEP257](https://peps.python.org/pep-0257/) and the
