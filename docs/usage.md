@@ -56,9 +56,9 @@ Examples of napari usage, to be downloaded as Python scripts or Jupyter notebook
 ```
 
 ```{grid-item-card} napari workshops
-:link: https://napari.org/workshops/
-:link-type: url
+:link: workshops
+:link-type: ref
 
-Browse current self-guided materials, workshop schedules, and instructor resources.
+Workshop materials, upcoming events, and past workshops about napari.
 ```
 ````
