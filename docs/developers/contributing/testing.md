@@ -524,9 +524,10 @@ built-in decorators that can be added before the test. For example, `@pytest.mar
 can decorate a test that you want to skip:
 
 ```python
-@pytest.mark.skip(reason="test is causing intermittent failures")
+@pytest.mark.skip(reason='test is causing intermittent failures')
 def test_hello_world_exists():
     # test source code
+    ...
 ```
 
 You can also use custom napari decorators to skip tests that use popups or need window focus.
@@ -538,9 +539,11 @@ To use these custom skip decorators, import the decorator and apply it to a test
 ```python
 from napari._tests.utils import skip_local_popups
 
+
 @skip_local_popups
 def test_popup_window_after_error():
     # test source code
+    ...
 ```
 
 This is so they can be excluded and run only during continuous integration (see [](running-tests) for details).

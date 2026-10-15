@@ -43,7 +43,7 @@ manually call `%gui qt` first to prevent blocking.
 
 Example:
 
-```python
+```ipython
 In [1]: import napari
 
 In [2]: viewer = napari.Viewer()  # Viewer will show in a new window

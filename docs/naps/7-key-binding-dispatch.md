@@ -99,6 +99,7 @@ from dataclasses import dataclass, field
 
 from app_model.expressions import Expr
 
+
 @dataclass(order=True)
 class KeyBindingEntry:
     command_id: str = field(compare=False)
@@ -171,6 +172,7 @@ Key bindings will automatically be assigned weights depending on who set them, p
 ```python
 from enum import IntEnum
 
+
 class KeyBindingWeights(IntEnum):
     CORE = 0
     PLUGIN = 300
@@ -236,7 +238,7 @@ keymap = Dict[int, List[KeyBindingEntry]] = {
     KeyMod.CtrlCmd | KeyCode.KeyX: ...,
     KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyC): ...,
     KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyCode.KeyV): ...,
-    KeyMod.Shift : ...,
+    KeyMod.Shift: ...,
 }
 ```
 
@@ -246,8 +248,10 @@ Due to the ability of key sequences to be encoded as 32-bit integers, bitwise op
 def has_shift(key: int) -> bool:
     return bool(key & KeyMod.Shift)
 
+
 def starts_with_ctrl_cmd_x(key: int) -> bool:
     return key & 0x0000FFFF == (KeyMod.CtrlCmd | KeyCode.KeyX)
+
 
 def multi_part(key: int) -> bool:
     return key > 0x0000FFFF
@@ -255,18 +259,18 @@ def multi_part(key: int) -> bool:
 
 As such, entries in the keymap can be filtered to find conflicts:
 
-```python
-> list(filter(has_shift, keymap))
+```pycon
+>>> list(filter(has_shift, keymap))
 [<KeyCombo.CtrlCmd|Shift|KeyZ: 3115>, <KeyMod.Shift: 1024>]
 
-> list(filter(starts_with_ctrl_cmd_x, keymap))
+>>> list(filter(starts_with_ctrl_cmd_x, keymap))
 [
     <KeyCombo.CtrlCmd|KeyX: 2089>,
     KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyC: 20>),
     KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyV: 39>),
 ]
 
-> list(filter(multi_part, keymap))
+>>> list(filter(multi_part, keymap))
 [
     KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyC: 20>),
     KeyChord(<KeyCombo.CtrlCmd|KeyX: 2089>, <KeyCode.KeyV: 39>),
@@ -275,8 +279,8 @@ As such, entries in the keymap can be filtered to find conflicts:
 
 Note that because modifiers are encoded in the `(8, 12]`-bit range, querying for modifiers will only check the first part unless they are shifted by 16:
 
-```python
-> has_shift(KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyMod.Shift | KeyCode.KeyY))
+```pycon
+>>> has_shift(KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyMod.Shift | KeyCode.KeyY))
 False
 ```
 
@@ -285,6 +289,7 @@ In a more generic form:
 ```python
 KEY_MOD_MASK = 0x00000F00
 PART_0_MASK = 0x0000FFFF
+
 
 def create_conflict_filter(conflict_key: int) -> Callable[[int], bool]:
     if conflict_key & KEY_MOD_MASK == conflict_key:
@@ -301,6 +306,7 @@ def create_conflict_filter(conflict_key: int) -> Callable[[int], bool]:
             return NotImplemented
 
     return inner
+
 
 def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
     conflict_filter = create_conflict_filter(key)
@@ -324,6 +330,7 @@ from app_model.types import KeyBinding, KeyCode, KeyMod
 VALID_KEYS: List[KeyCode] = ...
 PRESS_HOLD_DELAY_MS: int = 200
 
+
 class KeyBindingDispatcher:
     keymap: Dict[int, List[KeyBindingEntry]]
     is_prefix: bool
@@ -331,6 +338,7 @@ class KeyBindingDispatcher:
     timer: Optional[Timer]
     active_combo: int
     ...
+
     def on_key_press(self, mods: KeyMod, key: KeyCode):
         self.is_prefix = False
         self.active_combo = 0
@@ -355,11 +363,16 @@ class KeyBindingDispatcher:
 
             if mods == KeyMod.NONE:
                 # single modifier
-                if (entries := self.keymap.get(keymod)) and (match := find_active_match(entries)):
+                if (entries := self.keymap.get(keymod)) and (
+                    match := find_active_match(entries)
+                ):
                     self.active_combo = key
                     if has_conflicts(keymod, self.keymap):
                         # conflicts; exec after delay
-                        self.timer = Timer(PRESS_HOLD_DELAY_MS / 1000, lambda: self.exec_press(match.command_id))
+                        self.timer = Timer(
+                            PRESS_HOLD_DELAY_MS / 1000,
+                            lambda: self.exec_press(match.command_id),
+                        )
                         self.timer.start()
                     else:
                         # no conflicts; exec immediately
@@ -370,7 +383,9 @@ class KeyBindingDispatcher:
             if self.prefix:
                 key_seq = KeyChord(self.prefix, key_seq)
 
-            if (entries := self.keymap.get(key_seq) and (match := find_active_match(entries)):
+            if (entries := self.keymap.get(key_seq)) and (
+                match := find_active_match(entries)
+            ):
                 self.active_combo = mods | key
                 if not self.prefix and has_conflicts(key_seq, self.keymap):
                     # first part of key binding, check for conflicts
@@ -425,8 +440,7 @@ For example, following is how a user might have defined a key binding for an `Im
 
 ```python
 @Image.bind_key('Control-C')
-def foo(layer):
-    ...
+def foo(layer): ...
 ```
 
 An entry would be created equivalent to:
@@ -435,8 +449,13 @@ An entry would be created equivalent to:
 def wrapper(layer: Image):
     yield from foo(layer)
 
+
 action = Action(id=foo.__qualname__, title=foo.__name__, callback=wrapper)
-entry = KeyBindingEntry(command_id=foo.__qualname__, weight=KeyBindingWeight.USER, when=parse_expression("active_layer_type == 'image'"))
+entry = KeyBindingEntry(
+    command_id=foo.__qualname__,
+    weight=KeyBindingWeight.USER,
+    when=parse_expression("active_layer_type == 'image'"),
+)
 
 register_action(action)
 register_key_binding('Ctrl+C', entry)
@@ -463,6 +482,7 @@ This effectively breaks the key sequences of the key bindings into their respect
 
 ```python
 from app_model.types import KeyBinding
+
 
 @dataclass
 class Node:

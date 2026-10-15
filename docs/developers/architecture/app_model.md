@@ -222,7 +222,7 @@ each of the layer controls could be represented as menus with a set of commands.
 One of the benefits of the abstraction provided by `app-model` is that actual Qt
 Menu objects become simple to construct:
 
-```python
+```pycon
 >>> from app_model.backends.qt import QModelMenu
 >>> from napari._app_model.constants import MenuId
 
@@ -303,7 +303,7 @@ They will provide independence from
 vispy's key codes, and have a nice `IntEnum` API that allows for declaration of
 keybindings in a namespaced way that avoids usage of strings:
 
-```python
+```pycon
 >>> from app_model.types import KeyCode, KeyMod
 
 >>> ctrl_m = KeyMod.CtrlCmd | KeyCode.KeyM
@@ -416,7 +416,7 @@ provided objects, and therefore called *without* parameters in certain cases.
 This is particularly important in a GUI context, where a user can't always be
 providing arguments:
 
-```python
+```pycon
 >>> injected_func = get_app_model().injection_store.inject(process_points)
 ```
 
@@ -424,7 +424,7 @@ Note: injection doesn't *inherently* mean that it's always safe to call an
 injected function without parameters. In this case, we have no viewer and no
 points:
 
-```python
+```pycon
 >>> injected_func()
 
 TypeError: After injecting dependencies for NO arguments,
@@ -434,7 +434,7 @@ process_points() missing 1 required positional argument: 'points'
 Our provider was context dependent. Only when we have an active viewer with a
 points layer, can it be provided:
 
-```python
+```pycon
 >>> viewer = napari.Viewer()
 >>> viewer.add_points(name='Some Points')
 

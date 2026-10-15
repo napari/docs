@@ -366,11 +366,13 @@ Out[12]: 1
    selected image is a (non-RGB) `Image` layer.
 
    ```python
-   'napari:split_stack': {
-       'description': trans._('Split Stack'),
-       'action': _split_stack,
-       'enable_when': LLCK.active_layer_type == "image",
-       'show_when': ~LLCK.active_layer_is_rgb,
+   {
+       'napari:split_stack': {
+           'description': trans._('Split Stack'),
+           'action': _split_stack,
+           'enable_when': LLCK.active_layer_type == 'image',
+           'show_when': ~LLCK.active_layer_is_rgb,
+       }
    }
    ```
 

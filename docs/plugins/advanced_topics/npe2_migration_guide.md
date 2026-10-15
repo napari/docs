@@ -148,7 +148,7 @@ command for an `npe2` reader.
 #### napari_hook_spec
 
 ```python
-def napari_get_reader(path: Union[str, list[str]]) -> Optional[ReaderFunction]
+def napari_get_reader(path: Union[str, list[str]]) -> Optional[ReaderFunction]: ...
 ```
 
 #### npe2 contributions
@@ -183,12 +183,12 @@ presented in napari's "Save As" dialog.
 #### napari_hook_spec
 
 ```python
-def napari_write_image(path: str, data: Any, meta: dict) -> Optional[str]
-def napari_write_labels(path: str, data: Any, meta: dict) -> Optional[str]
-def napari_write_points(path: str, data: Any, meta: dict) -> Optional[str]
-def napari_write_shapes(path: str, data: Any, meta: dict) -> Optional[str]
-def napari_write_surfaces(path: str, data: Any, meta: dict) -> Optional[str]
-def napari_write_vectors(path: str, data: Any, meta: dict) -> Optional[str]
+def napari_write_image(path: str, data: Any, meta: dict) -> Optional[str]: ...
+def napari_write_labels(path: str, data: Any, meta: dict) -> Optional[str]: ...
+def napari_write_points(path: str, data: Any, meta: dict) -> Optional[str]: ...
+def napari_write_shapes(path: str, data: Any, meta: dict) -> Optional[str]: ...
+def napari_write_surfaces(path: str, data: Any, meta: dict) -> Optional[str]: ...
+def napari_write_vectors(path: str, data: Any, meta: dict) -> Optional[str]: ...
 ```
 
 #### Example npe2 contribution
@@ -236,15 +236,13 @@ has to be imported or run until a compatible writer is found.
 ```python
 def napari_get_writer(
     path: str, layer_types: list[str]
-) -> Optional[WriterFunction]
+) -> Optional[WriterFunction]: ...
 ```
 
 Where the `WriterFunction` is something like:
 
 ```python
-def writer(
-    path: str, layer_data: list[tuple[Any, dict, str]]
-    ) -> list[str]
+def writer(path: str, layer_data: list[tuple[Any, dict, str]]) -> list[str]: ...
 ```
 
 #### Example npe2 contribution
@@ -286,7 +284,7 @@ contribution. For each of these `Widget` contributions, the manifest
 ```python
 def napari_experimental_provide_dock_widget() -> Union[
     AugmentedWidget, List[AugmentedWidget]
-]
+]: ...
 ```
 
 or
@@ -294,7 +292,7 @@ or
 ```python
 def napari_experimental_provide_function() -> Union[
     FunctionType, List[FunctionType]
-]
+]: ...
 ```
 
 #### Example npe2 contribution
@@ -338,7 +336,7 @@ individual sample data contribution.
 #### napari_hook_spec
 
 ```python
-def napari_provide_sample_data() -> Dict[str, Union[SampleData, SampleDict]]
+def napari_provide_sample_data() -> Dict[str, Union[SampleData, SampleDict]]: ...
 ```
 
 #### Example npe2 contribution
@@ -350,15 +348,16 @@ def _generate_random_data(shape=(512, 512)):
     data = np.random.rand(*shape)
     return [(data, {'name': 'random data'})]
 
+
 @napari_hook_implementation
 def napari_provide_sample_data():
     return {
         'random data': _generate_random_data,
         'random image': 'https://picsum.photos/1024',
         'sample_key': {
-            'display_name': 'Some Random Data (512 x 512)'
+            'display_name': 'Some Random Data (512 x 512)',
             'data': _generate_random_data,
-        }
+        },
     }
 ```
 
@@ -391,23 +390,23 @@ code in the plugin package!
 The theme provided by this hook:
 
 ```python
-def get_new_theme() -> Dict[str, Dict[str, Union[str, Tuple, List]]:
+def get_new_theme() -> Dict[str, Dict[str, Union[str, Tuple, List]]]:
     # specify theme(s) that should be added to napari
     themes = {
-        "super_dark": {
-            "name": "super_dark",
-            "background": "rgb(12, 12, 12)",
-            "foreground": "rgb(65, 72, 81)",
-            "primary": "rgb(90, 98, 108)",
-            "secondary": "rgb(134, 142, 147)",
-            "highlight": "rgb(106, 115, 128)",
-            "text": "rgb(240, 241, 242)",
-            "icon": "rgb(209, 210, 212)",
-            "warning": "rgb(153, 18, 31)",
-            "current": "rgb(0, 122, 204)",
-            "syntax_style": "native",
-            "console": "rgb(0, 0, 0)",
-            "canvas": "black",
+        'super_dark': {
+            'name': 'super_dark',
+            'background': 'rgb(12, 12, 12)',
+            'foreground': 'rgb(65, 72, 81)',
+            'primary': 'rgb(90, 98, 108)',
+            'secondary': 'rgb(134, 142, 147)',
+            'highlight': 'rgb(106, 115, 128)',
+            'text': 'rgb(240, 241, 242)',
+            'icon': 'rgb(209, 210, 212)',
+            'warning': 'rgb(153, 18, 31)',
+            'current': 'rgb(0, 122, 204)',
+            'syntax_style': 'native',
+            'console': 'rgb(0, 0, 0)',
+            'canvas': 'black',
         }
     }
     return themes

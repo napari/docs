@@ -35,8 +35,11 @@ repos:
 - repo: https://github.com/rvben/rumdl-pre-commit
   rev: v0.2.77
   hooks:
+    # additional_dependencies puts ruff on PATH for the code-block tools enabled in
+    # .rumdl.toml. Keep this pin in step with the ruff-pre-commit rev above.
     - id: rumdl-fmt
       files: ^docs/
+      additional_dependencies: [ruff==0.16.10]
 
 default_language_version:
     python: python3.13

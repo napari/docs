@@ -108,10 +108,9 @@ browse the source code. Take for instance, the base
 
 ```python
 self.events = EmitterGroup(
-    ...
+    ...,
     data=Event,
     name=Event,
-    ...
 )
 ```
 
