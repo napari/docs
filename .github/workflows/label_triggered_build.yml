@@ -21,6 +21,8 @@ jobs:
     # reusable workflows can't be a step in a job
     # so to get the status of the artifact build, we need a separate job
     needs: full-artifact-build
+    permissions:
+      statuses: write
     runs-on: ubuntu-latest
     if: always() && needs.full-artifact-build.result != 'skipped'
     steps:
