@@ -96,14 +96,13 @@ When reviewing, focus on the following:
    be added.
 
 1. **APIs and stability:** Coding users and plugin developers will make
-   extensive use of our APIs. The foundation of a healthy plugin ecosystem will
-   be a fully capable and stable set of APIs, so as `napari` matures it will be
-   very important to ensure our APIs are stable. For now, while the project is
-   still in an earlier stage, spending the extra time to consider names of
-   public facing variables and methods, along side function signatures, could
-   save us considerable trouble in the future. Right now we are still making
-   breaking changes with minor version numbers `0.x` and do not have a
-   deprecation policy, but we will work to add one soon.
+   extensive use of our APIs. The foundation of a healthy plugin ecosystem is a
+   fully capable and stable set of APIs, so as `napari` matures it will be
+   critical to ensure that our APIs are stable. Spending the extra time to
+   consider names of public facing variables and methods, along side function
+   signatures, will save us considerable trouble in the future. Right now we
+   are still making breaking changes with minor version numbers `0.x` and do
+   not have a deprecation policy, but we will work to add one soon.
 
 1. **Documentation and tutorials:** All new methods should have appropriate doc
    strings following [PEP257](https://peps.python.org/pep-0257/) and the
