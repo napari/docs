@@ -7,7 +7,7 @@ mechanics for executing a `napari` release.
 For the release policy — versioning, cadence, milestone ownership, highlights,
 and the release manager's responsibilities — see the
 [release policy](napari-release).
-Most required tools mentioned here are in https://github.com/napari/napari-release-tools.
+Most required tools mentioned here are in <https://github.com/napari/napari-release-tools>.
 
 ```{important}
 The first step in managing a release is to create a new Issue in napari/napari with the [`release` template](https://github.com/napari/napari/tree/main/.github/ISSUE_TEMPLATE/release.md).
@@ -219,7 +219,7 @@ git tag "vX.Y.Zrc0" abcde42
 Note here how we are using `rc` for release candidate to create a version of our release we can test
 before making the real release.
 
-You can read more on tagging [here](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
+You can read more on tagging [in the Git documentation](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
 
 ### Testing the release candidate
 

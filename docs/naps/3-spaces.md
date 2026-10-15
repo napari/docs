@@ -171,13 +171,13 @@ This document is dedicated to the public domain with the Creative Commons CC0
 license [^cc0]. Attribution to this source is encouraged where appropriate, as per
 CC0+BY [^cc0by].
 
-[^workspaces]: https://github.com/napari/napari/issues/4419#issuecomment-1126375339
+[^workspaces]: <https://github.com/napari/napari/issues/4419#issuecomment-1126375339>
 
-[^application]: https://github.com/napari/napari/issues/4419#issuecomment-1129443846
+[^application]: <https://github.com/napari/napari/issues/4419#issuecomment-1129443846>
 
-[^multiple-viewers]: https://github.com/napari/napari/issues/3955
+[^multiple-viewers]: <https://github.com/napari/napari/issues/3955>
 
-[^multiple-viewers-tabbed]: https://github.com/napari/napari/issues/3956
+[^multiple-viewers-tabbed]: <https://github.com/napari/napari/issues/3956>
 
 [^cc0]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
     <https://creativecommons.org/publicdomain/zero/1.0/>
