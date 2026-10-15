@@ -116,18 +116,18 @@ When reviewing, focus on the following:
    [sentence case capitalization](https://apastyle.apa.org/style-grammar-guidelines/capitalization/sentence-case),
    but the name `napari` should always be written in lowercase.
 
-6. **Implementations and algorithms:** You should understand the code being
+5. **Implementations and algorithms:** You should understand the code being
    modified or added before approving it. (See
    [Merge Only Changes You Understand](#merge-only-changes-you-understand)
    below.) Implementations should do what they claim and be simple, readable,
    and efficient in that order.
 
-7. **Tests:** All contributions *must* be tested, and each added line of code
+6. **Tests:** All contributions *must* be tested, and each added line of code
    should be covered by at least one test. Good tests not only execute the
    code, but explore corner cases. It can be tempting not to review tests, but
    please do so.
 
-8. **Labels and Milestones:** Make sure you add the appropriate labels and
+7. **Labels and Milestones:** Make sure you add the appropriate labels and
    milestone to PRs before merging. This should be done both in the main napari
    repo and in the docs repo. Both repos have a CI check, triggered by the
    `ready_to_merge` label, which will fail if the milestone is not set in the
