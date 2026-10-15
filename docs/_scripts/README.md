@@ -1,10 +1,14 @@
 # napari Documentation Scripts
 
-This directory contains Python scripts that automate various aspects of the napari documentation build process. These scripts generate content, capture screenshots, and analyze the codebase to keep the documentation synchronized with the actual implementation.
+This directory contains Python scripts that automate various aspects of the
+napari documentation build process. These scripts generate content, capture
+screenshots, and analyze the codebase to keep the documentation synchronized
+with the actual implementation.
 
 ## Overview
 
-The `_scripts` folder is a critical part of the napari documentation infrastructure, containing automation tools that:
+The `_scripts` folder is a critical part of the napari documentation
+infrastructure, containing automation tools that:
 
 - Generate GUI screenshots automatically
 - Extract and document events from the codebase
@@ -16,7 +20,8 @@ The `_scripts` folder is a critical part of the napari documentation infrastruct
 
 ### prep_docs.py
 
-**Purpose**: Master orchestration script that coordinates all documentation generation tasks.
+**Purpose**: Master orchestration script that coordinates all documentation
+generation tasks.
 
 **Usage**:
 
@@ -34,7 +39,8 @@ python docs/_scripts/prep_docs.py --stubs  # Fast mode with stub content
 
 ### autogenerate_gui_images.py
 
-**Purpose**: Automatically captures screenshots of napari GUI components for use in documentation.
+**Purpose**: Automatically captures screenshots of napari GUI components for
+use in documentation.
 
 **Usage**:
 
@@ -58,7 +64,8 @@ python docs/_scripts/autogenerate_gui_images.py
 
 ### homepage_video.py
 
-**Purpose**: Rebuild the homepage viewer video from a reproducible viewer setup and a saved napari-animation timeline JSON.
+**Purpose**: Rebuild the homepage viewer video from a reproducible viewer setup
+and a saved napari-animation timeline JSON.
 
 **Usage**:
 
@@ -69,12 +76,16 @@ uv run docs/_scripts/homepage_video.py render
 
 **Key Features**:
 
-- Uses a plain local OME-Zarr at `docs/_scripts/fluo-n3dl-trif-01.ome.zarr` when present; otherwise falls back to the remote URL -- and it renders the same either way!
-- Loads the in-progress napari-animation timeline widget for hand authoring, with the timeline shown as a floating dock window by default
+- Uses a plain local OME-Zarr at `docs/_scripts/fluo-n3dl-trif-01.ome.zarr`
+  when present; otherwise falls back to the remote URL -- and it renders the
+  same either way!
+- Loads the in-progress napari-animation timeline widget for hand authoring,
+  with the timeline shown as a floating dock window by default
 
 ### update_event_docs.py
 
-**Purpose**: Analyzes the napari codebase to generate comprehensive event documentation.
+**Purpose**: Analyzes the napari codebase to generate comprehensive event
+documentation.
 
 **Usage**:
 
@@ -93,12 +104,14 @@ python docs/_scripts/update_event_docs.py --stubs
 
 - Uses AST parsing to discover EmitterGroup definitions
 - Extracts documentation from docstrings
-- Creates formatted tables with event names, descriptions, access patterns, and types
+- Creates formatted tables with event names, descriptions, access patterns, and
+  types
 - Merges common events across similar layer types
 
 ### update_preference_docs.py
 
-**Purpose**: Generates preference documentation with screenshots of preference dialogs.
+**Purpose**: Generates preference documentation with screenshots of preference
+dialogs.
 
 **Usage**:
 
@@ -121,7 +134,8 @@ python docs/_scripts/update_preference_docs.py --stubs
 
 ### update_ui_sections_docs.py
 
-**Purpose**: Generates architecture documentation for napari's UI components with dependency analysis.
+**Purpose**: Generates architecture documentation for napari's UI components
+with dependency analysis.
 
 **Usage**:
 
@@ -132,7 +146,8 @@ python docs/_scripts/update_ui_sections_docs.py --stubs
 
 **Generated Content**:
 
-- `docs/developers/architecture/ui_sections/` - Architecture documentation for each UI section
+- `docs/developers/architecture/ui_sections/` - Architecture documentation for
+  each UI section
   - `layers_list_ui.md`
   - `layers_controls_ui.md`
   - `application_status_bar_ui.md`
@@ -170,7 +185,8 @@ table = table_repr(data, style='markdown')
 
 ## Build Integration
 
-These scripts integrate with the documentation build process through the Makefile:
+These scripts integrate with the documentation build process through the
+Makefile:
 
 1. **Full builds** (`make html`):
 

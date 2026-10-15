@@ -12,27 +12,42 @@
 
 ## Abstract
 
-With the switching of the internal key binding system to use app-model's representation[^id1], there is discussion as to what exactly constitutes a valid key binding and how conflicts are handled[^id2].
+With the switching of the internal key binding system to use app-model's
+representation[^id1], there is discussion as to what exactly constitutes a
+valid key binding and how conflicts are handled[^id2].
 
-This NAP seeks to clarify and propose a solution for how key bindings will be dispatched according to their priority, enablement, and potential conflicts.
+This NAP seeks to clarify and propose a solution for how key bindings will be
+dispatched according to their priority, enablement, and potential conflicts.
 
 ## Motivation and Scope
 
-Plugin developers are able to export commands in their manifest file but cannot similarly set their shortcuts in a code-free way. npe2 provides an option to bind commands to key binding but it is undocumented and unsupported since napari still uses an old dispatch system of chainmaps.
+Plugin developers are able to export commands in their manifest file but cannot
+similarly set their shortcuts in a code-free way. npe2 provides an option to
+bind commands to key binding but it is undocumented and unsupported since
+napari still uses an old dispatch system of chainmaps.
 
 ### A more versatile system
 
-The proposed dispatch system would leverage weights to clearly separate default, plugin, and user-defined key binding as well as support a more advanced conditional system which would determine if a keybinding is active/enabled or not. Both of these properties are already part of the specification defined by app-model.
+The proposed dispatch system would leverage weights to clearly separate
+default, plugin, and user-defined key binding as well as support a more
+advanced conditional system which would determine if a keybinding is
+active/enabled or not. Both of these properties are already part of the
+specification defined by app-model.
 
-Separation of different sources of key binding makes it easier for a user to determine who set the binding as well as how to restore the default.
+Separation of different sources of key binding makes it easier for a user to
+determine who set the binding as well as how to restore the default.
 
-Conditional evaluation allows plugin developers to tie their keybinding to a specific viewer state.
+Conditional evaluation allows plugin developers to tie their keybinding to a
+specific viewer state.
 
 ### Definitions
 
-**modifier keys** refer to `ctrl`, `shift`, `alt`, and `meta`. `meta` is also known as `cmd`, `win`, or `super` on osx, windows, or linux, respectively
+**modifier keys** refer to `ctrl`, `shift`, `alt`, and `meta`. `meta` is also
+known as `cmd`, `win`, or `super` on osx, windows, or linux, respectively
 
-a **base key** is a key that when pressed without a modifier key, produces one of the following [key codes](https://w3c.github.io/uievents-code/#keyboard-101):
+a **base key** is a key that when pressed without a modifier key, produces one
+of the following
+[key codes](https://w3c.github.io/uievents-code/#keyboard-101):
 
 - `a-z`, `0-9`
 - `f1-f12`
@@ -40,40 +55,46 @@ a **base key** is a key that when pressed without a modifier key, produces one o
 - `left`, `up`, `right`, `down`, `pageup`, `pagedown`, `end`, `home`
 - `tab`, `enter`, `escape`, `space`, `backspace`, `delete`
 - `pausebreak`, `capslock`, `insert`, `numlock`, `printscreen`
-- `numpad0-numpad9`, `numpad_decimal`, `numpad_multiply`, `numpad_divide`, `numpad_add`, `numpad_subtract`
+- `numpad0-numpad9`, `numpad_decimal`, `numpad_multiply`, `numpad_divide`,
+  `numpad_add`, `numpad_subtract`
 
-a **key combination** is combination of one or more keys; a single modifier (e.g.,
-`ctrl`), a single base key (e.g., `c`) or a base key pressed with one or more modifier keys, e.g. `ctrl+c` or `ctrl+shift+z`
+a **key combination** is combination of one or more keys; a single modifier
+(e.g., `ctrl`), a single base key (e.g., `c`) or a base key pressed with one or
+more modifier keys, e.g. `ctrl+c` or `ctrl+shift+z`
 
-a **key chord** consists of two parts, of which each can be either a base key or a key combination, e.g, `ctrl+x v`
+a **key chord** consists of two parts, of which each can be either a base key
+or a key combination, e.g, `ctrl+x v`
 
-a **key sequence** refers to a series of inputs by the user which can be a base key, key combination, or key chord
+a **key sequence** refers to a series of inputs by the user which can be a base
+key, key combination, or key chord
 
 a **key binding** binds a key sequence to a command with conditional activation
 
 ### Key binding validity: convenience vs. complexity
 
-Some users want to use traditional modifier keys as a 'base key' in key binding for convenience purposes [^id2]. However, this can lead to conflicts since many key bindings may include the modifier key in their key sequence and thus cause confusion and cost extra engineering effort.
+Some users want to use traditional modifier keys as a 'base key' in key binding
+for convenience purposes [^id2]. However, this can lead to conflicts since many
+key bindings may include the modifier key in their key sequence and thus cause
+confusion and cost extra engineering effort.
 
 We propose that:
 
 - key combinations can be any number of modifier keys plus a base key (e.g.,
-  `alt+shift+v`). For users only, one modifier key (e.g., `alt`) is also allowed.
-  Multiple modifier keys (e.g., `alt+shift`) are not allowed.
+  `alt+shift+v`). For users only, one modifier key (e.g., `alt`) is also
+  allowed. Multiple modifier keys (e.g., `alt+shift`) are not allowed.
 - a key chord part cannot be an invalid key combination nor a single modifier.
-  - `alt t` is **invalid** because the first part is a single modifier (even though
-    it is a valid key combination)
+  - `alt t` is **invalid** because the first part is a single modifier (even
+    though it is a valid key combination)
   - `ctrl+x alt` is **invalid** because the second part is a single modifier
   - `ctrl+x alt+v` is **valid**
   - `meta meta` is **invalid** because both parts are single modifiers
 
-The proposal restricts modifier keys being used without a base key, except in the case
-of a single modifier key used in isolation, which is allowed for users.
-We decided to allow this as the use cases were compelling,
-for example binding `shift` to make a labels layer invisible during press and visible
-on release.
-Napari and plugins will not be able to use single modifier keybindings but we are
-open to reconsideration of this for plugins, given demand.
+The proposal restricts modifier keys being used without a base key, except in
+the case of a single modifier key used in isolation, which is allowed for
+users. We decided to allow this as the use cases were compelling, for example
+binding `shift` to make a labels layer invisible during press and visible on
+release. Napari and plugins will not be able to use single modifier keybindings
+but we are open to reconsideration of this for plugins, given demand.
 Ultimately we felt this compromise would provide enough user flexibility while
 cutting down on any unnecessary complexities.
 
@@ -82,17 +103,27 @@ Detail on how potential conflicts are dealt with can be found in
 
 ## Detailed Description
 
-Even with conditional activation, many key bindings may find that they share the exact same key sequence as another key binding (a direct conflict), or that their key sequence is a subset of another key binding's key sequence (an indirect conflict). This requires the establishment of a system to determine when and how key bindings should be dispatched.
+Even with conditional activation, many key bindings may find that they share
+the exact same key sequence as another key binding (a direct conflict), or that
+their key sequence is a subset of another key binding's key sequence (an
+indirect conflict). This requires the establishment of a system to determine
+when and how key bindings should be dispatched.
 
 ### Key binding properties
 
 All key binding entries contain the following information:
 
-- `command_id` is the unique identifier of the command that will be executed by this key binding
-- `weight` is the main determinant of key binding priority. high value means a higher priority
-- `when` is the context expression that is evaluated to determine whether the rule is active; if not provided, the rule is always considered active
-- (autoset) `block_rule` is enabled if `command_id == ''` and disables all key bindings of their weight and below
-- (autoset) `negate_rule` is enabled if `command_id` is prefixed with `-` and disables all key bindings of their weight and below with the same sequence bound to this command
+- `command_id` is the unique identifier of the command that will be executed by
+  this key binding
+- `weight` is the main determinant of key binding priority. high value means a
+  higher priority
+- `when` is the context expression that is evaluated to determine whether the
+  rule is active; if not provided, the rule is always considered active
+- (autoset) `block_rule` is enabled if `command_id == ''` and disables all key
+  bindings of their weight and below
+- (autoset) `negate_rule` is enabled if `command_id` is prefixed with `-` and
+  disables all key bindings of their weight and below with the same sequence
+  bound to this command
 
 ```python
 from dataclasses import dataclass, field
@@ -115,9 +146,12 @@ class KeyBindingEntry:
 
 ### Types of key binding rules
 
-There are three ways to modify how a key binding interacts with a command: an assign rule, a negate rule, and a block rule. Note that negate and block rules only affect key bindings of their weight and below.
+There are three ways to modify how a key binding interacts with a command: an
+assign rule, a negate rule, and a block rule. Note that negate and block rules
+only affect key bindings of their weight and below.
 
-An assign rule tells the dispatcher to execute the given command when the rule is enabled:
+An assign rule tells the dispatcher to execute the given command when the rule
+is enabled:
 
 ```json
 {
@@ -126,7 +160,10 @@ An assign rule tells the dispatcher to execute the given command when the rule i
 }
 ```
 
-A negate rule is denoted by prefixing the `command_id` with `-` and effectively cancels out assign rules to the same command for that key sequence. For example, to rebind the example for the `redo` command above from `ctrl+y` to `ctrl+shift+z`, one would need the following rules:
+A negate rule is denoted by prefixing the `command_id` with `-` and effectively
+cancels out assign rules to the same command for that key sequence. For
+example, to rebind the example for the `redo` command above from `ctrl+y` to
+`ctrl+shift+z`, one would need the following rules:
 
 ```json
 [
@@ -141,7 +178,10 @@ A negate rule is denoted by prefixing the `command_id` with `-` and effectively 
 ]
 ```
 
-A block rule is denoted by simply leaving the `command_id` as blank and prevents any commands for that key sequence from being executed. This cannot be set via the GUI. The below example includes a block rule that disables the previous two rules bound to `tab`:
+A block rule is denoted by simply leaving the `command_id` as blank and
+prevents any commands for that key sequence from being executed. This cannot be
+set via the GUI. The below example includes a block rule that disables the
+previous two rules bound to `tab`:
 
 ```json
 [
@@ -165,9 +205,14 @@ A block rule is denoted by simply leaving the `command_id` as blank and prevents
 
 ### Direct conflicts
 
-When two key bindings share the same key sequence, they are considered to be in direct conflict. They are sorted first according to their weight, then whether they are a blocking rule, whether they are a negate rule, and otherwise, based on their insertion order. This is done in ascending order such that higher weights and blocking/negate rules are moved further down the list.
+When two key bindings share the same key sequence, they are considered to be in
+direct conflict. They are sorted first according to their weight, then whether
+they are a blocking rule, whether they are a negate rule, and otherwise, based
+on their insertion order. This is done in ascending order such that higher
+weights and blocking/negate rules are moved further down the list.
 
-Key bindings will automatically be assigned weights depending on who set them, prioritizing default ones the least and user-set ones the most:
+Key bindings will automatically be assigned weights depending on who set them,
+prioritizing default ones the least and user-set ones the most:
 
 ```python
 from enum import IntEnum
@@ -181,35 +226,53 @@ class KeyBindingWeights(IntEnum):
 
 ### Indirect conflicts
 
-When a key sequence matches a key binding and is also a sub-sequence of a key sequence used by another key binding, it is considered an indirect conflict.
+When a key sequence matches a key binding and is also a sub-sequence of a key
+sequence used by another key binding, it is considered an indirect conflict.
 
 There are two ways indirect conflicts can exist:
 
-A. The provided key sequence is a single modifier that is a modifier in another key binding's key combination or is a modifier in the first key combination of a key binding's key chord. For example, a base key of `ctrl` would conflict with the key combination of `ctrl+c` and the key chord of `ctrl+x m`.
+A. The provided key sequence is a single modifier that is a modifier in another
+key binding's key combination or is a modifier in the first key combination of
+a key binding's key chord. For example, a base key of `ctrl` would conflict
+with the key combination of `ctrl+c` and the key chord of `ctrl+x m`.
 
-B. The provided key sequence is a base key or key combination that is the first part of another key binding's key chord. For example, a key combination of `ctrl+l` would conflict with the key chord of `ctrl+l p`.
+B. The provided key sequence is a base key or key combination that is the first
+part of another key binding's key chord. For example, a key combination of
+`ctrl+l` would conflict with the key chord of `ctrl+l p`.
 
 There are three potential strategies to deal with this:
 
-- Delay - wait for potential subsequent key presses before executing the command.
+- Delay - wait for potential subsequent key presses before executing the
+  command.
   - this is used for case (A) type conflicts
   - delay defaults to 200ms but is user configurable
   - after the delay, the press logic for the command will execute
-  - if another key binding is triggered during delay, this action will be canceled
+  - if another key binding is triggered during delay, this action will be
+    canceled
   - if the base key `ctrl` is released early, the press logic will execute
-    immediately and the delay will cease, and the release logic will be executed immediately afterwards
+    immediately and the delay will cease, and the release logic will be
+    executed immediately afterwards
 - Execute longest key sequence only - for indirectly conflicting key sequences
   we only ever execute the longer key sequence.
   - this is used for case (B) type conflicts
   - the command for `ctrl+l` will never be triggered so long as it indirectly
     conflicts with another key binding
-  - multi-part key bindings will always take priority over single-part key bindings
+  - multi-part key bindings will always take priority over single-part key
+    bindings
 - On release only - only allow the key to be bindable to 'on-release'
-  - Decided against as this would not allow both 'on-press' and 'on-release' actions.
+  - Decided against as this would not allow both 'on-press' and 'on-release'
+    actions.
 
 ### Finding a match
 
-When checking if an active key binding matches the entered key sequence, the resolver will fetch the pre-sorted list of direct conflicts and check if the last entry is active using its `when` property, moving to the next entry if it is not. When it encounters a blocking rule, it will return no match, and for a negate rule, it will store the affected command in an ignore list and continue to the next entry. If no special rules are present, it will return a match if the command is not in an ignore list, otherwise continuing to the next entry, and so on, until no more entries remain.
+When checking if an active key binding matches the entered key sequence, the
+resolver will fetch the pre-sorted list of direct conflicts and check if the
+last entry is active using its `when` property, moving to the next entry if it
+is not. When it encounters a blocking rule, it will return no match, and for a
+negate rule, it will store the affected command in an ignore list and continue
+to the next entry. If no special rules are present, it will return a match if
+the command is not in an ignore list, otherwise continuing to the next entry,
+and so on, until no more entries remain.
 
 In pseudo-code this reads as:
 
@@ -229,7 +292,9 @@ def find_active_match(entries: List[KeyBindingEntry]) -> Optional[KeyBindingEntr
 
 ### Lookup and partial matches
 
-Key bindings can be stored in a map in integer form, as `KeyMod`, `KeyCode`, `KeyCombo`, and `KeyChord` are all represented as unique `int`s with 16 bits per part:
+Key bindings can be stored in a map in integer form, as `KeyMod`, `KeyCode`,
+`KeyCombo`, and `KeyChord` are all represented as unique `int`s with 16 bits
+per part:
 
 ```python
 keymap = Dict[int, List[KeyBindingEntry]] = {
@@ -242,7 +307,8 @@ keymap = Dict[int, List[KeyBindingEntry]] = {
 }
 ```
 
-Due to the ability of key sequences to be encoded as 32-bit integers, bitwise operations can be performed to determine certain properties of these sequences:
+Due to the ability of key sequences to be encoded as 32-bit integers, bitwise
+operations can be performed to determine certain properties of these sequences:
 
 ```python
 def has_shift(key: int) -> bool:
@@ -277,7 +343,8 @@ As such, entries in the keymap can be filtered to find conflicts:
 ]
 ```
 
-Note that because modifiers are encoded in the `(8, 12]`-bit range, querying for modifiers will only check the first part unless they are shifted by 16:
+Note that because modifiers are encoded in the `(8, 12]`-bit range, querying
+for modifiers will only check the first part unless they are shifted by 16:
 
 ```pycon
 >>> has_shift(KeyChord(KeyMod.CtrlCmd | KeyCode.KeyX, KeyMod.Shift | KeyCode.KeyY))
@@ -320,7 +387,8 @@ def has_conflicts(key: int, keymap: Dict[int, List[KeyBindingEntry]]) -> bool:
 
 ### Completing the dispatch
 
-Putting everything together, the following pseudo-code represents the logic of key binding dispatch:
+Putting everything together, the following pseudo-code represents the logic of
+key binding dispatch:
 
 ```python
 from threading import Timer
@@ -420,23 +488,38 @@ class KeyBindingDispatcher:
 
 ## Related Work
 
-The entire key binding system is heavily influenced by [VSCode's keyboard shortcuts](https://code.visualstudio.com/docs/getstarted/keybindings), and to a lesser extent, [Emacs](https://www.gnu.org/software/emacs/manual/html_node/emacs/Key-Bindings.html) and [vim](https://vimdoc.sourceforge.net/htmldoc/map.html). However, as these are text editors and napari is not a text-based application, special casing had to be devised with regards to key bindings, such as handling both press and release events, and the additional conflicts that arose because of them.
+The entire key binding system is heavily influenced by
+[VSCode's keyboard shortcuts](https://code.visualstudio.com/docs/getstarted/keybindings),
+and to a lesser extent,
+[Emacs](https://www.gnu.org/software/emacs/manual/html_node/emacs/Key-Bindings.html)
+and [vim](https://vimdoc.sourceforge.net/htmldoc/map.html). However, as these
+are text editors and napari is not a text-based application, special casing had
+to be devised with regards to key bindings, such as handling both press and
+release events, and the additional conflicts that arose because of them.
 
 ## Implementation
 
-- read and handle plugin key binding contributions (see [napari #5338](https://github.com/napari/napari/pull/5338))
-- convert existing key bindings into actions that can be used by `app-model` (see [napari #5338](https://github.com/napari/napari/pull/5338))
+- read and handle plugin key binding contributions (see
+  [napari #5338](https://github.com/napari/napari/pull/5338))
+- convert existing key bindings into actions that can be used by `app-model`
+  (see [napari #5338](https://github.com/napari/napari/pull/5338))
 - implement key binding resolution system as detailed in this NAP
 - remove old action manager
-- deprecate and translate key bindings set via `bind_key` for backwards compatibility (see below)
+- deprecate and translate key bindings set via `bind_key` for backwards
+  compatibility (see below)
 
 ## Backward Compatibility
 
-A change in the key binding dispatch system would affect anyone using `keymap` or `class_keymap` from the original `KeymapProvider`, as well as `bind_key` [^id3].
+A change in the key binding dispatch system would affect anyone using `keymap`
+or `class_keymap` from the original `KeymapProvider`, as well as `bind_key`
+[^id3].
 
-While `keymap` and `class_keymap` are unlikely to be commonly used, `bind_key` is, and thus will receive proper deprecation and continue to work by creating an equivalent entry in the new key binding dispatch system.
+While `keymap` and `class_keymap` are unlikely to be commonly used, `bind_key`
+is, and thus will receive proper deprecation and continue to work by creating
+an equivalent entry in the new key binding dispatch system.
 
-For example, following is how a user might have defined a key binding for an `Image` layer:
+For example, following is how a user might have defined a key binding for an
+`Image` layer:
 
 ```python
 @Image.bind_key('Control-C')
@@ -463,22 +546,35 @@ register_key_binding('Ctrl+C', entry)
 
 ## Future Work
 
-Future work may include key binding completion suggestions for key chords when the user inputs the first part of a binding.
+Future work may include key binding completion suggestions for key chords when
+the user inputs the first part of a binding.
 
-Out of scope is work related to the GUI and how it may have to handle the new system.
+Out of scope is work related to the GUI and how it may have to handle the new
+system.
 
 ## Alternatives
 
-Although a mapping approach is very effective for looking up individual keys, it loses its efficiency when performing a partial search, since its items are traversed like a list to perform that search.
+Although a mapping approach is very effective for looking up individual keys,
+it loses its efficiency when performing a partial search, since its items are
+traversed like a list to perform that search.
 
-This inefficiency can be mitigated by using a data structure where entries are stored similar to a _[trie](https://en.wikipedia.org/wiki/Trie)_ (aka a _prefix tree_). Since modifier keys do not care about what order they are pressed in, we will use a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph) instead of a traditional tree, essentially making this a _prefix [multitree](https://en.wikipedia.org/wiki/Multitree)_.
+This inefficiency can be mitigated by using a data structure where entries are
+stored similar to a _[trie](https://en.wikipedia.org/wiki/Trie)_ (aka a
+_prefix tree_). Since modifier keys do not care about what order they are
+pressed in, we will use a
+[directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph)
+instead of a traditional tree, essentially making this a
+_prefix [multitree](https://en.wikipedia.org/wiki/Multitree)_.
 
 ```{figure} ./_static/kb-example-graph.png
 :name: fig-1
-Fig. 1: Example of a prefix multitree. Filled nodes have at least one key binding as detailed on the legend in the top left corner.
+Fig. 1: Example of a prefix multitree. Filled nodes have at least one key
+binding as detailed on the legend in the top left corner.
 ```
 
-This effectively breaks the key sequences of the key bindings into their respective components, as in {ref}`Fig. 1 <fig-1>`, and can be represented with a fairly simple data structure:
+This effectively breaks the key sequences of the key bindings into their
+respective components, as in {ref}`Fig. 1 <fig-1>`, and can be represented with
+a fairly simple data structure:
 
 ```python
 from app_model.types import KeyBinding
@@ -491,7 +587,8 @@ class Node:
     children: Dict[KeyCode, Node]
 ```
 
-To check if a key binding has an indirect conflict, the children of the node can be recursively searched depth-first:
+To check if a key binding has an indirect conflict, the children of the node
+can be recursively searched depth-first:
 
 ```python
 def has_active_children(children: Dict[KeyCode, Node]) -> bool:
@@ -502,25 +599,57 @@ def has_active_children(children: Dict[KeyCode, Node]) -> bool:
             return True
 ```
 
-In the mapping case, imagine that every possible valid key binding has at least one entry. Letting _K_ be the number of valid key codes, the amount of possible combinations for the first part of a key chord would be _16 * K_, plus 4 to include single modifiers. Combining this with the second part, it would be _(16 * K + 4)(16 * K)_, resulting in a conflict search runtime complexity of _O(n)_.
+In the mapping case, imagine that every possible valid key binding has at least
+one entry. Letting _K_ be the number of valid key codes, the amount of possible
+combinations for the first part of a key chord would be _16 * K_, plus 4 to
+include single modifiers. Combining this with the second part, it would be
+_(16 * K + 4)(16 * K)_, resulting in a conflict search runtime complexity of
+_O(n)_.
 
-On the other hand, for a prefix tree, the amount of options for each node would be at most _K - D_, where _D_ is the depth of the node relative to the last completed part. When searching a key sequence with 4 modifiers for each part, the maximum number of options visited for one part would be _K + (K-1) + (K-2) + (K-3) + (K-4)_, or _2(5K-10)_ for two parts, resulting in a conflict search runtime complexity of _O(log(n))_.
+On the other hand, for a prefix tree, the amount of options for each node would
+be at most _K - D_, where _D_ is the depth of the node relative to the last
+completed part. When searching a key sequence with 4 modifiers for each part,
+the maximum number of options visited for one part would be
+_K + (K-1) + (K-2) + (K-3) + (K-4)_, or _2(5K-10)_ for two parts, resulting in
+a conflict search runtime complexity of _O(log(n))_.
 
-Therefore, when searching for indirect conflicts, using a prefix-based data structure would be more efficient than a mapping-based one. However, when [put to a test on VSCode's default key bindings](https://gist.github.com/kne42/82d20e0ed48ccef0ac30aee7c2924b79), which are comprised of approximately 900 entries, the difference in speed was not significant, with the prefix tree approach finishing only 59ms faster with an average of 109ms over the mapping one with an average of 168ms over 700 runs. For the test, `when` conditionals were simulated to take 3µs to evaluate and both methods were searching for the conflict of the most common modifier (which would be `Ctrl` on Windows/Linux or `Cmd` on macOS).
+Therefore, when searching for indirect conflicts, using a prefix-based data
+structure would be more efficient than a mapping-based one. However, when
+[put to a test on VSCode's default key bindings](https://gist.github.com/kne42/82d20e0ed48ccef0ac30aee7c2924b79),
+which are comprised of approximately 900 entries, the difference in speed was
+not significant, with the prefix tree approach finishing only 59ms faster with
+an average of 109ms over the mapping one with an average of 168ms over 700
+runs. For the test, `when` conditionals were simulated to take 3µs to evaluate
+and both methods were searching for the conflict of the most common modifier
+(which would be `Ctrl` on Windows/Linux or `Cmd` on macOS).
 
-Although the prefix tree is approximately 50% faster at finding indirect conflicts, a difference of ~60ms is not significant enough to be noticed by the user. It then comes down to other factors to determine which implementation is better. While a prefix tree approach would be able to handle more than two-part key bindings, it is arguable that any more parts might be confusing to the user. It's also possible to save the "state" of the search in the sense of narrowing down to a specific node, which may be useful for key binding completion.
+Although the prefix tree is approximately 50% faster at finding indirect
+conflicts, a difference of ~60ms is not significant enough to be noticed by the
+user. It then comes down to other factors to determine which implementation is
+better. While a prefix tree approach would be able to handle more than two-part
+key bindings, it is arguable that any more parts might be confusing to the
+user. It's also possible to save the "state" of the search in the sense of
+narrowing down to a specific node, which may be useful for key binding
+completion.
 
-However, the mapping approach is a lot cleaner code-wise, as it requires no additional logic to construct or update the data structure. Additionally, the user and the GUI can much more easily read this data structure and perform more complicated searches on it using bitwise operations. The mapping approach was ultimately chosen due to its lower barrier of entry to read and maintain for developers.
+However, the mapping approach is a lot cleaner code-wise, as it requires no
+additional logic to construct or update the data structure. Additionally, the
+user and the GUI can much more easily read this data structure and perform more
+complicated searches on it using bitwise operations. The mapping approach was
+ultimately chosen due to its lower barrier of entry to read and maintain for
+developers.
 
 ## Discussion
 
-- **[April 19, 2023: napari #5747](https://github.com/napari/napari/issues/5747)** is opened, with discussion about what should be valid as a key binding. Arguments are made for the inclusion of single-modifier key bindings.
+- **[April 19, 2023: napari #5747](https://github.com/napari/napari/issues/5747)**
+  is opened, with discussion about what should be valid as a key binding.
+  Arguments are made for the inclusion of single-modifier key bindings.
 
 ## Copyright
 
 This document is dedicated to the public domain with the Creative Commons CC0
-license [^id4]. Attribution to this source is encouraged where appropriate, as per
-CC0+BY [^id5].
+license [^id4]. Attribution to this source is encouraged where appropriate, as
+per CC0+BY [^id5].
 
 ## References and Footnotes
 
@@ -528,7 +657,9 @@ CC0+BY [^id5].
 
 [^id2]: napari #5747, <https://github.com/napari/napari/issues/5747>
 
-[^id3]: KeymapProvider implementation, <https://github.com/napari/napari/blob/v0.4.17/napari/utils/key_bindings.py#L347C1-L369>
+[^id3]: KeymapProvider implementation,
+
+    <https://github.com/napari/napari/blob/v0.4.17/napari/utils/key_bindings.py#L347C1-L369>
 
 [^id4]: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication,
     <https://creativecommons.org/publicdomain/zero/1.0/>
