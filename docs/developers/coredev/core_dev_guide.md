@@ -106,8 +106,6 @@ When reviewing, focus on the following:
    [deprecation policy](napari-deprecation-policy).
 
 4. **Documentation and tutorials:** All new methods should have appropriate doc
-
-5. **Documentation and tutorials:** All new methods should have appropriate doc
    strings following [PEP257](https://peps.python.org/pep-0257/) and the
    [NumPy documentation guide](https://numpy.org/devdocs/dev/howto-docs.html#documentation-style).
    For API changes, make sure to check that a `.. versionadded::` or
