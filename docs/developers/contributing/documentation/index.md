@@ -110,9 +110,7 @@ script is run. See our
 ```
 
 ```{admonition} Got materials for a workshop?
----
-
-## class: tip
+:class: tip
 
 If you already have teaching materials e.g. recordings, slide decks or Jupyter
 notebooks hosted somewhere, you can list them on the
