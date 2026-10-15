@@ -33,14 +33,17 @@ A long-requested feature: displaying layer names on the canvas with colormap-awa
 ## New Features
 
 - Add grid overlay ([#7827](https://github.com/napari/napari/pull/7827))
+- Allow plugins widgets to specify dock area ([#9526](https://github.com/napari/napari/pull/9526))
 
 ## Breaking Changes
 
 - MAINT: Remove deprecated ScaleBar.unit ([#9218](https://github.com/napari/napari/pull/9218))
+- Remove `PyQt5` support, part 1 ([#9650](https://github.com/napari/napari/pull/9650))
 
 ## Improvements
 
 - Use global font size for overlays ([#8667](https://github.com/napari/napari/pull/8667))
+- Prepare track columns data ([#9015](https://github.com/napari/napari/pull/9015))
 - Add single-plane projection for 3D points layers ([#9229](https://github.com/napari/napari/pull/9229))
 - UI: apply tabular numerals to embedded status bars ([#9407](https://github.com/napari/napari/pull/9407))
 - Clean up status for grid/multiple selection ([#9431](https://github.com/napari/napari/pull/9431))
@@ -73,20 +76,27 @@ A long-requested feature: displaying layer names on the canvas with colormap-awa
 - Fix font clipping in dock widget titles ([#9619](https://github.com/napari/napari/pull/9619))
 - Treat a colormap list of only None like a single None in add_image ([#9624](https://github.com/napari/napari/pull/9624))
 - Limit the lasso_vertex_distance preference spin box to 1-50 ([#9626](https://github.com/napari/napari/pull/9626))
+- Fix SlowMemoryStore latency being ignored on zarr 3 ([#9628](https://github.com/napari/napari/pull/9628))
 - PERF: Speed up grid mode with many layers ([#9633](https://github.com/napari/napari/pull/9633))
 - Fix stale perfmon callable reference ([#9671](https://github.com/napari/napari/pull/9671))
+- fix: accept None for Cursor.viewbox over an empty grid viewbox ([#9696](https://github.com/napari/napari/pull/9696))
 
 ## Documentation
 
+- Document single-plane projection for points layer ([docs#1074](https://github.com/napari/docs/pull/1074))
+- Prepare tracks data docs ([docs#1132](https://github.com/napari/docs/pull/1132))
 - Typing Guide: Tips and Resources ([docs#1135](https://github.com/napari/docs/pull/1135))
 - Deprecation policy using time-based windows for removal ([docs#1138](https://github.com/napari/docs/pull/1138))
+- Rumdl: Enable more MD rules that require edits by hand (not autofixable) ([docs#1142](https://github.com/napari/docs/pull/1142))
+- Rumdl: Reflow all the docs to 79-char length ([docs#1144](https://github.com/napari/docs/pull/1144))
 - Clarify mouse event properties in the `3D interactivity guide` ([docs#1147](https://github.com/napari/docs/pull/1147))
 - Add missed PRs to 0.9.2 release notes. ([docs#1151](https://github.com/napari/docs/pull/1151))
 - docs: suggest refined github ([docs#1155](https://github.com/napari/docs/pull/1155))
-- Redirect old workshop pages to napari.org/workshops ([docs#1156](https://github.com/napari/docs/pull/1156))
+- Move past workshop pages to napari.org/workshops ([docs#1156](https://github.com/napari/docs/pull/1156))
 - Move Kyle Harrington to Emeritus Steering Council ([docs#1160](https://github.com/napari/docs/pull/1160))
 - Fix failing docs build due to `profiling` clash ([docs#1161](https://github.com/napari/docs/pull/1161))
 - Create release notes for v0.10.0a0 ([docs#1164](https://github.com/napari/docs/pull/1164))
+- Add release notes for v0.10.0rc0 ([docs#1165](https://github.com/napari/docs/pull/1165))
 - Add info in tooltips for projection mode ([#9497](https://github.com/napari/napari/pull/9497))
 - Clarify in `LayerList` docstring when the `changed` event is emitted ([#9504](https://github.com/napari/napari/pull/9504))
 
@@ -94,9 +104,12 @@ A long-requested feature: displaying layer names on the canvas with colormap-awa
 
 - ci(dependabot): bump the github-actions group across 1 directory with 2 updates ([docs#1125](https://github.com/napari/docs/pull/1125))
 - Rumdl: Add baseline config and format docs/ ([docs#1140](https://github.com/napari/docs/pull/1140))
+- Rumdl: Parse and Format code blocks with ruff ([docs#1143](https://github.com/napari/docs/pull/1143))
 - Move pre-fetch data step to begin of prep_docs.py ([docs#1148](https://github.com/napari/docs/pull/1148))
 - Add missed directories to circelci cache ([docs#1149](https://github.com/napari/docs/pull/1149))
 - Post rendered docs link as a sticky PR comment ([docs#1159](https://github.com/napari/docs/pull/1159))
+- [pre-commit.ci] pre-commit autoupdate ([docs#1163](https://github.com/napari/docs/pull/1163))
+- Add write permissions for a statuses in label trigger build for docs ([docs#1167](https://github.com/napari/docs/pull/1167))
 - Separate tiling from nontiling overlays ([#9083](https://github.com/napari/napari/pull/9083))
 - fix(typing): add typing and fix mypy error in `qt_tracks_controls.py` ([#9176](https://github.com/napari/napari/pull/9176))
 - fix (typing): add typing and fix mypy error in `qt_symbol_combobox.py` ([#9182](https://github.com/napari/napari/pull/9182))
@@ -110,6 +123,7 @@ A long-requested feature: displaying layer names on the canvas with colormap-awa
 - TYP: add type hints in `qt_contour_spinbox.py` ([#9552](https://github.com/napari/napari/pull/9552))
 - TYP: add type hints in `qt_viewer_status_bar.py` ([#9554](https://github.com/napari/napari/pull/9554))
 - Change Qt backend used in type testing from PyQt6 to PySide6 ([#9570](https://github.com/napari/napari/pull/9570))
+- Move autoswap buffers from experimental to advanced settings ([#9589](https://github.com/napari/napari/pull/9589))
 - Update `coverage`, `fsspec`, `hypothesis`, `imageio`, `napari-resources`, `pandas`, `platformdirs`, `pytest-rerunfailures`, `tifffile`, `virtualenv`, `wrapt`, `xarray` ([#9594](https://github.com/napari/napari/pull/9594))
 - TYP: annotate `color_kwargs` as dict[str, Any] in color_manager.py ([#9618](https://github.com/napari/napari/pull/9618))
 - Update `hypothesis`, `platformdirs`, `virtualenv` ([#9625](https://github.com/napari/napari/pull/9625))
@@ -119,12 +133,14 @@ A long-requested feature: displaying layer names on the canvas with colormap-awa
 - TYP: add type hints in `qt_logger.py` ([#9655](https://github.com/napari/napari/pull/9655))
 - Removed obsolete cells3d monkeypatch in test_examples.py ([#9658](https://github.com/napari/napari/pull/9658))
 - typing: Enable checking presence of type annotation in functions ([#9662](https://github.com/napari/napari/pull/9662))
+- TYP: add simple return annotations generated by `pyrefly infer` ([#9684](https://github.com/napari/napari/pull/9684))
 - Remove Qt5 from --pre tests ([#9687](https://github.com/napari/napari/pull/9687))
 - Update `hypothesis`, `imageio`, `numpy`, `platformdirs`, `pydantic`, `pyside6`, `toolz`, `virtualenv` ([#9692](https://github.com/napari/napari/pull/9692))
 - Add Lundy Bernard to CITATION.cff ([#9695](https://github.com/napari/napari/pull/9695))
+- Fix failing test by wait on worker clean ([#9710](https://github.com/napari/napari/pull/9710))
 
 
-## 16 authors added to this release (alphabetical)
+## 17 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -141,11 +157,12 @@ A long-requested feature: displaying layer names on the canvas with colormap-awa
 - [Lundy Bernard](https://github.com/napari/napari/commits?author=lundybernard) ([docs](https://github.com/napari/docs/commits?author=lundybernard))  - @lundybernard +
 - [Matthias Schabel](https://github.com/napari/napari/commits?author=matthiasschabel) - @matthiasschabel
 - [Mridul Seth](https://github.com/napari/napari/commits?author=MridulS) - @MridulS
-- [Omkar Kabde](https://github.com/napari/napari/commits?author=omkar-334) - @omkar-334
+- [Omkar Kabde](https://github.com/napari/napari/commits?author=omkar-334) ([docs](https://github.com/napari/docs/commits?author=omkar-334))  - @omkar-334
+- [Sesan](https://github.com/napari/napari/commits?author=Olusesan) ([docs](https://github.com/napari/docs/commits?author=Olusesan))  - @Olusesan
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [Wouter-Michiel Vierdag](https://github.com/napari/napari/commits?author=melonora) - @melonora
 
-## 11 reviewers added to this release (alphabetical)
+## 14 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -153,10 +170,13 @@ A long-requested feature: displaying layer names on the canvas with colormap-awa
 - [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) ([docs](https://github.com/napari/docs/commits?author=Aniketsy))  - @Aniketsy
 - [Bruno Pannunzio](https://github.com/napari/napari/commits?author=bruno-pannunzio) - @bruno-pannunzio +
 - [Carol Willing](https://github.com/napari/docs/commits?author=willingc) - @willingc
+- [Caroline Malin-Mayor](https://github.com/napari/docs/commits?author=cmalinmayor) - @cmalinmayor
+- [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) ([docs](https://github.com/napari/docs/commits?author=jacopoabramo))  - @jacopoabramo
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [lettyz3](https://github.com/napari/napari/commits?author=lettyz3) - @lettyz3 +
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
 - [Peter Sobolewski](https://github.com/napari/docs/commits?author=psobolewskiPhD) - @psobolewskiPhD
+- [Sesan](https://github.com/napari/napari/commits?author=Olusesan) ([docs](https://github.com/napari/docs/commits?author=Olusesan))  - @Olusesan
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
