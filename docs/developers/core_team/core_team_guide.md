@@ -99,7 +99,7 @@ When reviewing, focus on the following:
    extensive use of our APIs. The foundation of a healthy plugin ecosystem is a
    fully capable and stable set of APIs, so as `napari` matures it will be
    critical to ensure that our APIs are stable. Spending the extra time to
-   consider names of public facing variables and methods, along side function
+   consider names of public facing variables and methods, alongside function
    signatures, will save us considerable trouble in the future.
    napari follows [EffVer](https://effver.org). The
    [release policy](napari-release) permits deprecations in `MACRO` and
