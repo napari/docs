@@ -361,7 +361,7 @@ The `string` key specifies pattern for the text to be displayed. If `string` is 
 
 As an example, if a given object has a `label=1` and `circularity=0.8322940`, the resulting text string would be:
 
-```
+```text
 label: 1
 circ: 0.83
 ```

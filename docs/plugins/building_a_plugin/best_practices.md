@@ -8,7 +8,7 @@ affect the ability to install or use your plugin effectively.
 
 (best-practices-no-qt-backend)=
 
-## Don't include `napari[all]`, `PySide6`, `PyQt5` or `PyQt6` in your plugin's default dependencies.
+## Don't include `napari[all]`, `PySide6`, `PyQt5` or `PyQt6` in your plugin's default dependencies
 
 *This is important! Avoid including any form of Qt in your plugin's dependencies!*
 
@@ -75,11 +75,11 @@ Some python packages write a portion of their code in lower level languages like
 C or C++ and compile that code into "C Extensions" that can be called by python
 at runtime. This can *greatly* improve performance, but it means that the
 package must be compiled for *each* platform (i.e. Windows, Mac, Linux) that the
-package wants to support.  Some packages do this compilation step ahead of time,
+package wants to support. Some packages do this compilation step ahead of time,
 by distributing "[wheels](https://realpython.com/python-wheels/)" on
 [PyPI](https://pypi.org/)... or by providing pre-compiled packages via `conda`.
 Other packages simply distribute the source code (as an "sdist") and expect the
-end-user to compile it on their own computer.  Compiling C code requires
+end-user to compile it on their own computer. Compiling C code requires
 software that is not always installed on every computer. (If you've ever tried
 to `python -m pip install` a package and had it fail with a big wall of red text saying
 something about `gcc`, then you've run into a package that doesn't distribute
@@ -117,9 +117,9 @@ will run into difficulties installing your plugin:
 
 ```{admonition} What about conda?
 **conda** also distributes & installs pre-compiled packages, though they aren't
-wheels.  We encourage you to make your plugins 
+wheels. We encourage you to make your plugins
 [available on conda-forge](deploying-to-conda-forge), which
-is a great way to handle binary dependencies in a reliable way. The built-in 
+is a great way to handle binary dependencies in a reliable way. The built-in
 [napari plugin manager](https://napari.org/napari-plugin-manager) currently
 supports installing plugins from both PyPI and conda-forge, with the default matching
 the source of the napari installation.
@@ -182,7 +182,7 @@ with open("some_data_in_my_plugin.json") as data_file:
     data = json.load(data_file)
 ```
 
-## Write extensive tests for your plugin!
+## Write extensive tests for your plugin
 
 Programmer and author Bruce Eckel famously wrote:
 
@@ -334,7 +334,7 @@ Additionally, this unwanted behavior might cause installation issues with other 
 Ideally, you could change your project structure to follow the recommended skeleton followed in
 the napari plugin template. Howevever, if that's unfeasible, you can fix this in the project metadata files.
 
-You need to explicitly _exclude_ the top-level `tests` directory from the packaged contents:
+You need to explicitly *exclude* the top-level `tests` directory from the packaged contents:
 
 ```toml
 # pyproject.toml

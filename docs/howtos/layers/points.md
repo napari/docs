@@ -12,12 +12,11 @@ kernelspec:
 ---
 
 (layers-points)=
+
 # Points
 
 ```{Admonition} DEPRECATED ATTRIBUTES
----
-class: warning
----
+:class: warning
 As of napari 0.5.0, `edge_*` attributes are being renamed to
 `border_*` attributes. We have yet to update the images and/or videos in
 this tutorial. Please use `border` in place of `edge` for all `Points` attributes moving forward.
@@ -153,7 +152,7 @@ layer:
 
   Select `translucent`, `translucent no depth`, `additive`, `minimum`, or
   `opaque` from the dropdown. Refer to the [Blending layers](blending-layers)
-  section of _Layers at a glance_ for an explanation of each type of blending.
+  section of *Layers at a glance* for an explanation of each type of blending.
 
 - Symbol
 
@@ -246,18 +245,14 @@ points_layer = viewer.add_points(points, size=30)
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 from napari.utils import nbscreenshot
 
 nbscreenshot(viewer, alt_text="3 points overlaid on an astronaut image")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -267,9 +262,7 @@ viewer.close()
 accepts the following layer-creation parameters.
 
 ```{code-cell} python
----
-tags: [hide-output]
----
+:tags: [hide-output]
 help(napari.Viewer.add_points)
 ```
 
@@ -424,16 +417,12 @@ points_layer = viewer.add_points(
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="3 points overlaid on an astronaut image, where the border color of the points has been changed to a color cycle")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 
@@ -471,16 +460,12 @@ points_layer = viewer.add_points(
 ```
 
 ```{code-cell} python
----
-tags: [hide-input]
----
+:tags: [hide-input]
 nbscreenshot(viewer, alt_text="3 points overlaid on an astronaut image, where the face color of the points has been changed to a colormap")
 ```
 
 ```{code-cell} python
----
-tags: [remove-cell]
----
+:tags: [remove-cell]
 viewer.close()
 ```
 

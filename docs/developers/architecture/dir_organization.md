@@ -6,7 +6,7 @@ The majority of the napari code lives in
 [`napari/`](https://github.com/napari/napari/tree/main/napari). The main
 folders are:
 
-```
+```text
 napari/
 ├── _app_model/
 ├── _qt/

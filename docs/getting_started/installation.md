@@ -52,7 +52,7 @@ It requires:
 
 You may also want:
 
-- an environment manager like [uv](https://docs.astral.sh/uv/pip/environments/), 
+- an environment manager like [uv](https://docs.astral.sh/uv/pip/environments/),
 [conda](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html) **(Highly recommended)**
 
 ```{admonition} New to Python?
@@ -185,9 +185,7 @@ napari
 An empty napari viewer should appear as follows:
 
 ```{code-cell} ipython3
----
-tags: [remove-input]
----
+:tags: [remove-input]
 import napari
 from napari.utils import nbscreenshot
 
@@ -326,7 +324,7 @@ Double-click the downloaded `.exe` file to begin setup.
 
 ```{admonition} Windows Security Warning
 :class: important
-The napari Windows installer is code-signed. Microsoft Defender SmartScreen 
+The napari Windows installer is code-signed. Microsoft Defender SmartScreen
 may trigger a warning when a new app version is newly released until the cooling
 period ends.
 

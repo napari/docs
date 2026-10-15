@@ -2,7 +2,7 @@
 
 # 4: Test coverage
 
-## Other lessons in this tutorial:
+## Other lessons in this tutorial
 
 - 1: [Python’s assert keyword](plugin-testing-workshop-assert)
 - 2: [Pytest testing framework](plugin-testing-workshop-pytest)
@@ -10,7 +10,7 @@
 - 4: This lesson (Test coverage)
 - Resource links: [testing resources](plugin-testing-resources)
 
-### This lesson covers:
+### This lesson covers
 
 - [Coverage](#coverage)
 - [pytest --cov](#pytest---cov)

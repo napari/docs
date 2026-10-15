@@ -276,18 +276,18 @@ these cases will depend on the nature and purpose of the NAP being updated.
 
 ## Format and Template
 
-NAPs are UTF-8 encoded text files using the [MyST markdown] format.  Please
+NAPs are UTF-8 encoded text files using the [MyST markdown] format. Please
 see the {ref}`nap-template` file and the [MyST markdown cheat sheet] for
-more information.  We use [Sphinx] to convert NAPs to HTML for viewing on
+more information. We use [Sphinx] to convert NAPs to HTML for viewing on
 the web [^id4].
 
 ### Header Preamble
 
-Each NAP must begin with a header preamble.  The headers
-must appear in the following order.  Headers marked with `*` are
-optional.  All other headers are required.
+Each NAP must begin with a header preamble. The headers
+must appear in the following order. Headers marked with `*` are
+optional. All other headers are required.
 
-```
+```text
   :Author: <list of authors' real names and optionally, email addresses>
   :Status: <Draft | Provisional | Active | Accepted | Deferred | Rejected |
            Withdrawn | Final | Superseded>
@@ -309,7 +309,7 @@ if the email address is included, and just
 
 > Random J. User
 
-if the address is not given.  If there are multiple authors, each should be
+if the address is not given. If there are multiple authors, each should be
 on a separate line.
 
 ## Discussion

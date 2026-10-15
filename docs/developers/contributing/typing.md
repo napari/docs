@@ -49,14 +49,17 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
    potential import cycles stay out of the runtime path. Ruff rules flag these and
    will often move them for you with pre-commit. To do this, add
    `from typing import TYPE_CHECKING` to the top of the file, then wrap the imports in:
+
    ```python
    if TYPE_CHECKING:
        from some_module import SomeType
    ```
+
    ```{important}
    Lazy evaluation of annotation breaks tools that require runtime type inspection, such as
    magicgui decorators and Pydantic models. For those, type annotations must be real imports!
    ```
+
 4. **Run `tox -e pyrefly`** and read the first complaint before the rest; later errors
    are often consequences of the first one.
 5. **If something can't be fixed honestly**, suppress it by error kind and say why, as
@@ -65,7 +68,7 @@ suggestions as a hint and `tox -e pyrefly` as the standard.
 ## Choosing types
 
 - **Annotate parameters and return values, not local variables.** They are the contract other
-  modules rely on, and locals are inferred well enough without help. 
+  modules rely on, and locals are inferred well enough without help.
 - **Parameters should accept the widest type that works; returns give back the concrete
   type you built.** When psosible, take `Iterable`, `Sequence` or `Mapping` rather than `list`
   or `dict`, and hand back the `list` or `dict` you actually made.
@@ -98,7 +101,7 @@ error kind**, so a reader can tell why it was needed and pyrefly can check that 
 suppression is still doing something.
 The last word of a pyrefly message is the rule it applied:
 
-```
+```text
 ERROR src/napari/utils/tree/node.py:64:31-53: Argument `int | None` is not assignable
 to parameter `object` with type `int` in function `list.insert` [bad-argument-type]
                                                                  ^^^^^^^^^^^^^^^^^
