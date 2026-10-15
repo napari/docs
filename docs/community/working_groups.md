@@ -1,3 +1,5 @@
+(napari-working-groups)=
+
 # Working groups
 
 Working groups are subteams of the napari community formed by members
