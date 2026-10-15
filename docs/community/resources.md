@@ -34,18 +34,6 @@ for the full list of logo variants and how to render them to an image.
 
 ## Website colors
 
-Below is the list of colors used in the napari website.
-
-- primary blue: #80d1ff
-- deep blue: #009bf2
-- light blue: #d2efff
-- dark gray: #686868
-- gray: #f7f7f7
-
-For dark mode, we use two additional colors:
-
-- purple: #4d485c
-- dark blue: #526a77
-
-See more details in the
+The colors used across napari websites, with swatches for light and dark mode,
+are documented on the
 [napari-sphinx-theme colors page](https://napari.org/napari-sphinx-theme/colors.html).
