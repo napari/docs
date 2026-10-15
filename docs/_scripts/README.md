@@ -32,6 +32,14 @@ python docs/_scripts/prep_docs.py --stubs  # Fast mode with stub content
 - Supports a `--stubs` mode for faster development builds
 - Manages the overall documentation preparation workflow
 
+### prefetch_data.py
+
+Warms the caches for the remote data that executed notebooks and the gallery
+download, so a broken remote fails at the start of a build instead of part-way
+through it. It is run from the Makefile `prefetch*` targets for the builds that
+execute content - never from `prep_docs.py` - so `slim`/`slimfast` builds stay
+offline.
+
 ### autogenerate_gui_images.py
 
 **Purpose**: Automatically captures screenshots of napari GUI components for use in documentation.
