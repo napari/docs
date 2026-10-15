@@ -909,7 +909,7 @@ selected:
   also known as a *stack*. It creates a new layer that is a projection of the
   layer stack with the characteristic the user selects, reducing the number of
   dimensions by 1. More information about the types of projections is available
-  [here](https://medium.com/@damiandn/an-intoduction-to-biological-image-processing-in-imagej-part-3-stacks-and-stack-projections-942aa789420f).
+  [in this introduction to biological image processing](https://medium.com/@damiandn/an-intoduction-to-biological-image-processing-in-imagej-part-3-stacks-and-stack-projections-942aa789420f).
   The following projections are available:
   - **max projection** - maximum intensity projection. At each pixel position,
     we go through the stacks, find the pixel with the maximum intensity, and
