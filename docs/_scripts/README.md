@@ -32,13 +32,27 @@ python docs/_scripts/prep_docs.py --stubs  # Fast mode with stub content
 - Supports a `--stubs` mode for faster development builds
 - Manages the overall documentation preparation workflow
 
-### prefetch_data.py
+### prefetch_gallery_data.py and prefetch_notebook_data.py
 
-Warms the caches for the remote data that executed notebooks and the gallery
-download, so a broken remote fails at the start of a build instead of part-way
-through it. It is run from the Makefile `prefetch*` targets for the builds that
-execute content - never from `prep_docs.py` - so `slim`/`slimfast` builds stay
-offline.
+**Purpose**: Download the remote data that the gallery examples and the
+executed notebooks use, before the build starts. A broken remote then fails
+the build at the start, not part-way through it.
+
+**Usage**:
+
+```bash
+python docs/_scripts/prefetch_gallery_data.py   # nilearn data for the gallery
+python docs/_scripts/prefetch_notebook_data.py  # image for open_images.md
+```
+
+**Key Features**:
+
+- The Makefile targets `prefetch-gallery` and `prefetch-notebooks` run the
+  scripts for the builds that execute content. `make prefetch` runs both.
+- `prep_docs.py` does not run them, so the `slim` and `slimfast` builds stay
+  offline.
+- The nilearn data goes to `NILEARN_DATA`, which the Makefile sets to a
+  directory in the OS cache. The image goes to the default pooch cache.
 
 ### autogenerate_gui_images.py
 
