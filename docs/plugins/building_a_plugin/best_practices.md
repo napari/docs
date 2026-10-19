@@ -45,13 +45,11 @@ plugin metadata:
 
 ````{tip}
 1. You can still include a specific Qt backend in optional `dev` or `testing`
-   dependencies!
-Just *don't* include a specific Qt backend (or `napari[all]`, which currently
-includes PyQt6) in your base dependencies.
-2. You can include an optional `all` dependency on `napari[all]` to mimic the
-   simple,
-command line installation in a fresh environment. In `pyproject.toml` this
-would be:
+   dependencies! Just *don't* include a specific Qt backend (or `napari[all]`,
+   which currently includes PyQt6) in your base dependencies. 2. You can
+   include an optional `all` dependency on `napari[all]` to mimic the simple,
+   command line installation in a fresh environment. In `pyproject.toml` this
+   would be:
 
     ```
     [project.optional-dependencies]

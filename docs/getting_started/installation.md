@@ -66,8 +66,8 @@ You may also want:
 New to Python or uncertain about uv, conda, and virtual environments?
 Here are some resources we recommend:
 
-- [Scientific Python: Getting started with Python for science](https://lectures.scientific-python.org/intro/index.html)
-- [Detailed comparison of Python environment management tools](https://www.nijho.lt/post/python-environments/)
+- [Scientific Python: Getting started with Python for science](https://lectures.scientific-python.org/intro/index.html) -
+  [Detailed comparison of Python environment management tools](https://www.nijho.lt/post/python-environments/)
 ```
 
 Choose one of the options below to install napari as a Python package.
