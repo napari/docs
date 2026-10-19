@@ -187,17 +187,26 @@ subtrees:
     subtrees:
     - titlesonly: True
       entries:
-      - file: community/mission_and_values
-      - file: community/team
+      - file: community/about
+        subtrees:
+        - entries:
+          - file: community/mission_and_values
+          - file: community/team
+          - file: community/governance
+          - file: community/funding
+      - file: community/get_involved
+        subtrees:
+        - entries:
+          - file: community/meeting_schedule
+          - file: community/working_groups
       - file: community/code_of_conduct
-      - file: community/code_of_conduct_reporting
-      - file: community/governance
+        subtrees:
+        - entries:
+          - file: community/code_of_conduct_reporting
       - file: community/security
-      - file: community/working_groups
-      - file: community/meeting_schedule
-      - file: community/licensing
+        title: Security policy
       - file: community/resources
-      - file: community/napari_logo_usage
+      - file: community/licensing
   - file: developers/index
     subtrees:
     - entries:
