@@ -194,6 +194,14 @@ html[data-theme="dark"] .homepage-quicklinks a {
 .homepage-quicklinks + .community-socials {
   border-top: none !important;
   margin-top: -1.5rem;
+
+/* ── Sidebar resource links ────────────────────────────────────────── */
+
+.bd-sidenav .sidebar-link-icon {
+  display: inline-block;
+  margin-right: 0.4rem;
+  text-align: center;
+  width: 1.25em;
 }
 
 /* ── Homepage featured example ─────────────────────────────────────── */
