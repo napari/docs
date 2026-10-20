@@ -191,6 +191,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Add release notes for v0.10.0rc0 ([docs#1165](https://github.com/napari/docs/pull/1165))
 - Reorganize and spruce up the community pages ([docs#1168](https://github.com/napari/docs/pull/1168))
 - Add icons to persistent sidebar links ([docs#1169](https://github.com/napari/docs/pull/1169))
+- Missing overlays in docs ([docs#1173](https://github.com/napari/docs/pull/1173))
 - Add info in tooltips for projection mode ([#9497](https://github.com/napari/napari/pull/9497))
 - Clarify in `LayerList` docstring when the `changed` event is emitted ([#9504](https://github.com/napari/napari/pull/9504))
 
@@ -204,6 +205,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Post rendered docs link as a sticky PR comment ([docs#1159](https://github.com/napari/docs/pull/1159))
 - [pre-commit.ci] pre-commit autoupdate ([docs#1163](https://github.com/napari/docs/pull/1163))
 - Add write permissions for a statuses in label trigger build for docs ([docs#1167](https://github.com/napari/docs/pull/1167))
+- [pre-commit.ci] pre-commit autoupdate ([docs#1172](https://github.com/napari/docs/pull/1172))
 - fix(typing): add typing and fix mypy error in `qt_tracks_controls.py` ([#9176](https://github.com/napari/napari/pull/9176))
 - fix (typing): add typing and fix mypy error in `qt_symbol_combobox.py` ([#9182](https://github.com/napari/napari/pull/9182))
 - chore: remove ChunkLoader dead test code  ([#9381](https://github.com/napari/napari/pull/9381))
