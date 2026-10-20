@@ -678,6 +678,7 @@ linkcheck_ignore = [
     'https://napari.zulipchat.com/',
     '../_tags',
     'https://en.wikipedia.org/wiki/Napari#/media/File:Tabuaeran_Kiribati.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/d/dc/Tabuaeran_Kiribati.jpg',
     'http://localhost:8000',
     'https://datadryad.org/stash/downloads/file_stream/182482',
     'https://github.com/napari/docs/issues/new/choose',
