@@ -701,6 +701,7 @@ rediraffe_redirects = {
     'tutorials/fundamentals/quick_start': 'getting_started/quick_start',
     'tutorials/fundamentals/viewer': 'getting_started/viewer',
     'tutorials/start_index': 'getting_started/start_index',
+    'community/napari_logo_usage': 'community/resources',
 }
 
 def rewrite_github_anchor(app, uri: str):
