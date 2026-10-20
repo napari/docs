@@ -38,7 +38,7 @@ viewer.scene.overlays.grid_lines.visible = True
 
 ### Colorful names
 
-Another long-requested feature: displaying layer names on the canvas with colormap-aware colors ([#9598](https://github.com/napari/napari/pull/9598))! This comes with some fancy machinery to ensure that colors are shifted enough to be always readable.
+Another long-requested feature: displaying [layer names](https://napari.org/stable/getting_started/layers.html#layer-overlays) on the canvas now has colormap-aware colors ([#9598](https://github.com/napari/napari/pull/9598))! This comes with some fancy machinery to ensure that colors are shifted enough to be always readable.
 
 ```py
 import napari
@@ -55,6 +55,12 @@ viewer.canvas.grid.stride = 2
 
 ![screenshot of the viewer with layer names overlays enabled, colored based on each layer's colormap](https://github.com/user-attachments/assets/629e63f5-381a-4a92-ba17-de02fa408edf)
 
+### Cursor crosshair
+
+Ever use the [grid mode](https://napari.org/stable/gallery/grid_mode.html#grid-mode) for your miltichannel data but then struggle to know where you're clicking? Struggle no more! You can now enable the new crosshair overlay ([#8017](https://github.com/napari/napari/pull/8017)) to always locate your exact position in every viewbox.
+
+![screenshot of the viewer with grid-mode and the crosshair enabled](https://github.com/user-attachments/assets/62f1b045-60cc-4e4a-808b-c7e9934d683d)
+
 ### Default dock area and tabify for plugin dock widgets
 
 Some plugin dock widgets are wider than they are tall, fitting poorly on the right-side dock and forcing users to manually move the widget to a different area every time on first launch. With [#9526](https://github.com/napari/napari/pull/9526)) and ([#9707](https://github.com/napari/napari/pull/9707), you can now specify a default dock area and tabify behaviour for a dock widget contribution, which will prevent the need for this manual step:
@@ -68,8 +74,6 @@ Some plugin dock widgets are wider than they are tall, fitting poorly on the rig
 ```
 
 
-- 2D/3D Crosshair overlay for cursor position ([#8017](https://github.com/napari/napari/pull/8017))
-- Fix and unify mouse callback generator machinery ([#9513](https://github.com/napari/napari/pull/9513))
 - Remove `PyQt5` support, part 1 ([#9650](https://github.com/napari/napari/pull/9650))
 
 ## New Features
@@ -94,18 +98,15 @@ A notable change is that `mouse_move` callbacks previously did not work during `
 
 ### Removed `scale_bar.unit`
 
-After deprecating it, we're finally removing this field completely. Now the only way to set the unit on the scale bar is by [setting units on the layers themselves](https://napari.org/stable/guides/units.html#scale-and-units-live-on-layers)!
+After deprecating it, we're finally removing this field completely ([#9218](https://github.com/napari/napari/pull/9218)). Now the only way to set the unit on the scale bar is by [setting units on the layers themselves](https://napari.org/stable/guides/units.html#scale-and-units-live-on-layers)!
 
 ### Unified default font sizes
 
-We previously hardcoded default font sizes for all visuals in the canvas. Now, they respond to the global application settings (`Preferences > Appearance > Font size`) unless the font size is explicitly set for that specific model (by default it will be `None`).
+We previously hardcoded default font sizes for all visuals in the canvas. Now ([#8667](https://github.com/napari/napari/pull/8667), [#9524](https://github.com/napari/napari/pull/9524)), they respond to the global application settings (`Preferences > Appearance > Font size`) unless the font size is explicitly set for that specific model (by default it will be `None`).
 
 So if you use the `scale_bar`, or `Points.text` or other layers and overlays that display text and you don't like the new default, make sure to set your font size explicitly!
 
 
-- Use global font size for overlays ([#8667](https://github.com/napari/napari/pull/8667))
-- MAINT: Remove deprecated ScaleBar.unit ([#9218](https://github.com/napari/napari/pull/9218))
-- Use global font size for layers ([#9524](https://github.com/napari/napari/pull/9524))
 
 ## Improvements
 
@@ -117,7 +118,6 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Performance [Shapes]: don't draw empty sub-visuals ([#9418](https://github.com/napari/napari/pull/9418))
 - Clean up status for grid/multiple selection ([#9431](https://github.com/napari/napari/pull/9431))
 - Use canvas size to estimate scale_bar target size ([#9474](https://github.com/napari/napari/pull/9474))
-- Hide projection mode combobox when appropriate ([#9498](https://github.com/napari/napari/pull/9498))
 - Fix fuzzy finding and command highlighting in palette ([#9503](https://github.com/napari/napari/pull/9503))
 - Implement canvas_to_world on the napari side ([#9517](https://github.com/napari/napari/pull/9517))
 - Use global font size for layers ([#9524](https://github.com/napari/napari/pull/9524))
@@ -127,7 +127,6 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Add warning icon if experimental setting (especially async) is enabled ([#9590](https://github.com/napari/napari/pull/9590))
 - Draw the layer name overlay in the layer's colormap color ([#9598](https://github.com/napari/napari/pull/9598))
 - Add `locked_data_level` as an argument for `Labels` ([#9603](https://github.com/napari/napari/pull/9603))
-- Improve point projections to cover old out_of_slice use case ([#9607](https://github.com/napari/napari/pull/9607))
 - Make the layer name overlay bold ([#9616](https://github.com/napari/napari/pull/9616))
 - Add Grid toggle action ([#9646](https://github.com/napari/napari/pull/9646))
 - Fix reporting of Qt version in `napari --info` ([#9648](https://github.com/napari/napari/pull/9648))
@@ -141,12 +140,12 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - PERF: Speed up grid mode with many layers ([#9633](https://github.com/napari/napari/pull/9633))
 - [perf] Remove duplicate calls in VispyImageLayer (already done in super()) ([#9697](https://github.com/napari/napari/pull/9697))
 - [perf] Defer the expensive import from scipy.spatial.transform until ndisplay=3 ([#9746](https://github.com/napari/napari/pull/9746))
+- Effectively revert PR #8725 so viewer shows when files are opened from CLI ([#9747](https://github.com/napari/napari/pull/9747))
 
 ## Bug Fixes
 
 - fix(shapes): pick shapes on a fractional slice key ([#9394](https://github.com/napari/napari/pull/9394))
 - Fix remove() mid-draw when removing shapes shifts the drawn shape's index ([#9441](https://github.com/napari/napari/pull/9441))
-- Keep dock widgets resizable when their widget asks for vertical space ([#9462](https://github.com/napari/napari/pull/9462))
 - Fix logger from console 2 ([#9465](https://github.com/napari/napari/pull/9465))
 - Fix fuzzy finding and command highlighting in palette ([#9503](https://github.com/napari/napari/pull/9503))
 - Fix and unify mouse callback generator machinery ([#9513](https://github.com/napari/napari/pull/9513))
@@ -171,6 +170,8 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Fix polygon lasso error when Enter or Escape ends a drag ([#9699](https://github.com/napari/napari/pull/9699))
 - fix: timeout of notifications in a stack and after regain of window focus (#9560) ([#9731](https://github.com/napari/napari/pull/9731))
 - Fix screenshot with scale!=1 ([#9738](https://github.com/napari/napari/pull/9738))
+- Effectively revert PR #8725 so viewer shows when files are opened from CLI ([#9747](https://github.com/napari/napari/pull/9747))
+- Fix `canvas_to_world` calculation with grid spacing ([#9752](https://github.com/napari/napari/pull/9752))
 
 ## Documentation
 
