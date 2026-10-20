@@ -189,6 +189,12 @@ html[data-theme="dark"] .homepage-quicklinks a {
   }
 }
 
+/* ── Community social links (reuse homepage quicklinks) ───────────── */
+
+.homepage-quicklinks + .community-socials {
+  border-top: none !important;
+  margin-top: -1.5rem;
+
 /* ── Sidebar resource links ────────────────────────────────────────── */
 
 .bd-sidenav .sidebar-link-icon {
