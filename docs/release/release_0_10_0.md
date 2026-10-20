@@ -68,6 +68,7 @@ Some plugin dock widgets are wider than they are tall, fitting poorly on the rig
 ```
 
 
+- 2D/3D Crosshair overlay for cursor position ([#8017](https://github.com/napari/napari/pull/8017))
 - Fix and unify mouse callback generator machinery ([#9513](https://github.com/napari/napari/pull/9513))
 - Remove `PyQt5` support, part 1 ([#9650](https://github.com/napari/napari/pull/9650))
 
@@ -80,23 +81,31 @@ Some plugin dock widgets are wider than they are tall, fitting poorly on the rig
 
 ## Breaking Changes
 
-### Dropping support for Qt5 backend
+### Dropped support for Qt5 backend
 
 We started warning about this in release v0.8.0; it is now time to fully drop support of Qt5! Qt5 has reached End Of Life on the 26th of May 2025. We migrated our bundle to Qt6 (PySide6) a year ago.
 [#9650](https://github.com/napari/napari/pull/9650) is effectively removing PyQt5 support. PySide2 support was already removed in release [0.7.0](https://github.com/napari/napari/pull/8450), so we are now fully on Qt6!
 
-### Mouse callbacks fixes
+### Tidied up mouse callbacks
 
 Custom mouse callbacks can be [defined via generators](https://napari.org/stable/howtos/extending/connecting_events.html#listening-for-mouse-events). Some quirks with this machinery have been smoothed out and some bugs fixed ([#9513](https://github.com/napari/napari/pull/9513)); this might result in some callbacks to no longer work as before. In principle, this should only affect callbacks that relied on buggy behaviour, but please make sure to check if your old callbacks are still working, and open an issue on the napari repository if that's not the case.
 
 A notable change is that `mouse_move` callbacks previously did not work during `drag`, but now they do. If that's not what you want, guard your callback with `if not event.is_dragging`!
 
-### Removal of `scale_bar.unit`
+### Removed `scale_bar.unit`
 
 After deprecating it, we're finally removing this field completely. Now the only way to set the unit on the scale bar is by [setting units on the layers themselves](https://napari.org/stable/guides/units.html#scale-and-units-live-on-layers)!
 
+### Unified default font sizes
 
+We previously hardcoded default font sizes for all visuals in the canvas. Now, they respond to the global application settings (`Preferences > Appearance > Font size`) unless the font size is explicitly set for that specific model (by default it will be `None`).
+
+So if you use the `scale_bar`, or `Points.text` or other layers and overlays that display text and you don't like the new default, make sure to set your font size explicitly!
+
+
+- Use global font size for overlays ([#8667](https://github.com/napari/napari/pull/8667))
 - MAINT: Remove deprecated ScaleBar.unit ([#9218](https://github.com/napari/napari/pull/9218))
+- Use global font size for layers ([#9524](https://github.com/napari/napari/pull/9524))
 
 ## Improvements
 
@@ -149,6 +158,7 @@ After deprecating it, we're finally removing this field completely. Now the only
 - Fix a few font sizes, adjust some padding ([#9615](https://github.com/napari/napari/pull/9615))
 - Measure text at render size for even overlay padding ([#9617](https://github.com/napari/napari/pull/9617))
 - Fix font clipping in dock widget titles ([#9619](https://github.com/napari/napari/pull/9619))
+- Fix position and clipping of dims slider label widgets ([#9620](https://github.com/napari/napari/pull/9620))
 - Treat a colormap list of only None like a single None in add_image ([#9624](https://github.com/napari/napari/pull/9624))
 - Limit the lasso_vertex_distance preference spin box to 1-50 ([#9626](https://github.com/napari/napari/pull/9626))
 - Fix SlowMemoryStore latency being ignored on zarr 3 ([#9628](https://github.com/napari/napari/pull/9628))
@@ -210,7 +220,6 @@ After deprecating it, we're finally removing this field completely. Now the only
 - chore: remove unused user keymap ([#9602](https://github.com/napari/napari/pull/9602))
 - ci(dependabot): bump the actions group across 1 directory with 9 updates ([#9613](https://github.com/napari/napari/pull/9613))
 - TYP: annotate `color_kwargs` as dict[str, Any] in color_manager.py ([#9618](https://github.com/napari/napari/pull/9618))
-- Fix position and clipping of dims slider label widgets ([#9620](https://github.com/napari/napari/pull/9620))
 - Update `hypothesis`, `platformdirs`, `virtualenv` ([#9625](https://github.com/napari/napari/pull/9625))
 - [pre-commit.ci] pre-commit autoupdate ([#9634](https://github.com/napari/napari/pull/9634))
 - TYP: add type hints in `qt_welcome.py` ([#9642](https://github.com/napari/napari/pull/9642))
