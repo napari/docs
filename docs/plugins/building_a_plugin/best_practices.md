@@ -43,27 +43,29 @@ plugin metadata:
   to fix these issues is almost impossible for GUI centric users, leaving them
   the only recourse of re-installing.
 
-````{tip}
+:::{tip}
 1. You can still include a specific Qt backend in optional `dev` or `testing`
    dependencies! Just *don't* include a specific Qt backend (or `napari[all]`,
-   which currently includes PyQt6) in your base dependencies. 2. You can
-   include an optional `all` dependency on `napari[all]` to mimic the simple,
-   command line installation in a fresh environment. In `pyproject.toml` this
-   would be:
+   which currently includes PyQt6) in your base dependencies.
+2. You can include an optional `all` dependency on `napari[all]` to mimic the
+   simple, command line installation in a fresh environment. In
+   `pyproject.toml` this would be:
 
-    ```
+    ```text
     [project.optional-dependencies]
     all = ["napari[all]"]
     ```
 
-    And then your plugin could be installed with napari and the default Qt backend using:
+   And then your plugin could be installed with napari and the default Qt
+   backend using:
+
     ```bash
     pip install my_plugin[all]
     ```
-    Meanwhile, the napari plugin manager will still just install your plugin without the Qt
-    dependency.  
 
-````
+   Meanwhile, the napari plugin manager will still just install your plugin
+   without the Qt dependency.  
+:::
 
 ## Don't import from any specific Qt backend (e.g. `PyQt5`, `PyQt6`, `PySide6`, etc.) in your plugin: use `qtpy`
 
