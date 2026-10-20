@@ -135,48 +135,50 @@ napari's needs:
   signal system used across the pyapp-kit and napari ecosystem; its evented
   containers and models were spun out of code originally written for napari.
 
-```{dropdown} Archived and historical repositories
+:::{dropdown} Archived and historical repositories
 
 Archived repositories are included here for completeness. In most cases, new
 work should start in a different repository.
 
 - [cookiecutter-napari-plugin](https://github.com/napari/cookiecutter-napari-plugin):
-  predecessor to `napari-plugin-template`. -
-  [dummy-test-plugin](https://github.com/napari/dummy-test-plugin): testing
-  plugin used for plugin-system development. -
-  [image-types](https://github.com/napari/image-types): type-definition
-  experiment for image-oriented Python code. -
-  [jupyterlab-bot](https://github.com/napari/jupyterlab-bot): historical
-  fork. - [magicgui](https://github.com/napari/magicgui): mirror of the
-  upstream `pyapp-kit/magicgui` project. -
-  [napari-core](https://github.com/napari/napari-core): early core repository
-  from before the current `napari` layout. -
-  [napari-data](https://github.com/napari/napari-data): example-data
-  repository. -
-  [napari-hello-world](https://github.com/napari/napari-hello-world): example
-  plugin repository. - [napari-io](https://github.com/napari/napari-io): early
-  IO plugin repository. -
-  [napari-language-packs](https://github.com/napari/napari-language-packs):
-  repository for downloadable language packs for the napari UI. -
-  [napari-plugin-devtools](https://github.com/napari/napari-plugin-devtools):
-  tooling repo for plugin developers. -
-  [napari-plugin-engine](https://github.com/napari/napari-plugin-engine):
-  legacy plugin engine based on pluggy. -
-  [napari-scipy2025-workshop](https://github.com/napari/napari-scipy2025-workshop):
-  workshop-specific repository for the SciPy 2025 napari tutorial materials. -
-  [napari-web-experimental](https://github.com/napari/napari-web-experimental):
-  archived exploration of a possible web front end. -
-  [napari-workshop-template](https://github.com/napari/napari-workshop-template):
-  template for creating napari workshop websites and materials. -
-  [napari-xarray](https://github.com/napari/napari-xarray): integration work
-  for xarray-based data and labeled nD arrays in napari. Now in core napari. -
-  [old-docs](https://github.com/napari/old-docs): documentation repository from
-  an older docs system. -
-  [plugin-cookiecutter](https://github.com/napari/plugin-cookiecutter): early
-  plugin cookiecutter repository. -
-  [product-heuristics-2020](https://github.com/napari/product-heuristics-2020):
-  product-heuristics snapshot from 2020. -
-  [superqt](https://github.com/napari/superqt): mirror of the upstream
+  predecessor to `napari-plugin-template`.
+- [dummy-test-plugin](https://github.com/napari/dummy-test-plugin): testing
+  plugin used for plugin-system development.
+- [image-types](https://github.com/napari/image-types): type-definition
+  experiment for image-oriented Python code.
+- [jupyterlab-bot](https://github.com/napari/jupyterlab-bot): historical
+  fork.
+- [magicgui](https://github.com/napari/magicgui): mirror of the
+  upstream `pyapp-kit/magicgui` project.
+- [napari-core](https://github.com/napari/napari-core): early core repository
+  from before the current `napari` layout.
+- [napari-data](https://github.com/napari/napari-data): example-data
+  repository.
+- [napari-hello-world](https://github.com/napari/napari-hello-world): example
+  plugin repository.
+- [napari-io](https://github.com/napari/napari-io): early
+  IO plugin repository.
+- [napari-language-packs](https://github.com/napari/napari-language-packs):
+  repository for downloadable language packs for the napari UI.
+- [napari-plugin-devtools](https://github.com/napari/napari-plugin-devtools):
+  tooling repo for plugin developers.
+- [napari-plugin-engine](https://github.com/napari/napari-plugin-engine):
+  legacy plugin engine based on pluggy.
+- [napari-scipy2025-workshop](https://github.com/napari/napari-scipy2025-workshop):
+  workshop-specific repository for the SciPy 2025 napari tutorial materials.
+- [napari-web-experimental](https://github.com/napari/napari-web-experimental):
+  archived exploration of a possible web front end.
+- [napari-workshop-template](https://github.com/napari/napari-workshop-template):
+  template for creating napari workshop websites and materials.
+- [napari-xarray](https://github.com/napari/napari-xarray): integration work
+  for xarray-based data and labeled nD arrays in napari. Now in core napari.
+- [old-docs](https://github.com/napari/old-docs): documentation repository from
+  an older docs system.
+- [plugin-cookiecutter](https://github.com/napari/plugin-cookiecutter): early
+  plugin cookiecutter repository.
+- [product-heuristics-2020](https://github.com/napari/product-heuristics-2020):
+  product-heuristics snapshot from 2020.
+- [superqt](https://github.com/napari/superqt): mirror of the upstream
   `pyapp-kit/superqt` project.
 
-```
+:::
