@@ -48,6 +48,8 @@ jobs:
 
       - name: Run link checker
         uses: aganders3/headless-gui@f85dd6316993505dfc5f21839d520ae440c84816 # v2.2
+        # a step timeout fails the step, so the issue step still runs
+        timeout-minutes: 120
         env:
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.12_docs.txt
         with:
