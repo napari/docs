@@ -1,7 +1,7 @@
 # napari 0.10.0
 ⚠️ *Note: these release notes are still in draft while 0.10.0rc0 is in prerelease testing.* ⚠️
 
-*Sun, Oct 25, 2026*
+*Mon, Oct 26, 2026*
 
 We're happy to announce the release of napari 0.10.0!
 napari is a fast, interactive, multi-dimensional image viewer for Python.
@@ -16,7 +16,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 ## Highlights
 
-This release contains several new features and many, many enhancements and bugfixes. We also welcomed a ton of new contributors to the community!
+This release contains several new features and many enhancements and bugfixes. We also welcomed a ton of new contributors to the community!
 
 ### Grid Lines, axes and ticks
 This features has been requested for years, and we finally managed to get a version that we're happy with! With [#7827](https://github.com/napari/napari/pull/7827), you can now use `viewer.scene.overlays.grid_lines` to display a grid on your data, including unit-aware tick marks and axis labels! Try it out:
@@ -57,13 +57,13 @@ viewer.canvas.grid.stride = 2
 
 ### Cursor crosshair
 
-Ever use the [grid mode](https://napari.org/stable/gallery/grid_mode.html#grid-mode) for your miltichannel data but then struggle to know where you're clicking? Struggle no more! You can now enable the new crosshair overlay ([#8017](https://github.com/napari/napari/pull/8017)) to always locate your exact position in every viewbox.
+Ever use the [grid mode](https://napari.org/stable/gallery/grid_mode.html#grid-mode) for your multichannel data but then struggle to know where you're clicking? Struggle no more! You can now enable the new crosshair overlay ([#8017](https://github.com/napari/napari/pull/8017)) to always locate your exact position in every viewbox.
 
-![screenshot of the viewer with grid-mode and the crosshair enabled](https://github.com/user-attachments/assets/62f1b045-60cc-4e4a-808b-c7e9934d683d)
+![screenshot of the viewer with grid-mode and the crosshair enabled](https://github.com/user-attachments/assets/cff866f3-fa28-42a8-a8df-94062b118573)
 
 ### Default dock area and tabify for plugin dock widgets
 
-Some plugin dock widgets are wider than they are tall, fitting poorly on the right-side dock and forcing users to manually move the widget to a different area every time on first launch. With [#9526](https://github.com/napari/napari/pull/9526)) and ([#9707](https://github.com/napari/napari/pull/9707), you can now specify a default dock area and tabify behaviour for a dock widget contribution, which will prevent the need for this manual step:
+Some plugin dock widgets are wider than they are tall, fitting poorly on the right-side dock and forcing users to manually move the widget to a different area every time on first launch. With [#9526](https://github.com/napari/napari/pull/9526)) and ([#9707](https://github.com/napari/napari/pull/9707), you can now specify a default dock area and tabify behaviour for a dock widget contribution, which will prevent the need for this manual rearranging step:
 
 ```yaml
   widgets:
@@ -92,7 +92,7 @@ We started warning about this in release v0.8.0; it is now time to fully drop su
 
 ### Tidied up mouse callbacks
 
-Custom mouse callbacks can be [defined via generators](https://napari.org/stable/howtos/extending/connecting_events.html#listening-for-mouse-events). Some quirks with this machinery have been smoothed out and some bugs fixed ([#9513](https://github.com/napari/napari/pull/9513)); this might result in some callbacks to no longer work as before. In principle, this should only affect callbacks that relied on buggy behaviour, but please make sure to check if your old callbacks are still working, and open an issue on the napari repository if that's not the case.
+Custom mouse callbacks can be [defined via generators](https://napari.org/stable/howtos/extending/connecting_events.html#listening-for-mouse-events). Some quirks with this machinery have been smoothed out and some bugs fixed ([#9513](https://github.com/napari/napari/pull/9513)); this might cause some callbacks to no longer work as before. In principle, this should only affect callbacks that relied on buggy behavior, but please make sure to check if your old callbacks are still working, and open an issue on the napari repository if that's not the case.
 
 A notable change is that `mouse_move` callbacks previously did not work during `drag`, but now they do. If that's not what you want, guard your callback with `if not event.is_dragging`!
 
@@ -131,6 +131,8 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Add Grid toggle action ([#9646](https://github.com/napari/napari/pull/9646))
 - Fix reporting of Qt version in `napari --info` ([#9648](https://github.com/napari/napari/pull/9648))
 - Use vispy text scaling for smooth text calculations ([#9735](https://github.com/napari/napari/pull/9735))
+- fix: `axis_labels` is no longer set in the viewer dims after layer creation in `imshow` ([#9749](https://github.com/napari/napari/pull/9749))
+- Crosshair Overlay colored lines like scene/canvas axes ([#9755](https://github.com/napari/napari/pull/9755))
 
 ## Performance
 
@@ -171,7 +173,10 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - fix: timeout of notifications in a stack and after regain of window focus (#9560) ([#9731](https://github.com/napari/napari/pull/9731))
 - Fix screenshot with scale!=1 ([#9738](https://github.com/napari/napari/pull/9738))
 - Effectively revert PR #8725 so viewer shows when files are opened from CLI ([#9747](https://github.com/napari/napari/pull/9747))
+- fix: `axis_labels` is no longer set in the viewer dims after layer creation in `imshow` ([#9749](https://github.com/napari/napari/pull/9749))
 - Fix `canvas_to_world` calculation with grid spacing ([#9752](https://github.com/napari/napari/pull/9752))
+- fix: preserve thick-slice margins under scale flips ([#9759](https://github.com/napari/napari/pull/9759))
+- fix: update return_annotation in create_func to use cls_name rather than cls ([#9765](https://github.com/napari/napari/pull/9765))
 
 ## Documentation
 
@@ -246,11 +251,12 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - TYP: add type hints in `_proxies.py` , `_migrations.py` , `_fields.py` and `_base.py` ([#9719](https://github.com/napari/napari/pull/9719))
 - Change all `exec_` to `exec` for Qt objects ([#9725](https://github.com/napari/napari/pull/9725))
 - Update links in doc strings to point to the Qt6 documentation. ([#9726](https://github.com/napari/napari/pull/9726))
+- Apply `QCheckBox.stateChanged` to `QCheckBox.toggled` migration ([#9727](https://github.com/napari/napari/pull/9727))
 - Update `certifi`, `hypothesis`, `npe2`, `pillow`, `platformdirs`, `pydantic-settings`, `superqt`, `tifffile`, `virtualenv`, `wrapt` ([#9736](https://github.com/napari/napari/pull/9736))
 - Use QEnumComboBox for depiction control ([#9742](https://github.com/napari/napari/pull/9742))
 
 
-## 20 authors added to this release (alphabetical)
+## 23 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -260,6 +266,8 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - [Bruno Pannunzio](https://github.com/napari/napari/commits?author=bruno-pannunzio) - @bruno-pannunzio +
 - [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) - @carlosmariorr
 - [Chirag Anand](https://github.com/napari/napari/commits?author=chirag-433) - @chirag-433 +
+- [Clément Caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal
+- [Felipe Cybis Pereira](https://github.com/napari/napari/commits?author=FelipeCybis) - @FelipeCybis +
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) ([docs](https://github.com/napari/docs/commits?author=jacopoabramo))  - @jacopoabramo
 - [KRiedmiller](https://github.com/napari/napari/commits?author=KRiedmiller) - @KRiedmiller +
@@ -271,11 +279,12 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - [Mridul Seth](https://github.com/napari/napari/commits?author=MridulS) - @MridulS
 - [Omkar Kabde](https://github.com/napari/napari/commits?author=omkar-334) ([docs](https://github.com/napari/docs/commits?author=omkar-334))  - @omkar-334
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
+- [Samuel Le Meur-Diebolt](https://github.com/napari/napari/commits?author=sdiebolt) - @sdiebolt
 - [Sesan](https://github.com/napari/napari/commits?author=Olusesan) ([docs](https://github.com/napari/docs/commits?author=Olusesan))  - @Olusesan
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [ymka](https://github.com/napari/napari/commits?author=i-ymka) - @i-ymka +
 
-## 17 reviewers added to this release (alphabetical)
+## 18 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -285,6 +294,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) - @carlosmariorr
 - [Carol Willing](https://github.com/napari/docs/commits?author=willingc) - @willingc
 - [Caroline Malin-Mayor](https://github.com/napari/docs/commits?author=cmalinmayor) - @cmalinmayor
+- [Clément Caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal +
 - [Draga Doncila Pop](https://github.com/napari/docs/commits?author=DragaDoncila) - @DragaDoncila
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) ([docs](https://github.com/napari/docs/commits?author=jacopoabramo))  - @jacopoabramo
