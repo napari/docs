@@ -403,7 +403,7 @@ def reset_napari(gallery_conf, fname):
     # Disabling `QApplication.exec_` means example scripts can call `exec_`
     # (scripts work when run normally) without blocking example execution by
     # sphinx-gallery. (from qtgallery)
-    QApplication.exec_ = lambda _: None
+    QApplication.exec = lambda _: None
 
 
 def napari_scraper(block, block_vars, gallery_conf):
