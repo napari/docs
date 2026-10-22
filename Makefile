@@ -50,10 +50,10 @@ endif
 clean-full: clean-prep clean-gallery
 
 prefetch-gallery:
-	python $(docs_dir)/_scripts/prefetch_data.py gallery
+	python $(docs_dir)/_scripts/prefetch_gallery_data.py
 
 prefetch-notebooks:
-	python $(docs_dir)/_scripts/prefetch_data.py notebooks
+	python $(docs_dir)/_scripts/prefetch_notebook_data.py
 
 # data needed by a build that executes both notebooks and the gallery
 prefetch: prefetch-gallery prefetch-notebooks
