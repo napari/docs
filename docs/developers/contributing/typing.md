@@ -98,6 +98,140 @@ treat editor suggestions as a hint and `tox -e pyrefly` as the standard.
   [NumPy typing guide](https://numpy.org/doc/stable/reference/typing.html),
   including about `npt.ArrayLike` for inputs that can be converted to arrays.
 
+## Common patterns, with examples
+
+The snippets below are trimmed from napari's own source, so you can open the
+linked file to see each one in context.
+
+### Imports needed only for annotations
+
+[`components/_layer_slicer.py`](https://github.com/napari/napari/blob/main/src/napari/components/_layer_slicer.py)
+needs `Dims` only to annotate a parameter, so the import sits under
+`TYPE_CHECKING` and is never executed at runtime:
+
+```python
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Protocol
+
+if TYPE_CHECKING:
+    from napari.components import Dims
+
+
+class _SliceRequest(Protocol):
+    id: int
+
+    def __call__(self) -> Any: ...
+
+
+class _AsyncSliceable(Protocol):
+    def _make_slice_request(self, dims: Dims) -> _SliceRequest: ...
+```
+
+On Python versions before 3.14, without the `__future__` import,
+`dims: Dims` would be evaluated when the class is defined and raise a
+`NameError`, because `Dims` only exists for the checker.
+
+### Values that may be `None`
+
+Write `X | None` for an optional value and `X | Y` for a union. They mean the
+same as `Optional[X]` and `Union[X, Y]`, which you will still see in older
+modules. Ruff's automatic rewrite (`UP007`, `UP045`) is currently disabled in
+napari's `pyproject.toml`, so leave existing annotations as they are unless you
+are changing that code anyway. From
+[`utils/status_messages.py`](https://github.com/napari/napari/blob/main/src/napari/utils/status_messages.py):
+
+```python
+from typing import Any
+
+DEFAULT_PRECISION = 3
+
+
+def format_float(
+    value: Any, precision: int | None = None, format_mode: str = 'g'
+) -> str:
+    if precision is None:
+        precision = DEFAULT_PRECISION
+    # from here on, the checker knows that `precision` is an `int`
+    return f'{value:0.{precision}{format_mode}}'
+```
+
+The `is None` check is the kind of narrowing that should be preferred to
+`cast()`. Because napari requires Python 3.11 or newer, `int | None` also works
+where annotations are evaluated at runtime, such as magicgui and Pydantic.
+
+### NumPy arrays
+
+[`utils/_indexing.py`](https://github.com/napari/napari/blob/main/src/napari/utils/_indexing.py)
+pins the dtype but not the shape, because the function works for any number of
+dimensions:
+
+```python
+import numpy as np
+import numpy.typing as npt
+
+
+def elements_in_slice(
+    index: tuple[npt.NDArray[np.int_], ...], position_in_axes: dict[int, int]
+) -> npt.NDArray[np.bool_]: ...
+```
+
+Functions that pass their input through `np.asarray` accept `npt.ArrayLike`
+instead, so lists and tuples work as well as arrays, and return the concrete
+array they built. From
+[`utils/geometry.py`](https://github.com/napari/napari/blob/main/src/napari/utils/geometry.py):
+
+```python
+def intersect_line_with_plane_3d(
+    line_position: npt.ArrayLike,
+    line_direction: npt.ArrayLike,
+    plane_position: npt.ArrayLike,
+    plane_normal: npt.ArrayLike,
+) -> np.ndarray: ...
+```
+
+### Protocols for "anything that behaves like an array"
+
+Layers accept NumPy, dask, zarr and other arrays without napari depending on
+all of them. Instead of a union of array classes,
+[`layers/_data_protocols.py`](https://github.com/napari/napari/blob/main/src/napari/layers/_data_protocols.py)
+describes what napari actually uses. Trimmed:
+
+```python
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Protocol, runtime_checkable
+
+if TYPE_CHECKING:
+    from numpy.typing import DTypeLike
+
+
+@runtime_checkable
+class LayerDataProtocol(Protocol):
+    @property
+    def dtype(self) -> DTypeLike: ...
+
+    @property
+    def shape(self) -> tuple[int, ...]: ...
+
+    @property
+    def ndim(self) -> int: ...
+```
+
+Any object with these members satisfies the protocol, without inheriting from
+it, and functions such as `calc_data_range` in
+[`layers/utils/layer_utils.py`](https://github.com/napari/napari/blob/main/src/napari/layers/utils/layer_utils.py)
+annotate their input with it:
+
+```python
+def calc_data_range(
+    data: LayerDataProtocol, rgb: bool = False, dtype: np.dtype | None = None
+) -> tuple[float, float]: ...
+```
+
+`@runtime_checkable` is only needed if you also want `isinstance()` checks,
+which `assert_protocol` in the same file uses to report missing members.
+
 ## When the check complains
 
 Suppressing should be rare. Most types can be written honestly, and a
@@ -172,3 +306,18 @@ wrong with the type it could see.
 - [Type hints cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
   — syntax suggestions to copy. It is written for mypy, but the syntax is the
   same.
+- [`typing` module reference](https://docs.python.org/3/library/typing.html)
+  — the standard library documentation for `TYPE_CHECKING`, `Protocol`,
+  `cast` and the other names used above.
+- [Static Typing with Python](https://typing.python.org/en/latest/) — the
+  checker-neutral guides and the typing specification, including a
+  [protocols reference](https://typing.python.org/en/latest/reference/protocols.html).
+- [mypy documentation](https://mypy.readthedocs.io/en/stable/) — its
+  [protocols](https://mypy.readthedocs.io/en/stable/protocols.html) and
+  [kinds of types](https://mypy.readthedocs.io/en/stable/kinds_of_types.html)
+  pages explain unions, `None` and narrowing with examples.
+- [NumPy typing](https://numpy.org/doc/stable/reference/typing.html) —
+  `npt.NDArray`, `npt.ArrayLike` and `npt.DTypeLike`.
+- [pyrefly error kinds](https://pyrefly.org/en/docs/error-kinds/) — what each
+  `[error-kind]` in a pyrefly message means, for writing targeted
+  suppressions.
