@@ -15,7 +15,7 @@ members in various roles supported by grants. They are listed below under the
 
 ## Current Core Team Members
 
-- [Aniket Singh Yadav](https://github.com/napari/napari/commits?author=Aniketsy) -
+- [Aniket Singh Yadav](https://github.com/napari/napari/commits?author=Aniketsy)* -
   [@Aniketsy](https://github.com/Aniketsy)
 - [Ashley Anderson](https://github.com/napari/napari/commits?author=aganders3) -
   [@aganders3](https://github.com/aganders3)
@@ -27,7 +27,7 @@ members in various roles supported by grants. They are listed below under the
   [@DragaDoncila](https://github.com/DragaDoncila)
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) -
   [@Czaki](https://github.com/Czaki)
-- [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) -
+- [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo)* -
   [@jacopoabramo](https://github.com/jacopoabramo)
 - [Jaime Rodríguez-Guerra](https://github.com/napari/napari/commits?author=jaimergp) -
   [@jaimergp](https://github.com/jaimergp)
@@ -49,6 +49,8 @@ members in various roles supported by grants. They are listed below under the
   [@TimMonko](https://github.com/TimMonko)
 - [Wouter-Michiel Vierdag](https://github.com/napari/napari/commits?author=melonora) -
   [@melonora](https://github.com/melonora)
+
+\* Former triage team members nominated to the core team.
 
 ## Emeritus Core Team Members
 
