@@ -92,7 +92,6 @@ def prep_npe2():
 
 
 def main(stubs=False):
-    __import__("prefetch_data").main()
     if stubs:
         # prep_npe2()
         # Generate stub files for plugin docs
