@@ -1,0 +1,16 @@
+{# Overrides napari-sphinx-theme's (and pydata-sphinx-theme's) default
+   search-button-field navbar component (referenced via the theme's
+   navbar_persistent option). Mounts a Pagefind-based widget instead,
+   which also merges in results from sibling napari.org sub-sites (see
+   napari-search-widget.js). The theme renders its navbar more than once
+   per page (desktop/mobile variants), so this template — and therefore
+   this script tag — is included more than once; napari-search-widget.js
+   is written to handle that. #}
+<div class="napari-search bd-search d-flex align-items-center"></div>
+<script
+  src="{{ pathto('_static/napari-search-widget.js', 1) }}"
+  data-bundle-path="{{ pathto('', 1) }}pagefind/"
+  data-merge-paths="/workshops/pagefind/"
+  data-mount=".napari-search"
+  defer
+></script>
