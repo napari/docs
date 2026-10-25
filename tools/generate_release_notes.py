@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import NamedTuple
 
 from packaging.version import parse as parse_version
-
 from release_utils import (
     BOT_LIST,
     GH,
@@ -37,15 +36,11 @@ class PRInfo(NamedTuple):
 
 def parse_pr_num(pr_num):
     if match := PR_REGEXP.match(pr_num):
-        return PRInfo(
-            match.group('user'), match.group('repo'), int(match.group('pr'))
-        )
+        return PRInfo(match.group('user'), match.group('repo'), int(match.group('pr')))
     try:
         return int(pr_num)
     except ValueError as err:
-        raise argparse.ArgumentTypeError(
-            f'{pr_num} is not a valid PR number.'
-        ) from err
+        raise argparse.ArgumentTypeError(f'{pr_num} is not a valid PR number.') from err
 
 
 parser = argparse.ArgumentParser(usage=__doc__)
@@ -88,9 +83,7 @@ if not args.no_cache:
 repo = get_repo()
 correction_dict = get_correction_dict(
     args.correction_file
-) | get_corrections_from_citation_cff(
-    LOCAL_DIR / REPO_DIR_NAME / 'CITATION.cff'
-)
+) | get_corrections_from_citation_cff(LOCAL_DIR / REPO_DIR_NAME / 'CITATION.cff')
 
 
 def add_to_users(users_dkt, new_user):
@@ -203,9 +196,7 @@ if args.with_pr is not None:
             pulls_to_parse.append((pr_num.pr, r.full_name))
 
 doc_pulls = list(
-    iter_pull_request(
-        f'milestone:{args.milestone} {args.merged}', repo=GH_DOCS_REPO
-    )
+    iter_pull_request(f'milestone:{args.milestone} {args.merged}', repo=GH_DOCS_REPO)
 )
 
 for pull in doc_pulls:
@@ -276,9 +267,7 @@ if args.target_directory is None:
     file_handle = sys.stdout
 else:
     res_file_name = f'release_{args.milestone.replace(".", "_")}.md'
-    file_handle = open(
-        args.target_directory / res_file_name, 'w', encoding='utf-8'
-    )
+    file_handle = open(args.target_directory / res_file_name, 'w', encoding='utf-8')
     for file_path in args.target_directory.glob('release_*.md'):
         if file_path.name == res_file_name:
             continue
@@ -358,10 +347,7 @@ print(effver_info, file=file_handle)
 
 for section, pull_request_dicts in highlights.items():
     section_path = (
-        LOCAL_DIR
-        / 'additional_notes'
-        / args.milestone
-        / f'{section.lower()}.md'
+        LOCAL_DIR / 'additional_notes' / args.milestone / f'{section.lower()}.md'
     )
 
     if not section_path.exists() and not pull_request_dicts:
@@ -410,8 +396,7 @@ for section_name, contributor_set in contributors.items():
     if None in contributor_set:
         contributor_set.remove(None)
     committer_str = (
-        f'## {len(contributor_set)} {section_name} added to this '
-        'release (alphabetical)'
+        f'## {len(contributor_set)} {section_name} added to this release (alphabetical)'
     )
     print(committer_str, file=file_handle)
     print('', file=file_handle)
@@ -422,8 +407,7 @@ for section_name, contributor_set in contributors.items():
         if c in authors and c in docs_authors:
             first_repo_name = GH_REPO
             second_repo_str = (
-                f' ([docs](https://{GH}/{GH_USER}/'
-                f'{GH_DOCS_REPO}/commits?author={c})) '
+                f' ([docs](https://{GH}/{GH_USER}/{GH_DOCS_REPO}/commits?author={c})) '
             )
         elif c in authors:
             first_repo_name = GH_REPO
@@ -433,9 +417,7 @@ for section_name, contributor_set in contributors.items():
             second_repo_str = ''
 
         first = ' +' if c in new_contributors else ''
-        commit_link = (
-            f'https://{GH}/{GH_USER}/{first_repo_name}/commits?author={c}'
-        )
+        commit_link = f'https://{GH}/{GH_USER}/{first_repo_name}/commits?author={c}'
         print(
             f'- [{users[c]}]({commit_link}){second_repo_str} - @{c}{first}',
             file=file_handle,

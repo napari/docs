@@ -147,9 +147,7 @@ def get_milestone(
 def get_split_date(previous_release, rev='main'):
     common_ancestor = get_common_ancestor(previous_release, rev)
     remote_commit = get_repo().get_commit(common_ancestor.hexsha)
-    return datetime.strptime(
-        remote_commit.last_modified, '%a, %d %b %Y %H:%M:%S %Z'
-    )
+    return datetime.strptime(remote_commit.last_modified, '%a, %d %b %Y %H:%M:%S %Z')
 
 
 def iter_pull_request(additional_query, user=GH_USER, repo=GH_REPO):
@@ -258,9 +256,7 @@ def get_corrections_from_citation_cff(
     res = {}
     for author in cff_data['authors']:
         if 'alias' in author:
-            res[author['alias']] = (
-                f'{author["given-names"]} {author["family-names"]}'
-            )
+            res[author['alias']] = f'{author["given-names"]} {author["family-names"]}'
     return res
 
 
