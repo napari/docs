@@ -42,8 +42,10 @@ def parse_pr_num(pr_num):
         )
     try:
         return int(pr_num)
-    except ValueError:
-        raise argparse.ArgumentTypeError(f'{pr_num} is not a valid PR number.')
+    except ValueError as err:
+        raise argparse.ArgumentTypeError(
+            f'{pr_num} is not a valid PR number.'
+        ) from err
 
 
 parser = argparse.ArgumentParser(usage=__doc__)
@@ -76,7 +78,6 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
-
 
 version = parse_version(args.tag)
 
