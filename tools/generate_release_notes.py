@@ -206,7 +206,10 @@ for pull in doc_pulls:
     if not is_merged:
         non_merged_pr.append(pull)
 
-with ThreadPoolExecutor(max_workers=10) as executor:
+# cache is not threadsafe
+max_workers = 10 if args.no_cache else 1
+
+with ThreadPoolExecutor(max_workers=max_workers) as executor:
     list(executor.map(lambda x: parse_pull(*x), pulls_to_parse))
 
 for pull in doc_pulls:
@@ -216,7 +219,7 @@ for pull in doc_pulls:
 
     summary = pull.title
 
-    with ThreadPoolExecutor(max_workers=10) as executor:
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
         # We need reviews for docs PRs too
         reviews = list(pull.get_reviews())
         for review in reviews:
