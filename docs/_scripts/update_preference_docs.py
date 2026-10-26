@@ -256,7 +256,8 @@ def generate_images():
         QMessageBox.Icon.Question,
         'Restore Settings',
         'Are you sure you want to restore default settings?',
-        QMessageBox.RestoreDefaults | QMessageBox.Cancel,
+        QMessageBox.StandardButton.RestoreDefaults
+        | QMessageBox.StandardButton.Cancel,
         pref,
     )
     box.show()
@@ -267,7 +268,7 @@ def generate_images():
         box.reject()
 
     QTimer.singleShot(300, grab)
-    app.exec_()
+    app.exec()
 
 
 def create_preferences_docs():

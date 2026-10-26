@@ -400,7 +400,7 @@ def reset_napari(gallery_conf, fname):
     settings = get_settings()
     settings.appearance.theme = 'dark'
 
-    # Disabling `QApplication.exec_` means example scripts can call `exec_`
+    # Disabling `QApplication.exec` means example scripts can call `exec`
     # (scripts work when run normally) without blocking example execution by
     # sphinx-gallery. (from qtgallery)
     QApplication.exec = lambda _: None
