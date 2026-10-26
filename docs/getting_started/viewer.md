@@ -824,6 +824,8 @@ Scene overlays live on `viewer.scene.overlays`:
 - Grid Lines (`viewer.scene.overlays.grid_lines`): displays a smartly-resizing,
   unit-aware grid behind the data, and optionally tick marks and axis labels
   (on by default).
+- Crosshair (`viewer.scene.overlays.crosshair`): displays a crosshair at the
+  cursor; especially useful with multiple layers in grid mode.
 
 These overlays can also be accessed via graphical interface through the
 **View** menu and their respective submenus.
