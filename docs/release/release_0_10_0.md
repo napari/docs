@@ -178,7 +178,6 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Fix `canvas_to_world` calculation with grid spacing ([#9752](https://github.com/napari/napari/pull/9752))
 - fix: preserve thick-slice margins under scale flips ([#9759](https://github.com/napari/napari/pull/9759))
 - fix: update return_annotation in create_func to use cls_name rather than cls ([#9765](https://github.com/napari/napari/pull/9765))
-- Use weakref for qt notification instances ([#9774](https://github.com/napari/napari/pull/9774))
 - Set minimum version of pyside6 to 6.8.3 ([#9775](https://github.com/napari/napari/pull/9775))
 - Cancel all pending notifications on close of napari main window. ([#9776](https://github.com/napari/napari/pull/9776))
 - Fix cursor position calculation for 2d data in 3d scene ([#9781](https://github.com/napari/napari/pull/9781))
@@ -204,6 +203,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Mock `exec` in place of `exec_` ([docs#1176](https://github.com/napari/docs/pull/1176))
 - Use data.napari.org for nilearn data for prefetch step ([docs#1178](https://github.com/napari/docs/pull/1178))
 - Drop PyQt5 in docs ([docs#1181](https://github.com/napari/docs/pull/1181))
+- Update release notes v0.10.0rc1 ([docs#1182](https://github.com/napari/docs/pull/1182))
 - Add Aniket and Jacopo to the core team section ([docs#1184](https://github.com/napari/docs/pull/1184))
 - The (almost) Everything example ([#9319](https://github.com/napari/napari/pull/9319))
 - Add info in tooltips for projection mode ([#9497](https://github.com/napari/napari/pull/9497))
@@ -269,6 +269,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Use QEnumComboBox for depiction control ([#9742](https://github.com/napari/napari/pull/9742))
 - Use pooch mocking machinery to fetch scikit-mage data from our server ([#9772](https://github.com/napari/napari/pull/9772))
 - Apply missing changes of PyQt5 drop ([#9779](https://github.com/napari/napari/pull/9779))
+- Update `certifi`, `coverage`, `hypothesis`, `napari-console`, `pandas`, `pint`, `pydantic-settings`, `virtualenv` ([#9791](https://github.com/napari/napari/pull/9791))
 
 
 ## 23 authors added to this release (alphabetical)
