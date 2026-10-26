@@ -135,7 +135,7 @@ napari's needs:
   signal system used across the pyapp-kit and napari ecosystem; its evented
   containers and models were spun out of code originally written for napari.
 
-```{dropdown} Archived and historical repositories
+:::{dropdown} Archived and historical repositories
 
 Archived repositories are included here for completeness. In most cases, new
 work should start in a different repository.
@@ -146,16 +146,18 @@ work should start in a different repository.
   plugin used for plugin-system development.
 - [image-types](https://github.com/napari/image-types): type-definition
   experiment for image-oriented Python code.
-- [jupyterlab-bot](https://github.com/napari/jupyterlab-bot): historical fork.
-- [magicgui](https://github.com/napari/magicgui): mirror of the upstream
-  `pyapp-kit/magicgui` project.
+- [jupyterlab-bot](https://github.com/napari/jupyterlab-bot): historical
+  fork.
+- [magicgui](https://github.com/napari/magicgui): mirror of the
+  upstream `pyapp-kit/magicgui` project.
 - [napari-core](https://github.com/napari/napari-core): early core repository
   from before the current `napari` layout.
 - [napari-data](https://github.com/napari/napari-data): example-data
   repository.
 - [napari-hello-world](https://github.com/napari/napari-hello-world): example
   plugin repository.
-- [napari-io](https://github.com/napari/napari-io): early IO plugin repository.
+- [napari-io](https://github.com/napari/napari-io): early
+  IO plugin repository.
 - [napari-language-packs](https://github.com/napari/napari-language-packs):
   repository for downloadable language packs for the napari UI.
 - [napari-plugin-devtools](https://github.com/napari/napari-plugin-devtools):
@@ -179,4 +181,4 @@ work should start in a different repository.
 - [superqt](https://github.com/napari/superqt): mirror of the upstream
   `pyapp-kit/superqt` project.
 
-```
+:::
