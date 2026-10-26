@@ -181,6 +181,9 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Set minimum version of pyside6 to 6.8.3 ([#9775](https://github.com/napari/napari/pull/9775))
 - Cancel all pending notifications on close of napari main window. ([#9776](https://github.com/napari/napari/pull/9776))
 - Fix cursor position calculation for 2d data in 3d scene ([#9781](https://github.com/napari/napari/pull/9781))
+- Fix crosshair color of Z-axis for 2D data in 3D view ([#9796](https://github.com/napari/napari/pull/9796))
+- Fix overlay draws during new viewboxes from new layers ([#9799](https://github.com/napari/napari/pull/9799))
+- Fix PySide6 Qt version check truncating patch component ([#9800](https://github.com/napari/napari/pull/9800))
 
 ## Documentation
 
@@ -205,6 +208,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Drop PyQt5 in docs ([docs#1181](https://github.com/napari/docs/pull/1181))
 - Update release notes v0.10.0rc1 ([docs#1182](https://github.com/napari/docs/pull/1182))
 - Add Aniket and Jacopo to the core team section ([docs#1184](https://github.com/napari/docs/pull/1184))
+- Add crosshair mention ([docs#1188](https://github.com/napari/docs/pull/1188))
 - The (almost) Everything example ([#9319](https://github.com/napari/napari/pull/9319))
 - Add info in tooltips for projection mode ([#9497](https://github.com/napari/napari/pull/9497))
 - Clarify in `LayerList` docstring when the `changed` event is emitted ([#9504](https://github.com/napari/napari/pull/9504))
@@ -267,12 +271,13 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Apply `QCheckBox.stateChanged` to `QCheckBox.toggled` migration ([#9727](https://github.com/napari/napari/pull/9727))
 - Update `certifi`, `hypothesis`, `npe2`, `pillow`, `platformdirs`, `pydantic-settings`, `superqt`, `tifffile`, `virtualenv`, `wrapt` ([#9736](https://github.com/napari/napari/pull/9736))
 - Use QEnumComboBox for depiction control ([#9742](https://github.com/napari/napari/pull/9742))
+- [pre-commit.ci] pre-commit autoupdate ([#9753](https://github.com/napari/napari/pull/9753))
 - Use pooch mocking machinery to fetch scikit-mage data from our server ([#9772](https://github.com/napari/napari/pull/9772))
 - Apply missing changes of PyQt5 drop ([#9779](https://github.com/napari/napari/pull/9779))
 - Update `certifi`, `coverage`, `hypothesis`, `napari-console`, `pandas`, `pint`, `pydantic-settings`, `virtualenv` ([#9791](https://github.com/napari/napari/pull/9791))
 
 
-## 23 authors added to this release (alphabetical)
+## 24 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -285,6 +290,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - [Clément Caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal
 - [Felipe Cybis Pereira](https://github.com/napari/napari/commits?author=FelipeCybis) - @FelipeCybis +
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
+- [imaddde867](https://github.com/napari/napari/commits?author=imaddde867) - @imaddde867 +
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) ([docs](https://github.com/napari/docs/commits?author=jacopoabramo))  - @jacopoabramo
 - [KRiedmiller](https://github.com/napari/napari/commits?author=KRiedmiller) - @KRiedmiller +
 - [lettyz3](https://github.com/napari/napari/commits?author=lettyz3) - @lettyz3 +
