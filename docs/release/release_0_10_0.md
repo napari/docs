@@ -149,7 +149,6 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 
 - fix(shapes): pick shapes on a fractional slice key ([#9394](https://github.com/napari/napari/pull/9394))
 - Fix remove() mid-draw when removing shapes shifts the drawn shape's index ([#9441](https://github.com/napari/napari/pull/9441))
-- Fix logger from console 2 ([#9465](https://github.com/napari/napari/pull/9465))
 - Fix fuzzy finding and command highlighting in palette ([#9503](https://github.com/napari/napari/pull/9503))
 - Fix and unify mouse callback generator machinery ([#9513](https://github.com/napari/napari/pull/9513))
 - fix(qt): let a dock widget's minimum size shrink again when its content does ([#9532](https://github.com/napari/napari/pull/9532))
@@ -189,7 +188,6 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Document single-plane projection for points layer ([docs#1074](https://github.com/napari/docs/pull/1074))
 - Prepare tracks data docs ([docs#1132](https://github.com/napari/docs/pull/1132))
 - Typing Guide: Tips and Resources ([docs#1135](https://github.com/napari/docs/pull/1135))
-- Deprecation policy using time-based windows for removal ([docs#1138](https://github.com/napari/docs/pull/1138))
 - Rumdl: Enable more MD rules that require edits by hand (not autofixable) ([docs#1142](https://github.com/napari/docs/pull/1142))
 - Rumdl: Reflow all the docs to 79-char length ([docs#1144](https://github.com/napari/docs/pull/1144))
 - Clarify mouse event properties in the `3D interactivity guide` ([docs#1147](https://github.com/napari/docs/pull/1147))
@@ -206,6 +204,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Mock `exec` in place of `exec_` ([docs#1176](https://github.com/napari/docs/pull/1176))
 - Use data.napari.org for nilearn data for prefetch step ([docs#1178](https://github.com/napari/docs/pull/1178))
 - Drop PyQt5 in docs ([docs#1181](https://github.com/napari/docs/pull/1181))
+- Add Aniket and Jacopo to the core team section ([docs#1184](https://github.com/napari/docs/pull/1184))
 - The (almost) Everything example ([#9319](https://github.com/napari/napari/pull/9319))
 - Add info in tooltips for projection mode ([#9497](https://github.com/napari/napari/pull/9497))
 - Clarify in `LayerList` docstring when the `changed` event is emitted ([#9504](https://github.com/napari/napari/pull/9504))
@@ -300,7 +299,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 - [ymka](https://github.com/napari/napari/commits?author=i-ymka) - @i-ymka +
 
-## 19 reviewers added to this release (alphabetical)
+## 18 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -318,7 +317,6 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [lettyz3](https://github.com/napari/napari/commits?author=lettyz3) - @lettyz3 +
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
-- [Lundy Bernard](https://github.com/napari/napari/commits?author=lundybernard) ([docs](https://github.com/napari/docs/commits?author=lundybernard))  - @lundybernard +
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Sesan](https://github.com/napari/napari/commits?author=Olusesan) ([docs](https://github.com/napari/docs/commits?author=Olusesan))  - @Olusesan
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
