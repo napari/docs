@@ -675,7 +675,16 @@ linkcheck_allowed_redirects = {
     r'https://youtu\.be/.*': r'https://www\.youtube\.com/.*',
     r'https://github\.com/napari/napari/releases/download/.*': r'https://objects\.githubusercontent\.com/.*',
 }
-linkcheck_anchors_ignore = [r'^!', r'L\d+-L\d+', r'r\d+', r'issuecomment-\d+']
+# GitHub adds line, comment, readme, and issue anchors with JavaScript.
+# The fetched HTML does not contain them.
+linkcheck_anchors_ignore = [
+    r'^!',
+    r'L\d+',
+    r'r\d+',
+    r'issuecomment-\d+',
+    r'readme',
+    r'issue-\d+',
+]
 linkcheck_retries = 2
 linkcheck_ignore = [
     'https://napari.zulipchat.com/',
