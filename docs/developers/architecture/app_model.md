@@ -290,8 +290,8 @@ via `napari._qt._qapp_model.build_qmodel_menu`. This creates a
 the {class}`~app_model.backends.qt.QModelMenu` that creates `QAction` for the
 {class}`~app_model.types.Action` associated with that menu.
 
-{class}`~app_model.types.SubmenuItem`s are defined in
-[`napari/_app_model/_submenus.py`](https://github.com/napari/napari/blob/main/napari/_app_model/_submenus.py).
+{class}`~app_model.types.SubmenuItem`s are defined with their actions in
+[`napari/_app_model/actions`](https://github.com/napari/napari/tree/main/src/napari/_app_model/actions).
 These are registered during initialization of the napari `app`, in
 `NapariApplication`'s
 {meth}`~napari._app_model._app.NapariApplication.__init__`.
