@@ -716,6 +716,12 @@ linkcheck_ignore = [
     r'https://dancohen\.org/',
     r'https://(data|public)\.celltrackingchallenge\.net/',
     r'https://www\.slicer\.org',
+    # The napari examples and the npe2 docs templates hold these dead links.
+    # Remove each entry when its source repository gets the fix.
+    r'https://napari\.org/magicgui/api/_autosummary/magicgui\.widgets\._bases\.Widget\.html',
+    r'https://napari\.org/napari-scipy2025-workshop/notebooks/image_warping\.html',
+    r'https://napari\.org/stable/plugins/npe1\.html',
+    r'https://napari\.org/stable/tutorials/segmentation/annotate_segmentation\.html',
 ]
 
 rediraffe_redirects = {
