@@ -196,7 +196,8 @@ def generate_release_list(releases: List[Dict]) -> str:
             first_lines = release['highlights'].split('\n')[:2]
             preview = ' '.join(first_lines).strip()
             if len(preview) > 150:
-                preview = preview[:150] + '...'
+                # Cut at a space, so that the cut never splits a URL.
+                preview = preview[:150].rsplit(' ', 1)[0] + '...'
             if preview:
                 content += f' - {preview}'
 
