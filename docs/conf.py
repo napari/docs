@@ -699,6 +699,23 @@ linkcheck_ignore = [
     'https://napari-hub.org',
     'https://github.com/napari/napari/releases/latest',
     'https://onlinelibrary.wiley.com/doi/10.1002/col.20327',
+    # These hosts answer the link checker with 403 or 429.
+    r'https://grabcad\.com/',
+    r'https://hackmd\.io/',
+    r'https://human-organ-atlas\.esrf\.fr/',
+    r'https://labs\.quansight\.org',
+    r'https://medium\.com/',
+    r'https://nsis\.sourceforge\.io/',
+    r'https://sourceforge\.net/',
+    r'https://stackoverflow\.com/',
+    r'https://vimdoc\.sourceforge\.net/',
+    # These DOI prefixes resolve to publishers that answer with 403.
+    r'http://dx\.doi\.org/10\.1093/',
+    r'https://doi\.org/10\.1126/',
+    # These hosts do not accept connections from CI runners.
+    r'https://dancohen\.org/',
+    r'https://(data|public)\.celltrackingchallenge\.net/',
+    r'https://www\.slicer\.org',
 ]
 
 rediraffe_redirects = {
