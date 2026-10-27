@@ -232,6 +232,8 @@ myst_enable_extensions = [
 ]
 myst_footnote_transition = False
 myst_heading_anchors = 4
+# Fuzzy linkify turns bare file names such as conf.py into web links.
+myst_linkify_fuzzy_links = False
 
 # configuration settings for sphinx and its extensions
 comments_config = {'hypothesis': False, 'utterances': False}
