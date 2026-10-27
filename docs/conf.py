@@ -704,6 +704,8 @@ linkcheck_ignore = [
     'https://github.com/napari/napari/issues/new',
     'https://napari-hub.org',
     'https://onlinelibrary.wiley.com/doi/10.1002/col.20327',
+    # GitHub answers 200 to a commits?author= query for any name.
+    r'https://github\.com/[^/]+/[^/]+/commits\?author=',
     # These hosts answer the link checker with 403 or 429.
     r'https://gitlab\.freedesktop\.org/ofourdan/xwayland-run',
     r'https://grabcad\.com/',
