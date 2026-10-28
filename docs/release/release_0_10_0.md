@@ -1,5 +1,5 @@
 # napari 0.10.0
-⚠️ *Note: these release notes are still in draft while 0.10.0rc1 is in prerelease testing.* ⚠️
+⚠️ *Note: these release notes are still in draft while 0.10.0rc2 is in prerelease testing.* ⚠️
 
 *Mon, Oct 26, 2026*
 
@@ -182,8 +182,13 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Cancel all pending notifications on close of napari main window. ([#9776](https://github.com/napari/napari/pull/9776))
 - Fix cursor position calculation for 2d data in 3d scene ([#9781](https://github.com/napari/napari/pull/9781))
 - Fix crosshair color of Z-axis for 2D data in 3D view ([#9796](https://github.com/napari/napari/pull/9796))
-- Fix overlay draws during new viewboxes from new layers ([#9799](https://github.com/napari/napari/pull/9799))
 - Fix PySide6 Qt version check truncating patch component ([#9800](https://github.com/napari/napari/pull/9800))
+- Fix default font size for overlays of new layers ([#9806](https://github.com/napari/napari/pull/9806))
+- Fix Grid Lines overlay clipping into empty viewboxes ([#9809](https://github.com/napari/napari/pull/9809))
+
+## Build Tools
+
+- ci(deps): bump certifi from 2026.10.18 to 2026.10.19 in /resources ([#9788](https://github.com/napari/napari/pull/9788))
 
 ## Documentation
 
@@ -273,6 +278,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Use QEnumComboBox for depiction control ([#9742](https://github.com/napari/napari/pull/9742))
 - [pre-commit.ci] pre-commit autoupdate ([#9753](https://github.com/napari/napari/pull/9753))
 - Use pooch mocking machinery to fetch scikit-mage data from our server ([#9772](https://github.com/napari/napari/pull/9772))
+- Patch source of nilearn data in test run ([#9777](https://github.com/napari/napari/pull/9777))
 - Apply missing changes of PyQt5 drop ([#9779](https://github.com/napari/napari/pull/9779))
 - Update `certifi`, `coverage`, `hypothesis`, `napari-console`, `pandas`, `pint`, `pydantic-settings`, `virtualenv` ([#9791](https://github.com/napari/napari/pull/9791))
 
