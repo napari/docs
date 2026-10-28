@@ -18,8 +18,8 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 
 This release contains several new features and many enhancements and bugfixes. We also welcomed a ton of new contributors to the community!
 
-### Grid Lines, axes and ticks
-This features has been requested for years, and we finally managed to get a version that we're happy with! With [#7827](https://github.com/napari/napari/pull/7827), you can now use `viewer.scene.overlays.grid_lines` to display a grid on your data, including unit-aware tick marks and axis labels! Try it out:
+### Gridlines, axes and ticks
+This features has been requested for years, and we finally managed to get a version that we're happy with! With [#7827](https://github.com/napari/napari/pull/7827), you can now use `viewer.scene.overlays.gridlines` to display a grid on your data, including unit-aware tick marks and axis labels! Try it out:
 
 ```py
 import napari
@@ -31,10 +31,10 @@ for layer in layers:
     layer.units = 'nm'
     layer.axis_labels = ['z', 'y', 'x']
 
-viewer.scene.overlays.grid_lines.visible = True
+viewer.scene.overlays.gridlines.visible = True
 ```
 
-![screenshot of the viewer with the grid_lines overlay enabled, showing the grid with axis labels and units, and axis ticks](https://github.com/user-attachments/assets/54993979-4774-4e66-87fb-d1bfcb27fb98)
+![screenshot of the viewer with the gridlines overlay enabled, showing the grid with axis labels and units, and axis ticks](https://github.com/user-attachments/assets/54993979-4774-4e66-87fb-d1bfcb27fb98)
 
 ### Colorful names
 
@@ -214,6 +214,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Update release notes v0.10.0rc1 ([docs#1182](https://github.com/napari/docs/pull/1182))
 - Add Aniket and Jacopo to the core team section ([docs#1184](https://github.com/napari/docs/pull/1184))
 - Add crosshair mention ([docs#1188](https://github.com/napari/docs/pull/1188))
+- Rename grid lines to gridlines ([docs#1192](https://github.com/napari/docs/pull/1192))
 - The (almost) Everything example ([#9319](https://github.com/napari/napari/pull/9319))
 - Add info in tooltips for projection mode ([#9497](https://github.com/napari/napari/pull/9497))
 - Clarify in `LayerList` docstring when the `changed` event is emitted ([#9504](https://github.com/napari/napari/pull/9504))
@@ -281,6 +282,7 @@ So if you use the `scale_bar`, or `Points.text` or other layers and overlays tha
 - Patch source of nilearn data in test run ([#9777](https://github.com/napari/napari/pull/9777))
 - Apply missing changes of PyQt5 drop ([#9779](https://github.com/napari/napari/pull/9779))
 - Update `certifi`, `coverage`, `hypothesis`, `napari-console`, `pandas`, `pint`, `pydantic-settings`, `virtualenv` ([#9791](https://github.com/napari/napari/pull/9791))
+- Rename grid lines to gridlines ([#9813](https://github.com/napari/napari/pull/9813))
 
 
 ## 24 authors added to this release (alphabetical)
