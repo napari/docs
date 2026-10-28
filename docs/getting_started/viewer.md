@@ -821,7 +821,7 @@ Scene overlays live on `viewer.scene.overlays`:
 
 - Scene Axes (`viewer.scene.overlays.axes`): displays
   basis axes at the origin in the scene.
-- Grid Lines (`viewer.scene.overlays.grid_lines`): displays a smartly-resizing,
+- Gridlines (`viewer.scene.overlays.gridlines`): displays a smartly-resizing,
   unit-aware grid behind the data, and optionally tick marks and axis labels
   (on by default).
 - Crosshair (`viewer.scene.overlays.crosshair`): displays a crosshair at the
