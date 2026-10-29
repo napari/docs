@@ -193,6 +193,7 @@ With [#9361](https://github.com/napari/napari/pull/9361), key-binding callbacks 
 - Fix Grid Lines overlay clipping into empty viewboxes ([#9809](https://github.com/napari/napari/pull/9809))
 - Set Qt parents of Timer and effects in `NapariQtNotification` ([#9815](https://github.com/napari/napari/pull/9815))
 - Fix canvas_to_world to account for camera orientation ([#9821](https://github.com/napari/napari/pull/9821))
+- Fix: Grid tick decimal rounding ([#9824](https://github.com/napari/napari/pull/9824))
 
 ## Build Tools
 
@@ -223,7 +224,7 @@ With [#9361](https://github.com/napari/napari/pull/9361), key-binding callbacks 
 - Add Aniket and Jacopo to the core team section ([docs#1184](https://github.com/napari/docs/pull/1184))
 - Add crosshair mention ([docs#1188](https://github.com/napari/docs/pull/1188))
 - Update release notes v0.10.0 rc2 ([docs#1191](https://github.com/napari/docs/pull/1191))
-- Rename grid lines to gridlines ([docs#1192](https://github.com/napari/docs/pull/1192))
+- Rename grid lines to coordinate grid ([docs#1192](https://github.com/napari/docs/pull/1192))
 - Add Matthias Schabel to triage team  ([docs#1193](https://github.com/napari/docs/pull/1193))
 - The (almost) Everything example ([#9319](https://github.com/napari/napari/pull/9319))
 - Add info in tooltips for projection mode ([#9497](https://github.com/napari/napari/pull/9497))
@@ -292,11 +293,12 @@ With [#9361](https://github.com/napari/napari/pull/9361), key-binding callbacks 
 - Patch source of nilearn data in test run ([#9777](https://github.com/napari/napari/pull/9777))
 - Apply missing changes of PyQt5 drop ([#9779](https://github.com/napari/napari/pull/9779))
 - Update `certifi`, `coverage`, `hypothesis`, `napari-console`, `pandas`, `pint`, `pydantic-settings`, `virtualenv` ([#9791](https://github.com/napari/napari/pull/9791))
-- Rename grid lines to gridlines ([#9813](https://github.com/napari/napari/pull/9813))
+- Rename grid lines to coordinate_grid ([#9813](https://github.com/napari/napari/pull/9813))
+- Add hash to pooch downloads to use cache. ([#9814](https://github.com/napari/napari/pull/9814))
 - Migrate autoswap setting ([#9820](https://github.com/napari/napari/pull/9820))
 
 
-## 24 authors added to this release (alphabetical)
+## 25 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -309,6 +311,7 @@ With [#9361](https://github.com/napari/napari/pull/9361), key-binding callbacks 
 - [Clément Caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal
 - [Felipe Cybis Pereira](https://github.com/napari/napari/commits?author=FelipeCybis) - @FelipeCybis +
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
+- [Ian Hunt-Isaak](https://github.com/napari/napari/commits?author=ianhi) - @ianhi
 - [imaddde867](https://github.com/napari/napari/commits?author=imaddde867) - @imaddde867 +
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) ([docs](https://github.com/napari/docs/commits?author=jacopoabramo))  - @jacopoabramo
 - [KRiedmiller](https://github.com/napari/napari/commits?author=KRiedmiller) - @KRiedmiller +
