@@ -740,6 +740,36 @@ linkcheck_ignore = [
     r'https://napari\.org/stable/tutorials/segmentation/annotate_segmentation\.html',
 ]
 
+
+def get_old_release_docs(filenames: list[str]) -> list[str]:
+    """Return the release note docnames before the newest two minor series.
+
+    A minor series counts from its first file, rc or final.
+    """
+    series: dict[str, tuple[int, ...]] = {}
+    for filename in filenames:
+        stem = filename.removesuffix('.md')
+        number = stem.removeprefix('release_').replace('_', '.')
+        series[f'release/{stem}'] = parse_version(number).release[:2]
+    minors = set(series.values())
+    newest = sorted(minors)[-2:]
+    return [
+        docname
+        for docname, minor in series.items()
+            if minor not in newest
+    ]  # fmt: skip
+
+
+# A nightly link check skips the release notes before the newest two minor
+# series. Without LINKCHECK_SCOPE=nightly, the link check reads every page.
+if os.environ.get('LINKCHECK_SCOPE') == 'nightly':
+    release_files = [
+        path.name for path in Path(__file__).parent.glob('release/release_*.md')
+    ]
+    linkcheck_exclude_documents = [
+        f'{re.escape(docname)}$' for docname in get_old_release_docs(release_files)
+    ]
+
 rediraffe_redirects = {
     'guides/layers': 'getting_started/layers',
     'tutorials/annotation/index': 'tutorials/annotate_points',

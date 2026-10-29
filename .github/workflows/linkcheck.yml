@@ -3,6 +3,14 @@ name: External links checker
 on:
   repository_dispatch:
   workflow_dispatch: # can also be triggered manually
+    inputs:
+      scope:
+        description: "nightly skips the release notes before the newest two minor series, full checks every page"
+        type: choice
+        options:
+          - nightly
+          - full
+        default: nightly
   schedule:
     - cron: "0 0 * * *" # every day at midnight UTC
 
@@ -45,12 +53,25 @@ jobs:
         env:
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.12_docs.txt
 
+      - name: Choose the link check scope
+        id: scope
+        env:
+          SCOPE: ${{ inputs.scope }}
+        run: |
+          # a run without the scope input checks every page on Sundays only
+          if [ -z "$SCOPE" ]; then
+            if [ "$(date -u +%u)" = 7 ]; then SCOPE=full; else SCOPE=nightly; fi
+          fi
+          echo "Link check scope: ${SCOPE}"
+          echo "scope=${SCOPE}" >> "$GITHUB_OUTPUT"
+
       - name: Run link checker
         uses: aganders3/headless-gui@f85dd6316993505dfc5f21839d520ae440c84816 # v2.2
         # a step timeout fails the step, so the issue step still runs
         timeout-minutes: 120
         env:
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.12_docs.txt
+          LINKCHECK_SCOPE: ${{ steps.scope.outputs.scope }} # on nightly, conf.py skips the old release notes
         with:
           # Runs in '/home/runner/work/docs/docs/docs'
           # Built HTML pages in '/home/runner/work/docs/docs/docs/docs/_build/html'
