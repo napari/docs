@@ -72,6 +72,7 @@ jobs:
         env:
           PIP_CONSTRAINT: ${{ github.workspace }}/napari/resources/constraints/constraints_py3.12_docs.txt
           LINKCHECK_SCOPE: ${{ steps.scope.outputs.scope }} # on nightly, conf.py skips the old release notes
+          GITHUB_TOKEN: ${{ github.token }} # conf.py sends it to api.github.com only
         with:
           # Runs in '/home/runner/work/docs/docs/docs'
           # Built HTML pages in '/home/runner/work/docs/docs/docs/docs/_build/html'
