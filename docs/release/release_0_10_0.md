@@ -193,6 +193,7 @@ With [#9361](https://github.com/napari/napari/pull/9361), key-binding callbacks 
 - Set Qt parents of Timer and effects in `NapariQtNotification` ([#9815](https://github.com/napari/napari/pull/9815))
 - Fix canvas_to_world to account for camera orientation ([#9821](https://github.com/napari/napari/pull/9821))
 - Fix: Grid tick decimal rounding ([#9824](https://github.com/napari/napari/pull/9824))
+- Give multiscale level label a parent so it doesn't show as a window ([#9834](https://github.com/napari/napari/pull/9834))
 
 ## Build Tools
 
@@ -299,7 +300,7 @@ With [#9361](https://github.com/napari/napari/pull/9361), key-binding callbacks 
 - Move core devs up ([#9828](https://github.com/napari/napari/pull/9828))
 
 
-## 25 authors added to this release (alphabetical)
+## 26 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -315,6 +316,7 @@ With [#9361](https://github.com/napari/napari/pull/9361), key-binding callbacks 
 - [Ian Hunt-Isaak](https://github.com/napari/napari/commits?author=ianhi) - @ianhi
 - [imaddde867](https://github.com/napari/napari/commits?author=imaddde867) - @imaddde867 +
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) ([docs](https://github.com/napari/docs/commits?author=jacopoabramo))  - @jacopoabramo
+- [Joost de Folter](https://github.com/napari/napari/commits?author=folterj) - @folterj +
 - [KRiedmiller](https://github.com/napari/napari/commits?author=KRiedmiller) - @KRiedmiller +
 - [lettyz3](https://github.com/napari/napari/commits?author=lettyz3) - @lettyz3 +
 - [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) ([docs](https://github.com/napari/docs/commits?author=brisvag))  - @brisvag
