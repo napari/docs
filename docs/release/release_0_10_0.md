@@ -225,6 +225,7 @@ With [#9361](https://github.com/napari/napari/pull/9361), key-binding callbacks 
 - Update release notes v0.10.0 rc2 ([docs#1191](https://github.com/napari/docs/pull/1191))
 - Rename grid lines to coordinate grid ([docs#1192](https://github.com/napari/docs/pull/1192))
 - Add Matthias Schabel to triage team  ([docs#1193](https://github.com/napari/docs/pull/1193))
+- Update release notes v0.10.0 ([docs#1197](https://github.com/napari/docs/pull/1197))
 - The (almost) Everything example ([#9319](https://github.com/napari/napari/pull/9319))
 - Add info in tooltips for projection mode ([#9497](https://github.com/napari/napari/pull/9497))
 - Clarify in `LayerList` docstring when the `changed` event is emitted ([#9504](https://github.com/napari/napari/pull/9504))
