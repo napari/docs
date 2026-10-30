@@ -7,6 +7,9 @@ name = "napari-docs"
 platforms = ["win-64", "linux-64", "osx-arm64"]  # Mac Intel support is not available
 version = "0.1.0"
 
+[system-requirements]
+macos = "14.0"
+
 [feature.base.dependencies]
 python = "3.13.*"
 make = "*"
