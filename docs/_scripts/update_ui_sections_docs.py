@@ -455,7 +455,7 @@ def main(stubs=False):
         'graph_node_default_style': 'fill:#00c3ff,color:black;',
         'graph_node_external_style': 'fill:#ffa600,color:black;',
         'graph_link_default_style': 'stroke:#00c3ff',
-        'graph_urls_prefix': 'https://github.com/napari/napari/tree/main/napari/',
+        'graph_urls_prefix': 'https://github.com/napari/napari/tree/main/src/napari/',
     }
     ui_sections = []
 
