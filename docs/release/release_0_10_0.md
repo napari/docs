@@ -1,5 +1,4 @@
 # napari 0.10.0
-⚠️ *Note: these release notes are still in draft while 0.10.0rc2 is in prerelease testing.* ⚠️
 
 *Mon, Oct 26, 2026*
 
@@ -296,6 +295,7 @@ With [#9361](https://github.com/napari/napari/pull/9361), key-binding callbacks 
 - Rename grid lines to coordinate_grid ([#9813](https://github.com/napari/napari/pull/9813))
 - Add hash to pooch downloads to use cache. ([#9814](https://github.com/napari/napari/pull/9814))
 - Migrate autoswap setting ([#9820](https://github.com/napari/napari/pull/9820))
+- Move core devs up ([#9828](https://github.com/napari/napari/pull/9828))
 
 
 ## 25 authors added to this release (alphabetical)
