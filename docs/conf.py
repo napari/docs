@@ -232,6 +232,8 @@ myst_enable_extensions = [
 ]
 myst_footnote_transition = False
 myst_heading_anchors = 4
+# Fuzzy linkify turns bare file names such as conf.py into web links.
+myst_linkify_fuzzy_links = False
 
 # configuration settings for sphinx and its extensions
 comments_config = {'hypothesis': False, 'utterances': False}
@@ -673,7 +675,16 @@ linkcheck_allowed_redirects = {
     r'https://youtu\.be/.*': r'https://www\.youtube\.com/.*',
     r'https://github\.com/napari/napari/releases/download/.*': r'https://objects\.githubusercontent\.com/.*',
 }
-linkcheck_anchors_ignore = [r'^!', r'L\d+-L\d+', r'r\d+', r'issuecomment-\d+']
+# GitHub adds line, comment, readme, and issue anchors with JavaScript.
+# The fetched HTML does not contain them.
+linkcheck_anchors_ignore = [
+    r'^!',
+    r'L\d+',
+    r'r\d+',
+    r'issuecomment-\d+',
+    r'readme',
+    r'issue-\d+',
+]
 linkcheck_retries = 2
 linkcheck_ignore = [
     'https://napari.zulipchat.com/',
@@ -688,6 +699,29 @@ linkcheck_ignore = [
     'https://napari-hub.org',
     'https://github.com/napari/napari/releases/latest',
     'https://onlinelibrary.wiley.com/doi/10.1002/col.20327',
+    # These hosts answer the link checker with 403 or 429.
+    r'https://grabcad\.com/',
+    r'https://hackmd\.io/',
+    r'https://human-organ-atlas\.esrf\.fr/',
+    r'https://labs\.quansight\.org',
+    r'https://medium\.com/',
+    r'https://nsis\.sourceforge\.io/',
+    r'https://sourceforge\.net/',
+    r'https://stackoverflow\.com/',
+    r'https://vimdoc\.sourceforge\.net/',
+    # These DOI prefixes resolve to publishers that answer with 403.
+    r'http://dx\.doi\.org/10\.1093/',
+    r'https://doi\.org/10\.1126/',
+    # These hosts do not accept connections from CI runners.
+    r'https://dancohen\.org/',
+    r'https://(data|public)\.celltrackingchallenge\.net/',
+    r'https://www\.slicer\.org',
+    # The napari examples and the npe2 docs templates hold these dead links.
+    # Remove each entry when its source repository gets the fix.
+    r'https://napari\.org/magicgui/api/_autosummary/magicgui\.widgets\._bases\.Widget\.html',
+    r'https://napari\.org/napari-scipy2025-workshop/notebooks/image_warping\.html',
+    r'https://napari\.org/stable/plugins/npe1\.html',
+    r'https://napari\.org/stable/tutorials/segmentation/annotate_segmentation\.html',
 ]
 
 rediraffe_redirects = {
