@@ -56,9 +56,10 @@ scientists** to use in their daily work. We hope to accomplish this by:
 
 - providing a **consistent and stable API** to enable plugin developers to
   build on top of napari without their code constantly breaking and to enable
-  advanced users to build out sophisticated Python workflows. Right now we are
-  still making breaking changes with minor version numbers `0.x` and do not
-  have a deprecation policy, but we will work to add one soon.
+  advanced users to build out sophisticated Python workflows. We follow a
+  formal [deprecation policy](napari-deprecation-policy), which commits us to
+  warning you in code and to publishing the window in which deprecated API may
+  be removed.
 
 - ensuring **scientific accuracy**. We prioritise bug fixes and feature
   development that affect the scientific interpretation of the displayed data.
