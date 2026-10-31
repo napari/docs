@@ -15,6 +15,8 @@ members in various roles supported by grants. They are listed below under the
 
 ## Current Core Team Members
 
+- [Aniket Singh Yadav](https://github.com/napari/napari/commits?author=Aniketsy)* -
+  [@Aniketsy](https://github.com/Aniketsy)
 - [Ashley Anderson](https://github.com/napari/napari/commits?author=aganders3) -
   [@aganders3](https://github.com/aganders3)
 - [Carlos M. Rodríguez-Reza](https://github.com/napari/napari/commits?author=carlosmariorr) -
@@ -25,6 +27,8 @@ members in various roles supported by grants. They are listed below under the
   [@DragaDoncila](https://github.com/DragaDoncila)
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) -
   [@Czaki](https://github.com/Czaki)
+- [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo)* -
+  [@jacopoabramo](https://github.com/jacopoabramo)
 - [Jaime Rodríguez-Guerra](https://github.com/napari/napari/commits?author=jaimergp) -
   [@jaimergp](https://github.com/jaimergp)
 - [Juan Nunez-Iglesias](https://github.com/napari/napari/commits?author=jni) -
@@ -45,6 +49,8 @@ members in various roles supported by grants. They are listed below under the
   [@TimMonko](https://github.com/TimMonko)
 - [Wouter-Michiel Vierdag](https://github.com/napari/napari/commits?author=melonora) -
   [@melonora](https://github.com/melonora)
+
+\* Former triage team members nominated to the core team.
 
 ## Emeritus Core Team Members
 
@@ -97,10 +103,12 @@ members in various roles supported by grants. They are listed below under the
 
 ## Current Triage Team Members
 
-- [Aniket Singh Yadav](https://github.com/napari/napari/commits?author=Aniketsy) -
-  [@Aniketsy](https://github.com/Aniketsy)
-- [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) -
-  [@jacopoabramo](https://github.com/jacopoabramo)
+We are always looking for more community members to help with the triage role.
+If you are interested, please see our [triage guide](napari-triage) and reach
+out to the core team to express your interest.
+
+- [Matthias Schabel](https://github.com/napari/napari/commits?author=matthiasschabel) -
+  [@matthiasschabel](https://github.com/matthiasschabel)
 
 ## Team Roles
 

@@ -7,7 +7,7 @@ import pooch
 
 def main():
     # example surface timeseries
-    datasets.fetch_surf_nki_enhanced(n_subjects=1)
+    datasets.fetch_surf_nki_enhanced(n_subjects=1, url='https://data.napari.dev/examples/')
     datasets.fetch_surf_fsaverage()
 
     #getting_started/open_images.md
