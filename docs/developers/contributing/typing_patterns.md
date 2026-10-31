@@ -3,8 +3,8 @@
 # Typing cheat sheet
 
 Short, self-contained examples of the rules in [Type checking](napari-typing).
-Each snippet focuses on one typing pattern rather than on napari's own code.
-For how to run the checker and how to handle its errors, see the main page.
+For how to run the checker and how to handle its errors, see the
+[main page](napari-typing).
 
 ## Annotations with and without `from __future__ import annotations`
 
@@ -43,7 +43,9 @@ class Node:
 
 `````
 
-Tools that read annotations at runtime, such as magicgui and Pydantic, need
+Tools that read annotations at runtime, such as
+[magicgui](https://pyapp-kit.github.io/magicgui/) and
+[Pydantic](https://docs.pydantic.dev/latest/), need
 extra care here, as explained in
 [Annotating new code](napari-typing-annotating).
 
@@ -55,20 +57,40 @@ modules while napari's ruff config disables the automatic rewrite (`UP007`,
 `UP045`).
 
 ```python
-DEFAULT_PRECISION = 3
-
-
 def format_float(value: float, precision: int | None = None) -> str:
     if precision is None:
-        precision = DEFAULT_PRECISION
+        # since the input `precision` is `None`, set it to a default value
+        precision = 3
     # from here on, the checker knows that `precision` is an `int`
     return f'{value:.{precision}f}'
 ```
 
 ## Flexible inputs, concrete outputs
 
-Annotate parameters with the abstract types from `collections.abc` and return
-the concrete type you built:
+`collections.abc` is a Python module establishing abstract, reusable and
+pythonic-like interfaces for customizable classes that implement common
+patterns.
+
+It's best to annotate the input types of a function or method through these
+types. Instead, output types should return clearly defined types. In general
+the idea is "flexible inputs, strict outputs".
+
+An abstract type describes what an object can do, not which class it is. Any
+class that defines `__iter__` counts as an `Iterable`, without inheriting from
+it:
+
+```python
+from collections.abc import Iterable
+
+
+class Fruits:
+    def __iter__(self):
+        yield 'apple'
+        yield 'banana'
+
+
+isinstance(Fruits(), Iterable)  # True
+```
 
 ```python
 from collections.abc import Iterable, Mapping
@@ -84,10 +106,9 @@ def normalize(weights: Mapping[str, float]) -> dict[str, float]:
 ```
 
 `unique_sorted` accepts a list, a tuple, a set, a generator, or any custom
-object that implements `__iter__`, without changing its signature. The return
-type, on the other hand, should be well defined and predictable, so use `list`,
-`dict` or your own class there. If a function modifies its argument in place,
-ask for `MutableSequence` or `MutableMapping` instead.
+object that implements `__iter__`, such as `Fruits` above, without changing its
+signature. If a function modifies its argument in place, ask for
+`MutableSequence` or `MutableMapping` instead.
 
 ## Generic functions with `TypeVar`
 
