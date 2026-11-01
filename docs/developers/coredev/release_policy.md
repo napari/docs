@@ -20,8 +20,10 @@ be in `MACRO.MESO.MICRO` versioning. This is similar to previous Semantic
 Versioning schema of `MAJOR.MINOR.BUGFIX`, but allows features and bugfixes to
 live harmoniously in any version. Instead, the version number implies to users
 the amount of effort required to adopt the newest version from significant
-effort (`MACRO`) to no expected effort (`MICRO`). Our current policy permits
-deprecations in `MACRO` and `MESO` releases only.
+effort (`MACRO`) to no expected effort (`MICRO`). Deprecations are permitted in
+`MACRO` and `MESO` releases only and our time-based
+[deprecation policy](napari-deprecation-policy) defines how and when deprecated
+API is removed.
 
 ## Release cadence
 

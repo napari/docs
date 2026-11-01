@@ -29,6 +29,14 @@ include the following.
   would be nice to merge before release.
 - Look through currently open PRs and get a sense of what would be good to
   merge before the first release candidate. Set milestones appropriately;
+- Check for lapsed deprecation windows: search the source for removal windows
+  that have already begun, and resolve each one by removing the API,
+  re-windowing it with a recorded reason, or demoting it to a soft deprecation.
+  See the [deprecation policy](napari-deprecation-policy).
+
+At this stage, bug fixes and features that are close to landing should be
+prioritized. The release manager will follow up with PR authors, reviewing and
+merging as needed. New features should wait until after release.
 
 At this stage, bug fixes and features that are close to landing should be
 prioritized. The release manager will follow up with PR authors, reviewing and
