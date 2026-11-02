@@ -567,7 +567,8 @@ rather than an ask.
 
 ### Open questions
 
- - this section is incomplete, so i guess no-one can see lets say this is the place where we will discuss the equation of `Theory of Everything`😿
+- this section is incomplete, so i guess no-one can see lets say this is the
+  place where we will discuss the equation of `Theory of Everything`😿
 
 ## Backward Compatibility
 
@@ -641,7 +642,8 @@ absent, as they are in napari-lite, where `viewer.window` raises
     <https://github.com/Aniketsy/napari-lite/blob/main/docs/upstream.md>
 
 [^backends]: napari-lite, `docs/backends.md`: the renderer and front-end
-    contracts, <https://github.com/Aniketsy/napari-lite/blob/main/docs/backends.md>
+    contracts,
+    <https://github.com/Aniketsy/napari-lite/blob/main/docs/backends.md>
 
 [^architecture]: napari-lite, `docs/architecture.md`: what is copied, what
     is own code, and how the copy is kept in sync,
