@@ -270,6 +270,7 @@ subtrees:
           - file: naps/8-telemetry
           - file: naps/9-multiple-canvases
           - file: naps/10-migration-event-system
+          - file: naps/11-lighter-viewer-core
       - file: roadmaps/index
         subtrees:
         - entries:
