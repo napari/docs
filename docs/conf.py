@@ -704,6 +704,12 @@ rediraffe_redirects = {
     'tutorials/fundamentals/viewer': 'getting_started/viewer',
     'tutorials/start_index': 'getting_started/start_index',
     'community/napari_logo_usage': 'community/resources',
+    'developers/coredev/core_dev_guide': 'developers/core_team/core_team_guide',
+    'developers/coredev/maintenance': 'developers/core_team/maintenance',
+    'developers/coredev/packaging': 'developers/core_team/packaging',
+    'developers/coredev/release': 'developers/core_team/release',
+    'developers/coredev/release_policy': 'developers/core_team/release_policy',
+    'developers/coredev/triage': 'developers/core_team/triage',
 }
 
 def rewrite_github_anchor(app, uri: str):

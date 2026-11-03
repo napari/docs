@@ -124,7 +124,7 @@ For more detailed instructions and tips, please visit the relevant sections of o
 
 ## governance
 
-You can learn more about how the `napari` project is organized and managed from our [governance model](https://napari.org/community/governance.html), which includes information about, and ways to contact the [@napari/steering-council and @napari/core-devs](https://napari.org/community/team.html#current-core-developers).
+You can learn more about how the `napari` project is organized and managed from our [governance model](https://napari.org/community/governance.html), which includes information about, and ways to contact the [@napari/steering-council and @napari/core-team](https://napari.org/community/team.html#current-core-team-members).
 
 ## citing napari
 
