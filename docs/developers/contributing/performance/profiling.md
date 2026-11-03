@@ -50,7 +50,7 @@ The output will be a table similar to this one:
 ```
 
 The format of this table is documented
-[in the Python profiler documentation](https://docs.python.org/3.14/library/profile.html#instant-user-s-manual).
+[in the Python profiler documentation](https://docs.python.org/3/library/profiling.html#understanding-profile-output).
 Because the output for complex programs such as napari can be very long, we
 suggest piping output to `less`, or saving it to a file, which can be
 investigated later. To save the output to file use the `-o` option:
