@@ -129,9 +129,7 @@ executable by our users. This helps ensure that they are reproducible and makes
 them easier to maintain. [Jupyter notebooks](https://jupyter.org/) are a great
 option for our documents, because they allow you to easily combine code and
 well formatted text in markdown and can be executed automatically. However,
-their
-raw JSON format
-is not great for version control, so we use
+their raw format is not great for version control, so we use
 [MyST Markdown](https://myst-parser.readthedocs.io/en/latest/) documents in our
 repository and on [napari.org](https://napari.org).
 
