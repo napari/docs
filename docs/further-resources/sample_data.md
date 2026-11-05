@@ -16,8 +16,8 @@ an issue or submit a pull request on
 | [Allen Cell Explorer](https://www.allencell.org) | Database of cell data, segmentations, and analyses with multiple experimental parameters. |
 | [Berkeley Drosophila Genome Project (BDGP) in situ database](https://insitu.fruitfly.org/cgi-bin/ex/insitu.pl) | Patterns of gene expression in Drosophila embryogenesis. |
 | [The Cell Image Library](https://www.cellimagelibrary.org/) | Public resource database of images, videos, and animations of cells, capturing a wide diversity of organisms, cell types, and cellular processes. |
-| [FlyLight Imagery](https://app.quilt.bio:443/b/janelia-flylight-imagery) | 3D fly's central nervous system captured by confocal laser scanning microscope. |
-| [OpenCell](https://opencell.sf.czbiohub.org:443/download) | A proteome-scale collection of protein localization and interaction measurements in human cells. Contains fluorescence microscopy and IP-MS data. |
+| [FlyLight Imagery](https://app.quilt.bio/b/janelia-flylight-imagery) | 3D fly's central nervous system captured by confocal laser scanning microscope. |
+| [OpenCell](https://opencell.sf.czbiohub.org/download) | A proteome-scale collection of protein localization and interaction measurements in human cells. Contains fluorescence microscopy and IP-MS data. |
 | [Whole Slide Imaging Repository](https://digitalpathologyassociation.org/whole-slide-imaging-repository) | Collections of whole slide imaging repositories. |
 | [BioImage Archive](https://www.ebi.ac.uk/biostudies/bioimages/studies) | Description and data of biological studies; links to databases at EMBL-EBI (European Molecular Biology Laboratory–European Bioinformatics Institute). |
 | [Image Data Resource (IDR)](https://idr.openmicroscopy.org) | Public data repository for storing and integrating image data sets from published scientific studies. |
