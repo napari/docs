@@ -1,8 +1,12 @@
-# Build the docs against a local napari checkout. From the repo root:
-#   pixi run -m local-napari make slimfast
+# The napari checkout used by the `local` environment of the main workspace.
+# From the repo root:
+#   pixi run -e local slimfast
 # To use another checkout (e.g. a worktree), change `path` below or run:
-#   pixi add -m local-napari --pypi --editable "napari[pyqt,docs] @ file:///path/to/napari"
+#   pixi run use-napari ../napari-my-branch
+# Tasks live in the main pixi.toml; this workspace only provides the env.
 # This is a separate workspace so the main one never needs napari on disk.
+# (pixi solves every environment of a workspace, so a path dependency there
+# would have to exist for everyone.)
 [workspace]
 channels = ["conda-forge"]
 name = "napari-docs-local-napari"

@@ -43,7 +43,7 @@ For more detailed instructions and tips, please visit the relevant sections of o
 
 [Pixi](https://pixi.sh) provides a simple, cross-platform way to quickly build the documentation without manually installing dependencies or cloning the napari source repository.
 
-**Note: By default, this option will clone the main napari repo from the main branch on GitHub into the pixi environment. To build against your local napari clone (for docstring or example changes), run make targets through the `local-napari` workspace, e.g. `pixi run -m local-napari make slimfast`. It uses `../napari` by default; see `local-napari/pixi.toml` to change that.**
+**Note: By default, this option will clone the main napari repo from the main branch on GitHub into the pixi environment. To build against your local napari clone (for docstring or example changes), add `-e local` to any task, e.g. `pixi run -e local slimfast`. It uses `../napari` by default; to use another clone, run `pixi run use-napari ../path/to/napari` (relative to this repo).**
 
 1. **[Install pixi](https://pixi.sh/dev/installation/)** (if not already installed):
    ```bash

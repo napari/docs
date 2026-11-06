@@ -324,16 +324,22 @@ make linkcheck-files FILES=path/to/your/document.md
 
 If you're changing gallery examples in `napari/napari` or API docstrings and
 want to preview those local edits, the default `pixi` environment won't pick
-them up. Instead, use the `local-napari` workspace, which installs the napari
-clone next to this repository (`../napari`) in editable mode. From the root of
-this repository, run any `make` target through it:
+them up. Instead, run the task in the `local` environment, which uses the
+napari clone next to this repository (`../napari`), installed in editable mode:
 
 ```bash
-pixi run -m local-napari make slimfast
+pixi run -e local slimfast
 ```
 
-The gallery is built from the `examples` folder of that clone. To use a
-different clone, change the `path` in `local-napari/pixi.toml`. Most
+Every task works with `-e local`. The gallery is built from the `examples` folder of
+that clone. To use a different clone (for example a worktree), point the
+`local` environment at it with a path relative to this repository:
+
+```bash
+pixi run use-napari ../napari-my-branch
+```
+
+This edits `local-napari/pixi.toml`; don't commit that change. Most
 contributors can skip this.
 ````
 

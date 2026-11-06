@@ -11,39 +11,61 @@ version = "0.1.0"
 python = "3.13.*"
 make = "*"
 
-# To build against a local napari checkout instead, see local-napari/pixi.toml
-[pypi-dependencies]
+# default environment: napari main from GitHub
+[feature.remote.pypi-dependencies]
 napari = { git = "https://github.com/napari/napari.git", branch = "main", extras = ["pyqt", "docs"] }
 
+[feature.remote.activation.env]
+DOCS_MAKE = "make"
+
+# local environment: run every task against a local napari checkout, e.g.
+#   pixi run -e local slimfast-live
+#   pixi run use-napari ../napari-my-branch   # switch checkout (relative to this repo)
+# The checkout is installed in a separate workspace (local-napari/pixi.toml),
+# because pixi solves every environment of a workspace, so a path dependency
+# here would have to exist for everyone.
+[feature.local.activation.env]
+DOCS_MAKE = "pixi run -m local-napari make"
+
+[feature.local.tasks]
+use-napari = { cmd = "pixi add -m local-napari --pypi --editable \"napari[pyqt,docs] @ file:../{{ path }}\"", args = ["path"], description = "Point the local environment at a napari checkout, relative to this repo" }
+
+[environments]
+default = ["remote"]
+local = ["local"]
+
+# Tasks run in both environments. Use `$DOCS_MAKE` (not `make`) so that
+# `-e local` builds against the local checkout, and keep
+# `default-environment = "default"` so that `pixi run <task>` is not ambiguous.
 [tasks]
 # Clean tasks
-clean = "make clean"
-clean-gallery = "make clean-gallery"
-clean-prep = "make clean-prep"
-clean-full = "make clean-full"
+clean = { cmd = "$DOCS_MAKE clean", default-environment = "default" }
+clean-gallery = { cmd = "$DOCS_MAKE clean-gallery", default-environment = "default" }
+clean-prep = { cmd = "$DOCS_MAKE clean-prep", default-environment = "default" }
+clean-full = { cmd = "$DOCS_MAKE clean-full", default-environment = "default" }
 
 # Preparation tasks
-prep-docs = "make prep-docs"
-prep-stubs = "make prep-stubs"
+prep-docs = { cmd = "$DOCS_MAKE prep-docs", default-environment = "default" }
+prep-stubs = { cmd = "$DOCS_MAKE prep-stubs", default-environment = "default" }
 
 # Full builds
-html = "make html"
-html-noplot = "make html-noplot"
-docs-build = "make docs-build"
+html = { cmd = "$DOCS_MAKE html", default-environment = "default" }
+html-noplot = { cmd = "$DOCS_MAKE html-noplot", default-environment = "default" }
+docs-build = { cmd = "$DOCS_MAKE docs-build", default-environment = "default" }
 
 # Slim builds (no notebook execution, no gallery)
-slim = "make slim"
-slimfast = "make slimfast"
+slim = { cmd = "$DOCS_MAKE slim", default-environment = "default" }
+slimfast = { cmd = "$DOCS_MAKE slimfast", default-environment = "default" }
 
 # Live builds (auto-rebuild on file changes)
-html-noplot-live = "make html-noplot-live"
-docs-live = "make docs-live"
-slimfast-live = "make slimfast-live"
+html-noplot-live = { cmd = "$DOCS_MAKE html-noplot-live", default-environment = "default" }
+docs-live = { cmd = "$DOCS_MAKE docs-live", default-environment = "default" }
+slimfast-live = { cmd = "$DOCS_MAKE slimfast-live", default-environment = "default" }
 
 # Gallery builds
-slimgallery = "make slimgallery"
-slimgallery-live = "make slimgallery-live"
+slimgallery = { cmd = "$DOCS_MAKE slimgallery", default-environment = "default" }
+slimgallery-live = { cmd = "$DOCS_MAKE slimgallery-live", default-environment = "default" }
 
 # Utility tasks
-linkcheck-files = "make linkcheck-files"
-spellcheck = "make spellcheck"
+linkcheck-files = { cmd = "$DOCS_MAKE linkcheck-files", default-environment = "default" }
+spellcheck = { cmd = "$DOCS_MAKE spellcheck", default-environment = "default" }
