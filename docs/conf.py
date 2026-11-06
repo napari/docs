@@ -703,9 +703,9 @@ linkcheck_ignore = [
     'https://github.com/napari/napari/issues/new/choose',
     'https://github.com/napari/napari/issues/new',
     'https://napari-hub.org',
-    'https://github.com/napari/napari/releases/latest',
     'https://onlinelibrary.wiley.com/doi/10.1002/col.20327',
     # These hosts answer the link checker with 403 or 429.
+    r'https://gitlab\.freedesktop\.org/ofourdan/xwayland-run',
     r'https://grabcad\.com/',
     r'https://hackmd\.io/',
     r'https://human-organ-atlas\.esrf\.fr/',
