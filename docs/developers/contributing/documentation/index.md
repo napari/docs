@@ -173,12 +173,12 @@ or
 [editing an existing file](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)
 on the [napari/docs](https://github.com/napari/docs) GitHub repository. It's
 best if you first
-[fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+[fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo)
 the [napari/docs](https://github.com/napari/docs) repository to your own GitHub
 account, create a
-[feature branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch),
+[feature branch](https://docs.github.com/en/pull-requests/how-tos/commit-changes/managing-branches-within-your-repository#creating-a-branch),
 upload/create/edit files through the GitHub web interface, and then
-[open a pull request from your fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+[open a pull request from your fork](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request-from-a-fork)
 back to [napari-docs](https://github.com/napari/docs).
 
 When you submit your PR, CI will kick off several jobs, including generation of
@@ -237,7 +237,7 @@ full local napari clone). Follow this link for the
 
 ### 0. Prerequisites
 
-[Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) then
+[Fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo) then
 clone the documentation repository
 [napari/docs](https://github.com/napari/docs) to your machine. To clone the
 repository, you can follow any of the options in the
@@ -623,7 +623,7 @@ moved from the main flow.
 ###### Fork and clone the napari and docs repositories
 
 You should first
-[fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) and then
+[fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo) and then
 clone both the [napari/napari](https://github.com/napari/napari) and the
 [napari/docs](https://github.com/napari/docs) repositories to your machine. To
 clone these repositories, you can follow any of the options in the

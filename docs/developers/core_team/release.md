@@ -13,7 +13,7 @@ Most required tools mentioned here are in
 ```{important}
 The first step in managing a release is to create a new Issue in napari/napari
 with the
-[`release` template](https://github.com/napari/napari/tree/main/.github/ISSUE_TEMPLATE/release.md).
+[`release` template](https://github.com/napari/napari/blob/main/.github/ISSUE_TEMPLATE/release.md).
 ```
 
 ## Release management

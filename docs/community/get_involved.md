@@ -15,7 +15,7 @@ of our regular [community meetings](meeting-schedule), or dive deeper on a
 particular topic with one of our [working groups](napari-working-groups).
 
 To ask general questions about napari usage, including plugins, you can visit
-the [image.sc forum](https://forum.image.sc/tag/napari).
+the [image.sc forum](https://forum.image.sc/tag/napari/1410).
 
 ## Contributing and bug reporting
 
