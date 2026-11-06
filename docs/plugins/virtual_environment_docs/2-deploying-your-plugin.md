@@ -28,7 +28,7 @@ here:
 **Note:** This goes for dependencies too! Check all your dependencies for wheel
 availability.
 
-**[build](https://pypa-build.readthedocs.io/en/latest/)** is the recommended
+**[build](https://build.pypa.io/en/latest/)** is the recommended
 package builder that bundles your source code into `sdist` or `wheel`
 distributions. Install `build` into your local environment and then run it at
 the root of your package to build your package, as shown below:

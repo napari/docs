@@ -52,7 +52,7 @@ repositories:
    [napari/npe2](https://github.com/napari/npe2) repository (e.g. the
    [contributions reference page](contributions-ref)) and should be modified
    there. This is documentation is written with
-   [Jinja](https://jinja.palletsprojects.com/en/3.1.x/).
+   [Jinja](https://jinja.palletsprojects.com/en/stable/).
 1. The [examples gallery](gallery) is generated from Python source files and
    changes to the gallery should be made to the
    [napari/napari](https://github.com/napari/napari) repository (see also
@@ -795,7 +795,7 @@ mode, which will prevent napari windows from popping up during the build.
    build.
 
 2. If you are using **Wayland** as your display server, and you have `xwfb-run` installed
-   on your system (part of the [xwayland-run utilities](https://gitlab.freedesktop.org/ofourdan/xwayland-runcan),
+   on your system (part of the [xwayland-run utilities](https://gitlab.freedesktop.org/ofourdan/xwayland-run),
    you can use the `docs-xwfb` command:
 
    ```bash
