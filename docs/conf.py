@@ -709,6 +709,7 @@ linkcheck_ignore = [
     r'https://grabcad\.com/',
     r'https://hackmd\.io/',
     r'https://human-organ-atlas\.esrf\.fr/',
+    r'https://(forum\.)?image\.sc',
     r'https://labs\.quansight\.org',
     r'https://medium\.com/',
     r'https://nsis\.sourceforge\.io/',
