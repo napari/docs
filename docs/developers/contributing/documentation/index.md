@@ -237,8 +237,8 @@ full local napari clone). Follow this link for the
 
 ### 0. Prerequisites
 
-[Fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo) then
-clone the documentation repository
+[Fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo)
+then clone the documentation repository
 [napari/docs](https://github.com/napari/docs) to your machine. To clone the
 repository, you can follow any of the options in the
 [GitHub guide to cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
@@ -623,10 +623,10 @@ moved from the main flow.
 ###### Fork and clone the napari and docs repositories
 
 You should first
-[fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo) and then
-clone both the [napari/napari](https://github.com/napari/napari) and the
-[napari/docs](https://github.com/napari/docs) repositories to your machine. To
-clone these repositories, you can follow any of the options in the
+[fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo)
+and then clone both the [napari/napari](https://github.com/napari/napari) and
+the [napari/docs](https://github.com/napari/docs) repositories to your machine.
+To clone these repositories, you can follow any of the options in the
 [GitHub guide to cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 (if you run into issues refer to
 [the troubleshooting guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/troubleshooting-cloning-errors)).
