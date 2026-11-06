@@ -126,6 +126,7 @@ slim: clean prep-stubs
 	sphinx-build -M html docs/ docs/_build -WT --keep-going $(NOPLOT_OPTS) $(GALLERY_OPTS) $(SPHINXOPTS)
 
 # slim, but uses -j auto to parallelize the build
+# (Sphinx only builds in parallel on POSIX; on Windows this is the same as slim)
 slimfast: clean prep-stubs
 	sphinx-build -M html docs/ docs/_build -WT --keep-going $(NOPLOT_OPTS) $(GALLERY_OPTS) -j auto $(SPHINXOPTS)
 
