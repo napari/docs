@@ -17,12 +17,25 @@ napari = { path = "../napari", editable = true, extras = ["dev", "pyqt", "docs"]
 [feature.remote-napari.pypi-dependencies]
 napari = { git = "https://github.com/napari/napari.git", branch = "main", extras = ["dev", "pyqt", "docs"] }
 
+# Build profiling with sphinx-benchmark (https://github.com/Schefflera-Arboricola/sphinx-benchmark).
+# The extension only loads when SPHINX_BENCHMARK=1 (see docs/conf.py). It
+# forces a serial build, so compare its timings as shares, not wall-clock.
+[feature.benchmark.pypi-dependencies]
+sphinx-benchmark = ">=0.2,<0.3"  # early-stage tool; minor releases may change output
+
+[feature.benchmark.tasks]
+bench-slim = { cmd = "make slim", env = { SPHINX_BENCHMARK = "1" }, description = "Profile a slim build (no gallery, no notebook execution)" }
+bench-full = { cmd = "make html", env = { SPHINX_BENCHMARK = "1" }, description = "Profile a full clean build (gallery + notebooks)" }
+bench-report = { cmd = "sphinx-benchmark run html", description = "Render the latest sphinx_benchmarks_*.json into sphinx_benchmark_report/" }
+
 [environments]
 # to run with local napari source code, that is cloned alongside the docs
 # e.g., pixi run -e local-napari html,
 # where `-e local-napari` specifies this environment
 # if no environment is specified, the default is used (remote-napari)
 local-napari = { features = ["local-napari", "base"] }
+# local-napari plus sphinx-benchmark, for profiling the build: pixi run bench-slim
+benchmark = { features = ["local-napari", "benchmark", "base"] }
 default = { features = ["remote-napari", "base"] }
 
 [tasks]
