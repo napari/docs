@@ -1,0 +1,16 @@
+# Build the docs against a local napari checkout. From the repo root:
+#   pixi run -m local-napari make slimfast
+# To use another checkout (e.g. a worktree), change `path` below or run:
+#   pixi add -m local-napari --pypi --editable "napari[pyqt,docs] @ file:///path/to/napari"
+# This is a separate workspace so the main one never needs napari on disk.
+[workspace]
+channels = ["conda-forge"]
+name = "napari-docs-local-napari"
+platforms = ["win-64", "linux-64", "osx-arm64"]
+
+[dependencies]
+python = "3.13.*"
+make = "*"
+
+[pypi-dependencies]
+napari = { path = "../../napari", editable = true, extras = ["pyqt", "docs"] }
