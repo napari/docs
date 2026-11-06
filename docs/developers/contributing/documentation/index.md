@@ -319,14 +319,23 @@ make linkcheck-files FILES=path/to/your/document.md
 
 ### 2. Update the table of contents (TOC)
 
-```{admonition} Optional: editing examples or docstrings?
+````{admonition} Optional: editing examples or docstrings?
 :class: note
 
 If you're changing gallery examples in `napari/napari` or API docstrings and
 want to preview those local edits, the default `pixi` environment won't pick
-them up. Use the [advanced make instructions](make-advanced) for that workflow.
-Most contributors can skip this.
+them up. Instead, use the `local-napari` workspace, which installs the napari
+clone next to this repository (`../napari`) in editable mode. From the root of
+this repository, run any `make` target through it:
+
+```bash
+pixi run -m local-napari make slimfast
 ```
+
+The gallery is built from the `examples` folder of that clone. To use a
+different clone, change the `path` in `local-napari/pixi.toml`. Most
+contributors can skip this.
+````
 
 If you are adding a new documentation file, add your document to the correct
 folder based on its content (see the
