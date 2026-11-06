@@ -12,6 +12,18 @@ mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(dir $(mkfile_path))
 docs_dir := $(current_dir)docs
 
+# Environment for the build commands. make exports these itself, so they reach
+# sphinx-build whichever shell runs the recipe. (On Windows that is usually
+# Git's sh.exe, not cmd.exe, so `set VAR=...&&` would silently do nothing.)
+# Don't load the user's napari settings, and don't start an interactive Qt
+# event loop in notebook kernels; with one, `viewer.close()` cells hang
+# until the notebook execution timeout.
+export NAPARI_CONFIG :=
+export NAPARI_APPLICATION_IPY_INTERACTIVE := 0
+
+# Targets that skip notebook execution
+slim slimfast slimfast-live slimgallery slimgallery-live build-specific-example build-specific-example-live: export NB_EXECUTION_MODE := off
+
 clean:
 	echo clean
 	echo $(current_dir)
