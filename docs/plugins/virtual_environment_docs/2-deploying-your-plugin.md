@@ -110,7 +110,7 @@ jobs:
 ```
 
 **Note:** Gate this action on some criterion, e.g. a git tag as above, or
-[some other criterion](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows).
+[some other criterion](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows).
 
 (deploying-to-conda-forge)=
 
