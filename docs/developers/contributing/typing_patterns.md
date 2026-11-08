@@ -165,5 +165,36 @@ def ndim(data: HasShape) -> int:
 ```
 
 Any object with a `shape` attribute satisfies `HasShape` without inheriting
-from it, so NumPy, dask and zarr arrays all work. Add `@runtime_checkable` only
-if you also need `isinstance()` checks.
+from it, so NumPy, dask and zarr arrays all work.
+
+```python
+from typing import Protocol
+
+
+class Named(Protocol):
+    name: str
+
+    def label(self) -> str: ...
+
+
+class Sample:
+    name: str
+
+    def __init__(self, name: str) -> None:
+        self.name = name
+
+    def label(self) -> str:
+        return self.name
+
+
+sample: Named = Sample('cells')
+sample.name = 'tissue'
+sample.label()
+```
+
+The checker treats `name` as a read-write attribute, so assigning a `str` is
+allowed and assigning another type is an error. `shape` on `HasShape` stays
+read-only, so assigning to it is an error. `label` is a method: the object
+must define it, and the checker checks the call and the `str` return.
+
+Add `@runtime_checkable` only if you also need `isinstance()` checks.
