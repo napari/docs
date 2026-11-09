@@ -39,7 +39,7 @@ metadata will now be much more informative!
 
 ### Xarray metadata is now inherited
 
-In the same vein, if you work with [Xarray](https://docs.xarray.dev/) — common in climate,
+In the same vein, if you work with [Xarray](https://docs.xarray.dev/en/stable/) — common in climate,
 geoscience, and many places where data ships with labelled coordinates — napari
 now reads metadata straight from your `DataArray`s. When you add an xarray
 object to the viewer, napari will use its dimension names as axis labels, infer
