@@ -22,7 +22,7 @@ export NAPARI_CONFIG :=
 export NAPARI_APPLICATION_IPY_INTERACTIVE := 0
 
 # Targets that skip notebook execution
-slim slimfast slimfast-live slimgallery slimgallery-live build-specific-example build-specific-example-live: export NB_EXECUTION_MODE := off
+slim slimfast slimfast-live slimgallery slimgallery-live build-specific-example build-specific-example-live linkcheck-files: export NB_EXECUTION_MODE := off
 
 # Shared sphinx options
 GALLERY_OPTS = -D sphinx_gallery_conf.examples_dirs=$(GALLERY_PATH)
