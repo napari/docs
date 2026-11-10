@@ -730,6 +730,8 @@ linkcheck_ignore = [
     r'https://github\.com/orgs/napari/teams/',
     r'https://github\.com/settings/',
     r'https://x\.com/hashtag/',
+    # Pull and issue numbers on the napari org are stable identifiers.
+    r'https://github\.com/napari/[^/]+/(pull|issues)/[0-9]+',
     # The napari examples and the npe2 docs templates hold these dead links.
     # Remove each entry when its source repository gets the fix.
     r'https://napari\.org/magicgui/api/_autosummary/magicgui\.widgets\._bases\.Widget\.html',
