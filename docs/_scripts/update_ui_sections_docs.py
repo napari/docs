@@ -108,15 +108,24 @@ DIALOGS_MODULE_PATH = Path(dialogs.__file__).parent
 CONSOLE_MODULE_PATH = Path(qt_console.__file__).parent
 
 
-# Top-level packages the module finder still visits: napari itself, plus
-# packages that import napari modules (e.g. napari_console, napari_plugin_manager
-# and npe2.io_utils), because a napari module can be reached through them.
-# Packages that never import napari can't add anything to the napari graph.
+# ---- Utility functions
 def is_analyzed_package(name):
+    """
+    Return whether pydeps should still analyze the top-level package `name`.
+
+    Packages are kept by name, not by whether they import napari: napari
+    itself, anything named `napari*`, and `npe2`. Some of these import napari
+    modules, so a napari module can be reached only through them. For example,
+    `napari._qt.qthreading` on the Application menus page is reached through
+    `napari_plugin_manager.qt_plugin_dialog`, so the `napari*` prefix matters.
+
+    Installed packages with other names that import napari (e.g. plugins) are
+    excluded. None of the UI sections reach napari through such a package
+    today; if one ever does, add it here.
+    """
     return name.startswith('napari') or name == 'npe2'
 
 
-# ---- Utility functions
 def non_napari_top_level_modules():
     """
     List the importable top-level modules that pydeps doesn't need to analyze.
@@ -125,7 +134,8 @@ def non_napari_top_level_modules():
     into numpy, scipy, torch, etc. (over 10,000 modules), and only applies the
     `--only` filter afterwards. Passing these names as excludes stops the
     module finder at the edge of napari, which makes the analysis much faster
-    without changing the resulting napari graph.
+    without changing the resulting napari graph (see `is_analyzed_package` for
+    which packages are still followed).
 
     Returns
     -------
@@ -134,9 +144,12 @@ def non_napari_top_level_modules():
     """
     top_level = {module.name for module in pkgutil.iter_modules()}
     top_level.update(sys.builtin_module_names, sys.stdlib_module_names)
-    # pydeps matches the bare name of a relative import (e.g. the `signal` in
-    # `from .signal import Signal`) against the excludes, so excluding a
-    # top-level name would also drop napari modules of the same name.
+    # Don't exclude names that napari-side packages use for their own modules.
+    # Excluding a top-level name (e.g. `signal`) makes an absolute
+    # `import signal` fail, which puts the bare name in the module finder's
+    # `badmodules` cache. The finder checks that cache by bare name before
+    # resolving a relative import, so `from .signal import Signal` in the
+    # vendored qt_jsonschema_form would then be skipped too.
     # (find_spec, unlike iter_modules, also finds editable installs that use
     # an import hook.)
     own_module_names = set()
