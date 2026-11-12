@@ -673,7 +673,13 @@ def add_google_calendar_secrets(app, docname, source):
 
 linkcheck_allowed_redirects = {
     r'https://youtu\.be/.*': r'https://www\.youtube\.com/.*',
-    r'https://github\.com/napari/napari/releases/download/.*': r'https://objects\.githubusercontent\.com/.*',
+    r'https://github\.com/napari/napari/releases/download/.*': r'https://(objects|release-assets)\.githubusercontent\.com/.*',
+    r'https://github\.com/[^/]+/[^/]+/releases/latest': r'https://github\.com/[^/]+/[^/]+/releases/tag/.*',
+    r'https://github\.com/[^/]+/[^/]+/releases/latest/download/.*': r'https://release-assets\.githubusercontent\.com/.*',
+    r'https://github\.com/user-attachments/assets/.*': r'https://github-production-user-asset-[0-9a-f]+\.s3\.amazonaws\.com/.*',
+    # A DOI resolves to the page of its publisher.
+    r'https://doi\.org/.*': r'.*',
+    r'http://dx\.doi\.org/.*': r'.*',
 }
 # GitHub renders line, readme, and issue anchors in the browser, and loads
 # late comments on long threads on demand. The fetched HTML lacks those ids.
@@ -697,12 +703,13 @@ linkcheck_ignore = [
     'https://github.com/napari/napari/issues/new/choose',
     'https://github.com/napari/napari/issues/new',
     'https://napari-hub.org',
-    'https://github.com/napari/napari/releases/latest',
     'https://onlinelibrary.wiley.com/doi/10.1002/col.20327',
     # These hosts answer the link checker with 403 or 429.
+    r'https://gitlab\.freedesktop\.org/ofourdan/xwayland-run',
     r'https://grabcad\.com/',
     r'https://hackmd\.io/',
     r'https://human-organ-atlas\.esrf\.fr/',
+    r'https://(forum\.)?image\.sc',
     r'https://labs\.quansight\.org',
     r'https://medium\.com/',
     r'https://nsis\.sourceforge\.io/',
@@ -716,6 +723,15 @@ linkcheck_ignore = [
     r'https://dancohen\.org/',
     r'https://(data|public)\.celltrackingchallenge\.net/',
     r'https://www\.slicer\.org',
+    # These pages need a login and cannot be verified.
+    r'https://docs\.google\.com/presentation/d/1RFja0o6cZ8lAalAve8heuJ-Lrb4nOSUnfdpOSEhqqNo',
+    r'https://github\.com/conda-forge/napari-feedstock/issues/new',
+    r'https://github\.com/napari/docs/fork',
+    r'https://github\.com/orgs/napari/teams/',
+    r'https://github\.com/settings/',
+    r'https://x\.com/hashtag/',
+    # Pull and issue numbers on the napari org are stable identifiers.
+    r'https://github\.com/napari/[^/]+/(pull|issues)/[0-9]+',
     # The napari examples and the npe2 docs templates hold these dead links.
     # Remove each entry when its source repository gets the fix.
     r'https://napari\.org/magicgui/api/_autosummary/magicgui\.widgets\._bases\.Widget\.html',
