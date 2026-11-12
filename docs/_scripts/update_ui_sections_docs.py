@@ -70,6 +70,7 @@ The output was reviewed and edited for accuracy and clarity.
 """
 
 # ---- Standard library imports
+import functools
 import importlib.util
 import json
 import pkgutil
@@ -119,16 +120,20 @@ def is_analyzed_package(name):
     `napari._qt.qthreading` on the Application menus page is reached through
     `napari_plugin_manager.qt_plugin_dialog`, so the `napari*` prefix matters.
 
-    Installed packages with other names that import napari (e.g. plugins) are
-    excluded. None of the UI sections reach napari through such a package
-    today; if one ever does, add it here.
+    Installed packages with other names that import napari (e.g. plugins such
+    as magicclass) are excluded. None of the UI sections reach napari through
+    such a package today. If one ever does, the napari modules reached only
+    through it drop out of the graph without an error, so add it here.
     """
     return name.startswith('napari') or name == 'npe2'
 
 
+@functools.cache
 def non_napari_top_level_modules():
     """
     List the importable top-level modules that pydeps doesn't need to analyze.
+
+    The result is cached, since it is the same for every UI section.
 
     pydeps statically follows every import from the target module, including
     into numpy, scipy, torch, etc. (over 10,000 modules), and only applies the
@@ -139,7 +144,7 @@ def non_napari_top_level_modules():
 
     Returns
     -------
-    names : list of str
+    names : tuple of str
         Top-level module names, except those `is_analyzed_package` keeps.
     """
     top_level = {module.name for module in pkgutil.iter_modules()}
@@ -161,10 +166,12 @@ def non_napari_top_level_modules():
             own_module_names.update(
                 path.name for path in package_dir.rglob('*') if path.is_dir()
             )
-    return sorted(
-        name
-        for name in top_level
-        if not is_analyzed_package(name) and name not in own_module_names
+    return tuple(
+        sorted(
+            name
+            for name in top_level
+            if not is_analyzed_package(name) and name not in own_module_names
+        )
     )
 
 
@@ -477,7 +484,7 @@ def generate_docs_ui_section(
 
     """
     options = cli.parse_args(pydeps_args)
-    options['exclude'] = options['exclude'] + non_napari_top_level_modules()
+    options['exclude'] = [*options['exclude'], *non_napari_top_level_modules()]
     (
         dep_graph,
         dot_src,
