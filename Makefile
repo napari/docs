@@ -2,8 +2,14 @@
 
 SPHINXOPTS =
 
-# Gallery path must be given relative to the docs/ folder
+# Gallery path must be given relative to the docs/ folder.
+# If not given, use the examples of the napari checkout installed in the
+# current environment (when napari is an editable install), and otherwise
+# assume napari is cloned next to this repo.
 
+ifeq ($(GALLERY_PATH),)
+GALLERY_PATH := $(shell python docs/_scripts/gallery_path.py)
+endif
 ifeq ($(GALLERY_PATH),)
 GALLERY_PATH := ../../napari/examples
 endif
