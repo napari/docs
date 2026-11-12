@@ -704,6 +704,8 @@ linkcheck_ignore = [
     'https://github.com/napari/napari/issues/new',
     'https://napari-hub.org',
     'https://onlinelibrary.wiley.com/doi/10.1002/col.20327',
+    # GitHub answers 200 to a commits?author= query for any name.
+    r'https://github\.com/[^/]+/[^/]+/commits\?author=',
     # These hosts answer the link checker with 403 or 429.
     r'https://gitlab\.freedesktop\.org/ofourdan/xwayland-run',
     r'https://grabcad\.com/',
@@ -739,6 +741,41 @@ linkcheck_ignore = [
     r'https://napari\.org/stable/plugins/npe1\.html',
     r'https://napari\.org/stable/tutorials/segmentation/annotate_segmentation\.html',
 ]
+# The REST API accepts a token. github.com HTML pages ignore it.
+GITHUB_API_HEADERS = {'User-Agent': 'napari-docs-linkcheck'}
+if os.environ.get('GITHUB_TOKEN'):
+    GITHUB_API_HEADERS['Authorization'] = f'Bearer {os.environ["GITHUB_TOKEN"]}'
+linkcheck_request_headers = {'https://api.github.com/': GITHUB_API_HEADERS}
+
+
+def get_old_release_docs(filenames: list[str]) -> list[str]:
+    """Return the release note docnames before the newest two minor series.
+
+    A minor series counts from its first file, rc or final.
+    """
+    series: dict[str, tuple[int, ...]] = {}
+    for filename in filenames:
+        stem = filename.removesuffix('.md')
+        number = stem.removeprefix('release_').replace('_', '.')
+        series[f'release/{stem}'] = parse_version(number).release[:2]
+    minors = set(series.values())
+    newest = sorted(minors)[-2:]
+    return [
+        docname
+        for docname, minor in series.items()
+            if minor not in newest
+    ]  # fmt: skip
+
+
+# A nightly link check skips the release notes before the newest two minor
+# series. Without LINKCHECK_SCOPE=nightly, the link check reads every page.
+if os.environ.get('LINKCHECK_SCOPE') == 'nightly':
+    release_files = [
+        path.name for path in Path(__file__).parent.glob('release/release_*.md')
+    ]
+    linkcheck_exclude_documents = [
+        f'{re.escape(docname)}$' for docname in get_old_release_docs(release_files)
+    ]
 
 rediraffe_redirects = {
     'guides/layers': 'getting_started/layers',
@@ -766,8 +803,12 @@ def rewrite_github_anchor(app, uri: str):
     """Rewrite anchor name of the hyperlink to github.com
 
     The hyperlink anchors in github.com are dynamically generated.  This rewrites
-    them before checking and makes them comparable.
+    them before checking and makes them comparable.  With ``GITHUB_TOKEN`` set, a
+    blob or tree link goes to the REST API instead, see ``rewrite_github_code_link``.
+    The API allows 60 requests per hour without a token.
     """
+    if os.environ.get('GITHUB_TOKEN') and (api_uri := rewrite_github_code_link(uri)):
+        return api_uri
     parsed = urlparse(uri)
     if parsed.hostname == 'github.com' and parsed.fragment:
         for text in [
@@ -786,6 +827,21 @@ def rewrite_github_anchor(app, uri: str):
             fragment = f'user-content-{parsed.fragment}'
             return urlunparse(parsed._replace(fragment=fragment))
     return None
+
+
+def rewrite_github_code_link(uri: str) -> str | None:
+    """Return the REST API contents URI of a GitHub blob or tree link.
+
+    A ref that contains a slash splits at its first segment.
+    """
+    parsed = urlparse(uri)
+    code_link = re.fullmatch(
+        r'/([^/]+)/([^/]+)/(?:blob|tree)/([^/]+)/(.+)', parsed.path
+    )
+    if parsed.hostname != 'github.com' or not code_link:
+        return None
+    owner, repo, ref, path = code_link.groups()
+    return f'https://api.github.com/repos/{owner}/{repo}/contents/{path}?ref={ref}'
 
 
 # -- Qt threading docstrings ------------------------------------------------
