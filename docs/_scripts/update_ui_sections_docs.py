@@ -112,18 +112,13 @@ CONSOLE_MODULE_PATH = Path(qt_console.__file__).parent
 # ---- Utility functions
 def is_analyzed_package(name):
     """
-    Return whether pydeps should still analyze the top-level package `name`.
+    Return whether pydeps should analyze the top-level package `name`.
 
-    Packages are kept by name, not by whether they import napari: napari
-    itself, anything named `napari*`, and `npe2`. Some of these import napari
-    modules, so a napari module can be reached only through them. For example,
-    `napari._qt.qthreading` on the Application menus page is reached through
-    `napari_plugin_manager.qt_plugin_dialog`, so the `napari*` prefix matters.
-
-    Installed packages with other names that import napari (e.g. plugins such
-    as magicclass) are excluded. None of the UI sections reach napari through
-    such a package today. If one ever does, the napari modules reached only
-    through it drop out of the graph without an error, so add it here.
+    Kept by name: `napari*` and `npe2`. Some napari modules are only reached
+    through these (e.g. `napari._qt.qthreading` via `napari_plugin_manager`).
+    Packages with other names that import napari (e.g. magicclass) are
+    excluded, so napari modules reached only through them silently drop out
+    of the graph. If that ever matters, add the package here.
     """
     return name.startswith('napari') or name == 'npe2'
 
@@ -131,32 +126,19 @@ def is_analyzed_package(name):
 @functools.cache
 def non_napari_top_level_modules():
     """
-    List the importable top-level modules that pydeps doesn't need to analyze.
+    Return the top-level modules to pass to pydeps as excludes.
 
-    The result is cached, since it is the same for every UI section.
-
-    pydeps statically follows every import from the target module, including
-    into numpy, scipy, torch, etc. (over 10,000 modules), and only applies the
-    `--only` filter afterwards. Passing these names as excludes stops the
-    module finder at the edge of napari, which makes the analysis much faster
-    without changing the resulting napari graph (see `is_analyzed_package` for
-    which packages are still followed).
-
-    Returns
-    -------
-    names : tuple of str
-        Top-level module names, except those `is_analyzed_package` keeps.
+    pydeps follows every import (10,000+ modules, into numpy, torch, ...)
+    before applying `--only`. Excluding everything `is_analyzed_package`
+    doesn't keep stops the walk at napari's edge with the same result.
     """
     top_level = {module.name for module in pkgutil.iter_modules()}
     top_level.update(sys.builtin_module_names, sys.stdlib_module_names)
-    # Don't exclude names that napari-side packages use for their own modules.
-    # Excluding a top-level name (e.g. `signal`) makes an absolute
-    # `import signal` fail, which puts the bare name in the module finder's
-    # `badmodules` cache. The finder checks that cache by bare name before
-    # resolving a relative import, so `from .signal import Signal` in the
-    # vendored qt_jsonschema_form would then be skipped too.
-    # (find_spec, unlike iter_modules, also finds editable installs that use
-    # an import hook.)
+    # Keep names that napari-side packages also use for their own modules.
+    # An excluded `signal` lands in modulefinder's bare-name `badmodules`
+    # cache, which would also drop the relative `from .signal import ...`
+    # in the vendored qt_jsonschema_form. find_spec (not iter_modules) so
+    # editable installs are found too.
     own_module_names = set()
     for name in {'napari'} | {n for n in top_level if is_analyzed_package(n)}:
         spec = importlib.util.find_spec(name)
