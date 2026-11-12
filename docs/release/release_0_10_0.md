@@ -72,9 +72,6 @@ Some plugin dock widgets are wider than they are tall, fitting poorly on the rig
       tabify: True
 ```
 
-
-- Remove `PyQt5` support, part 1 ([#9650](https://github.com/napari/napari/pull/9650))
-
 ## Breaking Changes
 
 ### Dropped support for Qt5 backend
