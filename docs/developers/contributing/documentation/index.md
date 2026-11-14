@@ -726,7 +726,8 @@ of the examples gallery folder by executing
 make html GALLERY_PATH=<path-to-examples-folder>
 ```
 
-The `GALLERY_PATH` option must be given relative to the `docs` folder. If your
+The `GALLERY_PATH` option must be given relative to the `docs` folder, or as an
+absolute path. If your
 folder structure is
 
 ```
