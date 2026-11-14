@@ -440,7 +440,14 @@ GALLERY_SOURCE_PATH_RE = re.compile(r'\.\. "(.+\.py)"\n')
 GALLERY_METADATA_END_RE = re.compile(
     r'^\.\. GENERATED FROM PYTHON SOURCE LINES \d+-\d+\s*$', re.MULTILINE
 )
-NAPARI_PYPROJECT = Path(__file__).resolve().parents[2] / 'napari' / 'pyproject.toml'
+NAPARI_PYPROJECT = (
+    Path(
+        os.environ.get(
+            'NAPARI_PATH', Path(__file__).resolve().parents[2] / 'napari'
+        )
+    )
+    / 'pyproject.toml'
+)
 PLUGIN_MANAGER_ADDITIONAL_PACKAGES_GUIDE = (
     'https://napari.org/napari-plugin-manager/#installing-via-direct-entry'
 )
