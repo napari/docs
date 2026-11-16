@@ -253,7 +253,13 @@ tags_overview_title = 'Tags'
 tags_extension = ['md', 'rst']
 panels_add_bootstrap_css = False
 pygments_style = 'solarized-dark'
-suppress_warnings = ['myst.header', 'etoc.toctree', 'config.cache']
+suppress_warnings = [
+    'myst.header',
+    'etoc.toctree',
+    'config.cache',
+    # The installation cards use legacy footers until the docs require 0.8+.
+    'design.card_legacy',
+]
 
 # OpenGraph configuration for link previews
 
