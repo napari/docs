@@ -13,4 +13,4 @@ permissions:
 jobs:
   remove_comment:
     name: Remove html comments.
-    uses: napari/napari/.github/workflows/edit_pr_description.yml@2d4c9fadbaf86e819a1b565c4dce983a22baab94 # v0.8.0
+    uses: napari/napari/.github/workflows/edit_pr_description.yml@595639295a153c84bcb127a9e07d801355440a35 # v0.9.2

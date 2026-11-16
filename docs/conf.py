@@ -232,6 +232,8 @@ myst_enable_extensions = [
 ]
 myst_footnote_transition = False
 myst_heading_anchors = 4
+# Fuzzy linkify turns bare file names such as conf.py into web links.
+myst_linkify_fuzzy_links = False
 
 # configuration settings for sphinx and its extensions
 comments_config = {'hypothesis': False, 'utterances': False}
@@ -400,10 +402,10 @@ def reset_napari(gallery_conf, fname):
     settings = get_settings()
     settings.appearance.theme = 'dark'
 
-    # Disabling `QApplication.exec_` means example scripts can call `exec_`
+    # Disabling `QApplication.exec` means example scripts can call `exec`
     # (scripts work when run normally) without blocking example execution by
     # sphinx-gallery. (from qtgallery)
-    QApplication.exec_ = lambda _: None
+    QApplication.exec = lambda _: None
 
 
 def napari_scraper(block, block_vars, gallery_conf):
@@ -671,21 +673,71 @@ def add_google_calendar_secrets(app, docname, source):
 
 linkcheck_allowed_redirects = {
     r'https://youtu\.be/.*': r'https://www\.youtube\.com/.*',
-    r'https://github\.com/napari/napari/releases/download/.*': r'https://objects\.githubusercontent\.com/.*',
+    r'https://github\.com/napari/napari/releases/download/.*': r'https://(objects|release-assets)\.githubusercontent\.com/.*',
+    r'https://github\.com/[^/]+/[^/]+/releases/latest': r'https://github\.com/[^/]+/[^/]+/releases/tag/.*',
+    r'https://github\.com/[^/]+/[^/]+/releases/latest/download/.*': r'https://release-assets\.githubusercontent\.com/.*',
+    r'https://github\.com/user-attachments/assets/.*': r'https://github-production-user-asset-[0-9a-f]+\.s3\.amazonaws\.com/.*',
+    # A DOI resolves to the page of its publisher.
+    r'https://doi\.org/.*': r'.*',
+    r'http://dx\.doi\.org/.*': r'.*',
 }
-linkcheck_anchors_ignore = [r'^!', r'L\d+-L\d+', r'r\d+', r'issuecomment-\d+']
+# GitHub renders line, readme, and issue anchors in the browser, and loads
+# late comments on long threads on demand. The fetched HTML lacks those ids.
+linkcheck_anchors_ignore = [
+    r'^!',
+    r'L\d+',
+    r'r\d+',
+    r'issuecomment-\d+',
+    r'readme',
+    r'issue-\d+',
+]
+linkcheck_retries = 2
 linkcheck_ignore = [
     'https://napari.zulipchat.com/',
     '../_tags',
     'https://en.wikipedia.org/wiki/Napari#/media/File:Tabuaeran_Kiribati.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/d/dc/Tabuaeran_Kiribati.jpg',
     'http://localhost:8000',
     'https://datadryad.org/stash/downloads/file_stream/182482',
     'https://github.com/napari/docs/issues/new/choose',
     'https://github.com/napari/napari/issues/new/choose',
     'https://github.com/napari/napari/issues/new',
     'https://napari-hub.org',
-    'https://github.com/napari/napari/releases/latest',
     'https://onlinelibrary.wiley.com/doi/10.1002/col.20327',
+    # These hosts answer the link checker with 403 or 429.
+    r'https://gitlab\.freedesktop\.org/ofourdan/xwayland-run',
+    r'https://grabcad\.com/',
+    r'https://hackmd\.io/',
+    r'https://human-organ-atlas\.esrf\.fr/',
+    r'https://(forum\.)?image\.sc',
+    r'https://labs\.quansight\.org',
+    r'https://medium\.com/',
+    r'https://nsis\.sourceforge\.io/',
+    r'https://sourceforge\.net/',
+    r'https://stackoverflow\.com/',
+    r'https://vimdoc\.sourceforge\.net/',
+    # These DOI prefixes resolve to publishers that answer with 403.
+    r'http://dx\.doi\.org/10\.1093/',
+    r'https://doi\.org/10\.1126/',
+    # These hosts do not accept connections from CI runners.
+    r'https://dancohen\.org/',
+    r'https://(data|public)\.celltrackingchallenge\.net/',
+    r'https://www\.slicer\.org',
+    # These pages need a login and cannot be verified.
+    r'https://docs\.google\.com/presentation/d/1RFja0o6cZ8lAalAve8heuJ-Lrb4nOSUnfdpOSEhqqNo',
+    r'https://github\.com/conda-forge/napari-feedstock/issues/new',
+    r'https://github\.com/napari/docs/fork',
+    r'https://github\.com/orgs/napari/teams/',
+    r'https://github\.com/settings/',
+    r'https://x\.com/hashtag/',
+    # Pull and issue numbers on the napari org are stable identifiers.
+    r'https://github\.com/napari/[^/]+/(pull|issues)/[0-9]+',
+    # The napari examples and the npe2 docs templates hold these dead links.
+    # Remove each entry when its source repository gets the fix.
+    r'https://napari\.org/magicgui/api/_autosummary/magicgui\.widgets\._bases\.Widget\.html',
+    r'https://napari\.org/napari-scipy2025-workshop/notebooks/image_warping\.html',
+    r'https://napari\.org/stable/plugins/npe1\.html',
+    r'https://napari\.org/stable/tutorials/segmentation/annotate_segmentation\.html',
 ]
 
 rediraffe_redirects = {
@@ -701,6 +753,13 @@ rediraffe_redirects = {
     'tutorials/fundamentals/quick_start': 'getting_started/quick_start',
     'tutorials/fundamentals/viewer': 'getting_started/viewer',
     'tutorials/start_index': 'getting_started/start_index',
+    'community/napari_logo_usage': 'community/resources',
+    'developers/coredev/core_dev_guide': 'developers/core_team/core_team_guide',
+    'developers/coredev/maintenance': 'developers/core_team/maintenance',
+    'developers/coredev/packaging': 'developers/core_team/packaging',
+    'developers/coredev/release': 'developers/core_team/release',
+    'developers/coredev/release_policy': 'developers/core_team/release_policy',
+    'developers/coredev/triage': 'developers/core_team/triage',
 }
 
 def rewrite_github_anchor(app, uri: str):

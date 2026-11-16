@@ -275,7 +275,7 @@ def autogenerate_images():
         capture_viewer_region(viewer, region['components'], region['name'])
 
     close_all(viewer)
-    app.exec_()
+    app.exec()
 
 
 def capture_popups(config):

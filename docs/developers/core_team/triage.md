@@ -72,6 +72,13 @@ close a pull request on their own when it is clearly not going to be merged,
 for example a change to deprecated functionality or a fix for a bug that can
 no longer be reproduced. When in doubt, ask a core team member.
 
+Milestones and labels have a direct effect on the release cycle. If you add a
+milestone to a pull request, you take responsibility for driving it toward a
+mergeable state and for keeping the release manager informed of its status; if
+you add the `highlight` label, please include the motivation, a draft highlight
+note, and any required images or videos. See the
+[release policy](napari-release) for details.
+
 ## What to focus on
 
 Your fresh eyes are most valuable on *recently arrived* issues and pull
@@ -153,12 +160,14 @@ relevant core team members or bring it up in the `#triage` channel.
 
 ## The pull request triage board
 
-The [napari pull request triage board](https://github.com/orgs/napari/projects/35)
+The
+[napari pull request triage board](https://github.com/orgs/napari/projects/35)
 is an org-level GitHub project board that automatically tracks every open pull
 request across the napari organization. It is populated by the
 [pr-triage-board-bot](https://github.com/jupyter/pr-triage-board-bot), a tool
 designed to "scale maintainer intuition" — the thinking behind it is described
-in [this blog post](https://medium.com/@yuvipanda/scaling-maintainer-intuition-with-pull-request-triage-boards-779f2387498b).
+in
+[this blog post](https://medium.com/@yuvipanda/scaling-maintainer-intuition-with-pull-request-triage-boards-779f2387498b).
 
 For each open pull request, the bot computes a set of fields so you can see at
 a glance where a pull request is in its lifecycle:
@@ -224,7 +233,7 @@ member with lazy consensus, without re-running the full nomination process.
 
 Core team members do triage too, and shepherd triagers as they grow into the
 role. When you review a pull request, make sure labels and milestones are set
-as described in the [core team member guide](core-dev-guide). When you notice
+as described in the [core team member guide](core-team-guide). When you notice
 a contributor consistently helping with triage, consider nominating them for
 the triage team (see [joining the triage team](#joining-the-triage-team)
 above).

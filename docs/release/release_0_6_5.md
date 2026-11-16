@@ -11,7 +11,7 @@ rendering), and the scientific Python stack (numpy, scipy).
 For more information, examples, and documentation, please visit our website,
 https://napari.org.
 
-napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this is a **Meso** release containing awesome new features, but some effort may be needed when updating previous projects to use this version.
+napari follows [EffVer (Intended Effort Versioning)](https://jacobtomlinson.dev/effver/); this is a **Meso** release containing awesome new features, but some effort may be needed when updating previous projects to use this version.
 
 ## Highlights
 
@@ -19,7 +19,7 @@ This a sizeable release containing a few new exciting features and a lot of bugf
 
 ### EffVer and no more _alpha_
 
-It is our first release officially following the [EffVer versioning scheme](https://effver.org/). We also took this occasion to (finally!) remove the `Alpha` qualifier from the project ([#8288](https://github.com/napari/napari/pull/8288)), to better reflect the reality of the extensive use of napari in production. Note that these changes are just formally bringing up to date the state of the project: our development continues as before!
+It is our first release officially following the [EffVer versioning scheme](https://jacobtomlinson.dev/effver/). We also took this occasion to (finally!) remove the `Alpha` qualifier from the project ([#8288](https://github.com/napari/napari/pull/8288)), to better reflect the reality of the extensive use of napari in production. Note that these changes are just formally bringing up to date the state of the project: our development continues as before!
 
 ### Define a startup script for custom launch behaviour
 
@@ -66,7 +66,7 @@ Points and Shapes can now be easily removed, not just added :P ([#8031](https://
 ### A few shiny new updates to our website and documentation
 
 [napari.org](https://napari.org/) can now be visited in *dark mode* ([docs#840](https://github.com/napari/docs/pull/840))! You could try out this new relaxing colorscheme while exploring the new overhauled [Preferences documentation](https://napari.org/stable/guides/preferences.html#preferences) section 😉 ([docs#834](https://github.com/napari/docs/pull/834)).
-There's also new sections on [viewer overlays](https://napari.org/stable/tutorials/fundamentals/viewer.html#viewer-overlays) and [layer overlays](https://napari.org/stable/guides/layers.html#layer-overlays), to better explain how to use these old and new tools.
+There's also new sections on [viewer overlays](https://napari.org/stable/getting_started/viewer.html#viewer-overlays) and [layer overlays](https://napari.org/stable/getting_started/layers.html#layer-overlays), to better explain how to use these old and new tools.
 Our [release notes page](https://napari.org/dev/release/index.html) also received a glow-up ([docs#838](https://github.com/napari/docs/pull/838)), displaying past release highlights in collapsible boxes in the timeline. This should make it easier to quickly catch up when updating across multiple releases!
 
 ### Extra dependencies for development moved to dependency groups
