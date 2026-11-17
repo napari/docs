@@ -40,6 +40,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [perf] Use numpy for thumbnails, to avoid scipy import and duplicate code ([#9858](https://github.com/napari/napari/pull/9858))
 - Postpone welcome widget refresh while it is not visible ([#9869](https://github.com/napari/napari/pull/9869))
 - Skip the canvas cleanup when closing the viewer ([#9870](https://github.com/napari/napari/pull/9870))
+- Refactor data/thumbnail materializers ([#9908](https://github.com/napari/napari/pull/9908))
 
 ## Bug Fixes
 
@@ -69,8 +70,11 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Super  speed up the UI diagram prep ([docs#1212](https://github.com/napari/docs/pull/1212))
 - perf: add napari pull and issue links to linkcheck_ignore ([docs#1214](https://github.com/napari/docs/pull/1214))
 - docs: add section anchors and https to five links ([docs#1217](https://github.com/napari/docs/pull/1217))
+- Fix example highlight styling on the homepage ([docs#1224](https://github.com/napari/docs/pull/1224))
+- Fix homepage and community quicklink icon sizes ([docs#1225](https://github.com/napari/docs/pull/1225))
 - docs: update moved tutorial links in two examples ([#9810](https://github.com/napari/napari/pull/9810))
 - Add Parameters section to `compute_nice_ticks docstring` ([#9842](https://github.com/napari/napari/pull/9842))
+- doc: fix wrong ndim description for point layer ([#9915](https://github.com/napari/napari/pull/9915))
 
 ## Other Pull Requests
 
@@ -80,6 +84,8 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Fix Make on Windows to use env vars during docs builds ([docs#1203](https://github.com/napari/docs/pull/1203))
 - fix: allow redirects and ignore blocked hosts in the link check ([docs#1207](https://github.com/napari/docs/pull/1207))
 - update circle ci redirector version ([docs#1218](https://github.com/napari/docs/pull/1218))
+- [pre-commit.ci] pre-commit autoupdate ([docs#1222](https://github.com/napari/docs/pull/1222))
+- Silence sphinx-design==0.8.0 warning ([docs#1223](https://github.com/napari/docs/pull/1223))
 - Add CITATION.cff validation and re-order authors (with pre-commit) ([#9155](https://github.com/napari/napari/pull/9155))
 - TYP: add type hints in `_vispy/canvas.py` and `base.py` ([#9202](https://github.com/napari/napari/pull/9202))
 - TYP: add type hints in `_evented_list.py` ([#9241](https://github.com/napari/napari/pull/9241))
@@ -103,6 +109,7 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [pre-commit.ci] pre-commit autoupdate ([#9851](https://github.com/napari/napari/pull/9851))
 - Speed up test suite: gc.freeze, cached builtins manifest, no sleeps in label color tests ([#9854](https://github.com/napari/napari/pull/9854))
 - Fix deadlock between slicing thread and main thread on PySide6 ([#9856](https://github.com/napari/napari/pull/9856))
+- Fail quicker at end of test sections on CI ([#9868](https://github.com/napari/napari/pull/9868))
 - Update `coverage`, `hypothesis`, `ipython`, `npe2`, `pandas`, `platformdirs`, `pydantic`, `tifffile`, `virtualenv` ([#9873](https://github.com/napari/napari/pull/9873))
 - [pre-commit.ci] pre-commit autoupdate ([#9877](https://github.com/napari/napari/pull/9877))
 - Update the comment in `VispyCanvas.screenshot()` to reflect current state ([#9878](https://github.com/napari/napari/pull/9878))
@@ -114,9 +121,12 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - Fix CircleCI redirector by bumping action version ([#9895](https://github.com/napari/napari/pull/9895))
 - Silence SC2016 for the git credential helper in upgrade_test_constraints ([#9896](https://github.com/napari/napari/pull/9896))
 - Fix missing f-prefix in git diff error message of `check_updated_packages` ([#9899](https://github.com/napari/napari/pull/9899))
+- Use PySide6-Essentials instead of the PySide6 metapackage ([#9905](https://github.com/napari/napari/pull/9905))
+- [pre-commit.ci] pre-commit autoupdate ([#9909](https://github.com/napari/napari/pull/9909))
+- [perf] Labels: Use layer.data.dtype instead of materializing lazy arrays in get_dtype ([#9912](https://github.com/napari/napari/pull/9912))
 
 
-## 17 authors added to this release (alphabetical)
+## 18 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -125,10 +135,11 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) - @carlosmariorr
 - [Clément Caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal
 - [Felipe Cybis Pereira](https://github.com/napari/napari/commits?author=FelipeCybis) - @FelipeCybis
-- [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
+- [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo
 - [KallineB](https://github.com/napari/napari/commits?author=KallineB) - @KallineB +
 - [lettyz3](https://github.com/napari/napari/commits?author=lettyz3) - @lettyz3
+- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
 - [Lundy Bernard](https://github.com/napari/napari/commits?author=lundybernard) ([docs](https://github.com/napari/docs/commits?author=lundybernard))  - @lundybernard
 - [Lyinno](https://github.com/napari/napari/commits?author=Lyinno) - @Lyinno
 - [Maria Laura Soares](https://github.com/napari/napari/commits?author=mlaurabs) - @mlaurabs +
@@ -146,10 +157,10 @@ napari follows [EffVer (Intended Effort Versioning)](https://effver.org/); this 
 - [Aniket](https://github.com/napari/napari/commits?author=Aniketsy) - @Aniketsy
 - [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) - @carlosmariorr
 - [Clément Caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal
-- [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) - @Czaki
+- [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo
 - [lettyz3](https://github.com/napari/napari/commits?author=lettyz3) - @lettyz3
-- [Lorenzo Gaifas](https://github.com/napari/docs/commits?author=brisvag) - @brisvag
+- [Lorenzo Gaifas](https://github.com/napari/napari/commits?author=brisvag) - @brisvag
 - [Lundy Bernard](https://github.com/napari/napari/commits?author=lundybernard) ([docs](https://github.com/napari/docs/commits?author=lundybernard))  - @lundybernard +
 - [Peter Sobolewski](https://github.com/napari/napari/commits?author=psobolewskiPhD) - @psobolewskiPhD
 - [Sparsh Vikas](https://github.com/napari/napari/commits?author=TheCreeperrr) - @TheCreeperrr +
