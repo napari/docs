@@ -12,25 +12,24 @@
 # ]
 # ///
 """Generate the release notes automatically from GitHub pull requests."""
+
 from __future__ import annotations
 
 import argparse
+import contextlib
+import os
 import re
 import sys
+import threading
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
+from datetime import datetime
 from pathlib import Path
 from typing import NamedTuple
 
-from packaging.version import parse as parse_version
-
-import contextlib
-import os
-import threading
-from contextlib import contextmanager
-from datetime import datetime
-
 from git import Repo
 from github import Github, Milestone
+from packaging.version import parse as parse_version
 from tqdm import tqdm
 from unidecode import unidecode
 from yaml import safe_load
