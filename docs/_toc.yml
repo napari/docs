@@ -217,7 +217,9 @@ subtrees:
           - file: developers/contributing/dev_install
           - file: developers/contributing/testing
           - file: developers/contributing/typing
-          - file: developers/contributing/typing_patterns
+            subtrees:
+            - entries:
+              - file: developers/contributing/typing_patterns
           - file: developers/contributing/performance/index
             subtrees:
             - entries:

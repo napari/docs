@@ -119,7 +119,7 @@ treat editor suggestions as a hint and `tox -e pyrefly` as the standard.
   contract other modules rely on, and locals are inferred well enough without
   help.
 - **Parameters should accept the widest type that works; returns give back the
-  concrete type you built.** When psosible, take `Iterable`, `Sequence` or
+  concrete type you built.** When possible, take `Iterable`, `Sequence` or
   `Mapping` rather than `list` or `dict`, and hand back the `list` or `dict`
   you actually made.
 - **`Any` switches off checking for everything it touches.** It is sometimes

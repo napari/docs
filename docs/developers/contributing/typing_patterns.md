@@ -110,6 +110,15 @@ object that implements `__iter__`, such as `Fruits` above, without changing its
 signature. If a function modifies its argument in place, ask for
 `MutableSequence` or `MutableMapping` instead.
 
+```{note}
+`Mapping` and `Sequence` only promise read access, such as lookups, `len()`
+and iteration. `MutableMapping` and `MutableSequence` add the methods that
+change the object, such as item assignment, `append()`, `pop()` and
+`update()`. The
+[`collections.abc` documentation](https://docs.python.org/3/library/collections.abc.html)
+lists the methods each type supports.
+```
+
 ## Generic functions with `TypeVar`
 
 When the output type depends on the input type, describe the relationship with
@@ -197,4 +206,5 @@ allowed and assigning another type is an error. `shape` on `HasShape` stays
 read-only, so assigning to it is an error. `label` is a method: the object
 must define it, and the checker checks the call and the `str` return.
 
-Add `@runtime_checkable` only if you also need `isinstance()` checks.
+Decorate the `Protocol` with `@runtime_checkable` only if you also need
+`isinstance()` checks.
