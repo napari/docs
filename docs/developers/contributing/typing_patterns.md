@@ -111,10 +111,9 @@ signature. If a function modifies its argument in place, ask for
 `MutableSequence` or `MutableMapping` instead.
 
 ```{note}
-`Mapping` and `Sequence` only promise read access, such as lookups, `len()`
-and iteration. `MutableMapping` and `MutableSequence` add the methods that
-change the object, such as item assignment, `append()`, `pop()` and
-`update()`. The
+`Mapping` and `Sequence` only promise read access, such as lookups, `len()` and
+iteration. `MutableMapping` and `MutableSequence` add the methods that change
+the object, such as item assignment, `append()`, `pop()` and `update()`. The
 [`collections.abc` documentation](https://docs.python.org/3/library/collections.abc.html)
 lists the methods each type supports.
 ```
