@@ -70,7 +70,11 @@ The output was reviewed and edited for accuracy and clarity.
 """
 
 # ---- Standard library imports
+import functools
+import importlib.util
 import json
+import pkgutil
+import sys
 import time
 from pathlib import Path
 
@@ -106,6 +110,53 @@ CONSOLE_MODULE_PATH = Path(qt_console.__file__).parent
 
 
 # ---- Utility functions
+def is_analyzed_package(name):
+    """
+    Return whether pydeps should analyze the top-level package `name`.
+
+    Kept by name: `napari*` and `npe2`. Some napari modules are only reached
+    through these (e.g. `napari._qt.qthreading` via `napari_plugin_manager`).
+    Packages with other names that import napari (e.g. magicclass) are
+    excluded, so napari modules reached only through them silently drop out
+    of the graph. If that ever matters, add the package here.
+    """
+    return name.startswith('napari') or name == 'npe2'
+
+
+@functools.cache
+def non_napari_top_level_modules():
+    """
+    Return the top-level modules to pass to pydeps as excludes.
+
+    pydeps follows every import (10,000+ modules, into numpy, torch, ...)
+    before applying `--only`. Excluding everything `is_analyzed_package`
+    doesn't keep stops the walk at napari's edge with the same result.
+    """
+    top_level = {module.name for module in pkgutil.iter_modules()}
+    top_level.update(sys.builtin_module_names, sys.stdlib_module_names)
+    # Keep names that napari-side packages also use for their own modules.
+    # An excluded `signal` lands in modulefinder's bare-name `badmodules`
+    # cache, which would also drop the relative `from .signal import ...`
+    # in the vendored qt_jsonschema_form. find_spec (not iter_modules) so
+    # editable installs are found too.
+    own_module_names = set()
+    for name in {'napari'} | {n for n in top_level if is_analyzed_package(n)}:
+        spec = importlib.util.find_spec(name)
+        for location in (spec and spec.submodule_search_locations) or []:
+            package_dir = Path(location)
+            own_module_names.update(path.stem for path in package_dir.rglob('*.py'))
+            own_module_names.update(
+                path.name for path in package_dir.rglob('*') if path.is_dir()
+            )
+    return tuple(
+        sorted(
+            name
+            for name in top_level
+            if not is_analyzed_package(name) and name not in own_module_names
+        )
+    )
+
+
 def generate_dependencies_graph(options):
     """
     Generate the module dependency analysis for the given options.
@@ -415,6 +466,7 @@ def generate_docs_ui_section(
 
     """
     options = cli.parse_args(pydeps_args)
+    options['exclude'] = [*options['exclude'], *non_napari_top_level_modules()]
     (
         dep_graph,
         dot_src,
