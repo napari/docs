@@ -54,7 +54,6 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - [perf] Use numpy for thumbnails, to avoid scipy import and duplicate code ([#9858](https://github.com/napari/napari/pull/9858))
 - Postpone welcome widget refresh while it is not visible ([#9869](https://github.com/napari/napari/pull/9869))
 - Skip the canvas cleanup when closing the viewer ([#9870](https://github.com/napari/napari/pull/9870))
-- Refactor data/thumbnail materializers ([#9908](https://github.com/napari/napari/pull/9908))
 
 ## Bug Fixes
 
@@ -70,12 +69,14 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - Fix floating coordinate grid plane for 2D data in 3D view ([#9827](https://github.com/napari/napari/pull/9827))
 - Fix disconnecting old transform in TransformChain.__setitem__ ([#9835](https://github.com/napari/napari/pull/9835))
 - fix `imshow` to not set `ndisplay` and `order` if not passed explicitly ([#9850](https://github.com/napari/napari/pull/9850))
-- Fix thread worker warnings ([#9883](https://github.com/napari/napari/pull/9883))
 - Fix warning notifications without arguments ([#9884](https://github.com/napari/napari/pull/9884))
+- Fix menu item chevron overlap ([#9934](https://github.com/napari/napari/pull/9934))
+- Fix closing notifications by using keyword-only ([#9935](https://github.com/napari/napari/pull/9935))
 
 ## Documentation
 
 - core dev guide text improvement ([docs#1170](https://github.com/napari/docs/pull/1170))
+- Typing guide: add code snippets for common patterns and more resources ([docs#1177](https://github.com/napari/docs/pull/1177))
 - Redirect coredev files to core_team  ([docs#1194](https://github.com/napari/docs/pull/1194))
 - docs: update moved, dead, and src/ layout links ([docs#1195](https://github.com/napari/docs/pull/1195))
 - docs: link NAP 2 release-guide footnote by label ([docs#1206](https://github.com/napari/docs/pull/1206))
@@ -88,6 +89,7 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - Fix example highlight styling on the homepage ([docs#1224](https://github.com/napari/docs/pull/1224))
 - Fix homepage and community quicklink icon sizes ([docs#1225](https://github.com/napari/docs/pull/1225))
 - Release notes for v0.10.1rc0 ([docs#1227](https://github.com/napari/docs/pull/1227))
+- TYP: add type hints in `_evented_list.py` ([#9241](https://github.com/napari/napari/pull/9241))
 - docs: update moved tutorial links in two examples ([#9810](https://github.com/napari/napari/pull/9810))
 - Add Parameters section to `compute_nice_ticks docstring` ([#9842](https://github.com/napari/napari/pull/9842))
 - doc: fix wrong ndim description for point layer ([#9915](https://github.com/napari/napari/pull/9915))
@@ -105,7 +107,6 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - Silence sphinx-design==0.8.0 warning ([docs#1223](https://github.com/napari/docs/pull/1223))
 - Add CITATION.cff validation and re-order authors (with pre-commit) ([#9155](https://github.com/napari/napari/pull/9155))
 - TYP: add type hints in `_vispy/canvas.py` and `base.py` ([#9202](https://github.com/napari/napari/pull/9202))
-- TYP: add type hints in `_evented_list.py` ([#9241](https://github.com/napari/napari/pull/9241))
 - fix(typing): annotate `napari/utils/key_bindings.py` ([#9253](https://github.com/napari/napari/pull/9253))
 - TYP: add type hints in `_multiscale_data.py` ([#9549](https://github.com/napari/napari/pull/9549))
 - Update tox configuration to simplify testing against other packages ([#9555](https://github.com/napari/napari/pull/9555))
@@ -114,7 +115,6 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - TYP: add type hints in `view_layers.py` ([#9679](https://github.com/napari/napari/pull/9679))
 - Add timeout to --pre tests ([#9711](https://github.com/napari/napari/pull/9711))
 - TYP: add type hints in `geometry.py` and `_typed.py` ([#9716](https://github.com/napari/napari/pull/9716))
-- TYP: add type hints in `action_manager.py` , `_test_utils.py` and `_register.py` ([#9718](https://github.com/napari/napari/pull/9718))
 - Update bug report template to contain more recent version of `napari --info` ([#9721](https://github.com/napari/napari/pull/9721))
 - chore: remove superseded code ([#9769](https://github.com/napari/napari/pull/9769))
 - TYP: add reusable Vector1D/Matrix2D type aliases ([#9782](https://github.com/napari/napari/pull/9782))
@@ -145,9 +145,12 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - Remove unused unit registry accessor ([#9920](https://github.com/napari/napari/pull/9920))
 - Configure uv to enforce numpy from wheel on python 3.14 ([#9922](https://github.com/napari/napari/pull/9922))
 - Pin tox using constraints ([#9929](https://github.com/napari/napari/pull/9929))
+- Fix debug log placeholders in move_multiple and dropMimeData ([#9930](https://github.com/napari/napari/pull/9930))
+- Bump tox-min-req and tox-gh-actions ([#9932](https://github.com/napari/napari/pull/9932))
+- Skip crosshair test on mac ci ([#9936](https://github.com/napari/napari/pull/9936))
 
 
-## 19 authors added to this release (alphabetical)
+## 20 authors added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -157,6 +160,7 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - [Clément Caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal
 - [Felipe Cybis Pereira](https://github.com/napari/napari/commits?author=FelipeCybis) - @FelipeCybis
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
+- [Ilgın ](https://github.com/napari/docs/commits?author=zelihaguven) - @zelihaguven +
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo
 - [Jaesung Park](https://github.com/napari/napari/commits?author=jaesungkr) - @jaesungkr +
 - [KallineB](https://github.com/napari/napari/commits?author=KallineB) - @KallineB +
@@ -171,7 +175,7 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - [Sparsh Vikas](https://github.com/napari/napari/commits?author=TheCreeperrr) - @TheCreeperrr +
 - [Tim Monko](https://github.com/napari/napari/commits?author=TimMonko) ([docs](https://github.com/napari/docs/commits?author=TimMonko))  - @TimMonko
 
-## 13 reviewers added to this release (alphabetical)
+## 14 reviewers added to this release (alphabetical)
 
 (+) denotes first-time contributors 🥳
 
@@ -180,6 +184,7 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - [Carlos Mario Rodriguez Reza](https://github.com/napari/napari/commits?author=carlosmariorr) - @carlosmariorr
 - [Clément Caporal](https://github.com/napari/napari/commits?author=ClementCaporal) - @ClementCaporal
 - [Grzegorz Bokota](https://github.com/napari/napari/commits?author=Czaki) ([docs](https://github.com/napari/docs/commits?author=Czaki))  - @Czaki
+- [Ilgın ](https://github.com/napari/docs/commits?author=zelihaguven) - @zelihaguven +
 - [Jacopo Abramo](https://github.com/napari/napari/commits?author=jacopoabramo) - @jacopoabramo
 - [Juan Nunez-Iglesias](https://github.com/napari/docs/commits?author=jni) - @jni
 - [lettyz3](https://github.com/napari/napari/commits?author=lettyz3) - @lettyz3
