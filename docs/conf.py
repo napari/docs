@@ -244,6 +244,8 @@ napoleon_custom_sections = [('Events', 'params_style')]
 # use an env var to control whether noteboos are executed
 nb_execution_mode = os.environ.get('NB_EXECUTION_MODE', 'auto')
 nb_output_stderr = 'show'
+# print the full traceback in the build log when a notebook cell fails
+nb_execution_show_tb = True
 mermaid_d3_zoom = True
 mermaid_version = '11.4.1'
 mermaid_include_elk = '' if parse_version(metadata_version('sphinxcontrib-mermaid')) < parse_version('2.0') else False
