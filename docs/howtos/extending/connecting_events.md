@@ -49,6 +49,67 @@ def delete_layer(viewer):
 napari.run()
 ```
 
+(connect-layer-key-event)=
+
+### Keybindings for layers
+
+Layers can have keybindings too. A layer keybinding only fires while that layer
+is the active (selected) layer, and the layer, not the viewer, is passed to the
+callback.
+
+To bind a key for every layer of one type, call `bind_key` on the layer class.
+Here, pressing `h` toggles the opacity of whichever image layer is selected:
+
+```python
+import numpy as np
+import napari
+from napari.layers import Image
+
+viewer = napari.Viewer()
+viewer.add_image(np.random.random((512, 512)), name='noise')
+viewer.add_image(np.random.random((512, 512)), name='more noise')
+
+
+@Image.bind_key('h')
+def toggle_opacity(layer):
+    layer.opacity = 0.5 if layer.opacity == 1 else 1
+
+
+napari.run()
+```
+
+To bind a key for one specific layer, call `bind_key` on that layer instead.
+This binding only fires while the `cells` layer is selected:
+
+```python
+import numpy as np
+import napari
+
+viewer = napari.Viewer()
+viewer.add_image(np.random.random((512, 512)), name='cells')
+viewer.add_image(np.random.random((512, 512)), name='background')
+
+
+@viewer.layers['cells'].bind_key('n')
+def show_mean(layer):
+    viewer.status = f'{layer.name}: mean intensity {layer.data.mean():.3f}'
+
+
+napari.run()
+```
+
+When the same key is bound in more than one place, napari looks for a
+binding on the selected layer first, then on its layer class, and finally on
+the viewer. In the examples above, a key bound with `viewer.bind_key` still
+works when the selected layer has no binding for that key.
+
+```{note}
+Binding a key that is already bound raises an error. Pass `overwrite=True`
+to replace the existing binding, or bind `None` to remove it, for example
+`Image.bind_key('h', None)`. Bindings on a layer class apply to all layers of
+that type, including ones added later.
+```
+
 See also this
 [custom key bindings example](https://github.com/napari/napari/blob/main/examples/custom_key_bindings.py).
 
