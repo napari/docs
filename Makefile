@@ -2,6 +2,11 @@
 
 SPHINXOPTS =
 
+# Live previews keep Sphinx's search: indexing on every rebuild is slow, and a
+# partial build would make a partial index.
+build-specific-example-live docs-live html-noplot-live slimfast-live slimgallery-live: \
+	SPHINXOPTS += -D html_theme_options.search=sphinx
+
 # Gallery path must be given relative to the docs/ folder
 
 ifeq ($(GALLERY_PATH),)
