@@ -91,6 +91,10 @@ extensions = [
     'sphinxext.rediraffe',
 ]
 
+# Opt-in build profiling; it goes first so startup time is measured too.
+if os.environ.get('SPHINX_BENCHMARK'):
+    extensions.insert(0, 'sphinx_benchmark')
+
 # -- HTML Theme ------------------------------------------------------------
 
 # See https://github.com/napari/napari-sphinx-theme for more information.
