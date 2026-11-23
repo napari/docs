@@ -1,5 +1,5 @@
 # napari 0.10.1
-⚠️ *Note: these release notes are still in draft while 0.10.1rc0 is in prerelease testing.* ⚠️
+⚠️ *Note: these release notes are still in draft while 0.10.1rc1 is in prerelease testing.* ⚠️
 
 *Mon, Nov 23, 2026*
 
@@ -51,6 +51,7 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - [Shapes, perf] Avoid rebuilding Shapes Layer.data by using Layer.nshapes and Layer._data_view.shapes ([#9501](https://github.com/napari/napari/pull/9501))
 - [Shapes, perf] Shapes batch display updates ([#9502](https://github.com/napari/napari/pull/9502))
 - [perf] Slice only after setting centered view (only affects async) ([#9698](https://github.com/napari/napari/pull/9698))
+- [perf] Refactor coarsest level materializer to the slice request ([#9750](https://github.com/napari/napari/pull/9750))
 - [perf] Use numpy for thumbnails, to avoid scipy import and duplicate code ([#9858](https://github.com/napari/napari/pull/9858))
 - Postpone welcome widget refresh while it is not visible ([#9869](https://github.com/napari/napari/pull/9869))
 - Skip the canvas cleanup when closing the viewer ([#9870](https://github.com/napari/napari/pull/9870))
@@ -58,7 +59,6 @@ The napari codebase is getting more and move type annotation coverage! This rele
 ## Bug Fixes
 
 - TYP: add type hints in `_testsupport.py` ([#9237](https://github.com/napari/napari/pull/9237))
-- TYP: add type hints in `_magicgui.py` ([#9543](https://github.com/napari/napari/pull/9543))
 - Add native value search in EnumSchemaWidgets to ensure boolean type compatibility ([#9591](https://github.com/napari/napari/pull/9591))
 - Add layers from Future results on the main thread ([#9686](https://github.com/napari/napari/pull/9686))
 - Fix saving multiscale layers with the built-in writer ([#9693](https://github.com/napari/napari/pull/9693))
@@ -89,6 +89,9 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - Fix example highlight styling on the homepage ([docs#1224](https://github.com/napari/docs/pull/1224))
 - Fix homepage and community quicklink icon sizes ([docs#1225](https://github.com/napari/docs/pull/1225))
 - Release notes for v0.10.1rc0 ([docs#1227](https://github.com/napari/docs/pull/1227))
+- Print notebook execution traceback in docs build log ([docs#1228](https://github.com/napari/docs/pull/1228))
+- Use livingobjects.ebi.ac.uk for IDR zarr sample in open_images ([docs#1229](https://github.com/napari/docs/pull/1229))
+- Last release notes update for 0.10.1 (rc1) ([docs#1230](https://github.com/napari/docs/pull/1230))
 - TYP: add type hints in `_evented_list.py` ([#9241](https://github.com/napari/napari/pull/9241))
 - docs: update moved tutorial links in two examples ([#9810](https://github.com/napari/napari/pull/9810))
 - Add Parameters section to `compute_nice_ticks docstring` ([#9842](https://github.com/napari/napari/pull/9842))
@@ -102,6 +105,7 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - ci(dependabot): bump the github-actions group with 4 updates ([docs#1198](https://github.com/napari/docs/pull/1198))
 - Fix Make on Windows to use env vars during docs builds ([docs#1203](https://github.com/napari/docs/pull/1203))
 - fix: allow redirects and ignore blocked hosts in the link check ([docs#1207](https://github.com/napari/docs/pull/1207))
+- ci: cut the runtime of the nightly link check ([docs#1215](https://github.com/napari/docs/pull/1215))
 - update circle ci redirector version ([docs#1218](https://github.com/napari/docs/pull/1218))
 - [pre-commit.ci] pre-commit autoupdate ([docs#1222](https://github.com/napari/docs/pull/1222))
 - Silence sphinx-design==0.8.0 warning ([docs#1223](https://github.com/napari/docs/pull/1223))
@@ -147,7 +151,8 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - Pin tox using constraints ([#9929](https://github.com/napari/napari/pull/9929))
 - Fix debug log placeholders in move_multiple and dropMimeData ([#9930](https://github.com/napari/napari/pull/9930))
 - Bump tox-min-req and tox-gh-actions ([#9932](https://github.com/napari/napari/pull/9932))
-- Skip crosshair test on mac ci ([#9936](https://github.com/napari/napari/pull/9936))
+- Fix type issue from merge ([#9938](https://github.com/napari/napari/pull/9938))
+- Fix flaky crosshair screenshot test ([#9941](https://github.com/napari/napari/pull/9941))
 
 
 ## 20 authors added to this release (alphabetical)
