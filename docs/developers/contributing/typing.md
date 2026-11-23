@@ -79,6 +79,7 @@ treat editor suggestions as a hint and `tox -e pyrefly` as the standard.
    are not executed at runtime until required, in order to infer the types.
    Where this is not possible (see warning below), annotations that are not
    used in the code should be wrapped in quotes to avoid early evaluation.
+
 3. **Import annotation-only types under `if TYPE_CHECKING:`**, so heavy imports
    and potential import cycles stay out of the runtime path. Ruff rules flag
    these and will often move them for you with pre-commit. To do this, add
@@ -110,6 +111,7 @@ treat editor suggestions as a hint and `tox -e pyrefly` as the standard.
 
 4. **Run `tox -e pyrefly`** and read the first complaint before the rest; later
    errors are often consequences of the first one.
+
 5. **If something can't be fixed honestly**, suppress it by error kind and say
    why, as described below.
 
