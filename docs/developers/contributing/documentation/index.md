@@ -671,6 +671,7 @@ You will need:
 
 - a clean virtual environment (e.g. `conda`) with Python {{
   python_version_range }}—remember to activate it!;
+
 - a from-source, editable installation of napari with the optional `docs`
   dependencies and a Qt backend. From the `napari/napari` repository directory
   run, for example:
