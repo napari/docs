@@ -92,6 +92,7 @@ The napari codebase is getting more and move type annotation coverage! This rele
 - Print notebook execution traceback in docs build log ([docs#1228](https://github.com/napari/docs/pull/1228))
 - Use livingobjects.ebi.ac.uk for IDR zarr sample in open_images ([docs#1229](https://github.com/napari/docs/pull/1229))
 - Last release notes update for 0.10.1 (rc1) ([docs#1230](https://github.com/napari/docs/pull/1230))
+- v0.10.1rc2 release notes ([docs#1231](https://github.com/napari/docs/pull/1231))
 - TYP: add type hints in `_evented_list.py` ([#9241](https://github.com/napari/napari/pull/9241))
 - docs: update moved tutorial links in two examples ([#9810](https://github.com/napari/napari/pull/9810))
 - Add Parameters section to `compute_nice_ticks docstring` ([#9842](https://github.com/napari/napari/pull/9842))
