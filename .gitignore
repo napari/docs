@@ -171,3 +171,5 @@ docs/_scripts/data/
 .pixi/*
 !.pixi/config.toml
 pixi.lock
+sphinx_benchmarks_*.json
+sphinx_benchmark_report/

@@ -560,7 +560,7 @@ or
 ```bash
 pixi run docs-live
 ```
-Note that this will still execute the `docs` repository notebook code cells, 
+Note that this will still execute the `docs` repository notebook code cells,
 resulting in napari windows popping up repeatedly.
 
 or for quick docs-only iteration:
@@ -571,7 +571,7 @@ pixi run slimfast-live
 These will not build any of the external content (such as the gallery) and will
 not execute code cells. `slimfast` will run the build in parallel, which can be
 significantly faster on multi-core machines (under a minute), while `slimfast-live`
-will open a browser preview and auto-rebuild any pages you edit. 
+will open a browser preview and auto-rebuild any pages you edit.
 The first run will be a full build of that target; subsequent rebuilds only process changed files.
 ````
 
@@ -608,7 +608,30 @@ and [preferences](napari-preferences), you can run:
   Note: this can take upwards of 10 minutes. In most cases
   `pixi run prep-stubs` will suffice to generate stub files.
 
----
+##### Profiling the build
+
+To find out where build time goes, the `benchmark` environment adds
+[sphinx-benchmark](https://github.com/Schefflera-Arboricola/sphinx-benchmark),
+which times each Sphinx event and extension handler. Like `local-napari`, it
+builds against the napari clone next to this repository.
+
+```bash
+pixi run bench-slim    # profile a slim build (no gallery, no notebook execution)
+pixi run bench-full    # profile a full clean build, like `pixi run html`
+pixi run bench-report  # render the latest profile as HTML in sphinx_benchmark_report/
+```
+
+Each profiling run writes a `sphinx_benchmarks_*.json` file to the repository
+root, and `bench-report` turns the newest one into a report you can open in a
+browser. Keep in mind:
+
+- Profiling forces a serial build, so total times are longer than with
+  `-j auto`. Compare the share of time each step takes, not wall-clock time.
+- `prep-docs` runs before Sphinx starts, so its time isn't in the profile.
+  `bench-full` still runs it; watch its output for per-section timings.
+- In the report, most time shows up as _gaps_ between events (for example,
+  parsing a page or executing a notebook). The function breakdown for each gap
+  shows what was running.
 
 (make-advanced)=
 
@@ -766,7 +789,7 @@ repository, but otherwise want a full build, then you can use:
 ```bash
 make html-noplot-live
 ```
-The first run will be a full build (without the gallery) so a number of napari 
+The first run will be a full build (without the gallery) so a number of napari
 instances will pop up, but then when re-building on save only edited files will
 be rebuilt.
 
