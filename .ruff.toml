@@ -59,6 +59,10 @@ ignore = [
     "TC006", # put types in quotes in typing.cast
 ]
 
+[lint.per-file-ignores]
+"tools/generate_release_notes.py" = ["T20"]
+"tools/release_utils.py" = ["T20"]
+
 [lint.flake8-builtins]
 builtins-allowed-modules = ["io", "types", "threading"]
 
