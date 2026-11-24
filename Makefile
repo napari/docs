@@ -2,7 +2,7 @@
 
 SPHINXOPTS =
 
-# Gallery path must be given relative to the docs/ folder
+# Gallery path must be given relative to the docs/ folder, or as an absolute path
 
 ifeq ($(GALLERY_PATH),)
 GALLERY_PATH := ../../napari/examples
@@ -11,6 +11,8 @@ endif
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(dir $(mkfile_path))
 docs_dir := $(current_dir)docs
+# Gallery path usable outside docs/; an absolute path (/... or C:/...) is kept
+gallery_dir := $(if $(filter /%,$(GALLERY_PATH))$(findstring :,$(GALLERY_PATH)),$(GALLERY_PATH),$(docs_dir)/$(GALLERY_PATH))
 
 # Environment for the build commands. make exports these itself, so they reach
 # sphinx-build whichever shell runs the recipe. (On Windows that is usually
@@ -146,7 +148,7 @@ slimgallery: clean clean-gallery prep-stubs
 # does not remove existing gallery files
 # will rebuild whole gallery if it's not present
 slimgallery-live: prep-stubs
-	sphinx-autobuild -M html docs/ docs/_build -T --keep-going $(GALLERY_OPTS) $(LIVE_IGNORE_OPTS) --ignore $(docs_dir)/sg_execution_times.rst --watch $(docs_dir)/$(GALLERY_PATH) $(LIVE_SERVE_OPTS) $(SPHINXOPTS)
+	sphinx-autobuild -M html docs/ docs/_build -T --keep-going $(GALLERY_OPTS) $(LIVE_IGNORE_OPTS) --ignore $(docs_dir)/sg_execution_times.rst --watch $(gallery_dir) $(LIVE_SERVE_OPTS) $(SPHINXOPTS)
 
 # slimgallery-live, but only builds a single gallery example
 # pass the name of the example without .py
@@ -175,7 +177,7 @@ build-specific-example: clean clean-gallery prep-stubs
 # a target for slimgallery-live-%
 # runs slimgallery-live with a single example
 build-specific-example-live: clean clean-gallery prep-stubs
-	sphinx-autobuild -M html docs/ docs/_build -T --keep-going -D sphinx_gallery_conf.filename_pattern=$(EXAMPLE_NAME)".py" $(GALLERY_OPTS) $(LIVE_IGNORE_OPTS) --ignore $(docs_dir)/sg_execution_times.rst --watch $(docs_dir)/$(GALLERY_PATH)/$(EXAMPLE_NAME)".py" $(LIVE_SERVE_OPTS) -j auto $(SPHINXOPTS)
+	sphinx-autobuild -M html docs/ docs/_build -T --keep-going -D sphinx_gallery_conf.filename_pattern=$(EXAMPLE_NAME)".py" $(GALLERY_OPTS) $(LIVE_IGNORE_OPTS) --ignore $(docs_dir)/sg_execution_times.rst --watch $(gallery_dir)/$(EXAMPLE_NAME)".py" $(LIVE_SERVE_OPTS) -j auto $(SPHINXOPTS)
 
 linkcheck-files: prep-docs
 	sphinx-build -b linkcheck $(NOPLOT_OPTS) --color docs/ docs/_build/html ${FILES} $(GALLERY_OPTS) $(SPHINXOPTS)
