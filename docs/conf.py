@@ -145,6 +145,10 @@ favicons = [
 
 # napari sphinx theme options
 html_theme_options = {
+    'search': 'pagefind',
+    'search_site': 'docs',
+    # Release notes mention nearly everything, so rank them below guides.
+    'search_page_weights': {'release/*': 0.3},
     'github_url': 'https://github.com/napari/napari',
     'navbar_start': ['navbar-logo', 'navbar-project'],
     'navbar_end': ['version-switcher', 'navbar-icon-links', 'theme-switcher'],
